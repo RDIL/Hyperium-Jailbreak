@@ -64,7 +64,7 @@ archivesBaseName = "Hyperium"
 
 minecraft {
     version = "1.8.9"
-    tweakClass = "cc.hyperium.launch.HyperiumTweaker"
+    tweakClass = "rocks.rdil.jailbreak.Tweaker"
     mappings = "stable_20"
     runDir = 'run'
     clientJvmArgs = ["-XX:-DisableExplicitGC"] // fast world loading
