@@ -20,7 +20,7 @@ package cc.hyperium.handlers.handlers;
 import cc.hyperium.Metadata;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.ServerJoinEvent;
-import cc.hyperium.launch.HyperiumTweaker;
+import rocks.rdil.jailbreak.Tweaker;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.utils.JsonHolder;
 import io.netty.buffer.Unpooled;
@@ -30,8 +30,6 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.client.C17PacketCustomPayload;
 
 public class HyperiumNetwork {
-
-
     @InvokeEvent
     public void joinHypixel(ServerJoinEvent event) {
         Multithreading.runAsync(() -> {
@@ -47,8 +45,8 @@ public class HyperiumNetwork {
                 new C17PacketCustomPayload("hyperium",
                     new PacketBuffer(Unpooled.buffer()).writeString(new JsonHolder()
                         .put("id", Metadata.getModid())
-                        .put("optifine", HyperiumTweaker.INSTANCE.isUsingOptifine())
-                        .put("forge", HyperiumTweaker.INSTANCE.isUsingForge())
+                        .put("optifine", Tweaker.INSTANCE.isUsingOptifine())
+                        .put("forge", Tweaker.INSTANCE.isUsingForge())
                         .put("version", Metadata.getVersion()).toString())));
         });
     }
