@@ -14,7 +14,7 @@
  *     You should have received a copy of the GNU Lesser General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package cc.hyperium.launch;
+package rocks.rdil.jailbreak;
 import cc.hyperium.Hyperium;
 import cc.hyperium.internal.addons.AddonBootstrap;
 import net.minecraft.launchwrapper.ITweaker;
@@ -29,13 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Contains utilities used to subscribe and invoke events
- *
- * @author Kevin
- * @since 10/02/2018
- */
-public class HyperiumTweaker implements ITweaker {
+public class Tweaker implements ITweaker {
     public static HyperiumTweaker INSTANCE;
     private ArrayList<String> args = new ArrayList<>();
     private boolean isRunningForge = Launch.classLoader.getTransformers().stream()
@@ -49,8 +43,7 @@ public class HyperiumTweaker implements ITweaker {
     }
 
     @Override
-    public void acceptOptions(List<String> args, File gameDir, final File assetsDir,
-                              String profile) {
+    public void acceptOptions(List<String> args, File gameDir, final File assetsDir, String profile) {
         this.args.addAll(args);
         addArg("gameDir", gameDir);
         addArg("assetsDir", assetsDir);
