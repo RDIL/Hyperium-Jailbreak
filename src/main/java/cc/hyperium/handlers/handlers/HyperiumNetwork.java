@@ -20,7 +20,7 @@ package cc.hyperium.handlers.handlers;
 import cc.hyperium.Metadata;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.ServerJoinEvent;
-import rocks.rdil.jailbreak.Tweaker;
+import cc.hyperium.launch.HyperiumTweaker;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.utils.JsonHolder;
 import io.netty.buffer.Unpooled;
@@ -45,10 +45,9 @@ public class HyperiumNetwork {
                 new C17PacketCustomPayload("hyperium",
                     new PacketBuffer(Unpooled.buffer()).writeString(new JsonHolder()
                         .put("id", Metadata.getModid())
-                        .put("optifine", Tweaker.INSTANCE.isUsingOptifine())
-                        .put("forge", Tweaker.INSTANCE.isUsingForge())
+                        .put("optifine", HyperiumTweaker.INSTANCE.isUsingOptifine())
+                        .put("forge", HyperiumTweaker.INSTANCE.isUsingForge())
                         .put("version", Metadata.getVersion()).toString())));
         });
     }
-
 }
