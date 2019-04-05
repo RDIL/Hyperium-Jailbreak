@@ -14,7 +14,7 @@
  *     You should have received a copy of the GNU Lesser General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package rocks.rdil.jailbreak;
+package cc.hyperium.launch;
 import cc.hyperium.Hyperium;
 import cc.hyperium.internal.addons.AddonBootstrap;
 import net.minecraft.launchwrapper.ITweaker;
