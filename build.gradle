@@ -64,7 +64,7 @@ archivesBaseName = "Hyperium"
 
 minecraft {
     version = "1.8.9"
-    tweakClass = "rocks.rdil.jailbreak.Tweaker"
+    tweakClass = "cc.hyperium.launch.HyperiumTweaker"
     mappings = "stable_20"
     runDir = 'run'
     clientJvmArgs = ["-XX:-DisableExplicitGC"] // fast world loading
@@ -141,7 +141,7 @@ jar {
     manifest.attributes(
             //"MixinConfigs": 'mixins.hyperium.json, mixins.ctjs.json',
             "MixinConfigs": 'mixins.hyperium.json',
-            "TweakClass": 'rocks.rdil.jailbreak.Tweaker',
+            "TweakClass": 'cc.hyperium.launch.HyperiumTweaker',
             "TweakOrder": 0,
             "Manifest-Version": 1.0,
             'Main-Class': 'cc.hyperium.installer.InstallerStart'
