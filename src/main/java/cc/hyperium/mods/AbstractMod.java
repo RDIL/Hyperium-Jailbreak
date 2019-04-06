@@ -34,12 +34,6 @@ public abstract class AbstractMod {
      */
     public abstract AbstractMod init();
 
-    /**
-     * This mods metadata, which will be displayed in the
-     * configuration gui and other places
-     *
-     * @return the mods metadata
-     */
     public abstract Metadata getModMetadata();
 
     /**
