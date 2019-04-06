@@ -15,10 +15,6 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 public class OldBlocking {
-
-    /**
-     * May require additional cleanups, however it's fine for the moment.
-     */
     public void doRenderLayer(EntityLivingBase entitylivingbaseIn, RendererLivingEntity<?> livingEntityRenderer) {
         ItemStack itemstack = entitylivingbaseIn.getHeldItem();
 
