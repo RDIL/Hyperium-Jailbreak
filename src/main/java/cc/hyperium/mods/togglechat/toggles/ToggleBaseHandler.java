@@ -70,16 +70,11 @@ public class ToggleBaseHandler {
      */
     public boolean shouldToggle(String input) {
         for (ToggleBase parser : this.toggles.values()) {
-            if (!parser.isEnabled() && parser.shouldToggle(input)) {
-                return true;
-            }
+            if (!parser.isEnabled() && parser.shouldToggle(input)) return true;
         }
         return false;
     }
 
-    /**
-     * Clears all toggles and readds default ones
-     */
     public void remake() {
         this.toggles.clear();
         this.toggles.put("ads", new TypeAds());
