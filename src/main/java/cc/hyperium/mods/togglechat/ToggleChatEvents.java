@@ -16,7 +16,6 @@
  */
 
 package cc.hyperium.mods.togglechat;
-
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.Priority;
 import cc.hyperium.event.ServerChatEvent;

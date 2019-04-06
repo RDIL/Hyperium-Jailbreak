@@ -21,7 +21,6 @@ import cc.hyperium.commands.BaseCommand;
 import cc.hyperium.mods.togglechat.ToggleChatMod;
 import cc.hyperium.mods.togglechat.gui.ToggleChatMainGui;
 import cc.hyperium.utils.ChatColor;
-
 import java.util.Collections;
 import java.util.List;
 
