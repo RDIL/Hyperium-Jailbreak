@@ -18,24 +18,16 @@
 package cc.hyperium.mods.togglechat.toggles;
 
 import cc.hyperium.utils.ChatColor;
-
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-/**
- * A lite-wight version of ToggleBase
- *
- * @author boomboompower
- */
 public abstract class ToggleBase {
-
     /**
      * Default constructor for ToggleBase
      */
-    public ToggleBase() {
-    }
+    public ToggleBase() {}
 
     /**
      * Returns the name of the specified ToggleBase
@@ -85,12 +77,6 @@ public abstract class ToggleBase {
      */
     public abstract LinkedList<String> getDescription();
 
-    /**
-     * Confirms if the toggle has a description
-     * returns false if the description is null or empty
-     *
-     * @return true if the description is valid
-     */
     public final boolean hasDescription() {
         return getDescription() != null && !getDescription().isEmpty();
     }
