@@ -377,7 +377,6 @@ public class HyperiumMinecraft {
 
     public void shutdown(CallbackInfo ci) {
         AddonMinecraftBootstrap.getLoadedAddons().forEach(IAddon::onClose);
-        MCEF.onMinecraftShutdown();
     }
 
     public void startTick(CallbackInfo info, Profiler mcProfiler) {}
