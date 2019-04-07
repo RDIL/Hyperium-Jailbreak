@@ -2,8 +2,6 @@ test_task:
   auto_cancellation: true
   container:
     image: gradle:jdk8
-    cpu: 8
-    memory: 24G
   setup_workspace_script: |
     chmod +x ./gradlew
     rm -rf $CIRRUS_WORKING_DIR/src/main/resources/build.txt
