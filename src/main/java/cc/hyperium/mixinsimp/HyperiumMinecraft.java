@@ -46,7 +46,6 @@ import net.minecraft.profiler.Profiler;
 import net.minecraft.util.Timer;
 import net.minecraft.util.Util;
 import net.minecraft.world.WorldSettings;
-import net.montoyo.mcef.MCEF;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
