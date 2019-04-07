@@ -20,7 +20,6 @@ import cc.hyperium.config.Settings;
 import cc.hyperium.mods.autofriend.AutofriendMod;
 import cc.hyperium.mods.autogg.AutoGG;
 import cc.hyperium.mods.blockoverlay.BlockOverlay;
-import cc.hyperium.mods.browser.BrowserMod;
 import cc.hyperium.mods.chromahud.ChromaHUD;
 import cc.hyperium.mods.chunkanimator.ChunkAnimator;
 import cc.hyperium.mods.fortnitecompass.FortniteCompassMod;
@@ -57,7 +56,6 @@ public class HyperiumModIntegration {
     private final FortniteCompassMod fncompass;
     private final TabToggleMod tabToggle;
     private final ItemPhysicMod itemPhysicMod;
-    private final BrowserMod browserMod;
     private final VictoryRoyale victoryRoyale;
     private final ChunkAnimator chunkAnimator;
 
@@ -78,7 +76,6 @@ public class HyperiumModIntegration {
         this.autofriend = (AutofriendMod) new AutofriendMod();
         this.fncompass = (FortniteCompassMod) new FortniteCompassMod();
         this.itemPhysicMod = (ItemPhysicMod) new ItemPhysicMod();
-        this.browserMod = (BrowserMod) new BrowserMod();
         this.glintcolorizer = (GlintColorizer) new GlintColorizer();
         this.chunkAnimator = (ChunkAnimator) new ChunkAnimator();
         this.blockOverlay = (BlockOverlay) new BlockOverlay();
@@ -89,7 +86,6 @@ public class HyperiumModIntegration {
             this.autofriend.init();
             this.fncompass.init();
             this.itemPhysicMod.init();
-            this.browserMod.init();
             this.glintcolorizer.init();
             this.chunkAnimator.init();
             this.blockOverlay.init();
@@ -165,10 +161,6 @@ public class HyperiumModIntegration {
 
     public ItemPhysicMod getItemPhysicMod() {
         return itemPhysicMod;
-    }
-
-    public BrowserMod getBrowserMod() {
-        return browserMod;
     }
 
     public VictoryRoyale getVictoryRoyale() {
