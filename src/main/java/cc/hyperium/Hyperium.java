@@ -274,7 +274,6 @@ public class Hyperium {
         hyperiumCommandHandler.registerCommand(new CommandMessage());
         hyperiumCommandHandler.registerCommand(new CommandDisableCommand());
         if(!Settings.FPS) {
-            hyperiumCommandHandler.registerCommand(new CommandBrowse());
             hyperiumCommandHandler.registerCommand(new AutofriendCommand());
             hyperiumCommandHandler.registerCommand(new CommandParticleAuras());
             hyperiumCommandHandler.registerCommand(new CommandStatistics());
