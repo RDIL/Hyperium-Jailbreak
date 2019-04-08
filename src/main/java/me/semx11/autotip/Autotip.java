@@ -30,7 +30,6 @@ import me.semx11.autotip.gson.creator.StatsDailyCreator;
 import me.semx11.autotip.gson.exclusion.AnnotationExclusionStrategy;
 import me.semx11.autotip.stats.StatsDaily;
 import me.semx11.autotip.universal.UniversalUtil;
-import me.semx11.autotip.util.ErrorReport;
 import me.semx11.autotip.util.FileUtil;
 import me.semx11.autotip.util.MinecraftVersion;
 import net.minecraft.client.Minecraft;
@@ -119,7 +118,6 @@ public class Autotip {
     }
 
     public void init() {
-        ErrorReport.setAutotip(this);
         RequestHandler.setAutotip(this);
         UniversalUtil.setAutotip(this);
         this.minecraft = Minecraft.getMinecraft();
@@ -162,10 +160,8 @@ public class Autotip {
             this.initialized = true;
         } catch (IOException e) {
             messageUtil.send("Autotip is disabled because it couldn't create the required files.");
-            ErrorReport.reportException(e);
         } catch (IllegalStateException e) {
             messageUtil.send("Autotip is disabled because it couldn't connect to the API.");
-            ErrorReport.reportException(e);
         }
     }
 
