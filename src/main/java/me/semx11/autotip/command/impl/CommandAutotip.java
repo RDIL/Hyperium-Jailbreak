@@ -156,6 +156,7 @@ public class CommandAutotip extends CommandAbstract {
                         .sendKey("tipsSent", today.getTipsSent())
                         .sendKey("tipsReceived", today.getTipsReceived())
                         .sendKey("statsCommand")
+                        .sendKey("version", "v3.0")
                         .separator();
                 break;
             case "m":
