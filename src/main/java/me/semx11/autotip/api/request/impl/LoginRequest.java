@@ -34,6 +34,8 @@ public class LoginRequest implements Request<LoginReply> {
                 .addParameter("tips", this.tips)
                 .addParameter("os", System.getProperty("os.name"))
                 .addParameter("hash", this.hash)
+                .addParameter("v", "v3.0")
+                .addParameter("mc", "1.8.9")
                 .build();
 
         Optional<Reply> optional = RequestHandler.getReply(this, request.getURI());
