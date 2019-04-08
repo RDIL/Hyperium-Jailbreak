@@ -7,14 +7,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import me.semx11.autotip.message.Message;
 import me.semx11.autotip.message.StatsMessage;
-import me.semx11.autotip.util.Version;
-import me.semx11.autotip.util.VersionInfo;
-import me.semx11.autotip.util.VersionInfo.Severity;
 
 public class GlobalSettings {
-
-    private Version latestVersion;
-    private List<VersionInfo> versions;
     private String hypixelHeader;
     private int xpPerTipSent;
     private int xpPerTipReceived;
@@ -23,24 +17,6 @@ public class GlobalSettings {
     private List<GameAlias> gameAliases;
     private List<Message> messages;
     private List<StatsMessage> statsMessages;
-
-    public Version getLatestVersion() {
-        return latestVersion;
-    }
-
-    public VersionInfo getVersionInfo(Version version) {
-        return versions.stream()
-                .filter(v -> v.getVersion().equals(version))
-                .findFirst()
-                .orElse(new VersionInfo(version, Severity.OPTIONAL, "&cVersion not found."));
-    }
-
-    public List<VersionInfo> getHigherVersionInfo(Version lowest) {
-        return versions.stream().filter(info -> {
-            Version v = info.getVersion();
-            return v.compareTo(lowest) > 0 && v.compareTo(this.latestVersion) < 1;
-        }).collect(Collectors.toList());
-    }
 
     public String getHypixelHeader() {
         return hypixelHeader;
@@ -86,7 +62,6 @@ public class GlobalSettings {
     }
 
     public static class GameAlias {
-
         private String alias;
         private List<String> aliases;
         private String game;
@@ -101,7 +76,5 @@ public class GlobalSettings {
             if (game != null) return Collections.singletonList(game);
             return games;
         }
-
     }
-
 }
