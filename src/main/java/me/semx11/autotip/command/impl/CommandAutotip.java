@@ -232,6 +232,7 @@ public class CommandAutotip extends CommandAbstract {
                 messageUtil.getKeyHelper("command.debug")
                         .separator()
                         .sendKey("serverIp", event.getServerIp())
+                        .sendKey("mcVersion", "1.8.9")
                         .sendKey("header." + (header == null ? "none" : "present"),
                                 UniversalUtil.getUnformattedText(header))
                         .separator();
@@ -255,8 +256,7 @@ public class CommandAutotip extends CommandAbstract {
     public List<String> onTabComplete(String[] args) {
         switch (args.length) {
             case 1:
-                return getListOfStringsMatchingLastWord(args, "stats", "info", "messages", "toggle",
-                        "wave", "changelog");
+                return getListOfStringsMatchingLastWord(args, "stats", "info", "messages", "toggle", "wave");
             case 2:
                 switch (args[0].toLowerCase()) {
                     case "s":
@@ -268,7 +268,4 @@ public class CommandAutotip extends CommandAbstract {
                 return Collections.emptyList();
         }
     }
-
-
-
 }
