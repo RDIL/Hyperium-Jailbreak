@@ -15,22 +15,14 @@ public class SettingsRequest implements Request<SettingsReply> {
     public static SettingsRequest of(Autotip autotip) {
         return new SettingsRequest(autotip);
     }
-
     @Override
     public SettingsReply execute() {
-        HttpUriRequest request = GetBuilder.of(this)
-                .addParameter("v3.0")
-                .build();
-
+        HttpUriRequest request = GetBuilder.of(this).build();
         Optional<Reply> optional = RequestHandler.getReply(this, request.getURI());
-        return optional
-                .map(reply -> (SettingsReply) reply)
-                .orElseGet(() -> new SettingsReply(false));
+        return optional.map(reply -> (SettingsReply) reply).orElseGet(() -> new SettingsReply(false));
     }
-
     @Override
     public RequestType getType() {
         return RequestType.SETTINGS;
     }
-
 }
