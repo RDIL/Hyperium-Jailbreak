@@ -11,11 +11,7 @@ import me.semx11.autotip.api.request.Request;
 import org.apache.http.client.methods.HttpUriRequest;
 
 public class SettingsRequest implements Request<SettingsReply> {
-
-    private final Version version;
-
     private SettingsRequest(Autotip autotip) {}
-
     public static SettingsRequest of(Autotip autotip) {
         return new SettingsRequest(autotip);
     }
