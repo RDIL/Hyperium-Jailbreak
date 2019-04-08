@@ -13,7 +13,6 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ThreadFactory;
-import me.semx11.autotip.util.ErrorReport;
 
 public class TaskManager {
     private final ExecutorService executor;
@@ -33,8 +32,7 @@ public class TaskManager {
     public void schedule(Runnable runnable, long delay) {
         try {
             scheduler.schedule(runnable, delay, SECONDS).get();
-        } catch (InterruptedException | ExecutionException e) {
-            ErrorReport.reportException(e);
+        } catch (InterruptedException | ExecutionException ignored) {
         }
     }
 
@@ -42,7 +40,6 @@ public class TaskManager {
         try {
             return scheduler.schedule(callable, delay, SECONDS).get();
         } catch (InterruptedException | ExecutionException e) {
-            ErrorReport.reportException(e);
             return null;
         }
     }
@@ -74,8 +71,7 @@ public class TaskManager {
                 future.get();
             } catch (CancellationException ignored) {
                 // Manual cancellation of a repeating task.
-            } catch (InterruptedException | ExecutionException e) {
-                ErrorReport.reportException(e);
+            } catch (InterruptedException | ExecutionException ignoredd) {
             } finally {
                 tasks.remove(type);
             }
@@ -85,7 +81,7 @@ public class TaskManager {
     private ThreadFactory getFactory(String name) {
         return new ThreadFactoryBuilder()
                 .setNameFormat(name)
-                .setUncaughtExceptionHandler((t, e) -> ErrorReport.reportException(e))
+                .setUncaughtExceptionHandler((t, e) -> null)
                 .build();
     }
 
