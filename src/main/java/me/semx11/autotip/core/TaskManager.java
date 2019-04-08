@@ -71,8 +71,7 @@ public class TaskManager {
                 future.get();
             } catch (CancellationException ignored) {
                 // Manual cancellation of a repeating task.
-            } catch (InterruptedException | ExecutionException ignoredd) {
-            } finally {
+            } catch (InterruptedException | ExecutionException ignoredd) {} finally {
                 tasks.remove(type);
             }
         });
@@ -81,7 +80,7 @@ public class TaskManager {
     private ThreadFactory getFactory(String name) {
         return new ThreadFactoryBuilder()
                 .setNameFormat(name)
-                .setUncaughtExceptionHandler((t, e) -> null)
+                .setUncaughtExceptionHandler()
                 .build();
     }
 
