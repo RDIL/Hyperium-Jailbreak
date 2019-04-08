@@ -27,7 +27,6 @@ import me.semx11.autotip.event.impl.EventClientConnection;
 import me.semx11.autotip.stats.StatsRange;
 import me.semx11.autotip.util.ErrorReport;
 import me.semx11.autotip.util.HashUtil;
-import me.semx11.autotip.util.VersionInfo;
 import net.minecraft.util.Session;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpStatus;
@@ -76,26 +75,6 @@ public class SessionManager {
 
     public long getNextTipWave() {
         return nextTipWave;
-    }
-
-    public void checkVersions() {
-        List<VersionInfo> versions = autotip.getGlobalSettings()
-                .getHigherVersionInfo(autotip.getVersion());
-        if (versions.size() > 0) {
-            messageUtil.separator();
-            messageUtil.getKeyHelper("update")
-                    .withKey("message", context -> context.getBuilder()
-                            .setUrl(context.getKey("url"))
-                            .setHover(context.getKey("hover"))
-                            .send())
-                    .sendKey("changelogHeader");
-            versions.forEach(info -> {
-                messageUtil.sendKey("update.version", info.getVersion(),
-                        info.getSeverity().toColoredString());
-                info.getChangelog().forEach(s -> messageUtil.sendKey("update.logEntry", s));
-            });
-            messageUtil.separator();
-        }
     }
 
     public void login() {
