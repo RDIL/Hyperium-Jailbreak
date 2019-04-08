@@ -17,7 +17,9 @@ public class SettingsRequest implements Request<SettingsReply> {
     }
     @Override
     public SettingsReply execute() {
-        HttpUriRequest request = GetBuilder.of(this).build();
+        HttpUriRequest request = GetBuilder.of(this)
+                .addParameter("v", "v3.0")
+                .build();
         Optional<Reply> optional = RequestHandler.getReply(this, request.getURI());
         return optional.map(reply -> (SettingsReply) reply).orElseGet(() -> new SettingsReply(false));
     }
