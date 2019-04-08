@@ -33,7 +33,6 @@ import me.semx11.autotip.universal.UniversalUtil;
 import me.semx11.autotip.util.ErrorReport;
 import me.semx11.autotip.util.FileUtil;
 import me.semx11.autotip.util.MinecraftVersion;
-import me.semx11.autotip.util.Version;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.IChatComponent;
 import org.apache.logging.log4j.LogManager;
@@ -46,15 +45,12 @@ public class Autotip {
     public static final Logger LOGGER = LogManager.getLogger("Autotip");
     static final String MOD_ID = "autotip";
     static final String NAME = "Autotip";
-    static final String VERSION = "3.0";
-    static final String ACCEPTED_VERSIONS = "[1.8, 1.12.2]";
     public static IChatComponent tabHeader;
     private final List<Event> events = new ArrayList<>();
     private final List<CommandAbstract> commands = new ArrayList<>();
     private boolean initialized = false;
     private Minecraft minecraft;
     private MinecraftVersion mcVersion;
-    private Version version;
     private Gson gson;
     private FileUtil fileUtil;
     private MessageUtil messageUtil;
@@ -80,10 +76,6 @@ public class Autotip {
 
     public MinecraftVersion getMcVersion() {
         return mcVersion;
-    }
-
-    public Version getVersion() {
-        return version;
     }
 
     public Gson getGson() {
@@ -131,9 +123,6 @@ public class Autotip {
         RequestHandler.setAutotip(this);
         UniversalUtil.setAutotip(this);
         this.minecraft = Minecraft.getMinecraft();
-        this.mcVersion = UniversalUtil.getMinecraftVersion();
-        this.version = new Version(VERSION);
-
         this.messageUtil = new MessageUtil(this);
         this.registerEvents(new EventClientTick(this));
 
