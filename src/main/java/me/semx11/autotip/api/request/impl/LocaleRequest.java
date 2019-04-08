@@ -9,11 +9,9 @@ import me.semx11.autotip.api.RequestType;
 import me.semx11.autotip.api.reply.Reply;
 import me.semx11.autotip.api.reply.impl.LocaleReply;
 import me.semx11.autotip.api.request.Request;
-import me.semx11.autotip.util.Version;
 import org.apache.http.client.methods.HttpUriRequest;
 
 public class LocaleRequest implements Request<LocaleReply> {
-
     private final Locale locale;
 
     private LocaleRequest(Autotip autotip) {
@@ -28,7 +26,7 @@ public class LocaleRequest implements Request<LocaleReply> {
     public LocaleReply execute() {
         HttpUriRequest request = GetBuilder.of(this)
                 .addParameter("lang", this.locale.toLanguageTag())
-                .addParameter("v3")
+                .addParameter("v3.0")
                 .build();
 
         Optional<Reply> optional = RequestHandler.getReply(this, request.getURI());
