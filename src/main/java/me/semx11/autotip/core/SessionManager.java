@@ -25,7 +25,6 @@ import me.semx11.autotip.chat.MessageUtil;
 import me.semx11.autotip.core.TaskManager.TaskType;
 import me.semx11.autotip.event.impl.EventClientConnection;
 import me.semx11.autotip.stats.StatsRange;
-import me.semx11.autotip.util.ErrorReport;
 import me.semx11.autotip.util.HashUtil;
 import net.minecraft.util.Session;
 import org.apache.commons.lang3.StringUtils;
@@ -189,7 +188,6 @@ public class SessionManager {
 
             return conn.getResponseCode();
         } catch (IOException e) {
-            ErrorReport.reportException(e);
             return HttpStatus.SC_BAD_REQUEST;
         }
     }
