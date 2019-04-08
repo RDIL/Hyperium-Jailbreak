@@ -15,11 +15,9 @@ import org.apache.http.client.methods.HttpUriRequest;
 public class LocaleRequest implements Request<LocaleReply> {
 
     private final Locale locale;
-    private final Version version;
 
     private LocaleRequest(Autotip autotip) {
         this.locale = autotip.getConfig().getLocale();
-        this.version = autotip.getVersion();
     }
 
     public static LocaleRequest of(Autotip autotip) {
