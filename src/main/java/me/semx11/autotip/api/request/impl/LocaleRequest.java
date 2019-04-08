@@ -26,7 +26,7 @@ public class LocaleRequest implements Request<LocaleReply> {
     public LocaleReply execute() {
         HttpUriRequest request = GetBuilder.of(this)
                 .addParameter("lang", this.locale.toLanguageTag())
-                .addParameter("version", "v3.0")
+                .addParameter("v", "v3.0")
                 .build();
 
         Optional<Reply> optional = RequestHandler.getReply(this, request.getURI());
