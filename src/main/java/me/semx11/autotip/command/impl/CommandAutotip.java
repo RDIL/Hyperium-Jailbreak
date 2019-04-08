@@ -10,7 +10,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
 import cc.hyperium.commands.CommandException;
 import me.semx11.autotip.Autotip;
 import me.semx11.autotip.chat.MessageOption;
@@ -25,22 +24,16 @@ import me.semx11.autotip.core.TaskManager.TaskType;
 import me.semx11.autotip.event.impl.EventClientConnection;
 import me.semx11.autotip.stats.StatsDaily;
 import me.semx11.autotip.universal.UniversalUtil;
-import me.semx11.autotip.util.MinecraftVersion;
 import net.minecraft.command.ICommandSender;
-
 import static net.minecraft.command.CommandBase.getListOfStringsMatchingLastWord;
 
 public class CommandAutotip extends CommandAbstract {
-
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("d/M/yyyy");
     private static final DateTimeFormatter SESSION_FORMAT = DateTimeFormatter.ofPattern("HH:mm:ss");
     private static final DateTimeFormatter WAVE_FORMAT = DateTimeFormatter.ofPattern("mm:ss");
-
     public CommandAutotip(Autotip autotip) {
         super(autotip);
     }
-
-
     @Override
     public String getName() {
         return "autotip";
@@ -51,14 +44,9 @@ public class CommandAutotip extends CommandAbstract {
         return autotip.getLocaleHolder().getKey("command.usage");
     }
 
-
     @Override
     public List<String> getCommandAliases() {
-        if (!autotip.getMcVersion().equals(MinecraftVersion.V1_8)) {
-            return Collections.singletonList("at");
-        } else {
-            return Collections.emptyList();
-        }
+        return Collections.emptyList();
     }
 
     @Override
@@ -160,7 +148,6 @@ public class CommandAutotip extends CommandAbstract {
                 StatsDaily today = stats.get();
                 messageUtil.getKeyHelper("command.info")
                         .separator()
-                        .sendKey("version", autotip.getVersion())
                         .withKey("credits", context -> context.getBuilder()
                                 .setHover(context.getKey("creditsHover"))
                                 .send())
@@ -238,22 +225,12 @@ public class CommandAutotip extends CommandAbstract {
                         .sendKey("lastWave", last)
                         .separator();
                 break;
-            case "changelog":
-                messageUtil.getKeyHelper("command.changelog")
-                        .separator()
-                        .sendKey("version", autotip.getVersion())
-                        .withKey("entry", context -> settings.getVersionInfo(autotip.getVersion())
-                                .getChangelog()
-                                .forEach(context::send))
-                        .separator();
-                break;
             case "debug":
                 EventClientConnection event = autotip.getEvent(EventClientConnection.class);
                 Object header = event.getHeader();
                 messageUtil.getKeyHelper("command.debug")
                         .separator()
                         .sendKey("serverIp", event.getServerIp())
-                        .sendKey("mcVersion", autotip.getMcVersion())
                         .sendKey("header." + (header == null ? "none" : "present"),
                                 UniversalUtil.getUnformattedText(header))
                         .separator();
