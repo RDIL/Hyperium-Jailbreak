@@ -19,7 +19,6 @@ package cc.hyperium.addons.customcrosshair.utils;
 
 import cc.hyperium.Hyperium;
 import cc.hyperium.addons.customcrosshair.CustomCrosshairAddon;
-
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -207,12 +206,6 @@ public class CustomCrosshairConfig {
             final BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             final List<String> lines = new ArrayList<>();
             lines.add("// Custom Crosshair Mod Save File - Made by Sparkless101");
-            lines.add("// ---------------------------------------------------------------------");
-            lines.add("// This file contains the styling for the crosshair.");
-            lines.add("// You may change the contents of this file in order to change the style of the crosshair in-game.");
-            lines.add("// Colours must be an number between 0 and 255.");
-            lines.add("// Boolean values must be 'true' or 'false'.");
-            lines.add("// ---------------------------------------------------------------------");
             lines.add("crosshairType:" + crosshairType);
             lines.add("enabled:" + enabled);
             lines.add("colour_red:" + colour_red);
@@ -253,8 +246,8 @@ public class CustomCrosshairConfig {
         }
     }
 
-    public boolean writeSaveFileDefault() {
-        return writeSaveFile(0, true, 255, 255, 255, 255, true, true, true, true, true, true, 0, 0, 0, 255, true, 255, 255, 255, 255, 5, 5, 3, 1, true, false, 500);
+    public void writeSaveFileDefault() {
+        writeSaveFile(0, true, 255, 255, 255, 255, true, true, true, true, true, true, 0, 0, 0, 255, true, 255, 255, 255, 255, 5, 5, 3, 1, true, false, 500);
     }
 
     public void saveCurrentCrosshair() {

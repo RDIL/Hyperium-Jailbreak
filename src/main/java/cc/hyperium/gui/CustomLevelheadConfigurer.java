@@ -20,7 +20,7 @@ import java.util.List;
  * Created by mitchellkatz on 5/2/18. Designed for production use on Sk1er.club
  */
 public class CustomLevelheadConfigurer extends HyperiumGui {
-    int cooldown = 0;
+    private int cooldown = 0;
     private GuiTextField header;
     private GuiTextField level;
     private JsonHolder levelhead_propose = new JsonHolder();
@@ -97,7 +97,6 @@ public class CustomLevelheadConfigurer extends HyperiumGui {
         drawHorizontalLine(this.width / 2 - stringWidth / 2 - 5, this.width / 2 + stringWidth / 2 + 5, 20, Color.WHITE.getRGB());
         if (levelhead_propose.getKeys().size() == 0) {
             drawCenteredString(fontRendererObj, ChatColor.RED + "Loading: " + ChatColor.RED + "Denied", width / 2, 115, Color.WHITE.getRGB());
-
             return;
         }
         if (levelhead_propose.optBoolean("denied")) {

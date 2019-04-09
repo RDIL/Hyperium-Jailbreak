@@ -5,7 +5,6 @@ import cc.hyperium.addons.bossbar.config.BossbarConfig;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.boss.BossStatus;
-
 import java.io.IOException;
 
 public class GuiBossbarPosition extends GuiScreen {
@@ -48,11 +47,7 @@ public class GuiBossbarPosition extends GuiScreen {
 
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
-        switch (button.id) {
-            case 0:
-                mc.displayGuiScreen(parent);
-                break;
-        }
+        if (button.id == 0) mc.displayGuiScreen(parent);
         super.actionPerformed(button);
     }
 

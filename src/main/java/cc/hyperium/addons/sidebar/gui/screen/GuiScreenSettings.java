@@ -20,12 +20,10 @@ package cc.hyperium.addons.sidebar.gui.screen;
 import cc.hyperium.addons.sidebar.SidebarAddon;
 import cc.hyperium.addons.sidebar.gui.GuiSidebar;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.client.config.GuiSlider;
 
 public class GuiScreenSettings extends GuiScreenSidebar {
-
     private byte byte0;
     private GuiButton buttonToggle;
     private GuiButton buttonNumbers;
@@ -63,9 +61,7 @@ public class GuiScreenSettings extends GuiScreenSidebar {
     public void drawScreen(final int mouseX, final int mouseY, final float partialTicks) {
         this.drawDefaultBackground();
         super.drawScreen(mouseX, mouseY, partialTicks);
-        if (this.sliderScale.dragging) {
-            this.sidebar.scale = this.sliderScale.getValueInt() / 100.0f;
-        }
+        if (this.sliderScale.dragging) this.sidebar.scale = this.sliderScale.getValueInt() / 100.0f;
     }
 
     protected void actionPerformed(final GuiButton button) {
@@ -99,9 +95,8 @@ public class GuiScreenSettings extends GuiScreenSidebar {
                 this.sliderScale.updateSlider();
                 final GuiSidebar sidebar = this.sidebar;
                 final GuiSidebar sidebar2 = this.sidebar;
-                final boolean b = false;
-                sidebar2.offsetX = (b ? 1 : 0);
-                sidebar.offsetY = (b ? 1 : 0);
+                sidebar2.offsetX = 0;
+                sidebar.offsetY = 0;
                 break;
             }
         }

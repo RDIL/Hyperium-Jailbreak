@@ -10,7 +10,6 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
-
 import java.awt.Color;
 import java.awt.Font;
 
@@ -18,7 +17,6 @@ import java.awt.Font;
  * Created by mitchellkatz on 6/25/18. Designed for production use on Sk1er.club
  */
 public class PurchaseCarousel {
-
     private final HyperiumFontRenderer fr = new HyperiumFontRenderer("Arial", Font.PLAIN, 60);
     private int index;
     private CarouselItem[] items;
@@ -30,8 +28,7 @@ public class PurchaseCarousel {
     private GuiBlock activeBlock;
 
     private PurchaseCarousel(int index, CarouselItem[] items) {
-        if (items.length == 0)
-            throw new IllegalArgumentException("Items must have at least 1 item in it");
+        if (items.length == 0) throw new IllegalArgumentException("Items must have at least 1 item in it");
         this.index = index;
         this.items = items;
 
@@ -89,20 +86,16 @@ public class PurchaseCarousel {
         if (activeBlock != null && activeBlock.isMouseOver(x, y)) {
             getCurrent().getOnActivate().accept(getCurrent());
         }
-
-
     }
 
     public void rotateRight() {
         index++;
-        if (index > items.length - 1)
-            index = 0;
+        if (index > items.length - 1) index = 0;
     }
 
     public void rotateLeft() {
         index--;
-        if (index < 0)
-            index = items.length - 1;
+        if (index < 0) index = items.length - 1;
     }
 
     public void render(int centerX, int centerY, int mouseX, int mouseY) {
@@ -117,13 +110,8 @@ public class PurchaseCarousel {
         int objBottom = centerY + mainHeight / 2;
         int objRight = centerX + mainWidth / 2;
 
-        if (index > 0) {
-            //Draw left side
-            RenderUtils.drawSmoothRect(centerX - panel * 2, centerY - sideHeight / 2, centerX, centerY + sideHeight / 2, 4, new Color(23, 23, 23, 100).getRGB());
-        }
-        if (index < items.length - 1) {
-            RenderUtils.drawSmoothRect(centerX, centerY - sideHeight / 2, centerX + panel * 2, centerY + sideHeight / 2, 4, new Color(23, 23, 23, 100).getRGB());
-        }
+        if (index > 0) RenderUtils.drawSmoothRect(centerX - panel * 2, centerY - sideHeight / 2, centerX, centerY + sideHeight / 2, 4, new Color(23, 23, 23, 100).getRGB());
+        if (index < items.length - 1) RenderUtils.drawSmoothRect(centerX, centerY - sideHeight / 2, centerX + panel * 2, centerY + sideHeight / 2, 4, new Color(23, 23, 23, 100).getRGB());
 
         RenderUtils.drawSmoothRect(objLeft, centerY - mainHeight / 2, objRight, objBottom, 10, new Color(23, 23, 23, 255).getRGB());
         CarouselItem item = items[index];
@@ -174,7 +162,7 @@ public class PurchaseCarousel {
         String s = I18n.format("gui.purchase.state") + ": " + (getCurrent().isPurchased() ? (getCurrent().isActive() ? I18n.format("gui.purchase.active") : I18n.format("gui.purchase.inactive")) : I18n.format("gui.purchase.notpurchased"));
         float e = .5F;
         GlStateManager.scale(e, e, e);
-        fr.drawString(s, (centerX - fr.getWidth(s) / 4) / e, (centerY - mainHeight / 2 + 15) / e, Color.GREEN.getRGB());
+        fr.drawString(s, (centerX - fr.getWidth(s) / 4) / e, (centerY - mainHeight / 2f + 15) / e, Color.GREEN.getRGB());
         if (getCurrent().isPurchased() && !getCurrent().isActive()) {
             s = I18n.format("gui.purchase.clicktouse");
             float width = fr.getWidth(s);
@@ -186,6 +174,4 @@ public class PurchaseCarousel {
         }
         GlStateManager.scale(1 / e, 1 / e, 1 / e);
     }
-
-
 }

@@ -25,7 +25,6 @@ import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.resources.I18n;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.io.IOException;
@@ -68,16 +67,16 @@ public class NameHistoryGui extends GuiScreen {
         int right = width - width / 5;
         int bottom = height / 5 + 33;
 
-        //BG
+        // BG
         drawRect(left, top, right, bottom + (names.size() * 10), new Color(0, 0, 0, 100).getRGB());
 
-        //TITLE BG
+        // TITLE BG
         drawRect(left, top, right, bottom, new Color(0, 0, 0, 150).getRGB());
 
         //TITLE
         fontRenderer.drawCenteredString(I18n.format("gui.namehistory.text"), width / 2, height / 5, Color.WHITE.getRGB());
 
-        //Text Box
+        // Text Box
         nameField.drawTextBox();
         int defaultColour = Color.WHITE.getRGB();
         for (int i = 0; i < names.size(); i++) {
@@ -86,9 +85,7 @@ public class NameHistoryGui extends GuiScreen {
             float yPos = bottom + (i * 10) + offset;
 
             // Check if names have been scrolled outside of bounding box.
-            if (yPos < (height / 5) + 32) {
-                continue;
-            }
+            if (yPos < (height / 5f) + 32) continue;
 
             // Highlight current and original names.
             if (i == 0) {

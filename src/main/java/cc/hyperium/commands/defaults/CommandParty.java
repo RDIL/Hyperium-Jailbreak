@@ -5,7 +5,6 @@ import cc.hyperium.commands.BaseCommand;
 import cc.hyperium.commands.CommandException;
 import cc.hyperium.handlers.handlers.hud.TabCompletionUtil;
 import net.minecraft.client.Minecraft;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,8 +23,8 @@ public class CommandParty implements BaseCommand {
     @Override
     public void onExecute(String[] args) throws CommandException {
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < args.length; i++) {
-            builder.append(" ").append(args[i]);
+        for (String arg : args) {
+            builder.append(arg).append(" ");
         }
         Hyperium.INSTANCE.getHandlers().getCommandQueue().queue("/party" + builder.toString());
     }
@@ -37,8 +36,7 @@ public class CommandParty implements BaseCommand {
 
     @Override
     public List<String> onTabComplete(String[] args) {
-        if (!Hyperium.INSTANCE.getHandlers().getHypixelDetector().isHypixel())
-            return new ArrayList<>();
+        if (!Hyperium.INSTANCE.getHandlers().getHypixelDetector().isHypixel()) return new ArrayList<>();
         List<String> first = Arrays.asList("invite", "leave", "promote", "home", "remove", "warp", "accept", "disband", "settings", "mute", "poll", "challenge", "kickoffline", "private");
         List<String> tabUsernames = TabCompletionUtil.getTabUsernames();
         List<String> complete = new ArrayList<>();

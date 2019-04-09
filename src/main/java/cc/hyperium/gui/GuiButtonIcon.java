@@ -24,7 +24,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 public class GuiButtonIcon extends GuiButton {
-    public final int sprite;
+    private final int sprite;
     private final ResourceLocation icon;
     private final float scale;
     private boolean outline;
@@ -44,9 +44,6 @@ public class GuiButtonIcon extends GuiButton {
         this.outline = outline;
     }
 
-    /**
-     * Draws this button to the screen.
-     */
     public void drawButton(Minecraft mc, int mouseX, int mouseY) {
         if (visible) {
             int width = 52;

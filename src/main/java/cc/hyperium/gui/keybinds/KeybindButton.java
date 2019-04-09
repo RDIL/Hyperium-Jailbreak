@@ -5,9 +5,7 @@ import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.KeypressEvent;
 import cc.hyperium.handlers.handlers.keybinds.HyperiumBind;
-
 import java.awt.Color;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
@@ -16,7 +14,6 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 public class KeybindButton extends GuiButton {
-
     private boolean listening = false;
     private HyperiumBind btnBind;
 
@@ -35,7 +32,7 @@ public class KeybindButton extends GuiButton {
     public void setListening(boolean listening) {
         this.listening = listening;
 
-        if (listening == false) {
+        if (!listening) {
             setText(getName(btnBind.getKeyCode()));
         } else {
             setText("LISTENING...");

@@ -8,11 +8,7 @@ import cc.hyperium.mixinsimp.entity.HyperiumEntityRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
 
-/**
- * Handles GUI Blurring.
- */
 public class BlurHandler {
-
     private boolean prevBlurOption;
 
     public BlurHandler() {
@@ -23,7 +19,6 @@ public class BlurHandler {
     private void onTick(TickEvent event) {
         Minecraft mc = Minecraft.getMinecraft();
         if (mc != null && mc.entityRenderer != null) {
-
             // Enable the blur if criteria is met.
             if (!Settings.MOTION_BLUR_ENABLED &&
                 Settings.BLUR_GUI && mc.currentScreen != null &&
@@ -37,20 +32,19 @@ public class BlurHandler {
             if(!Settings.MOTION_BLUR_ENABLED &&
                 Settings.BLUR_GUI && mc.entityRenderer.isShaderActive() &&
                 mc.currentScreen == null && mc.theWorld != null){
-                
+
                 HyperiumEntityRenderer.INSTANCE.disableBlurShader();
             }
 
             // Enable/disable when switching via the settings.
-            if (!Settings.MOTION_BLUR_ENABLED && Settings.BLUR_GUI == false && prevBlurOption == true) {
+            if (!Settings.MOTION_BLUR_ENABLED && !Settings.BLUR_GUI && prevBlurOption) {
                 // Disable GUI blur since the option was just disabled.
                 HyperiumEntityRenderer.INSTANCE.disableBlurShader();
-            } else if (Settings.BLUR_GUI == true && prevBlurOption == false) {
+            } else if (Settings.BLUR_GUI && !prevBlurOption) {
                 // Enable GUI blur since the option was just enabled.
                 if(!Settings.MOTION_BLUR_ENABLED) {
                     HyperiumEntityRenderer.INSTANCE.enableBlurShader();
-                } else{
-                    // Warn user.
+                } else {
                     Hyperium.INSTANCE.getHandlers().getGeneralChatHandler().sendMessage("Warning: Background blur will not take effect unless motion blur is disabled.",true);
                 }
             }

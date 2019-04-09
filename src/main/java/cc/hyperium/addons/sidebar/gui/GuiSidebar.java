@@ -17,10 +17,6 @@
 
 package cc.hyperium.addons.sidebar.gui;
 
-/*
- * Chroma made by Sk1er (ChromaHUD)
- */
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -28,14 +24,12 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.scoreboard.*;
 import net.minecraft.util.EnumChatFormatting;
 import org.lwjgl.opengl.GL11;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GuiSidebar extends Gui {
     public enum ChromaType {
-        // Shet code i know
         ONE("Background 1", 0),
         TWO("Background 2", 1),
         THREE("Text 1", 2),
@@ -88,9 +82,7 @@ public class GuiSidebar extends Gui {
     }
 
     public void drawSidebar(final ScoreObjective sidebar, final ScaledResolution res) {
-        if (!this.enabled) {
-            return;
-        }
+        if (!this.enabled) return;
         final FontRenderer fr = Minecraft.getMinecraft().fontRendererObj;
         final Scoreboard scoreboard = sidebar.getScoreboard();
         final List<Score> scores = new ArrayList<>();
@@ -162,7 +154,7 @@ public class GuiSidebar extends Gui {
                     rgb = Color.HSBtoRGB((float) (l2 % (int) ff) / ff, 0.8F, 0.8F);
                     break;
             }
-        } else if (this.chromaEnabled && !isBackground) {
+        } else if (this.chromaEnabled) {
             long dif;
             float ff;
             switch (this.chromaType) {

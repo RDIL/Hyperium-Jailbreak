@@ -16,10 +16,8 @@ import cc.hyperium.gui.hyperium.components.SelectorComponent;
 import cc.hyperium.gui.hyperium.components.SliderComponent;
 import cc.hyperium.gui.hyperium.components.ToggleComponent;
 import net.minecraft.client.resources.I18n;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -38,7 +36,7 @@ public class SettingsTab extends AbstractTab {
 
         //TODO add other settings objects
 
-        //TODO maybe readd separate thing for mods
+        //TODO maybe read separate thing for mods
         //TODO enabled / disabled status
         HashMap<Category, CollapsibleTabComponent> items = new HashMap<>();
         for (Object o : gui.getSettingsObjects()) {
@@ -64,8 +62,7 @@ public class SettingsTab extends AbstractTab {
                     category = sliderSetting.category();
                     mods = sliderSetting.mods();
                 }
-                if (category == null)
-                    continue;
+                if (category == null) continue;
                 apply(tabComponent, mods, category, items);
                 if (objectConsumer != null) {
                     for (Consumer<Object> consumer : objectConsumer) {
@@ -93,12 +90,11 @@ public class SettingsTab extends AbstractTab {
     }
 
     private void apply(AbstractTabComponent component, boolean mods, Category category, HashMap<Category, CollapsibleTabComponent> items) {
-
         CollapsibleTabComponent collapsibleTabComponent = items.computeIfAbsent(
             (mods ? Category.MODS : category),
             category1 ->
                 new CollapsibleTabComponent(SettingsTab.this,
-                    Arrays.asList(category1.name()),
+                    Collections.singletonList(category1.name()),
                     category1.getDisplay()));
         if (mods) {
             boolean b = false;
@@ -114,7 +110,8 @@ public class SettingsTab extends AbstractTab {
                 c.addChild(component);
                 c.setParent(collapsibleTabComponent);
             }
-        } else
+        } else {
             collapsibleTabComponent.addChild(component);
+        }
     }
 }

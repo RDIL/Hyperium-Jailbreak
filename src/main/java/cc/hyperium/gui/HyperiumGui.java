@@ -105,7 +105,6 @@ public abstract class HyperiumGui extends GuiScreen {
                 }
             }
 
-            // Everything should be fine and dandy if you're at this point...
             final StringBuilder strBuilder = new StringBuilder();
             final String suffix = (appendEllipsis ? "..." : "");
             int currentWidth = font.getStringWidth(suffix);
@@ -189,16 +188,13 @@ public abstract class HyperiumGui extends GuiScreen {
     protected void actionPerformed(GuiButton button) throws IOException {
         super.actionPerformed(button);
         Consumer<GuiButton> guiButtonConsumer = clicks.get(button);
-        if (guiButtonConsumer != null)
-            guiButtonConsumer.accept(button);
+        if (guiButtonConsumer != null) guiButtonConsumer.accept(button);
     }
 
     @Override
     public void updateScreen() {
         ScaledResolution current = ResolutionUtil.current();
-        if (current == null) {
-            return;
-        }
+        if (current == null) return;
         if (lastResolution.getScaledWidth() != current.getScaledWidth() || lastResolution.getScaledHeight() != current.getScaledHeight() || lastResolution.getScaleFactor() != current.getScaleFactor()) {
             rePack();
         }
@@ -207,9 +203,7 @@ public abstract class HyperiumGui extends GuiScreen {
         super.updateScreen();
         for (GuiButton guiButton : buttonList) {
             Consumer<GuiButton> guiButtonConsumer = updates.get(guiButton);
-            if (guiButtonConsumer != null) {
-                guiButtonConsumer.accept(guiButton);
-            }
+            if (guiButtonConsumer != null) guiButtonConsumer.accept(guiButton);
         }
     }
 
@@ -238,10 +232,7 @@ public abstract class HyperiumGui extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         actions.clear();
 
-        if (drawAlpha) {
-            Gui.drawRect(0, 0, ResolutionUtil.current().getScaledWidth() * ResolutionUtil.current().getScaleFactor(), ResolutionUtil.current().getScaledHeight() * ResolutionUtil.current().getScaleFactor(), new Color(0, 0, 0, alpha).getRGB());
-        }
-
+        if (drawAlpha) Gui.drawRect(0, 0, ResolutionUtil.current().getScaledWidth() * ResolutionUtil.current().getScaleFactor(), ResolutionUtil.current().getScaledHeight() * ResolutionUtil.current().getScaleFactor(), new Color(0, 0, 0, alpha).getRGB());
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
@@ -291,13 +282,9 @@ public abstract class HyperiumGui extends GuiScreen {
     protected abstract void pack();
 
     protected void drawBackground() {
-        if (this.mc != null && this.mc.theWorld == null) {
-            renderHyperiumBackground(ResolutionUtil.current());
-        }
+        if (this.mc != null && this.mc.theWorld == null) renderHyperiumBackground(ResolutionUtil.current());
 
-        if (drawAlpha) {
-            Gui.drawRect(0, 0, ResolutionUtil.current().getScaledWidth() * ResolutionUtil.current().getScaleFactor(), ResolutionUtil.current().getScaledHeight() * ResolutionUtil.current().getScaleFactor(), new Color(0, 0, 0, alpha).getRGB());
-        }
+        if (drawAlpha) Gui.drawRect(0, 0, ResolutionUtil.current().getScaledWidth() * ResolutionUtil.current().getScaleFactor(), ResolutionUtil.current().getScaledHeight() * ResolutionUtil.current().getScaleFactor(), new Color(0, 0, 0, alpha).getRGB());
     }
 
     private void renderHyperiumBackground(ScaledResolution sr) {
@@ -326,8 +313,6 @@ public abstract class HyperiumGui extends GuiScreen {
         GlStateManager.enableDepth();
         GlStateManager.enableAlpha();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-
-//        GlStateManager.pushMatrix();
     }
 
     private void loadCustomBackground() {
@@ -339,17 +324,14 @@ public abstract class HyperiumGui extends GuiScreen {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            if (bgBr != null) {
-                bgDynamicTexture = mc.getRenderManager().renderEngine.getDynamicTextureLocation(customImage.getName(), new DynamicTexture(bgBr));
-            }
-
+            if (bgBr != null) bgDynamicTexture = mc.getRenderManager().renderEngine.getDynamicTextureLocation(customImage.getName(), new DynamicTexture(bgBr));
         }
     }
 
     public void drawScaledText(String text, int trueX, int trueY, double scaleFac, int color, boolean shadow, boolean centered) {
         GlStateManager.pushMatrix();
         GlStateManager.scale(scaleFac, scaleFac, scaleFac);
-        fontRendererObj.drawString(text, (float) (((double) trueX) / scaleFac) - (centered ? fontRendererObj.getStringWidth(text) / 2 : 0), (float) (((double) trueY) / scaleFac), color, shadow);
+        fontRendererObj.drawString(text, (float) (((double) trueX) / scaleFac) - (centered ? fontRendererObj.getStringWidth(text) / 2f : 0), (float) (((double) trueY) / scaleFac), color, shadow);
         GlStateManager.scale(1 / scaleFac, 1 / scaleFac, 1 / scaleFac);
         GlStateManager.popMatrix();
     }

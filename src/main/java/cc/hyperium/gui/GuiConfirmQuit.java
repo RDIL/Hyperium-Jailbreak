@@ -4,11 +4,9 @@ import cc.hyperium.Hyperium;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
-
 import java.io.IOException;
 
 public class GuiConfirmQuit extends GuiScreen {
-
     private int i = -16;
 
     @Override
@@ -21,7 +19,7 @@ public class GuiConfirmQuit extends GuiScreen {
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         drawDefaultBackground();
-        fontRendererObj.drawStringWithShadow(I18n.format("gui.confirmquit.text"), this.width / 2 - 75, this.height / 4 + 72 + i, 16777215);
+        fontRendererObj.drawStringWithShadow(I18n.format("gui.confirmquit.text"), this.width / 2 - 75, this.height / 4f + 72 + i, 16777215);
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 

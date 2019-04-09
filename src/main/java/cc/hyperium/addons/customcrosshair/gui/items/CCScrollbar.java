@@ -21,7 +21,6 @@ import cc.hyperium.addons.customcrosshair.utils.CustomCrosshairGraphics;
 import net.minecraft.client.gui.GuiScreen;
 
 public class CCScrollbar extends CCGuiItem {
-
     private int contentHeight;
     private boolean mouseDown;
     private int boxPosition;
@@ -42,31 +41,21 @@ public class CCScrollbar extends CCGuiItem {
 
     @Override
     public void drawItem(final int mouseX, final int mouseY) {
-        if (this.contentHeight <= this.getHeight()) {
-            return;
-        }
-        int y = this.getPosY() + this.boxPosition;
+        if (this.contentHeight <= this.getHeight()) return;
+        int y;
         if (this.mouseDown) {
             y = mouseY - this.offset;
-            if (y < this.getPosY()) {
-                y = this.getPosY();
-            }
-            if (y > this.getPosY() + this.getHeight() - this.boxHeight) {
-                y = this.getPosY() + this.getHeight() - this.boxHeight;
-            }
+            if (y < this.getPosY()) y = this.getPosY();
+            if (y > this.getPosY() + this.getHeight() - this.boxHeight) y = this.getPosY() + this.getHeight() - this.boxHeight;
             this.setCurrentPosition(y - this.getPosY());
         }
-        CustomCrosshairGraphics
-            .drawThemeBorderedRectangle(this.getPosX(), this.getPosY(), this.getPosX() + this.getWidth(), this.getPosY() + this.getHeight());
-        CustomCrosshairGraphics
-            .drawThemeBorderedRectangle(this.getPosX(), this.getPosY() + this.boxPosition, this.getPosX() + this.getWidth(), this.getPosY() + this.boxPosition + this.boxHeight);
+        CustomCrosshairGraphics.drawThemeBorderedRectangle(this.getPosX(), this.getPosY(), this.getPosX() + this.getWidth(), this.getPosY() + this.getHeight());
+        CustomCrosshairGraphics.drawThemeBorderedRectangle(this.getPosX(), this.getPosY() + this.boxPosition, this.getPosX() + this.getWidth(), this.getPosY() + this.boxPosition + this.boxHeight);
     }
 
     @Override
     public void mouseClicked(final int mouseX, final int mouseY) {
-        if (this.contentHeight <= this.getHeight()) {
-            return;
-        }
+        if (this.contentHeight <= this.getHeight()) return;
         if (this.isMouseOverBox(mouseX, mouseY)) {
             this.mouseDown = true;
             this.offset = mouseY - (this.getPosY() + this.boxPosition);
@@ -83,24 +72,16 @@ public class CCScrollbar extends CCGuiItem {
     }
 
     private void setCurrentPosition(final int x) {
-        if (this.contentHeight <= this.getHeight()) {
-            return;
-        }
+        if (this.contentHeight <= this.getHeight()) return;
         this.boxPosition = x;
         this.value = this.minValue + this.boxPosition / (this.getHeight() - this.boxHeight) * (this.maxValue - this.minValue);
     }
 
     public void setValue(final int newValue) {
-        if (this.contentHeight <= this.getHeight()) {
-            return;
-        }
+        if (this.contentHeight <= this.getHeight()) return;
         this.value = newValue;
-        if (this.value < this.minValue) {
-            this.value = this.minValue;
-        }
-        if (this.value > this.maxValue) {
-            this.value = this.maxValue;
-        }
+        if (this.value < this.minValue) this.value = this.minValue;
+        if (this.value > this.maxValue) this.value = this.maxValue;
         this.boxPosition = (this.getHeight() - this.boxHeight) * (this.value - this.minValue) / (this.maxValue - this.minValue);
     }
 
@@ -120,4 +101,3 @@ public class CCScrollbar extends CCGuiItem {
         return this.mouseDown;
     }
 }
-

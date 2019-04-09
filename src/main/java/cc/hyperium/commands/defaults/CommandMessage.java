@@ -5,7 +5,6 @@ import cc.hyperium.commands.BaseCommand;
 import cc.hyperium.commands.CommandException;
 import cc.hyperium.handlers.handlers.hud.TabCompletionUtil;
 import net.minecraft.client.Minecraft;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -29,8 +28,8 @@ public class CommandMessage implements BaseCommand {
     @Override
     public void onExecute(String[] args) throws CommandException {
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < args.length; i++) {
-            builder.append(args[i]).append(" ");
+        for (String arg : args) {
+            builder.append(arg).append(" ");
         }
         Hyperium.INSTANCE.getHandlers().getCommandQueue().queue("/msg " + builder.toString());
     }
@@ -53,8 +52,7 @@ public class CommandMessage implements BaseCommand {
             try {
                 for (String s : Hyperium.INSTANCE.getHandlers().getDataHandler().getFriendsForCurrentUser().get().getData().getKeys()) {
                     String name = Hyperium.INSTANCE.getHandlers().getDataHandler().getFriendsForCurrentUser().get().getData().optJSONObject(s).optString("name");
-                    if (!name.isEmpty())
-                        tabUsernames.add(name);
+                    if (!name.isEmpty()) tabUsernames.add(name);
                 }
             } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();

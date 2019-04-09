@@ -2,7 +2,6 @@ package cc.hyperium.gui.main.components;
 
 import cc.hyperium.utils.HyperiumFontRenderer;
 import net.minecraft.client.gui.Gui;
-
 import java.awt.Color;
 import java.awt.Font;
 
@@ -43,19 +42,17 @@ public abstract class OverlayComponent {
         }
         if (enabled) {
             fr.drawString(label, overlayX + 4,
-                (overlayY + (h - fr.FONT_HEIGHT) / 2), 0xffffff);
+                (overlayY + (h - fr.FONT_HEIGHT) / 2f), 0xffffff);
         } else {
             fr.drawString(label, overlayX + 4,
-                (overlayY + (h - fr.FONT_HEIGHT) / 2), new Color(169, 169, 169).getRGB());
+                (overlayY + (h - fr.FONT_HEIGHT) / 2f), new Color(169, 169, 169).getRGB());
         }
         return true;
     }
 
     public abstract void mouseClicked(int mouseX, int mouseY, int overlayX, int overlayY, int w, int h);
 
-    public void handleMouseInput(int mouseX, int mouseY, int overlayX, int overlayY, int w, int h) {
-
-    }
+    public void handleMouseInput(int mouseX, int mouseY, int overlayX, int overlayY, int w, int h) {}
 
     public String getLabel() {
         return this.label;

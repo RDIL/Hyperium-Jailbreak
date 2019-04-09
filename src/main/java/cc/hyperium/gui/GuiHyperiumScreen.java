@@ -22,7 +22,6 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
-
 import javax.imageio.ImageIO;
 import java.awt.Font;
 import java.awt.image.BufferedImage;
@@ -31,7 +30,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class GuiHyperiumScreen extends GuiScreen {
-
     public static ResourceLocation background = new ResourceLocation("textures/material/backgrounds/1.png");
     public static boolean customBackground = false;
     public static File customImage = new File(Minecraft.getMinecraft().mcDataDir, "customImage.png");
@@ -85,12 +83,8 @@ public class GuiHyperiumScreen extends GuiScreen {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            if (bgBr != null)
-                bgDynamicTexture = mc.getRenderManager().renderEngine.getDynamicTextureLocation(customImage.getName(), new DynamicTexture(bgBr));
-            if (bgDynamicTexture == null)
-                return;
+            if (bgBr != null) bgDynamicTexture = mc.getRenderManager().renderEngine.getDynamicTextureLocation(customImage.getName(), new DynamicTexture(bgBr));
         }
-
     }
 
     @Override
@@ -182,39 +176,20 @@ public class GuiHyperiumScreen extends GuiScreen {
         drawRect(width - 155, 10, width - 10, 49, 0x33000000);
         drawRect(width - 156, 9, width - 9, 50, 0x33000000);
 
-        /* Fetch player credit count */
-        if (!Hyperium.INSTANCE.isDevEnv()) {
-            if (PurchaseApi.getInstance() != null && PurchaseApi.getInstance().getSelf() != null) {
-                JsonHolder response = PurchaseApi.getInstance().getSelf().getResponse();
-                int credits = response.optInt("remaining_credits");
-
-                /* Render player credits count and username */
-                fr.drawString(Minecraft.getMinecraft().getSession().getUsername(), width - 153, 13, 0xFFFFFF);
-                fr.drawString(I18n.format("menu.profile.credits", credits), width - 153, 25, 0xFFFF00);
-            }
-        }
-
-
         float val = (float) (Math.sin(swing / 40) * 30);
-
         ScissorState.scissor(width - 153, 0, 145, 49, true);
 
-        if (!Hyperium.INSTANCE.isDevEnv()) {
-            GuiPlayerRenderer.renderPlayerWithRotation(width - 118, -4, val);
-        }
-
+        if (!Hyperium.INSTANCE.isDevEnv()) GuiPlayerRenderer.renderPlayerWithRotation(width - 118, -4, val);
         ScissorState.endScissor();
 
         /* Render Hyperium version number */
-        fr.drawStringScaled("Hyperium v" + (Hyperium.INSTANCE.isLatestVersion ? ChatFormatting.GREEN : ChatFormatting.RED) + Metadata.getVersion(), width - 152, 39, 0xFFFFFF, .75);
+        fr.drawStringScaled("Hyperium Jailbreak", width - 152, 39, 0xFFFFFF, .75);
 
         /* Display copyright disclaimers at bottom of screen */
         sfr.drawString(I18n.format("menu.left").toUpperCase(), 1, height - 7, 0x55FFFFFF);
         String s = I18n.format("menu.right").toUpperCase();
         sfr.drawString(s, width - sfr.getWidth(s) - 1, height - 7, 0x55FFFFFF);
-
         GlStateManager.popMatrix();
-
     }
 
     public void drawDefaultStyleScreen(int mouseX, int mouseY) {
@@ -224,7 +199,6 @@ public class GuiHyperiumScreen extends GuiScreen {
         }
 
         ParticleOverlay.getOverlay().render(mouseX, mouseY, 0, 0, 0, 0);
-
         GlStateManager.enableAlpha();
         this.drawGradientRect(0, 0, this.width, this.height, -2130706433, 16777215);
         this.drawGradientRect(0, 0, this.width, this.height, 0, Integer.MIN_VALUE);
@@ -236,14 +210,12 @@ public class GuiHyperiumScreen extends GuiScreen {
         this.drawString(this.fontRendererObj, s, 2, this.height - 10, -1);
         String s1 = I18n.format("menu.right");
         this.drawString(this.fontRendererObj, s1, this.width - this.fontRendererObj.getStringWidth(s1) - 2, this.height - 10, -1);
-        String s3 = "Made by Sk1er, Kevin,";
+        String s3 = "Made by Hyperium devs";
         this.drawString(this.fontRendererObj, s3, this.width - this.fontRendererObj.getStringWidth(s3) - 2, this.height - 30, -1);
-
-        String s4 = "Cubxity, CoalOres and boomboompower";
+        String s4 = "and jumbo <3";
         this.drawString(this.fontRendererObj, s4, this.width - this.fontRendererObj.getStringWidth(s4) - 2, this.height - 20, -1);
         GuiButton hypixelButton = this.hypixelButton;
-        if (hypixelButton != null)
-            hypixelButton.displayString = Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) ? I18n.format("button.ingame.fixhypixelsession") : I18n.format("button.ingame.joinhypixel");
+        if (hypixelButton != null) hypixelButton.displayString = Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) ? I18n.format("button.ingame.fixhypixelsession") : I18n.format("button.ingame.joinhypixel");
     }
 
     public int getIntendedWidth(int value) {

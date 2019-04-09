@@ -19,17 +19,16 @@ package cc.hyperium.commands.defaults;
 
 import cc.hyperium.commands.BaseCommand;
 import net.minecraft.client.gui.GuiNewChat;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
- * A simple command to clear your chat history & sent commands,
+ * A command to clear your chat history & sent commands,
  * simply calls the {@link GuiNewChat#clearChatMessages()} method
  *
  * @author boomboompower
  */
 public class CommandGarbageCollect implements BaseCommand {
-
     @Override
     public String getName() {
         return "gcollect";
@@ -37,7 +36,7 @@ public class CommandGarbageCollect implements BaseCommand {
 
     @Override
     public List<String> getCommandAliases() {
-        return Arrays.asList("garbagecollect");
+        return Collections.singletonList("garbagecollect");
     }
 
     @Override

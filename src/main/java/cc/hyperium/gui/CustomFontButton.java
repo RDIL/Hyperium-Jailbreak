@@ -23,7 +23,6 @@ import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
-
 import java.awt.Color;
 import java.awt.Font;
 
@@ -67,12 +66,11 @@ public class CustomFontButton extends GuiButton {
 
         float charlength = fontRenderer.getWidth(this.displayString);
 
-        boolean enabled = true;
         fontRenderer.drawString(
             this.displayString,
             (this.xPosition + this.width / 2) - (charlength / 2),
             this.yPosition + (this.height - 8) / 2,
-            enabled ? 10526880 : this.hovered ? textHoverColor : textColor
+            10526880
         );
     }
 
