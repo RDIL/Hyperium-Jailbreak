@@ -80,7 +80,6 @@ public class TaskManager {
     private ThreadFactory getFactory(String name) {
         return new ThreadFactoryBuilder()
                 .setNameFormat(name)
-                .setUncaughtExceptionHandler()
                 .build();
     }
 
