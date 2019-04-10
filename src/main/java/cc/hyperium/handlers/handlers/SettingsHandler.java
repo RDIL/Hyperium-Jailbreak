@@ -12,7 +12,6 @@ import cc.hyperium.purchases.EnumPurchaseType;
 import cc.hyperium.purchases.HyperiumPurchase;
 import cc.hyperium.purchases.PurchaseApi;
 import cc.hyperium.utils.JsonHolder;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -129,34 +128,7 @@ public class SettingsHandler {
                 }
                 return new String[]{"NOT PURCHASED"};
             });
-            customStates.put(Settings.class.getField("SHOW_BUTT"), () -> {
-                HyperiumPurchase self = PurchaseApi.getInstance().getSelf();
-                if (self != null && self.hasPurchased(EnumPurchaseType.BUTT)) {
-                    return new String[]{
-                        "YES",
-                        "NO"
-                    };
-                }
 
-
-                return new String[]{"NOT PURCHASED"};
-            });
-
-            registerCallback(Settings.class.getField("SHOW_BUTT"), o -> {
-                boolean yes = !((String) o).equalsIgnoreCase("YES");
-                HyperiumPurchase self = PurchaseApi.getInstance().getSelf();
-                if (self != null) {
-                    JsonHolder purchaseSettings = self.getPurchaseSettings();
-                    purchaseSettings.put("butt", new JsonHolder());
-                    purchaseSettings.optJSONObject("butt").put("disabled", yes);
-                }
-                NettyClient client = NettyClient.getClient();
-                if (client != null) {
-                    JsonHolder put = new JsonHolder().put("internal", true).put("butt_disabled", yes);
-                    client.write(ServerCrossDataPacket.build(put));
-                }
-
-            });
             Field max_particle_string = Settings.class.getField("MAX_PARTICLE_STRING");
             customStates.put(max_particle_string, () -> {
                 ParticleOverlay overlay = ParticleOverlay.getOverlay();
@@ -249,14 +221,12 @@ public class SettingsHandler {
                 try {
                     Settings.MAX_PARTICLES = Integer.valueOf(o.toString());
                 } catch (Exception ignored) {
-
                 }
             });
             registerCallback(Settings.class.getField("HEAD_SCALE_FACTOR_STRING"), o -> {
                 try {
                     Settings.HEAD_SCALE_FACTOR = Double.valueOf(o.toString());
                 } catch (Exception ignored) {
-
                 }
             });
             Field flip_type_string = Settings.class.getField("FLIP_TYPE_STRING");
@@ -294,7 +264,6 @@ public class SettingsHandler {
                     client.write(ServerCrossDataPacket.build(new JsonHolder().put("internal", true).put("wings_scale", o1.doubleValue())));
 
             });
-
 
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
