@@ -1,6 +1,5 @@
 package cc.hyperium.mixinsimp.renderer;
 
-
 public class CachedString {
     private String text;
     private int listId;
