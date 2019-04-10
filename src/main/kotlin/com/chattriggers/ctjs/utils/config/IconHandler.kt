@@ -11,12 +11,12 @@ object IconHandler {
     private var icons = mutableListOf<Icon>()
 
     init {
-        val imageUrl = "http://167.99.3.229/assets/images/"
+        val baseUrl = "http://167.99.3.229/assets/images/"
 
-        this.icons.add(Icon(Image("CT_logo.png", imageUrl + "logo-icon.png"), "https://chattriggers.com/"))
-        this.icons.add(Icon(Image("CT_Patreon.png", imageUrl + "Patreon-dark.png"), "https://www.patreon.com/ChatTriggers", 1))
-        this.icons.add(Icon(Image("CT_Github.png", imageUrl + "github-dark.png"), "https://github.com/ChatTriggers/ct.js", 2))
-        this.icons.add(Icon(Image("CT_Discord.png", imageUrl + "discord-dark.png"), "https://discordapp.com/invite/0fNjZyopOvBHZyG8", 3))
+        this.icons.add(Icon(Image("CT_logo.png", baseUrl + "logo-icon.png"), "https://chattriggers.com/"))
+        this.icons.add(Icon(Image("CT_Patreon.png", baseUrl + "Patreon-dark.png"), "https://www.patreon.com/ChatTriggers", 1))
+        this.icons.add(Icon(Image("CT_Github.png", baseUrl + "github-dark.png"), "https://github.com/ChatTriggers/ct.js", 2))
+        this.icons.add(Icon(Image("CT_Discord.png", baseUrl + "discord-dark.png"), "https://discordapp.com/invite/0fNjZyopOvBHZyG8", 3))
     }
 
     fun drawIcons() = icons.forEach { it.draw() }
