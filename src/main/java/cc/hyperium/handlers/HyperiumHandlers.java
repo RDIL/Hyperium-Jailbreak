@@ -222,7 +222,7 @@ public class HyperiumHandlers {
         IntegratedServer integratedServer = Minecraft.getMinecraft().getIntegratedServer();
         if (integratedServer == null) return;
         ICommandManager commandManager = integratedServer.getCommandManager();
-        if (commandManager == null) {return;
+        if (commandManager == null) return;
         EventBus.INSTANCE.unregister(HyperiumHandlers.class);
     }
 
