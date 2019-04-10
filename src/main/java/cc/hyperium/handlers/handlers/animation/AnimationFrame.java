@@ -20,7 +20,6 @@ public class AnimationFrame {
 
     public AnimationFrame(long time) {
         this.time = time;
-        butt.visible = false;
     }
 
     public BodyPart getRightLowerArm_adj() {
