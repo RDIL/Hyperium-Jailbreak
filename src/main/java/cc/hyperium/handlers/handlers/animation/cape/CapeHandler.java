@@ -16,7 +16,6 @@ import net.minecraft.client.renderer.IImageBuffer;
 import net.minecraft.client.renderer.ThreadDownloadImageData;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.util.ResourceLocation;
-
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,17 +29,14 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class CapeHandler {
-
     public static final ReentrantLock LOCK = new ReentrantLock();
     private final ConcurrentHashMap<UUID, ICape> capes = new ConcurrentHashMap<>();
     private final ResourceLocation loadingResource = new ResourceLocation("");
     private final File CACHE_DIR;
     private ConcurrentLinkedQueue<Runnable> actions = new ConcurrentLinkedQueue<>();
 
-
     public CapeHandler() {
-
-        CACHE_DIR = new File(Hyperium.folder, "CACHE_DIR");
+        CACHE_DIR = new File(Hyperium.folder, "CAPE_CACHE");
         CACHE_DIR.mkdir();
         Runtime.getRuntime().addShutdownHook(new Thread(CACHE_DIR::delete));
     }
@@ -58,8 +54,7 @@ public class CapeHandler {
                 cape.delete(Minecraft.getMinecraft().getTextureManager());
             }
             capes.clear();
-            if (selfCape != null)
-                capes.put(id, selfCape);
+            if (selfCape != null) capes.put(id, selfCape);
         } finally {
             LOCK.unlock();
         }
@@ -91,7 +86,6 @@ public class CapeHandler {
             LOCK.lock();
             textureManager.loadTexture(resourceLocation, threadDownloadImageData);
         } catch (Exception e) {
-
         } finally {
             LOCK.unlock();
         }
@@ -100,7 +94,6 @@ public class CapeHandler {
     public void setCape(UUID uuid, ICape cape) {
         capes.put(uuid, cape);
     }
-
 
     public ResourceLocation getCape(final AbstractClientPlayer player) {
         UUID uuid = player.getUniqueID();
@@ -134,9 +127,7 @@ public class CapeHandler {
                 return capes.getOrDefault(uuid, NullCape.INSTANCE).get();
             }
 
-            if (cape.equals(NullCape.INSTANCE)) {
-                return null;
-            }
+            if (cape.equals(NullCape.INSTANCE)) return null;
             return cape.get();
         } else {
             return null;
@@ -148,7 +139,6 @@ public class CapeHandler {
         return s.length() != 32 || s.charAt(12) == '4';
     }
 
-
     public void deleteCape(UUID id) {
         this.capes.remove(id);
     }
@@ -158,7 +148,7 @@ public class CapeHandler {
         // create output directory if it doesn't exist
         if (!dir.exists()) dir.mkdirs();
         FileInputStream fis;
-        //buffer for read and write data to file
+        // buffer for read and write data to file
         byte[] buffer = new byte[1024];
         try {
             fis = new FileInputStream(zipFilePath);
@@ -168,7 +158,7 @@ public class CapeHandler {
                 String fileName = ze.getName();
                 File newFile = new File(destDir + File.separator + fileName);
                 System.out.println("Unzipping to " + newFile.getAbsolutePath());
-                //create directories for sub directories in zip
+                // create directories for sub directories in zip
                 new File(newFile.getParent()).mkdirs();
                 FileOutputStream fos = new FileOutputStream(newFile);
                 int len;
@@ -176,17 +166,16 @@ public class CapeHandler {
                     fos.write(buffer, 0, len);
                 }
                 fos.close();
-                //close this ZipEntry
+                // close this ZipEntry
                 zis.closeEntry();
                 ze = zis.getNextEntry();
             }
-            //close last ZipEntry
+            // close last ZipEntry
             zis.closeEntry();
             zis.close();
             fis.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
