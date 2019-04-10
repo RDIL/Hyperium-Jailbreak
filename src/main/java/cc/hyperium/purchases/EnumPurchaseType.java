@@ -24,9 +24,7 @@ public enum EnumPurchaseType {
     DAB_ON_KILL("Dab on Kill"),
     CHROMA_WIN("Chroma on Win"),
     LEVEL_HEAD("Custom Levelhead"),
-    DEAL_WITH_IT("Deal With It Glasses"),
     FLIP_COSMETIC("Flip Cosmetic"),
-    BUTT("Butt"),
     DEADMAU5_COSMETIC("Ears"),
     DRAGON_HEAD("Dragon Head"),
     DRAGON_COMPANION("Dragon Companion"),
@@ -59,5 +57,4 @@ public enum EnumPurchaseType {
     public String getDisplayName() {
         return displayName;
     }
-
 }
