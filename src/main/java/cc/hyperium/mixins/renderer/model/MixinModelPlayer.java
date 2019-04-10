@@ -18,28 +18,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ModelPlayer.class)
 public class MixinModelPlayer extends MixinModelBiped implements IMixinModelPlayer {
-
-    /**
-     * Will now be the left upperarm wear.
-     */
     @Shadow
     public ModelRenderer bipedLeftArmwear;
 
-    /**
-     * Will now be the right upperarm wear.
-     */
     @Shadow
     public ModelRenderer bipedRightArmwear;
 
-    /**
-     * Will now be the left upperleg wear.
-     */
     @Shadow
     public ModelRenderer bipedLeftLegwear;
 
-    /**
-     * Will now be the right upperleg wear.
-     */
     @Shadow
     public ModelRenderer bipedRightLegwear;
 
@@ -54,8 +41,6 @@ public class MixinModelPlayer extends MixinModelBiped implements IMixinModelPlay
     @Shadow
     private ModelRenderer bipedCape;
 
-    private ModelRenderer butt;
-
     @Inject(method = "<init>", at = @At("RETURN"))
     private void injectModelChanges(float modelSize, boolean useSmallArms, CallbackInfo ci) {
         if (useSmallArms) {
@@ -65,7 +50,6 @@ public class MixinModelPlayer extends MixinModelBiped implements IMixinModelPlay
             this.bipedLeftForeArm = new ModelRenderer(this, 32, 54);
             this.bipedLeftForeArm.addBox(-1.0F, 4.0F, -2.0F, 3, 6, 4, modelSize);
             this.bipedLeftForeArm.setRotationPoint(5.0F, 2.5F, 0.0F);
-
 
             this.bipedLeftArmwear = new ModelRenderer(this, 48, 48);
             this.bipedLeftArmwear.addBox(-1.0F, -2.0F, -2.0F, 3, 6, 4, modelSize + 0.25F);
@@ -81,7 +65,6 @@ public class MixinModelPlayer extends MixinModelBiped implements IMixinModelPlay
             this.bipedRightForeArm.addBox(-2.0F, 4.0F, -2.0F, 3, 6, 4, modelSize);
             this.bipedRightForeArm.setRotationPoint(-5.0F, 2.5F, 0.0F);
 
-
             this.bipedRightArmwear = new ModelRenderer(this, 40, 32);
             this.bipedRightArmwear.addBox(-2.0F, -2.0F, -2.0F, 3, 6, 4, modelSize + 0.25F);
             this.bipedRightArmwear.setRotationPoint(-5.0F, 2.5F, 10.0F);
@@ -89,8 +72,6 @@ public class MixinModelPlayer extends MixinModelBiped implements IMixinModelPlay
             this.bipedRightForeArmwear = new ModelRenderer(this, 40, 38);
             this.bipedRightForeArmwear.addBox(-2.0F, 4.0F, -2.0F, 3, 6, 4, modelSize + 0.25F);
             this.bipedRightForeArmwear.setRotationPoint(-5.0F, 2.5F, 10.0F);
-
-
         } else {
             this.bipedLeftArm = new ModelRenderer(this, 32, 48);
             this.bipedLeftArm.addBox(-1.0F, -2.0F, -2.0F, 4, 6, 4, modelSize);
@@ -98,7 +79,6 @@ public class MixinModelPlayer extends MixinModelBiped implements IMixinModelPlay
             this.bipedLeftForeArm = new ModelRenderer(this, 32, 54);
             this.bipedLeftForeArm.addBox(-1.0F, 4.0F, -2.0F, 4, 6, 4, modelSize);
             this.bipedLeftForeArm.setRotationPoint(5.0F, 2.0F, 0.0F);
-
 
             this.bipedLeftArmwear = new ModelRenderer(this, 48, 48);
             this.bipedLeftArmwear.addBox(-1.0F, -2.0F, -2.0F, 4, 6, 4, modelSize + 0.25F);
@@ -114,7 +94,6 @@ public class MixinModelPlayer extends MixinModelBiped implements IMixinModelPlay
             this.bipedRightForeArm.addBox(-3.0F, 4.0F, -2.0F, 4, 6, 4, modelSize);
             this.bipedRightForeArm.setRotationPoint(-5.0F, 2.0F, 0.0F);
 
-
             this.bipedRightArmwear = new ModelRenderer(this, 40, 32);
             this.bipedRightArmwear.addBox(-3.0F, -2.0F, -2.0F, 4, 6, 4, modelSize + 0.25F);
             this.bipedRightArmwear.setRotationPoint(-5.0F, 2.0F, 10.0F);
@@ -124,10 +103,6 @@ public class MixinModelPlayer extends MixinModelBiped implements IMixinModelPlay
             this.bipedRightForeArmwear.setRotationPoint(-5.0F, 2.0F, 10.0F);
 
         }
-        this.butt = new ModelRenderer(this, 16, 16 + 8);
-        this.butt.addBox(-4.0F, 0.0F, 0.0F, 8, 4, 4, modelSize);
-        this.butt.setRotationPoint(0, 16, 0);
-        this.butt.showModel = false;
 
         this.bipedLeftLeg = new ModelRenderer(this, 16, 48);
         this.bipedLeftLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 6, 4, modelSize);
@@ -158,7 +133,6 @@ public class MixinModelPlayer extends MixinModelBiped implements IMixinModelPlay
         this.bipedRightLowerLegwear.setRotationPoint(-1.9F, 12.0F, 0.0F);
 
 
-        this.butt.showModel = false;
         fixTopAndBottomOfLimbWrongTextures(
             this.bipedLeftForeArm, this.bipedLeftForeArmwear, //
             this.bipedRightForeArm, this.bipedRightForeArmwear, //
@@ -195,8 +169,6 @@ public class MixinModelPlayer extends MixinModelBiped implements IMixinModelPlay
             this.bipedLeftLowerLegwear.render(scale);
             this.bipedRightLowerLeg.render(scale);
             this.bipedRightLowerLegwear.render(scale);
-
-            this.butt.render(scale);
         } else {
             if (entityIn.isSneaking()) {
                 GlStateManager.translate(0.0F, 0.2F, 0.0F);
@@ -242,7 +214,6 @@ public class MixinModelPlayer extends MixinModelBiped implements IMixinModelPlay
         if (entityIn instanceof AbstractClientPlayer) {
             EventBus.INSTANCE.post(new PreCopyPlayerModelAnglesEvent(((AbstractClientPlayer) entityIn), this));
         }
-
         copyModelAnglesAndOffest(this.bipedLeftArm, this.bipedLeftForeArm);
         copyModelAnglesAndOffest(this.bipedRightArm, this.bipedRightForeArm);
         copyModelAnglesAndOffest(this.bipedLeftArmwear, this.bipedLeftForeArmwear);
@@ -264,13 +235,6 @@ public class MixinModelPlayer extends MixinModelBiped implements IMixinModelPlay
         this.bipedRightForeArmwear.showModel = invisble;
         this.bipedLeftLowerLegwear.showModel = invisble;
         this.bipedRightLowerLegwear.showModel = invisble;
-        this.butt.showModel = invisble;
-
-    }
-
-    @Override
-    public ModelRenderer getButt() {
-        return butt;
     }
 
     /* Right leg wrappers */
@@ -327,6 +291,4 @@ public class MixinModelPlayer extends MixinModelBiped implements IMixinModelPlay
     public ModelRenderer getCape() {
         return bipedCape;
     }
-
-
 }
