@@ -1,7 +1,6 @@
 package cc.hyperium.handlers.handlers.animation;
 
 public class AnimationFrame {
-
     public String name;
     private long time;
     private BodyPart leftUpperArm = new BodyPart();
@@ -18,7 +17,6 @@ public class AnimationFrame {
     private BodyPart rightLowerLeg_adj = new BodyPart();
     private BodyPart rightLowerArm_adj = new BodyPart();
     private BodyPart leftLowerArm_adj = new BodyPart();
-    private BodyPart butt = new BodyPart();
 
     public AnimationFrame(long time) {
         this.time = time;
@@ -43,10 +41,6 @@ public class AnimationFrame {
 
     public BodyPart getRightLowerLeg_adj() {
         return rightLowerLeg_adj;
-    }
-
-    public BodyPart getButt() {
-        return butt;
     }
 
     @Override
