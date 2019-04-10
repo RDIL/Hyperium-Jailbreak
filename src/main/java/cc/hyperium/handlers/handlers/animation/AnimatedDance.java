@@ -16,7 +16,6 @@ import net.minecraft.nbt.NBTException;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.IChatComponent;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -130,7 +129,6 @@ public abstract class AnimatedDance extends AbstractPreCopyAnglesAnimationHandle
         return frame * 1000 / 30;
     }
 
-
     @InvokeEvent
     public void worldSwap(WorldChangeEvent event) {
         states.clear();
@@ -145,7 +143,7 @@ public abstract class AnimatedDance extends AbstractPreCopyAnglesAnimationHandle
         return 0;
     }
 
-    //Added so we can do legs
+    // Added so we can do legs
     @InvokeEvent
     public void onPostCopyPlayerModelAngles(PostCopyPlayerModelAnglesEvent event) {
         AbstractClientPlayer entity = event.getEntity();
@@ -158,8 +156,7 @@ public abstract class AnimatedDance extends AbstractPreCopyAnglesAnimationHandle
     @Override
     public void modifyPlayer(AbstractClientPlayer entity, IMixinModelPlayer player, float heldPercent) {
 
-        if (!loaded)
-            return;
+        if (!loaded) return;
         Long aLong = states.get(entity.getUniqueID());
         if (aLong == null || aLong == 0) {
             resetAnimation(player);
@@ -181,58 +178,51 @@ public abstract class AnimatedDance extends AbstractPreCopyAnglesAnimationHandle
                 next = frame;
             }
         }
-        if (prev == null || next == null) {
-            return;
-        }
+        if (prev == null || next == null) return;
 
         float v = (timeSinceStart - prev.getTime());
         long l = next.getTime() - prev.getTime();
         float percent = v / (float) l;
 
-//        Right upper arm
+        // Right upper arm
         adjust(player.getBipedRightUpperArmwear(), prev.getRightUpperArm().calc(percent, next.getRightUpperArm()));
         adjust(player.getBipedRightUpperArm(), prev.getRightUpperArm().calc(percent, next.getRightUpperArm()));
 
-        //Right lower arm
+        // Right lower arm
         adjust(player.getBipedRightForeArm(), prev.getRightLowerArm().calc(percent, next.getRightLowerArm()));
         adjust(player.getBipedRightForeArmwear(), prev.getRightLowerArm().calc(percent, next.getRightLowerArm()));
 
-        //Left upper arm
+        // Left upper arm
         adjust(player.getBipedLeftUpperArmwear(), prev.getLeftUpperArm().calc(percent, next.getLeftUpperArm()));
         adjust(player.getBipedLeftUpperArm(), prev.getLeftUpperArm().calc(percent, next.getLeftUpperArm()));
 
-        //Left lower arm
+        // Left lower arm
         adjust(player.getBipedLeftForeArm(), prev.getLeftLowerArm().calc(percent, next.getLeftLowerArm()));
         adjust(player.getBipedLeftForeArmwear(), prev.getLeftLowerArm().calc(percent, next.getLeftLowerArm()));
 
-
-        //Right upper Leg
+        // Right upper Leg
         adjust(player.getBipedRightUpperLegwear(), prev.getRightUpperLeg().calc(percent, next.getRightUpperLeg()));
         adjust(player.getBipedRightUpperLeg(), prev.getRightUpperLeg().calc(percent, next.getRightUpperLeg()));
 
-        //Right lower Leg
+        // Right lower Leg
         adjust(player.getBipedRightLowerLeg(), prev.getRightLowerLeg().calc(percent, next.getRightLowerLeg()));
         adjust(player.getBipedRightLowerLegwear(), prev.getRightLowerLeg().calc(percent, next.getRightLowerLeg()));
 
-        //Left upper Leg
+        // Left upper Leg
         adjust(player.getBipedLeftUpperLegwear(), prev.getLeftUpperLeg().calc(percent, next.getLeftUpperLeg()));
         adjust(player.getBipedLeftUpperLeg(), prev.getLeftUpperLeg().calc(percent, next.getLeftUpperLeg()));
 
-        //Left lower Leg
+        // Left lower Leg
         adjust(player.getBipedLeftLowerLeg(), prev.getLeftLowerLeg().calc(percent, next.getLeftLowerLeg()));
         adjust(player.getBipedLeftLowerLegwear(), prev.getLeftLowerLeg().calc(percent, next.getLeftLowerLeg()));
 
-        //Head
+        // Head
         adjust(player.getBipedHead(), prev.getHead().calc(percent, next.getHead()));
         adjust(player.getBipedHeadwear(), prev.getHead().calc(percent, next.getHead()));
 
-        //Chest
+        // Chest
         adjust(player.getBipedBody(), prev.getChest().calc(percent, next.getChest()));
         adjust(player.getBipedBodywear(), prev.getChest().calc(percent, next.getChest()));
-
-        adjust(player.getButt(), prev.getButt().calc(percent, next.getButt()));
-
-
     }
 
     private void adjust(ModelRenderer renderer, BodyPart part) {
@@ -264,14 +254,11 @@ public abstract class AnimatedDance extends AbstractPreCopyAnglesAnimationHandle
             renderer.offsetZ = part.offsetZ;
 
         renderer.showModel = part.visible;
-
-
     }
 
     @Override
     public void modifyPlayer(AbstractClientPlayer entity, IMixinModelBiped player, float heldPercent) {
-        if (!loaded)
-            return;
+        if (!loaded) return;
         Long aLong = states.get(entity.getUniqueID());
         if (aLong == null || aLong == 0) {
             resetAnimation(player);
@@ -283,51 +270,44 @@ public abstract class AnimatedDance extends AbstractPreCopyAnglesAnimationHandle
         AnimationFrame prev = null;
         AnimationFrame next = null;
         for (AnimationFrame frame : frames) {
-            if (prev == null || (frame.getTime() < timeSinceStart && frame.getTime() > prev.getTime())) {
-                prev = frame;
-            }
-            if ((next == null && frame.getTime() > prev.getTime()) || (frame.getTime() > timeSinceStart && frame.getTime() < next.getTime())) {
-                next = frame;
-            }
+            if (prev == null || (frame.getTime() < timeSinceStart && frame.getTime() > prev.getTime())) prev = frame;
+            if ((next == null && frame.getTime() > prev.getTime()) || (frame.getTime() > timeSinceStart && frame.getTime() < next.getTime())) next = frame;
         }
-        if (prev == null || next == null) {
-            return;
-        }
+        if (prev == null || next == null) return;
 
         float v = (timeSinceStart - prev.getTime());
         long l = next.getTime() - prev.getTime();
         float percent = v / (float) l;
 
-//        Right upper arm
+        // Right upper arm
         adjust(player.getBipedRightUpperArm(), prev.getRightUpperArm().calc(percent, next.getRightUpperArm()));
 
-        //Right lower arm
+        // Right lower arm
         adjust(player.getBipedRightForeArm(), prev.getRightLowerArm().calc(percent, next.getRightLowerArm()));
 
-        //Left upper arm
+        // Left upper arm
         adjust(player.getBipedLeftUpperArm(), prev.getLeftUpperArm().calc(percent, next.getLeftUpperArm()));
 
-        //Left lower arm
+        // Left lower arm
         adjust(player.getBipedLeftForeArm(), prev.getLeftLowerArm().calc(percent, next.getLeftLowerArm()));
 
-
-        //Right upper Leg
+        // Right upper Leg
         adjust(player.getBipedRightUpperLeg(), prev.getRightUpperLeg().calc(percent, next.getRightUpperLeg()));
 
-        //Right lower Leg
+        // Right lower Leg
         adjust(player.getBipedRightLowerLeg(), prev.getRightLowerLeg().calc(percent, next.getRightLowerLeg()));
 
-        //Left upper Leg
+        // Left upper Leg
         adjust(player.getBipedLeftUpperLeg(), prev.getLeftUpperLeg().calc(percent, next.getLeftUpperLeg()));
 
-        //Left lower Leg
+        // Left lower Leg
         adjust(player.getBipedLeftLowerLeg(), prev.getLeftLowerLeg().calc(percent, next.getLeftLowerLeg()));
 
-        //Head
+        // Head
         adjust(player.getBipedHead(), prev.getHead().calc(percent, next.getHead()));
         adjust(player.getBipedHeadwear(), prev.getHead().calc(percent, next.getHead()));
 
-        //Chest
+        // Chest
         adjust(player.getBipedBody(), prev.getChest().calc(percent, next.getChest()));
 
     }
