@@ -27,8 +27,7 @@ import static cc.hyperium.config.Category.*;
  */
 public class Settings {
 
-    public static final Settings INSTANCE =
-            new Settings();
+    public static final Settings INSTANCE = new Settings();
 
     @ConfigOpt(alt = "cc.hyperium.gui.settings.items.GeneralSetting;JailbreakFPSMode")
     @ToggleSetting(name = "gui.settings.FPS", category = INTEGRATIONS)
@@ -233,7 +232,7 @@ public class Settings {
     public static int flipType = 1;
 
     @ConfigOpt
-    @SelectorSetting(name = "gui.settings.fliptype", category = COSMETICS, items = {})//OVERRIDEN
+    @SelectorSetting(name = "gui.settings.fliptype", category = COSMETICS, items = {}) // OVERRIDEN
     public static String FLIP_TYPE_STRING = "FLIP";
 
     @ConfigOpt(alt = "cc.hyperium.gui.settings.items.CosmeticSettings;tposetoggle")
@@ -318,7 +317,6 @@ public class Settings {
     public static boolean PING_ON_DM = true;
 
     public static boolean IMPROVE_PARTICLES = false;
-
     public static boolean IMPROVE_ENTITY_HANDLING = false;
 
     public static boolean IMPROVE_PARTICLE_RUN = false; /* any reason why this isnt used at all? */
@@ -347,8 +345,8 @@ public class Settings {
     @SliderSetting(name = "gui.settings.wingsscale", min = 50, max = 200, category = COSMETICS)
     public static double WINGS_SCALE = 100D;
 
-    @ToggleSetting(name = "gui.settings.disable_dances", category = COSMETICS)
     @ConfigOpt
+    @ToggleSetting(name = "gui.settings.disable_dances", category = COSMETICS)
     public static boolean DISABLE_DANCES = false;
 
     @ConfigOpt
@@ -498,10 +496,6 @@ public class Settings {
     public static boolean HYPERIUM_CHAT_PREFIX = true;
 
     @ConfigOpt
-    @SelectorSetting(name = "gui.settings.showbutt", category = COSMETICS, items = {"YES", "NO"})
-    public static String SHOW_BUTT = "YES";
-
-    @ConfigOpt
     @ToggleSetting(name = "gui.settings.sendcurrentserver", category = GENERAL)
     public static boolean SEND_SERVER = true;
 
@@ -568,7 +562,6 @@ public class Settings {
         "CHROMA"
     })
     public static String BUTTON_TYPE = ButtonType.DEFAULT.name();
-
 
     @ConfigOpt
     @ToggleSetting(name = "gui.settings.disableenchantglint", category = IMPROVEMENTS)
