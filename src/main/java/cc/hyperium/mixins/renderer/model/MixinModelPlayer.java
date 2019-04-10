@@ -189,8 +189,6 @@ public class MixinModelPlayer extends MixinModelBiped implements IMixinModelPlay
             this.bipedLeftLowerLegwear.render(scale);
             this.bipedRightLowerLeg.render(scale);
             this.bipedRightLowerLegwear.render(scale);
-
-            this.butt.render(scale);
         }
 
         GlStateManager.popMatrix();
