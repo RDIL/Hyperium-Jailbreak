@@ -198,8 +198,6 @@ public class Hyperium {
                 } catch (IOException ignored) {}
             });
 
-            //Multithreading.runAsync(Spotify::load);
-
             Runtime.getRuntime().addShutdownHook(new Thread(this::shutdown));
             if (!OS.isMacintosh()) richPresenceManager.load();
 
