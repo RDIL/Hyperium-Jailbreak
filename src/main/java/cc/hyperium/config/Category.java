@@ -1,13 +1,11 @@
 package cc.hyperium.config;
 
 public enum Category {
-
     // Settings Tab
     GENERAL("General"),
     IMPROVEMENTS("Improvements"),
     INTEGRATIONS("Integrations"),
     COSMETICS("Cosmetics"),
-    SPOTIFY("Spotify"),
     ANIMATIONS("Animations"),
     MISC("Misc"),
     MODS("Mods"),
