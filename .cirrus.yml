@@ -1,4 +1,4 @@
-test_task:
+task:
   auto_cancellation: true
   container:
     image: gradle:jdk8
@@ -14,11 +14,15 @@ test_task:
       cat build.gradle
       cat gradle/wrapper/gradle-wrapper.properties
     populate_script: ./gradlew setupDevWorkspace
-  build_script: |
-    ./gradlew test
-    ./gradlew build
-  jar_artifacts:
-    path: ./build/libs/**
+  matrix:
+  - name: Build Job
+    script: |
+      ./gradlew build
+    jar_artifacts:
+      path: ./build/libs/**
+  - name: Test Job
+    script: |
+      ./gradlew test
   always:
     cleanup_before_cache_script: |
       # Docker image version:
