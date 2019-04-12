@@ -1,9 +1,10 @@
+container:
+  image: gradle:jdk8
+  cpu: 4
+  memory: 12G
+
 task:
   auto_cancellation: $CIRRUS_PR != ''
-  container:
-    image: gradle:jdk8
-    cpu: 4
-    memory: 12G
   setup_workspace_script: chmod +x ./gradlew
   gradle_cache:
     folder: ~/.gradle/caches
@@ -33,6 +34,7 @@ task:
 
 task:
   name: Code Coverage Job
+  auto_cancellation: false
   env:
     CODACY_PROJECT_TOKEN: ENCRYPTED[c3b8a1a2c14d5a6efcd3eecaf4f12e6bd2f3de2ad39650e7be37ee0a3ba6e71d8ba8133023bba20340e01b1f004db629]
   install_script: |
