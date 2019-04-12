@@ -32,13 +32,14 @@ task:
 task:
   name: Code Coverage Job
   auto_cancellation: false
+  container:
+    image: endeveit/docker-jq:latest
   env:
     CODACY_PROJECT_TOKEN: ENCRYPTED[c3b8a1a2c14d5a6efcd3eecaf4f12e6bd2f3de2ad39650e7be37ee0a3ba6e71d8ba8133023bba20340e01b1f004db629]
   install_script: |
-    curl -Ls https://raw.githubusercontent.com/hyperiumjailbreak/tools/master/jq-linux64
-    chmod +x jq-linux64
     curl -Ls -o codacy-coverage-reporter "$(curl -Ls https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r '.assets | map({name, browser_download_url} | select(.name | contains("codacy-coverage-reporter-linux"))) | .[0].browser_download_url')"
     chmod +x codacy-coverage-reporter
   script: |
     export CI_COMMIT=${CIRRUS_CHANGE_IN_REPO}
+
     ./codacy-coverage-reporter report -l Java -r build/reports/jacoco/test/jacocoTestReport.xml
