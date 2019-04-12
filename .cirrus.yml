@@ -27,6 +27,6 @@ task:
       # Docker image version:
       rm -rf ~/.gradle/caches/$GRADLE_VERSION/
       # Wrapper version:
-      rm -rf ~/.gradle/caches/4.7/
+      rm -rf ~/.gradle/caches/4.9/
       # Lockfiles:
       find ~/.gradle/caches/ -name "*.lock" -type f -delete
