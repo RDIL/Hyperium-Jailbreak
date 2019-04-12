@@ -20,13 +20,10 @@ package cc.hyperium.addons.customcrosshair.gui;
 import cc.hyperium.addons.customcrosshair.gui.items.*;
 import cc.hyperium.addons.customcrosshair.CustomCrosshairAddon;
 import cc.hyperium.addons.customcrosshair.utils.CustomCrosshairGraphics;
-
 import java.awt.Color;
-
 import java.io.IOException;
 
 public class GuiCustomCrosshairEditColour extends CustomCrosshairScreen {
-
     private Color editColour;
     private CCSlider slider_red;
     private CCSlider slider_green;
@@ -37,15 +34,13 @@ public class GuiCustomCrosshairEditColour extends CustomCrosshairScreen {
     private String title;
 
     public GuiCustomCrosshairEditColour(CustomCrosshairAddon addon, final Color colour) {
-        this(addon, colour, "Edit Colour...");
+        this(addon, colour, "Edit Color...");
     }
 
     public GuiCustomCrosshairEditColour(CustomCrosshairAddon addon, final Color colour, final String text) {
         super(addon);
-
         this.editColour = colour;
         this.title = text;
-
         this.addon = addon;
     }
 
@@ -90,7 +85,6 @@ public class GuiCustomCrosshairEditColour extends CustomCrosshairScreen {
                 super.mouseClicked(mouseX, mouseY);
                 CustomCrosshairAddon.getCrosshairMod().getCrosshair().setRainbowCrosshair(tickbox_rainbow.getChecked());
             }
-
         });
         this.tickbox_rainbow.setChecked(this.addon.getCrosshair().getRainbowCrosshair());
         this.tickbox_rainbow.getHelpText().add("Make crosshair rainbow.");
@@ -108,11 +102,11 @@ public class GuiCustomCrosshairEditColour extends CustomCrosshairScreen {
             this.itemList.get(i).setPosition(21, y);
         }
         y = 71;
-        for (int size = this.itemList.size(), j = 0; j < size; ++j) {
+        for (int size = this.itemList.size(),
+             j = 0; j < size;
+             ++j) {
             this.itemList.add(new CCHelpButton(this, this.itemList.get(j).getHelpText()));
-            if (j > 0) {
-                y += this.itemList.get(j - 1).getHeight() + 6;
-            }
+            if (j > 0) y += this.itemList.get(j - 1).getHeight() + 6;
             this.itemList.get(size + j).setPosition(5, y);
         }
         this.itemList.add(new CCButton(this, 0, "<- Return", this.width - 56, 0, 55, 25) {
