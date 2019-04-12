@@ -41,5 +41,4 @@ task:
     chmod +x codacy-coverage-reporter
   script: |
     export CI_COMMIT=${CIRRUS_CHANGE_IN_REPO}
-
     ./codacy-coverage-reporter report -l Java -r build/reports/jacoco/test/jacocoTestReport.xml
