@@ -1,7 +1,7 @@
 task:
   auto_cancellation: true
   container:
-    image: gradle:4-jdk8
+    image: gradle:4.10-jdk 
     cpu: 4
     memory: 12G
   setup_workspace_script: |
