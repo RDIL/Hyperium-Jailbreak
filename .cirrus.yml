@@ -1,7 +1,7 @@
 task:
   auto_cancellation: true
   container:
-    image: gradle:jdk8
+    image: gradle:4-jdk8
     cpu: 4
     memory: 12G
   setup_workspace_script: |
@@ -12,16 +12,15 @@ task:
     fingerprint_script: |
       cat build.gradle
       cat gradle/wrapper/gradle-wrapper.properties
-    populate_script: ./gradlew setupDevWorkspace
+    populate_script: gradle setupDevWorkspace
   matrix:
   - name: Build Job
-    script: ./gradlew build
+    script: gradle build
     jar_artifacts:
       path: ./build/libs/**
   - name: Test Job
-    script: ./gradlew test
+    script: gradle test
   always:
     cleanup_before_cache_script: |
       rm -rf ~/.gradle/caches/$GRADLE_VERSION/
-      rm -rf ~/.gradle/caches/4.10.3/
       find ~/.gradle/caches/ -name "*.lock" -type f -delete
