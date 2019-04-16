@@ -29,8 +29,7 @@ public enum Category {
     TAB_TOGGLE("Tab Toggle"),
     ITEM_PHYSIC("Item Physics"),
     VICTORYROYALE("Victory Royale"),
-    TOGGLESPRINT("Toggle Sprint"),
-    CHUNK_ANIMATOR("Chunk Animator");
+    TOGGLESPRINT("Toggle Sprint");
 
     private String display;
 
