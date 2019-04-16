@@ -19,6 +19,7 @@ package cc.hyperium.mods;
 import cc.hyperium.config.Settings;
 import cc.hyperium.mods.autofriend.AutofriendMod;
 import cc.hyperium.mods.autogg.AutoGG;
+import cc.hyperium.mods.chromahud.ChromaHUD;
 import cc.hyperium.mods.blockoverlay.BlockOverlay;
 import cc.hyperium.mods.fortnitecompass.FortniteCompassMod;
 import cc.hyperium.mods.glintcolorizer.GlintColorizer;
