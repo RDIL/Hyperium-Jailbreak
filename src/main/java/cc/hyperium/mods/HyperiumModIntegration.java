@@ -20,8 +20,6 @@ import cc.hyperium.config.Settings;
 import cc.hyperium.mods.autofriend.AutofriendMod;
 import cc.hyperium.mods.autogg.AutoGG;
 import cc.hyperium.mods.blockoverlay.BlockOverlay;
-import cc.hyperium.mods.chromahud.ChromaHUD;
-import cc.hyperium.mods.chunkanimator.ChunkAnimator;
 import cc.hyperium.mods.fortnitecompass.FortniteCompassMod;
 import cc.hyperium.mods.glintcolorizer.GlintColorizer;
 import cc.hyperium.mods.hgames.HGames;
@@ -55,7 +53,6 @@ public class HyperiumModIntegration {
     private final TabToggleMod tabToggle;
     private final ItemPhysicMod itemPhysicMod;
     private final VictoryRoyale victoryRoyale;
-    private final ChunkAnimator chunkAnimator;
 
     public HyperiumModIntegration() {
         this.chromaHUD = ((ChromaHUD) new ChromaHUD().init());
@@ -84,7 +81,6 @@ public class HyperiumModIntegration {
             this.fncompass.init();
             this.itemPhysicMod.init();
             this.glintcolorizer.init();
-            this.chunkAnimator.init();
             this.blockOverlay.init();
             this.keystrokesMod.init();
             this.timeChanger.init();
@@ -158,9 +154,5 @@ public class HyperiumModIntegration {
 
     public VictoryRoyale getVictoryRoyale() {
         return victoryRoyale;
-    }
-
-    public ChunkAnimator getChunkAnimator() {
-        return chunkAnimator;
     }
 }
