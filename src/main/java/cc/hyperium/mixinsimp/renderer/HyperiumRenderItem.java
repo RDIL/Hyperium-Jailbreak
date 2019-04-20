@@ -2,15 +2,8 @@ package cc.hyperium.mixinsimp.renderer;
 import cc.hyperium.config.Settings;
 import cc.hyperium.mixins.renderer.IMixinRenderItem;
 import cc.hyperium.mixins.renderer.IMixinRenderItem2;
-import cc.hyperium.mixinsimp.client.GlStateModifier;
-import cc.hyperium.mods.glintcolorizer.Colors;
-import cc.hyperium.mods.sk1ercommon.Multithreading;
-import com.github.benmanes.caffeine.cache.Cache;
-import com.github.benmanes.caffeine.cache.CacheWriter;
-import com.github.benmanes.caffeine.cache.Caffeine;
-import com.github.benmanes.caffeine.cache.RemovalCause;
+import cc.hyperium.mods.GlintColorizer;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
@@ -25,9 +18,6 @@ import net.minecraft.item.ItemSkull;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public class HyperiumRenderItem {
     private static final ResourceLocation RES_ITEM_GLINT = new ResourceLocation("textures/misc/enchanted_item_glint.png");
@@ -135,9 +125,6 @@ public class HyperiumRenderItem {
         ((IMixinRenderItem) parent).getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
     }
 
-    /**
-     * Normal rendering for an effect/enchantment on an item
-     */
     private void renderEffect(IBakedModel model) {
         if (Settings.DISABLE_ENCHANT_GLINT) return;
         GlStateManager.depthMask(false);
@@ -151,14 +138,14 @@ public class HyperiumRenderItem {
         float f = (float) (Minecraft.getSystemTime() % 3000L) / 3000.0F / 8.0F; // Animates the effect
         GlStateManager.translate(f, 0.0F, 0.0F);
         GlStateManager.rotate(-50.0F, 0.0F, 0.0F, 1.0F);
-        ((IMixinRenderItem) parent).callRenderModel(model, Colors.onepoint8glintcolorI);
+        ((IMixinRenderItem) parent).callRenderModel(model, GlintColorizer.onepoint8glintcolorI);
         GlStateManager.popMatrix();
         GlStateManager.pushMatrix();
         GlStateManager.scale(8.0F, 8.0F, 8.0F);
         float f1 = (float) (Minecraft.getSystemTime() % 4873L) / 4873.0F / 8.0F;
         GlStateManager.translate(-f1, 0.0F, 0.0F);
         GlStateManager.rotate(10.0F, 0.0F, 0.0F, 1.0F);
-        ((IMixinRenderItem) parent).callRenderModel(model, Colors.onepoint8glintcolorI);
+        ((IMixinRenderItem) parent).callRenderModel(model, GlintColorizer.onepoint8glintcolorI);
         GlStateManager.popMatrix();
         GlStateManager.matrixMode(5888);
         GlStateManager.blendFunc(770, 771);

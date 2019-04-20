@@ -83,7 +83,7 @@ public abstract class IKey extends Gui {
      * <p>
      * if chroma this will return the current generated chroma color
      *
-     * @return the color from settings or chroma if its enabled
+     * @return the color from settings or chroma if its glintColorizer
      */
     protected final int getColor() {
         return this.mod.getSettings().isChroma() ? Color.HSBtoRGB((float) ((System.currentTimeMillis() - (getXOffset() * 10) - (getYOffset() * 10)) % 2000) / 2000.0F, 0.8F, 0.8F) : new Color(this.mod.getSettings().getRed(), this.mod.getSettings().getGreen(), this.mod.getSettings().getBlue()).getRGB();
@@ -92,9 +92,9 @@ public abstract class IKey extends Gui {
     /**
      * Gets the color of the text whilst the key is being pressed
      * <p>
-     * this will not be used if chroma is enabled
+     * this will not be used if chroma is glintColorizer
      *
-     * @return the color from settings or chroma if its enabled
+     * @return the color from settings or chroma if its glintColorizer
      */
     public final int getPressedColor() {
         return this.mod.getSettings().isChroma() ? new Color(0, 0, 0).getRGB() : new Color(this.mod.getSettings().getPressedRed(), this.mod.getSettings().getPressedGreen(), this.mod.getSettings().getPressedBlue()).getRGB();

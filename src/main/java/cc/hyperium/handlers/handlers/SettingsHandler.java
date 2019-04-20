@@ -38,7 +38,7 @@ public class SettingsHandler {
                 if (!purchaseSettings.has("deadmau5_cosmetic")) {
                     purchaseSettings.put("deadmau5_cosmetic", new JsonHolder());
                 }
-                purchaseSettings.optJSONObject("deadmau5_cosmetic").put("enabled", yes);
+                purchaseSettings.optJSONObject("deadmau5_cosmetic").put("glintColorizer", yes);
                 NettyClient client = NettyClient.getClient();
                 if (client != null) {
                     client.write(ServerCrossDataPacket.build(new JsonHolder().put("internal", true).put("ears", yes)));

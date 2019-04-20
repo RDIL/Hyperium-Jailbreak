@@ -96,7 +96,7 @@ public class CustomLevelheadConfigurer extends HyperiumGui {
             drawCenteredString(fontRendererObj, ChatColor.WHITE + "Status: " + ChatColor.RED + "Denied", width / 2, 115, Color.WHITE.getRGB());
             return;
         }
-        if (levelhead_propose.optBoolean("enabled")) {
+        if (levelhead_propose.optBoolean("glintColorizer")) {
             int i = 115;
             drawCenteredString(fontRendererObj, ChatColor.WHITE + "Status: " + ChatColor.GREEN + "Accepted", width / 2, i - 10, Color.WHITE.getRGB());
 

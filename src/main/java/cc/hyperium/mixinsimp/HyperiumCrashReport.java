@@ -15,7 +15,7 @@ public class HyperiumCrashReport {
 
     public void add(CallbackInfo info) {
         CrashReportCategory category = parent.makeCategoryDepth("Affected level", 1);
-        category.addCrashSection("Hyperium Version", Metadata.getVersion() + " (" + Metadata.getVersionID() + ")");
+        category.addCrashSection("Hyperium Version", Metadata.getVersion());
         category.addCrashSection("Everything else", CommandDebug.get());
     }
 }

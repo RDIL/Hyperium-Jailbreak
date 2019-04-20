@@ -1,9 +1,8 @@
-package cc.hyperium.mods.victoryroyale;
+package cc.hyperium.mods;
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.RenderHUDEvent;
-import cc.hyperium.mods.AbstractMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundHandler;

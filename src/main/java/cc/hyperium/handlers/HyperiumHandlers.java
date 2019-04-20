@@ -59,7 +59,7 @@ import cc.hyperium.handlers.handlers.particle.ParticleAuraHandler;
 import cc.hyperium.handlers.handlers.reach.ReachDisplay;
 import cc.hyperium.handlers.handlers.stats.StatsHandler;
 import cc.hyperium.handlers.handlers.tracking.HypixelValueTracking;
-import cc.hyperium.mods.common.PerspectiveModifierHandler;
+import cc.hyperium.mods.PerspectiveModifierHandler;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.ICommandManager;

@@ -31,7 +31,7 @@ object AddonMinecraftBootstrap {
             val iterator = toLoadMap.iterator()
 
             // Loop will go on when changes are made. If no changes are made, we can
-            // be sure that all addons have their requirements or won't be enabled
+            // be sure that all addons have their requirements or won't be glintColorizer
             var done = false
             while (!done) {
                 done = true

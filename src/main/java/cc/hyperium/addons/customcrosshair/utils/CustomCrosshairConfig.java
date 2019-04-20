@@ -82,7 +82,7 @@ public class CustomCrosshairConfig {
                         case "crosshairtype":
                             this.crosshairMod.getCrosshair().setCrosshairType(Integer.parseInt(value));
                             break;
-                        case "enabled":
+                        case "glintColorizer":
                             this.crosshairMod.getCrosshair().setEnabled(Boolean.parseBoolean(value));
                             break;
                         case "colour_red":
@@ -205,7 +205,7 @@ public class CustomCrosshairConfig {
             final List<String> lines = new ArrayList<>();
             lines.add("// Custom Crosshair Mod Save File - Made by Sparkless101");
             lines.add("crosshairType:" + crosshairType);
-            lines.add("enabled:" + enabled);
+            lines.add("glintColorizer:" + enabled);
             lines.add("colour_red:" + colour_red);
             lines.add("colour_green:" + colour_green);
             lines.add("colour_blue:" + colour_blue);

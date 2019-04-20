@@ -36,17 +36,16 @@ import cc.hyperium.mixinsimp.renderer.FontFixValues;
 import cc.hyperium.mods.HyperiumModIntegration;
 import cc.hyperium.mods.autofriend.command.AutofriendCommand;
 import cc.hyperium.mods.autogg.AutoGG;
-import cc.hyperium.mods.common.ToggleSprintContainer;
-import cc.hyperium.mods.discord.DiscordPresence;
+import cc.hyperium.mods.ToggleSprintContainer;
+import cc.hyperium.mods.DiscordPresence;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
-import cc.hyperium.mods.statistics.GeneralStatisticsTracking;
+import cc.hyperium.mods.GeneralStatisticsTracking;
 import cc.hyperium.netty.NettyClient;
 import cc.hyperium.netty.UniversalNetty;
 import cc.hyperium.network.LoginReplyHandler;
 import cc.hyperium.network.NetworkHandler;
 import cc.hyperium.purchases.PurchaseApi;
 import cc.hyperium.utils.HyperiumScheduler;
-import cc.hyperium.utils.LaunchUtil;
 import cc.hyperium.utils.StaffUtils;
 import cc.hyperium.utils.mods.CompactChat;
 import cc.hyperium.utils.mods.FPSLimiter;
@@ -65,20 +64,15 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 public class Hyperium {
     public static final Hyperium INSTANCE = new Hyperium();
     public static final Logger LOGGER = LogManager.getLogger(Metadata.getModid());
     public static final File folder = new File("hyperium");
     public static final DefaultConfig CONFIG = new DefaultConfig(new File(folder, "CONFIG.json"));
-    public static int BUILD_ID = -1;
-    private static boolean updateQueue = false;
     private final GeneralStatisticsTracking statTrack = new GeneralStatisticsTracking();
     private final DiscordPresence richPresenceManager = new DiscordPresence();
     private final ConfirmationPopup confirmation = new ConfirmationPopup();
-    public boolean isLatestVersion;
     private NotificationCenter notification;
     private HyperiumCosmetics cosmetics;
     private HyperiumHandlers handlers;
@@ -86,11 +80,8 @@ public class Hyperium {
     private MinigameListener minigameListener;
     private boolean optifineInstalled = false;
     public boolean isDevEnv;
-    private NettyClient client;
     private NetworkHandler networkHandler;
     private boolean firstLaunch = false;
-    private HyperiumScheduler scheduler;
-    private InternalAddons internalAddons;
     private AutoGG autogg = new AutoGG();
     public Jailbreak j = new Jailbreak();
 
@@ -102,22 +93,12 @@ public class Hyperium {
             Multithreading.runAsync(() -> {
                 networkHandler = new NetworkHandler();
                 CONFIG.register(networkHandler);
-                this.client = new NettyClient(networkHandler);
+                new NettyClient(networkHandler);
                 UniversalNetty.getInstance().getPacketManager().register(new LoginReplyHandler());
             });
             Multithreading.runAsync(() -> new PlayerStatsGui(null)); // Don't remove
             notification = new NotificationCenter();
-            scheduler = new HyperiumScheduler();
-            InputStream resourceAsStream = getClass().getResourceAsStream("/build.txt");
-            try {
-                if (resourceAsStream != null) {
-                    BufferedReader br = new BufferedReader(new InputStreamReader(resourceAsStream));
-                    BUILD_ID = Integer.valueOf(br.readLine());
-                    br.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            new HyperiumScheduler();
             try {
                 Class.forName("net.minecraft.dispenser.BehaviorProjectileDispense"); // check for random MC class
                 isDevEnv = true;
@@ -166,7 +147,7 @@ public class Hyperium {
 
             SplashProgress.setProgress(11, "Loading Mods");
             modIntegration = new HyperiumModIntegration();
-            internalAddons = new InternalAddons();
+            new InternalAddons();
 
             Multithreading.runAsync(() -> {
                 try {
@@ -260,8 +241,6 @@ public class Hyperium {
         }
         // Tell the modules the game is shutting down
         EventBus.INSTANCE.post(new GameShutDownEvent());
-
-        if (updateQueue) LaunchUtil.launch();
     }
 
     public ConfirmationPopup getConfirmation() {

@@ -21,7 +21,7 @@ public class MotionBlurCommand implements BaseCommand {
         } else {
             if (MotionBlurMod.isFastRenderEnabled()) {
                 Hyperium.INSTANCE.getHandlers().getGeneralChatHandler()
-                    .sendMessage("Motion blur does not work if Fast Render is enabled, please disable it in Options > Video Settings > Performance.");
+                    .sendMessage("Motion blur does not work if Fast Render is glintColorizer, please disable it in Options > Video Settings > Performance.");
                 return;
             }
 
@@ -38,7 +38,7 @@ public class MotionBlurCommand implements BaseCommand {
 
                 try {
                     MotionBlurMod.applyShader();
-                    Hyperium.INSTANCE.getHandlers().getGeneralChatHandler().sendMessage("Motion blur enabled.");
+                    Hyperium.INSTANCE.getHandlers().getGeneralChatHandler().sendMessage("Motion blur glintColorizer.");
                 } catch (Throwable var5) {
                     Hyperium.INSTANCE.getHandlers().getGeneralChatHandler().sendMessage("Failed to enable motion blur.");
                     var5.printStackTrace();

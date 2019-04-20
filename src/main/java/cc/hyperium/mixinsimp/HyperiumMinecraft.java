@@ -1,7 +1,7 @@
 package cc.hyperium.mixinsimp;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.SplashProgress;
+import cc.hyperium.gui.SplashProgress;
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.GuiOpenEvent;
@@ -291,8 +291,6 @@ public class HyperiumMinecraft {
             Display.setFullscreen(false);
             Display.setDisplayMode(new DisplayMode(720, 480));
             Display.update();
-        } catch (LWJGLException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }

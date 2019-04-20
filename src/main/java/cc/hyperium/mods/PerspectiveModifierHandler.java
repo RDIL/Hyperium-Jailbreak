@@ -15,20 +15,15 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package cc.hyperium.mods.common;
+package cc.hyperium.mods;
 
 import cc.hyperium.config.Settings;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import net.minecraft.client.Minecraft;
 
 public class PerspectiveModifierHandler {
-
-    /**
-     * This class requires massive improvements, this will be worked on and fixed in a later release
-     */
     public float modifiedYaw;
     public float modifiedPitch;
-
     public boolean enabled = false;
 
     public void onEnable() {
@@ -41,26 +36,17 @@ public class PerspectiveModifierHandler {
             this.modifiedYaw = Minecraft.getMinecraft().thePlayer.rotationYaw;
         }
         Minecraft.getMinecraft().gameSettings.thirdPersonView = 1;
-        if (Settings.SPRINT_PERSPECTIVE_MESSAGES) {
-            GeneralChatHandler.instance().sendMessage("Enabled 360 Degree Perspective.");
-        }
+        if (Settings.SPRINT_PERSPECTIVE_MESSAGES) GeneralChatHandler.instance().sendMessage("Enabled 360 Degree Perspective.");
     }
 
     public void onDisable() {
-        if (!enabled) {
-            // Prevents being disabled twice by different methods.
-            return;
-        }
+        if (!enabled) return;
         this.enabled = false;
 
         Minecraft.getMinecraft().gameSettings.thirdPersonView = 0;
-        if (Settings.SPRINT_PERSPECTIVE_MESSAGES) {
-            GeneralChatHandler.instance().sendMessage("Disabled 360 Degree Perspective.");
-        }
 
         // Reset the states anyway
         this.modifiedYaw = Minecraft.getMinecraft().thePlayer.rotationYaw;
         modifiedPitch = Minecraft.getMinecraft().thePlayer.rotationPitch;
     }
-
 }

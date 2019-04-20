@@ -62,6 +62,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import jb.Metadata;
 
+@SuppressWarnings("unused")
 @Mixin(NetHandlerPlayClient.class)
 public abstract class MixinNetHandlerPlayClient {
     @Shadow
@@ -162,7 +163,7 @@ public abstract class MixinNetHandlerPlayClient {
                 if ("REGISTER".equalsIgnoreCase(packetIn.getChannelName())) {
                     if (message.contains("Hyperium")) {
                         PacketBuffer buffer = new PacketBuffer(Unpooled.buffer());
-                        buffer.writeString("Hyperium;" + Metadata.getVersion() + ";" + Metadata.getVersionID());
+                        buffer.writeString("Hyperium;" + Metadata.getVersion());
                         addToSendQueue(new C17PacketCustomPayload("REGISTER", buffer));
                         PacketBuffer addonbuffer = new PacketBuffer(Unpooled.buffer());
                         List<AddonManifest> addons = AddonBootstrap.INSTANCE.getAddonManifests();
@@ -183,8 +184,8 @@ public abstract class MixinNetHandlerPlayClient {
                     }
                 }
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -194,8 +195,7 @@ public abstract class MixinNetHandlerPlayClient {
 
     @Inject(method = "handleResourcePack", at = @At("HEAD"), cancellable = true)
     private void handle(S48PacketResourcePackSend packetIn, CallbackInfo info) {
-        if (!validateResourcePackUrl(packetIn.getURL(), packetIn.getHash()))
-            info.cancel();
+        if (!validateResourcePackUrl(packetIn.getURL(), packetIn.getHash())) info.cancel();
     }
 
     private boolean validateResourcePackUrl(String url, String hash) {
@@ -231,8 +231,7 @@ public abstract class MixinNetHandlerPlayClient {
     public void handleChat(S02PacketChat packetIn) {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, (INetHandlerPlayClient) getNetworkManager().getNetHandler(), this.gameController);
 
-        ServerChatEvent event = new
-            ServerChatEvent(packetIn.getType(), packetIn.getChatComponent());
+        ServerChatEvent event = new ServerChatEvent(packetIn.getType(), packetIn.getChatComponent());
 
         EventBus.INSTANCE.post(event);
 

@@ -21,8 +21,6 @@ import cc.hyperium.mods.autofriend.AutofriendMod;
 import cc.hyperium.mods.autogg.AutoGG;
 import cc.hyperium.mods.chromahud.ChromaHUD;
 import cc.hyperium.mods.blockoverlay.BlockOverlay;
-import cc.hyperium.mods.fortnitecompass.FortniteCompassMod;
-import cc.hyperium.mods.glintcolorizer.GlintColorizer;
 import cc.hyperium.mods.hgames.HGames;
 import cc.hyperium.mods.itemphysic.ItemPhysicMod;
 import cc.hyperium.mods.keystrokes.KeystrokesMod;
@@ -33,7 +31,6 @@ import cc.hyperium.mods.oldanimations.OldAnimations;
 import cc.hyperium.mods.tabtoggle.TabToggleMod;
 import cc.hyperium.mods.timechanger.TimeChanger;
 import cc.hyperium.mods.togglechat.ToggleChatMod;
-import cc.hyperium.mods.victoryroyale.VictoryRoyale;
 import me.semx11.autotip.Autotip;
 
 public class HyperiumModIntegration {

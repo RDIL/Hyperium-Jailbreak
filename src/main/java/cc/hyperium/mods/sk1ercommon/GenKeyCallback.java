@@ -19,9 +19,6 @@ package cc.hyperium.mods.sk1ercommon;
 
 import cc.hyperium.utils.JsonHolder;
 
-/**
- * @author Sk1er
- */
 public interface GenKeyCallback {
     void call(JsonHolder object);
 }

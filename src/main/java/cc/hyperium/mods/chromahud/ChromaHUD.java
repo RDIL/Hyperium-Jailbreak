@@ -200,7 +200,7 @@ public class ChromaHUD extends AbstractMod {
     public void saveState() {
         JsonHolder master = new JsonHolder();
         boolean enabled = true;
-        master.put("enabled", enabled);
+        master.put("glintColorizer", enabled);
         JsonArray elementArray = new JsonArray();
         master.putArray("elements", elementArray);
         for (DisplayElement element : getDisplayElements()) {

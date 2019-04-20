@@ -140,7 +140,7 @@ public class KeystrokesSettings {
             object.addProperty("pressedBlue", getPressedBlue());
             object.addProperty("scale", getScale());
             object.addProperty("fadeTime", getFadeTime());
-            object.addProperty("enabled", isEnabled());
+            object.addProperty("glintColorizer", isEnabled());
             object.addProperty("chroma", isChroma());
             object.addProperty("mouseButtons", isShowingMouseButtons());
             object.addProperty("showCPS", isShowingCPS());
@@ -175,7 +175,7 @@ public class KeystrokesSettings {
         setPressedBlue(object.optInt("pressedBlue"));
         setScale(object.optDouble("scale", 1.0D));
         setFadeTime(object.optDouble("fadeTime", 1.0D));
-        setEnabled(object.optBoolean("enabled", true));
+        setEnabled(object.optBoolean("glintColorizer", true));
         setChroma(object.optBoolean("chroma"));
         setLeftClick(object.optBoolean("leftClick", true));
         setShowingMouseButtons(object.optBoolean("mouseButtons"));

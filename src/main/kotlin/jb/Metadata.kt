@@ -19,8 +19,6 @@
 
 package jb
 
-import cc.hyperium.Hyperium
-
 val MODID
     @JvmName("getModid")
     get() = "Hyperium"
@@ -28,10 +26,6 @@ val MODID
 val VERSION
     @JvmName("getVersion")
     get() = "2.3"
-
-val VERSION_ID
-    @JvmName("getVersionID")
-    get() = Hyperium.BUILD_ID
 
 val ICON_BASE64
     @JvmName("getIconBase64")

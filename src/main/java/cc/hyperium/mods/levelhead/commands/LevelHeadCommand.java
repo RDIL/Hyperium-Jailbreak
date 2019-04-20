@@ -69,7 +69,7 @@ public class LevelHeadCommand implements BaseCommand {
             } else if (args[0].equalsIgnoreCase("toggle")) {
                 this.mod.getConfig().setEnabled(!this.mod.getConfig().isEnabled());
 
-                GeneralChatHandler.instance().sendMessage("LevelHead is now " + (this.mod.getConfig().isEnabled() ? ChatColor.GREEN + "enabled" : ChatColor.RED + "disabled"));
+                GeneralChatHandler.instance().sendMessage("LevelHead is now " + (this.mod.getConfig().isEnabled() ? ChatColor.GREEN + "glintColorizer" : ChatColor.RED + "disabled"));
 
                 return;
             }

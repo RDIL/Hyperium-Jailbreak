@@ -45,7 +45,7 @@ public abstract class ToggleBase {
     public abstract boolean shouldToggle(final String message);
 
     /**
-     * Checks to see if the given chat is enabled
+     * Checks to see if the given chat is glintColorizer
      *
      * @return true if the player wants to see the given chat
      */
@@ -55,7 +55,7 @@ public abstract class ToggleBase {
      * Sets the message to be toggled or not. Is used in
      * toggle loading
      *
-     * @param enabled used in loading to set the toggled enabled/disabled
+     * @param enabled used in loading to set the toggled glintColorizer/disabled
      */
     public abstract void setEnabled(boolean enabled);
 

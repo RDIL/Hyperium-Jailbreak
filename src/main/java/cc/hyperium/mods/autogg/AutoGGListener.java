@@ -5,7 +5,7 @@ import cc.hyperium.event.ChatEvent;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.WorldChangeEvent;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
-import cc.hyperium.mods.victoryroyale.VictoryRoyale;
+import cc.hyperium.mods.VictoryRoyale;
 import cc.hyperium.utils.ChatColor;
 import net.minecraft.client.Minecraft;
 
@@ -34,7 +34,7 @@ public class AutoGGListener {
             if (event.getChat().getUnformattedText().toLowerCase().endsWith("gg") || event.getChat().getUnformattedText().endsWith("Good Game"))
                 event.setCancelled(true);
         }
-        // Make sure the mod is enabled
+        // Make sure the mod is glintColorizer
         if (
 //            !this.mod.isHypixel() ||
             !this.mod.getConfig().isToggled() || this.mod.isRunning() || this.mod.getTriggers().isEmpty()) {

@@ -62,9 +62,9 @@ public class AutoGGConfig {
     }
 
     /**
-     * Getter for the toggled method, true for enabled
+     * Getter for the toggled method, true for glintColorizer
      *
-     * @return true if AutoGG is enabled
+     * @return true if AutoGG is glintColorizer
      */
     public boolean isToggled() {
         return this.toggled;

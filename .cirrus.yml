@@ -1,18 +1,15 @@
 task:
   auto_cancellation: true
   container:
-    image: gradle:4.10-jdk 
+    image: gradle:4.10-jdk
     cpu: 4
     memory: 12G
-  setup_workspace_script: |
-    rm -rf $CIRRUS_WORKING_DIR/src/main/resources/build.txt
-    echo $CIRRUS_BUILD_ID > $CIRRUS_WORKING_DIR/src/main/resources/build.txt
   gradle_cache:
     folder: ~/.gradle/caches
     fingerprint_script: cat build.gradle
     populate_script: gradle setupDevWorkspace
   matrix:
-  - name: Build Job
+  - name: Cirrus CI
     script: gradle build
     jar_artifacts:
       path: ./build/libs/**

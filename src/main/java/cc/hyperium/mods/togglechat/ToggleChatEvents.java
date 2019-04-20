@@ -62,7 +62,7 @@ public class ToggleChatEvents {
                     String input = type.useFormattedMessage() ? formattedText : unformattedText;
 
                     // If the toggle should toggle the specified message and
-                    // the toggle is not enabled (this message is turned off)
+                    // the toggle is not glintColorizer (this message is turned off)
                     // don't send the message to the player & stop looping
                     if (type.shouldToggle(input)) {
                         if (type instanceof TypeMessageSeparator) {

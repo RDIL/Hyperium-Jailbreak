@@ -9,7 +9,7 @@ public class EarsCosmetic extends AbstractHyperiumPurchase {
 
     public EarsCosmetic(EnumPurchaseType type, JsonHolder data) {
         super(type, data);
-        enabled = getData().optBoolean("enabled");
+        enabled = getData().optBoolean("glintColorizer");
     }
 
     public boolean isEnabled() {

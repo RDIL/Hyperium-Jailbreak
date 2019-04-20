@@ -553,12 +553,30 @@ public class Settings {
     @ToggleSetting(name = "gui.settings.confirmquit", category = MISC)
     public static boolean CONFIRM_QUIT = false;
 
-    private Settings() {}
+    @ConfigOpt
+    @ToggleSetting(category = GLINTCOLORIZER, mods = true, name = "Chroma")
+    public static boolean glintcolorChroma;
 
+    @ConfigOpt
+    @SliderSetting(name = "Red", mods = true, category = GLINTCOLORIZER, min = 0, max = 255, isInt = true)
+    public static int glintR = 255;
+
+    @ConfigOpt
+    @SliderSetting(name = "Green", mods = true, category = GLINTCOLORIZER, min = 0, max = 255, isInt = true)
+    public static int glintG = 255;
+
+    @ConfigOpt
+    @SliderSetting(name = "Blue", mods = true, category = GLINTCOLORIZER, min = 0, max = 255, isInt = true)
+    public static int glintB = 255;
+
+    @ConfigOpt
+    @ToggleSetting(category = GLINTCOLORIZER, mods = true, name = "Enabled")
+    public static boolean glintColorizer = false;
+
+    private Settings() {}
     public static void register() {
         Hyperium.CONFIG.register(INSTANCE);
     }
-
     public static void save() {
         Hyperium.CONFIG.save();
     }

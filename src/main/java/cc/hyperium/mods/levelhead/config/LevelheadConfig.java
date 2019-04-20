@@ -29,7 +29,7 @@ import cc.hyperium.utils.ChatColor;
  */
 public class LevelheadConfig {
 
-    @ConfigOpt(alt = "club.sk1er.mods.levelhead.config.LevelheadConfig;enabled")
+    @ConfigOpt(alt = "club.sk1er.mods.levelhead.config.LevelheadConfig;glintColorizer")
     @ToggleSetting(category = Category.LEVEL_HEAD, mods = true, name = "Enable")
     public boolean enabled = true;
 

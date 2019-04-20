@@ -8,7 +8,6 @@ Because the license requires it, here is a list of changes made:
 * Removed playtime addon
 * Disabled tray icon
 * Removed background selection as it was problematic
-* Remove autotip error reporting
 * Updated default settings
 * Fully disabled the `(BETA)` improvements
 * Code cleanups

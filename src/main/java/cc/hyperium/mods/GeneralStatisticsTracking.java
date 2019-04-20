@@ -15,7 +15,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package cc.hyperium.mods.statistics;
+package cc.hyperium.mods;
 
 import cc.hyperium.config.ConfigOpt;
 import cc.hyperium.event.ChatEvent;
@@ -35,7 +35,6 @@ public class GeneralStatisticsTracking {
     public static int monthlyCoins = 0;
     @ConfigOpt
     public static int dailyCoins = 0;
-
     @ConfigOpt
     public String currentDateString = format.format(new Date());
 

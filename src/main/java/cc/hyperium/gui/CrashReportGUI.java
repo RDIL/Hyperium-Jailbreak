@@ -1,5 +1,5 @@
 package cc.hyperium.gui;
-import cc.hyperium.Hyperium;
+
 import cc.hyperium.installer.InstallerMain;
 import cc.hyperium.internal.addons.AddonBootstrap;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
@@ -194,11 +194,6 @@ public class CrashReportGUI extends JDialog {
             if (report != null) {
                 StringBuilder sb = new StringBuilder();
                 String[] rep = report.getCompleteReport().split("\n");
-                sb.append("Deobfuscated Report");
-                sb.append("Code by Cubxity");
-                sb.append("\n");
-                sb.append("Dev environment: ");
-                sb.append(Hyperium.INSTANCE.isDevEnv() ? "Yes" : "No");
                 sb.append("\n");
                 Mapping mapping = new Mapping("mc_1.8.9");
                 for (String s : rep) {
@@ -214,7 +209,7 @@ public class CrashReportGUI extends JDialog {
             NettyClient client = NettyClient.getClient();
             if (client != null)
                 client.write(ServerCrossDataPacket.build(new JsonHolder().put("crash_report", true).put("internal", true).put("crash",
-                    new JsonHolder().put("crash-full", report == null ? "unavailable" : hurl).put("hyperium", Metadata.getVersion() + " - " + Metadata.getVersionID()).put("addons", addons.toString())
+                    new JsonHolder().put("crash-full", report == null ? "unavailable" : hurl).put("hyperium", Metadata.getVersion()).put("addons", addons.toString())
                 )));
             return true;
         } catch (Exception ex) {

@@ -60,8 +60,7 @@ public class HyperiumMainGui extends HyperiumGui {
         settingsObjects.add(Hyperium.INSTANCE.getModIntegration().getAutotip());
         settingsObjects.add(Hyperium.INSTANCE.getModIntegration().getAutoGG().getConfig());
         settingsObjects.add(Hyperium.INSTANCE.getModIntegration().getMotionBlur());
-        settingsObjects.add(Hyperium.INSTANCE.getModIntegration().getLevelhead().getConfig());
-        settingsObjects.add(Hyperium.INSTANCE.getModIntegration().getGlintcolorizer().getColors());
+        settingsObjects.add(Hyperium.INSTANCE.getModIntegration().getLevelhead().getConfig());;
         SettingsHandler settingsHandler = Hyperium.INSTANCE.getHandlers().getSettingsHandler();
         settingsObjects.addAll(settingsHandler.getSettingsObjects());
         HashMap<Field, List<Consumer<Object>>> call1 = settingsHandler.getcallbacks();
@@ -127,9 +126,7 @@ public class HyperiumMainGui extends HyperiumGui {
         int yg = (height / 10); // Y grid
         int xg = (width / 11);  // X grid
 
-        if (Minecraft.getMinecraft().theWorld == null) {
-            renderHyperiumBackground(ResolutionUtil.current());
-        }
+        if (Minecraft.getMinecraft().theWorld == null) renderHyperiumBackground(ResolutionUtil.current());
 
         GlStateModifier.INSTANCE.reset();
         Icons.LIGHTBULB.bind();

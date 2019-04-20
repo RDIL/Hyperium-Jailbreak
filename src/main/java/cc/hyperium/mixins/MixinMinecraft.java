@@ -17,7 +17,7 @@
 
 package cc.hyperium.mixins;
 
-import cc.hyperium.SplashProgress;
+import cc.hyperium.gui.SplashProgress;
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.RenderTickEvent;
@@ -28,7 +28,6 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.achievement.GuiAchievement;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -36,7 +35,6 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.resources.DefaultResourcePack;
 import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.client.settings.GameSettings;
-import net.minecraft.client.shader.Framebuffer;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.profiler.Profiler;
 import net.minecraft.util.Timer;
@@ -64,9 +62,6 @@ public abstract class MixinMinecraft {
 
     @Shadow
     public boolean inGameHasFocus;
-
-    @Shadow
-    public GuiAchievement guiAchievement;
 
     @Shadow
     public int displayHeight;
@@ -117,11 +112,6 @@ public abstract class MixinMinecraft {
     @Final
     @Shadow
     public File mcDataDir;
-
-    @Shadow
-    private Framebuffer framebufferMc;
-
-    protected MixinMinecraft() {}
 
     @Inject(method = "startGame", at = @At("HEAD"))
     private void preinit(CallbackInfo ci) {

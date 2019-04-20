@@ -15,7 +15,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package cc.hyperium.mods.discord;
+package cc.hyperium.mods;
 
 import cc.hyperium.Hyperium;
 import cc.hyperium.config.Settings;

@@ -5,7 +5,7 @@ import cc.hyperium.event.DrawBlockHighlightEvent;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.RenderEvent;
 import cc.hyperium.mixins.entity.IMixinEntityRenderer;
-import cc.hyperium.mods.common.PerspectiveModifierHandler;
+import cc.hyperium.mods.PerspectiveModifierHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.state.IBlockState;
