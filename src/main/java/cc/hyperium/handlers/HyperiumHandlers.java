@@ -86,7 +86,6 @@ public class HyperiumHandlers {
     private OtherConfigOptions configOptions;
     private DabHandler dabHandler;
     private FlossDanceHandler flossDanceHandler;
-    private ParticleAuraHandler particleAuraHandler;
     private VanillaEnhancementsHud vanillaEnhancementsHud;
     private QuestTrackingChatHandler questTracking;
     private ReachDisplay reachDisplay;
