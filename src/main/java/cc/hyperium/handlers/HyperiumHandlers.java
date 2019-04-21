@@ -47,8 +47,6 @@ import cc.hyperium.handlers.handlers.chat.FriendRequestChatHandler;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import cc.hyperium.handlers.handlers.chat.HyperiumChatHandler;
 import cc.hyperium.handlers.handlers.chat.PartyInviteChatHandler;
-import cc.hyperium.handlers.handlers.chat.QuestTrackingChatHandler;
-import cc.hyperium.handlers.handlers.chat.RankedRatingChatHandler;
 import cc.hyperium.handlers.handlers.chat.WinTrackingChatHandler;
 import cc.hyperium.handlers.handlers.data.HypixelAPI;
 import cc.hyperium.handlers.handlers.hud.VanillaEnhancementsHud;
@@ -56,8 +54,6 @@ import cc.hyperium.handlers.handlers.hypixel.HypixelGuiAugmenter;
 import cc.hyperium.handlers.handlers.keybinds.KeyBindHandler;
 import cc.hyperium.handlers.handlers.mixin.LayerDeadmau5HeadHandler;
 import cc.hyperium.handlers.handlers.reach.ReachDisplay;
-import cc.hyperium.handlers.handlers.stats.StatsHandler;
-import cc.hyperium.handlers.handlers.tracking.HypixelValueTracking;
 import cc.hyperium.mods.PerspectiveModifierHandler;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
 import net.minecraft.client.Minecraft;
@@ -87,7 +83,6 @@ public class HyperiumHandlers {
     private DabHandler dabHandler;
     private FlossDanceHandler flossDanceHandler;
     private VanillaEnhancementsHud vanillaEnhancementsHud;
-    private QuestTrackingChatHandler questTracking;
     private ReachDisplay reachDisplay;
     private FlipHandler flipHandler;
     private LayerDeadmau5HeadHandler layerDeadmau5HeadHandler;
@@ -96,9 +91,7 @@ public class HyperiumHandlers {
     private FortniteDefaultDance fortniteDefaultDance;
     private HypixelGuiAugmenter hypixelGuiAugmenter;
     private TwerkDance twerkDance;
-    private StatsHandler statsHandler;
     private BroadcastEvents broadcastEvents;
-    private HypixelValueTracking hypixelValueTracking;
     private SettingsHandler settingsHandler;
     private YeetHandler yeetHandler;
 
@@ -116,9 +109,7 @@ public class HyperiumHandlers {
         register(reachDisplay = new ReachDisplay());
         register(locationHandler = new LocationHandler());
         register(vanillaEnhancementsHud = new VanillaEnhancementsHud());
-        register(valueHandler = new ValueHandler());
-        register(layerDeadmau5HeadHandler = new LayerDeadmau5HeadHandler());
-        register(hypixelValueTracking = new HypixelValueTracking());
+        register(layerDeadmau5HeadHandler = new LayerDeadmau5HeadHandler();
         register(resolutionUtil = new ResolutionUtil());
         register(capeHandler = new CapeHandler());
         register(guiDisplayHandler = new GuiDisplayHandler());
@@ -131,13 +122,11 @@ public class HyperiumHandlers {
         register(flossDanceHandler = new FlossDanceHandler());
         register(tPoseHandler = new TPoseHandler());
         register(fortniteDefaultDance = new FortniteDefaultDance());
-        register(statsHandler = new StatsHandler());
         register(broadcastEvents = new BroadcastEvents());
         commandQueue = new CommandQueue();
         dataHandler = new HypixelAPI();
         registerChatHandler(new RankedRatingChatHandler());
         registerChatHandler(new DMChatHandler());
-        registerChatHandler(questTracking = new QuestTrackingChatHandler());
         registerChatHandler(new WinTrackingChatHandler());
         registerChatHandler(new FriendRequestChatHandler());
         registerChatHandler(new PartyInviteChatHandler());
@@ -151,14 +140,6 @@ public class HyperiumHandlers {
 
     public void postInit() {
         generalChatHandler.post();
-    }
-
-    public HypixelValueTracking getHypixelValueTracking() {
-        return hypixelValueTracking;
-    }
-
-    public StatsHandler getStatsHandler() {
-        return statsHandler;
     }
 
     public HyperiumCommandHandler getCommandHandler() {
@@ -215,10 +196,6 @@ public class HyperiumHandlers {
 
     public CommandQueue getCommandQueue() {
         return commandQueue;
-    }
-
-    public ValueHandler getValueHandler() {
-        return valueHandler;
     }
 
     public GeneralChatHandler getGeneralChatHandler() {
