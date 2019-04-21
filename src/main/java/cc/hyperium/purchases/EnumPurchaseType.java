@@ -20,9 +20,6 @@ package cc.hyperium.purchases;
 public enum EnumPurchaseType {
     PARTICLE_BACKGROUND("Particle Background"),
     WING_COSMETIC("wings"),
-    KILL_TRACKER_MUSCLE("Muscle Kill Tracker"),
-    DAB_ON_KILL("Dab on Kill"),
-    CHROMA_WIN("Chroma on Win"),
     LEVEL_HEAD("Custom Levelhead"),
     FLIP_COSMETIC("Flip Cosmetic"),
     DEADMAU5_COSMETIC("Ears"),
