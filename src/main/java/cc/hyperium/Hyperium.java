@@ -30,7 +30,6 @@ import cc.hyperium.event.Priority;
 import cc.hyperium.event.minigames.MinigameListener;
 import cc.hyperium.gui.*;
 import cc.hyperium.handlers.HyperiumHandlers;
-import cc.hyperium.handlers.handlers.stats.PlayerStatsGui;
 import cc.hyperium.mixinsimp.client.resources.HyperiumLocale;
 import cc.hyperium.mixinsimp.renderer.FontFixValues;
 import cc.hyperium.mods.HyperiumModIntegration;
@@ -94,7 +93,6 @@ public class Hyperium {
                 new NettyClient(networkHandler);
                 UniversalNetty.getInstance().getPacketManager().register(new LoginReplyHandler());
             });
-            Multithreading.runAsync(() -> new PlayerStatsGui(null)); // Don't remove
             notification = new NotificationCenter();
             new HyperiumScheduler();
             try {
