@@ -24,6 +24,7 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.scoreboard.Score;
+import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.util.EnumChatFormatting;
 import org.lwjgl.opengl.GL11;
 import java.awt.*;
