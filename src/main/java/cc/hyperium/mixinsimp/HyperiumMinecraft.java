@@ -82,12 +82,8 @@ public class HyperiumMinecraft {
     public void loop(CallbackInfo info, boolean inGameHasFocus, WorldClient theWorld,
                      EntityPlayerSP thePlayer, RenderManager renderManager, Timer timer) {
         if (inGameHasFocus && theWorld != null) {
-            HyperiumHandlers handlers = Hyperium.INSTANCE.getHandlers();
             RenderPlayerEvent event = new RenderPlayerEvent(thePlayer, renderManager, renderManager.viewerPosZ, renderManager.viewerPosY, renderManager.viewerPosZ,
                 timer.renderPartialTicks);
-            if (handlers != null && Settings.SHOW_PART_1ST_PERSON) {
-                handlers.getParticleAuraHandler().renderPlayer(event);
-            }
         }
     }
 
