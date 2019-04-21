@@ -20,7 +20,6 @@ package cc.hyperium.purchases;
 import cc.hyperium.utils.JsonHolder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -47,8 +46,7 @@ public class HyperiumPurchase {
             EnumPurchaseType parse = EnumPurchaseType.parse(asString);
             if (parse != EnumPurchaseType.UNKNOWN)
                 try {
-                    AbstractHyperiumPurchase parse1 = PurchaseApi.getInstance().parse(parse, purchaseSettings
-                        .optJSONObject(parse.name().toLowerCase()));
+                    AbstractHyperiumPurchase parse1 = PurchaseApi.getInstance().parse(parse, purchaseSettings.optJSONObject(parse.name().toLowerCase()));
                     if (parse1 != null)
                         this.purchases.add(parse1);
                 } catch (Exception ignored) {}
@@ -56,8 +54,7 @@ public class HyperiumPurchase {
         if (everything) {
             for (EnumPurchaseType enumPurchaseType : EnumPurchaseType.values()) {
                 if (getPurchase(enumPurchaseType) == null && enumPurchaseType != EnumPurchaseType.UNKNOWN) {
-                    AbstractHyperiumPurchase parse1 = PurchaseApi.getInstance().parse(enumPurchaseType, purchaseSettings
-                        .optJSONObject(enumPurchaseType.name().toLowerCase()));
+                    AbstractHyperiumPurchase parse1 = PurchaseApi.getInstance().parse(enumPurchaseType, purchaseSettings.optJSONObject(enumPurchaseType.name().toLowerCase()));
                     if (parse1 != null)
                         this.purchases.add(parse1);
                 }
@@ -90,7 +87,6 @@ public class HyperiumPurchase {
     }
 
     public boolean hasPurchased(String key) {
-
         if (isEverything()) return true;
         for (JsonElement element : response.optJSONArray("hyperium")) {
             if (element instanceof JsonPrimitive && element.getAsString().equalsIgnoreCase(key)) return true;
