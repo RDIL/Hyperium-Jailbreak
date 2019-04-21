@@ -6,8 +6,8 @@ task:
     memory: 12G
   gradle_cache:
     folder: ~/.gradle/caches
-    fingerprint_script: cat build.gradle
-    populate_script: gradle setupDevWorkspace
+    fingerprint_script: cat build.gradle && echo hi
+    populate_script: gradle setupCiWorkspace
   matrix:
   - name: Cirrus CI
     script: gradle build
