@@ -109,7 +109,7 @@ public class HyperiumHandlers {
         register(reachDisplay = new ReachDisplay());
         register(locationHandler = new LocationHandler());
         register(vanillaEnhancementsHud = new VanillaEnhancementsHud());
-        register(layerDeadmau5HeadHandler = new LayerDeadmau5HeadHandler();
+        register(layerDeadmau5HeadHandler = new LayerDeadmau5HeadHandler());
         register(resolutionUtil = new ResolutionUtil());
         register(capeHandler = new CapeHandler());
         register(guiDisplayHandler = new GuiDisplayHandler());
