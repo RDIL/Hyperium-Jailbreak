@@ -1,5 +1,7 @@
 # Jailbroken Hyperium
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/966f221ca8b44ac5b7027246c2b22388)](https://app.codacy.com/app/hyperiumjailbreak/client?utm_source=github.com&utm_medium=referral&utm_content=hyperiumjailbreak/client&utm_campaign=Badge_Grade_Dashboard)
+
 Jailbroken Hyperium is a fork of [HyperiumClient](https://hyperium.cc) with enhancements and misc. fixes.
 
 Because the license requires it, here is a list of changes made:
