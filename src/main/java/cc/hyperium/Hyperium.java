@@ -30,7 +30,6 @@ import cc.hyperium.event.Priority;
 import cc.hyperium.event.minigames.MinigameListener;
 import cc.hyperium.gui.*;
 import cc.hyperium.handlers.HyperiumHandlers;
-import cc.hyperium.handlers.handlers.stats.PlayerStatsGui;
 import cc.hyperium.mixinsimp.client.resources.HyperiumLocale;
 import cc.hyperium.mixinsimp.renderer.FontFixValues;
 import cc.hyperium.mods.HyperiumModIntegration;
@@ -39,7 +38,6 @@ import cc.hyperium.mods.autogg.AutoGG;
 import cc.hyperium.mods.ToggleSprintContainer;
 import cc.hyperium.mods.DiscordPresence;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
-import cc.hyperium.mods.GeneralStatisticsTracking;
 import cc.hyperium.netty.NettyClient;
 import cc.hyperium.netty.UniversalNetty;
 import cc.hyperium.network.LoginReplyHandler;
@@ -70,7 +68,6 @@ public class Hyperium {
     public static final Logger LOGGER = LogManager.getLogger(Metadata.getModid());
     public static final File folder = new File("hyperium");
     public static final DefaultConfig CONFIG = new DefaultConfig(new File(folder, "CONFIG.json"));
-    private final GeneralStatisticsTracking statTrack = new GeneralStatisticsTracking();
     private final DiscordPresence richPresenceManager = new DiscordPresence();
     private final ConfirmationPopup confirmation = new ConfirmationPopup();
     private NotificationCenter notification;
@@ -96,7 +93,6 @@ public class Hyperium {
                 new NettyClient(networkHandler);
                 UniversalNetty.getInstance().getPacketManager().register(new LoginReplyHandler());
             });
-            Multithreading.runAsync(() -> new PlayerStatsGui(null)); // Don't remove
             notification = new NotificationCenter();
             new HyperiumScheduler();
             try {
@@ -104,11 +100,6 @@ public class Hyperium {
                 isDevEnv = true;
             } catch (ClassNotFoundException e) {
                 isDevEnv = false;
-            }
-
-            if(!Settings.FPS) {
-                cosmetics = new HyperiumCosmetics();
-                if (Settings.THANK_WATCHDOG && !Settings.FPS) new CommonChatResponder("removed from your game for hacking", "Thanks Watchdog!", true);
             }
 
             // Creates the accounts dir
@@ -129,9 +120,6 @@ public class Hyperium {
             EventBus.INSTANCE.register(confirmation);
             if (!Settings.FPS) EventBus.INSTANCE.register(new BlurHandler());
 
-            // Register statistics tracking.
-            EventBus.INSTANCE.register(statTrack);
-            CONFIG.register(statTrack);
             CONFIG.register(new ToggleSprintContainer());
 
             SplashProgress.setProgress(7, "Starting");
@@ -146,6 +134,10 @@ public class Hyperium {
             EventBus.INSTANCE.register(PurchaseApi.getInstance());
 
             SplashProgress.setProgress(11, "Loading Mods");
+            if(!Settings.FPS) {
+                cosmetics = new HyperiumCosmetics();
+                if (Settings.THANK_WATCHDOG && !Settings.FPS) new CommonChatResponder("removed from your game for hacking", "Thanks Watchdog!", true);
+            }
             modIntegration = new HyperiumModIntegration();
             new InternalAddons();
 
@@ -164,24 +156,7 @@ public class Hyperium {
             SplashProgress.setProgress(13, "Almost Done, Finishing Up");
             if (FontFixValues.INSTANCE == null) FontFixValues.INSTANCE = new FontFixValues();
 
-            Multithreading.runAsync(() -> {
-                EventBus.INSTANCE.register(FontFixValues.INSTANCE);
-                if (Settings.PERSISTENT_CHAT) {
-                    File file = new File(folder, "chat.txt");
-                    if (file.exists()) {
-                        try {
-                            FileReader fr = new FileReader(file);
-                            BufferedReader bufferedReader = new BufferedReader(fr);
-                            String line;
-                            while ((line = bufferedReader.readLine()) != null) {
-                                Minecraft.getMinecraft().ingameGUI.getChatGUI().addToSentMessages(line);
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            });
+            Multithreading.runAsync(() -> EventBus.INSTANCE.register(FontFixValues.INSTANCE));
 
             // Check if OptiFine is installed.
             try {
@@ -204,40 +179,19 @@ public class Hyperium {
         hyperiumCommandHandler.registerCommand(new CommandCoords());
         hyperiumCommandHandler.registerCommand(new CommandLogs());
         hyperiumCommandHandler.registerCommand(new CommandPing());
-        hyperiumCommandHandler.registerCommand(new CommandStats());
-        hyperiumCommandHandler.registerCommand(new CommandParty());
         hyperiumCommandHandler.registerCommand(new CommandResize());
         hyperiumCommandHandler.registerCommand(new CommandGarbageCollect());
-        hyperiumCommandHandler.registerCommand(new CommandMessage());
         hyperiumCommandHandler.registerCommand(new CommandDisableCommand());
         if(!Settings.FPS) {
             hyperiumCommandHandler.registerCommand(new CustomLevelheadCommand());
             hyperiumCommandHandler.registerCommand(new AutofriendCommand());
-            hyperiumCommandHandler.registerCommand(new CommandStatistics());
-            hyperiumCommandHandler.registerCommand(new CommandQuests());
         }
-        hyperiumCommandHandler.registerCommand(new CommandGuild());
         hyperiumCommandHandler.registerCommand(new CommandKeybinds());
     }
 
     private void shutdown() {
         CONFIG.save();
         richPresenceManager.shutdown();
-        if (Settings.PERSISTENT_CHAT) {
-            File file = new File(folder, "chat.txt");
-            try {
-                file.createNewFile();
-                FileWriter fileWriter = new FileWriter(file);
-                BufferedWriter bw = new BufferedWriter(fileWriter);
-                for (String s : Minecraft.getMinecraft().ingameGUI.getChatGUI().getSentMessages()) {
-                    bw.write(s + "\n");
-                }
-                bw.close();
-                fileWriter.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
         // Tell the modules the game is shutting down
         EventBus.INSTANCE.post(new GameShutDownEvent());
     }
