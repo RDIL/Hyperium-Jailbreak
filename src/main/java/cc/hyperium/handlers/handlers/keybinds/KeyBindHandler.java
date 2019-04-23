@@ -49,7 +49,6 @@ public class KeyBindHandler {
     public KeyBindHandler() {
         this.keyBindConfig = new KeyBindConfig(this, Hyperium.folder);
 
-        registerKeyBinding(debug);
         registerKeyBinding(new FriendsKeybind());
         registerKeyBinding(new NamesKeybind());
         registerKeyBinding(new GuiKeybind());
