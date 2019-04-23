@@ -1,7 +1,6 @@
 package cc.hyperium.internal.addons
 
 import cc.hyperium.Hyperium.LOGGER
-import cc.hyperium.internal.addons.misc.AddonLoadException
 import cc.hyperium.internal.addons.misc.AddonManifestParser
 import cc.hyperium.internal.addons.strategy.AddonLoaderStrategy
 import cc.hyperium.internal.addons.strategy.DefaultAddonLoader
@@ -42,7 +41,7 @@ object AddonBootstrap {
 
     init {
         if (!modDirectory.mkdirs() && !modDirectory.exists()) {
-            throw AddonLoadException("Unable to create addon directory!")
+            throw Exception("Unable to create addon directory!")
         }
 
         jars = modDirectory.listFiles()!!
