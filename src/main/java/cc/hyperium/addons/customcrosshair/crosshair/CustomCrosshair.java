@@ -91,8 +91,8 @@ public class CustomCrosshair {
     public void drawCrosshair() {
         int screenWidth = ResolutionUtil.current().getScaledWidth() / 2;
         int screenHeight = ResolutionUtil.current().getScaledHeight() / 2;
-        if (!this.getEnabled() && !this.mc.gameSettings.hideGUI) {
-            this.drawDebugAxisCrosshair(screenWidth, screenHeight && this.mc.gameSettings.showDebugInfo);
+        if (!this.getEnabled() && !this.mc.gameSettings.hideGUI && this.mc.gameSettings.showDebugInfo) {
+            this.drawDebugAxisCrosshair(screenWidth, screenHeight);
         }
         if (this.getEnabled() && (this.mc.gameSettings.thirdPersonView <= 0 || this
             .getVisibleThirdPerson()) && (!this.mc.gameSettings.hideGUI || this
