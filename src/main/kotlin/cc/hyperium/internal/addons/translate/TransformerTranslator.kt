@@ -2,6 +2,7 @@ package cc.hyperium.internal.addons.translate
 
 import cc.hyperium.internal.addons.AddonManifest
 import net.minecraft.launchwrapper.Launch
+import cc.hyperium.internal.addons.ITranslator
 
 class TransformerTranslator : ITranslator {
     override fun translate(manifest: AddonManifest) {
