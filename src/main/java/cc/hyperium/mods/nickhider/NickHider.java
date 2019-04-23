@@ -4,7 +4,6 @@ import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.RenderEvent;
 import cc.hyperium.event.TickEvent;
-import cc.hyperium.internal.addons.annotations.Instance;
 import cc.hyperium.mixins.gui.MixinGuiScreenBook;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.mods.sk1ercommon.Sk1erMod;
@@ -41,7 +40,6 @@ import java.util.stream.Collectors;
 public class NickHider {
     public static final String MOD_ID = "nick_hider";
     public static final String VERSION = "3.0";
-    @Instance
     public static NickHider INSTANCE;
     private final Pattern newNick = Pattern.compile("We've generated a random username for you: \\s*(?<nick>\\S+)");
     private final List<Nick> nicks = new ArrayList<>();
@@ -55,9 +53,6 @@ public class NickHider {
     private String override = null;
     public NickHider() {
         INSTANCE = this;
-    }
-    public Set<String> getUsedNicks() {
-        return usedNicks;
     }
     public String getPseudo_key() {
         return config.getPseudo_key();
@@ -182,10 +177,6 @@ public class NickHider {
             re[i] = tmp1.get(i);
         }
         return ObjectArrays.concat(in, re, String.class);
-    }
-
-    public List<Nick> getNicks() {
-        return nicks;
     }
 
     public HashMap<String, String> getCache() {
