@@ -136,7 +136,7 @@ object AddonMinecraftBootstrap {
                     if (o is IAddon) {
                         loaded.add(o)
                     } else {
-                        throw AddonLoadException("Main class isn't an instance of IAddon!")
+                        throw Exception("Main class isn't an instance of IAddon!")
                     }
                 } catch (e: Throwable) {
                     e.printStackTrace()
