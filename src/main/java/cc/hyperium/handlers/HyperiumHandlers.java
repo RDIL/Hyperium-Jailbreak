@@ -34,7 +34,6 @@ import cc.hyperium.handlers.handlers.LocationHandler;
 import cc.hyperium.handlers.handlers.OtherConfigOptions;
 import cc.hyperium.handlers.handlers.SettingsHandler;
 import cc.hyperium.handlers.handlers.StatusHandler;
-import cc.hyperium.handlers.handlers.ValueHandler;
 import cc.hyperium.handlers.handlers.animation.DabHandler;
 import cc.hyperium.handlers.handlers.animation.FlossDanceHandler;
 import cc.hyperium.handlers.handlers.animation.TPoseHandler;
@@ -65,7 +64,6 @@ public class HyperiumHandlers {
     private HypixelDetector hypixelDetector;
     private CommandQueue commandQueue;
     private CapeHandler capeHandler;
-    private ValueHandler valueHandler;
     private List<HyperiumChatHandler> chatHandlers;
     private GeneralChatHandler generalChatHandler;
     private HypixelAPI dataHandler;
@@ -101,7 +99,6 @@ public class HyperiumHandlers {
         register(new ReachDisplay());
         register(locationHandler = new LocationHandler());
         register(new VanillaEnhancementsHud());
-        register(valueHandler = new ValueHandler());
         register(layerDeadmau5HeadHandler = new LayerDeadmau5HeadHandler());
         register(new ResolutionUtil());
         register(capeHandler = new CapeHandler());
