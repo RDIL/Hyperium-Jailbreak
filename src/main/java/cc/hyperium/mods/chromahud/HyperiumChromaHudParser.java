@@ -27,7 +27,7 @@ import cc.hyperium.mods.chromahud.displayitems.hyperium.HypixelDisplay;
 import cc.hyperium.mods.chromahud.displayitems.hyperium.LocationDisplay;
 import cc.hyperium.mods.chromahud.displayitems.hyperium.MemoryDisplay;
 import cc.hyperium.mods.chromahud.displayitems.hyperium.MinigameDisplay;
-import cc.hyperium.mods.chromahud.displayitems.hyperium.PlayerDisplay
+import cc.hyperium.mods.chromahud.displayitems.hyperium.PlayerDisplay;
 import cc.hyperium.mods.chromahud.displayitems.hyperium.ReachDisplay;
 import cc.hyperium.mods.chromahud.displayitems.hyperium.ScoreboardDisplay;
 import cc.hyperium.mods.chromahud.displayitems.hyperium.ToggleSprintStatus;
