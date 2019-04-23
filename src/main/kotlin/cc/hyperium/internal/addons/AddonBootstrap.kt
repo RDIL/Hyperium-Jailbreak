@@ -24,7 +24,7 @@ object AddonBootstrap {
     @JvmStatic
     val addonResourcePacks: ArrayList<File?> = ArrayList()
 
-    var jars: ArrayList<File>
+    private lateinit var jars: ArrayList<File>
 
     private val loader = DefaultAddonLoader()
 
