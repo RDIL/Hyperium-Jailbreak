@@ -31,11 +31,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
-
 import java.awt.Color;
 
 public class CustomCrosshair {
-
     public static boolean showVanillaCrosshair = true;
     private boolean enabled;
     private Color colour;
@@ -94,9 +92,7 @@ public class CustomCrosshair {
         int screenWidth = ResolutionUtil.current().getScaledWidth() / 2;
         int screenHeight = ResolutionUtil.current().getScaledHeight() / 2;
         if (!this.getEnabled() && !this.mc.gameSettings.hideGUI) {
-            if (this.mc.gameSettings.showDebugInfo) {
-                this.drawDebugAxisCrosshair(screenWidth, screenHeight);
-            }
+            this.drawDebugAxisCrosshair(screenWidth, screenHeight && this.mc.gameSettings.showDebugInfo);
         }
         if (this.getEnabled() && (this.mc.gameSettings.thirdPersonView <= 0 || this
             .getVisibleThirdPerson()) && (!this.mc.gameSettings.hideGUI || this
