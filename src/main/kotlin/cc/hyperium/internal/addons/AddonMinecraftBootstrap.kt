@@ -1,7 +1,6 @@
 package cc.hyperium.internal.addons
 
 import cc.hyperium.Hyperium
-import cc.hyperium.internal.addons.misc.AddonLoadException
 import java.util.concurrent.ConcurrentHashMap
 
 object AddonMinecraftBootstrap {
@@ -24,7 +23,7 @@ object AddonMinecraftBootstrap {
     fun init() {
         try {
             if (AddonBootstrap.phase != AddonBootstrap.Phase.INIT) {
-                throw AddonLoadException("Bootstrap is currently at Phase.${AddonBootstrap.phase} when it should be at Phase.INIT")
+                throw Exception("Bootstrap is currently at Phase.${AddonBootstrap.phase} when it should be at Phase.INIT")
             }
 
             val toLoadMap = AddonBootstrap.addonManifests.map { it.name to it }.toMap().toMutableMap()
@@ -49,7 +48,6 @@ object AddonMinecraftBootstrap {
                         }
 
                         if (dependencyManifest.dependencies.contains(manifest.name)) {
-                            // The addons are depending on eachother. No way to enable them in the right order
                             iterator.remove()
                             toLoadMap.remove(manifest.name)
                             done = false
@@ -87,11 +85,8 @@ object AddonMinecraftBootstrap {
 
             // order
             while (!toSort.isEmpty()) {
-                // remove a node n from toSort
                 val n = toSort.iterator().next()
                 toSort.remove(n)
-
-                // insert n into L
                 toLoad.add(n)
 
                 // for each node m with an edge e from n to m do
@@ -99,10 +94,9 @@ object AddonMinecraftBootstrap {
                 while (it!!.hasNext()) {
                     // remove edge e from the graph
                     val m = it.next()
-                    it.remove()// Remove edge from n
-                    inEdges[m]!!.remove(n)// Remove edge from m
+                    it.remove()
+                    inEdges[m]!!.remove(n)
 
-                    // if m has no other incoming edges then insert m into toSort
                     if (inEdges[m]!!.isEmpty()) {
                         toSort.add(m)
                     }
@@ -137,7 +131,7 @@ object AddonMinecraftBootstrap {
                     if (o is IAddon) {
                         loaded.add(o)
                     } else {
-                        throw AddonLoadException("Main class isn't an instance of IAddon!")
+                        throw Exception("Main class isn't an instance of IAddon!")
                     }
                 } catch (e: Throwable) {
                     e.printStackTrace()
