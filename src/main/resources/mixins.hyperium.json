@@ -20,7 +20,6 @@
     "client.particle.MixinEffectRenderer",
     "client.renderer.entity.MixinRenderLightningBolt",
     "client.renderer.entity.MixinRendererLivingEntity",
-    "client.renderer.entity.layers.MixinLayerArmorBase",
     "client.renderer.tileentity.MixinRenderItemFrame",
     "client.resources.IMixinAbstractResourcePack",
     "client.resources.MixinAbstractResourcePack",
