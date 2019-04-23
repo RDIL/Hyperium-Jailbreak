@@ -5,7 +5,7 @@ import cc.hyperium.internal.addons.misc.AddonManifestParser
 import cc.hyperium.internal.addons.strategy.AddonLoaderStrategy
 import cc.hyperium.internal.addons.strategy.DefaultAddonLoader
 import cc.hyperium.internal.addons.strategy.WorkspaceAddonLoader
-import cc.hyperium.internal.addons.translate.InstanceTranslator
+import cc.hyperium.internal.addons.InstanceTranslator
 import cc.hyperium.internal.addons.translate.MixinTranslator
 import cc.hyperium.internal.addons.translate.TransformerTranslator
 import net.minecraft.launchwrapper.Launch
