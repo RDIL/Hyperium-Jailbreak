@@ -51,7 +51,7 @@ object AddonBootstrap {
 
     fun init() {
         if (phase != Phase.NOT_STARTED) {
-            throw AddonLoadException("Cannot initialise bootstrap twice")
+            throw Exception("Cannot initialise bootstrap twice")
         }
 
         phase = Phase.PREINIT
