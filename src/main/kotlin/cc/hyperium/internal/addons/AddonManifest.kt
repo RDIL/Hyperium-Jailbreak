@@ -5,13 +5,9 @@ class AddonManifest {
 
     var version: String? = null
 
-    val desc: String? = null
-
     val mainClass: String? = null
 
     val mixinConfigs: List<String>? = null
-
-    val tweakerClass: String? = null
 
     val dependencies: List<String> = ArrayList()
 
