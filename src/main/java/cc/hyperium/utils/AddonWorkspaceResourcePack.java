@@ -5,7 +5,6 @@ import net.minecraft.client.resources.AbstractResourcePack;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import java.io.File;
 import java.io.FileFilter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Set;
 
@@ -14,7 +13,7 @@ public class AddonWorkspaceResourcePack extends AbstractResourcePack {
         super(AddonWorkspaceResourcePack.class.getClassLoader().getResource("pack.mcmeta") != null ? new File(AddonWorkspaceResourcePack.class.getClassLoader().getResource("pack.mcmeta").getFile()).getParentFile() : null);
     }
 
-    protected InputStream getInputStreamByName(String name) throws IOException {
+    protected InputStream getInputStreamByName(String name) {
         return AddonWorkspaceResourcePack.class.getClassLoader().getResourceAsStream("pack.mcmeta");
     }
 

@@ -89,9 +89,4 @@ public enum ChatColor {
     public boolean isColor() {
         return !isFormat && this != RESET;
     }
-
-    private static final Pattern PATTERN = Pattern.compile("(?i)\\u00a7[0-9A-FK-OR]");
-    public static String stripFormatting(String text) {
-        return text == null ? null : PATTERN.matcher(text).replaceAll("");
-    }
 }

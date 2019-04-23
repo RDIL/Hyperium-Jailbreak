@@ -72,13 +72,9 @@ public class GuiCustomCrosshairEditCrosshair extends CustomCrosshairScreen {
         tickbox_enabled.getHelpText().add("Enables or disables the custom crosshair mod.");
 
         CCEditColourButton editColour_crosshair;
-        this.itemList.add(
-            editColour_crosshair = new CCEditColourButton(addon, this, 6, "Crosshair Colour",
-                0, 0, 100, 20, this.addon.getCrosshair().getColour()));
+        this.itemList.add(editColour_crosshair = new CCEditColourButton(addon, this, 6, "Crosshair Colour", 0, 0, 100, 20, this.addon.getCrosshair().getColour()));
         editColour_crosshair.getHelpText().add("Changes the main colour of the crosshair.");
-        this.itemList.add(
-            this.slider_crosshairType = new CCSlider(this, 5, "Crosshair Type", 0, 0, 120, 10, 0,
-                4));
+        this.itemList.add(this.slider_crosshairType = new CCSlider(this, 5, "Crosshair Type", 0, 0, 120, 10, 0, 4));
         this.slider_crosshairType.setValue(this.addon.getCrosshair().getCrosshairTypeID());
         this.slider_crosshairType.getHelpText().add("Changes the crosshair type.");
         this.slider_crosshairType.getHelpText().add("[0 = Cross]");
@@ -107,8 +103,7 @@ public class GuiCustomCrosshairEditCrosshair extends CustomCrosshairScreen {
                 }
             });
         this.tickbox_visibleHiddenGui.setChecked(this.addon.getCrosshair().getVisibleHiddenGui());
-        this.tickbox_visibleHiddenGui.getHelpText()
-            .add("Shows or hides the crosshair when the HUD (F1 Mode) is off.");
+        this.tickbox_visibleHiddenGui.getHelpText().add("Shows or hides the crosshair when the HUD (F1 Mode) is off.");
         this.itemList.add(
             this.tickbox_visibleDebug = new CCTickbox(this, 1, "Visible in debug screen", 0, 0) {
                 @Override
@@ -119,8 +114,7 @@ public class GuiCustomCrosshairEditCrosshair extends CustomCrosshairScreen {
                 }
             });
         this.tickbox_visibleDebug.setChecked(this.addon.getCrosshair().getVisibleDebug());
-        this.tickbox_visibleDebug.getHelpText()
-            .add("Shows or hides the crosshair in the debug screen (F3 Mode).");
+        this.tickbox_visibleDebug.getHelpText().add("Shows or hides the crosshair in the debug screen (F3 Mode).");
         this.itemList.add(
             this.tickbox_visibleSpectator = new CCTickbox(this, 2, "Visible in spectator mode", 0,
                 0) {
@@ -132,8 +126,7 @@ public class GuiCustomCrosshairEditCrosshair extends CustomCrosshairScreen {
                 }
             });
         this.tickbox_visibleSpectator.setChecked(this.addon.getCrosshair().getVisibleSpectator());
-        this.tickbox_visibleSpectator.getHelpText()
-            .add("Shows or hides the crosshair when in spectator mode.");
+        this.tickbox_visibleSpectator.getHelpText().add("Shows or hides the crosshair when in spectator mode.");
         this.itemList.add(
             this.tickbox_visibleThirdPerson = new CCTickbox(this, 2, "Visible in third person mode",
                 0, 0) {
@@ -145,10 +138,8 @@ public class GuiCustomCrosshairEditCrosshair extends CustomCrosshairScreen {
                             .getChecked());
                 }
             });
-        this.tickbox_visibleThirdPerson
-            .setChecked(this.addon.getCrosshair().getVisibleThirdPerson());
-        this.tickbox_visibleThirdPerson.getHelpText()
-            .add("Shows or hides the crosshair when in third person mode.");
+        this.tickbox_visibleThirdPerson.setChecked(this.addon.getCrosshair().getVisibleThirdPerson());
+        this.tickbox_visibleThirdPerson.getHelpText().add("Shows or hides the crosshair when in third person mode.");
         this.itemList.add(this.tickbox_outline = new CCTickbox(this, 3, "Outline", 0, 0) {
             @Override
             public void mouseClicked(final int mouseX, final int mouseY) {
@@ -160,9 +151,7 @@ public class GuiCustomCrosshairEditCrosshair extends CustomCrosshairScreen {
         this.tickbox_outline.setChecked(this.addon.getCrosshair().getOutline());
         this.tickbox_outline.getHelpText().add("Draws a black outline around the crosshair.");
         CCEditColourButton editColour_outline;
-        this.itemList.add(
-            editColour_outline = new CCEditColourButton(addon, this, 7, "Outline Colour", 0, 0,
-                100, 20, this.addon.getCrosshair().getOutlineColour()));
+        this.itemList.add(editColour_outline = new CCEditColourButton(addon, this, 7, "Outline Colour", 0, 0, 100, 20, this.addon.getCrosshair().getOutlineColour()));
         editColour_outline.getHelpText().add("Changes the outline colour of the crosshair.");
         this.itemList.add(this.tickbox_dot = new CCTickbox(this, 4, "Dot", 0, 0) {
             @Override
@@ -175,23 +164,18 @@ public class GuiCustomCrosshairEditCrosshair extends CustomCrosshairScreen {
         this.tickbox_dot.setChecked(this.addon.getCrosshair().getDot());
         this.tickbox_dot.getHelpText().add("Draws a white dot in the centre of the screen.");
         CCEditColourButton editColour_dot;
-        this.itemList.add(
-            editColour_dot = new CCEditColourButton(addon, this, 7, "Dot Colour", 0, 0, 100,
-                20, this.addon.getCrosshair().getDotColour()));
+        this.itemList.add(editColour_dot = new CCEditColourButton(addon, this, 7, "Dot Colour", 0, 0, 100, 20, this.addon.getCrosshair().getDotColour()));
         editColour_dot.getHelpText().add("Changes the dot colour of the crosshair.");
-        this.itemList
-            .add(this.slider_width = new CCSlider(this, 10, "Width", 0, 0, 150, 10, 1, 50));
+        this.itemList.add(this.slider_width = new CCSlider(this, 10, "Width", 0, 0, 150, 10, 1, 50));
         this.slider_width.setValue(this.addon.getCrosshair().getWidth());
         this.slider_width.getHelpText().add("Changes the horizontal width of the crosshair.");
-        this.itemList
-            .add(this.slider_height = new CCSlider(this, 11, "Height", 0, 0, 150, 10, 1, 50));
+        this.itemList.add(this.slider_height = new CCSlider(this, 11, "Height", 0, 0, 150, 10, 1, 50));
         this.slider_height.setValue(this.addon.getCrosshair().getHeight());
         this.slider_height.getHelpText().add("Changes the vertical height of the crosshair.");
         this.itemList.add(this.slider_gap = new CCSlider(this, 12, "Gap", 0, 0, 150, 10, 0, 50));
         this.slider_gap.setValue(this.addon.getCrosshair().getGap());
         this.slider_gap.getHelpText().add("Changes the gap/radius at the centre of the crosshair.");
-        this.itemList
-            .add(this.slider_thickness = new CCSlider(this, 13, "Thickness", 0, 0, 150, 10, 1, 10));
+        this.itemList.add(this.slider_thickness = new CCSlider(this, 13, "Thickness", 0, 0, 150, 10, 1, 10));
         this.slider_thickness.setValue(this.addon.getCrosshair().getThickness());
         this.slider_thickness.getHelpText().add("Changes the thickness of the crosshair.");
         this.itemList.add(
@@ -204,8 +188,7 @@ public class GuiCustomCrosshairEditCrosshair extends CustomCrosshairScreen {
                 }
             });
         this.tickbox_dynamicBow.setChecked(this.addon.getCrosshair().getDynamicBow());
-        this.tickbox_dynamicBow.getHelpText()
-            .add("When using a bow, indicates the duration of the pull animation.");
+        this.tickbox_dynamicBow.getHelpText().add("When using a bow, indicates the duration of the pull animation.");
         int y = 32;
         for (int i = 0; i < this.itemList.size(); ++i) {
             if (i > 0) {
@@ -230,8 +213,7 @@ public class GuiCustomCrosshairEditCrosshair extends CustomCrosshairScreen {
                 GuiCustomCrosshairEditCrosshair.this.initGui();
             }
         };
-        this.scrollbar = new CCScrollbar(this, 100, this.width - 11, 25, 10, this.height - 26,
-            y - 9);
+        this.scrollbar = new CCScrollbar(this, 100, this.width - 11, 25, 10, this.height - 26, y - 9);
     }
 
     @Override
@@ -344,15 +326,11 @@ public class GuiCustomCrosshairEditCrosshair extends CustomCrosshairScreen {
     }
 
     protected void keyTyped(final char typedChar, final int keyCode) throws IOException {
-        switch (keyCode) {
-            case 200: {
-                this.scrollbar.setValue(this.scrollbar.getValue() - 5);
-                break;
-            }
-            case 208: {
-                this.scrollbar.setValue(this.scrollbar.getValue() + 5);
-                break;
-            }
+        if(keyCode == 200) {
+            this.scrollbar.setValue(this.scrollbar.getValue() - 5);
+        }
+        if(keyCode == 208) {
+            this.scrollbar.setValue(this.scrollbar.getValue() + 5);
         }
         super.keyTyped(typedChar, keyCode);
     }

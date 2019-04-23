@@ -49,10 +49,6 @@ public class BetterJsonObject {
         }
     }
 
-    public BetterJsonObject(JsonObject objectIn) {
-        this.data = objectIn != null ? objectIn : new JsonObject();
-    }
-
     public String optString(String key) {
         return optString(key, "");
     }
@@ -153,7 +149,7 @@ public class BetterJsonObject {
 
             FileWriter writer = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(writer);
-            bufferedWriter.write(toPrettyString()); // Use our pretty printer
+            bufferedWriter.write(toPrettyString());
             bufferedWriter.close(); // Close the BufferedWriter
             writer.close(); // Close the FileWriter
         } catch (IOException e) {
