@@ -24,7 +24,7 @@ object AddonBootstrap {
     @JvmStatic
     val addonResourcePacks: ArrayList<File?> = ArrayList()
 
-    private lateinit var jars: ArrayList<File>
+    var jars: ArrayList<File>
 
     private val loader = DefaultAddonLoader()
 
@@ -85,7 +85,7 @@ object AddonBootstrap {
 
     private fun loadAddons(loader: AddonLoaderStrategy): List<AddonManifest> {
         val addons = ArrayList<AddonManifest>()
-        var pendings = if(pendingDirectory.exists()) pendingDirectory.listFiles() else arrayOf()
+        val pendings = if(pendingDirectory.exists()) pendingDirectory.listFiles() else arrayOf()
         try {
             if (pendingDirectory.exists())
                 pendings.forEach { pendingManifests.add(AddonManifestParser(JarFile(it)).getAddonManifest()) }
