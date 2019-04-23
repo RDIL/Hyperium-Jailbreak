@@ -55,7 +55,6 @@ public class HypixelAPI {
     public void joinHypixel(JoinHypixelEvent event) {
         refreshCurrentUser();
         refreshFriendsForCurrentUser();
-        getQuests();
     }
 
     public CompletableFuture<HypixelApiPlayer> getPlayer(String key) {
@@ -100,32 +99,6 @@ public class HypixelAPI {
 
     public CompletableFuture<JsonHolder> getLeaderboardWithID(String ID) {
         return CompletableFuture.supplyAsync(() -> new JsonHolder(Sk1erMod.getInstance().rawWithAgent("https://api.sk1er.club/leaderboard/" + ID)), Multithreading.POOL);
-    }
-
-    public CompletableFuture<JsonHolder> getQuests(boolean refresh) {
-        if (QUESTS != null && !refresh) return CompletableFuture.completedFuture(QUESTS);
-
-        return CompletableFuture.supplyAsync(() -> new JsonHolder(
-            Sk1erMod.getInstance().rawWithAgent("https://api.hyperium.cc/quests")), Multithreading.POOL).whenComplete((quests, error) -> {
-                if (error != null) return;
-                QUESTS = quests;
-            });
-    }
-
-    public CompletableFuture<JsonHolder> getQuests() {
-        return getQuests(false);
-    }
-
-    public String getFrontendNameOfQuest(String backendName) {
-        JsonHolder quests = QUESTS.optJSONObject("quests");
-        List<JsonArray> arrays = quests.getKeys().stream().map(quests::optJSONArray).collect(Collectors.toList());
-        for (JsonArray array : arrays) {
-            for (JsonElement element : array) {
-                JsonHolder holder = new JsonHolder(element.getAsJsonObject());
-                if (holder.optString("id").equalsIgnoreCase(backendName)) return holder.optString("name");
-            }
-        }
-        return backendName;
     }
 
     public CompletableFuture<HypixelApiGuild> getGuildFromName(String name) {
