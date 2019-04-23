@@ -43,12 +43,6 @@ import java.util.Map;
 
 public class KeyBindHandler {
     private static final Map<Integer, Integer> mouseBinds = new HashMap<>();
-    private final HyperiumBind debug = new HyperiumBind("DEBUG", Keyboard.KEY_J) {
-        @Override
-        public void onPress() {}
-        @Override
-        public void onRelease() {}
-    };
     private final KeyBindConfig keyBindConfig;
     private final Map<String, HyperiumBind> keybinds = new HashMap<>();
 
