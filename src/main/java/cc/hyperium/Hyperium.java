@@ -179,17 +179,13 @@ public class Hyperium {
         hyperiumCommandHandler.registerCommand(new CommandCoords());
         hyperiumCommandHandler.registerCommand(new CommandLogs());
         hyperiumCommandHandler.registerCommand(new CommandPing());
-        hyperiumCommandHandler.registerCommand(new CommandStats());
-        hyperiumCommandHandler.registerCommand(new CommandParty());
         hyperiumCommandHandler.registerCommand(new CommandResize());
         hyperiumCommandHandler.registerCommand(new CommandGarbageCollect());
-        hyperiumCommandHandler.registerCommand(new CommandMessage());
         hyperiumCommandHandler.registerCommand(new CommandDisableCommand());
         if(!Settings.FPS) {
             hyperiumCommandHandler.registerCommand(new CustomLevelheadCommand());
             hyperiumCommandHandler.registerCommand(new AutofriendCommand());
         }
-        hyperiumCommandHandler.registerCommand(new CommandGuild());
         hyperiumCommandHandler.registerCommand(new CommandKeybinds());
     }
 
