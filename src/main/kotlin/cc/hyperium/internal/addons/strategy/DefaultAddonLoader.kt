@@ -11,7 +11,7 @@ import java.util.jar.JarFile
 class DefaultAddonLoader : AddonLoaderStrategy() {
     @Throws(Exception::class)
     override fun load(file: File?): AddonManifest? {
-        if (file == null) throw AddonLoadException("Could not load file; parameter issued was null.")
+        if (file == null) throw Exception("Could not load file; parameter issued was null.")
         val jar = JarFile(file)
         if (jar.getJarEntry("pack.mcmeta") != null) AddonBootstrap.addonResourcePacks.add(file)
         val manifest = AddonManifestParser(jar).getAddonManifest()
