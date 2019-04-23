@@ -185,10 +185,6 @@ public class HyperiumHandlers {
         return commandQueue;
     }
 
-    public ValueHandler getValueHandler() {
-        return valueHandler;
-    }
-
     public GeneralChatHandler getGeneralChatHandler() {
         return generalChatHandler;
     }
