@@ -32,12 +32,11 @@ class AddonManifestParser {
             val json = parser.parse(contents).asJsonObject
 
             if (!json.has("version") && !json.has("name") && !json.has("mainClass")) {
-                throw AddonLoadException("Invalid addon manifest (Needs name, version and mainClass)")
+                throw Exception("Invalid addon manifest (Needs name, version and mainClass)")
             }
             this.json = json
         } catch (e: Exception) {
             e.printStackTrace()
-            throw AddonLoadException("Exception reading manifest")
         } finally {
             if (jarInputStream != null) jarInputStream.close()
             jar.close()
@@ -49,7 +48,7 @@ class AddonManifestParser {
         val json = parser.parse(contents).asJsonObject
 
         if (!json.has("version") && !json.has("name") && !json.has("mainClass")) {
-            throw AddonLoadException("Invalid addon manifest (Must include name, version and mainClass)")
+            throw Exception("Invalid addon manifest (Must include name, version and mainClass)")
         }
         this.json = json
     }
