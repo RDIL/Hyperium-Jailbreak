@@ -35,7 +35,6 @@ import cc.hyperium.handlers.handlers.keybinds.keybinds.RearCamKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.TPoseKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.TogglePerspectiveKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.ToggleSprintKeybind;
-import cc.hyperium.handlers.handlers.keybinds.keybinds.TwerkDanceKeybind;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 import java.util.HashMap;
@@ -58,7 +57,6 @@ public class KeyBindHandler {
         registerKeyBinding(new ToggleSprintKeybind());
         registerKeyBinding(new TogglePerspectiveKeybind());
         registerKeyBinding(new FortniteDefaultDanceKeybind());
-        registerKeyBinding(new TwerkDanceKeybind());
         registerKeyBinding(new TPoseKeybind());
         registerKeyBinding(new GuiDanceKeybind());
         registerKeyBinding(new RearCamKeybind());
