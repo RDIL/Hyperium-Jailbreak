@@ -17,17 +17,14 @@
 
 package jb;
 
-public static String MODID = "Hyperium";
 public static String getModID() {
-    return MODID;
+    return "Hyperium";
 }
 
-public static String VERSION = "2.4";
 public static String getVersion() {
-    return VERSION;
+    return "2.4";
 }
 
-public static String[] BLACKLISTED = new String["AutoFriend", "Custom Crosshair Addon", "Tab Toggle", "SidebarAddon", "BossbarAddon", "FortniteCompassMod", "Item Physic"]
 public static String[] getBlacklisted() {
-    return BLACKLISTED;
+    return new String["AutoFriend", "Custom Crosshair Addon", "Tab Toggle", "SidebarAddon", "BossbarAddon", "FortniteCompassMod", "Item Physic"];
 }
