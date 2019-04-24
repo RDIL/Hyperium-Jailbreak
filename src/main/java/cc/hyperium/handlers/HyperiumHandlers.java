@@ -113,7 +113,6 @@ public class HyperiumHandlers {
         register(guiDisplayHandler = new GuiDisplayHandler());
         register(scoreboardRenderer = new ScoreboardRenderer());
         register(dabHandler = new DabHandler());
-        register(twerkDance = new TwerkDance());
         register(yeetHandler = new YeetHandler());
         register(new HypixelGuiAugmenter());
         register(statusHandler = new StatusHandler());
