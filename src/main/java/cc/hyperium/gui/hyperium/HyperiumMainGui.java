@@ -51,7 +51,7 @@ public class HyperiumMainGui extends HyperiumGui {
         settingsObjects.add(Hyperium.INSTANCE.getModIntegration().getAutotip());
         settingsObjects.add(Hyperium.INSTANCE.getModIntegration().getAutoGG().getConfig());
         settingsObjects.add(Hyperium.INSTANCE.getModIntegration().getMotionBlur());
-        settingsObjects.add(Hyperium.INSTANCE.getModIntegration().getLevelhead().getConfig());;
+        settingsObjects.add(Hyperium.INSTANCE.getModIntegration().getLevelhead().getConfig());
         SettingsHandler settingsHandler = Hyperium.INSTANCE.getHandlers().getSettingsHandler();
         settingsObjects.addAll(settingsHandler.getSettingsObjects());
         HashMap<Field, List<Consumer<Object>>> call1 = settingsHandler.getcallbacks();
@@ -81,7 +81,6 @@ public class HyperiumMainGui extends HyperiumGui {
         tabs = Collections.singletonList(new SettingsTab(this));
         scollMultiplier = 2;
         setTab(tabIndex);
-
     }
 
     public HashMap<Field, Supplier<String[]>> getCustomStates() {
@@ -105,8 +104,7 @@ public class HyperiumMainGui extends HyperiumGui {
         show = false;
         int yg = (height / 10); // Y grid
         int xg = (width / 11);  // X grid
-        searchField = new MaterialTextField(xg * 10 - 110, yg + (yg / 2 - 10), 100, 20,
-            I18n.format("tabs.searchbar"), font);
+        searchField = new MaterialTextField(xg * 10 - 110, yg + (yg / 2 - 10), 100, 20, I18n.format("tabs.searchbar"), font);
     }
 
     @Override
@@ -146,16 +144,14 @@ public class HyperiumMainGui extends HyperiumGui {
         currentTab.setFilter(searchField.getText().isEmpty() ? null : searchField.getText());
         currentTab.render(xg, yg * 2, xg * 9, yg * 7);
 
-        smol.drawString(Metadata.getVersion(), this.width - smol.getWidth(Metadata.getVersion()) - 1,
-            height - 10, 0xffffffff);
+        smol.drawString(Metadata.getVersion(), this.width - smol.getWidth(Metadata.getVersion()) - 1, height - 10, 0xffffffff);
 
         Icons.ARROW_LEFT.bind();
         GlStateManager.pushMatrix();
         Gui.drawScaledCustomSizeModalRect(this.width / 2 - xg, yg * 9, 0, 0, 144, 144, yg / 2, yg / 2,
             144, 144);
         Icons.ARROW_RIGHT.bind();
-        Gui.drawScaledCustomSizeModalRect(this.width / 2 + xg - (yg / 2), yg * 9, 0, 0, 144, 144, yg / 2,
-            yg / 2, 144, 144);
+        Gui.drawScaledCustomSizeModalRect(this.width / 2 + xg - (yg / 2), yg * 9, 0, 0, 144, 144, yg / 2, yg / 2, 144, 144);
         GlStateManager.popMatrix();
     }
 
