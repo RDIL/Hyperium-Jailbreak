@@ -6,7 +6,6 @@ import club.sk1er.website.api.requests.HypixelApiGuild;
 import club.sk1er.website.api.requests.HypixelApiPlayer;
 
 public class StatsHandler {
-
     public void initStatsViewer(String player) {
         Multithreading.runAsync(() -> {
             try {
