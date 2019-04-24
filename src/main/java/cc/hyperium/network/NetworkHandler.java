@@ -75,9 +75,6 @@ public class NetworkHandler implements INetty, PostConfigHandler, PreSaveHandler
             Hyperium.INSTANCE.getHandlers().getFortniteDefaultDance().getStates().put(uuid, System.currentTimeMillis());
         } else if (type.equalsIgnoreCase("yeet")) {
             Hyperium.INSTANCE.getHandlers().getYeetHandler().yeet(uuid);
-        } else if (type.equalsIgnoreCase("twerk_dance")) {
-            Hyperium.INSTANCE.getHandlers().getTwerkDance().startAnimation(uuid);
-            Hyperium.INSTANCE.getHandlers().getTwerkDance().getStates().put(uuid, System.currentTimeMillis());
         } else if (type.equalsIgnoreCase("tpose_update"))
             if (jsonHolder.optBoolean("posing"))
                 Hyperium.INSTANCE.getHandlers().getTPoseHandler().get(uuid).ensureAnimationFor(60);
@@ -141,13 +138,11 @@ public class NetworkHandler implements INetty, PostConfigHandler, PreSaveHandler
 
     @Override
     public void postUpdate() {
-        if (log)
-            post = true;
+        if (log) post = true;
     }
 
     @Override
     public void preSave() {
-        if (post)
-            log = false;
+        if (post) log = false;
     }
 }

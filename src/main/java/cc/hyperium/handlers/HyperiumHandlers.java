@@ -38,7 +38,6 @@ import cc.hyperium.handlers.handlers.ValueHandler;
 import cc.hyperium.handlers.handlers.animation.DabHandler;
 import cc.hyperium.handlers.handlers.animation.FlossDanceHandler;
 import cc.hyperium.handlers.handlers.animation.TPoseHandler;
-import cc.hyperium.handlers.handlers.animation.TwerkDance;
 import cc.hyperium.handlers.handlers.animation.YeetHandler;
 import cc.hyperium.handlers.handlers.animation.cape.CapeHandler;
 import cc.hyperium.handlers.handlers.animation.fortnite.FortniteDefaultDance;
@@ -87,7 +86,6 @@ public class HyperiumHandlers {
     private PerspectiveModifierHandler perspectiveHandler;
     private TPoseHandler tPoseHandler;
     private FortniteDefaultDance fortniteDefaultDance;
-    private TwerkDance twerkDance;
     private StatsHandler statsHandler;
     private HypixelValueTracking hypixelValueTracking;
     private SettingsHandler settingsHandler;
@@ -115,7 +113,6 @@ public class HyperiumHandlers {
         register(guiDisplayHandler = new GuiDisplayHandler());
         register(scoreboardRenderer = new ScoreboardRenderer());
         register(dabHandler = new DabHandler());
-        register(twerkDance = new TwerkDance());
         register(yeetHandler = new YeetHandler());
         register(new HypixelGuiAugmenter());
         register(statusHandler = new StatusHandler());
@@ -166,10 +163,6 @@ public class HyperiumHandlers {
 
     public LayerDeadmau5HeadHandler getLayerDeadmau5HeadHandler() {
         return layerDeadmau5HeadHandler;
-    }
-
-    public TwerkDance getTwerkDance() {
-        return twerkDance;
     }
 
     public SettingsHandler getSettingsHandler() {

@@ -43,7 +43,6 @@ public class GuiDances extends HyperiumGui {
                         e.printStackTrace();
                     }
                     client.write(ServerCrossDataPacket.build(new JsonHolder().put("type", "floss_update").put("flossing", false)));
-
                 });
             }
         });
@@ -78,18 +77,6 @@ public class GuiDances extends HyperiumGui {
         });
         this.cancel.put("Dab", () -> {
             AbstractAnimationHandler abstractAnimationHandler = Hyperium.INSTANCE.getHandlers().getDabHandler();
-            abstractAnimationHandler.get(Minecraft.getMinecraft().thePlayer.getUniqueID()).stopAnimation();
-        });
-        this.handlers.put("Twerk", (netty) -> {
-            AbstractAnimationHandler abstractAnimationHandler = Hyperium.INSTANCE.getHandlers().getTwerkDance();
-            abstractAnimationHandler.get(Minecraft.getMinecraft().thePlayer.getUniqueID()).ensureAnimationFor(60);
-            Hyperium.INSTANCE.getHandlers().getTwerkDance().getStates().put(UUIDUtil.getClientUUID(), System.currentTimeMillis());
-            NettyClient client = NettyClient.getClient();
-            if (client != null && netty)
-                client.write(ServerCrossDataPacket.build(new JsonHolder().put("type", "twerk_dance")));
-        });
-        this.cancel.put("Twerk", () -> {
-            AbstractAnimationHandler abstractAnimationHandler = Hyperium.INSTANCE.getHandlers().getTwerkDance();
             abstractAnimationHandler.get(Minecraft.getMinecraft().thePlayer.getUniqueID()).stopAnimation();
         });
 
