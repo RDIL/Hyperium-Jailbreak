@@ -43,8 +43,6 @@ import net.minecraft.network.play.INetHandlerPlayClient;
 import net.minecraft.network.play.client.C17PacketCustomPayload;
 import net.minecraft.network.play.client.C19PacketResourcePackStatus;
 import net.minecraft.network.play.server.*;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumParticleTypes;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -209,10 +207,6 @@ public abstract class MixinNetHandlerPlayClient {
             }
             url = URLDecoder.decode(url.substring("level://".length()), StandardCharsets.UTF_8.toString());
             if (isLevelProtocol && (url.contains("..") || !url.endsWith("/resources.zip"))) {
-                EntityPlayerSP thePlayer = Minecraft.getMinecraft().thePlayer;
-                if (thePlayer != null) {
-                    thePlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + EnumChatFormatting.BOLD.toString() + "[WARNING] The current server has tried to hack your client, but HyperiumJailbreak stopped it."));
-                }
                 throw new URISyntaxException(url, "Invalid levelstorage resourcepack path");
             }
             return true;
