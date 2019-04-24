@@ -34,6 +34,7 @@ import cc.hyperium.handlers.handlers.LocationHandler;
 import cc.hyperium.handlers.handlers.OtherConfigOptions;
 import cc.hyperium.handlers.handlers.SettingsHandler;
 import cc.hyperium.handlers.handlers.StatusHandler;
+import cc.hyperium.handlers.handlers.ValueHandler;
 import cc.hyperium.handlers.handlers.animation.DabHandler;
 import cc.hyperium.handlers.handlers.animation.FlossDanceHandler;
 import cc.hyperium.handlers.handlers.animation.TPoseHandler;
@@ -46,6 +47,8 @@ import cc.hyperium.handlers.handlers.chat.FriendRequestChatHandler;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import cc.hyperium.handlers.handlers.chat.HyperiumChatHandler;
 import cc.hyperium.handlers.handlers.chat.PartyInviteChatHandler;
+import cc.hyperium.handlers.handlers.chat.QuestTrackingChatHandler;
+import cc.hyperium.handlers.handlers.chat.RankedRatingChatHandler;
 import cc.hyperium.handlers.handlers.chat.WinTrackingChatHandler;
 import cc.hyperium.handlers.handlers.data.HypixelAPI;
 import cc.hyperium.handlers.handlers.hud.VanillaEnhancementsHud;
@@ -53,6 +56,8 @@ import cc.hyperium.handlers.handlers.hypixel.HypixelGuiAugmenter;
 import cc.hyperium.handlers.handlers.keybinds.KeyBindHandler;
 import cc.hyperium.handlers.handlers.mixin.LayerDeadmau5HeadHandler;
 import cc.hyperium.handlers.handlers.reach.ReachDisplay;
+import cc.hyperium.handlers.handlers.stats.StatsHandler;
+import cc.hyperium.handlers.handlers.tracking.HypixelValueTracking;
 import cc.hyperium.mods.PerspectiveModifierHandler;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
 import net.minecraft.client.Minecraft;
@@ -64,6 +69,7 @@ public class HyperiumHandlers {
     private HypixelDetector hypixelDetector;
     private CommandQueue commandQueue;
     private CapeHandler capeHandler;
+    private ValueHandler valueHandler;
     private List<HyperiumChatHandler> chatHandlers;
     private GeneralChatHandler generalChatHandler;
     private HypixelAPI dataHandler;
@@ -82,6 +88,8 @@ public class HyperiumHandlers {
     private TPoseHandler tPoseHandler;
     private FortniteDefaultDance fortniteDefaultDance;
     private TwerkDance twerkDance;
+    private StatsHandler statsHandler;
+    private HypixelValueTracking hypixelValueTracking;
     private SettingsHandler settingsHandler;
     private YeetHandler yeetHandler;
 
@@ -99,7 +107,9 @@ public class HyperiumHandlers {
         register(new ReachDisplay());
         register(locationHandler = new LocationHandler());
         register(new VanillaEnhancementsHud());
+        register(valueHandler = new ValueHandler());
         register(layerDeadmau5HeadHandler = new LayerDeadmau5HeadHandler());
+        register(hypixelValueTracking = new HypixelValueTracking());
         register(new ResolutionUtil());
         register(capeHandler = new CapeHandler());
         register(guiDisplayHandler = new GuiDisplayHandler());
@@ -112,10 +122,13 @@ public class HyperiumHandlers {
         register(flossDanceHandler = new FlossDanceHandler());
         register(tPoseHandler = new TPoseHandler());
         register(fortniteDefaultDance = new FortniteDefaultDance());
+        register(statsHandler = new StatsHandler());
         register(new BroadcastEvents());
         commandQueue = new CommandQueue();
         dataHandler = new HypixelAPI();
+        registerChatHandler(new RankedRatingChatHandler());
         registerChatHandler(new DMChatHandler());
+        registerChatHandler(new QuestTrackingChatHandler());
         registerChatHandler(new WinTrackingChatHandler());
         registerChatHandler(new FriendRequestChatHandler());
         registerChatHandler(new PartyInviteChatHandler());
@@ -129,6 +142,14 @@ public class HyperiumHandlers {
 
     public void postInit() {
         generalChatHandler.post();
+    }
+
+    public HypixelValueTracking getHypixelValueTracking() {
+        return hypixelValueTracking;
+    }
+
+    public StatsHandler getStatsHandler() {
+        return statsHandler;
     }
 
     public HyperiumCommandHandler getCommandHandler() {
@@ -183,6 +204,10 @@ public class HyperiumHandlers {
 
     public CommandQueue getCommandQueue() {
         return commandQueue;
+    }
+
+    public ValueHandler getValueHandler() {
+        return valueHandler;
     }
 
     public GeneralChatHandler getGeneralChatHandler() {

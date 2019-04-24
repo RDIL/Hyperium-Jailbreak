@@ -15,35 +15,24 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package cc.hyperium.mods.chromahud.commands;
+package cc.hyperium.commands.defaults;
 
 import cc.hyperium.commands.BaseCommand;
-import cc.hyperium.mods.chromahud.ChromaHUD;
-import cc.hyperium.mods.chromahud.gui.GeneralConfigGui;
+import cc.hyperium.handlers.handlers.tracking.StatisticViewingGui;
 
-/**
- * @author Sk1er
- */
-public class CommandChromaHUD implements BaseCommand {
-
-    private final ChromaHUD mod;
-
-    public CommandChromaHUD(ChromaHUD modIn) {
-        this.mod = modIn;
-    }
-
+public class CommandStatistics implements BaseCommand {
     @Override
     public String getName() {
-        return "chromahud";
+        return "statistics";
     }
 
     @Override
     public String getUsage() {
-        return "chromahud";
+        return "/statistics";
     }
 
     @Override
     public void onExecute(String[] args) {
-        new GeneralConfigGui(this.mod).display();
+        new StatisticViewingGui().show();
     }
 }
