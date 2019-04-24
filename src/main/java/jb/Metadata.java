@@ -15,18 +15,19 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@file:JvmName("Metadata")
+package jb;
 
-package jb
+public static String MODID = "Hyperium";
+public static String getModID() {
+    return MODID;
+}
 
-val MODID
-    @JvmName("getModid")
-    get() = "Hyperium"
+public static String VERSION = "2.4";
+public static String getVersion() {
+    return VERSION;
+}
 
-val VERSION
-    @JvmName("getVersion")
-    get() = "2.4"
-
-val BLACKLISTED
-    @JvmName("getBlacklisted")
-    get() = arrayOf("AutoFriend", "Custom Crosshair Addon", "Tab Toggle", "SidebarAddon", "BossbarAddon", "FortniteCompassMod", "Item Physic")
+public static String[] BLACKLISTED = new String["AutoFriend", "Custom Crosshair Addon", "Tab Toggle", "SidebarAddon", "BossbarAddon", "FortniteCompassMod", "Item Physic"]
+public static String[] getBlacklisted() {
+    return BLACKLISTED;
+}
