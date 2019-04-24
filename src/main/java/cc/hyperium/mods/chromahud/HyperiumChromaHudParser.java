@@ -20,7 +20,6 @@ package cc.hyperium.mods.chromahud;
 import cc.hyperium.mods.chromahud.api.ChromaHUDDescription;
 import cc.hyperium.mods.chromahud.api.ChromaHUDParser;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
-import cc.hyperium.mods.chromahud.displayitems.hyperium.CoinsDisplay;
 import cc.hyperium.mods.chromahud.displayitems.hyperium.DoubleCPSDisplay;
 import cc.hyperium.mods.chromahud.displayitems.hyperium.HyperiumInfoDisplay;
 import cc.hyperium.mods.chromahud.displayitems.hyperium.HypixelDisplay;
@@ -45,7 +44,6 @@ public class HyperiumChromaHudParser implements ChromaHUDParser {
         names.put("MINIGAME_DISPLAY", "Hypixel Minigame Display");
         names.put("SCOREBOARD", "Scoreboard");
         names.put("INFO", "Hyperium Info");
-        names.put("COINS", "Coin Display");
         names.put("PLAYER", "Player Display");
         names.put("DOUBLE_CPS_DISPLAY", "L+R CPS Display");
         names.put("SPRINT_STATUS", "ToggleSprint Status");
@@ -64,8 +62,6 @@ public class HyperiumChromaHudParser implements ChromaHUDParser {
                 return new HypixelDisplay(item, ord);
             case "MINIGAME_DISPLAY":
                 return new MinigameDisplay(item, ord);
-            case "COINS":
-                return new CoinsDisplay(item, ord);
             case "SCOREBOARD":
                 return new ScoreboardDisplay(item, ord);
             case "PLAYER":
