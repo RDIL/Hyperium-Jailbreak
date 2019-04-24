@@ -35,8 +35,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(EntityPlayerSP.class)
 public class MixinEntityPlayerSP extends AbstractClientPlayer {
-
-    private HyperiumEntityPlayerSP hyperiumEntityPlayerSP = new HyperiumEntityPlayerSP((EntityPlayerSP) (Object) this);
+    private HyperiumEntityPlayerSP hyperiumEntityPlayerSP = new HyperiumEntityPlayerSP();
 
     @Shadow
     private Minecraft mc;
@@ -59,15 +58,12 @@ public class MixinEntityPlayerSP extends AbstractClientPlayer {
     @Overwrite
     public void sendChatMessage(String message) {
         NickHider instance = NickHider.INSTANCE;
-        if (instance != null)
-            message = instance.out(message);
+        if (instance != null) message = instance.out(message);
 
         SendChatMessageEvent event = new SendChatMessageEvent(message);
         EventBus.INSTANCE.post(event);
 
-        if (!event.isCancelled()) {
-            ChatUtil.sendMessage(message);
-        }
+        if (!event.isCancelled()) ChatUtil.sendMessage(message);
     }
 
     @Overwrite
