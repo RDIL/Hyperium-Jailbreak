@@ -39,7 +39,6 @@ import cc.hyperium.mods.autogg.AutoGG;
 import cc.hyperium.mods.ToggleSprintContainer;
 import cc.hyperium.mods.DiscordPresence;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
-import cc.hyperium.mods.GeneralStatisticsTracking;
 import cc.hyperium.netty.NettyClient;
 import cc.hyperium.netty.UniversalNetty;
 import cc.hyperium.network.LoginReplyHandler;
@@ -70,7 +69,6 @@ public class Hyperium {
     public static final Logger LOGGER = LogManager.getLogger(Metadata.getModid());
     public static final File folder = new File("hyperium");
     public static final DefaultConfig CONFIG = new DefaultConfig(new File(folder, "CONFIG.json"));
-    private final GeneralStatisticsTracking statTrack = new GeneralStatisticsTracking();
     private final DiscordPresence richPresenceManager = new DiscordPresence();
     private final ConfirmationPopup confirmation = new ConfirmationPopup();
     private NotificationCenter notification;
