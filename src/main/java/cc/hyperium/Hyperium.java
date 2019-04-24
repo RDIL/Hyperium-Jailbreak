@@ -100,7 +100,7 @@ public class Hyperium {
             notification = new NotificationCenter();
             new HyperiumScheduler();
             try {
-                Class.forName("net.minecraft.dispenser.BehaviorProjectileDispense"); // check for random MC class
+                Class.forName("net.minecraft.dispenser.BehaviorProjectileDispense");
                 isDevEnv = true;
             } catch (ClassNotFoundException e) {
                 isDevEnv = false;
@@ -129,9 +129,6 @@ public class Hyperium {
             EventBus.INSTANCE.register(confirmation);
             if (!Settings.FPS) EventBus.INSTANCE.register(new BlurHandler());
 
-            // Register statistics tracking.
-            EventBus.INSTANCE.register(statTrack);
-            CONFIG.register(statTrack);
             CONFIG.register(new ToggleSprintContainer());
 
             SplashProgress.setProgress(7, "Starting");
