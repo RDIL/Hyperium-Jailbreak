@@ -19,9 +19,7 @@ package cc.hyperium.addons.customcrosshair.gui.items;
 
 import cc.hyperium.addons.customcrosshair.CustomCrosshairAddon;
 import cc.hyperium.addons.customcrosshair.utils.CustomCrosshairGraphics;
-
 import java.awt.Color;
-
 import net.minecraft.client.gui.GuiScreen;
 
 public class CCPanel extends CCGuiItem {
@@ -32,7 +30,6 @@ public class CCPanel extends CCGuiItem {
     private boolean verticalScrollMouseDown;
     private boolean horizontalScroll;
     private int horizontalScrollPosition;
-    private boolean horizontalScrollMouseDown;
     private int scrollSize;
     private int boxSize;
 
