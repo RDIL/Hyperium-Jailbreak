@@ -29,6 +29,7 @@ public class CCPanel extends CCGuiItem {
     private int verticalScrollPosition;
     private boolean verticalScrollMouseDown;
     private boolean horizontalScroll;
+    private boolean horizontalScrollMouseDown;
     private int horizontalScrollPosition;
     private int scrollSize;
     private int boxSize;
