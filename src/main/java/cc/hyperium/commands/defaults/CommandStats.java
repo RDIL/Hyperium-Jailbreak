@@ -15,35 +15,29 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package cc.hyperium.mods.chromahud.commands;
+package cc.hyperium.commands.defaults;
 
+import cc.hyperium.Hyperium;
 import cc.hyperium.commands.BaseCommand;
-import cc.hyperium.mods.chromahud.ChromaHUD;
-import cc.hyperium.mods.chromahud.gui.GeneralConfigGui;
+import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 
-/**
- * @author Sk1er
- */
-public class CommandChromaHUD implements BaseCommand {
-
-    private final ChromaHUD mod;
-
-    public CommandChromaHUD(ChromaHUD modIn) {
-        this.mod = modIn;
-    }
-
+public class CommandStats implements BaseCommand {
     @Override
     public String getName() {
-        return "chromahud";
+        return "hstats";
     }
 
     @Override
     public String getUsage() {
-        return "chromahud";
+        return "/hstats <player>";
     }
 
     @Override
     public void onExecute(String[] args) {
-        new GeneralConfigGui(this.mod).display();
+        if (args.length == 1) {
+            Hyperium.INSTANCE.getHandlers().getStatsHandler().initStatsViewer(args[0]);
+        } else {
+            GeneralChatHandler.instance().sendMessage(getUsage());
+        }
     }
 }

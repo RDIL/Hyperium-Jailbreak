@@ -15,35 +15,29 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package cc.hyperium.mods.chromahud.commands;
+package cc.hyperium.handlers.handlers;
 
-import cc.hyperium.commands.BaseCommand;
-import cc.hyperium.mods.chromahud.ChromaHUD;
-import cc.hyperium.mods.chromahud.gui.GeneralConfigGui;
+import cc.hyperium.config.ConfigOpt;
+import cc.hyperium.event.InvokeEvent;
+import cc.hyperium.event.RankedRatingChangeEvent;
 
-/**
- * @author Sk1er
- */
-public class CommandChromaHUD implements BaseCommand {
+public class ValueHandler {
+    @ConfigOpt
+    private int rankedRating;
+    @ConfigOpt
+    private int deltaRankedRating;
 
-    private final ChromaHUD mod;
-
-    public CommandChromaHUD(ChromaHUD modIn) {
-        this.mod = modIn;
+    @InvokeEvent
+    public void rankedRatingChange(RankedRatingChangeEvent event) {
+        this.rankedRating = event.getRating();
+        this.deltaRankedRating = event.getDelta();
     }
 
-    @Override
-    public String getName() {
-        return "chromahud";
+    public int getDeltaRankedRating() {
+        return deltaRankedRating;
     }
 
-    @Override
-    public String getUsage() {
-        return "chromahud";
-    }
-
-    @Override
-    public void onExecute(String[] args) {
-        new GeneralConfigGui(this.mod).display();
+    public int getRankedRating() {
+        return rankedRating;
     }
 }
