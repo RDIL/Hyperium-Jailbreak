@@ -43,7 +43,6 @@ public class DragonHeadRenderer extends ModelBase {
     private Minecraft mc;
     private ModelRenderer jaw;
     private ModelRenderer head;
-    private boolean playerUsesFullHeight;
     private DragonCosmetic dragonCosmetic;
     private ResourceLocation selectedLoc;
     private HashMap<UUID, JumpState> timeMap = new HashMap<>();
@@ -101,11 +100,8 @@ public class DragonHeadRenderer extends ModelBase {
         EntityPlayer entity = event.getEntity();
         if (dragonCosmetic.isPurchasedBy(entity.getUniqueID()) && !entity.isInvisible()) {
             HyperiumPurchase packageIfReady = PurchaseApi.getInstance().getPackageIfReady(event.getEntity().getUniqueID());
-            if (packageIfReady == null)
-                return;
-            if (packageIfReady.getCachedSettings().isDragonHeadDisabled()) {
-                return;
-            }
+            if (packageIfReady == null) return;
+            if (packageIfReady.getCachedSettings().isDragonHeadDisabled()) return;
 
             GlStateManager.pushMatrix();
             GlStateManager.translate(event.getX(), event.getY(), event.getZ());
@@ -174,5 +170,5 @@ public class DragonHeadRenderer extends ModelBase {
         }
         return f;
     }
-    private class JumpState{}
+    private class JumpState {}
 }
