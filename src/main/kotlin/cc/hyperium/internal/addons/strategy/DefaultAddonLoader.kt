@@ -1,6 +1,6 @@
 package cc.hyperium.internal.addons.strategy
 
-import jb.BLACKLISTED
+import jb.Metadata
 import cc.hyperium.internal.addons.AddonBootstrap
 import cc.hyperium.internal.addons.AddonManifest
 import cc.hyperium.internal.addons.misc.AddonManifestParser
@@ -15,7 +15,7 @@ class DefaultAddonLoader : AddonLoaderStrategy() {
         val jar = JarFile(file)
         if (jar.getJarEntry("pack.mcmeta") != null) AddonBootstrap.addonResourcePacks.add(file)
         val manifest = AddonManifestParser(jar).getAddonManifest()
-        if (BLACKLISTED.contains(manifest.name) || AddonBootstrap.pendingManifests.stream().anyMatch { it.name.equals(manifest.name) }) {
+        if (Metadata.BLACKLISTED.contains(manifest.name) || AddonBootstrap.pendingManifests.stream().anyMatch { it.name.equals(manifest.name) }) {
             file.delete()
             return null
         }
