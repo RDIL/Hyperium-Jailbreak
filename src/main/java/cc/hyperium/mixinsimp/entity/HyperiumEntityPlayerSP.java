@@ -7,7 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumParticleTypes;
 
 public class HyperiumEntityPlayerSP {
-    public HyperiumEntitiyPlayerSP() {}
+    public HyperiumEntityPlayerSP() {}
 
     public void onEnchantmentCritical(Entity entityHit, Minecraft mc) {
         if (mc.isSingleplayer() || !Settings.CRIT_FIX) {
