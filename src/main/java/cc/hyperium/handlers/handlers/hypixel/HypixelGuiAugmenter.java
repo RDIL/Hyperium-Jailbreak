@@ -5,7 +5,6 @@ import cc.hyperium.event.ActionPerformedEvent;
 import cc.hyperium.event.InitGuiEvent;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.gui.integrations.HypixelFriendsGui;
-import cc.hyperium.handlers.handlers.quests.PlayerQuestsGui;
 import cc.hyperium.mixins.gui.IMixinGuiScreen;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -18,13 +17,6 @@ public class HypixelGuiAugmenter {
     private final HashMap<GuiButton, Consumer<GuiButton>> lobbyAdds = new HashMap<>();
 
     public HypixelGuiAugmenter() {
-        lobbyAdds.put(new GuiButton(500001, 1, 1, 100, 20, "View Quests"), button -> {
-            try {
-                new PlayerQuestsGui(Hyperium.INSTANCE.getHandlers().getDataHandler().getCurrentUser().get()).show();
-            } catch (InterruptedException | ExecutionException e) {
-                e.printStackTrace();
-            }
-        });
         lobbyAdds.put(new GuiButton(500002, 1, 22, 100, 20, "View Friends"), button -> new HypixelFriendsGui().show());
     }
 
@@ -33,11 +25,7 @@ public class HypixelGuiAugmenter {
         if (!Hyperium.INSTANCE.getHandlers().getHypixelDetector().isHypixel()) return;
         GuiScreen gui = event.getScreen();
         String location = Hyperium.INSTANCE.getHandlers().getLocationHandler().getLocation();
-        if (location.toLowerCase().contains("lobby")) {
-            if (gui instanceof GuiContainer) {
-                modifyLobbyGui(gui);
-            }
-        }
+        if (location.toLowerCase().contains("lobby") && gui instanceof GuiContainer) modifyLobbyGui(gui);
     }
 
     public void modifyLobbyGui(GuiScreen screen) {
@@ -52,8 +40,6 @@ public class HypixelGuiAugmenter {
     @InvokeEvent
     public void actionPerformed(ActionPerformedEvent event) {
         Consumer<GuiButton> guiButtonConsumer = lobbyAdds.get(event.getButton());
-        if (guiButtonConsumer != null) {
-            guiButtonConsumer.accept(event.getButton());
-        }
+        if (guiButtonConsumer != null) guiButtonConsumer.accept(event.getButton());
     }
 }
