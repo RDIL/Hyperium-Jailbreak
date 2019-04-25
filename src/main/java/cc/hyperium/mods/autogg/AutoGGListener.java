@@ -10,7 +10,6 @@ import cc.hyperium.utils.ChatColor;
 import net.minecraft.client.Minecraft;
 
 public class AutoGGListener {
-    private final Minecraft mc = Minecraft.getMinecraft();
     private final AutoGG mod;
     boolean invoked = false;
 
@@ -49,7 +48,6 @@ public class AutoGGListener {
                     Thread.sleep(Hyperium.INSTANCE.getModIntegration().getAutoGG().getConfig().getDelay() * 1000);
                     Minecraft.getMinecraft().thePlayer.sendChatMessage("/achat " + (mod.getConfig().sayGoodGameInsteadOfGG ? (mod.getConfig().lowercase ? "good game" : "Good Game") : (mod.getConfig().lowercase ? "gg" : "GG")));
                     Thread.sleep(2000L);
-
                     Hyperium.INSTANCE.getModIntegration().getAutoGG().setRunning(false);
                 } catch (Exception e) {
                     e.printStackTrace();
