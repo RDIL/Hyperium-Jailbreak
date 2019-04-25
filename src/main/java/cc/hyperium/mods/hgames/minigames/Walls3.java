@@ -5,10 +5,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.util.IChatComponent;
 
 public class Walls3 extends Minigame {
-
     private int timesCalled = 0;
     private int duplicateCounter = 0;
-    private String currentMap = "";
 
     @Override
     public void draw(MinigameDisplay display, int starX, double startY, boolean config) {
@@ -18,18 +16,14 @@ public class Walls3 extends Minigame {
     }
 
     @Override
-    public void onTick() {
-
-    }
+    public void onTick() {}
 
     @Override
     public void onChat(IChatComponent message) {
         String line = message.getUnformattedText();
         if (line.startsWith("You are currently playing on ")) {
-            currentMap = line.split("You are currently playing on ")[1];
             duplicateCounter = 0;
         } else if (line.equalsIgnoreCase("This command is not available on this server!")) {
-            currentMap = "None";
             duplicateCounter = 0;
         }
     }
