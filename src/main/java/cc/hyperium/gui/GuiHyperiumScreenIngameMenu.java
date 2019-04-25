@@ -3,9 +3,7 @@ package cc.hyperium.gui;
 import cc.hyperium.Hyperium;
 import cc.hyperium.config.Settings;
 import cc.hyperium.gui.hyperium.HyperiumMainGui;
-import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
-import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiMainMenu;
@@ -23,8 +21,6 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 
 public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
-    private final DecimalFormat formatter = new DecimalFormat("#,###");
-    private long lastUpdate = 0L;
     private int cooldown = 0;
     private int baseAngle;
 
