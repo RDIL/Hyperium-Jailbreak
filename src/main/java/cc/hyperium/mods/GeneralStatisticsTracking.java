@@ -38,7 +38,6 @@ public class GeneralStatisticsTracking {
     @ConfigOpt
     public String currentDateString = format.format(new Date());
 
-
     @InvokeEvent
     public void onChat(ChatEvent event) {
         // Check how much the time has changed since the last use.
@@ -65,13 +64,11 @@ public class GeneralStatisticsTracking {
         String currentDays = dateString.split("/")[2];
         String currentMonths = dateString.split("/")[1];
 
-        // If the day has changed, reset daily coins.
         if (!currentDays.equals(days)) {
             dailyCoins = 0;
             currentDateString = format.format(currentDate);
         }
 
-        // If the month has changed, reset monthly coins and daily coins.
         if (!currentMonths.equals(months)) {
             dailyCoins = 0;
             monthlyCoins = 0;

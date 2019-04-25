@@ -25,7 +25,6 @@ import cc.hyperium.mods.chromahud.displayitems.hyperium.HyperiumInfoDisplay;
 import cc.hyperium.mods.chromahud.displayitems.hyperium.HypixelDisplay;
 import cc.hyperium.mods.chromahud.displayitems.hyperium.LocationDisplay;
 import cc.hyperium.mods.chromahud.displayitems.hyperium.MemoryDisplay;
-import cc.hyperium.mods.chromahud.displayitems.hyperium.MinigameDisplay;
 import cc.hyperium.mods.chromahud.displayitems.hyperium.PlayerDisplay;
 import cc.hyperium.mods.chromahud.displayitems.hyperium.ReachDisplay;
 import cc.hyperium.mods.chromahud.displayitems.hyperium.ScoreboardDisplay;
@@ -35,13 +34,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HyperiumChromaHudParser implements ChromaHUDParser {
-
     private final Map<String, String> names = new HashMap<>();
 
     public HyperiumChromaHudParser() {
         names.put("LOCATION", "Location");
         names.put("HYPIXEL", "Hypixel");
-        names.put("MINIGAME_DISPLAY", "Hypixel Minigame Display");
         names.put("SCOREBOARD", "Scoreboard");
         names.put("INFO", "Hyperium Info");
         names.put("PLAYER", "Player Display");
@@ -60,8 +57,6 @@ public class HyperiumChromaHudParser implements ChromaHUDParser {
                 return new LocationDisplay(item, ord);
             case "HYPIXEL":
                 return new HypixelDisplay(item, ord);
-            case "MINIGAME_DISPLAY":
-                return new MinigameDisplay(item, ord);
             case "SCOREBOARD":
                 return new ScoreboardDisplay(item, ord);
             case "PLAYER":
