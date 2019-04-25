@@ -19,7 +19,7 @@ public class ScissorState {
         }
 
         int sx = x;
-        int sy = getMinecraft().displayHeight - (y + height);
+        int sy = Minecraft.getMinecraft().displayHeight - (y + height);
         int sw = width;
         int sh = height;
         glPushAttrib(GL_SCISSOR_BIT);
