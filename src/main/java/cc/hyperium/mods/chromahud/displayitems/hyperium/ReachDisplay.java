@@ -26,11 +26,9 @@ import cc.hyperium.utils.JsonHolder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
-
 import java.text.DecimalFormat;
 
 public class ReachDisplay extends DisplayItem {
-
     private final Minecraft mc = Minecraft.getMinecraft();
     private String rangeText;
     private long lastAttack;
@@ -45,8 +43,7 @@ public class ReachDisplay extends DisplayItem {
     public void onAttack(PlayerAttackEntityEvent event) {
         if (mc.objectMouseOver != null && mc.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.ENTITY && mc.objectMouseOver.entityHit.getEntityId() == event.getEntity().getEntityId()) {
             Vec3 vec = mc.getRenderViewEntity().getPositionEyes(1.0f);
-            double range = mc.objectMouseOver.hitVec.distanceTo(vec);
-            rangeText = new DecimalFormat(".##").format(range) + " blocks";
+            rangeText = new DecimalFormat(".##").format(mc.objectMouseOver.hitVec.distanceTo(vec)) + " blocks";
         } else {
             rangeText = "Not on target?";
         }
@@ -55,10 +52,7 @@ public class ReachDisplay extends DisplayItem {
 
     @Override
     public void draw(int x, double y, boolean config) {
-        if (System.currentTimeMillis() - lastAttack > 2000L) {
-            rangeText = "Hasn't attacked";
-        }
-
+        if (System.currentTimeMillis() - lastAttack > 2000L) rangeText = "Hasn't attacked";
         ElementRenderer.draw(x, y, rangeText);
     }
 }
