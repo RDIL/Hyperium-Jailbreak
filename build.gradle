@@ -36,7 +36,6 @@ buildscript {
         maven {
             url 'https://jitpack.io'
         }
-
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
@@ -75,7 +74,7 @@ minecraft {
 }
 
 dependencies {
-    embed('org.spongepowered:mixin:0.7.7-SNAPSHOT') {
+    embed('org.spongepowered:mixin:0.7.11-SNAPSHOT') {
         exclude module: 'launchwrapper'
         exclude module: 'guava'
         exclude module: 'gson'
