@@ -43,7 +43,6 @@ public class FakePlayerRendering {
         enableCull();
         enableAlpha();
         enableDepth();
-
         RenderHelper.enableStandardItemLighting();
 
         rotate(rotation, 0.0F, 1.0F, 0.0F);
@@ -124,7 +123,6 @@ public class FakePlayerRendering {
     }
 
     private static final class FakeWorldProvider extends WorldProvider {
-
         FakeWorldProvider() {}
         @Override
         public String getDimensionName() {
