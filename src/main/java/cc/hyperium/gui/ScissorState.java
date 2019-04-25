@@ -3,7 +3,7 @@ package cc.hyperium.gui;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.BufferUtils;
 import java.nio.IntBuffer;
-import static net.minecraft.client.Minecraft.getMinecraft;
+import net.minecraft.client.Minecraft;
 import static org.lwjgl.opengl.GL11.*;
 
 public class ScissorState {
@@ -11,13 +11,11 @@ public class ScissorState {
 
     public static void scissor(int x, int y, int width, int height, boolean useWindowCoords) {
         if (useWindowCoords) {
-            int scaleFactor = new ScaledResolution(getMinecraft()).getScaleFactor();
-
+            int scaleFactor = new ScaledResolution(Minecraft.getMinecraft()).getScaleFactor();
             x *= scaleFactor;
             y *= scaleFactor;
             width *= scaleFactor;
             height *= scaleFactor;
-
         }
 
         int sx = x;
