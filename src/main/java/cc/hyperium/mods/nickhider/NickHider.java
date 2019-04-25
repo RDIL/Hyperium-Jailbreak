@@ -38,8 +38,6 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class NickHider {
-    public static final String MOD_ID = "nick_hider";
-    public static final String VERSION = "3.0";
     public static NickHider INSTANCE;
     private final Pattern newNick = Pattern.compile("We've generated a random username for you: \\s*(?<nick>\\S+)");
     private final List<Nick> nicks = new ArrayList<>();
@@ -74,11 +72,8 @@ public class NickHider {
     }
 
     public void init() {
-        sk1erMod = new Sk1erMod(MOD_ID, VERSION);
-        Multithreading.runAsync(() -> {
-            String s = sk1erMod.rawWithAgent("https://sk1er.club/words.txt");
-            namesDatabase.addAll(Arrays.asList(s.split("\n")));
-        });
+        sk1erMod = new Sk1erMod("NickHider", "3.0");
+        Multithreading.runAsync(() -> namesDatabase.addAll(Arrays.asList(sk1erMod.rawWithAgent("https://sk1er.club/words.txt").split("\n"))));
         if (suggestedConfigurationFile.exists()) {
             try {
                 FileReader baseReader = new FileReader(this.suggestedConfigurationFile);
@@ -96,9 +91,7 @@ public class NickHider {
                 } catch (JsonParseException e) {
                     broken = true;
                 }
-                if (!broken) {
-                    this.config = new Gson().fromJson(lines.toString().trim(), NickHiderConfig.class);
-                }
+                if (!broken) this.config = new Gson().fromJson(lines.toString().trim(), NickHiderConfig.class);
             } catch (IOException e) {
                 this.config = null;
 
@@ -124,9 +117,7 @@ public class NickHider {
     @InvokeEvent
     public void bookCheck(RenderEvent event) {
         GuiScreen currentScreen = Minecraft.getMinecraft().currentScreen;
-        if (currentScreen == null) {
-            return;
-        }
+        if (currentScreen == null) return;
 
         if (currentScreen instanceof GuiScreenBook) {
             NBTTagList bookPages = ((MixinGuiScreenBook) currentScreen).getBookPages();
@@ -155,9 +146,7 @@ public class NickHider {
     public String out(String chat) {
         if (isEnabled()) {
             for (Nick nick : nicks) {
-                if (!nick.oldName.equalsIgnoreCase(Minecraft.getMinecraft().getSession().getUsername())) {
-                    chat = Pattern.compile(nick.newName, Pattern.CASE_INSENSITIVE).matcher(chat).replaceAll(nick.oldName);
-                }
+                if (!nick.oldName.equalsIgnoreCase(Minecraft.getMinecraft().getSession().getUsername())) chat = Pattern.compile(nick.newName, Pattern.CASE_INSENSITIVE).matcher(chat).replaceAll(nick.oldName);
             }
         }
         return chat;
@@ -168,9 +157,7 @@ public class NickHider {
         String tmp = split[split.length - 1];
         List<String> tmp1 = new ArrayList<>();
         for (Nick nick : nicks) {
-            if (nick.newName.toLowerCase().startsWith(tmp.toLowerCase()))
-                tmp1.add(nick.newName);
-
+            if (nick.newName.toLowerCase().startsWith(tmp.toLowerCase())) tmp1.add(nick.newName);
         }
         String[] re = new String[tmp1.size()];
         for (int i = 0; i < tmp1.size(); i++) {
@@ -185,18 +172,12 @@ public class NickHider {
 
     @InvokeEvent
     public void profileCheck(TickEvent event) {
-        if (!isEnabled()) {
-            return;
-        }
+        if (!isEnabled()) return;
 
         EntityPlayerSP thePlayer = Minecraft.getMinecraft().thePlayer;
-        if (thePlayer == null) {
-            return;
-        }
         NetHandlerPlayClient sendQueue = thePlayer.sendQueue;
-        if (sendQueue == null) {
-            return;
-        }
+        if(thePlayer == null) return;
+        if(sendQueue == null) return;
 
         UUID id = Minecraft.getMinecraft().getSession().getProfile().getId();
         String name = Minecraft.getMinecraft().getSession().getProfile().getName();
