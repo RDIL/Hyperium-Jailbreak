@@ -1,7 +1,6 @@
 package cc.hyperium.mixinsimp;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.gui.SplashProgress;
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.GuiOpenEvent;
