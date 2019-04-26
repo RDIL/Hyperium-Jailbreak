@@ -4,7 +4,6 @@ import cc.hyperium.gui.GuiBlock;
 import cc.hyperium.gui.HyperiumGui;
 import cc.hyperium.gui.Icons;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
-import cc.hyperium.handlers.handlers.quests.PlayerQuestsGui;
 import cc.hyperium.handlers.handlers.stats.display.StatsDisplayItem;
 import cc.hyperium.mixinsimp.client.GlStateModifier;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
@@ -142,8 +141,6 @@ public class PlayerStatsGui extends HyperiumGui {
             drawScaledCustomSizeModalRect(0, 0, 0, 0, 64, 64, 16, 16, 64, 64);
             GlStateManager.popMatrix();
             int printY = 55 - offset;
-
-            PlayerQuestsGui.print(current, deepStats, printY);
         }
     }
 }

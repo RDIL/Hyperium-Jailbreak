@@ -45,7 +45,6 @@ public abstract class HyperiumChatHandler {
         BEDWARS_KILL,
         MEGAWALLS_KILL,
         BLITZ_KILL,
-        QUEST_COMPLETE,
         WIN
     }
 }
