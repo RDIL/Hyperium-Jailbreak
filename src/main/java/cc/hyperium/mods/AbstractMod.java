@@ -23,11 +23,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public abstract class AbstractMod {
     public abstract AbstractMod init();
-
     public abstract Metadata getModMetadata();
 
     public class Metadata {
-
         private final AbstractMod mod;
         private final String author;
         private final String name;
