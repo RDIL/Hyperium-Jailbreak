@@ -18,7 +18,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.server.MinecraftServer;
 import java.io.IOException;
-import java.text.DecimalFormat;
 
 public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
     private int cooldown = 0;
