@@ -24,13 +24,9 @@ import java.util.UUID;
 public class YeetHandler {
     private List<Yeet> yeets = new ArrayList<>();
 
-    @SuppressWarnings("unused")
     @InvokeEvent
     public void tickEvent(TickEvent event) {
-        yeets.removeIf(yeet -> {
-            yeet.age--;
-            return yeet.age < 0;
-        });
+        yeets.removeIf(yeet -> return yeet.age-- < 0);
     }
 
     @InvokeEvent
