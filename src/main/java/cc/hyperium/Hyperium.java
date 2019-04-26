@@ -125,7 +125,6 @@ public class Hyperium {
             EventBus.INSTANCE.register(CompactChat.getInstance());
             EventBus.INSTANCE.register(CONFIG.register(FPSLimiter.getInstance()));
             EventBus.INSTANCE.register(confirmation);
-            if (!Settings.FPS) EventBus.INSTANCE.register(new BlurHandler());
 
             CONFIG.register(new ToggleSprintContainer());
 
