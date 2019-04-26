@@ -29,7 +29,6 @@ public class CCPanel extends CCGuiItem {
     private int verticalScrollPosition;
     private boolean verticalScrollMouseDown;
     private boolean horizontalScroll;
-    private boolean horizontalScrollMouseDown;
     private int horizontalScrollPosition;
     private int scrollSize;
     private int boxSize;
@@ -68,10 +67,8 @@ public class CCPanel extends CCGuiItem {
                 .drawThemeBorderedRectangle(this.getPosX() + this.getWidth() - this.scrollSize, this.getPosY() + this.verticalScrollPosition, this.getPosX() + this.getWidth(), this.getPosY() + this.verticalScrollPosition + this.boxSize);
         }
         if (this.horizontalScroll) {
-            CustomCrosshairGraphics
-                .drawThemeBorderedRectangle(this.getPosX(), this.getPosY() + this.getHeight() - this.scrollSize, this.getPosX() + this.getWidth() - (this.verticalScroll ? this.scrollSize : 0), this.getPosY() + this.getHeight());
-            CustomCrosshairGraphics
-                .drawThemeBorderedRectangle(this.getPosX() + this.horizontalScrollPosition, this.getPosY() + this.getHeight() - this.scrollSize, this.getPosX() + this.horizontalScrollPosition + this.boxSize, this.getPosY() + this.getHeight());
+            CustomCrosshairGraphics.drawThemeBorderedRectangle(this.getPosX(), this.getPosY() + this.getHeight() - this.scrollSize, this.getPosX() + this.getWidth() - (this.verticalScroll ? this.scrollSize : 0), this.getPosY() + this.getHeight());
+            CustomCrosshairGraphics.drawThemeBorderedRectangle(this.getPosX() + this.horizontalScrollPosition, this.getPosY() + this.getHeight() - this.scrollSize, this.getPosX() + this.horizontalScrollPosition + this.boxSize, this.getPosY() + this.getHeight());
         }
     }
 
@@ -80,14 +77,10 @@ public class CCPanel extends CCGuiItem {
         if (this.verticalScroll && mouseX >= this.getPosX() + this.getWidth() - this.scrollSize && mouseX < this.getPosX() + this.getWidth() && mouseY >= this.getPosY() + this.verticalScrollPosition && mouseY <= this.getPosY() + this.verticalScrollPosition + this.boxSize) {
             this.verticalScrollMouseDown = true;
         }
-        if (this.horizontalScroll && mouseX >= this.getPosX() + this.horizontalScrollPosition && mouseX <= this.getPosX() + this.horizontalScrollPosition + this.boxSize && mouseY >= this.getPosY() + this.getHeight() - this.scrollSize && mouseY <= this.getPosY() + this.getHeight()) {
-            this.horizontalScrollMouseDown = true;
-        }
     }
 
     @Override
     public void mouseReleased(final int mouseX, final int mouseY) {
         this.verticalScrollMouseDown = false;
-        this.horizontalScrollMouseDown = false;
     }
 }
