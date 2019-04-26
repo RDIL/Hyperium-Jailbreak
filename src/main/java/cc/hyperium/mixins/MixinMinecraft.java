@@ -151,7 +151,7 @@ public abstract class MixinMinecraft {
 
     @Inject(method = "launchIntegratedServer", at = @At("HEAD"))
     private void launchIntegratedServer(String folderName, String worldName, WorldSettings worldSettingsIn, CallbackInfo ci) {
-        hyperiumMinecraft.launchIntegratedServer(folderName, worldName, worldSettingsIn, ci);
+        hyperiumMinecraft.launchIntegratedServer();
     }
 
     @Inject(method = "setInitialDisplayMode", at = @At(value = "HEAD"), cancellable = true)
@@ -161,7 +161,7 @@ public abstract class MixinMinecraft {
 
     @Inject(method = "toggleFullscreen", at = @At(value = "INVOKE", target = "Lorg/lwjgl/opengl/Display;setVSyncEnabled(Z)V", shift = At.Shift.AFTER))
     private void fullScreenFix(CallbackInfo ci) throws LWJGLException {
-        hyperiumMinecraft.fullScreenFix(ci, fullscreen, displayWidth, displayHeight);
+        hyperiumMinecraft.fullScreenFix(fullscreen, displayWidth, displayHeight);
     }
 
     @Overwrite
