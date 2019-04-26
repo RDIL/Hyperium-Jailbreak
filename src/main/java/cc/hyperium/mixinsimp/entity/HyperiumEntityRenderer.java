@@ -136,10 +136,6 @@ public class HyperiumEntityRenderer {
 
     }
 
-    public void disableBlurShader(){
-        Minecraft.getMinecraft().addScheduledTask(() -> Minecraft.getMinecraft().entityRenderer.stopUseShader());
-    }
-
     public void drawOutline(float part,Minecraft mc) {
         DrawBlockHighlightEvent drawBlockHighlightEvent = new DrawBlockHighlightEvent(((EntityPlayer) mc.getRenderViewEntity()), mc.objectMouseOver, part);
         EventBus.INSTANCE.post(drawBlockHighlightEvent);
