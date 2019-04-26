@@ -69,7 +69,6 @@ public class Hyperium {
     public static final Logger LOGGER = LogManager.getLogger(Metadata.getModid());
     public static final File folder = new File("hyperium");
     public static final DefaultConfig CONFIG = new DefaultConfig(new File(folder, "CONFIG.json"));
-    private final DiscordPresence richPresenceManager = new DiscordPresence();
     private final ConfirmationPopup confirmation = new ConfirmationPopup();
     private NotificationCenter notification;
     private HyperiumCosmetics cosmetics;
@@ -150,7 +149,6 @@ public class Hyperium {
             });
 
             Runtime.getRuntime().addShutdownHook(new Thread(this::shutdown));
-            if (!OS.isMacintosh()) richPresenceManager.load();
 
             SplashProgress.setProgress(12, "Reloading Jailbreak Manager");
             Minecraft.getMinecraft().refreshResources();
@@ -158,24 +156,7 @@ public class Hyperium {
             SplashProgress.setProgress(13, "Almost Done, Finishing Up");
             if (FontFixValues.INSTANCE == null) FontFixValues.INSTANCE = new FontFixValues();
 
-            Multithreading.runAsync(() -> {
-                EventBus.INSTANCE.register(FontFixValues.INSTANCE);
-                if (Settings.PERSISTENT_CHAT) {
-                    File file = new File(folder, "chat.txt");
-                    if (file.exists()) {
-                        try {
-                            FileReader fr = new FileReader(file);
-                            BufferedReader bufferedReader = new BufferedReader(fr);
-                            String line;
-                            while ((line = bufferedReader.readLine()) != null) {
-                                Minecraft.getMinecraft().ingameGUI.getChatGUI().addToSentMessages(line);
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            });
+            Multithreading.runAsync(() -> EventBus.INSTANCE.register(FontFixValues.INSTANCE));
 
             // Check if OptiFine is installed.
             try {
