@@ -50,7 +50,7 @@ public abstract class MixinEffectRenderer implements IMixinEffectRenderer {
     private Map<Integer, IParticleFactory> particleTypes;
     // its not happy about this but we can't do better because Minecraft
     private ConcurrentLinkedQueue<EntityFX>[][] modifiedFxLayer = new ConcurrentLinkedQueue[4][];
-    private ConcurrentLinkedQueue<EntityParticleEmitter> modifiedParticlEmmiters = new ConcurrentLinkedQueue<>();
+    private ConcurrentLinkedQueue<EntityParticleEmitter> modifiedParticleEmitters = new ConcurrentLinkedQueue<>();
     @Shadow
     private TextureManager renderer;
     @Shadow
@@ -144,7 +144,7 @@ public abstract class MixinEffectRenderer implements IMixinEffectRenderer {
 
     @Overwrite
     public void emitParticleAtEntity(Entity entityIn, EnumParticleTypes particleTypes) {
-        this.modifiedParticlEmmiters.add(new EntityParticleEmitter(this.worldObj, entityIn, particleTypes));
+        this.modifiedParticleEmitters.add(new EntityParticleEmitter(this.worldObj, entityIn, particleTypes));
     }
 
     @Overwrite
