@@ -193,26 +193,6 @@ public abstract class MixinMinecraft {
         SplashProgress.drawSplash(tm);
     }
 
-    @Inject(method = "startGame", at = @At("HEAD"))
-    private void onStartGame(CallbackInfo ci) {
-        hyperiumMinecraft.onStartGame();
-    }
-
-    @Inject(method = "startGame", at = @At(value = "INVOKE", target = "java/util/List.add(Ljava/lang/Object;)Z", shift = At.Shift.BEFORE))
-    private void onLoadDefaultResourcePack(CallbackInfo ci) {
-        hyperiumMinecraft.onLoadDefaultResourcePack();
-    }
-
-    @Inject(method = "startGame", at = @At(value = "INVOKE", target = "net/minecraft/client/Minecraft.createDisplay()V", shift = At.Shift.BEFORE))
-    private void onCreateDisplay(CallbackInfo ci) {
-        hyperiumMinecraft.onCreateDisplay();
-    }
-
-    @Inject(method = "startGame", at = @At(value = "INVOKE", target = "net/minecraft/client/renderer/OpenGlHelper.initializeTextures()V", shift = At.Shift.BEFORE))
-    private void onLoadTexture(CallbackInfo ci) {
-        hyperiumMinecraft.onLoadTexture();
-    }
-
     @Inject(method = "loadWorld(Lnet/minecraft/client/multiplayer/WorldClient;)V", at = @At("HEAD"))
     private void loadWorld(WorldClient worldClient, CallbackInfo ci) {
         hyperiumMinecraft.loadWorld();
