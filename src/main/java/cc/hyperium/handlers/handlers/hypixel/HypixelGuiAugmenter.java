@@ -10,7 +10,6 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import java.util.HashMap;
-import java.util.concurrent.ExecutionException;
 import java.util.function.Consumer;
 
 public class HypixelGuiAugmenter {
