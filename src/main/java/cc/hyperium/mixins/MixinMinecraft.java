@@ -195,27 +195,27 @@ public abstract class MixinMinecraft {
 
     @Inject(method = "startGame", at = @At("HEAD"))
     private void onStartGame(CallbackInfo ci) {
-        hyperiumMinecraft.onStartGame(ci);
+        hyperiumMinecraft.onStartGame();
     }
 
     @Inject(method = "startGame", at = @At(value = "INVOKE", target = "java/util/List.add(Ljava/lang/Object;)Z", shift = At.Shift.BEFORE))
     private void onLoadDefaultResourcePack(CallbackInfo ci) {
-        hyperiumMinecraft.onLoadDefaultResourcePack(ci);
+        hyperiumMinecraft.onLoadDefaultResourcePack();
     }
 
     @Inject(method = "startGame", at = @At(value = "INVOKE", target = "net/minecraft/client/Minecraft.createDisplay()V", shift = At.Shift.BEFORE))
     private void onCreateDisplay(CallbackInfo ci) {
-        hyperiumMinecraft.onCreateDisplay(ci);
+        hyperiumMinecraft.onCreateDisplay();
     }
 
     @Inject(method = "startGame", at = @At(value = "INVOKE", target = "net/minecraft/client/renderer/OpenGlHelper.initializeTextures()V", shift = At.Shift.BEFORE))
     private void onLoadTexture(CallbackInfo ci) {
-        hyperiumMinecraft.onLoadTexture(ci);
+        hyperiumMinecraft.onLoadTexture();
     }
 
     @Inject(method = "loadWorld(Lnet/minecraft/client/multiplayer/WorldClient;)V", at = @At("HEAD"))
     private void loadWorld(WorldClient worldClient, CallbackInfo ci) {
-        hyperiumMinecraft.loadWorld(worldClient, ci);
+        hyperiumMinecraft.loadWorld();
     }
 
     @Inject(method = "loadWorld(Lnet/minecraft/client/multiplayer/WorldClient;Ljava/lang/String;)V", at = @At(value = "INVOKE", target = "Ljava/lang/System;gc()V"), cancellable = true)
@@ -238,7 +238,7 @@ public abstract class MixinMinecraft {
 
     @Inject(method = "shutdown", at = @At("HEAD"))
     private void shutdown(CallbackInfo ci) {
-        hyperiumMinecraft.shutdown(ci);
+        hyperiumMinecraft.shutdown();
     }
 
     @Inject(method = "runGameLoop", at = @At(value = "FIELD", target = "Lnet/minecraft/client/Minecraft;skipRenderWorld:Z", shift = At.Shift.AFTER))
