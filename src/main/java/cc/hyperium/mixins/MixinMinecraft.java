@@ -120,7 +120,7 @@ public abstract class MixinMinecraft {
 
     @Inject(method = "runGameLoop", at = @At("HEAD"))
     public void loop(CallbackInfo info) {
-        hyperiumMinecraft.loop(info, inGameHasFocus, theWorld, thePlayer, renderManager, timer);
+        hyperiumMinecraft.loop(inGameHasFocus, theWorld, thePlayer, renderManager, timer);
     }
 
     @Inject(method = "startGame", at = @At("RETURN"))
