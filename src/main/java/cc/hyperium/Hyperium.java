@@ -191,22 +191,6 @@ public class Hyperium {
 
     private void shutdown() {
         CONFIG.save();
-        richPresenceManager.shutdown();
-        if (Settings.PERSISTENT_CHAT) {
-            File file = new File(folder, "chat.txt");
-            try {
-                file.createNewFile();
-                FileWriter fileWriter = new FileWriter(file);
-                BufferedWriter bw = new BufferedWriter(fileWriter);
-                for (String s : Minecraft.getMinecraft().ingameGUI.getChatGUI().getSentMessages()) {
-                    bw.write(s + "\n");
-                }
-                bw.close();
-                fileWriter.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
         // Tell the modules the game is shutting down
         EventBus.INSTANCE.post(new GameShutDownEvent());
     }
