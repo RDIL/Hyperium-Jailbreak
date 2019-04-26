@@ -23,22 +23,18 @@ import cc.hyperium.addons.customcrosshair.command.CommandCustomCrosshair;
 import cc.hyperium.addons.customcrosshair.crosshair.CustomCrosshair;
 import cc.hyperium.addons.customcrosshair.utils.CustomCrosshairConfig;
 import cc.hyperium.event.EventBus;
-import cc.hyperium.utils.ChatColor;
-
 import java.awt.Color;
 
 public class CustomCrosshairAddon extends AbstractAddon {
     public static final Color PRIMARY = new Color(23, 107, 192, 255);
     public static final Color PRIMARY_T = new Color(23, 107, 192, 128);
     public static final Color SECONDARY = new Color(255, 255, 255, 255);
-    private static CustomCrosshairAddon instance;
     private CustomCrosshair crosshair;
     private CustomCrosshairConfig config;
 
     @Override
     public AbstractAddon init() {
         EventBus.INSTANCE.register(this);
-        instance = this;
         this.crosshair = new CustomCrosshair();
         this.config = new CustomCrosshairConfig(this);
         if (!this.config.readSaveFile()) this.config.writeSaveFileDefault();
@@ -50,8 +46,6 @@ public class CustomCrosshairAddon extends AbstractAddon {
     @Override
     public Metadata getAddonMetadata() {
         AbstractAddon.Metadata metadata = new AbstractAddon.Metadata(this, "Custom Crosshair Addon", "0.5.3", "Amplifiable");
-        metadata.setDisplayName(ChatColor.GREEN + "Custom Crosshair Addon");
-        metadata.setDescription("CustomCrosshair");
         return metadata;
     }
 
@@ -69,6 +63,6 @@ public class CustomCrosshairAddon extends AbstractAddon {
     }
 
     public static CustomCrosshairAddon getCrosshairMod() {
-        return instance;
+        return this;
     }
 }
