@@ -31,7 +31,6 @@ import net.minecraft.util.EntitySelectors;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItemFrame;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -53,21 +52,11 @@ public abstract class MixinEntityRenderer {
     @Shadow
     private Entity pointedEntity;
     private HyperiumEntityRenderer hyperiumEntityRenderer = new HyperiumEntityRenderer((EntityRenderer) (Object) this);
-    @Shadow
-    @Final
-    public static int shaderCount;
-    @Shadow
-    private int shaderIndex;
 
     //endStartSection
     @Inject(method = "updateCameraAndRender", at = @At(value = "INVOKE", target = "Lnet/minecraft/profiler/Profiler;endStartSection(Ljava/lang/String;)V", shift = At.Shift.AFTER))
     private void updateCameraAndRender(float partialTicks, long nano, CallbackInfo ci) {
         hyperiumEntityRenderer.updateCameraAndRender();
-    }
-
-    @Inject(method = "activateNextShader", at = @At("INVOKE_ASSIGN"))
-    public void activateNextShader(CallbackInfo callbackInfo) {
-        HyperiumEntityRenderer.INSTANCE.isUsingShader = this.shaderIndex != shaderCount;
     }
 
     @Overwrite

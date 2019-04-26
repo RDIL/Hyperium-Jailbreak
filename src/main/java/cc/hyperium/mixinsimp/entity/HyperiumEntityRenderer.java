@@ -22,7 +22,6 @@ import org.lwjgl.opengl.Display;
 
 public class HyperiumEntityRenderer {
     private EntityRenderer parent;
-    public boolean isUsingShader = false;
     public static HyperiumEntityRenderer INSTANCE;
 
     public HyperiumEntityRenderer(EntityRenderer parent) {
@@ -135,10 +134,6 @@ public class HyperiumEntityRenderer {
 
         ((IMixinEntityRenderer) parent).setCloudFog(mc.renderGlobal.hasCloudFog(d0, d2, d3, partialTicks));
 
-    }
-
-    public void disableBlurShader(){
-        Minecraft.getMinecraft().addScheduledTask(() -> Minecraft.getMinecraft().entityRenderer.stopUseShader());
     }
 
     public void drawOutline(float part,Minecraft mc) {
