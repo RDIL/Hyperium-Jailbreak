@@ -115,7 +115,7 @@ public abstract class MixinMinecraft {
 
     @Inject(method = "startGame", at = @At("HEAD"))
     private void preinit(CallbackInfo ci) {
-        hyperiumMinecraft.preinit(ci, defaultResourcePacks, mcDefaultResourcePack, defaultResourcePacks);
+        hyperiumMinecraft.preinit(defaultResourcePacks, mcDefaultResourcePack);
     }
 
     @Inject(method = "runGameLoop", at = @At("HEAD"))
@@ -125,34 +125,28 @@ public abstract class MixinMinecraft {
 
     @Inject(method = "startGame", at = @At("RETURN"))
     private void init(CallbackInfo ci) {
-        //Accessor not needed since its only set once
         enableGLErrorChecking = false;
-        hyperiumMinecraft.startGame(ci);
+        hyperiumMinecraft.startGame();
     }
 
     @Inject(method = "runTick", at = @At("RETURN"))
     private void runTick(CallbackInfo ci) {
-        hyperiumMinecraft.runTick(ci, mcProfiler);
-    }
-
-    @Inject(method = "runTick", at = @At("HEAD"))
-    private void tick(CallbackInfo info) {
-        hyperiumMinecraft.startTick(info, mcProfiler);
+        hyperiumMinecraft.runTick(ci);
     }
 
     @Inject(method = "dispatchKeypresses", at = @At(value = "INVOKE_ASSIGN", target = "Lorg/lwjgl/input/Keyboard;getEventKeyState()Z"))
     private void runTickKeyboard(CallbackInfo ci) {
-        hyperiumMinecraft.runTickKeyboard(ci);
+        hyperiumMinecraft.runTickKeyboard();
     }
 
     @Inject(method = "clickMouse", at = @At("RETURN"))
     private void clickMouse(CallbackInfo ci) {
-        hyperiumMinecraft.clickMouse(ci);
+        hyperiumMinecraft.clickMouse();
     }
 
     @Inject(method = "rightClickMouse", at = @At("RETURN"))
     private void rightClickMouse(CallbackInfo ci) {
-        hyperiumMinecraft.rightClickMouse(ci);
+        hyperiumMinecraft.rightClickMouse();
     }
 
     @Inject(method = "launchIntegratedServer", at = @At("HEAD"))
