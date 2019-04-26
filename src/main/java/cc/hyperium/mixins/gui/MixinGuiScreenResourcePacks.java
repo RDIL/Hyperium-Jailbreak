@@ -29,12 +29,9 @@ public class MixinGuiScreenResourcePacks extends GuiScreen {
 
     private HyperiumGuiScreenResourcePacks hyperiumGuiResourcePack = new HyperiumGuiScreenResourcePacks((GuiScreenResourcePacks) (Object) this);
 
-    private GuiResourcePackAvailable availablePacksClone;
-
     @Inject(method = "initGui", at = @At("RETURN"))
     public void initGui(CallbackInfo callbackInfo) {
         hyperiumGuiResourcePack.initGui(this.buttonList);
-        this.availablePacksClone = this.availableResourcePacksList;
     }
 
     @Inject(method = "mouseClicked", at = @At("RETURN"))
@@ -49,6 +46,6 @@ public class MixinGuiScreenResourcePacks extends GuiScreen {
     }
 
     private void updateList() {
-        availableResourcePacksList = hyperiumGuiResourcePack.updateList(availablePacksClone, availableResourcePacks, mc, height, width);
+        availableResourcePacksList = hyperiumGuiResourcePack.updateList(availableResourcePacks, mc, height, width);
     }
 }
