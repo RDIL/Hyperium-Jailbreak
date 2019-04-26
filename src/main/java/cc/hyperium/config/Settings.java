@@ -124,10 +124,6 @@ public class Settings {
     @ConfigOpt
     public static int SETTINGS_ALPHA = 100;
 
-    @ConfigOpt(alt = "cc.hyperium.gui.settings.items.GeneralSetting;blurGuiBackgroundsEnabled")
-    @ToggleSetting(name = "gui.settings.blurredguibackground")
-    public static boolean BLUR_GUI = false;
-
     @ConfigOpt
     @SelectorSetting(name = "Hat Type", category = COSMETICS, items = "NONE")
     public static String HAT_TYPE = "NONE";
@@ -382,14 +378,6 @@ public class Settings {
     @ConfigOpt
     @ToggleSetting(name = "gui.settings.showhitdistances", category = REACH, mods = true)
     public static boolean SHOW_HIT_DISTANCES = false;
-
-    @ConfigOpt
-    @ToggleSetting(name = "gui.settings.motionblurenabled", category = MOTION_BLUR, mods = true)
-    public static boolean MOTION_BLUR_ENABLED = false;
-
-    @ConfigOpt
-    @SliderSetting(name = "gui.settings.motionblurintensity", min = 0F, max = 7F, category = MOTION_BLUR, mods = true)
-    public static double MOTION_BLUR_AMOUNT = 4.0F;
 
     @ConfigOpt
     @ToggleSetting(name = "gui.settings.autofriendenabled", category = AUTOFRIEND, mods = true)
