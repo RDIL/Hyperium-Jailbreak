@@ -29,10 +29,6 @@ public class Settings {
     @ToggleSetting(name = "gui.settings.FPS", category = INTEGRATIONS)
     public static boolean FPS = false;
 
-    @ConfigOpt(alt = "cc.hyperium.gui.settings.items.GeneralSetting;discordRPEnabled")
-    @ToggleSetting(name = "gui.settings.discordrp", category = INTEGRATIONS)
-    public static boolean DISCORD_RP = true;
-
     @ConfigOpt(alt = "cc.hyperium.gui.settings.items.GeneralSetting;fullbrightEnabled")
     @ToggleSetting(name = "gui.settings.fullbright", category = INTEGRATIONS)
     public static boolean FULLBRIGHT = true;
@@ -40,10 +36,6 @@ public class Settings {
     @ConfigOpt(alt = "cc.hyperium.gui.settings.items.GeneralSetting;romanNumeralsEnabled")
     @ToggleSetting(name = "gui.settings.romannumerals")
     public static boolean ROMAN_NUMERALS = true;
-
-    @ConfigOpt(alt = "cc.hyperium.gui.settings.items.GeneralSetting;discordServerDisplayEnabled")
-    @ToggleSetting(name = "gui.settings.rpshowserver", category = INTEGRATIONS)
-    public static boolean DISCORD_RP_SERVER = true;
 
     @ConfigOpt(alt = "cc.hyperium.gui.settings.items.GeneralSetting;compactChatEnabled")
     @ToggleSetting(name = "gui.settings.compactchat", category = INTEGRATIONS)
@@ -270,10 +262,6 @@ public class Settings {
     @ConfigOpt(alt = "cc.hyperium.handlers.handlers.OtherConfigOptions;SHOW_INGAME_CONFIRMATION_POPUP")
     @ToggleSetting(category = MISC, name = "gui.settings.showconfirmationpopup")
     public static boolean SHOW_INGAME_CONFIRMATION_POPUP = true;
-
-    @ConfigOpt(alt = "cc.hyperium.handlers.handlers.OtherConfigOptions;savePreviusChatMessages")
-    @ToggleSetting(category = GENERAL, name = "gui.settings.persistentchatmessages")
-    public static boolean PERSISTENT_CHAT = false;
 
     @ConfigOpt(alt = "cc.hyperium.handlers.handlers.OtherConfigOptions;friendsFirstIntag")
     @ToggleSetting(category = HYPIXEL, name = "gui.settings.friendsfirstintab")
