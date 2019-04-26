@@ -31,9 +31,6 @@ public class HypixelApiPlayer implements HypixelApiObject {
     public HypixelApiPlayer(JsonHolder holder) {
         this.player = holder;
     }
-    public JsonHolder getQuests() {
-        return getRoot().optJSONObject("quests");
-    }
     public int getKarma() {
         return getRoot().optInt("karma");
     }
@@ -87,10 +84,6 @@ public class HypixelApiPlayer implements HypixelApiObject {
 
     public int getTotalCoins() {
         return getRoot().optInt("coins");
-    }
-
-    public int getTotalQuests() {
-        return getRoot().optInt("questNumber");
     }
 
     public int getTotalKills() {
