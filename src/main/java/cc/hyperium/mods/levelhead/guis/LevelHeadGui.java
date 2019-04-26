@@ -72,7 +72,6 @@ public class LevelHeadGui extends GuiScreen {
     private GuiButton prefixButton;
     private boolean isCustom = false;
     private GuiTextField textField;
-    private GuiButton buttonType;
 
     private int calculateHeight(int row) {
         return 55 + row * 23;
@@ -165,7 +164,7 @@ public class LevelHeadGui extends GuiScreen {
         }), null);
 
         JsonHolder types = instance.getTypes();
-        reg(this.buttonType = new GuiButton(4, this.width / 2 - 155, calculateHeight(3), 150 * 2 + 10, 20, "Current Type: " + types.optJSONObject(instance.getType()).optString("name")), button -> {
+        reg(new GuiButton(4, this.width / 2 - 155, calculateHeight(3), 150 * 2 + 10, 20, "Current Type: " + types.optJSONObject(instance.getType()).optString("name")), button -> {
             String currentType = instance.getType();
             List<String> keys = types.getKeys();
             int i = keys.indexOf(currentType);
@@ -218,13 +217,13 @@ public class LevelHeadGui extends GuiScreen {
         lock.lock();
         reg(new GuiButton(13, this.width / 2 - 155, this.height - 44, 310, 20, (isCustom ? ChatColor.YELLOW + "Click to change custom Levelhead." : ChatColor.YELLOW + "Click to purchase a custom Levelhead message")), button -> {
             try {
-	            if (isCustom) {
-	                Desktop.getDesktop().browse(new URI("https://sk1er.club/user"));
-	            } else {
-	                Desktop.getDesktop().browse(new URI("https://sk1er.club/customlevelhead"));
-	            }
-	        } catch (IOException | URISyntaxException e) {
-	            e.printStackTrace();
+	        if (isCustom) {
+	            Desktop.getDesktop().browse(new URI("https://sk1er.club/user"));
+	        } else {
+	            Desktop.getDesktop().browse(new URI("https://sk1er.club/customlevelhead"));
+	        }
+	    } catch (IOException | URISyntaxException e) {
+	        e.printStackTrace();
             }
         });
         if (isCustom) {
