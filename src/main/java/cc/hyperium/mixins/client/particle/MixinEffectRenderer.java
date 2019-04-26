@@ -190,7 +190,7 @@ public abstract class MixinEffectRenderer implements IMixinEffectRenderer {
             }
         }
 
-        this.modifiedParticlEmmiters.clear();
+        this.modifiedParticleEmitters.clear();
     }
 
     @Overwrite
@@ -223,8 +223,8 @@ public abstract class MixinEffectRenderer implements IMixinEffectRenderer {
             }
         mcProfiler.endSection();
 
-        this.modifiedParticlEmmiters.forEach(EntityParticleEmitter::onUpdate);
-        modifiedParticlEmmiters.removeIf(entityParticleEmitter -> entityParticleEmitter.isDead);
+        this.modifiedParticleEmitters.forEach(EntityParticleEmitter::onUpdate);
+        modifiedParticleEmitters.removeIf(entityParticleEmitter -> entityParticleEmitter.isDead);
     }
 
     @Overwrite
