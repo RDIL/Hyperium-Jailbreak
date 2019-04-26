@@ -36,7 +36,6 @@ import cc.hyperium.handlers.handlers.keybinds.keybinds.TPoseKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.TogglePerspectiveKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.ToggleSprintKeybind;
 import net.minecraft.client.Minecraft;
-import org.lwjgl.input.Keyboard;
 import java.util.HashMap;
 import java.util.Map;
 
