@@ -90,7 +90,7 @@ dependencies {
     embed group: 'com.nativelibs4java', name: 'bridj', version: '0.7.0'
     embed 'com.github.KevinPriv:MojangAPI:1.0'
     embed 'com.github.Cubxity:DeobfStack:1.2'
-    embed 'com.github.hyperiumjailbreak:Installer:3.3'
+    embed 'com.github.hyperiumjailbreak:Installer:3.4'
     embed fileTree(dir: 'libs', include: 'Netty Client.jar')
     compile fileTree(dir: 'libs', include: '*.jar')
 }
