@@ -62,7 +62,7 @@ public class CustomCrosshairAddon extends AbstractAddon {
         return this.config;
     }
 
-    public static CustomCrosshairAddon getCrosshairMod() {
+    public CustomCrosshairAddon getCrosshairMod() {
         return this;
     }
 }
