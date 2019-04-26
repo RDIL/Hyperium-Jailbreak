@@ -33,10 +33,9 @@ public class HyperiumGuiScreenResourcePacks {
     }
 
     public GuiResourcePackAvailable updateList(GuiResourcePackAvailable availablePacksClone, List<ResourcePackListEntry> availableResourcePacks, Minecraft mc, int height, int width) {
-            this.availableResourcePacksList = new GuiResourcePackAvailable(mc, 200, height, availableResourcePacks);
-            this.availableResourcePacksList.setSlotXBoundsFromLeft(width / 2 - 4 - 200);
-            this.availableResourcePacksList.registerScrollButtons(7, 8);
-        }
+        this.availableResourcePacksList = new GuiResourcePackAvailable(mc, 200, height, availableResourcePacks);
+        this.availableResourcePacksList.setSlotXBoundsFromLeft(width / 2 - 4 - 200);
+        this.availableResourcePacksList.registerScrollButtons(7, 8);
         return availableResourcePacksList;
     }
 
