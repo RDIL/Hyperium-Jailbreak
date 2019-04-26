@@ -23,7 +23,6 @@ import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import jb.Metadata;
 
 public class GuiHyperiumScreen extends GuiScreen {
@@ -150,7 +149,7 @@ public class GuiHyperiumScreen extends GuiScreen {
 
         fr.drawStringScaled("HyperiumJailbreak", width - 152, 39, 0xFFFFFF, .75);
 
-        /* Display copyright disclaimers at bottom of screen */
+        /* Display disclaimers at bottom of screen */
         sfr.drawString(I18n.format("menu.left").toUpperCase(), 1, height - 7, 0x55FFFFFF);
         String s = I18n.format("menu.right").toUpperCase();
         sfr.drawString(s, width - sfr.getWidth(s) - 1, height - 7, 0x55FFFFFF);
