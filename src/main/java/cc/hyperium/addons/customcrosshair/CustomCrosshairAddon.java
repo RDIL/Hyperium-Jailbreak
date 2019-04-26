@@ -30,6 +30,7 @@ public class CustomCrosshairAddon extends AbstractAddon {
     public static final Color PRIMARY_T = new Color(23, 107, 192, 128);
     public static final Color SECONDARY = new Color(255, 255, 255, 255);
     private CustomCrosshair crosshair;
+    private static CustomCrosshairAddon instance;
     private CustomCrosshairConfig config;
 
     @Override
@@ -40,6 +41,7 @@ public class CustomCrosshairAddon extends AbstractAddon {
         if (!this.config.readSaveFile()) this.config.writeSaveFileDefault();
         Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(new CommandCustomCrosshair(this));
         EventBus.INSTANCE.register(this.crosshair);
+        instance = this;
         return this;
     }
 
@@ -63,6 +65,6 @@ public class CustomCrosshairAddon extends AbstractAddon {
     }
 
     public CustomCrosshairAddon getCrosshairMod() {
-        return this;
+        return instance;
     }
 }
