@@ -17,7 +17,6 @@
 
 package cc.hyperium.mods.chromahud.displayitems.chromahud;
 
-
 import cc.hyperium.mods.chromahud.ElementRenderer;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
 import cc.hyperium.utils.JsonHolder;
@@ -25,22 +24,16 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * @author Sk1er
- */
 public class PotionEffects extends DisplayItem {
-
     public PotionEffects(JsonHolder raw, int ordinal) {
         super(raw, ordinal);
     }
 
     public void draw(int x, double y, boolean isConfig) {
-
         int row = 0;
         double scale = ElementRenderer.getCurrentScale();
         Collection<PotionEffect> effects = new ArrayList<>();
@@ -68,8 +61,5 @@ public class PotionEffects extends DisplayItem {
         }
         this.width = isConfig ? ElementRenderer.maxWidth(tmp) : 0;
         this.height = row * 16;
-
     }
-
-
 }
