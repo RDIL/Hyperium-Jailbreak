@@ -268,7 +268,6 @@ public class HyperiumMinecraft {
             e.printStackTrace();
         }
 
-        // Intercept the crash with Hyperium crash report GUI.
         int crashAction = CrashReportGUI.handle(crashReportIn);
 
         switch (crashAction) {
@@ -280,7 +279,7 @@ public class HyperiumMinecraft {
                     parent.shutdown();
                 } catch (Exception ex) {
                     ex.printStackTrace();
-                    System.exit(-1); // if minecraft could not exit normally
+                    System.exit(-1);
                 }
                 break;
             case 2:
