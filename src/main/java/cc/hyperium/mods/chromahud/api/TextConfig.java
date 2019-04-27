@@ -18,17 +18,9 @@
 package cc.hyperium.mods.chromahud.api;
 
 import net.minecraft.client.gui.GuiTextField;
-
 import java.util.function.BiConsumer;
 
-/**
- * @author Sk1er
- */
 public class TextConfig {
-    /*
-        Action is called when the text field is drawn. You cancel actions, please modify the given GuiTextField class.
-        Load is called on load to initialize  to right state
-     */
     private final BiConsumer<GuiTextField, DisplayItem> action;
     private final GuiTextField button;
     private final BiConsumer<GuiTextField, DisplayItem> load;
@@ -46,7 +38,6 @@ public class TextConfig {
     public GuiTextField getTextField() {
         return button;
     }
-
 
     public BiConsumer<GuiTextField, DisplayItem> getLoad() {
         return load;
