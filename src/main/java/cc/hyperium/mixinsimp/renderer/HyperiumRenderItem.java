@@ -126,7 +126,6 @@ public class HyperiumRenderItem {
     }
 
     private void renderEffect(IBakedModel model) {
-        if (Settings.DISABLE_ENCHANT_GLINT) return;
         GlStateManager.depthMask(false);
         GlStateManager.depthFunc(514);
         GlStateManager.disableLighting();
