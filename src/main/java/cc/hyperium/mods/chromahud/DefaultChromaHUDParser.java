@@ -22,7 +22,6 @@ import cc.hyperium.mods.chromahud.api.ChromaHUDParser;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
 import cc.hyperium.mods.chromahud.displayitems.chromahud.ArmourHud;
 import cc.hyperium.mods.chromahud.displayitems.chromahud.ArrowCount;
-import cc.hyperium.mods.chromahud.displayitems.chromahud.CCounter;
 import cc.hyperium.mods.chromahud.displayitems.chromahud.CordsDisplay;
 import cc.hyperium.mods.chromahud.displayitems.chromahud.CpsDisplay;
 import cc.hyperium.mods.chromahud.displayitems.chromahud.DirectionHUD;
@@ -49,7 +48,6 @@ public class DefaultChromaHUDParser implements ChromaHUDParser {
         names.put("CPS", "CPS");
         names.put("ARROW_COUNT", "Arrow Count");
         names.put("TIME", "Time");
-        names.put("C_COUNTER", "C Counter");
     }
 
     @Override
@@ -73,8 +71,6 @@ public class DefaultChromaHUDParser implements ChromaHUDParser {
                 return new CpsDisplay(item, ord);
             case "ARROW_COUNT":
                 return new ArrowCount(item, ord);
-            case "C_COUNTER":
-                return new CCounter(item, ord);
             case "TIME":
                 return new TimeHud(item, ord);
         }
@@ -88,6 +84,6 @@ public class DefaultChromaHUDParser implements ChromaHUDParser {
 
     @Override
     public ChromaHUDDescription description() {
-        return new ChromaHUDDescription("DEFAULT", "3.0", "ChromaHUD", "Default display items for ChromaHUD.");
+        return new ChromaHUDDescription("DEFAULT", "3.0", "ChromaHUD", "Default display items.");
     }
 }
