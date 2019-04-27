@@ -17,9 +17,6 @@
 
 package cc.hyperium.mods.chromahud.api;
 
-/**
- * @author Sk1er
- */
 public class ChromaHUDDescription {
     private final String id;
     private final String version;
@@ -27,7 +24,6 @@ public class ChromaHUDDescription {
     private final String description;
 
     public ChromaHUDDescription(String id, String version, String name, String description) {
-
         this.id = id;
         this.version = version;
         this.name = name;
