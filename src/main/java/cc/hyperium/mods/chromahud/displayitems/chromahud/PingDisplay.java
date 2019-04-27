@@ -17,7 +17,6 @@
 
 package cc.hyperium.mods.chromahud.displayitems.chromahud;
 
-
 import cc.hyperium.mods.chromahud.ElementRenderer;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
 import cc.hyperium.utils.JsonHolder;
@@ -26,12 +25,7 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import cc.hyperium.config.Settings;
 
-
-/**
- * @author Sk1er
- */
 public class PingDisplay extends DisplayItem {
-
     public PingDisplay(JsonHolder raw, int ordinal) {
         super(raw, ordinal);
         this.height = 10;
@@ -54,5 +48,4 @@ public class PingDisplay extends DisplayItem {
             this.width = Minecraft.getMinecraft().fontRendererObj.getStringWidth(string);
         }
     }
-
 }
