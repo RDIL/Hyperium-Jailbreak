@@ -137,18 +137,6 @@ public class GuiHyperiumScreen extends GuiScreen {
         Minecraft.getMinecraft().getTextureManager().bindTexture(logo);
         drawScaledCustomSizeModalRect(10, 5, 0, 0, 2160, 500, 200, 47, 2160, 500);
 
-        /* Render profile container */
-        drawRect(width - 155, 10, width - 10, 49, 0x33000000);
-        drawRect(width - 156, 9, width - 9, 50, 0x33000000);
-
-        float val = (float) (Math.sin(swing / 40) * 30);
-        ScissorState.scissor(width - 153, 0, 145, 49, true);
-
-        if (!Hyperium.INSTANCE.isDevEnv()) GuiPlayerRenderer.renderPlayerWithRotation(width - 118, -4, val);
-        ScissorState.endScissor();
-
-        fr.drawStringScaled("HyperiumJailbreak", width - 152, 39, 0xFFFFFF, .75);
-
         /* Display disclaimers at bottom of screen */
         sfr.drawString(I18n.format("menu.left").toUpperCase(), 1, height - 7, 0x55FFFFFF);
         String s = I18n.format("menu.right").toUpperCase();
