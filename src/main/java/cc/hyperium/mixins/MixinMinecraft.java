@@ -141,6 +141,7 @@ public abstract class MixinMinecraft {
 
     @Inject(method = "runTick", at = @At("RETURN"))
     private void runTick(CallbackInfo ci) {
+        enableGLErrorChecking = false;
         hyperiumMinecraft.runTick(mcProfiler);
     }
 
