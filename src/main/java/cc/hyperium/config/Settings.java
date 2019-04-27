@@ -279,11 +279,11 @@ public class Settings {
     public static boolean IMPROVE_ENTITY_HANDLING = false;
     public static boolean IMPROVE_PARTICLE_RUN = false; /* any reason why this isnt used at all? */
 
-    @ConfigOpt()
+    @ConfigOpt
     @ToggleSetting(category = GENERAL, name = "gui.settings.sprintbypassstaticfov")
     public static boolean staticFovSprintModifier;
 
-    @ConfigOpt()
+    @ConfigOpt
     @ToggleSetting(category = GENERAL, name = "gui.settings.sprintandperspectivemessages")
     public static boolean SPRINT_PERSPECTIVE_MESSAGES = true;
 
@@ -515,26 +515,6 @@ public class Settings {
     @ConfigOpt
     @ToggleSetting(name = "gui.settings.confirmquit", category = MISC)
     public static boolean CONFIRM_QUIT = false;
-
-    @ConfigOpt
-    @ToggleSetting(category = GLINTCOLORIZER, mods = true, name = "Chroma")
-    public static boolean glintcolorChroma;
-
-    @ConfigOpt
-    @SliderSetting(name = "Red", mods = true, category = GLINTCOLORIZER, min = 0, max = 255, isInt = true)
-    public static int glintR = 255;
-
-    @ConfigOpt
-    @SliderSetting(name = "Green", mods = true, category = GLINTCOLORIZER, min = 0, max = 255, isInt = true)
-    public static int glintG = 255;
-
-    @ConfigOpt
-    @SliderSetting(name = "Blue", mods = true, category = GLINTCOLORIZER, min = 0, max = 255, isInt = true)
-    public static int glintB = 255;
-
-    @ConfigOpt
-    @ToggleSetting(category = GLINTCOLORIZER, mods = true, name = "Enabled")
-    public static boolean glintColorizer = false;
 
     private Settings() {}
     public static void register() {
