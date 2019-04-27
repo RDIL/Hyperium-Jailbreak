@@ -22,7 +22,6 @@ public enum Category {
     CHROMAHUD("ChromaHUD"),
     KEYSTROKES("Keystrokes"),
     AUTOFRIEND("Auto Friend"),
-    GLINTCOLORIZER("Glint Colorizer"),
     FNCOMPASS("Fortnite Compass"),
     TAB_TOGGLE("Tab Toggle"),
     ITEM_PHYSIC("Item Physics"),
