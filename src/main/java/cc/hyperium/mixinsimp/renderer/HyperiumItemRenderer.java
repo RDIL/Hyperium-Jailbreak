@@ -42,7 +42,6 @@ public class HyperiumItemRenderer {
             GlStateManager.translate(-0.078f, 0.003f, 0.05f);
         }
 
-
         GlStateManager.translate(0.56F, -0.52F, -0.71999997F);
         GlStateManager.translate(0.0F, equipProgress * -0.6F, 0.0F);
         GlStateManager.rotate(45.0F, 0.0F, 1.0F, 0.0F);
@@ -125,5 +124,4 @@ public class HyperiumItemRenderer {
         GlStateManager.disableRescaleNormal();
         RenderHelper.disableStandardItemLighting();
     }
-
 }
