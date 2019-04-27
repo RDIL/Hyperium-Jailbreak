@@ -21,25 +21,17 @@ import cc.hyperium.mods.chromahud.ElementRenderer;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
 import cc.hyperium.utils.JsonHolder;
 import net.minecraft.client.Minecraft;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * @author Sk1er
- */
 public class TimeHud extends DisplayItem {
     private String format;
 
     public TimeHud(JsonHolder data, int ordinal) {
         super(data, ordinal);
         this.format = data.optString("format");
-        if (this.format.isEmpty()) {
-            this.format = "HH:mm:ss";
-        }
-
+        if (this.format.isEmpty()) this.format = "HH:mm:ss";
     }
-
 
     public String getFormat() {
         return format;
@@ -61,5 +53,4 @@ public class TimeHud extends DisplayItem {
             ElementRenderer.draw(starX, startY, "Invalid");
         }
     }
-
 }
