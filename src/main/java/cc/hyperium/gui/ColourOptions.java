@@ -6,8 +6,6 @@ import cc.hyperium.gui.main.HyperiumOverlay;
 import cc.hyperium.gui.main.components.OverlayButton;
 import cc.hyperium.gui.main.components.OverlayLabel;
 import cc.hyperium.gui.main.components.OverlaySlider;
-import cc.hyperium.mods.GlintColorizer;
-
 import java.lang.reflect.Field;
 
 public class ColourOptions extends HyperiumOverlay {
@@ -31,7 +29,6 @@ public class ColourOptions extends HyperiumOverlay {
             this.getComponents().add(new OverlaySlider(label, min, max, ((Integer) f.get(null)).floatValue(), (i) -> {
                 try {
                     f.set(null, i.intValue());
-                    GlintColorizer.setonepoint8color(Settings.glintR, Settings.glintG, Settings.glintB);
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
