@@ -489,10 +489,6 @@ public class Settings {
     public static String BUTTON_TYPE = ButtonType.DEFAULT.name();
 
     @ConfigOpt
-    @ToggleSetting(name = "gui.settings.disableenchantglint", category = IMPROVEMENTS)
-    public static boolean DISABLE_ENCHANT_GLINT = false;
-
-    @ConfigOpt
     @ToggleSetting(name = "gui.settings.disabletitles", category = VANILLA_ENHANCEMENTS, mods = true)
     public static boolean HIDE_TITLES = false;
 
