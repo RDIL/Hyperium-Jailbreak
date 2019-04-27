@@ -23,7 +23,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public abstract class AbstractAddon {
     public abstract AbstractAddon init();
-    public abstract Metadata getAddonMetadata();
     public class Metadata {
         private final AbstractAddon addon;
         private final String author;
@@ -71,10 +70,6 @@ public abstract class AbstractAddon {
 
         public String getDescription() {
             return this.description != null ? this.description : "";
-        }
-
-        public void setDisplayName(String name) {
-            this.displayName = name;
         }
 
         public void setDescription(String description) {

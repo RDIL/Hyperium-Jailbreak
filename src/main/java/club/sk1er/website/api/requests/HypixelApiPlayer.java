@@ -18,7 +18,6 @@
 package club.sk1er.website.api.requests;
 import cc.hyperium.handlers.handlers.data.HypixelAPI;
 import cc.hyperium.utils.JsonHolder;
-import club.sk1er.website.utils.WebsiteUtils;
 import net.hypixel.api.GameType;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -30,12 +29,6 @@ public class HypixelApiPlayer implements HypixelApiObject {
     private final JsonHolder player;
     public HypixelApiPlayer(JsonHolder holder) {
         this.player = holder;
-    }
-    public int getKarma() {
-        return getRoot().optInt("karma");
-    }
-    public int getNetworkLevel() {
-        return getRoot().optInt("networkLevel") + 1;
     }
     public boolean isValid() {
         return player != null && !player.isNull("player") && player.has("player");
@@ -65,14 +58,6 @@ public class HypixelApiPlayer implements HypixelApiObject {
         return getRoot().optString("displayname");
     }
 
-    public JsonHolder getGiftMeta() {
-        return getRoot().optJSONObject("giftingMeta");
-    }
-
-    public int getAchievementPoints() {
-        return getRoot().optInt("points");
-    }
-
     public HypixelApiGuild getGuild() {
         try {
             return HypixelAPI.INSTANCE.getGuildFromPlayer(getUUID()).get();
@@ -82,24 +67,8 @@ public class HypixelApiPlayer implements HypixelApiObject {
         return null;
     }
 
-    public int getTotalCoins() {
-        return getRoot().optInt("coins");
-    }
-
-    public int getTotalKills() {
-        return getRoot().optInt("kills");
-    }
-
-    public int getTotalWins() {
-        return getRoot().optInt("wins");
-    }
-
     public boolean has(String val) {
         return getRoot().has(val);
-    }
-
-    public GameType mostRecentGame() {
-        return GameType.parse(getRoot().optString("mostRecentGameType"));
     }
 
     private boolean isYouTuber() {
@@ -136,14 +105,6 @@ public class HypixelApiPlayer implements HypixelApiObject {
 
     public Rank getRank() {
         return Rank.get(getRankForMod().toUpperCase());
-    }
-
-    public int getFriendCount() {
-        return getRoot().optInt("friends");
-    }
-
-    public long getInt(String path) {
-        return WebsiteUtils.get(getRoot().getObject(), path);
     }
 
     enum Rank {

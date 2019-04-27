@@ -26,12 +26,10 @@ import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.RenderScoreboardEvent;
 import net.minecraft.client.Minecraft;
-import org.apache.logging.log4j.Logger;
 import java.io.File;
 import java.io.IOException;
 
 public class SidebarAddon extends AbstractAddon {
-    private static final Logger logger = Hyperium.LOGGER;
     private File saveFile;
     private GuiSidebar guiSidebar;
 
@@ -44,12 +42,6 @@ public class SidebarAddon extends AbstractAddon {
         this.guiSidebar = new GuiSidebar();
         this.loadConfig();
         return this;
-    }
-
-    @Override
-    public Metadata getAddonMetadata() {
-        AbstractAddon.Metadata metadata = new AbstractAddon.Metadata(this, "SidebarAddon", "1.0.1", "Amplifiable");
-        return metadata;
     }
 
     public GuiSidebar getSidebarGui() {

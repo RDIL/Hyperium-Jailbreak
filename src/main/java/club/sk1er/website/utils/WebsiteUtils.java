@@ -4,22 +4,11 @@ import com.google.gson.JsonObject;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeMap;
 
 public class WebsiteUtils {
     public static final List<String> blitz_kits = new ArrayList<>();
-    private static final TreeMap<Integer, String> numerals = new TreeMap<>();
 
     static {
-        numerals.put(100, "C");
-        numerals.put(90, "XC");
-        numerals.put(50, "L");
-        numerals.put(40, "XL");
-        numerals.put(10, "X");
-        numerals.put(9, "IX");
-        numerals.put(5, "V");
-        numerals.put(4, "IV");
-        numerals.put(1, "I");
         blitz_kits.add("Archer");
         blitz_kits.add("Arachnologist");
         blitz_kits.add("Astronaut");
@@ -54,24 +43,12 @@ public class WebsiteUtils {
         blitz_kits.add("Jockey");
     }
 
-    public static String numeral(int amount) {
-        try {
-            int l = numerals.floorKey(amount);
-            if (l == amount)
-                return numerals.get(l);
-            return numerals.get(l) + numeral(amount - l);
-        } catch (Exception e) {
-            return "-";
-        }
-    }
-
     public static String comma(Number number) {
         DecimalFormat formatter = new DecimalFormat("#,###");
         return formatter.format(number);
     }
 
     public static String buildRatio(int a, int b) {
-
         double c = (double) a;
         double d = (double) b;
         if (a + b == 0) {
@@ -154,23 +131,5 @@ public class WebsiteUtils {
         } catch (Exception e) {
             return 0;
         }
-    }
-
-    public static double getBedwarsLevel(double exp) {
-        // first few levels are different
-        if (exp < 500) {
-            return 0;
-        } else if (exp < 1500) {
-            return 1;
-        } else if (exp < 3500) {
-            return 2;
-        } else if (exp < 5500) {
-            return 3;
-        } else if (exp < 9000) {
-            return 4;
-        }
-
-        exp -= 9000;
-        return exp / 5000 + 4;
     }
 }

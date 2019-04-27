@@ -72,9 +72,6 @@ public class HypixelApiGuild implements HypixelApiObject {
         return getRoot().optDouble("level_calc");
     }
 
-    public int getWins() {
-        return getRoot().optJSONObject("achievements").optInt("WINNERS");
-    }
     public List<GuildPlayer> getInOrder() {
         List<GuildPlayer> players = new ArrayList<>();
         for (JsonElement element : getMembers()) {
