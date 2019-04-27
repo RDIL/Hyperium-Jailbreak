@@ -17,27 +17,29 @@ public class StaffUtils {
         return STAFF_CACHE.get(uuid).getColour();
     }
 
-    private static HashMap<UUID, StaffSettings> getStaff() throws IOException {
+    private static HashMap<UUID, StaffSettings> getStaff() {
         HashMap<UUID, StaffSettings> staff = new HashMap<>();
-        String content = InstallerUtils.getRaw("https://raw.githubusercontent.com/hyperiumjailbreak/tools/master/staff.json");
-        JsonParser parser = new JsonParser();
-        JsonArray array = parser.parse(content).getAsJsonArray();
-        for (int i = 0; i < array.size(); i++) {
-            JsonObject item = array.get(i).getAsJsonObject();
-            UUID uuid = UUID.fromString(item.get("uuid").getAsString());
-            String colourStr = item.get("color").getAsString().toUpperCase();
-            DotColour colour;
-            if (colourStr.equals("CHROMA")) {
-                colour = new DotColour(true, ChatColor.WHITE);
-            } else {
-                colour = new DotColour(false, ChatColor.valueOf(colourStr));
+        try {
+            String content = InstallerUtils.getRaw("https://raw.githubusercontent.com/hyperiumjailbreak/tools/master/staff.json");
+            JsonParser parser = new JsonParser();
+            JsonArray array = parser.parse(content).getAsJsonArray();
+            for (int i = 0; i < array.size(); i++) {
+                JsonObject item = array.get(i).getAsJsonObject();
+                UUID uuid = UUID.fromString(item.get("uuid").getAsString());
+                String colourStr = item.get("color").getAsString().toUpperCase();
+                DotColour colour;
+                if (colourStr.equals("CHROMA")) {
+                    colour = new DotColour(true, ChatColor.WHITE);
+                } else {
+                    colour = new DotColour(false, ChatColor.valueOf(colourStr));
+                }
+                staff.put(uuid, new StaffSettings(colour));
             }
-            staff.put(uuid, new StaffSettings(colour));
-        }
+        } catch (IOException ignored) {}
         return staff;
     }
 
-    public static void clearCache() throws IOException {
+    public static void clearCache() {
         STAFF_CACHE.clear();
         STAFF_CACHE.putAll(getStaff());
     }

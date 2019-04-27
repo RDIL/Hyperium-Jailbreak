@@ -213,7 +213,6 @@ public class HyperiumFontRenderer {
 
             return width / 2.0F / antiAliasingFactor;
         });
-
     }
 
     public int getStringWidth(String text) {

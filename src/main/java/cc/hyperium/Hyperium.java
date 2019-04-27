@@ -55,12 +55,7 @@ import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 import rocks.rdil.jailbreak.chat.CommonChatResponder;
 import rocks.rdil.jailbreak.Jailbreak;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class Hyperium {
     public static final Hyperium INSTANCE = new Hyperium();
@@ -81,7 +76,8 @@ public class Hyperium {
     public Jailbreak j = new Jailbreak();
 
     @InvokeEvent(priority = Priority.HIGH)
-    public void init(InitializationEvent event) {
+    public void init(@SuppressWarnings("unused") InitializationEvent event) {
+        SplashProgress.setProgress(1, "Creating Display");
         HyperiumLocale.registerHyperiumLang("en_US");
         this.j.debug();
         try {
@@ -131,7 +127,6 @@ public class Hyperium {
             SplashProgress.setProgress(9, "Preparing Config");
             Settings.register();
             Hyperium.CONFIG.register(new ColourOptions());
-            // Register commands.
             SplashProgress.setProgress(10, "Loading Chat Commands");
             registerCommands();
             EventBus.INSTANCE.register(PurchaseApi.getInstance());
@@ -140,11 +135,7 @@ public class Hyperium {
             modIntegration = new HyperiumModIntegration();
             new InternalAddons();
 
-            Multithreading.runAsync(() -> {
-                try {
-                    StaffUtils.clearCache();
-                } catch (IOException ignored) {}
-            });
+            StaffUtils.clearCache();
 
             Runtime.getRuntime().addShutdownHook(new Thread(this::shutdown));
 
