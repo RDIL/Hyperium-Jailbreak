@@ -50,6 +50,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.io.File;
 import java.util.List;
+import net.minecraft.client.gui.achievement.GuiAchievement;
+import net.minecraft.client.shader.Framebuffer;
 
 @Mixin(Minecraft.class)
 public abstract class MixinMinecraft {
@@ -62,6 +64,9 @@ public abstract class MixinMinecraft {
 
     @Shadow
     public boolean inGameHasFocus;
+
+    @Shadow
+    public GuiAchievement guiAchievement;
 
     @Shadow
     public int displayHeight;
@@ -112,6 +117,11 @@ public abstract class MixinMinecraft {
     @Final
     @Shadow
     public File mcDataDir;
+
+    @Shadow
+    private Framebuffer framebufferMc;
+
+    protected MixinMinecraft() {}
 
     @Inject(method = "startGame", at = @At("HEAD"))
     private void preinit(CallbackInfo ci) {
