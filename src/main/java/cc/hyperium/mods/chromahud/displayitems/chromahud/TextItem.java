@@ -21,24 +21,17 @@ import cc.hyperium.mods.chromahud.ElementRenderer;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
 import cc.hyperium.utils.ChatColor;
 import cc.hyperium.utils.JsonHolder;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Mitchell Katz on 5/29/2017.
- */
 public class TextItem extends DisplayItem {
-
     private String text;
-
 
     public TextItem(JsonHolder object, int ordinal) {
         super(object, ordinal);
         text = object.optString("text");
         this.height = 10;
     }
-
 
     public void draw(int x, double y, boolean isConfig) {
         List<String> list = new ArrayList<>();
