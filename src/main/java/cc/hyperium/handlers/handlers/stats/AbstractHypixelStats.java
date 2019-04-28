@@ -1,14 +1,10 @@
 package cc.hyperium.handlers.handlers.stats;
 
-import cc.hyperium.C;
-import cc.hyperium.handlers.handlers.data.HypixelAPI;
 import cc.hyperium.handlers.handlers.stats.display.DisplayLine;
 import cc.hyperium.handlers.handlers.stats.display.StatsDisplayItem;
 import club.sk1er.website.api.requests.HypixelApiPlayer;
 import cc.hyperium.utils.JsonHolder;
 import club.sk1er.website.utils.WebsiteUtils;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import net.hypixel.api.GameType;
 import net.minecraft.util.EnumChatFormatting;
 import java.awt.*;
@@ -16,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractHypixelStats {
