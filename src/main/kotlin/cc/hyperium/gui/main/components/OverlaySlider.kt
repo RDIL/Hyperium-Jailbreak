@@ -42,7 +42,7 @@ class OverlaySlider @JvmOverloads constructor(label: String, private val minVal:
         fr.drawString(s, left - 5 - fr.getWidth(s), toFloat - 5, color)
         val rightSide = (overlayX + w - 5).toFloat()
         RenderUtils.drawLine(left, toFloat, rightSide, (overlayY + h / 2).toFloat(), 2f, color)
-        var toInt = (left + (value - minVal) / (maxVal - minVal) * 100).toInt()
+        val toInt = (left + (value - minVal) / (maxVal - minVal) * 100).toInt()
         RenderUtils.drawFilledCircle(toInt, overlayY + h / 2, 5f, color)
         return true
     }
