@@ -1,4 +1,4 @@
-# Jailbroken Hyperium
+I# Jailbroken Hyperium
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/966f221ca8b44ac5b7027246c2b22388)](https://app.codacy.com/app/hyperiumjailbreak/client?utm_source=github.com&utm_medium=referral&utm_content=hyperiumjailbreak/client&utm_campaign=Badge_Grade_Dashboard)
 [![JitPack](https://jitpack.io/v/hyperiumjailbreak/client.svg)](https://jitpack.io/#hyperiumjailbreak/client)
@@ -26,6 +26,7 @@ Because the license requires it, here is a list of changes made:
 * Sk1erMod no longer spies on you
 * Custom installer
 * Depedencies updated
+* Removed some stat GUIs nobody looks at
 
 ## ToS
 
