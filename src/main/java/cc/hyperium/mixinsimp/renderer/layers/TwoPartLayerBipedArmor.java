@@ -1,12 +1,9 @@
 package cc.hyperium.mixinsimp.renderer.layers;
 
-import cc.hyperium.mixins.renderer.MixinRenderPlayer;
 import cc.hyperium.mixinsimp.renderer.model.IMixinModelBiped;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
 import net.minecraft.client.renderer.entity.layers.LayerArmorBase;
-import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
-import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 
 public class TwoPartLayerBipedArmor extends LayerArmorBase<ModelBiped> {
     public TwoPartLayerBipedArmor(RendererLivingEntity<?> rendererIn) {
