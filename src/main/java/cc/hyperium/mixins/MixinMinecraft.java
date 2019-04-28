@@ -185,11 +185,6 @@ public abstract class MixinMinecraft {
         hyperiumMinecraft.displayGuiScreen(guiScreenIn, currentScreen, theWorld, thePlayer, gameSettings, ingameGUI);
     }
 
-    @Inject(method = "getLimitFramerate", at = @At("HEAD"), cancellable = true)
-    private void getLimitFramerate(CallbackInfoReturnable<Integer> ci) {
-        hyperiumMinecraft.getLimitFramerate(ci);
-    }
-
     @Shadow
     public abstract void shutdown();
 
