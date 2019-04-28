@@ -6,7 +6,6 @@ import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelPlayer;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderPlayer;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 public class HyperiumRenderPlayer {
     private RenderPlayer parent;
