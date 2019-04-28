@@ -30,7 +30,6 @@ import java.util.List;
 
 public class ArmourHud extends DisplayItem {
     private List<ItemStack> list = new ArrayList<>();
-    private int ordinal;
     private boolean dur = false;
     private boolean hand = false;
     private boolean armourOnTop = false;
