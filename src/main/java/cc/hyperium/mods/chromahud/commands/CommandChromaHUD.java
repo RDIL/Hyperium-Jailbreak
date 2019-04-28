@@ -21,11 +21,7 @@ import cc.hyperium.commands.BaseCommand;
 import cc.hyperium.mods.chromahud.ChromaHUD;
 import cc.hyperium.mods.chromahud.gui.GeneralConfigGui;
 
-/**
- * @author Sk1er
- */
 public class CommandChromaHUD implements BaseCommand {
-
     private final ChromaHUD mod;
 
     public CommandChromaHUD(ChromaHUD modIn) {
