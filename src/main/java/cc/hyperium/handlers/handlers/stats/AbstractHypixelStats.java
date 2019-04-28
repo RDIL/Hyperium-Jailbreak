@@ -1,11 +1,9 @@
 package cc.hyperium.handlers.handlers.stats;
 
 import cc.hyperium.C;
-import cc.hyperium.Hyperium;
 import cc.hyperium.handlers.handlers.data.HypixelAPI;
 import cc.hyperium.handlers.handlers.stats.display.DisplayLine;
 import cc.hyperium.handlers.handlers.stats.display.StatsDisplayItem;
-import cc.hyperium.utils.JsonHolder;
 import club.sk1er.website.api.requests.HypixelApiPlayer;
 import club.sk1er.website.utils.WebsiteUtils;
 import com.google.gson.JsonArray;
