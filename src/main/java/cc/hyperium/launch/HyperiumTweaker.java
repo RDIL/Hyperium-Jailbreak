@@ -69,11 +69,7 @@ public class HyperiumTweaker implements ITweaker {
         if (environment.getObfuscationContext() == null) {
             environment.setObfuscationContext("notch"); // Switch's to notch mappings
         }
-        try {
-            classLoader.addURL(new File(System.getProperty("java.home"), "lib/ext/nashorn.jar").toURI().toURL());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+
         environment.setSide(MixinEnvironment.Side.CLIENT);
     }
 
