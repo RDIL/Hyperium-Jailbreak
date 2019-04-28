@@ -46,23 +46,21 @@ public class PlayerStatsGui extends HyperiumGui {
             focused = null;
             offset = 0;
         }
-        if (flag2)
-            if (mouseButton == 0) {
-                for (AbstractHypixelStats abstractHypixelStats : location.keySet()) {
-                    if (location.get(abstractHypixelStats).isMouseOver(mouseX, mouseY)) {
-                        focused = abstractHypixelStats;
-                        hovered = null;
-                        offset = 0;
-                    }
+        if (flag2 && mouseButton == 0) {
+            for (AbstractHypixelStats abstractHypixelStats : location.keySet()) {
+                if (location.get(abstractHypixelStats).isMouseOver(mouseX, mouseY)) {
+                    focused = abstractHypixelStats;
+                    hovered = null;
+                    offset = 0;
                 }
             }
-
+        }
     }
 
     @Override
     protected void pack() {
         reg("VIEW_GUILD", new GuiButton(nextId(), 1, 22, "View Guild"), button -> new GuildStatsGui(player.getGuild()).show(), button -> button.visible = player.getGuild().isLoaded() && player.getGuild().isValid());
-        reg("VIEW_FRIENDS", new GuiButton(nextId(), 1, 22 + 21, "View Friends"), button -> {}, button -> { });
+        reg("VIEW_FRIENDS", new GuiButton(nextId(), 1, 22 + 21, "View Friends"), button -> {}, button -> {});
     }
 
     @Override
