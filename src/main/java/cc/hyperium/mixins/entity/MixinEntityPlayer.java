@@ -17,15 +17,12 @@
 
 package cc.hyperium.mixins.entity;
 
-import cc.hyperium.event.ItemTossEvent;
 import cc.hyperium.mixinsimp.entity.HyperiumEntityPlayer;
 import cc.hyperium.mixinsimp.entity.IMixinEntityPlayer;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.scoreboard.Team;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IChatComponent;
@@ -36,7 +33,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(EntityPlayer.class)
 public abstract class MixinEntityPlayer extends EntityLivingBase implements IMixinEntityPlayer {
@@ -84,13 +80,6 @@ public abstract class MixinEntityPlayer extends EntityLivingBase implements IMix
     @Inject(method = "onDeath", at = @At("HEAD"))
     private void onDeath(DamageSource source, CallbackInfo ci) {
         hyperiumEntityPlayer.onDeath(source);
-    }
-
-    @Inject(method = "dropItem", at = @At("RETURN"))
-    private void itemDrop(ItemStack droppedItem, boolean dropAround, boolean traceItem, CallbackInfoReturnable<EntityItem> cir) {
-        if (cir.getReturnValue() == null) return;
-
-        new ItemTossEvent((EntityPlayer) (Object) this, cir.getReturnValue()).post();
     }
 
     @Override
