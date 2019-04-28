@@ -46,7 +46,6 @@ import cc.hyperium.purchases.PurchaseApi;
 import cc.hyperium.utils.HyperiumScheduler;
 import cc.hyperium.utils.StaffUtils;
 import cc.hyperium.utils.mods.CompactChat;
-import cc.hyperium.utils.mods.FPSLimiter;
 import jb.Metadata;
 import net.minecraft.client.Minecraft;
 import net.minecraft.crash.CrashReport;
@@ -116,7 +115,6 @@ public class Hyperium {
             EventBus.INSTANCE.register(new ToggleSprintContainer());
             EventBus.INSTANCE.register(notification);
             EventBus.INSTANCE.register(CompactChat.getInstance());
-            EventBus.INSTANCE.register(CONFIG.register(FPSLimiter.getInstance()));
             EventBus.INSTANCE.register(confirmation);
 
             CONFIG.register(new ToggleSprintContainer());
