@@ -25,7 +25,6 @@ public class HyperiumEntityPlayer {
     private long lastChangeTime = System.currentTimeMillis();
     private int timeDelay = 1000 / 60;
     private IChatComponent cachedName;
-    private long lastNameUpdate = 0L;
     private String displayName;
 
     public HyperiumEntityPlayer(EntityPlayer parent) {
