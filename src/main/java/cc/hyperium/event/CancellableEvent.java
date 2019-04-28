@@ -18,7 +18,6 @@
 package cc.hyperium.event;
 
 public class CancellableEvent extends Event {
-
     private boolean cancelled;
 
     public void setCancelled(boolean cancelled) {

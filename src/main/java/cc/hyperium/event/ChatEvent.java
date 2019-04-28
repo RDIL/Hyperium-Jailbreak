@@ -20,7 +20,6 @@ package cc.hyperium.event;
 import net.minecraft.util.IChatComponent;
 
 public class ChatEvent extends CancellableEvent {
-
     private final IChatComponent chat;
 
     public ChatEvent(IChatComponent chat) {

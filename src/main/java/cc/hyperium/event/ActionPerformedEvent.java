@@ -21,7 +21,6 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 
 public class ActionPerformedEvent extends CancellableEvent {
-
     private GuiScreen screen;
     private GuiButton button;
 
