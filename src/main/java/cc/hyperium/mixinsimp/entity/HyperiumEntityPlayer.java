@@ -98,7 +98,6 @@ public class HyperiumEntityPlayer {
             }
             ichatcomponent.getChatStyle().setInsertion(parent.getName());
             this.cachedName = ichatcomponent;
-            lastNameUpdate = System.currentTimeMillis();
         }
         return cachedName;
     }
