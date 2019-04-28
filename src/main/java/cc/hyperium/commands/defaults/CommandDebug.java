@@ -22,7 +22,6 @@ import cc.hyperium.gui.CrashReportGUI;
 import cc.hyperium.handlers.handlers.HypixelDetector;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import cc.hyperium.mods.chromahud.ChromaHUDApi;
-import cc.hyperium.mods.sk1ercommon.Sk1erMod;
 import cc.hyperium.network.NetworkHandler;
 import cc.hyperium.purchases.HyperiumPurchase;
 import cc.hyperium.purchases.PurchaseApi;
@@ -69,7 +68,6 @@ public class CommandDebug implements BaseCommand {
             builder.append("Local Stats: ").append(HypixelDetector.getInstance().isHypixel()).append("\n");
             builder.append("Header State: ").append(Hyperium.INSTANCE.getModIntegration().getLevelhead().getHeaderConfig()).append("\n");
             builder.append("Footer State: ").append(Hyperium.INSTANCE.getModIntegration().getLevelhead().getFooterConfig()).append("\n");
-            builder.append("Callback: ").append(Sk1erMod.getInstance().getResponse()).append("\n");
         } catch (Exception e) {
             builder.append("Levelhead: Error");
         }

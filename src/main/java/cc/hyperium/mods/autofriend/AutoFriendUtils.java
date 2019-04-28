@@ -50,21 +50,8 @@ public class AutoFriendUtils {
         return this;
     }
 
-    public AutoFriendUtils setHoverEvent(final String value) {
-        return this.setHoverEvent(new ChatComponentText(value));
-    }
-
-    private AutoFriendUtils setHoverEvent(final IChatComponent value) {
-        return this.setHoverEvent(HoverEvent.Action.SHOW_TEXT, value);
-    }
-
     public AutoFriendUtils setHoverEvent(final HoverEvent.Action action, final IChatComponent value) {
         this.style.setChatHoverEvent(new HoverEvent(action, value));
-        return this;
-    }
-
-    public AutoFriendUtils setInsertion(final String insertion) {
-        this.style.setInsertion(insertion);
         return this;
     }
 

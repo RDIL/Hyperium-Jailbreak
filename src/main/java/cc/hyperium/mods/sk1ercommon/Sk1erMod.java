@@ -17,7 +17,6 @@
 
 package cc.hyperium.mods.sk1ercommon;
 
-import cc.hyperium.utils.JsonHolder;
 import org.apache.commons.io.IOUtils;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -28,7 +27,6 @@ public class Sk1erMod {
     private static Sk1erMod instance;
     private String modid;
     private String version;
-    private JsonHolder en = new JsonHolder();
 
     public Sk1erMod(String modid, String version) {
         this.modid = modid;
@@ -38,10 +36,6 @@ public class Sk1erMod {
 
     public static Sk1erMod getInstance() {
         return instance;
-    }
-
-    public JsonHolder getResponse() {
-        return en;
     }
 
     public String rawWithAgent(String url) {

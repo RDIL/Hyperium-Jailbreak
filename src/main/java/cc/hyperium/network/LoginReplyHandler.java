@@ -12,7 +12,6 @@ import cc.hyperium.netty.packet.packets.serverbound.UpdateLocationPacket;
 import cc.hyperium.utils.JsonHolder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ServerData;
-
 import java.util.Arrays;
 import java.util.Iterator;
 
@@ -29,7 +28,6 @@ public class LoginReplyHandler implements PacketHandler<LoginReplyPacket> {
                 if (Settings.SEND_SERVER)
                     client.write(ServerCrossDataPacket.build(new JsonHolder().put("internal", true).put("server_update", currentServerData.serverIP)));
             }
-
         }
         if (loginReplyPacket.isAdmin()) {
             Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(new BaseCommand() {
@@ -60,9 +58,7 @@ public class LoginReplyHandler implements PacketHandler<LoginReplyPacket> {
 
                 }
             });
-
         }
-
     }
 
     @Override

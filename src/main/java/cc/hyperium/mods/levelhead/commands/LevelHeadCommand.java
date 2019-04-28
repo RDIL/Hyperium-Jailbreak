@@ -22,7 +22,6 @@ import cc.hyperium.handlers.handlers.HypixelDetector;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import cc.hyperium.mods.levelhead.Levelhead;
 import cc.hyperium.mods.levelhead.guis.LevelHeadGui;
-import cc.hyperium.mods.sk1ercommon.Sk1erMod;
 import cc.hyperium.utils.ChatColor;
 
 public class LevelHeadCommand implements BaseCommand {
@@ -52,7 +51,6 @@ public class LevelHeadCommand implements BaseCommand {
                 GeneralChatHandler.instance().sendMessage(ChatColor.RED + "Local Stats: " + HypixelDetector.getInstance().isHypixel());
                 GeneralChatHandler.instance().sendMessage(ChatColor.RED + "Header State: " + this.mod.getHeaderConfig());
                 GeneralChatHandler.instance().sendMessage(ChatColor.RED + "Footer State: " + this.mod.getFooterConfig());
-                GeneralChatHandler.instance().sendMessage(ChatColor.RED + "Callback: " + Sk1erMod.getInstance().getResponse());
                 return;
             } else if (args[0].equalsIgnoreCase("dumpcache")) {
                 int prevCache = this.mod.levelCache.size();

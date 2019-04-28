@@ -9,7 +9,6 @@ import cc.hyperium.mods.autogg.AutoGG;
 import cc.hyperium.utils.ChatColor;
 
 public class GGCommand implements BaseCommand {
-
     private final AutoGG mod;
 
     public GGCommand(AutoGG mod) {
@@ -76,18 +75,10 @@ public class GGCommand implements BaseCommand {
         }
     }
 
-    /**
-     * Sends a message to the client
-     *
-     * @param message the message to send
-     */
     private void showMessage(final String message) {
         GeneralChatHandler.instance().sendMessage(message, false);
     }
 
-    /**
-     * Saves the config
-     */
     private void saveConfig() {
         Hyperium.CONFIG.save();
     }

@@ -19,7 +19,6 @@ package cc.hyperium.purchases;
 
 import cc.hyperium.utils.JsonHolder;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonPrimitive;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -62,10 +61,6 @@ public class HyperiumPurchase {
         }
     }
 
-    public void refreshCachedSettings() {
-        this.cachedSettings = new PurchaseSettings(getPurchaseSettings());
-    }
-
     public PurchaseSettings getCachedSettings() {
         return cachedSettings;
     }
@@ -86,20 +81,8 @@ public class HyperiumPurchase {
         return getPurchase(type) != null;
     }
 
-    public boolean hasPurchased(String key) {
-        if (isEverything()) return true;
-        for (JsonElement element : response.optJSONArray("hyperium")) {
-            if (element instanceof JsonPrimitive && element.getAsString().equalsIgnoreCase(key)) return true;
-        }
-        return false;
-    }
-
     public List<AbstractHyperiumPurchase> getPurchases() {
         return purchases;
-    }
-
-    public UUID getPlayerUUID() {
-        return playerUUID;
     }
 
     public JsonHolder getResponse() {

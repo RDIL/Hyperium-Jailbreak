@@ -36,14 +36,9 @@ public class AutoGG extends AbstractMod {
         Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler()
             .registerCommand(new GGCommand(this));
 
-        // The GetTriggers class
         Multithreading.POOL.submit(() -> {
             try {
-                final String rawTriggers = IOUtils.toString(
-                    new URL("https://raw.githubusercontent.com/HyperiumClient/Hyperium-Repo/master/files/triggers.txt"),
-                    Charset.forName("UTF-8")
-                );
-                triggers = new ArrayList<>(Arrays.asList(rawTriggers.split("\n")));
+                triggers = new ArrayList<>(Arrays.asList(IOUtils.toString(new URL("https://raw.githubusercontent.com/HyperiumClient/Hyperium-Repo/master/files/triggers.txt"),Charset.forName("UTF-8")).split("\n")));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -71,10 +66,6 @@ public class AutoGG extends AbstractMod {
 
     public List<String> getTriggers() {
         return triggers;
-    }
-
-    public void setTriggers(final ArrayList<String> triggersIn) {
-        triggers = triggersIn;
     }
 
     public boolean isHypixel() {
