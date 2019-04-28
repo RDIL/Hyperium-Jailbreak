@@ -46,7 +46,6 @@ gui.settings.romannumerals=Roman numerals
 gui.settings.rpshowserver=RP show server
 gui.settings.compactchat=Compact chat
 gui.settings.voidflickerfix=Void flicker fix
-gui.settings.fpslimiter=Limbo FPS limiter
 gui.settings.fastchat=Fast chat
 gui.settings.shinypotions=Shiny potions
 gui.settings.smartsounds=Smart sounds
