@@ -104,8 +104,6 @@ public class GuiHyperiumScreen extends GuiScreen {
 
     public void drawHyperiumStyleScreen(int mouseX, int mouseY, float partialTicks) {
         GlStateManager.pushMatrix();
-        swing++;
-
         if (mc.theWorld == null) {
             if (!Settings.BACKGROUND.equals("DEFAULT")) {
                 GlStateManager.disableAlpha();
