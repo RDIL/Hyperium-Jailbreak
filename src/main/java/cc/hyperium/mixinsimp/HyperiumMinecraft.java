@@ -219,10 +219,6 @@ public class HyperiumMinecraft {
         if (Hyperium.INSTANCE.getHandlers() != null) Hyperium.INSTANCE.getHandlers().getKeybindHandler().releaseAllKeybinds();
     }
 
-    public void getLimitFramerate(CallbackInfoReturnable<Integer> ci) {
-        if (FPSLimiter.shouldLimitFramerate()) ci.setReturnValue(FPSLimiter.getInstance().getFpsLimit());
-    }
-
     public void loadWorld() {
         if (Minecraft.getMinecraft().theWorld != null) new WorldUnloadEvent().post();
 
