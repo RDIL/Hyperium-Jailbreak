@@ -5,6 +5,7 @@ import cc.hyperium.handlers.handlers.data.HypixelAPI;
 import cc.hyperium.handlers.handlers.stats.display.DisplayLine;
 import cc.hyperium.handlers.handlers.stats.display.StatsDisplayItem;
 import club.sk1er.website.api.requests.HypixelApiPlayer;
+import cc.hyperium.utils.JsonHolder;
 import club.sk1er.website.utils.WebsiteUtils;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
