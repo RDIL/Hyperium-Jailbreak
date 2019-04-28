@@ -1,4 +1,4 @@
-I# Jailbroken Hyperium
+# Jailbroken Hyperium
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/966f221ca8b44ac5b7027246c2b22388)](https://app.codacy.com/app/hyperiumjailbreak/client?utm_source=github.com&utm_medium=referral&utm_content=hyperiumjailbreak/client&utm_campaign=Badge_Grade_Dashboard)
 [![JitPack](https://jitpack.io/v/hyperiumjailbreak/client.svg)](https://jitpack.io/#hyperiumjailbreak/client)
