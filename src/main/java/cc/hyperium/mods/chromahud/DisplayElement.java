@@ -126,7 +126,6 @@ public class DisplayElement extends Dimension {
                 e.printStackTrace();
             }
         }
-
     }
 
     public int getColor() {
@@ -193,7 +192,6 @@ public class DisplayElement extends Dimension {
             this.width = (int) Math.max(iDisplayItem.getWidth() * ElementRenderer.getCurrentScale(), this.width);
         }
         this.height = addy;
-
     }
 
     public void renderEditView() {
@@ -213,7 +211,6 @@ public class DisplayElement extends Dimension {
             iDisplayItem.draw(x, y, false);
             y += iDisplayItem.getHeight() * ElementRenderer.getCurrentScale();
         }
-
     }
 
     public void adjustOrdinal() {
