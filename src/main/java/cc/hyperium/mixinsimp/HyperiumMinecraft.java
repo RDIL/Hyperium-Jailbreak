@@ -24,7 +24,6 @@ import cc.hyperium.internal.addons.IAddon;
 import cc.hyperium.mixins.IMixinMinecraft;
 import cc.hyperium.utils.AddonWorkspaceResourcePack;
 import cc.hyperium.utils.Utils;
-import cc.hyperium.utils.mods.FPSLimiter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.GuiGameOver;
