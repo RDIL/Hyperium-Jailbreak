@@ -1,9 +1,7 @@
 package cc.hyperium.gui;
 
 import cc.hyperium.styles.GuiStyle;
-import cc.hyperium.Hyperium;
 import cc.hyperium.config.Settings;
-import cc.hyperium.gui.playerrenderer.GuiPlayerRenderer;
 import cc.hyperium.utils.HyperiumFontRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -18,11 +16,9 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
-import javax.imageio.ImageIO;
 import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import jb.Metadata;
 
 public class GuiHyperiumScreen extends GuiScreen {
@@ -34,7 +30,6 @@ public class GuiHyperiumScreen extends GuiScreen {
     public static HyperiumFontRenderer fr = new HyperiumFontRenderer("Arial", Font.PLAIN, 20);
     public static HyperiumFontRenderer sfr = new HyperiumFontRenderer("Arial", Font.PLAIN, 12);
     public static DynamicTexture viewportTexture;
-    private static float swing;
     public GuiButton hypixelButton;
 
     public static void drawScaledCustomSizeModalRect(int x, int y, float u, float v, int uWidth, int vHeight, int width, int height, float tileWidth, float tileHeight) {
