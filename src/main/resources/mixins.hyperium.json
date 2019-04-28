@@ -70,7 +70,6 @@
     "gui.MixinInventory",
     "gui.MixinInventoryParticle",
     "item.MixinItemBow",
-    "item.MixinItemStack",
     "nbt.MixinNBTUtil",
     "packet.MixinC01PacketChatMessage",
     "packet.MixinNetHandlerPlayClient",
