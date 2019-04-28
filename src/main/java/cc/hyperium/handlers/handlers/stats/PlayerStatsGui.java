@@ -116,8 +116,6 @@ public class PlayerStatsGui extends HyperiumGui {
                 GlStateManager.scale(1 / scale, 1 / scale, 1 / scale);
             }
         } else {
-            List<StatsDisplayItem> deepStats = focused.getDeepStats(player);
-
             GlStateManager.resetColor();
             GlStateManager.pushMatrix();
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -138,7 +136,6 @@ public class PlayerStatsGui extends HyperiumGui {
             GlStateManager.translate(-16, -16, 0);
             drawScaledCustomSizeModalRect(0, 0, 0, 0, 64, 64, 16, 16, 64, 64);
             GlStateManager.popMatrix();
-            int printY = 55 - offset;
         }
     }
 }
