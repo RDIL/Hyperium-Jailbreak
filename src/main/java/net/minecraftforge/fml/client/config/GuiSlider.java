@@ -64,10 +64,6 @@ public class GuiSlider extends GuiButtonExt {
         if (!drawString) displayString = "";
     }
 
-    public GuiSlider(int id, int xPos, int yPos, String displayStr, double minVal, double maxVal, double currentVal, ISlider par) {
-        this(id, xPos, yPos, 150, 20, displayStr, "", minVal, maxVal, currentVal, true, true, par);
-    }
-
     @Override
     public int getHoverState(boolean par1) {
         return 0;
