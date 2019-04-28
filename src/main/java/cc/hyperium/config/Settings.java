@@ -45,10 +45,6 @@ public class Settings {
     @ToggleSetting(name = "gui.settings.voidflickerfix", category = IMPROVEMENTS)
     public static boolean VOID_FLICKER_FIX = true;
 
-    @ConfigOpt(alt = "cc.hyperium.gui.settings.items.GeneralSetting;framerateLimiterEnabled")
-    @ToggleSetting(name = "gui.settings.fpslimiter", category = IMPROVEMENTS)
-    public static boolean FPS_LIMITER = true;
-
     @ConfigOpt(alt = "cc.hyperium.gui.settings.items.GeneralSetting;fastchatEnabled")
     @ToggleSetting(name = "gui.settings.fastchat", category = INTEGRATIONS)
     public static boolean FASTCHAT = true;
