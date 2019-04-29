@@ -8,11 +8,18 @@ import cc.hyperium.event.TickEvent;
 import java.awt.Color;
 
 public class GlintColorizer extends AbstractMod {
+    private Colors colors = new Colors();
     private static float[] onepoint8glintcolorF = Color.RGBtoHSB(Colors.glintR, Colors.glintG, Colors.glintB, null);
     public static int onepoint8glintcolorI = Color.HSBtoRGB(onepoint8glintcolorF[0], onepoint8glintcolorF[1], onepoint8glintcolorF[2]);
 
+    public Colors getColors() {
+        return colors;
+    }
+
     @Override
     public AbstractMod init() {
+        Hyperium.CONFIG.register(colors);
+        Hyperium.CONFIG.register(this);
         EventBus.INSTANCE.register(this);
         setonepoint8color(Colors.glintR, Colors.glintG, Colors.glintB);
         return this;
