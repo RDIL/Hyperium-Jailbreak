@@ -39,7 +39,6 @@ public class FlossDanceHandler extends AbstractPreCopyAnglesAnimationHandler {
 
         player.getBipedBody().rotateAngleZ = (float) Math.toRadians((right ? 10f : -10f) * heldPercent);
         player.getBipedBodywear().rotateAngleZ = (float) Math.toRadians((right ? 10f : -10f) * heldPercent);
-
         player.getBipedRightUpperLeg().rotateAngleZ = (float) Math.toRadians((right ? -10f : 10f) * heldPercent);
         player.getBipedRightUpperLegwear().rotateAngleZ = (float) Math.toRadians((right ? -10f : 10f) * heldPercent);
         player.getBipedLeftUpperLeg().rotateAngleZ = (float) Math.toRadians((right ? -10f : 10f) * heldPercent);
@@ -48,19 +47,16 @@ public class FlossDanceHandler extends AbstractPreCopyAnglesAnimationHandler {
         player.getBipedRightUpperLegwear().offsetX = (right ? -0.17f : 0.17f) * heldPercent;
         player.getBipedLeftUpperLeg().offsetX = (right ? -0.17f : 0.17f) * heldPercent;
         player.getBipedLeftUpperLegwear().offsetX = (right ? -0.17f : 0.17f) * heldPercent;
-
         player.getBipedHead().rotateAngleX = (float) Math.toRadians(randomHeadMovement[0] * heldPercent);
         player.getBipedHeadwear().rotateAngleX = (float) Math.toRadians(randomHeadMovement[0] * heldPercent);
         player.getBipedHead().rotateAngleY = (float) Math.toRadians(randomHeadMovement[1] * heldPercent);
         player.getBipedHeadwear().rotateAngleY = (float) Math.toRadians(randomHeadMovement[1] * heldPercent);
         player.getBipedHead().rotateAngleZ = (float) Math.toRadians(randomHeadMovement[2] * heldPercent);
         player.getBipedHeadwear().rotateAngleZ = (float) Math.toRadians(randomHeadMovement[2] * heldPercent);
-
         player.getBipedRightUpperArm().rotateAngleZ = (float) Math.toRadians((right ? -50f : 50f) * heldPercent);
         player.getBipedRightUpperArmwear().rotateAngleZ = (float) Math.toRadians((right ? -50f : 50f) * heldPercent);
         player.getBipedRightUpperArm().rotateAngleX = (float) Math.toRadians((armsDirection == ArmsDirection.BACK ? 30.0f : -30.0f) * heldPercent);
         player.getBipedRightUpperArmwear().rotateAngleX = (float) Math.toRadians((armsDirection == ArmsDirection.BACK ? 30.0f : -30.0f) * heldPercent);
-
         player.getBipedLeftUpperArm().rotateAngleZ = (float) Math.toRadians((right ? -50f : 50f) * heldPercent);
         player.getBipedLeftUpperArmwear().rotateAngleZ = (float) Math.toRadians((right ? -50f : 50f) * heldPercent);
         player.getBipedLeftUpperArm().rotateAngleX = (float) Math.toRadians((armsDirection == ArmsDirection.BACK ? 30.0f : -30.0f) * heldPercent);
@@ -69,27 +65,21 @@ public class FlossDanceHandler extends AbstractPreCopyAnglesAnimationHandler {
 
     @Override
     public void modifyPlayer(AbstractClientPlayer entity, IMixinModelBiped player, float heldPercent) {
-        if (shouldNotModify(entity, player)) {
-            return;
-        }
+        if (shouldNotModify(entity, player)) return;
 
         player.getBipedBody().rotateAngleZ = (float) Math.toRadians((right ? 10f : -10f) * heldPercent);
-
         player.getBipedRightUpperLeg().rotateAngleZ = (float) Math.toRadians((right ? -10f : 10f) * heldPercent);
         player.getBipedLeftUpperLeg().rotateAngleZ = (float) Math.toRadians((right ? -10f : 10f) * heldPercent);
         player.getBipedRightUpperLeg().offsetX = (right ? -0.17f : 0.17f) * heldPercent;
         player.getBipedLeftUpperLeg().offsetX = (right ? -0.17f : 0.17f) * heldPercent;
-
         player.getBipedHead().rotateAngleX = (float) Math.toRadians(randomHeadMovement[0] * heldPercent);
         player.getBipedHeadwear().rotateAngleX = (float) Math.toRadians(randomHeadMovement[0] * heldPercent);
         player.getBipedHead().rotateAngleY = (float) Math.toRadians(randomHeadMovement[1] * heldPercent);
         player.getBipedHeadwear().rotateAngleY = (float) Math.toRadians(randomHeadMovement[1] * heldPercent);
         player.getBipedHead().rotateAngleZ = (float) Math.toRadians(randomHeadMovement[2] * heldPercent);
         player.getBipedHeadwear().rotateAngleZ = (float) Math.toRadians(randomHeadMovement[2] * heldPercent);
-
         player.getBipedRightUpperArm().rotateAngleZ = (float) Math.toRadians((right ? -50f : 50f) * heldPercent);
         player.getBipedRightUpperArm().rotateAngleX = (float) Math.toRadians((armsDirection == ArmsDirection.BACK ? 30.0f : -30.0f) * heldPercent);
-
         player.getBipedLeftUpperArm().rotateAngleZ = (float) Math.toRadians((right ? -50f : 50f) * heldPercent);
         player.getBipedLeftUpperArm().rotateAngleX = (float) Math.toRadians((armsDirection == ArmsDirection.BACK ? 30.0f : -30.0f) * heldPercent);
     }
@@ -97,13 +87,10 @@ public class FlossDanceHandler extends AbstractPreCopyAnglesAnimationHandler {
     private boolean shouldNotModify(AbstractClientPlayer entity, IMixinModelBiped player) {
         AnimationState animationState = get(entity.getUniqueID());
         int ticks = animationState.getFrames();
-
         if (ticks <= 2) {
             if (animationState.shouldReset()) resetAnimation(player);
-
             return true;
         }
-
         return false;
     }
 
