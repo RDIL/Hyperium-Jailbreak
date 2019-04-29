@@ -1,4 +1,4 @@
-Hey /*
+/*
  *     Copyright (C) 2018  Hyperium <https://hyperium.cc/>
  *
  *     This program is free software: you can redistribute it and/or modify
