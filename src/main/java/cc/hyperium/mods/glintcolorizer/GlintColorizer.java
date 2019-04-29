@@ -24,7 +24,7 @@ public class GlintColorizer extends AbstractMod {
             if (onepoint8glintcolorI != -8372020) onepoint8glintcolorI = -8372020;
             return;
         }
-        if (Colors.glintcolorChroma) {
+        if (Colors.chroma) {
             onepoint8glintcolorI = Color.HSBtoRGB(System.currentTimeMillis() % 10000L / 10000.0f, 0.8f, 0.8f);
             return;
         }
@@ -47,7 +47,7 @@ public class GlintColorizer extends AbstractMod {
     }
 
     public void setChroma(boolean bool) {
-        if (!(Colors.glintcolorChroma = bool)) {
+        if (!(Colors.Chroma = bool)) {
             onepoint8glintcolorF = Color.RGBtoHSB(Colors.glintR, Colors.glintG, Colors.glintB, null);
             onepoint8glintcolorI = Color.HSBtoRGB(onepoint8glintcolorF[0], onepoint8glintcolorF[1], onepoint8glintcolorF[2]);
         }
