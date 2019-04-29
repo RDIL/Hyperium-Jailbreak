@@ -51,19 +51,4 @@ public class GlintColorizer extends AbstractMod {
         blue = blue & 0x000000FF;
         return 0xFF000000 | red | green | blue;
     }
-
-    public static void setonepoint8color(int r, int g, int b) {
-        Colors.glintR = r;
-        Colors.glintG = g;
-        Colors.glintB = b;
-        onepoint8glintcolorF = Color.RGBtoHSB(Colors.glintR, Colors.glintG, Colors.glintB, null);
-        onepoint8glintcolorI = Color.HSBtoRGB(onepoint8glintcolorF[0], onepoint8glintcolorF[1], onepoint8glintcolorF[2]);
-    }
-
-    public void setChroma(boolean bool) {
-        if (!(Colors.chroma = bool)) {
-            onepoint8glintcolorF = Color.RGBtoHSB(Colors.glintR, Colors.glintG, Colors.glintB, null);
-            onepoint8glintcolorI = Color.HSBtoRGB(onepoint8glintcolorF[0], onepoint8glintcolorF[1], onepoint8glintcolorF[2]);
-        }
-    }
 }
