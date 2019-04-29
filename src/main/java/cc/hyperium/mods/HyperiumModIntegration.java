@@ -50,22 +50,22 @@ public class HyperiumModIntegration {
     private final VictoryRoyale victoryRoyale;
 
     public HyperiumModIntegration() {
-        this.chromaHUD = new ChromaHUD().init();
-        this.levelhead = new Levelhead().init();
-        this.toggleChat = new ToggleChatMod().init();
+        this.chromaHUD = ((ChromaHUD) new ChromaHUD().init());
+        this.levelhead = ((Levelhead) new Levelhead().init());
+        this.toggleChat = ((ToggleChatMod) new ToggleChatMod().init());
         this.autotip = new Autotip().init();
-        this.autogg = new AutoGG().init();
-        this.oldanimations = new OldAnimations().init();
+        this.autogg = ((AutoGG) new AutoGG().init());
+        this.oldanimations = ((OldAnimations) new OldAnimations().init());
         NickHider nickHider = new NickHider().init();
-        this.tabToggle = new TabToggleMod().init();
-        this.victoryRoyale = new VictoryRoyale().init();
-        this.autofriend = new AutofriendMod();
-        this.fncompass = new FortniteCompassMod();
-        this.itemPhysicMod = new ItemPhysicMod();
-        this.glintcolorizer = new GlintColorizer().init();
-        this.blockOverlay = new BlockOverlay();
-        this.keystrokesMod = new KeystrokesMod();
-        this.timeChanger = new TimeChanger();
+        this.tabToggle = (TabToggleMod) new TabToggleMod().init();
+        this.victoryRoyale = (VictoryRoyale) new VictoryRoyale().init();
+        this.autofriend = (AutofriendMod) new AutofriendMod();
+        this.fncompass = (FortniteCompassMod) new FortniteCompassMod();
+        this.itemPhysicMod = (ItemPhysicMod) new ItemPhysicMod();
+        this.glintcolorizer = (GlintColorizer) new GlintColorizer();
+        this.blockOverlay = (BlockOverlay) new BlockOverlay();
+        this.keystrokesMod = (KeystrokesMod) new KeystrokesMod();
+        this.timeChanger = (TimeChanger) new TimeChanger();
         if (!Settings.FPS) {
             this.autofriend.init();
             this.fncompass.init();
