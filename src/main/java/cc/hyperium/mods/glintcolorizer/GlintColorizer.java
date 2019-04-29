@@ -7,7 +7,7 @@ import cc.hyperium.event.TickEvent;
 import java.awt.Color;
 
 public class GlintColorizer extends AbstractMod {
-    private static float[] onepoint8glintcolorF = Color.RGBtoHSB(Settings.glintR, Settings.glintG, Settings.glintB, null);
+    private static float[] onepoint8glintcolorF = Color.RGBtoHSB(Colors.glintR, Colors.glintG, Colors.glintB, null);
     public static int onepoint8glintcolorI = Color.HSBtoRGB(onepoint8glintcolorF[0], onepoint8glintcolorF[1], onepoint8glintcolorF[2]);
 
     @Override
@@ -20,20 +20,15 @@ public class GlintColorizer extends AbstractMod {
     @SuppressWarnings("unused")
     @InvokeEvent
     public void onTick(TickEvent e) {
-        if (!Settings.glintColorizer) {
+        if (!Colors.enabled) {
             if (onepoint8glintcolorI != -8372020) onepoint8glintcolorI = -8372020;
             return;
         }
-        if (Settings.glintcolorChroma) {
+        if (Colors.glintcolorChroma) {
             onepoint8glintcolorI = Color.HSBtoRGB(System.currentTimeMillis() % 10000L / 10000.0f, 0.8f, 0.8f);
             return;
         }
-        onepoint8glintcolorI = getIntFromColor(Settings.glintR, Settings.glintG, Settings.glintB);
-    }
-
-    @Override
-    public Metadata getModMetadata() {
-        return new Metadata(this, "Glint Colorizer", "1.0", "powns");
+        onepoint8glintcolorI = getIntFromColor(Colors.glintR, Colors.glintG, Colors.glintB);
     }
 
     private int getIntFromColor(int red, int green, int blue) {
@@ -47,12 +42,12 @@ public class GlintColorizer extends AbstractMod {
         Colors.glintR = r;
         Colors.glintG = g;
         Colors.glintB = b;
-        onepoint8glintcolorF = Color.RGBtoHSB(Settings.glintR, Settings.glintG, Settings.glintB, null);
+        onepoint8glintcolorF = Color.RGBtoHSB(Colors.glintR, Colors.glintG, Colors.glintB, null);
         onepoint8glintcolorI = Color.HSBtoRGB(onepoint8glintcolorF[0], onepoint8glintcolorF[1], onepoint8glintcolorF[2]);
     }
 
     public void setChroma(boolean bool) {
-        if (!(Settings.glintcolorChroma = bool)) {
+        if (!(Colors.glintcolorChroma = bool)) {
             onepoint8glintcolorF = Color.RGBtoHSB(Colors.glintR, Colors.glintG, Colors.glintB, null);
             onepoint8glintcolorI = Color.HSBtoRGB(onepoint8glintcolorF[0], onepoint8glintcolorF[1], onepoint8glintcolorF[2]);
         }
