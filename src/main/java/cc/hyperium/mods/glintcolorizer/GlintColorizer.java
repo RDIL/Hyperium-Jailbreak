@@ -47,7 +47,7 @@ public class GlintColorizer extends AbstractMod {
     }
 
     public void setChroma(boolean bool) {
-        if (!(Colors.Chroma = bool)) {
+        if (!(Colors.chroma = bool)) {
             onepoint8glintcolorF = Color.RGBtoHSB(Colors.glintR, Colors.glintG, Colors.glintB, null);
             onepoint8glintcolorI = Color.HSBtoRGB(onepoint8glintcolorF[0], onepoint8glintcolorF[1], onepoint8glintcolorF[2]);
         }
