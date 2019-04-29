@@ -45,7 +45,6 @@ import java.util.UUID;
 
 @Mixin(Entity.class)
 public abstract class MixinEntity {
-
     @Shadow
     public double posX;
     @Shadow
@@ -96,10 +95,6 @@ public abstract class MixinEntity {
     @Shadow
     public abstract UUID getUniqueID();
 
-    /**
-     * @author Sk1er
-     * @reason Cache render strings
-     */
     @Overwrite
     public IChatComponent getDisplayName() {
         return hyperiumEntity.getDisplayName();
@@ -155,10 +150,6 @@ public abstract class MixinEntity {
     @Shadow
     public abstract void setFire(int seconds);
 
-    /**
-     * @author - Sk1er
-     * @reason - Improve Particle Handling
-     */
     @Overwrite
     public void moveEntity(double x, double y, double z) {
         if (this.noClip) {
