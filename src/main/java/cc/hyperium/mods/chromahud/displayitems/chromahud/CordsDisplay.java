@@ -1,4 +1,4 @@
-/*
+Hey /*
  *     Copyright (C) 2018  Hyperium <https://hyperium.cc/>
  *
  *     This program is free software: you can redistribute it and/or modify
@@ -21,7 +21,6 @@ import cc.hyperium.config.Settings;
 import cc.hyperium.mods.chromahud.ElementRenderer;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
 import cc.hyperium.utils.JsonHolder;
-import com.google.gson.JsonObject;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import java.text.DecimalFormat;
