@@ -44,6 +44,7 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
         guibutton.enabled = this.mc.isSingleplayer() && !this.mc.getIntegratedServer().getPublic();
 
         buttonList.add(new GuiButton(9, this.width / 2 - 100, height / 4 + 56, 98, 20, I18n.format("button.ingame.hyperiumsettings")));
+        buttonList.add(new GuiButton(8, this.width / 2 + 2, height / 4 + 56, 98, 20, "Keybinds"));
 
         if (Minecraft.getMinecraft().theWorld != null && (Minecraft.getMinecraft().getIntegratedServer() == null)) {
             GuiButton oldButton = buttonList.remove(3);
@@ -94,6 +95,8 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
             case 7:
                 Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new GuiShareToLan(this));
                 break;
+            case 8:
+                Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new GuiKeybinds(this));
             case 9:
                 HyperiumMainGui.INSTANCE.show();
                 break;
