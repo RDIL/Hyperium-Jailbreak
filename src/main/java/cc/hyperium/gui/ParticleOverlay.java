@@ -64,7 +64,6 @@ public class ParticleOverlay {
         if (!purchased())
             return;
         try {
-            long lines = 0L;
             float step = (float) (0.01 * (Settings.MAX_PARTICLES / 100));
             Mode m = getMode();
             if (m == Mode.OFF) return;
