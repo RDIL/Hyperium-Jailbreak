@@ -27,7 +27,6 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Mouse;
-
 import java.awt.Color;
 import java.io.IOException;
 import java.util.HashMap;
@@ -55,11 +54,7 @@ class MoveElementGui extends GuiScreen {
     @Override
     public void initGui() {
         super.initGui();
-        reg("", (edit = new GuiButton(1, 5, 5, 100, 20, "Save")), button -> {
-            //Open Gui for editing element
-            Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new DisplayElementConfig(element, mod));
-        }, (guiButton) -> {
-        });
+        reg("", (edit = new GuiButton(1, 5, 5, 100, 20, "Save")), button -> Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new DisplayElementConfig(element, mod)), (guiButton) -> {});
     }
 
     @Override
@@ -85,7 +80,6 @@ class MoveElementGui extends GuiScreen {
         if (guiButtonConsumer != null) {
             guiButtonConsumer.accept(button);
         }
-
     }
 
     @Override
@@ -112,10 +106,6 @@ class MoveElementGui extends GuiScreen {
         drawVerticalLine((int) x1 - 5, (int) (y1 - 5), (int) (y2 + 5), Color.RED.getRGB());
         drawVerticalLine((int) x2 + 5, (int) (y1 - 5), (int) (y2 + 5), Color.RED.getRGB());
 
-//            drawVerticalLine((int) (y1 + 5), (int) (y1 - 5), (int) 3, Color.RED.getRGB());
-
-//            Gui.drawRect((int) x1, (int) y1, (int) x2, (int) y2, Color.WHITE.getRGB());
-//            currentElement.drawForConfig();
         int propX = (int) x1 - 5;
         int propY = (int) y1 - 30;
         if (propX < 10 || propX > resolution.getScaledWidth() - 200) {
@@ -127,7 +117,6 @@ class MoveElementGui extends GuiScreen {
         edit.yPosition = propY;
         if (Mouse.isButtonDown(0) && !mouseLock) {
             if (mouseX > x1 - 2 && mouseX < x2 + 2 && mouseY > y1 - 2 && mouseY < y2 + 2 || lastD) {
-                //inside
                 double x3 = Mouse.getX() / ResolutionUtil.current().getScaledWidth_double();
                 double y3 = Mouse.getY() / ResolutionUtil.current().getScaledHeight_double();
                 element.setXloc(element.getXloc() - (lastX - x3) / ((double) ResolutionUtil.current().getScaleFactor()));
