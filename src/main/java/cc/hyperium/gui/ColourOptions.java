@@ -23,7 +23,7 @@ public class ColourOptions extends HyperiumOverlay {
         reload();
     }
 
-    private void addSlider(String label, Field f, int max, int min, boolean updateColor) {
+    private void addSlider(String label, Field f, int max, int min) {
         f.setAccessible(true);
         try {
             this.getComponents().add(new OverlaySlider(label, min, max, ((Integer) f.get(null)).floatValue(), (i) -> {
@@ -46,10 +46,10 @@ public class ColourOptions extends HyperiumOverlay {
     private void reload() {
         try {
             addLabel("Accent Colour:");
-            addSlider("Red", this.getClass().getField("accent_r"), 255, 0, true);
-            addSlider("Green", this.getClass().getField("accent_g"), 255, 0, true);
-            addSlider("Blue", this.getClass().getField("accent_b"), 255, 0, true);
-            addToggle("Example: ", this.getClass().getField("toggle"), null, true, this);
+            addSlider("Red", this.getClass().getField("accent_r"), 255, 0);
+            addSlider("Green", this.getClass().getField("accent_g"), 255, 0);
+            addSlider("Blue", this.getClass().getField("accent_b"), 255, 0);
+            addToggle("Example: ", this.getClass().getField("toggle"), null, true);
             this.getComponents().add(new OverlayButton("Reset to default colours", () -> {
                 try {
                     this.getClass().getField("accent_r").setInt(null, 136);
