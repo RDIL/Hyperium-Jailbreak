@@ -113,7 +113,6 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
         GlStateManager.pushMatrix();
 
         GlStateManager.translate(0, height - 50, 0);
-
         baseAngle %= 360;
 
         ScaledResolution current = ResolutionUtil.current();
