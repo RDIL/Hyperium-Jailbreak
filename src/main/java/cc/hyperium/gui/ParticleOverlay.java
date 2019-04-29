@@ -122,7 +122,6 @@ public class ParticleOverlay {
                                 RenderUtils.drawLine(v1, v2, x2, y2, 1F, eee.getRGB());
                                 break;
                         }
-                        lines++;
                         w += lineStrength;
                     }
                 }
