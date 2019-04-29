@@ -51,16 +51,6 @@ public abstract class AbstractHypixelStats {
         return now.get(Calendar.DAY_OF_YEAR) == timeToCheck.get(Calendar.DAY_OF_YEAR);
     }
 
-    private boolean isWeek(long last_completed) {
-        Calendar now = Calendar.getInstance();
-        now.setTimeZone(TimeZone.getTimeZone("EST"));
-        now.setTimeInMillis(System.currentTimeMillis() - TimeUnit.DAYS.toMillis(5));
-        Calendar timeToCheck = Calendar.getInstance();
-        timeToCheck.setTimeZone(TimeZone.getTimeZone("EST"));
-        timeToCheck.setTimeInMillis(last_completed - TimeUnit.DAYS.toMillis(5));
-        return now.get(Calendar.WEEK_OF_YEAR) == timeToCheck.get(Calendar.WEEK_OF_YEAR);
-    }
-
     public List<StatsDisplayItem> getPreview(HypixelApiPlayer player) {
         ArrayList<StatsDisplayItem> items = new ArrayList<>();
         GameType gameType = GameType.fromRealName(getName());
