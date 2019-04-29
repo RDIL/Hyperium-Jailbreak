@@ -16,12 +16,10 @@
  */
 
 package club.sk1er.website.api.requests;
-import cc.hyperium.handlers.handlers.data.HypixelAPI;
 import cc.hyperium.utils.JsonHolder;
 import net.hypixel.api.GameType;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.concurrent.ExecutionException;
 
 public class HypixelApiPlayer implements HypixelApiObject {
     public static final DateFormat DMY = new SimpleDateFormat("dd/MM, YYYY");
