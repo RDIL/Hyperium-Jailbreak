@@ -9,9 +9,7 @@ import net.hypixel.api.GameType;
 import net.minecraft.util.EnumChatFormatting;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.TimeZone;
 
 public abstract class AbstractHypixelStats {
     private int totalWeekly;
