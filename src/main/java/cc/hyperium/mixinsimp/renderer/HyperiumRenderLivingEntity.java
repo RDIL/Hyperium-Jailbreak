@@ -17,11 +17,9 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 import org.lwjgl.opengl.GL11;
-
 import java.util.List;
 
 public class HyperiumRenderLivingEntity<T extends EntityLivingBase> {
-
     private RendererLivingEntity<T> parent;
 
     public HyperiumRenderLivingEntity(RendererLivingEntity<T> parent) {
@@ -69,7 +67,6 @@ public class HyperiumRenderLivingEntity<T extends EntityLivingBase> {
 
             if (d0 < (double) (f * f)) {
                 String s = entity.getDisplayName().getFormattedText();
-                float f1 = 0.02666667F;
                 GlStateManager.alphaFunc(516, 0.1F);
 
                 if (entity.isSneaking() && (Settings.SHOW_OWN_NAME || !entity.equals(Minecraft.getMinecraft().thePlayer))) {
