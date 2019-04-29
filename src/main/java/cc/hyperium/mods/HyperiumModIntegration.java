@@ -29,6 +29,7 @@ import cc.hyperium.mods.oldanimations.OldAnimations;
 import cc.hyperium.mods.tabtoggle.TabToggleMod;
 import cc.hyperium.mods.timechanger.TimeChanger;
 import cc.hyperium.mods.togglechat.ToggleChatMod;
+import cc.hyperium.mods.glintcolorizer.GlintColorizer;
 import me.semx11.autotip.Autotip;
 
 public class HyperiumModIntegration {
@@ -53,7 +54,7 @@ public class HyperiumModIntegration {
         this.levelhead = ((Levelhead) new Levelhead().init());
         this.toggleChat = ((ToggleChatMod) new ToggleChatMod().init());
         this.autotip = new Autotip();
-        autotip.init();
+        this.autotip.init();
         this.autogg = ((AutoGG) new AutoGG().init());
         this.oldanimations = ((OldAnimations) new OldAnimations().init());
         NickHider nickHider = new NickHider();
@@ -64,6 +65,7 @@ public class HyperiumModIntegration {
         this.fncompass = (FortniteCompassMod) new FortniteCompassMod();
         this.itemPhysicMod = (ItemPhysicMod) new ItemPhysicMod();
         this.glintcolorizer = (GlintColorizer) new GlintColorizer();
+        this.glintcolorizer.init();
         this.blockOverlay = (BlockOverlay) new BlockOverlay();
         this.keystrokesMod = (KeystrokesMod) new KeystrokesMod();
         this.timeChanger = (TimeChanger) new TimeChanger();
@@ -71,7 +73,6 @@ public class HyperiumModIntegration {
             this.autofriend.init();
             this.fncompass.init();
             this.itemPhysicMod.init();
-            this.glintcolorizer.init();
             this.blockOverlay.init();
             this.keystrokesMod.init();
             this.timeChanger.init();
