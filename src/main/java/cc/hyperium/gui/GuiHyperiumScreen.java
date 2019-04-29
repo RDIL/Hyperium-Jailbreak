@@ -113,23 +113,6 @@ public class GuiHyperiumScreen extends GuiScreen {
             }
         }
 
-        /* Render shadowed bar at top of screen */
-        if (mc.theWorld == null) {
-            this.drawGradientRect(0, 0, this.width, this.height, -2130706433, 16777215);
-            this.drawGradientRect(0, 0, this.width, this.height, 0, Integer.MIN_VALUE);
-        } else {
-            this.drawDefaultBackground();
-        }
-
-        drawRect(0, 4, width, 55, 0x33000000);
-        drawRect(0, 5, width, 54, 0x33000000);
-
-        /* Render Client Logo */
-        GlStateManager.color(1, 1, 1, 1);
-        ResourceLocation logo = new ResourceLocation("textures/hyperium-logo.png");
-        Minecraft.getMinecraft().getTextureManager().bindTexture(logo);
-        drawScaledCustomSizeModalRect(10, 5, 0, 0, 2160, 500, 200, 47, 2160, 500);
-
         /* Display disclaimers at bottom of screen */
         sfr.drawString(I18n.format("menu.left").toUpperCase(), 1, height - 7, 0x55FFFFFF);
         String s = I18n.format("menu.right").toUpperCase();
