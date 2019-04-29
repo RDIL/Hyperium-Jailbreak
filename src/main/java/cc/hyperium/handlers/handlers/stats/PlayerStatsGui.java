@@ -8,7 +8,6 @@ import cc.hyperium.handlers.handlers.stats.display.StatsDisplayItem;
 import cc.hyperium.mixinsimp.client.GlStateModifier;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
 import cc.hyperium.utils.RenderUtils;
-import club.sk1er.website.api.requests.HypixelApiGuild;
 import club.sk1er.website.api.requests.HypixelApiPlayer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.ScaledResolution;
@@ -59,7 +58,6 @@ public class PlayerStatsGui extends HyperiumGui {
 
     @Override
     protected void pack() {
-        reg("VIEW_GUILD", new GuiButton(nextId(), 1, 22, "View Guild"), button -> new GuildStatsGui(player.getGuild()).show(), button -> button.visible = player.getGuild().isLoaded() && player.getGuild().isValid());
         reg("VIEW_FRIENDS", new GuiButton(nextId(), 1, 22 + 21, "View Friends"), button -> {}, button -> {});
     }
 
@@ -67,14 +65,6 @@ public class PlayerStatsGui extends HyperiumGui {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         super.drawScreen(mouseX, mouseY, partialTicks);
         ScaledResolution current = ResolutionUtil.current();
-        HypixelApiGuild guild = player.getGuild();
-        if (guild == null) {
-            GeneralChatHandler.instance().sendMessage("Player not found!");
-            mc.displayGuiScreen(null);
-            return;
-        }
-        boolean isInGuild = guild.isLoaded() && guild.isValid();
-        drawScaledText(player.getDisplayString() + (isInGuild ? " " + guild.getFormatedTag() : ""), current.getScaledWidth() / 2, 30, 3, Color.WHITE.getRGB(), true, true);
         if (focused == null) {
             final int blockWidth = 64 + 32;
             int blocksPerLine = (int) (current.getScaledWidth() / (1.2D * blockWidth));
