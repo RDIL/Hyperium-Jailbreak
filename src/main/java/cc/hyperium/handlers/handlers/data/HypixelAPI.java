@@ -8,7 +8,6 @@ import cc.hyperium.netty.utils.Utils;
 import cc.hyperium.utils.JsonHolder;
 import cc.hyperium.utils.UUIDUtil;
 import club.sk1er.website.api.requests.HypixelApiFriends;
-import club.sk1er.website.api.requests.HypixelApiGuild;
 import club.sk1er.website.api.requests.HypixelApiPlayer;
 import com.github.benmanes.caffeine.cache.AsyncLoadingCache;
 import com.github.benmanes.caffeine.cache.Caffeine;
@@ -33,12 +32,6 @@ public class HypixelAPI {
         .expireAfterWrite(Duration.ofMinutes(5))
         .executor(Multithreading.POOL)
         .buildAsync(this::getApiFriends);
-
-    private final AsyncLoadingCache<String, HypixelApiGuild> GUILDS = Caffeine.newBuilder()
-        .maximumSize(1_000)
-        .expireAfterWrite(Duration.ofMinutes(5))
-        .executor(Multithreading.POOL)
-        .buildAsync(this::getApiGuild);
 
     private List<UUID> friendsForCurrentUser = new ArrayList<>();
     public HypixelAPI() {
@@ -96,18 +89,6 @@ public class HypixelAPI {
         return CompletableFuture.supplyAsync(() -> new JsonHolder(Sk1erMod.getInstance().rawWithAgent("https://api.sk1er.club/leaderboard/" + ID)), Multithreading.POOL);
     }
 
-    public CompletableFuture<HypixelApiGuild> getGuildFromName(String name) {
-        return getGuild(GuildKey.fromName(name));
-    }
-
-    public CompletableFuture<HypixelApiGuild> getGuildFromPlayer(String playerName) {
-        return getGuild(GuildKey.fromPlayer(playerName));
-    }
-
-    public CompletableFuture<HypixelApiGuild> getGuild(GuildKey key) {
-        return GUILDS.get(key.toString());
-    }
-
     private void updatePersonalData() {
         if (Hyperium.INSTANCE.getHandlers().getHypixelDetector().isHypixel()) {
             refreshFriendsForCurrentUser();
@@ -125,61 +106,5 @@ public class HypixelAPI {
 
     private HypixelApiPlayer getApiPlayer(String key) {
         return new HypixelApiPlayer(new JsonHolder(Sk1erMod.getInstance().rawWithAgent("https://api.sk1er.club/player/" + key.toLowerCase())));
-    }
-
-    private HypixelApiGuild getApiGuild(String key) {
-        GuildKey guildKey = GuildKey.fromSerialized(key);
-        return new HypixelApiGuild(new JsonHolder(Sk1erMod.getInstance().rawWithAgent(String.format(guildKey.type.getUrl(), (Object[]) guildKey.formatStrings))));
-    }
-
-    enum GuildKeyType {
-        PLAYER("https://api.sk1er.club/guild/player/%s"),
-        NAME("https://api.sk1er.club/guild/name/");
-
-        private String url;
-        GuildKeyType(String url) {
-            this.url = url;
-        }
-        public String getUrl() {
-            return url;
-        }
-    }
-
-    public static class GuildKey {
-        private GuildKeyType type;
-        private String[] formatStrings;
-
-        public GuildKey(GuildKeyType type, String... formatStrings) {
-            this.type = type;
-            this.formatStrings = formatStrings;
-        }
-
-        public static GuildKey fromSerialized(String serialized) {
-            String type = serialized.split(";")[0];
-            return new GuildKey(GuildKeyType.valueOf(type), serialized.split(";")[1].split(","));
-        }
-
-        public static GuildKey fromName(String name) {
-            return new GuildKey(GuildKeyType.NAME, name);
-        }
-
-        public static GuildKey fromPlayer(String playerName) {
-            return new GuildKey(GuildKeyType.PLAYER, playerName);
-        }
-
-        @Override
-        public String toString() {
-            return type.toString() + ";" + String.join(",", formatStrings);
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            if (obj == this) return true;
-            if (obj instanceof GuildKey) {
-                GuildKey key = ((GuildKey) obj);
-                return key.type == this.type && Arrays.equals(key.formatStrings, this.formatStrings);
-            }
-            return false;
-        }
     }
 }

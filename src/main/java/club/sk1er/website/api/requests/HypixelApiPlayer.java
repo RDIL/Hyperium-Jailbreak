@@ -58,15 +58,6 @@ public class HypixelApiPlayer implements HypixelApiObject {
         return getRoot().optString("displayname");
     }
 
-    public HypixelApiGuild getGuild() {
-        try {
-            return HypixelAPI.INSTANCE.getGuildFromPlayer(getUUID()).get();
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     public boolean has(String val) {
         return getRoot().has(val);
     }
