@@ -18,6 +18,11 @@ public class GlintColorizer extends AbstractMod {
         return this;
     }
 
+    @Override
+    public Metadata getModMetadata() {
+        return new Metadata(this, "Glint Colorizer", "1.0", "powns");
+    }
+
     @SuppressWarnings("unused")
     @InvokeEvent
     public void onTick(TickEvent e) {
