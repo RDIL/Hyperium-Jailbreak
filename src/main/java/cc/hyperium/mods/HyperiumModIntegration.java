@@ -50,7 +50,7 @@ public class HyperiumModIntegration {
     private final VictoryRoyale victoryRoyale;
 
     public HyperiumModIntegration() {
-        this.chromaHUD = ((ChromaHUD) new ChromaHUD().init());
+        this.chromaHUD = new ChromaHUD().init();
         this.levelhead = new Levelhead().init();
         this.toggleChat = new ToggleChatMod().init();
         this.autotip = new Autotip().init();
