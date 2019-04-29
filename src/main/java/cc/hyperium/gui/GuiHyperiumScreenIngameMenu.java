@@ -97,7 +97,7 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
                 Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new GuiShareToLan(this));
                 break;
             case 8:
-                Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new GuiKeybinds(this));
+                Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new GuiKeybinds());
                 break;
             case 9:
                 HyperiumMainGui.INSTANCE.show();
