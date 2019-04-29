@@ -24,11 +24,7 @@ import cc.hyperium.utils.JsonHolder;
 import net.minecraft.client.Minecraft;
 import cc.hyperium.config.Settings;
 
-/**
- * @author Sk1er
- */
 public class LocationDisplay extends DisplayItem {
-
     public LocationDisplay(JsonHolder raw, int ordinal) {
         super(raw, ordinal);
         this.height = 10;
@@ -45,6 +41,4 @@ public class LocationDisplay extends DisplayItem {
         ElementRenderer.draw(starX, startY, string);
         this.width = config ? Minecraft.getMinecraft().fontRendererObj.getStringWidth(string) : 0;
     }
-
-
 }
