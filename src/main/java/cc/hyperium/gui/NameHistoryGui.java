@@ -35,7 +35,6 @@ import java.util.List;
 import java.util.UUID;
 
 public class NameHistoryGui extends GuiScreen {
-
     private String name;
 
     public NameHistoryGui() {
@@ -128,15 +127,12 @@ public class NameHistoryGui extends GuiScreen {
                 if (history.getChangedToAt() == 0) {
                     names.add(name);
                 } else {
-                    // Adds name and date changed to the array to be displayed.
                     names.add(String.format("%s -> %s", name, format.format(history.getChangedToAt())));
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
@@ -148,7 +144,6 @@ public class NameHistoryGui extends GuiScreen {
             int length = height / 5 - (int) (names.size() * fontRenderer.getHeight("s"));
 
             if (offset - length + 1 > -names.size() && length <= names.size()) {
-                // regions it cant exceed
                 offset -= 1;
             }
         } else if (i > 0 && offset < 0) {
