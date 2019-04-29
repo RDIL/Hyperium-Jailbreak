@@ -65,7 +65,7 @@ public class HyperiumModIntegration {
         this.fncompass = (FortniteCompassMod) new FortniteCompassMod();
         this.itemPhysicMod = (ItemPhysicMod) new ItemPhysicMod();
         this.glintcolorizer = (GlintColorizer) new GlintColorizer();
-        glintColorizer.init();
+        this.glintcolorizer.init();
         this.blockOverlay = (BlockOverlay) new BlockOverlay();
         this.keystrokesMod = (KeystrokesMod) new KeystrokesMod();
         this.timeChanger = (TimeChanger) new TimeChanger();
