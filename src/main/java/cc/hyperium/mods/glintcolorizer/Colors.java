@@ -1,6 +1,6 @@
 package cc.hyperium.mods.glintcolorizer;
 
-import cc.hyperium.config.Category;
+import static cc.hyperium.config.Category.GLINTCOLORIZER;
 import cc.hyperium.config.ConfigOpt;
 import cc.hyperium.config.SliderSetting;
 import cc.hyperium.config.ToggleSetting;
@@ -8,16 +8,16 @@ import java.awt.Color;
 
 public class Colors {
     @ConfigOpt
-    @ToggleSetting(category = Category.GLINTCOLORIZER, mods = true, name = "Chroma")
+    @ToggleSetting(category = GLINTCOLORIZER, mods = true, name = "Chroma")
     public static boolean chroma;
     @ConfigOpt
-    @SliderSetting(name = "Chroma speed", mods = true, category = Category.GLINTCOLORIZER, min = 1, max = 10, isInt = true)
+    @SliderSetting(name = "Chroma speed", mods = true, category = GLINTCOLORIZER, min = 1, max = 10, isInt = true)
     public static int chromaSpeed = 1;
     @ConfigOpt
-    @SliderSetting(name = "Red", mods = true, category = Category.GLINTCOLORIZER, min = 0, max = 255, isInt = true)
+    @SliderSetting(name = "Red", mods = true, category = GLINTCOLORIZER, min = 0, max = 255, isInt = true)
     public static int glintR = 255;
     @ConfigOpt
-    @SliderSetting(name = "Green", mods = true, category = Category.GLINTCOLORIZER, min = 0, max = 255, isInt = true)
+    @SliderSetting(name = "Green", mods = true, category = GLINTCOLORIZER, min = 0, max = 255, isInt = true)
     public static int glintG = 255;
     @ConfigOpt
     @SliderSetting(name = "Blue", mods = true, category = Category.GLINTCOLORIZER, min = 0, max = 255, isInt = true)
