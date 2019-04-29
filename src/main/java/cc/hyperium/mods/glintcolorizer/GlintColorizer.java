@@ -1,6 +1,6 @@
-package cc.hyperium.mods;
+package cc.hyperium.mods.glintcolorizer;
 
-import cc.hyperium.config.Settings;
+import cc.hyperium.mods.glintcolorizer.Colors;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.TickEvent;
@@ -13,7 +13,7 @@ public class GlintColorizer extends AbstractMod {
     @Override
     public AbstractMod init() {
         EventBus.INSTANCE.register(this);
-        setonepoint8color(Settings.glintR, Settings.glintG, Settings.glintB);
+        setonepoint8color(Colors.glintR, Colors.glintG, Colors.glintB);
         return this;
     }
 
@@ -44,16 +44,16 @@ public class GlintColorizer extends AbstractMod {
     }
 
     public static void setonepoint8color(int r, int g, int b) {
-        Settings.glintR = r;
-        Settings.glintG = g;
-        Settings.glintB = b;
+        Colors.glintR = r;
+        Colors.glintG = g;
+        Colors.glintB = b;
         onepoint8glintcolorF = Color.RGBtoHSB(Settings.glintR, Settings.glintG, Settings.glintB, null);
         onepoint8glintcolorI = Color.HSBtoRGB(onepoint8glintcolorF[0], onepoint8glintcolorF[1], onepoint8glintcolorF[2]);
     }
 
     public void setChroma(boolean bool) {
         if (!(Settings.glintcolorChroma = bool)) {
-            onepoint8glintcolorF = Color.RGBtoHSB(Settings.glintR, Settings.glintG, Settings.glintB, null);
+            onepoint8glintcolorF = Color.RGBtoHSB(Colors.glintR, Colors.glintG, Colors.glintB, null);
             onepoint8glintcolorI = Color.HSBtoRGB(onepoint8glintcolorF[0], onepoint8glintcolorF[1], onepoint8glintcolorF[2]);
         }
     }
