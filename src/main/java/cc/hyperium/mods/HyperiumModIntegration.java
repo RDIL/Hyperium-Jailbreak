@@ -29,6 +29,7 @@ import cc.hyperium.mods.oldanimations.OldAnimations;
 import cc.hyperium.mods.tabtoggle.TabToggleMod;
 import cc.hyperium.mods.timechanger.TimeChanger;
 import cc.hyperium.mods.togglechat.ToggleChatMod;
+import cc.hyperium.mods.glintcolorizer.GlintColorizer;
 import me.semx11.autotip.Autotip;
 
 public class HyperiumModIntegration {
@@ -50,28 +51,25 @@ public class HyperiumModIntegration {
 
     public HyperiumModIntegration() {
         this.chromaHUD = ((ChromaHUD) new ChromaHUD().init());
-        this.levelhead = ((Levelhead) new Levelhead().init());
-        this.toggleChat = ((ToggleChatMod) new ToggleChatMod().init());
-        this.autotip = new Autotip();
-        autotip.init();
-        this.autogg = ((AutoGG) new AutoGG().init());
-        this.oldanimations = ((OldAnimations) new OldAnimations().init());
-        NickHider nickHider = new NickHider();
-        nickHider.init();
-        this.tabToggle = (TabToggleMod) new TabToggleMod().init();
-        this.victoryRoyale = (VictoryRoyale) new VictoryRoyale().init();
-        this.autofriend = (AutofriendMod) new AutofriendMod();
-        this.fncompass = (FortniteCompassMod) new FortniteCompassMod();
-        this.itemPhysicMod = (ItemPhysicMod) new ItemPhysicMod();
-        this.glintcolorizer = (GlintColorizer) new GlintColorizer();
-        this.blockOverlay = (BlockOverlay) new BlockOverlay();
-        this.keystrokesMod = (KeystrokesMod) new KeystrokesMod();
-        this.timeChanger = (TimeChanger) new TimeChanger();
+        this.levelhead = new Levelhead().init();
+        this.toggleChat = new ToggleChatMod().init();
+        this.autotip = new Autotip().init();
+        this.autogg = new AutoGG().init();
+        this.oldanimations = new OldAnimations().init();
+        NickHider nickHider = new NickHider().init();
+        this.tabToggle = new TabToggleMod().init();
+        this.victoryRoyale = new VictoryRoyale().init();
+        this.autofriend = new AutofriendMod();
+        this.fncompass = new FortniteCompassMod();
+        this.itemPhysicMod = new ItemPhysicMod();
+        this.glintcolorizer = new GlintColorizer().init();
+        this.blockOverlay = new BlockOverlay();
+        this.keystrokesMod = new KeystrokesMod();
+        this.timeChanger = new TimeChanger();
         if (!Settings.FPS) {
             this.autofriend.init();
             this.fncompass.init();
             this.itemPhysicMod.init();
-            this.glintcolorizer.init();
             this.blockOverlay.init();
             this.keystrokesMod.init();
             this.timeChanger.init();
