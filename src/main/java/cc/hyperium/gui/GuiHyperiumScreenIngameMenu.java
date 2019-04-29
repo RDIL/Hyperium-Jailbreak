@@ -45,10 +45,7 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
 
         buttonList.add(new GuiButton(9, this.width / 2 - 100, height / 4 + 56, 98, 20, I18n.format("button.ingame.hyperiumsettings")));
 
-        WorldClient theWorld = Minecraft.getMinecraft().theWorld;
-
-        MinecraftServer integratedServer = Minecraft.getMinecraft().getIntegratedServer();
-        if (theWorld != null && (integratedServer == null)) {
+        if (Minecraft.getMinecraft().theWorld != null && (Minecraft.getMinecraft().getIntegratedServer() == null)) {
             GuiButton oldButton = buttonList.remove(3);
             GuiButton newButton = new GuiButton(10, oldButton.xPosition, oldButton.yPosition, oldButton.getButtonWidth(), 20, I18n.format("button.ingame.serverlist"));
             buttonList.add(newButton);
@@ -58,7 +55,6 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
     @Override
     public void actionPerformed(GuiButton button) throws IOException {
         super.actionPerformed(button);
-
         switch (button.id) {
             case 0:
                 this.mc.displayGuiScreen(new GuiOptions(this, this.mc.gameSettings));
