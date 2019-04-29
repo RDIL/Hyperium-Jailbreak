@@ -24,20 +24,13 @@ import cc.hyperium.utils.JsonHolder;
 import com.google.gson.JsonObject;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Mitchell Katz on 5/25/2017.
- */
 public class CordsDisplay extends DisplayItem {
-
     public int state = 0;
     public int precision = 1;
-    private JsonObject raw;
-
 
     public CordsDisplay(JsonHolder options, int orderinal) {
         super(options, orderinal);
@@ -95,6 +88,5 @@ public class CordsDisplay extends DisplayItem {
         ElementRenderer.draw(x, y, tmp);
         this.width = isConfig ? ElementRenderer.maxWidth(tmp) : 0;
         this.height = tmp.size() * 10;
-
     }
 }
