@@ -22,7 +22,7 @@ public class GlintColorizer extends AbstractMod {
         Hyperium.CONFIG.register(colors);
         Hyperium.CONFIG.register(this);
         EventBus.INSTANCE.register(this);
-        setonepoint8color(Colors.glintR, Colors.glintG, Colors.glintB);
+        Colors.setonepoint8color(Colors.glintR, Colors.glintG, Colors.glintB);
         return this;
     }
 
