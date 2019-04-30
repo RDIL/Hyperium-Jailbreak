@@ -1,9 +1,7 @@
 package cc.hyperium.mods.itemphysic.physics;
 
 import cc.hyperium.mods.itemphysic.ItemDummyContainer;
-
 import java.util.Random;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
@@ -18,23 +16,17 @@ import org.lwjgl.opengl.GL11;
 
 public class ClientPhysic {
     public static Minecraft mc = Minecraft.getMinecraft();
-
     public static long tick;
-
     public static double rotation;
-
     public static Random random = new Random();
 
     public static ResourceLocation getEntityTexture() {
         return TextureMap.locationBlocksTexture;
     }
 
-    public static void doRender(Entity entity, double x, double y,
-                                double z, float entityYaw, float partialTicks) {
+    public static void doRender(Entity entity, double x, double y, double z, float entityYaw, float partialTicks) {
         rotation = (double) (System.nanoTime() - tick) / 2500000 * ItemDummyContainer.rotateSpeed;
-        if (!mc.inGameHasFocus) {
-            rotation = 0;
-        }
+        if (!mc.inGameHasFocus) rotation = 0;
         EntityItem item = ((EntityItem) entity);
 
         ItemStack itemstack = item.getEntityItem();
@@ -49,8 +41,7 @@ public class ClientPhysic {
         random.setSeed((long) i);
 
         Minecraft.getMinecraft().getTextureManager().bindTexture(getEntityTexture());
-        Minecraft.getMinecraft().getTextureManager().getTexture(getEntityTexture())
-            .setBlurMipmap(false, false);
+        Minecraft.getMinecraft().getTextureManager().getTexture(getEntityTexture()).setBlurMipmap(false, false);
 
         GlStateManager.enableRescaleNormal();
         GlStateManager.alphaFunc(516, 0.1F);
@@ -77,8 +68,6 @@ public class ClientPhysic {
         } else {
             GlStateManager.translate(0, 0, -0.04);
         }
-
-        //Handle Rotations
         if (is3D || mc.getRenderManager().options != null) {
             if (is3D) {
                 if (!item.onGround) {
@@ -86,19 +75,15 @@ public class ClientPhysic {
                     item.rotationPitch += rotation;
                 }
             } else {
-
-                if (!Double.isNaN(item.posX) && !Double.isNaN(item.posY) && !Double
-                    .isNaN(item.posZ) && item.worldObj != null) {
+                if (!Double.isNaN(item.posX) && !Double.isNaN(item.posY) && !Double.isNaN(item.posZ) && item.worldObj != null) {
                     if (item.onGround) {
                         item.rotationPitch = 0;
                     } else {
                         double rotation = ClientPhysic.rotation * 2;
-
                         item.rotationPitch += rotation;
                     }
                 }
             }
-
             GlStateManager.rotate(item.rotationPitch, 1, 0, 0.0F);
         }
 
@@ -108,7 +93,6 @@ public class ClientPhysic {
                 GlStateManager.pushMatrix();
 
                 if (k > 0) {
-
                     float f7 = (random.nextFloat() * 2.0F - 1.0F) * 0.15F;
                     float f9 = (random.nextFloat() * 2.0F - 1.0F) * 0.15F;
                     float f6 = (random.nextFloat() * 2.0F - 1.0F) * 0.15F;
@@ -131,8 +115,7 @@ public class ClientPhysic {
         GlStateManager.disableBlend();
         Minecraft.getMinecraft().getTextureManager().bindTexture(getEntityTexture());
 
-        Minecraft.getMinecraft().getTextureManager().getTexture(getEntityTexture())
-            .restoreLastBlurMipmap();
+        Minecraft.getMinecraft().getTextureManager().getTexture(getEntityTexture()).restoreLastBlurMipmap();
     }
 
     public static int getModelCount(ItemStack stack) {
