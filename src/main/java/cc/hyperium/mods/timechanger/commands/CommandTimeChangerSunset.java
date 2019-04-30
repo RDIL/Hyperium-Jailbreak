@@ -24,7 +24,6 @@ import cc.hyperium.mods.timechanger.TimeChanger.TimeType;
 import cc.hyperium.utils.ChatColor;
 
 public class CommandTimeChangerSunset implements BaseCommand {
-
     private final TimeChanger mod;
 
     public CommandTimeChangerSunset(TimeChanger main) {
@@ -44,6 +43,6 @@ public class CommandTimeChangerSunset implements BaseCommand {
     @Override
     public void onExecute(String[] args) {
         this.mod.setTimeType(TimeType.SUNSET);
-        GeneralChatHandler.instance().sendMessage(ChatColor.RED + "[TimeChanger] " + ChatColor.GREEN + "Time set to sunset.", false);
+        GeneralChatHandler.instance().sendMessage(ChatColor.GREEN + "Time set to sunset.", false);
     }
 }
