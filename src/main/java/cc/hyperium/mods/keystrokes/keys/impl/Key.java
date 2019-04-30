@@ -19,9 +19,7 @@ package cc.hyperium.mods.keystrokes.keys.impl;
 
 import cc.hyperium.mods.keystrokes.KeystrokesMod;
 import cc.hyperium.mods.keystrokes.keys.IKey;
-
 import java.awt.Color;
-
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
@@ -30,7 +28,6 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 public class Key extends IKey {
-
     private final KeyBinding key;
     private boolean wasPressed;
     private long lastPress;
@@ -43,10 +40,7 @@ public class Key extends IKey {
     }
 
     private boolean isKeyOrMouseDown(int keyCode) {
-        if (keyCode < 0) {
-            return Mouse.isButtonDown(keyCode + 100);
-        }
-
+        if (keyCode < 0) return Mouse.isButtonDown(keyCode + 100);
         return Keyboard.isKeyDown(keyCode);
     }
 
@@ -85,9 +79,7 @@ public class Key extends IKey {
         int stringWidth = fontRenderer.getStringWidth(name);
         float scaleFactor = 1.0f;
 
-        if (stringWidth > keyWidth) {
-            scaleFactor = keyWidth / stringWidth;
-        }
+        if (stringWidth > keyWidth) scaleFactor = keyWidth / stringWidth;
 
         GlStateManager.pushMatrix();
         float xPos = (float) (x + xOffset + 8);
@@ -107,7 +99,6 @@ public class Key extends IKey {
         } else {
             mc.fontRendererObj.drawString(name, (int) xPos, (int) yPos, pressed ? pressedColor : colorN);
         }
-
         GlStateManager.popMatrix();
     }
 }
