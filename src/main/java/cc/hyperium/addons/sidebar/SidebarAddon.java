@@ -58,6 +58,12 @@ public class SidebarAddon extends AbstractAddon {
         }
     }
 
+    @Override
+    public Metadata getAddonMetadata() {
+        AbstractAddon.Metadata metadata = new AbstractAddon.Metadata(this, "SidebarAddon", "1.0.1", "Amp");
+        return metadata;
+    }
+
     private void loadConfig() {
         try {
             final Configuration config = Configuration.load(saveFile);
