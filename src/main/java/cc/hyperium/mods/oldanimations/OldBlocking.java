@@ -53,12 +53,10 @@ public class OldBlocking {
                 if (!Settings.OLD_ITEM_HELD) {
                     GlStateManager.translate(-0.0625f, 0.4375f, 0.0625f);
                 } else {
-                    if (!((EntityPlayer) entitylivingbaseIn).isBlocking()) {
-                        if (Settings.OLD_ITEM_HELD) {
-                            GlStateManager.translate(-0.0855f, 0.4775f, 0.1585f);
-                            GlStateManager.rotate(-19.0f, 20.0f, 0.0f, -6.0f);
-                            break Label_0327;
-                        }
+                    if (!((EntityPlayer) entitylivingbaseIn).isBlocking() && Settings.OLD_ITEM_HELD) {
+                        GlStateManager.translate(-0.0855f, 0.4775f, 0.1585f);
+                        GlStateManager.rotate(-19.0f, 20.0f, 0.0f, -6.0f);
+                        break Label_0327;
                     }
                     if (((EntityPlayer) entitylivingbaseIn).isBlocking()) {
                         GlStateManager.translate(-0.0625f, 0.4375f, 0.0625f);
