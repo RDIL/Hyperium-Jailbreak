@@ -43,8 +43,6 @@ import java.util.function.Consumer;
 public abstract class HyperiumGui extends GuiScreen {
     public static ResourceLocation background = new ResourceLocation("textures/material/backgrounds/1.png");
     public static ResourceLocation bgDynamicTexture = null;
-    public static File customImage = new File(Minecraft.getMinecraft().mcDataDir, "customImage.png");
-    public static boolean customBackground = false;
     private static BufferedImage bgBr = null;
     private final Map<GuiButton, Consumer<GuiButton>> clicks = new HashMap<>();
     private final Map<GuiButton, Consumer<GuiButton>> updates = new HashMap<>();
@@ -83,8 +81,7 @@ public abstract class HyperiumGui extends GuiScreen {
             if (font == null) {
                 if (Minecraft.getMinecraft() != null && Minecraft.getMinecraft().fontRendererObj != null) {
                     font = Minecraft.getMinecraft().fontRendererObj;
-                }
-                else {
+                } else {
                     throw new IllegalStateException("Param \"font\" is null and default font renderer could not be used!");
                 }
             }
@@ -106,8 +103,6 @@ public abstract class HyperiumGui extends GuiScreen {
                     currentWidth += charWidth;
                 }
             }
-
-            // Return entire string if we get to this point. strBuilder.toString() should == str
             return strBuilder.toString();
         }
     }
@@ -259,11 +254,7 @@ public abstract class HyperiumGui extends GuiScreen {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.disableAlpha();
 
-        if (customImage.exists() && bgDynamicTexture != null && customBackground) {
-            Minecraft.getMinecraft().getTextureManager().bindTexture(bgDynamicTexture);
-        } else {
-            Minecraft.getMinecraft().getTextureManager().bindTexture(background);
-        }
+        Minecraft.getMinecraft().getTextureManager().bindTexture(background);
 
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
