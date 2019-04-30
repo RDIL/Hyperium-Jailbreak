@@ -31,16 +31,12 @@ import cc.hyperium.utils.ChatColor;
 import net.minecraft.client.Minecraft;
 
 public class TimeChanger extends AbstractMod {
-
-    private final Metadata metadata = new Metadata(this, "timechanger", "1.0", "fyu");
+    private final Metadata metadata = new Metadata(this, "timechanger", "1", "");
     private final Minecraft mc = Minecraft.getMinecraft();
 
     private double fastTimeMultiplier = 1.0D;
     private TimeType timeType = TimeType.VANILLA;
-
-    public TimeChanger() {
-        this.metadata.setDisplayName(ChatColor.BLUE + "TimeChanger");
-    }
+    public TimeChanger() {}
 
     @Override
     public AbstractMod init() {
@@ -49,9 +45,7 @@ public class TimeChanger extends AbstractMod {
         Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(new CommandTimeChangerSunset(this));
         Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(new CommandTimeChangerReset(this));
         Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(new CommandTimeChangerFastTime(this));
-
         EventBus.INSTANCE.register(this);
-
         return this;
     }
 
@@ -78,16 +72,14 @@ public class TimeChanger extends AbstractMod {
 
     @InvokeEvent
     public void onTick(TickEvent event) {
-        if (this.mc.theWorld != null && this.timeType == TimeType.FAST) {
-            this.mc.theWorld.setWorldTime((long) (System.currentTimeMillis() * this.fastTimeMultiplier % 24000.0));
-        }
+        if (this.mc.theWorld != null && this.timeType == TimeType.FAST) this.mc.theWorld.setWorldTime((long) (System.currentTimeMillis() * this.fastTimeMultiplier % 24000.0));
     }
 
     public enum TimeType {
-        DAY, // During the day
-        SUNSET, // Just before night
-        NIGHT, // Always night
-        VANILLA, // The normal time of the game
-        FAST // Sped up vanilla time
+        DAY,
+        SUNSET,
+        NIGHT,
+        VANILLA,
+        FAST
     }
 }
