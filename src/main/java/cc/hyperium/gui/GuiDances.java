@@ -71,7 +71,6 @@ public class GuiDances extends HyperiumGui {
                         e.printStackTrace();
                     }
                     client.write(ServerCrossDataPacket.build(new JsonHolder().put("type", "dab_update").put("dabbing", false)));
-
                 });
             }
         });
