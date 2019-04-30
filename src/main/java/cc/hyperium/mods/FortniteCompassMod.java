@@ -17,7 +17,6 @@ import org.lwjgl.opengl.GL11;
 import java.awt.*;
 
 public class FortniteCompassMod extends AbstractMod {
-
     private static int offY = 0;
     private static int cwidth = 500;
     private static int offsetAll = 0;
@@ -26,22 +25,19 @@ public class FortniteCompassMod extends AbstractMod {
     private static int colorDirection = 0;
     public static int width = 184;
     public static int height = 20;
-
     private Minecraft mc = Minecraft.getMinecraft();
     private FontRenderer fr;
 
     @Override
     public AbstractMod init() {
         this.fr = mc.fontRendererObj;
-        if(!Settings.FPS) {
-            EventBus.INSTANCE.register(this);
-        }
+        if(!Settings.FPS) EventBus.INSTANCE.register(this);
         return this;
     }
 
     @Override
     public Metadata getModMetadata() {
-        return new Metadata(this, "FortniteCompassMod", "1.0", "CanalexMC, ConorTheDev & KiritoDev");
+        return new Metadata(this, "FNCompass", "1", "KiritoDev");
     }
 
     private void drawCompass(int screenWidth) {
