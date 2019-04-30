@@ -7,7 +7,6 @@ import cc.hyperium.mods.AbstractMod;
 import cc.hyperium.mods.autogg.commands.GGCommand;
 import cc.hyperium.mods.autogg.config.AutoGGConfig;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
-import cc.hyperium.utils.ChatColor;
 import org.apache.commons.io.IOUtils;
 import java.net.URL;
 import java.nio.charset.Charset;
@@ -23,7 +22,6 @@ public class AutoGG extends AbstractMod {
 
     public AutoGG() {
         Metadata metadata = new Metadata(this, "AutoGG", "2.0", "2Pi");
-        metadata.setDisplayName(ChatColor.GOLD + "AutoGG");
         this.meta = metadata;
         this.running = false;
     }
@@ -33,8 +31,7 @@ public class AutoGG extends AbstractMod {
         this.config = new AutoGGConfig();
 
         EventBus.INSTANCE.register(new AutoGGListener(this));
-        Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler()
-            .registerCommand(new GGCommand(this));
+        Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(new GGCommand(this));
 
         Multithreading.POOL.submit(() -> {
             try {
@@ -43,7 +40,6 @@ public class AutoGG extends AbstractMod {
                 e.printStackTrace();
             }
         });
-
         return this;
     }
 
