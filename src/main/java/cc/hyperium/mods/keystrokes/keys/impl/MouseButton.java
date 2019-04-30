@@ -22,11 +22,9 @@ import cc.hyperium.mods.keystrokes.keys.IKey;
 import net.minecraft.client.gui.Gui;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
-
 import java.awt.Color;
 
 public class MouseButton extends IKey {
-
     private static final String[] BUTTONS = new String[]{"LMB", "RMB"};
     private final int button;
     private boolean wasPressed = true;
