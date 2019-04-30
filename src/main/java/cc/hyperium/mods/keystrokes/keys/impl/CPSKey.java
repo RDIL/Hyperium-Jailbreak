@@ -24,13 +24,11 @@ import cc.hyperium.mods.keystrokes.KeystrokesMod;
 import cc.hyperium.mods.keystrokes.keys.IKey;
 import net.minecraft.client.gui.Gui;
 import org.lwjgl.input.Mouse;
-
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CPSKey extends IKey {
-
     private final List<Long> leftClicks = new ArrayList<>();
     private final List<Long> rightClicks = new ArrayList<>();
     private boolean leftWasDown = false;
@@ -41,7 +39,6 @@ public class CPSKey extends IKey {
 
         EventBus.INSTANCE.register(this);
     }
-
 
     @Override
     public void renderKey(int x, int y) {
@@ -60,7 +57,6 @@ public class CPSKey extends IKey {
         }
 
         Mouse.poll();
-
         int textColor = getColor();
 
         Gui.drawRect(x + this.xOffset, y + yOffset, x + this.xOffset + 70, y + yOffset + 16, new Color(0, 0, 0, 120).getRGB());
