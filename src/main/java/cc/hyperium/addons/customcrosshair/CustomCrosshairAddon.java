@@ -44,6 +44,11 @@ public class CustomCrosshairAddon extends AbstractAddon {
         instance = this;
         return this;
     }
+    @Override
+    public Metadata getAddonMetadata() {
+        AbstractAddon.Metadata metadata = new AbstractAddon.Metadata(this, "", "", "");
+        return metadata;
+    }
 
     public void resetCrosshair() {
         this.crosshair = new CustomCrosshair();
