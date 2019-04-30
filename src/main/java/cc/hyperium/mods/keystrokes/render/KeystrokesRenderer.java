@@ -29,18 +29,11 @@ import cc.hyperium.mods.keystrokes.screen.GuiScreenKeystrokes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * The KeystrokesRenderer, taken and modified from the v3 source
- *
- * @author Fyu and boomboompower
- */
 public class KeystrokesRenderer {
-
     private final Minecraft mc = Minecraft.getMinecraft();
     private final KeystrokesMod mod;
     private final Key[] movementKeys = new Key[4];
@@ -87,10 +80,8 @@ public class KeystrokesRenderer {
             if (this.mc.currentScreen instanceof GuiScreenKeystrokes || this.mc.currentScreen instanceof GuiScreenColor) {
                 try {
                     this.mc.currentScreen.handleInput();
-                } catch (IOException ignored) {
-                }
+                } catch (IOException ignored) {}
             }
-
         } else if (this.mc.inGameHasFocus && !this.mc.gameSettings.showDebugInfo) {
             this.renderKeystrokes();
         }
@@ -114,21 +105,17 @@ public class KeystrokesRenderer {
             if (x < 0) {
                 this.mod.getSettings().setX(0);
                 x = this.mod.getSettings().getX();
-
             } else if (x * this.mod.getSettings().getScale() > res.getScaledWidth() - width * this.mod.getSettings().getScale()) {
                 this.mod.getSettings().setX((int) ((res.getScaledWidth() - width * this.mod.getSettings().getScale()) / this.mod.getSettings().getScale()));
                 x = this.mod.getSettings().getX();
             }
-
             if (y < 0) {
                 this.mod.getSettings().setY(0);
                 y = this.mod.getSettings().getY();
-
             } else if (y * this.mod.getSettings().getScale() > res.getScaledHeight() - height * this.mod.getSettings().getScale()) {
                 this.mod.getSettings().setY((int) ((res.getScaledHeight() - height * this.mod.getSettings().getScale()) / this.mod.getSettings().getScale()));
                 y = this.mod.getSettings().getY();
             }
-
             if (this.mod.getSettings().getScale() != 1.0) {
                 GlStateManager.pushMatrix();
                 GlStateManager.scale(this.mod.getSettings().getScale(), this.mod.getSettings().getScale(), 1.0);
