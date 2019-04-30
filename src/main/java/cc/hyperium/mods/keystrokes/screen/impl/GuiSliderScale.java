@@ -23,7 +23,6 @@ import cc.hyperium.mods.keystrokes.screen.GuiScreenKeystrokes;
 import net.minecraftforge.fml.client.config.GuiSlider;
 
 public class GuiSliderScale extends GuiSlider {
-
     private final KeystrokesSettings settings;
     private final GuiScreenKeystrokes keystrokesGui;
 
