@@ -14,6 +14,11 @@ public class BossbarAddon extends AbstractAddon {
     public GuiBossbarSetting getGuiBossBarSetting() {
         return guiBossBarSetting;
     }
+    @Override
+    public Metadata getAddonMetadata() {
+        AbstractAddon.Metadata metadata = new AbstractAddon.Metadata(this, "", "", "");
+        return metadata;
+    }
 
     @Override
     public AbstractAddon init() {
