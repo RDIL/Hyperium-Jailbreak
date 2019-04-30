@@ -27,13 +27,11 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
-
 import java.awt.Color;
 import java.io.IOException;
 import java.util.List;
 
 public class GuiScreenEditKeys extends GuiScreen {
-
     private KeystrokesMod mod;
     private CustomKeyWrapper selected;
     private CustomKeyWrapper currentlyDragging;
@@ -116,9 +114,7 @@ public class GuiScreenEditKeys extends GuiScreen {
 
     @Override
     public void onGuiClosed() {
-        if (updated) {
-            mod.getSettings().save();
-        }
+        if (updated) mod.getSettings().save();
         Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new GuiScreenKeystrokes(mod));
     }
 
@@ -137,9 +133,7 @@ public class GuiScreenEditKeys extends GuiScreen {
         mod.getRenderer().renderKeystrokes();
         super.drawScreen(mouseX, mouseY, partialTicks);
 
-        if (selected != null && Mouse.isButtonDown(0) && currentlyDragging == null && selected.getKey().getHitbox().multiply(mod.getSettings().getScale()).isMouseOver(mouseX, mouseY)) {
-            currentlyDragging = selected;
-        }
+        if (selected != null && Mouse.isButtonDown(0) && currentlyDragging == null && selected.getKey().getHitbox().multiply(mod.getSettings().getScale()).isMouseOver(mouseX, mouseY)) currentlyDragging = selected;
     }
 
     @Override
@@ -147,14 +141,10 @@ public class GuiScreenEditKeys extends GuiScreen {
         super.mouseClicked(mouseX, mouseY, mouseButton);
         boolean hovered = false;
         for (GuiButton button : buttonList) {
-            if (button.isMouseOver()) {
-                hovered = true;
-            }
+            if (button.isMouseOver()) hovered = true;
         }
 
-        if (!hovered) {
-            selected = null;
-        }
+        if (!hovered) selected = null;
 
         for (CustomKeyWrapper wrapper : getKeys()) {
             if (wrapper.getKey().getHitbox().multiply(mod.getSettings().getScale()).isMouseOver(mouseX, mouseY)) {
