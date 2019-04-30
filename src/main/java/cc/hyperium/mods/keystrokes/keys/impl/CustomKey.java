@@ -27,11 +27,9 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
-
 import java.awt.*;
 
 public class CustomKey extends IKey {
-
     private int key;
     private boolean wasPressed;
     private long lastPress;
@@ -126,7 +124,6 @@ public class CustomKey extends IKey {
         this.type = type;
     }
 
-
     public GuiBlock getHitbox() {
         return hitbox;
     }
@@ -140,10 +137,7 @@ public class CustomKey extends IKey {
     }
 
     private boolean isButtonDown(int buttonCode) {
-        if (buttonCode < 0) {
-            return Mouse.isButtonDown(buttonCode + 100);
-        }
-
+        if (buttonCode < 0) return Mouse.isButtonDown(buttonCode + 100);
         return buttonCode > 0 && Keyboard.isKeyDown(buttonCode);
     }
 }
