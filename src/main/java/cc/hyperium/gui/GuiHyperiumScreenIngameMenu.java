@@ -14,10 +14,8 @@ import net.minecraft.client.gui.GuiShareToLan;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.achievement.GuiAchievements;
 import net.minecraft.client.gui.achievement.GuiStats;
-import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.server.MinecraftServer;
 import java.io.IOException;
 
 public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
