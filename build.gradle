@@ -29,12 +29,8 @@ buildscript {
             name = 'sponge'
             url = 'https://repo.spongepowered.org/maven'
         }
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-        maven {
-            url 'https://jitpack.io'
-        }
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url 'https://jitpack.io' }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
@@ -56,7 +52,6 @@ apply plugin: 'maven'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-
 group = "cc.hyperium"
 archivesBaseName = "Hyperium"
 
@@ -68,7 +63,7 @@ minecraft {
     tweakClass = "cc.hyperium.launch.HyperiumTweaker"
     mappings = "stable_20"
     runDir = 'run'
-    clientJvmArgs = ["-XX:-DisableExplicitGC"] // fast world loading
+    clientJvmArgs = ["-XX:-DisableExplicitGC"]
     makeObfSourceJar = false
 }
 
@@ -85,7 +80,7 @@ dependencies {
     embed group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
     embed group: 'org.slick2d', name: 'slick2d-core', version: '1.0.2'
     embed group: 'com.nativelibs4java', name: 'bridj', version: '0.7.0'
-    embed 'com.github.KevinPriv:MojangAPI:1.0'
+    embed 'com.github.hyperiumjailbreak:MojangAPI:2.1.1'
     embed 'com.github.Cubxity:DeobfStack:1.2'
     embed 'com.github.hyperiumjailbreak:Installer:3.5'
     embed fileTree(dir: 'libs', include: 'Netty Client.jar')
@@ -118,22 +113,12 @@ processResources {
 
 jar {
     dependsOn configurations.compile
-    from {
-        configurations.embed.collect {
-            it.isDirectory() ? it : zipTree(it)
-        }
-    }
+    from { configurations.embed.collect { it.isDirectory() ? it : zipTree(it) } }
     exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
 }
 
 jar {
-    manifest.attributes(
-            "MixinConfigs": 'mixins.hyperium.json',
-            "TweakClass": 'cc.hyperium.launch.HyperiumTweaker',
-            "TweakOrder": 0,
-            "Manifest-Version": 1.0,
-            'Main-Class': 'cc.hyperium.installer.InstallerStart'
-    )
+    manifest.attributes("MixinConfigs": 'mixins.hyperium.json',"TweakClass": 'cc.hyperium.launch.HyperiumTweaker',"TweakOrder": 0,"Manifest-Version": 1.0,'Main-Class': 'cc.hyperium.installer.InstallerStart')
     configurations.embed.each { dep ->
         from(project.zipTree(dep)) {
             exclude 'META-INF', 'META-INF/**'
