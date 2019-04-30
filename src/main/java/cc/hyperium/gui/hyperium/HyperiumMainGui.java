@@ -225,21 +225,14 @@ public class HyperiumMainGui extends HyperiumGui {
         if (Settings.BACKGROUND.equalsIgnoreCase("default")) {
             drawDefaultBackground();
         } else {
-            if (customImage.exists() && bgDynamicTexture != null && customBackground) {
-                Minecraft.getMinecraft().getTextureManager().bindTexture(bgDynamicTexture);
-            } else {
-                Minecraft.getMinecraft().getTextureManager().bindTexture(background);
-            }
+            Minecraft.getMinecraft().getTextureManager().bindTexture(background);
 
             Tessellator tessellator = Tessellator.getInstance();
             WorldRenderer worldrenderer = tessellator.getWorldRenderer();
             worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
-            worldrenderer.pos(0.0D, (double) sr.getScaledHeight(), -90.0D).tex(0.0D, 1.0D)
-                .endVertex();
-            worldrenderer.pos((double) sr.getScaledWidth(), (double) sr.getScaledHeight(), -90.0D)
-                .tex(1.0D, 1.0D).endVertex();
-            worldrenderer.pos((double) sr.getScaledWidth(), 0.0D, -90.0D).tex(1.0D, 0.0D)
-                .endVertex();
+            worldrenderer.pos(0.0D, (double) sr.getScaledHeight(), -90.0D).tex(0.0D, 1.0D).endVertex();
+            worldrenderer.pos((double) sr.getScaledWidth(), (double) sr.getScaledHeight(), -90.0D).tex(1.0D, 1.0D).endVertex();
+            worldrenderer.pos((double) sr.getScaledWidth(), 0.0D, -90.0D).tex(1.0D, 0.0D).endVertex();
             worldrenderer.pos(0.0D, 0.0D, -90.0D).tex(0.0D, 0.0D).endVertex();
             tessellator.draw();
         }
