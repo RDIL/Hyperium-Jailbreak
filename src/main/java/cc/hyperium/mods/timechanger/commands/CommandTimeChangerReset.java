@@ -24,7 +24,6 @@ import cc.hyperium.mods.timechanger.TimeChanger.TimeType;
 import cc.hyperium.utils.ChatColor;
 
 public class CommandTimeChangerReset implements BaseCommand {
-
     private final TimeChanger mod;
 
     public CommandTimeChangerReset(TimeChanger main) {
@@ -44,6 +43,6 @@ public class CommandTimeChangerReset implements BaseCommand {
     @Override
     public void onExecute(String[] args) {
         this.mod.setTimeType(TimeType.VANILLA);
-        GeneralChatHandler.instance().sendMessage(ChatColor.RED + "[TimeChanger] " + ChatColor.GREEN + "Now using vanilla time.", false);
+        GeneralChatHandler.instance().sendMessage(ChatColor.GREEN + "Now using vanilla time.", false);
     }
 }
