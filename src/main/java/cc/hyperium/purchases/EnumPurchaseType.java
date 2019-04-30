@@ -25,7 +25,6 @@ public enum EnumPurchaseType {
     DEADMAU5_COSMETIC("Ears"),
     DRAGON_HEAD("Dragon Head"),
     DRAGON_COMPANION("Dragon Companion"),
-    BACKPACK_ENDER_DRAGON("Ender Dragon Backpack"),
     HAT_TOPHAT("Tophat"),
     HAT_FEZ("Fez Hat"),
     HAT_LEGO("Lego Hat"),
