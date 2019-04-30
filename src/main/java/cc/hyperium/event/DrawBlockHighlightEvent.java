@@ -23,7 +23,6 @@ import net.minecraft.util.MovingObjectPosition;
 import org.jetbrains.annotations.NotNull;
 
 public final class DrawBlockHighlightEvent extends CancellableEvent {
-
     @NotNull
     private final EntityPlayer player;
 
@@ -35,7 +34,6 @@ public final class DrawBlockHighlightEvent extends CancellableEvent {
     public DrawBlockHighlightEvent(@NotNull EntityPlayer player, @NotNull MovingObjectPosition target, float partialTicks) {
         Preconditions.checkNotNull(player, "player");
         Preconditions.checkNotNull(target, "target");
-
         this.player = player;
         this.target = target;
         this.partialTicks = partialTicks;
