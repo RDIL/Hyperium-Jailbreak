@@ -23,7 +23,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public abstract class AbstractAddon {
     public abstract AbstractAddon init();
-    ublic abstract Metadata getAddonMetadata();
+    public abstract Metadata getAddonMetadata();
     public class Metadata {
         private final AbstractAddon addon;
         private final String author;
