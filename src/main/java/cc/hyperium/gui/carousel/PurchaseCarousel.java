@@ -27,9 +27,7 @@ public class PurchaseCarousel {
         if (items.length == 0) throw new IllegalArgumentException("Items must have at least 1 item in it");
         this.index = index;
         this.items = items;
-
         ScaledResolution current = ResolutionUtil.current();
-        int totalWidth = current.getScaledWidth() / 3;
     }
 
     public static PurchaseCarousel create(int index, CarouselItem... items) {
@@ -45,7 +43,6 @@ public class PurchaseCarousel {
     }
 
     public void mouseClicked(int x, int y, int centerX) {
-
         ScaledResolution current = ResolutionUtil.current();
         int totalWidth = current.getScaledWidth() / 3;
         int panel = totalWidth / 5;
