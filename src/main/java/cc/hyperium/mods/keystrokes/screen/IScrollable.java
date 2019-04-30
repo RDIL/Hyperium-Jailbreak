@@ -17,12 +17,7 @@
 
 package cc.hyperium.mods.keystrokes.screen;
 
-/**
- * Better way to control scrolling (Using Anonymous classes)
- */
 public interface IScrollable {
-
     double getAmount();
-
     void onScroll(double doubleAmount, int intAmount);
 }
