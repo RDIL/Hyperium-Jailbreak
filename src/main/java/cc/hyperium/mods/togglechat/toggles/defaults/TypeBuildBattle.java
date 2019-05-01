@@ -19,15 +19,12 @@ package cc.hyperium.mods.togglechat.toggles.defaults;
 
 import cc.hyperium.mods.togglechat.toggles.ToggleBase;
 import cc.hyperium.utils.ChatColor;
-
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TypeBuildBattle extends ToggleBase {
-
     private final Pattern battlePattern = Pattern.compile("(?<battle>.*\\w) (?<rank>\\[.+] )?(?<player>\\S{1,16}): (?<message>.*)");
-
     private boolean enabled = true;
 
     @Override
@@ -39,8 +36,6 @@ public class TypeBuildBattle extends ToggleBase {
     public String getDisplayName() {
         return "Build battle: %s";
     }
-
-    // Rookie [MVP+] boomboompower: tt
 
     @Override
     public boolean shouldToggle(String message) {
