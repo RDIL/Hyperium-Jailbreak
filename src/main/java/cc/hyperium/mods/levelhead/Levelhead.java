@@ -45,8 +45,6 @@ import java.util.Set;
 import java.util.UUID;
 
 public class Levelhead extends AbstractMod {
-    public final String MODID = "LEVEL_HEAD";
-    public final String VERSION = "5.0";
     public final Map<UUID, LevelheadTag> levelCache = new HashMap<>();
     private final Metadata meta;
     private final Map<UUID, Integer> timeCheck = new HashMap<>();
@@ -143,7 +141,7 @@ public class Levelhead extends AbstractMod {
 
         if (!mc.isGamePaused() && mc.thePlayer != null && mc.theWorld != null) {
             if (System.currentTimeMillis() < this.waitUntil) {
-                if (this.updates > 0)  this.updates = 0;
+                if (this.updates > 0) this.updates = 0;
                 return;
             }
 
@@ -181,11 +179,9 @@ public class Levelhead extends AbstractMod {
             String raw = mod.rawWithAgent(
                 "https://api.sk1er.club/levelheadv5/" + trimUuid(uuid) + "/" + type
                     + "/" + trimUuid(Minecraft.getMinecraft().getSession().getProfile().getId()) +
-                    "/" + VERSION);
+                    "/5.0");
             JsonHolder object = new JsonHolder(raw);
-            if (!object.optBoolean("success")) {
-                object.put("strlevel", "Error");
-            }
+            if (!object.optBoolean("success")) object.put("strlevel", "Error");
             LevelheadTag value = buildTag(object, uuid);
             levelCache.put(uuid, value);
             trueValueCache.put(uuid, object.optString("strlevel"));
