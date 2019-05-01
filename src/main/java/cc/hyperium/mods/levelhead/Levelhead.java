@@ -75,7 +75,7 @@ public class Levelhead extends AbstractMod {
     }
 
     public AbstractMod init() {
-        mod = new Sk1erMod(MODID, VERSION);
+        mod = Sk1erMod.getInstance();
         Multithreading.runAsync(() -> types = new JsonHolder(mod.rawWithAgent("https://api.sk1er.club/levelhead_config")));
         this.config = new LevelheadConfig();
         Hyperium.CONFIG.register(config);
