@@ -19,9 +19,7 @@ package cc.hyperium.addons.customcrosshair.gui.items;
 
 import cc.hyperium.addons.customcrosshair.CustomCrosshairAddon;
 import cc.hyperium.addons.customcrosshair.utils.CustomCrosshairGraphics;
-
 import java.awt.Color;
-
 import net.minecraft.client.gui.GuiScreen;
 
 public class CCSlider extends CCGuiItem {
@@ -33,12 +31,7 @@ public class CCSlider extends CCGuiItem {
     private double offset;
     private int boxWidth;
     private Color boxColour;
-
     private Runnable callback;
-
-    public static final String README = "I'd like to thank boomboompower for fixing this class for me. " +
-                                        "Go sub to him: https://www.youtube.com/channel/UC63_abmxSPyoGneeDPsVpmQ " +
-                                        "His twitter: https://twitter.com/xBOOMBOOMPOWERx";
 
     public CCSlider(final GuiScreen screen) {
         this(screen, -1, "no name", 0, 0, 100, 10, 0, 100);
@@ -71,8 +64,7 @@ public class CCSlider extends CCGuiItem {
 
     @Override
     public void drawItem(final int mouseX, final int mouseY) {
-        CustomCrosshairGraphics
-            .drawThemeBorderedRectangle(this.getPosX(), this.getPosY(), this.getPosX() + this.getWidth(), this.getPosY() + this.getHeight());
+        CustomCrosshairGraphics.drawThemeBorderedRectangle(this.getPosX(), this.getPosY(), this.getPosX() + this.getWidth(), this.getPosY() + this.getHeight());
         Color borderColour = new Color(255, 255, 255, 255);
         if (this.isMouseOverBox(mouseX, mouseY) || this.mouseDown) {
             borderColour = new Color(255, 180, 0, 255);
