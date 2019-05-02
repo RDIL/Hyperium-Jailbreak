@@ -4,6 +4,9 @@ import cc.hyperium.Hyperium;
 import cc.hyperium.config.Settings;
 import cc.hyperium.gui.hyperium.HyperiumMainGui;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
+import cc.hyperium.mods.sk1ercommon.Multithreading;
+import cc.hyperium.purchases.PurchaseApi;
+import cc.hyperium.utils.JsonHolder;
 import cc.hyperium.gui.keybinds.GuiKeybinds;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -112,11 +115,71 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
         GlStateManager.pushMatrix();
 
         GlStateManager.translate(0, height - 50, 0);
+        if (System.currentTimeMillis() - lastUpdate > 2000L) {
+            refreshData();
+        }
         baseAngle %= 360;
 
         ScaledResolution current = ResolutionUtil.current();
         GlStateManager.translate(current.getScaledWidth() / 2, 5, 0);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        drawCenteredString(fontRendererObj, I18n.format("gui.ingamemenu.playercount"), 0, -5, 0xFFFFFF);
+        GlStateManager.translate(0F, 10F, 0F);
+        GlStateManager.scale(1, 1, 1);
+        GlStateManager.rotate(baseAngle, 1.0F, 0.0F, 0.0F);
+        GlStateManager.enableAlpha();
+
+        float z = 4F;
+        float e = 80;
+        float i = 0;
+
+        GlStateManager.translate(0.0F, 0.0F, z);
+
+        if (baseAngle < e) {
+            i = (e - Math.abs(baseAngle)) / e;
+        } else if (baseAngle > 360 - e) {
+            i = (e - (Math.abs((360) - baseAngle))) / e;
+        }
+
+        if (i > 0) {
+            drawCenteredString(fontRendererObj, I18n.format("gui.ingamemenu.playercount.now", ChatFormatting.GREEN + formatter.format(data.optInt("online")) + ChatFormatting.RESET), 0, 0, 0xFFFFFF);
+        }
+
+        GlStateManager.translate(0.0F, 0.0F, -z);
+        GlStateManager.rotate(90, 1.0F, 0.0F, 0.0F);
+        GlStateManager.translate(0.0F, 0.0F, z);
+        i = (e - Math.abs(270 - baseAngle)) / e;
+
+        if (i > 0) {
+            drawCenteredString(fontRendererObj, I18n.format("gui.ingamemenu.playercount.lastday", ChatFormatting.GREEN + formatter.format(data.optInt("day")) + ChatFormatting.RESET), 0, 0, 0xFFFFFF);
+        }
+
+        GlStateManager.translate(0.0F, 0.0F, -z);
+        GlStateManager.rotate(90, 1.0F, 0.0F, 0.0F);
+        GlStateManager.translate(0.0F, 0.0F, z);
+        i = (e - Math.abs(180 - baseAngle)) / e;
+
+        if (i > 0) {
+            drawCenteredString(fontRendererObj, I18n.format("gui.ingamemenu.playercount.lastweek", ChatFormatting.GREEN + formatter.format(data.optInt("week")) + ChatFormatting.RESET), 0, 0, 0xFFFFFF);
+        }
+
+        GlStateManager.translate(0.0F, 0.0F, -z);
+        GlStateManager.rotate(90, 1.0F, 0.0F, 0.0F);
+        GlStateManager.translate(0.0F, 0.0F, z);
+        i = (e - Math.abs(90 - baseAngle)) / e;
+
+        if (i > 0) drawCenteredString(fontRendererObj, I18n.format("gui.ingamemenu.playercount.alltime", ChatFormatting.GREEN + formatter.format(data.optInt("all")) + ChatFormatting.RESET), 0, 0, 0xFFFFFF);
+
+        GlStateManager.popMatrix();
+    }
+
+    private synchronized void refreshData() {
+        lastUpdate = System.currentTimeMillis() * 2;
+
+        Multithreading.runAsync(() -> {
+            data = PurchaseApi.getInstance().get("https://api.hyperium.cc/users");
+            lastUpdate = System.currentTimeMillis();
+        });
     }
 
     @Override
