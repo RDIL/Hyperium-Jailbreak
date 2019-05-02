@@ -20,8 +20,12 @@ import net.minecraft.client.gui.achievement.GuiStats;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
+    private static JsonHolder data = new JsonHolder();
+    private final DecimalFormat formatter = new DecimalFormat("#,###");
+    private long lastUpdate = 0L;
     private int cooldown = 0;
     private int baseAngle;
 
