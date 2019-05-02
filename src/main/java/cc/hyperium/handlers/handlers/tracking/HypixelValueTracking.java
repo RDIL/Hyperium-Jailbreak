@@ -4,6 +4,7 @@ import cc.hyperium.Hyperium;
 import cc.hyperium.event.HypixelGetCoinsEvent;
 import cc.hyperium.event.HypixelGetXPEvent;
 import cc.hyperium.event.InvokeEvent;
+import cc.hyperium.event.RankedRatingChangeEvent;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.utils.JsonHolder;
 import com.google.gson.Gson;
@@ -63,7 +64,6 @@ public class HypixelValueTracking {
             valueTrackingItems.add(GSON.fromJson(data.getAsJsonObject(), ValueTrackingItem.class));
         }
         return valueTrackingItems;
-
     }
 
     private File getFileOnDay(long day) {
@@ -103,6 +103,11 @@ public class HypixelValueTracking {
 
     private File getCurrent() {
         return getFileOnDay(System.currentTimeMillis());
+    }
+
+    @InvokeEvent
+    public void ratingChangeEvent(RankedRatingChangeEvent event) {
+        post(ValueTrackingType.RANKED_RATING, event.getRating());
     }
 
     @InvokeEvent
