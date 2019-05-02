@@ -31,8 +31,8 @@ import java.awt.Font;
 
 public class SplashProgress {
     private static final int DEFAULT_MAX = 13;
-    private static int PROGRESS = 0;
-    private static String CURRENT = "";
+    private static int PROGRESS = 1;
+    private static String CURRENT = "One second...";
     private static ResourceLocation splash;
     private static TextureManager ctm;
     private static HyperiumFontRenderer sfr;
