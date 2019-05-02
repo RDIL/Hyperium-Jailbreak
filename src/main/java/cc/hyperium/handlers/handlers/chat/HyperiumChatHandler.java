@@ -35,6 +35,7 @@ public abstract class HyperiumChatHandler {
     public void callback(JsonHolder data) {}
 
     public enum ChatRegexType {
+        SKYWARS_RATING,
         PRIVATE_MESSAGE_TO,
         PRIVATE_MESSAGE_FROM,
         FRIEND_REQUEST,
@@ -45,6 +46,7 @@ public abstract class HyperiumChatHandler {
         BEDWARS_KILL,
         MEGAWALLS_KILL,
         BLITZ_KILL,
+        QUEST_COMPLETE,
         WIN
     }
 }
