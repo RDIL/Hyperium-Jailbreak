@@ -40,15 +40,14 @@ import jb.Metadata;
 
 public class CrashReportGUI extends JDialog {
     private CrashReport report;
-
-    private int handle = 0; // 0 - // Force stop, 1 - Soft shutdown, 2 - Restart
+    private int handle = 0;
 
     CrashReportGUI(CrashReport report) {
         super();
         this.report = report;
 
         setModal(true);
-        setTitle("Hyperium Crash Report");
+        setTitle("Game Crash");
         setSize(200, 300);
         setResizable(false);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -106,7 +105,7 @@ public class CrashReportGUI extends JDialog {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        JLabel crash = new JLabel("Game crash");
+        JLabel crash = new JLabel("HyperiumJailbreak");
         crash.setHorizontalAlignment(SwingConstants.CENTER);
         crash.setBounds(0, 2, 200, 40);
         crash.setBackground(new Color(30, 30, 30));
@@ -119,44 +118,6 @@ public class CrashReportGUI extends JDialog {
         desc.setBackground(new Color(30, 30, 30));
         desc.setForeground(Color.WHITE);
         desc.setFont(resize(t, 190, f, desc));
-        JButton report = new JButton("REPORT");
-        report.setUI(new BasicButtonUI());
-        report.setBackground(new Color(255, 254, 254));
-        report.setForeground(new Color(30, 30, 30));
-        report.setFont(f);
-        report.setBorderPainted(false);
-        report.setFocusPainted(false);
-        report.setBounds(2, 208, 196, 20);
-        report.addActionListener(e -> Multithreading.runAsync(() -> {
-            // Need a better solution, we miss a lot of valid reports
-            // And it'd be better to get as much info as possible
-            report.setEnabled(false);
-            report.setText("REPORTING...");
-            if (sendReport()) {
-                report.setEnabled(false);
-                report.setText("REPORTED");
-            } else if (copyReport()) {
-                report.setEnabled(false);
-                report.setText("COPIED TO CLIPBOARD");
-            } else {
-                report.setText("FAILED TO REPORT");
-            }
-        }));
-
-        JButton restart = new JButton("RESTART");
-        restart.setUI(new BasicButtonUI());
-        restart.setBackground(new Color(255, 254, 254));
-        restart.setForeground(new Color(30, 30, 30));
-        restart.setFont(f);
-        restart.setBorderPainted(false);
-        restart.setFocusPainted(false);
-        restart.setBounds(2, 230, 196, 20);
-        restart.addActionListener(a -> {
-            handle = 2;
-            restart.setText("RESTARTING...");
-            LaunchUtil.launch();
-            dispose();
-        });
 
         JButton exit = new JButton("EXIT");
         exit.setUI(new BasicButtonUI());
@@ -165,57 +126,17 @@ public class CrashReportGUI extends JDialog {
         exit.setFont(f);
         exit.setBorderPainted(false);
         exit.setFocusPainted(false);
-        exit.setBounds(2, 252, 196, 20);
+        exit.setBounds(2, 208, 196, 20);
         exit.addActionListener(a -> {
             handle = 1;
             dispose();
         });
         c.add(crash);
         c.add(desc);
-        c.add(report);
-        c.add(restart);
         c.add(exit);
         if (error != null) {
             c.add(error);
         }
-    }
-
-    private boolean sendReport() {
-        try {
-            AtomicReference<String> addons = new AtomicReference<>("");
-            try {
-                AddonBootstrap.INSTANCE.getAddonManifests().forEach(m -> addons.getAndUpdate(a -> a + m.getName() + " " + m.getVersion() + ", "));
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-            if (addons.get().isEmpty()) addons.set("none");
-            String hurl = null;
-
-            if (report != null) {
-                StringBuilder sb = new StringBuilder();
-                String[] rep = report.getCompleteReport().split("\n");
-                sb.append("\n");
-                Mapping mapping = new Mapping("mc_1.8.9");
-                for (String s : rep) {
-                    String l = DeobfStack.deobfLine(s, mapping);
-                    sb.append(l).append("\n");
-                }
-                hurl = haste(sb.toString());
-            }
-
-            if (report != null && hurl == null) {
-                return false;
-            }
-            NettyClient client = NettyClient.getClient();
-            if (client != null)
-                client.write(ServerCrossDataPacket.build(new JsonHolder().put("crash_report", true).put("internal", true).put("crash",
-                    new JsonHolder().put("crash-full", report == null ? "unavailable" : hurl).put("hyperium", Metadata.getVersion()).put("addons", addons.toString())
-                )));
-            return true;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return false;
     }
 
     private boolean copyReport() {
@@ -226,9 +147,7 @@ public class CrashReportGUI extends JDialog {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-            if (addons.get().isEmpty()) {
-                addons.set("none");
-            }
+            if (addons.get().isEmpty()) addons.set("none");
             String hurl = null;
             if (report != null) {
                 hurl = haste(report.getCompleteReport());
