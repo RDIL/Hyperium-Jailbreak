@@ -2,7 +2,6 @@ package cc.hyperium.gui;
 
 import cc.hyperium.installer.InstallerMain;
 import cc.hyperium.internal.addons.AddonBootstrap;
-import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.utils.JsonHolder;
 import com.google.gson.JsonParser;
 import net.minecraft.crash.CrashReport;
