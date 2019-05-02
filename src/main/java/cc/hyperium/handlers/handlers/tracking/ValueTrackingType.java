@@ -3,6 +3,7 @@ package cc.hyperium.handlers.handlers.tracking;
 public enum ValueTrackingType {
     COINS("Coins", StatisticViewingGui.CompressionType.SUM, StatisticViewingGui.MissingDataHandling.ZERO),
     EXPERIENCE("Experience", StatisticViewingGui.CompressionType.SUM, StatisticViewingGui.MissingDataHandling.ZERO),
+    RANKED_RATING("Ranked Rating", StatisticViewingGui.CompressionType.MAX, StatisticViewingGui.MissingDataHandling.AVERAGE),
     ERROR("Error", StatisticViewingGui.CompressionType.SUM, StatisticViewingGui.MissingDataHandling.ZERO);
 
     private String name;
