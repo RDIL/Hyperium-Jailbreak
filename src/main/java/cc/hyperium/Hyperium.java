@@ -38,6 +38,7 @@ import cc.hyperium.mods.autofriend.command.AutofriendCommand;
 import cc.hyperium.mods.autogg.AutoGG;
 import cc.hyperium.mods.ToggleSprintContainer;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
+import cc.hyperium.mods.GeneralStatisticsTracking;
 import cc.hyperium.netty.NettyClient;
 import cc.hyperium.netty.UniversalNetty;
 import cc.hyperium.network.LoginReplyHandler;
@@ -61,6 +62,7 @@ public class Hyperium {
     public static final Logger LOGGER = LogManager.getLogger(Metadata.getModid());
     public static final File folder = new File("hyperium");
     public static final DefaultConfig CONFIG = new DefaultConfig(new File(folder, "CONFIG.json"));
+    private final GeneralStatisticsTracking statTrack = new GeneralStatisticsTracking();
     private final ConfirmationPopup confirmation = new ConfirmationPopup();
     private NotificationCenter notification;
     private HyperiumCosmetics cosmetics;
@@ -116,7 +118,9 @@ public class Hyperium {
             EventBus.INSTANCE.register(notification);
             EventBus.INSTANCE.register(CompactChat.getInstance());
             EventBus.INSTANCE.register(confirmation);
-
+            // Register statistics tracking.
+            EventBus.INSTANCE.register(statTrack);
+            CONFIG.register(statTrack);
             CONFIG.register(new ToggleSprintContainer());
 
             SplashProgress.setProgress(7, "Starting");
@@ -170,11 +174,15 @@ public class Hyperium {
         hyperiumCommandHandler.registerCommand(new CommandParty());
         hyperiumCommandHandler.registerCommand(new CommandResize());
         hyperiumCommandHandler.registerCommand(new CommandGarbageCollect());
+        hyperiumCommandHandler.registerCommand(new CommandMessage());
         hyperiumCommandHandler.registerCommand(new CommandDisableCommand());
         if(!Settings.FPS) {
             hyperiumCommandHandler.registerCommand(new CustomLevelheadCommand());
             hyperiumCommandHandler.registerCommand(new AutofriendCommand());
+            hyperiumCommandHandler.registerCommand(new CommandStatistics());
+            hyperiumCommandHandler.registerCommand(new CommandQuests());
         }
+        hyperiumCommandHandler.registerCommand(new CommandGuild());
         hyperiumCommandHandler.registerCommand(new CommandKeybinds());
     }
 
