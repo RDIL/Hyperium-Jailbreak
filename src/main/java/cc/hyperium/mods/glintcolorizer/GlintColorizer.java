@@ -17,7 +17,7 @@ public class GlintColorizer extends AbstractMod {
     @SuppressWarnings("unused")
     @InvokeEvent
     public void onTick(TickEvent e) {
-        if (!Settings.glintColorizer) {
+        if (!Colors.glintColorizer) {
             if (Colors.onepoint8glintcolorI != -8372020) Colors.onepoint8glintcolorI = -8372020;
             return;
         }
@@ -25,7 +25,7 @@ public class GlintColorizer extends AbstractMod {
             Colors.onepoint8glintcolorI = Color.HSBtoRGB(System.currentTimeMillis() % 10000L / 10000.0f, 0.8f, 0.8f);
             return;
         }
-        Colors.onepoint8glintcolorI = getIntFromColor(Colors.glintR, Colors.glintG, Colors.glintB);
+        Colors.onepoint8glintcolorI = Colors.getIntFromColor(Colors.glintR, Colors.glintG, Colors.glintB);
     }
 
     @Override
