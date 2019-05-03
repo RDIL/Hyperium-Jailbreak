@@ -233,18 +233,6 @@ public class HyperiumMinecraft {
         SplashProgress.setProgress(1, "Starting Game...");
     }
 
-    public void onLoadDefaultResourcePack(CallbackInfo ci) {
-        SplashProgress.setProgress(2, "Loading Resources...");
-    }
-
-    public void onCreateDisplay(CallbackInfo ci) {
-        SplashProgress.setProgress(3, "Creating Display...");
-    }
-
-    public void onLoadTexture(CallbackInfo ci) {
-        SplashProgress.setProgress(4, "Initializing Textures...");
-    }
-
     public void loadWorld(WorldClient worldClient, CallbackInfo ci) {
         if (Minecraft.getMinecraft().theWorld != null) new WorldUnloadEvent().post();
 
