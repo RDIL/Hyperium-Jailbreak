@@ -29,10 +29,6 @@ public class Settings {
     @ToggleSetting(name = "gui.settings.FPS", category = INTEGRATIONS)
     public static boolean FPS = false;
 
-    @ConfigOpt(alt = "cc.hyperium.gui.settings.items.GeneralSetting;discordRPEnabled")
-    @ToggleSetting(name = "gui.settings.discordrp", category = INTEGRATIONS)
-    public static boolean DISCORD_RP = true;
-
     @ConfigOpt(alt = "cc.hyperium.gui.settings.items.GeneralSetting;fullbrightEnabled")
     @ToggleSetting(name = "gui.settings.fullbright", category = INTEGRATIONS)
     public static boolean FULLBRIGHT = true;
@@ -40,10 +36,6 @@ public class Settings {
     @ConfigOpt(alt = "cc.hyperium.gui.settings.items.GeneralSetting;romanNumeralsEnabled")
     @ToggleSetting(name = "gui.settings.romannumerals")
     public static boolean ROMAN_NUMERALS = true;
-
-    @ConfigOpt(alt = "cc.hyperium.gui.settings.items.GeneralSetting;discordServerDisplayEnabled")
-    @ToggleSetting(name = "gui.settings.rpshowserver", category = INTEGRATIONS)
-    public static boolean DISCORD_RP_SERVER = true;
 
     @ConfigOpt(alt = "cc.hyperium.gui.settings.items.GeneralSetting;compactChatEnabled")
     @ToggleSetting(name = "gui.settings.compactchat", category = INTEGRATIONS)
