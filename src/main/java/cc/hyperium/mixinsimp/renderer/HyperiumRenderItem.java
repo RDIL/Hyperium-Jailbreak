@@ -2,7 +2,7 @@ package cc.hyperium.mixinsimp.renderer;
 import cc.hyperium.config.Settings;
 import cc.hyperium.mixins.renderer.IMixinRenderItem;
 import cc.hyperium.mixins.renderer.IMixinRenderItem2;
-import cc.hyperium.mods.GlintColorizer;
+import cc.hyperium.mods.glintcolorizer.Colors;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -138,14 +138,14 @@ public class HyperiumRenderItem {
         float f = (float) (Minecraft.getSystemTime() % 3000L) / 3000.0F / 8.0F; // Animates the effect
         GlStateManager.translate(f, 0.0F, 0.0F);
         GlStateManager.rotate(-50.0F, 0.0F, 0.0F, 1.0F);
-        ((IMixinRenderItem) parent).callRenderModel(model, GlintColorizer.onepoint8glintcolorI);
+        ((IMixinRenderItem) parent).callRenderModel(model, Colors.onepoint8glintcolorI);
         GlStateManager.popMatrix();
         GlStateManager.pushMatrix();
         GlStateManager.scale(8.0F, 8.0F, 8.0F);
         float f1 = (float) (Minecraft.getSystemTime() % 4873L) / 4873.0F / 8.0F;
         GlStateManager.translate(-f1, 0.0F, 0.0F);
         GlStateManager.rotate(10.0F, 0.0F, 0.0F, 1.0F);
-        ((IMixinRenderItem) parent).callRenderModel(model, GlintColorizer.onepoint8glintcolorI);
+        ((IMixinRenderItem) parent).callRenderModel(model, Colors.onepoint8glintcolorI);
         GlStateManager.popMatrix();
         GlStateManager.matrixMode(5888);
         GlStateManager.blendFunc(770, 771);
