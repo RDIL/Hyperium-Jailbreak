@@ -26,11 +26,17 @@ public class GlintColorizer extends AbstractMod {
             Colors.onepoint8glintcolorI = Color.HSBtoRGB(System.currentTimeMillis() % 10000L / 10000.0f, 0.8f, 0.8f);
             return;
         }
-        Colors.onepoint8glintcolorI = Colors.getIntFromColor(Colors.glintR, Colors.glintG, Colors.glintB);
+        Colors.onepoint8glintcolorI = getIntFromColor(Colors.glintR, Colors.glintG, Colors.glintB);
     }
 
     @Override
     public Metadata getModMetadata() {
         return new Metadata(this, "GlintColor", "1", "powns");
+    }
+    private int getIntFromColor(int red, int green, int blue) {
+        red = (red << 16) & 0x00FF0000;
+        green = (green << 8) & 0x0000FF00;
+        blue = blue & 0x000000FF;
+        return 0xFF000000 | red | green | blue;
     }
 }
