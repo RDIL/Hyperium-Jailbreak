@@ -34,13 +34,13 @@ public class Colors {
         glintR = r;
         glintG = g;
         glintB = b;
-        onepoint8glintcolorF = Color.RGBtoHSB(Settings.glintR, Settings.glintG, Settings.glintB, null);
+        onepoint8glintcolorF = Color.RGBtoHSB(glintR, glintG, glintB, null);
         onepoint8glintcolorI = Color.HSBtoRGB(onepoint8glintcolorF[0], onepoint8glintcolorF[1], onepoint8glintcolorF[2]);
     }
 
     public void setChroma(boolean bool) {
         if (!(glintcolorChroma = bool)) {
-            onepoint8glintcolorF = Color.RGBtoHSB(Settings.glintR, Settings.glintG, Settings.glintB, null);
+            onepoint8glintcolorF = Color.RGBtoHSB(glintR, glintG, glintB, null);
             onepoint8glintcolorI = Color.HSBtoRGB(onepoint8glintcolorF[0], onepoint8glintcolorF[1], onepoint8glintcolorF[2]);
         }
     }
