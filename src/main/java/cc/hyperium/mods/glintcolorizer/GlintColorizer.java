@@ -33,7 +33,7 @@ public class GlintColorizer extends AbstractMod {
 
     @Override
     public Metadata getModMetadata() {
-        return new Metadata(this, "Glint Colorizer", "1.0", "powns");
+        return new Metadata(this, "GlintColorizer", "1", "powns");
     }
 
     private int getIntFromColor(int red, int green, int blue) {
