@@ -36,7 +36,6 @@ public enum Minigame {
     SKYWARS("SkyWars", "SkyWars", 10),
     TRUE_COMBAT("Crazy Walls", "TrueCombat", 2),
     SPEED_UHC("Speed UHC", "SpeedUHC", 12),
-    SKYCLASH("SkyClash", "SkyClash", 9),
     LEGACY("Classic Games", "Legacy", 2),
     PROTOTYPE("Prototype", "Prototype", 7),
     BEDWARS("Bed Wars", "Bedwars", 1),
