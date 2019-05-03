@@ -32,7 +32,6 @@
     "entity.IMixinNetworkPlayerInfo",
     "entity.MixinAbstractClientPlayer",
     "entity.MixinEntity",
-    "entity.MixinEntityItem",
     "entity.MixinEntityLivingBase",
     "entity.MixinEntityPlayer",
     "entity.MixinEntityPlayerMP",
