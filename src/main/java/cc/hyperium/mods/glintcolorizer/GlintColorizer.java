@@ -5,6 +5,7 @@ import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.TickEvent;
 import cc.hyperium.mods.glintcolorizer.Colors;
+import java.awt.Color;
 
 public class GlintColorizer extends AbstractMod {
     @Override
