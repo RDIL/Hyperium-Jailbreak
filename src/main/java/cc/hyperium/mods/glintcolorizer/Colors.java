@@ -7,9 +7,6 @@ import static cc.hyperium.config.Category.GLINTCOLORIZER;
 import java.awt.Color;
 
 public class Colors {
-    private static float[] onepoint8glintcolorF = Color.RGBtoHSB(glintR, glintG, glintB, null);
-    public static int onepoint8glintcolorI = Color.HSBtoRGB(onepoint8glintcolorF[0], onepoint8glintcolorF[1], onepoint8glintcolorF[2]);
-
     @ConfigOpt
     @ToggleSetting(name = "Chroma", category = GLINTCOLORIZER, mods = true)
     public static boolean glintcolorChroma;
@@ -29,6 +26,9 @@ public class Colors {
     @ConfigOpt
     @ToggleSetting(category = GLINTCOLORIZER, mods = true, name = "Enabled")
     public static boolean glintColorizer = false;
+
+    private static float[] onepoint8glintcolorF = Color.RGBtoHSB(glintR, glintG, glintB, null);
+    public static int onepoint8glintcolorI = Color.HSBtoRGB(onepoint8glintcolorF[0], onepoint8glintcolorF[1], onepoint8glintcolorF[2]);
 
     public static void setonepoint8color(int r, int g, int b) {
         glintR = r;
