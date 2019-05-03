@@ -8,8 +8,14 @@ import cc.hyperium.mods.glintcolorizer.Colors;
 import java.awt.Color;
 
 public class GlintColorizer extends AbstractMod {
+    private Colors colors = new Colors();
+    public Colors getColors() {
+        return colors;
+    }
     @Override
     public AbstractMod init() {
+        Hyperium.CONFIG.register(this);
+        Hyperium.CONFIG.register(colors);
         EventBus.INSTANCE.register(this);
         Colors.setonepoint8color(Colors.glintR, Colors.glintG, Colors.glintB);
         return this;
