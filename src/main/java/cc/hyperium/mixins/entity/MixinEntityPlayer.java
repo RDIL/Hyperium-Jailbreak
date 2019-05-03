@@ -17,7 +17,6 @@
 
 package cc.hyperium.mixins.entity;
 
-import cc.hyperium.event.ItemTossEvent;
 import cc.hyperium.mixinsimp.entity.HyperiumEntityPlayer;
 import cc.hyperium.mixinsimp.entity.IMixinEntityPlayer;
 import com.mojang.authlib.GameProfile;
@@ -89,8 +88,6 @@ public abstract class MixinEntityPlayer extends EntityLivingBase implements IMix
     @Inject(method = "dropItem", at = @At("RETURN"))
     private void itemDrop(ItemStack droppedItem, boolean dropAround, boolean traceItem, CallbackInfoReturnable<EntityItem> cir) {
         if (cir.getReturnValue() == null) return;
-
-        new ItemTossEvent((EntityPlayer) (Object) this, cir.getReturnValue()).post();
     }
 
     @Override
