@@ -34,7 +34,6 @@ public enum GameType {
     GINGERBREAD("Turbo Kart Racers", "GingerBread", 25),
     SKYWARS("SkyWars", "SkyWars", 51),
     TRUE_COMBAT("Crazy Walls", "TrueCombat", 52),
-    SKYCLASH("SkyClash", "SkyClash", 55),
     LEGACY("Classic Games", "Legacy", 56),
     SPEED_UHC("Speed UHC", "SpeedUHC", 54),
     UNKNOWN("Unknown", "ERROR", -1),
