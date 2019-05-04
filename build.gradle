@@ -82,7 +82,7 @@ dependencies {
     embed group: 'org.slick2d', name: 'slick2d-core', version: '1.0.2'
     embed group: 'com.nativelibs4java', name: 'bridj', version: '0.7.0'
     embed 'com.github.hyperiumjailbreak:DeobfStack:2.1'
-    embed 'com.github.hyperiumjailbreak:MojangAPI:2.8'
+    embed 'com.github.hyperiumjailbreak:MojangAPI:2.9'
     embed 'com.github.hyperiumjailbreak:Installer:3.7'
     embed fileTree(dir: 'libs', include: 'Netty Client.jar')
     compile fileTree(dir: 'libs', include: '*.jar')
