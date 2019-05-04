@@ -17,20 +17,10 @@
 
 package cc.hyperium.mods.chromahud.api;
 
-
 import cc.hyperium.utils.JsonHolder;
-
 import java.util.Map;
 
-/**
- * @author Sk1er
- */
 public interface ChromaHUDParser {
-
     DisplayItem parse(String type, int ord, JsonHolder item);
-
     Map<String, String> getNames();
-
-    ChromaHUDDescription description();
-
 }
