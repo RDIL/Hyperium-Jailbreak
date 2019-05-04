@@ -5,7 +5,6 @@ import net.minecraft.client.gui.GuiResourcePackAvailable;
 import net.minecraft.client.gui.GuiResourcePackSelected;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiScreenResourcePacks;
-import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.resources.ResourcePackListEntry;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -32,8 +31,6 @@ public class MixinGuiScreenResourcePacks extends GuiScreen {
 
     private GuiResourcePackAvailable availablePacksClone;
 
-    private GuiTextField searchField;
-
     @Inject(method = "initGui", at = @At("RETURN"))
     public void initGui(CallbackInfo callbackInfo) {
         hyperiumGuiResourcePack.initGui(this.buttonList);
@@ -46,25 +43,21 @@ public class MixinGuiScreenResourcePacks extends GuiScreen {
     @Override
     protected void keyTyped(char typedChar, int keyCode) throws IOException {
         super.keyTyped(typedChar, keyCode);
-        if (this.searchField != null) this.searchField.textboxKeyTyped(typedChar, keyCode);
         updateList();
     }
 
     @Inject(method = "mouseClicked", at = @At("RETURN"))
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton, CallbackInfo ci) throws IOException {
-        if (this.searchField != null) {
-            this.searchField.mouseClicked(mouseX, mouseY, mouseButton);
-        }
         updateList();
     }
 
     @Overwrite
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        hyperiumGuiResourcePack.drawScreen(availableResourcePacksList, selectedResourcePacksList, mouseX, mouseY, partialTicks, fontRendererObj, searchField, width);
+        hyperiumGuiResourcePack.drawScreen(availableResourcePacksList, selectedResourcePacksList, mouseX, mouseY, partialTicks, fontRendererObj, width);
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
     public void updateList() {
-        availableResourcePacksList = hyperiumGuiResourcePack.updateList(searchField, availablePacksClone, availableResourcePacks, mc, height, width);
+        availableResourcePacksList = hyperiumGuiResourcePack.updateList(availablePacksClone, availableResourcePacks, mc, height, width);
     }
 }
