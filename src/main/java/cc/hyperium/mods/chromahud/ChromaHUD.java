@@ -30,7 +30,6 @@ import cc.hyperium.mods.chromahud.displayitems.chromahud.CordsDisplay;
 import cc.hyperium.mods.chromahud.displayitems.chromahud.TextItem;
 import cc.hyperium.mods.chromahud.displayitems.chromahud.TimeHud;
 import cc.hyperium.mods.chromahud.displayitems.hyperium.ToggleSprintStatus;
-import cc.hyperium.utils.ChatColor;
 import cc.hyperium.utils.JsonHolder;
 import com.google.gson.JsonArray;
 import net.minecraft.client.Minecraft;
@@ -50,7 +49,6 @@ public class ChromaHUD extends AbstractMod {
 
     public ChromaHUD() {
         Metadata metadata = new Metadata(this, "ChromaHUD", "3.0", "Sk1er");
-        metadata.setDisplayName(ChatColor.AQUA + "ChromaHUD");
         this.meta = metadata;
     }
 
