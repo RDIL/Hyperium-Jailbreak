@@ -22,7 +22,6 @@ import cc.hyperium.mods.chromahud.ChromaHUD;
 import cc.hyperium.mods.chromahud.ChromaHUDApi;
 import cc.hyperium.mods.chromahud.DisplayElement;
 import cc.hyperium.mods.chromahud.ElementRenderer;
-import cc.hyperium.mods.chromahud.api.ChromaHUDDescription;
 import cc.hyperium.mods.chromahud.api.ChromaHUDParser;
 import cc.hyperium.mods.chromahud.api.Dimension;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
@@ -150,7 +149,6 @@ public class AddItemsGui extends GuiScreen {
             drawCenteredString(mc.fontRendererObj, "Click Explore to see examples!", current.getScaledWidth() / 2, cursorY - 30, Color.RED.getRGB());
             List<ChromaHUDParser> parsers = ChromaHUDApi.getInstance().getParsers();
             for (ChromaHUDParser parser : parsers) {
-
                 Map<String, String> names = parser.getNames();
                 for (String s : names.keySet()) {
                     String text1 = names.get(s) + "";
