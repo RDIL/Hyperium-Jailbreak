@@ -174,9 +174,6 @@ public class AddItemsGui extends GuiScreen {
             int cursorY = 50 + offset;
             List<ChromaHUDParser> parsers = ChromaHUDApi.getInstance().getParsers();
             for (ChromaHUDParser parser : parsers) {
-                ChromaHUDDescription description = parser.description();
-                String text = "Items in " + description.getName() + ".";
-                mc.fontRendererObj.drawString(text, (current.getScaledWidth() - mc.fontRendererObj.getStringWidth(text)) / 2, cursorY, Color.RED.getRGB(), true);
                 cursorY += 30;
 
                 Map<String, String> names = parser.getNames();
