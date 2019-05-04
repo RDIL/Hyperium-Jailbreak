@@ -21,7 +21,6 @@ import cc.hyperium.mods.autofriend.AutofriendMod;
 import cc.hyperium.mods.autogg.AutoGG;
 import cc.hyperium.mods.chromahud.ChromaHUD;
 import cc.hyperium.mods.blockoverlay.BlockOverlay;
-import cc.hyperium.mods.hgames.HGames;
 import cc.hyperium.mods.itemphysic.ItemPhysicMod;
 import cc.hyperium.mods.keystrokes.KeystrokesMod;
 import cc.hyperium.mods.levelhead.Levelhead;
@@ -41,7 +40,6 @@ public class HyperiumModIntegration {
     private final ChromaHUD chromaHUD;
     private final Autotip autotip;
     private final AutoGG autogg;
-    private final HGames hgames;
     private final GlintColorizer gc;
     private final BlockOverlay blockOverlay;
     private final MotionBlurMod motionBlur;
@@ -59,7 +57,6 @@ public class HyperiumModIntegration {
         this.autotip = new Autotip();
         autotip.init();
         this.autogg = ((AutoGG) new AutoGG().init());
-        this.hgames = ((HGames) new HGames().init());
         this.oldanimations = ((OldAnimations) new OldAnimations().init());
         NickHider nickHider = new NickHider();
         nickHider.init();
@@ -111,10 +108,6 @@ public class HyperiumModIntegration {
 
     public AutoGG getAutoGG() {
         return autogg;
-    }
-
-    public HGames getHGames() {
-        return hgames;
     }
 
     public GlintColorizer getGlintcolorizer() {
