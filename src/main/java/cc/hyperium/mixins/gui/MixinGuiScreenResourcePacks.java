@@ -34,10 +34,7 @@ public class MixinGuiScreenResourcePacks extends GuiScreen {
     @Inject(method = "initGui", at = @At("RETURN"))
     public void initGui(CallbackInfo callbackInfo) {
         hyperiumGuiResourcePack.initGui(this.buttonList);
-
         this.availablePacksClone = this.availableResourcePacksList;
-        this.searchField = new GuiTextField(3, fontRendererObj, this.width / 2 - 4 - 200,
-            this.height - 24, 200, 20);
     }
 
     @Override
