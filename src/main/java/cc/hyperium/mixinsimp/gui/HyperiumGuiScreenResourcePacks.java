@@ -34,8 +34,7 @@ public class HyperiumGuiScreenResourcePacks {
 
     public void mouseClicked(int mouseX, int mouseY, int mouseButton) {}
 
-    public GuiResourcePackAvailable updateList(GuiResourcePackAvailable availablePacksClone,
-                                               List<ResourcePackListEntry> availableResourcePacks, Minecraft mc, int height, int width) {
+    public GuiResourcePackAvailable updateList(List<ResourcePackListEntry> availableResourcePacks, Minecraft mc, int height, int width) {
         this.availableResourcePacksList = new GuiResourcePackAvailable(mc, 200, height,availableResourcePacks);
         this.availableResourcePacksList.setSlotXBoundsFromLeft(width / 2 - 4 - 200);
         this.availableResourcePacksList.registerScrollButtons(7, 8);
