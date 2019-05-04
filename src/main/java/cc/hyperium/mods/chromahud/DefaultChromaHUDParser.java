@@ -17,7 +17,6 @@
 
 package cc.hyperium.mods.chromahud;
 
-import cc.hyperium.mods.chromahud.api.ChromaHUDDescription;
 import cc.hyperium.mods.chromahud.api.ChromaHUDParser;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
 import cc.hyperium.mods.chromahud.displayitems.chromahud.ArmourHud;
@@ -84,10 +83,5 @@ public class DefaultChromaHUDParser implements ChromaHUDParser {
     @Override
     public Map<String, String> getNames() {
         return names;
-    }
-
-    @Override
-    public ChromaHUDDescription description() {
-        return new ChromaHUDDescription("DEFAULT", "3.0", "ChromaHUD", "Default display items for ChromaHUD.");
     }
 }
