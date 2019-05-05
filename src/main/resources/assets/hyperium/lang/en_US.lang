@@ -163,4 +163,5 @@ message.insufficientcredits=Insufficient credits
 message.attemptingpurchase=Attempting to purchase %s
 message.alreadypurchased=Already purchased %s
 message.invalidparticle=Invalid current particle type
+gui.settings.shinypotions.matchcolor=Shiny pots - Match pot color
 message.purchase=Purchase %s
