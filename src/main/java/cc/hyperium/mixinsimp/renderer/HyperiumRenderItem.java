@@ -107,7 +107,8 @@ public class HyperiumRenderItem {
 
                 // We want to render our potion effect before the item is rendered so it doesn't obscure the item
                 if (Settings.SHINY_POTS && isInv && stack.getItem() != null && stack.getItem() instanceof ItemPotion) {
-                    renderPot(model); // Use our renderer instead of the normal one
+                    int glintColor = getPotionColor(stack);
+                    renderPot(model, glintColor); // Use our renderer instead of the normal one
                     renderedAsPotion = true;
                 }
 
