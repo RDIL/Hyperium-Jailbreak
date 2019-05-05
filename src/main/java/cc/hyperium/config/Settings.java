@@ -532,6 +532,10 @@ public class Settings {
     @ToggleSetting(name = "gui.settings.confirmquit", category = MISC)
     public static boolean CONFIRM_QUIT = false;
 
+    @ConfigOpt
+    @ToggleSetting(name ="gui.settings.shinypotions.matchcolor", category = ANIMATIONS)
+    public static boolean SHINY_POTS_MATCH_COLOR = false;
+
     private Settings() {}
     public static void register() {
         Hyperium.CONFIG.register(INSTANCE);
