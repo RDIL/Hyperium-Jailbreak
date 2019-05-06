@@ -18,7 +18,6 @@
 package cc.hyperium.gui;
 import cc.hyperium.C;
 import cc.hyperium.Hyperium;
-import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
 import net.minecraft.client.Minecraft;
@@ -34,7 +33,6 @@ import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
-import javax.imageio.ImageIO;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
