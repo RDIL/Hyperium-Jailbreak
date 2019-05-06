@@ -93,7 +93,6 @@ gui.settings.maxparticles=Max particles
 gui.settings.headitemscale=Head item scale
 gui.settings.particlesininventory=Particles in inventory
 gui.settings.deadmau5ears=Deadmau5 Ears
-gui.settings.shownotificationcenter=Show Notification Center
 gui.settings.showconfirmationpopup=Show confirmation popup
 gui.settings.persistentchatmessages=Keep chat messages upon quitting game
 gui.settings.friendsfirstintab=Friends first in tab
