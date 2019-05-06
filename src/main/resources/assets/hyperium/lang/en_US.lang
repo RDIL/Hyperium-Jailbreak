@@ -2,7 +2,6 @@ menu.left=Copyright Hyperium Devs + jumbo
 menu.right=Not Affiliated with Mojang AB
 button.menu.cosmeticshop=Cosmetic Shop
 button.ingame.hyperiumsettings=Hyperium settings
-button.ingame.hyperiumcredits=Contributors
 button.ingame.joinhypixel=Join Hypixel
 button.ingame.fixhypixelsession=Fix Hypixel session
 button.ingame.serverlist=Server list
