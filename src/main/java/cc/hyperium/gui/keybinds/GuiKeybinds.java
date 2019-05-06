@@ -24,7 +24,6 @@ public class GuiKeybinds extends HyperiumGui {
     private int scrollOffset;
     private int buttonHeight = 20;
     private int numColumns = 2;
-
     private int topGui;
     private int leftGui;
     private int rightGui;
@@ -33,6 +32,7 @@ public class GuiKeybinds extends HyperiumGui {
     private int initialGuiScale;
 
     public GuiKeybinds() {
+        initialGuiScale = Minecraft.getMinecraft().gameSettings.guiScale;
         Minecraft.getMinecraft().gameSettings.guiScale = 3;
     }
 
@@ -150,7 +150,6 @@ public class GuiKeybinds extends HyperiumGui {
 
     @Override
     public void show() {
-        initialGuiScale = Minecraft.getMinecraft().gameSettings.guiScale;
         Minecraft.getMinecraft().gameSettings.guiScale = 2;
         super.show();
     }
@@ -208,7 +207,6 @@ public class GuiKeybinds extends HyperiumGui {
         }
     }
 
-
     private void resetAll() {
         for (KeybindEntry entry : keybindEntries) {
             KeybindButton keybindButton = entry.getKeybindButton();
@@ -220,7 +218,6 @@ public class GuiKeybinds extends HyperiumGui {
     public void onGuiClosed() {
         Minecraft.getMinecraft().gameSettings.guiScale = initialGuiScale;
         Hyperium.CONFIG.save();
-
         super.onGuiClosed();
     }
 
