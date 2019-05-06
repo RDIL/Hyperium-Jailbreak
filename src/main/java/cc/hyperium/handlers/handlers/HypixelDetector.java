@@ -41,8 +41,6 @@ public class HypixelDetector {
         instance = this;
     }
 
-    private void noop() {}
-
     public static HypixelDetector getInstance() {
         return instance;
     }
