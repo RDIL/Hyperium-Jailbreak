@@ -3,6 +3,7 @@ package cc.hyperium.gui;
 import cc.hyperium.Hyperium;
 import cc.hyperium.config.Settings;
 import cc.hyperium.gui.hyperium.HyperiumMainGui;
+import cc.hyperium.gui.keybinds.GuiKeybinds;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
 import cc.hyperium.purchases.PurchaseApi;
@@ -121,7 +122,7 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
                 break;
 
             case 8:
-                Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new );
+                Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new GuiKeybinds());
                 break;
 
             case 9:
