@@ -80,11 +80,6 @@ public class HypixelDetector {
     }
 
     @InvokeEvent
-    public void join(JoinHypixelEvent event) {
-        if (Settings.HYPIXEL_ZOO) Hyperium.INSTANCE.getNotification().display("Welcome to the Hypixel Zoo.", "_____________________",5f, null, () -> noop(),new Color(200, 150, 50));
-    }
-
-    @InvokeEvent
     public void serverLeaveEvent(ServerLeaveEvent event) {
         hypixel = false;
     }
