@@ -255,10 +255,6 @@ public class Settings {
     @SelectorSetting(name = "gui.settings.deadmau5ears", category = COSMETICS, items = {})
     public static String EARS_STATE = "ON";
 
-    @ConfigOpt(alt = "cc.hyperium.handlers.handlers.OtherConfigOptions;SHOW_INGAME_NOTIFICATION_CENTER")
-    @ToggleSetting(category = MISC, name = "gui.settings.shownotificationcenter")
-    public static boolean SHOW_INGAME_NOTIFICATION_CENTER = true;
-
     @ConfigOpt(alt = "cc.hyperium.handlers.handlers.OtherConfigOptions;SHOW_INGAME_CONFIRMATION_POPUP")
     @ToggleSetting(category = MISC, name = "gui.settings.showconfirmationpopup")
     public static boolean SHOW_INGAME_CONFIRMATION_POPUP = true;
