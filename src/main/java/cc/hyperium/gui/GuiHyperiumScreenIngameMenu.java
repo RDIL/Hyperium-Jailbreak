@@ -121,7 +121,7 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
                 break;
 
             case 8:
-                Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new GuiHyperiumCredits(Minecraft.getMinecraft().currentScreen));
+                Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new );
                 break;
 
             case 9:
