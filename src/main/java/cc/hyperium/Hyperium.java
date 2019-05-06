@@ -64,7 +64,6 @@ public class Hyperium {
     public static final DefaultConfig CONFIG = new DefaultConfig(new File(folder, "CONFIG.json"));
     private final GeneralStatisticsTracking statTrack = new GeneralStatisticsTracking();
     private final ConfirmationPopup confirmation = new ConfirmationPopup();
-    private NotificationCenter notification;
     private HyperiumCosmetics cosmetics;
     private HyperiumHandlers handlers;
     private HyperiumModIntegration modIntegration;
@@ -88,7 +87,6 @@ public class Hyperium {
                 UniversalNetty.getInstance().getPacketManager().register(new LoginReplyHandler());
             });
             Multithreading.runAsync(() -> new PlayerStatsGui(null)); // Don't remove
-            notification = new NotificationCenter();
             new HyperiumScheduler();
             try {
                 Class.forName("net.minecraft.dispenser.BehaviorProjectileDispense");
@@ -231,9 +229,5 @@ public class Hyperium {
 
     public HyperiumModIntegration getModIntegration() {
         return modIntegration;
-    }
-
-    public NotificationCenter getNotification() {
-        return notification;
     }
 }
