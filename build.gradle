@@ -36,10 +36,10 @@ buildscript {
 }
 
 plugins {
-    'net.minecraftforge.gradle.tweaker-client'
-    'org.spongepowered.mixin'
-    'kotlin'
-    'java'
+    id 'net.minecraftforge.gradle.tweaker-client'
+    id 'org.spongepowered.mixin'
+    id 'kotlin'
+    id 'java'
 }
 
 configurations {
