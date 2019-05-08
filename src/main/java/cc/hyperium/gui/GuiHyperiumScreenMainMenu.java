@@ -47,11 +47,6 @@ import org.lwjgl.input.Keyboard;
 
 public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen implements GuiYesNoCallback {
     public static boolean FIRST_START = true;
-    private final ResourceLocation exit = new ResourceLocation("textures/material/exit.png");
-    private final ResourceLocation people_outline = new ResourceLocation("textures/material/people-outline.png");
-    private final ResourceLocation person_outline = new ResourceLocation("textures/material/person-outline.png");
-    private final ResourceLocation settings = new ResourceLocation("textures/material/settings.png");
-    private final ResourceLocation hIcon = new ResourceLocation("textures/h_icon.png");
     private GuiScreen parentScreen;
     private boolean field_183502_L;
 
@@ -73,14 +68,7 @@ public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen implements GuiY
 
         this.addSingleplayerMultiplayerButtons(j - 10, 24);
 
-        switch (getStyle()) {
-            case DEFAULT:
-                addDefaultStyleOptionsButton(j);
-                break;
-            case HYPERIUM:
-                addHyperiumStyleOptionsButton(j);
-                break;
-        }
+        addDefaultStyleOptionsButton(j);
 
         this.mc.setConnectedToRealms(false);
 
@@ -97,14 +85,7 @@ public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen implements GuiY
     }
 
     public void addSingleplayerMultiplayerButtons(int p_73969_1_, int p_73969_2_) {
-        switch (getStyle()) {
-            case DEFAULT:
-                addDefaultStyleSingleplayerMultiplayerButtons(p_73969_1_, p_73969_2_);
-                break;
-            case HYPERIUM:
-                addHyperiumStyleSingleplayerMultiplayerButtons();
-                break;
-        }
+        addDefaultStyleSingleplayerMultiplayerButtons(p_73969_1_, p_73969_2_);
     }
 
     @Override
@@ -152,36 +133,21 @@ public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen implements GuiY
             }
         }
 
-        switch (getStyle()) {
-            case DEFAULT:
-                if (button.id == 15)
-                    HyperiumMainGui.INSTANCE.show();
-                if (button.id == 16) {
-                    GuiMultiplayer p_i1182_1_ = new GuiMultiplayer(new GuiMainMenu());
-                    p_i1182_1_.setWorldAndResolution(Minecraft.getMinecraft(), width, height);
-                    ((IMixinGuiMultiplayer) p_i1182_1_).makeDirectConnect();
-                    String hostName = Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) ? "stuck.hypixel.net" : "mc.hypixel.net";
-                    ServerData data = new ServerData("hypixel", hostName, false);
-                    ((IMixinGuiMultiplayer) p_i1182_1_).setIp(data);
-                    p_i1182_1_.confirmClicked(true, 0);
-                }
-                break;
-            case HYPERIUM:
-                if (button.id == 15)
-                    HyperiumMainGui.INSTANCE.show();
-                break;
+        if (button.id == 15) HyperiumMainGui.INSTANCE.show();
+        if (button.id == 16) {
+            GuiMultiplayer p_i1182_1_ = new GuiMultiplayer(new GuiMainMenu());
+            p_i1182_1_.setWorldAndResolution(Minecraft.getMinecraft(), width, height);
+            ((IMixinGuiMultiplayer) p_i1182_1_).makeDirectConnect();
+            String hostName = Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) ? "stuck.hypixel.net" : "mc.hypixel.net";
+            ServerData data = new ServerData("hypixel", hostName, false);
+            ((IMixinGuiMultiplayer) p_i1182_1_).setIp(data);
+            p_i1182_1_.confirmClicked(true, 0);
         }
 
         if (button.id == 100) {
             HyperiumMainGui.INSTANCE.setTab(2);
             Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(HyperiumMainGui.INSTANCE);
         }
-    }
-
-    public void addHyperiumStyleSingleplayerMultiplayerButtons() {
-        this.buttonList.add(new GuiButton(1, this.width / 2 - getIntendedWidth(295), this.height / 2 - getIntendedHeight(55), getIntendedWidth(110), getIntendedHeight(110), ""));
-        this.buttonList.add(new GuiButton(2, this.width / 2 - getIntendedWidth(175), this.height / 2 - getIntendedHeight(55), getIntendedWidth(110), getIntendedHeight(110), ""));
-        this.buttonList.add(new GuiButton(15, this.width / 2 + getIntendedWidth(65), this.height / 2 - getIntendedHeight(55), getIntendedWidth(110), getIntendedHeight(110), ""));
     }
 
     public void addDefaultStyleSingleplayerMultiplayerButtons(int p_73969_1_, int p_73969_2_) {
@@ -193,35 +159,8 @@ public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen implements GuiY
         this.buttonList.add(new GuiButton(15, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 3, I18n.format("button.ingame.hyperiumsettings")));
     }
 
-    public void addHyperiumStyleOptionsButton(int j) {
-        this.buttonList.add(new GuiButton(0, width / 2 - getIntendedWidth(55), height / 2 - getIntendedHeight(55), getIntendedWidth(110), getIntendedHeight(110), ""));
-        this.buttonList.add(new GuiButton(4, width / 2 + getIntendedWidth(185), height / 2 - getIntendedHeight(55), getIntendedWidth(110), getIntendedHeight(110), ""));
-    }
-
     public void addDefaultStyleOptionsButton(int j) {
         this.buttonList.add(new GuiButton(0, this.width / 2 - 100, j + 56 + 12 + 24 - 5, 98, 20, I18n.format("menu.options")));
         this.buttonList.add(new GuiButton(4, this.width / 2 + 2, j + 56 + 12 + 24 - 5, 98, 20, I18n.format("menu.quit")));
-    }
-
-    @Override
-    public void drawHyperiumStyleScreen(int mouseX, int mouseY, float partialTicks) {
-        GlStateManager.pushMatrix();
-
-        super.drawHyperiumStyleScreen(mouseX, mouseY, partialTicks);
-        // Draw icons on buttons
-        TextureManager tm = mc.getTextureManager();
-
-        tm.bindTexture(person_outline);
-        drawScaledCustomSizeModalRect(this.width / 2 - getIntendedWidth(285), this.height / 2 - getIntendedHeight(45), 0, 0, 192, 192, getIntendedWidth(90), getIntendedHeight(90), 192, 192);
-        tm.bindTexture(people_outline);
-        drawScaledCustomSizeModalRect(this.width / 2 - getIntendedWidth(165), this.height / 2 - getIntendedHeight(45), 0, 0, 192, 192, getIntendedWidth(90), getIntendedHeight(90), 192, 192);
-        tm.bindTexture(settings);
-        drawScaledCustomSizeModalRect(this.width / 2 - getIntendedWidth(45), this.height / 2 - getIntendedHeight(45), 0, 0, 192, 192, getIntendedWidth(90), getIntendedHeight(90), 192, 192);
-        tm.bindTexture(hIcon);
-        drawScaledCustomSizeModalRect(this.width / 2 + getIntendedWidth(85), this.height / 2 - getIntendedHeight(35), 0, 0, 104, 104, getIntendedWidth(70), getIntendedHeight(70), 104, 104);
-        tm.bindTexture(exit);
-        drawScaledCustomSizeModalRect(this.width / 2 + getIntendedWidth(195), this.height / 2 - getIntendedHeight(45), 0, 0, 192, 192, getIntendedWidth(90), getIntendedHeight(90), 192, 192);
-
-        GlStateManager.popMatrix();
     }
 }
