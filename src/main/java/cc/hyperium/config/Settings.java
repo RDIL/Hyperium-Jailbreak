@@ -308,15 +308,6 @@ public class Settings {
     public static boolean SHORT_DIRECTION_HUD = false;
 
     @ConfigOpt
-    @SelectorSetting(name = "gui.settings.mainmenustyle", items =
-        {
-            "HYPERIUM",
-            "DEFAULT"
-        }, category = MENUS
-    )
-    public static String MENU_STYLE = GuiStyle.DEFAULT.name();
-
-    @ConfigOpt
     @SelectorSetting(name = "gui.settings.pausemenustyle", items =
         {
             "HYPERIUM",
