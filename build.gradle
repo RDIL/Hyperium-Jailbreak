@@ -42,10 +42,12 @@ configurations {
     compile.extendsFrom(embed)
 }
 
-apply plugin: 'net.minecraftforge.gradle.tweaker-client'
-apply plugin: 'org.spongepowered.mixin'
-apply plugin: 'kotlin'
-apply plugin: 'java'
+plugins {
+    'net.minecraftforge.gradle.tweaker-client'
+    'org.spongepowered.mixin'
+    'kotlin'
+    'java'
+}
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
