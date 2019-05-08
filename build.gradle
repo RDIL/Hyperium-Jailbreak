@@ -37,16 +37,16 @@ buildscript {
     }
 }
 
-configurations {
-    embed
-    compile.extendsFrom(embed)
-}
-
 plugins {
     'net.minecraftforge.gradle.tweaker-client'
     'org.spongepowered.mixin'
     'kotlin'
     'java'
+}
+
+configurations {
+    embed
+    compile.extendsFrom(embed)
 }
 
 sourceCompatibility = 1.8
