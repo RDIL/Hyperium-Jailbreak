@@ -79,19 +79,15 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
                 break;
 
             case 1:
-                if (Settings.CONFIRM_DISCONNECT) {
-                    Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new GuiConfirmDisconnect());
-                } else {
-                    boolean integratedServerRunning = this.mc.isIntegratedServerRunning();
-                    button.enabled = false;
-                    this.mc.theWorld.sendQuittingDisconnectingPacket();
-                    this.mc.loadWorld(null);
+                boolean integratedServerRunning = this.mc.isIntegratedServerRunning();
+                button.enabled = false;
+                this.mc.theWorld.sendQuittingDisconnectingPacket();
+                this.mc.loadWorld(null);
 
-                    if (integratedServerRunning) {
-                        Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new GuiMainMenu());
-                    } else {
-                        Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new GuiMultiplayer(new GuiMainMenu()));
-                    }
+                if (integratedServerRunning) {
+                    Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new GuiMainMenu());
+                } else {
+                    Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new GuiMultiplayer(new GuiMainMenu()));
                 }
                 break;
 
@@ -132,14 +128,11 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
             case 10:
                 Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new GuiIngameMultiplayer(Minecraft.getMinecraft().currentScreen));
                 break;
-
         }
-
     }
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-
         super.drawScreen(mouseX, mouseY, partialTicks);
         GlStateManager.pushMatrix();
 

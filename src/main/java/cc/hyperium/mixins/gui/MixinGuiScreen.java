@@ -88,12 +88,4 @@ public abstract class MixinGuiScreen {
         if (hyperiumGuiScreen.actionPerformed(button))
             info.cancel();
     }
-
-    @Inject(
-        method = "handleComponentClick",
-        at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiScreen;sendChatMessage(Ljava/lang/String;Z)V")
-    )
-    private void runCommand(IChatComponent p_175276_1_, CallbackInfoReturnable<Boolean> cir) {
-        Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().runningCommand = true;
-    }
 }

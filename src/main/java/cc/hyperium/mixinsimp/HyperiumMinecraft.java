@@ -166,22 +166,6 @@ public class HyperiumMinecraft {
         Display.setResizable(true);
     }
 
-    public void setWindowIcon() {
-        if (!OS.isMacintosh()) {
-            try (InputStream inputStream16x = Minecraft.class
-                .getResourceAsStream("/assets/hyperium/icons/icon-16x.png");
-                 InputStream inputStream32x = Minecraft.class
-                     .getResourceAsStream("/assets/hyperium/icons/icon-32x.png")) {
-                ByteBuffer[] icons = new ByteBuffer[]{
-                    Utils.INSTANCE.readImageToBuffer(inputStream16x),
-                    Utils.INSTANCE.readImageToBuffer(inputStream32x)};
-                Display.setIcon(icons);
-            } catch (Exception e) {
-                Hyperium.LOGGER.error("Couldn't set Icon. Error:", e);
-            }
-        }
-    }
-
     public void displayGuiScreen(GuiScreen guiScreenIn, GuiScreen currentScreen,
                                  WorldClient theWorld, EntityPlayerSP thePlayer, GameSettings gameSettings, GuiIngame ingameGUI) {
         if (currentScreen != null) currentScreen.onGuiClosed();
@@ -202,10 +186,7 @@ public class HyperiumMinecraft {
         if (old != null && guiScreenIn != old) old.onGuiClosed();
         if (old != null) EventBus.INSTANCE.unregister(old);
 
-        if (guiScreenIn instanceof GuiHyperiumScreenMainMenu) {
-            gameSettings.showDebugInfo = false;
-            if (!Settings.PERSISTENT_CHAT) ingameGUI.getChatGUI().clearChatMessages();
-        }
+        if (guiScreenIn instanceof GuiHyperiumScreenMainMenu) gameSettings.showDebugInfo = false;
 
         ((IMixinMinecraft) parent).setCurrentScreen(guiScreenIn);
 

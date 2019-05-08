@@ -171,11 +171,6 @@ public abstract class MixinMinecraft {
     }
 
     @Overwrite
-    private void setWindowIcon() {
-        hyperiumMinecraft.setWindowIcon();
-    }
-
-    @Overwrite
     public void displayGuiScreen(GuiScreen guiScreenIn) {
         hyperiumMinecraft.displayGuiScreen(guiScreenIn, currentScreen, theWorld, thePlayer, gameSettings, ingameGUI);
     }

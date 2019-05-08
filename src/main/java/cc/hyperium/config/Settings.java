@@ -255,10 +255,6 @@ public class Settings {
     @ToggleSetting(category = MISC, name = "gui.settings.showconfirmationpopup")
     public static boolean SHOW_INGAME_CONFIRMATION_POPUP = true;
 
-    @ConfigOpt(alt = "cc.hyperium.handlers.handlers.OtherConfigOptions;savePreviusChatMessages")
-    @ToggleSetting(category = GENERAL, name = "gui.settings.persistentchatmessages")
-    public static boolean PERSISTENT_CHAT = false;
-
     @ConfigOpt(alt = "cc.hyperium.handlers.handlers.OtherConfigOptions;friendsFirstIntag")
     @ToggleSetting(category = HYPIXEL, name = "gui.settings.friendsfirstintab")
     public static boolean FRIENDS_FIRST_IN_TAB = true;
@@ -507,14 +503,6 @@ public class Settings {
     @ConfigOpt
     @ToggleSetting(name = "gui.settings.disableitemframes", category = IMPROVEMENTS)
     public static boolean DISABLE_ITEMFRAMES = false;
-
-    @ConfigOpt
-    @ToggleSetting(name = "gui.settings.confirmdisconnect", category = MISC)
-    public static boolean CONFIRM_DISCONNECT = false;
-
-    @ConfigOpt
-    @ToggleSetting(name = "gui.settings.confirmquit", category = MISC)
-    public static boolean CONFIRM_QUIT = false;
 
     @ConfigOpt
     @ToggleSetting(name ="gui.settings.shinypotions.matchcolor", category = ANIMATIONS)

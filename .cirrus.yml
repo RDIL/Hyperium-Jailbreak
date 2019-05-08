@@ -1,5 +1,5 @@
 task:
-  auto_cancellation: $CIRRUS_BRANCH != 'master' && $CIRRUS_TAG != ''
+  auto_cancellation: $CIRRUS_BRANCH != 'master' || $CIRRUS_TAG != ''
   container:
     image: gradle:4.10.3-jdk8
     cpu: 4

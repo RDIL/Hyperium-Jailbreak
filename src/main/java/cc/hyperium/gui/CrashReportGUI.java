@@ -92,12 +92,7 @@ public class CrashReportGUI extends JDialog {
         c.setBackground(new Color(30, 30, 30));
         c.setLayout(null);
         Font f;
-        try {
-            f = Font.createFont(Font.TRUETYPE_FONT, InstallerMain.class.getResourceAsStream("/assets/hyperium/fonts/Montserrat-Regular.ttf")).deriveFont(12.0F);
-        } catch (FontFormatException | IOException e) {
-            f = Font.getFont("Arial"); // backup
-            e.printStackTrace();
-        }
+        f = Font.getFont("Arial");
         JLabel error = null;
         try {
             error = new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/assets/minecraft/textures/material/error.png")).getScaledInstance(100, 100, Image.SCALE_SMOOTH)));

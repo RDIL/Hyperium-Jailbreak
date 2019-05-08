@@ -17,7 +17,6 @@
 
 package cc.hyperium.mixins.entity;
 
-import cc.hyperium.event.RenderWorldEvent;
 import cc.hyperium.handlers.handlers.reach.ReachDisplay;
 import cc.hyperium.mixinsimp.entity.HyperiumEntityRenderer;
 import com.google.common.base.Predicates;
@@ -69,11 +68,6 @@ public abstract class MixinEntityRenderer {
     @Overwrite
     private void orientCamera(float partialTicks) {
         hyperiumEntityRenderer.orientCamera(partialTicks, this.thirdPersonDistanceTemp, this.thirdPersonDistance, this.cloudFog, this.mc);
-    }
-
-    @Inject(method = "renderWorldPass", at = @At(value = "INVOKE_STRING", target = "Lnet/minecraft/profiler/Profiler;endStartSection(Ljava/lang/String;)V", args = "ldc=hand"))
-    private void onRenderWorld(int pass, float partialTicks, long nano, CallbackInfo info) {
-        new RenderWorldEvent(partialTicks).post();
     }
 
     @Inject(method = "renderWorldPass", at = @At(value = "INVOKE_STRING", target = "Lnet/minecraft/profiler/Profiler;endStartSection(Ljava/lang/String;)V", args = "ldc=outline"), cancellable = true)

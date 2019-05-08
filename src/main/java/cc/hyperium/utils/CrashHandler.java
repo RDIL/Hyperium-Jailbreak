@@ -31,17 +31,8 @@ public class CrashHandler {
         dialog.setLocation(dim.width / 2 - w / 2, dim.height / 2 - h / 2);
         dialog.setAlwaysOnTop(true);
         dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        try {
-            dialog.setIconImage(ImageIO.read(CrashHandler.class.getResourceAsStream("/assets/hyperium/icons/icon-32x.png")));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         Font f;
-        try {
-            f = Font.createFont(Font.TRUETYPE_FONT, CrashHandler.class.getResourceAsStream("/fonts/segoeuil.ttf")).deriveFont(14f);
-        } catch (FontFormatException | IOException e) {
-            f = new Font("Arial", Font.PLAIN, 14);
-        }
+        f = new Font("Arial", Font.PLAIN, 14);
         dialog.setVisible(true);
 
         Container c = dialog.getContentPane();
