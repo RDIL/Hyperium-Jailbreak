@@ -15,8 +15,6 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-version = "2.6"
-
 buildscript {
     repositories {
         mavenCentral()
@@ -52,6 +50,7 @@ configurations {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+version = "2.6"
 group = "cc.hyperium"
 archivesBaseName = "Hyperium"
 
