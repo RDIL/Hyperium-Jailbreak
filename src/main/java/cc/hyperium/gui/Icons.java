@@ -6,7 +6,6 @@ import net.minecraft.util.ResourceLocation;
 public enum Icons {
     SETTINGS(new ResourceLocation("textures/material/settings.png")),
     EXTENSION(new ResourceLocation("textures/material/extension.png")),
-    ERROR(new ResourceLocation("textures/material/error.png")),
     DOWNLOAD(new ResourceLocation("textures/material/download.png")),
     EXIT(new ResourceLocation("textures/material/exit.png")),
     CLOSE(new ResourceLocation("textures/material/close.png")),
