@@ -101,10 +101,6 @@ public class Settings {
     @ToggleSetting(name = "gui.settings.windowedfullscreen", category = IMPROVEMENTS)
     public static boolean WINDOWED_FULLSCREEN = false;
 
-    @ConfigOpt(alt = "cc.hyperium.gui.settings.items.GeneralSetting;bossBarTextOnlyEnabled")
-    @ToggleSetting(name = "gui.settings.bossbartextonly")
-    public static boolean BOSSBAR_TEXT_ONLY = false;
-
     @ConfigOpt(alt = "cc.hyperium.gui.settings.items.GeneralSetting;staticFovEnabled")
     @ToggleSetting(name = "gui.settings.staticfov", category = IMPROVEMENTS)
     public static boolean STATIC_FOV = false;
