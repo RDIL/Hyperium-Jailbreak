@@ -22,7 +22,6 @@ public enum Category {
     VANILLA_ENHANCEMENTS("Vanilla Enhancements"),
     CHROMAHUD("ChromaHUD"),
     KEYSTROKES("Keystrokes"),
-    MOTION_BLUR("Motion Blur"),
     AUTOFRIEND("Auto Friend"),
     GLINTCOLORIZER("Glint Colorizer"),
     FNCOMPASS("Fortnite Compass"),

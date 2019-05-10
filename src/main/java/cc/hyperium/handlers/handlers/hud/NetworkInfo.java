@@ -1,18 +1,13 @@
 package cc.hyperium.handlers.handlers.hud;
 
-import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.ServerJoinEvent;
-import cc.hyperium.event.ServerLeaveEvent;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ServerAddress;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.util.EnumChatFormatting;
 import java.util.Collection;
 
 public class NetworkInfo {
     private static NetworkInfo instance;
-    private ServerAddress currentServerAddress;
     private Minecraft mc;
 
     public NetworkInfo() {
@@ -22,16 +17,6 @@ public class NetworkInfo {
 
     public static NetworkInfo getInstance() {
         return NetworkInfo.instance;
-    }
-
-    @InvokeEvent
-    public void onServerJoin(ServerJoinEvent event) {
-        this.currentServerAddress = ServerAddress.fromString(event.getServer());
-    }
-
-    @InvokeEvent
-    public void onServerLeave(ServerLeaveEvent event) {
-        this.currentServerAddress = null;
     }
 
     private NetworkPlayerInfo getPlayerInfo(final String ign) {

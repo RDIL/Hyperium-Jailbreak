@@ -24,7 +24,6 @@ import cc.hyperium.mods.blockoverlay.BlockOverlay;
 import cc.hyperium.mods.itemphysic.ItemPhysicMod;
 import cc.hyperium.mods.keystrokes.KeystrokesMod;
 import cc.hyperium.mods.levelhead.Levelhead;
-import cc.hyperium.mods.motionblur.MotionBlurMod;
 import cc.hyperium.mods.nickhider.NickHider;
 import cc.hyperium.mods.oldanimations.OldAnimations;
 import cc.hyperium.mods.tabtoggle.TabToggleMod;
@@ -42,7 +41,6 @@ public class HyperiumModIntegration {
     private final AutoGG autogg;
     private final GlintColorizer gc;
     private final BlockOverlay blockOverlay;
-    private final MotionBlurMod motionBlur;
     private final OldAnimations oldanimations;
     private final AutofriendMod autofriend;
     private final FortniteCompassMod fncompass;
@@ -69,7 +67,6 @@ public class HyperiumModIntegration {
         this.blockOverlay = (BlockOverlay) new BlockOverlay();
         this.keystrokesMod = (KeystrokesMod) new KeystrokesMod();
         this.timeChanger = (TimeChanger) new TimeChanger();
-        this.motionBlur = (MotionBlurMod) new MotionBlurMod();
         this.gc.init();
         if (!Settings.FPS) {
             this.autofriend.init();
@@ -78,7 +75,6 @@ public class HyperiumModIntegration {
             this.blockOverlay.init();
             this.keystrokesMod.init();
             this.timeChanger.init();
-            this.motionBlur.init();
         }
     }
 
@@ -116,10 +112,6 @@ public class HyperiumModIntegration {
 
     public BlockOverlay getBlockOverlay() {
         return blockOverlay;
-    }
-
-    public MotionBlurMod getMotionBlur() {
-        return motionBlur;
     }
 
     public OldAnimations getOldanimations() {

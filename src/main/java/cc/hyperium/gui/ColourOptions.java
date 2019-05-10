@@ -1,7 +1,6 @@
 package cc.hyperium.gui;
 
 import cc.hyperium.config.ConfigOpt;
-import cc.hyperium.config.Settings;
 import cc.hyperium.gui.main.HyperiumOverlay;
 import cc.hyperium.gui.main.components.OverlayButton;
 import cc.hyperium.gui.main.components.OverlayLabel;
