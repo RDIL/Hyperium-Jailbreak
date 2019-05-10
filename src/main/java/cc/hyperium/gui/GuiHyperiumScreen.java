@@ -98,7 +98,7 @@ public class GuiHyperiumScreen extends GuiScreen {
     }
 
     public GuiStyle getStyle() {
-        return GuiStyle.valueOf(Minecraft.getMinecraft().theWorld == null ? Settings.MENU_STYLE : Settings.PAUSE_STYLE);
+        return GuiStyle.valueOf(Settings.PAUSE_STYLE);
     }
 
     public void renderHyperiumBackground(ScaledResolution p_180476_1_) {
