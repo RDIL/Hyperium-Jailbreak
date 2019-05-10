@@ -2,7 +2,14 @@
 
 ## Staging (release queue)
 
-Nothing in the release queue now, check back later.
+```diff
+* Replaced bors with mergify
+- Removed duplicated setting
+- Removed blurs which caused issues
++ Improved font renderer
+- Removed crash reporting for privacy
+- Removed old mixins
+```
 
 ## v2.6
 

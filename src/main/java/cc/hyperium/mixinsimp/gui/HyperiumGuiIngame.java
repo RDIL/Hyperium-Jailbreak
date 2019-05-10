@@ -49,7 +49,7 @@ public class HyperiumGuiIngame {
 
             ScaledResolution scaledresolution = new ScaledResolution(Minecraft.getMinecraft());
             int i = scaledresolution.getScaledWidth();
-            if (Settings.BOSSBAR_TEXT_ONLY || (!BossbarConfig.barEnabled && BossbarConfig.textEnabled)) {
+            if (!BossbarConfig.barEnabled && BossbarConfig.textEnabled) {
                 String s = BossStatus.bossName;
                 if (BossbarConfig.x != -1) {
                     parent.getFontRenderer().drawStringWithShadow(s, (float) (BossbarConfig.x + 91 - parent.getFontRenderer().getStringWidth(s) / 2), BossbarConfig.y - 10, 16777215);

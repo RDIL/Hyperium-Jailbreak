@@ -62,7 +62,6 @@ gui.settings.hidecrosshairinf5=Hide Crosshair when in third person
 gui.settings.critparticlefix=Crit particle fix
 gui.settings.holdperspectivekey=Hold perspective key
 gui.settings.windowedfullscreen=Windowed fullscreen
-gui.settings.bossbartextonly=Bossbar - text only
 gui.settings.staticfov=Static FOV
 gui.settings.chromahudonallservers=ChromaHUD (all servers)
 gui.settings.screenshotonkill=Screenshot on kill
