@@ -1,0 +1,9 @@
+pull_request_rules:
+  - name: automatic merge
+    conditions:
+      - label=auto-merge
+      - status-success=Cirrus CI
+      - base=master
+    actions:
+      merge:
+        method: merge
