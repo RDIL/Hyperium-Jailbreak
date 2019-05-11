@@ -25,8 +25,13 @@ import java.util.concurrent.locks.ReentrantLock;
 public class CapeHandler {
     public static final ReentrantLock LOCK = new ReentrantLock();
     private final ConcurrentHashMap<UUID, ICape> capes = new ConcurrentHashMap<>();
+    private File CACHE_DIR;
 
-    public CapeHandler() {}
+    public CapeHandler() {
+        CACHE_DIR = new File(Hyperium.folder, "CAPE_CACHE");
+        CACHE_DIR.mkdir();
+        Runtime.getRuntime().addShutdownHook(new Thread(CACHE_DIR::delete));
+    }
 
     @InvokeEvent
     public void worldSwap(WorldChangeEvent event) {
