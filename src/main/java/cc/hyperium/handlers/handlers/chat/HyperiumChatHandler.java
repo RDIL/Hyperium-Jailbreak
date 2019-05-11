@@ -22,31 +22,17 @@ import cc.hyperium.utils.JsonHolder;
 
 import java.util.Map;
 import java.util.regex.Pattern;
-
 import net.minecraft.util.IChatComponent;
 
-/**
- * @author Sk1er
- */
 public abstract class HyperiumChatHandler {
-
-    // Resource *should* be loaded by then so
     protected static Map<ChatRegexType, Pattern> regexPatterns;
 
     public Hyperium getHyperium() {
         return Hyperium.INSTANCE;
     }
-
-    /**
-     * @param component Entire component from evnet
-     * @param text      Pure text for parsign
-     * @return boolean to cancel event
-     */
     public abstract boolean chatReceived(IChatComponent component, String text);
 
-    public void callback(JsonHolder data) {
-
-    }
+    public void callback(JsonHolder data) {}
 
     public enum ChatRegexType {
         SKYWARS_RATING, //
@@ -63,5 +49,4 @@ public abstract class HyperiumChatHandler {
         QUEST_COMPLETE, //
         WIN //
     }
-
 }

@@ -17,11 +17,7 @@
 
 package cc.hyperium.mods.chromahud.api;
 
-/**
- * @author Sk1er
- */
 public class Dimension {
-
     protected double width;
     protected double height;
 

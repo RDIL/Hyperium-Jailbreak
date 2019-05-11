@@ -18,17 +18,9 @@
 package cc.hyperium.mods.chromahud.api;
 
 import net.minecraft.client.gui.GuiButton;
-
 import java.util.function.BiConsumer;
 
-/**
- * @author Sk1er
- */
 public class ButtonConfig {
-    /*
-        Called when the button is pressed. GuiButton is the gui button instance provided. StatsDisplayItem is the object of that display item
-        Load is called on load to initalize to right state
-     */
     private final BiConsumer<GuiButton, DisplayItem> action;
     private final GuiButton button;
     private final BiConsumer<GuiButton, DisplayItem> load;

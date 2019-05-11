@@ -22,8 +22,6 @@ import cc.hyperium.event.EventBus;
 import cc.hyperium.mods.AbstractMod;
 import cc.hyperium.mods.keystrokes.config.KeystrokesSettings;
 import cc.hyperium.mods.keystrokes.render.KeystrokesRenderer;
-import cc.hyperium.mods.sk1ercommon.Sk1erMod;
-import cc.hyperium.utils.ChatColor;
 
 public class KeystrokesMod extends AbstractMod {
     private final Metadata metaData;
@@ -32,8 +30,7 @@ public class KeystrokesMod extends AbstractMod {
     private KeystrokesRenderer renderer;
 
     public KeystrokesMod() {
-        Metadata data = new Metadata(this, "KeystrokesMod", "5.0.1", "Fyu, boomboompower and Sk1er");
-        data.setDisplayName(ChatColor.AQUA + "Keystrokes");
+        Metadata data = new Metadata(this, "KeystrokesMod", "5.0.1", "Fyu");
         this.metaData = data;
     }
 
@@ -41,7 +38,6 @@ public class KeystrokesMod extends AbstractMod {
     public AbstractMod init() {
         this.config = new KeystrokesSettings(this, Hyperium.folder);
         this.config.load();
-        new Sk1erMod("keystrokesmod", "5.0.1");
         this.renderer = new KeystrokesRenderer(this);
         EventBus.INSTANCE.register(this.renderer);
         Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(new CommandKeystrokes(this));

@@ -89,29 +89,6 @@ public class CapesGui extends HyperiumGui implements GuiYesNoCallback {
 
     @Override
     protected void pack() {
-        reg("RESET", new GuiButton(nextId(), 1, 1, "Disable Hyperium Cape"), guiButton -> {
-            NettyClient client = NettyClient.getClient();
-            if (client != null) client.write(ServerCrossDataPacket.build(new JsonHolder().put("internal", true).put("set_cape", true).put("value", "default")));
-            HyperiumPurchase self = PurchaseApi.getInstance().getSelf();
-            if (self == null) {
-                GeneralChatHandler.instance().sendMessage("Unable to reset your cape: Your profile is not loaded");
-                return;
-            }
-            JsonHolder purchaseSettings = self.getPurchaseSettings();
-            if (!purchaseSettings.has("cape")) purchaseSettings.put("cape", new JsonHolder());
-            purchaseSettings.optJSONObject("cape").put("type", "default");
-            Hyperium.INSTANCE.getHandlers().getCapeHandler().deleteCape(UUIDUtil.getClientUUID());
-        }, guiButton -> {});
-        reg("CUSTOM", new GuiButton(nextId(), 1, 22, "Custom Cape"), guiButton -> {
-            Desktop desktop = Desktop.getDesktop();
-            if (desktop != null) {
-                try {
-                    desktop.browse(new URL("https://capes.hyperium.cc").toURI());
-                } catch (IOException | URISyntaxException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, guiButton -> {});
     }
 
     @Override
@@ -165,14 +142,7 @@ public class CapesGui extends HyperiumGui implements GuiYesNoCallback {
             GuiBlock block1 = new GuiBlock(i2, i2 + stringWidth1 * 2, i3, i3 + 15);
             GlStateManager.scale(.5F, .5F, .5F);
             actions.put(block1, () -> {
-                Desktop desktop = Desktop.getDesktop();
-                if (desktop != null) {
-                    try {
-                        desktop.browse(new URL("https://purchase.sk1er.club/category/1125808").toURI());
-                    } catch (IOException | URISyntaxException e) {
-                        e.printStackTrace();
-                    }
-                }
+                boolean e = false;
             });
 
             printY += 25;
@@ -268,17 +238,7 @@ public class CapesGui extends HyperiumGui implements GuiYesNoCallback {
                         int i = thisTopY - 8 + blockHeight / 2 + 64 + 48;
                         fontRendererObj.drawString(string, left, i, new Color(249, 76, 238).getRGB(), true);
                         GuiBlock block = new GuiBlock(left, left + stringWidth, i, i + 10);
-                        actions.put(block, () -> {
-                            purchasing = true;
-                            Integer integer = intMap.computeIfAbsent(s, s3 -> ++purchaseIds);
-                            GuiYesNo gui = new GuiYesNo(this, "Purchase " + s, "", integer);
-                            Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(gui);
-                            ids.put(integer, () -> {
-                                GeneralChatHandler.instance().sendMessage("Attempting to purchase " + s);
-                                NettyClient client = NettyClient.getClient();
-                                if (client != null) client.write(ServerCrossDataPacket.build(new JsonHolder().put("internal", true).put("cosmetic_purchase", true).put("value", s)));
-                            });
-                        });
+                        actions.put(block, () -> purchasing = true);
                     } else {
                         String string = "Insufficient Credits";
                         int stringWidth = fontRendererObj.getStringWidth(string);

@@ -103,11 +103,9 @@ public class PlayerStatsGui extends HyperiumGui {
                         BufferedImage img = ImageIO.read(ImageIO.createImageInputStream(is));
                         texturesImage.put(field, img);
                     } catch (Exception e) {
-                        System.out.println(field.getClass().getName());
                         e.printStackTrace();
                     }
             });
-
         }
     }
 
@@ -143,17 +141,6 @@ public class PlayerStatsGui extends HyperiumGui {
 
     @Override
     protected void pack() {
-        reg("VIEW_ON_BEST_WEBSITE", new GuiButton(nextId(), 1, 1, "View on Sk1er.club"), button -> {
-            Desktop desktop = Desktop.getDesktop();
-            if (desktop != null) {
-                try {
-                    desktop.browse(new URL("https://sk1er.club/stats/" + player.getName()).toURI());
-                } catch (IOException | URISyntaxException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, button -> {});
-
         reg("VIEW_GUILD", new GuiButton(nextId(), 1, 22, "View Guild"), button -> new GuildStatsGui(player.getGuild()).show(), button -> button.visible = player.getGuild().isLoaded() && player.getGuild().isValid());
         reg("VIEW_FRIENDS", new GuiButton(nextId(), 1, 22 + 21, "View Friends"), button -> {}, button -> { });
     }
@@ -194,9 +181,6 @@ public class PlayerStatsGui extends HyperiumGui {
                     y++;
                 }
                 if (dynamicTexture != null) {
-                    //Render Image
-
-
                     int y1 = 100 + y * blockWidth - 10 - offset;
                     if (y1 < 70)
                         continue;

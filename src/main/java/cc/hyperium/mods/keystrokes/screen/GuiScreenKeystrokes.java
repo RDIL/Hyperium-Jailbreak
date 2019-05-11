@@ -25,12 +25,10 @@ import cc.hyperium.mods.keystrokes.screen.impl.GuiSliderScale;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-
 import java.awt.Color;
 import java.io.IOException;
 
 public class GuiScreenKeystrokes extends GuiScreen {
-
     private final KeystrokesMod mod;
     private final Minecraft mc;
 
@@ -74,7 +72,6 @@ public class GuiScreenKeystrokes extends GuiScreen {
         buttonList.add(buttonPressedColor = new GuiButton(10, this.width / 2 + 5, calculateHeight(5), 150, 20, "Edit pressed text color"));
         buttonList.add(new GuiSliderScale(mod, 11, this.width / 2 - 155, calculateHeight(6), 150, 20, this));
         buttonList.add(new GuiSliderFadeTime(mod, 12, this.width / 2 + 5, calculateHeight(6), 150, 20, this));
-
     }
 
     @Override
@@ -83,8 +80,6 @@ public class GuiScreenKeystrokes extends GuiScreen {
         this.mod.getRenderer().renderKeystrokes();
 
         drawCenteredString(this.mc.fontRendererObj, "KeystrokesMod v5.0.1", this.width / 2, 5, Color.WHITE.getRGB());
-        drawCenteredString(this.mc.fontRendererObj, "Ported by boomboompower", this.width / 2, 16, Color.WHITE.getRGB());
-        drawCenteredString(this.mc.fontRendererObj, "Updated by Sk1er", this.width / 2, 27, Color.WHITE.getRGB());
 
         this.buttonTextColor.enabled = !this.mod.getSettings().isChroma();
         this.buttonPressedColor.enabled = !this.mod.getSettings().isChroma();
