@@ -25,13 +25,8 @@ import java.util.concurrent.locks.ReentrantLock;
 public class CapeHandler {
     public static final ReentrantLock LOCK = new ReentrantLock();
     private final ConcurrentHashMap<UUID, ICape> capes = new ConcurrentHashMap<>();
-    private File CACHE_DIR;
 
-    public CapeHandler() {
-        CACHE_DIR = new File(Hyperium.folder, "CAPE_CACHE");
-        CACHE_DIR.mkdir();
-        Runtime.getRuntime().addShutdownHook(new Thread(CACHE_DIR::delete));
-    }
+    public CapeHandler() {}
 
     @InvokeEvent
     public void worldSwap(WorldChangeEvent event) {
@@ -54,8 +49,6 @@ public class CapeHandler {
     private void loadStaticCape(final UUID uuid, String url) {
         if (capes.get(uuid) != null && !capes.get(uuid).equals(NullCape.INSTANCE)) return;
         capes.put(uuid, NullCape.INSTANCE);
-
-        ResourceLocation resourceLocation = new ResourceLocation(String.format("hyperium/capes/%s.png", System.nanoTime()));
 
         TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
         ThreadDownloadImageData threadDownloadImageData = new ThreadDownloadImageData(null, url, null, new IImageBuffer() {
@@ -92,19 +85,6 @@ public class CapeHandler {
                     HyperiumPurchase hyperiumPurchase = PurchaseApi.getInstance()
                         .getPackageSync(uuid);
                     JsonHolder holder = hyperiumPurchase.getPurchaseSettings().optJSONObject("cape");
-                    String s = holder.optString("type");
-                    if (s.equalsIgnoreCase("CUSTOM_IMAGE")) {
-                        loadStaticCape(uuid, holder.optString("url"));
-                        return;
-                    } else if (!s.isEmpty()) {
-                        JsonHolder jsonHolder = PurchaseApi.getInstance().getCapeAtlas()
-                            .optJSONObject(s);
-                        String url = jsonHolder.optString("url");
-                        if (!url.isEmpty()) {
-                            loadStaticCape(uuid, url);
-                            return;
-                        }
-                    }
                     if (Settings.LOAD_OPTIFINE_CAPES) loadStaticCape(uuid, "http://s.optifine.net/capes/" + player.getGameProfile().getName() + ".png");
                 });
                 return capes.getOrDefault(uuid, NullCape.INSTANCE).get();
