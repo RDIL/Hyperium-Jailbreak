@@ -55,6 +55,8 @@ public class CapeHandler {
         if (capes.get(uuid) != null && !capes.get(uuid).equals(NullCape.INSTANCE)) return;
         capes.put(uuid, NullCape.INSTANCE);
 
+        ResourceLocation resourceLocation = new ResourceLocation(String.format("hyperium/capes/%s.png", System.nanoTime()));
+
         TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
         ThreadDownloadImageData threadDownloadImageData = new ThreadDownloadImageData(null, url, null, new IImageBuffer() {
             @Override
