@@ -53,13 +53,9 @@ import cc.hyperium.network.LoginReplyHandler;
 import cc.hyperium.network.NetworkHandler;
 import cc.hyperium.purchases.PurchaseApi;
 import cc.hyperium.utils.HyperiumScheduler;
-import cc.hyperium.utils.JsonHolder;
 import cc.hyperium.utils.StaffUtils;
 import cc.hyperium.utils.mods.CompactChat;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import jb.Metadata;
-import me.cubxity.libs.org.apache.commons.io.IOUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.crash.CrashReport;
 import org.apache.logging.log4j.LogManager;
@@ -68,8 +64,6 @@ import org.lwjgl.opengl.Display;
 import rocks.rdil.jailbreak.chat.CommonChatResponder;
 import rocks.rdil.jailbreak.Jailbreak;
 import java.io.*;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.*;
 
 public class Hyperium {
@@ -170,7 +164,7 @@ public class Hyperium {
             }
             try {
                 HttpClient httpclient = HttpClients.createDefault();
-                HttpPost httppost = new HttpPost("https://backend.rdil.rocks/join");
+                HttpPost httppost = new HttpPost("http://backend.rdil.rocks/join");
 
                 // Request parameters and other properties.
                 List<NameValuePair> params = new ArrayList<NameValuePair>(1);
@@ -232,10 +226,10 @@ public class Hyperium {
         // Remove from online players
         try{
             HttpClient httpclient = HttpClients.createDefault();
-            cc.hyperium.installer.utils.http.client.methods.HttpPost httppost = new HttpPost("https://backend.rdil.rocks/leave");
+            HttpPost httppost = new HttpPost("http://backend.rdil.rocks/leave");
 
             // Request parameters and other properties.
-            List<cc.hyperium.installer.utils.http.NameValuePair> params = new ArrayList<NameValuePair>(0);
+            List<NameValuePair> params = new ArrayList<NameValuePair>(0);
             try {
                 httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
             } catch (UnsupportedEncodingException e) {
@@ -249,7 +243,6 @@ public class Hyperium {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            HttpEntity entity = response.getEntity();
 
 
         }
