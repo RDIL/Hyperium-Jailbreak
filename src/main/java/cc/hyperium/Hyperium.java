@@ -176,8 +176,7 @@ public class Hyperium {
                 }
 
                 // Execute and get the response.
-                HttpResponse response = null;
-                response = httpclient.execute(httppost);
+                httpclient.execute(httppost);
             } catch (Exception e) {
                 e.printStackTrace();
             }
