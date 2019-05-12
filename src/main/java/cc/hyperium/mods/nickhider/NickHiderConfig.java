@@ -31,6 +31,4 @@ public class NickHiderConfig {
     public void setHideSkins(boolean hideSkins) {
         this.hideSkins = hideSkins;
     }
-
-
 }

@@ -40,7 +40,7 @@ public class AutofriendCommand implements BaseCommand {
     @Override
     public void onExecute(String[] args) {
         if (args.length == 0) {
-            this.throwError("Unknown usage! Usage: " + usage);
+            this.throwError("Usage: " + usage);
             return;
         }
         if (args[0].equalsIgnoreCase("blacklist")) {
@@ -58,13 +58,11 @@ public class AutofriendCommand implements BaseCommand {
                     if (page < 1 || page > pages) {
                         this.throwError("Invalid page number");
                     } else {
-                        this.sendMessage(EnumChatFormatting.GRAY + "----------------------");
                         this.sendMessage(EnumChatFormatting.BLUE + "Blacklist " + EnumChatFormatting.DARK_AQUA + "(Page " + page + " of " + pages + ")");
                         AutofriendMod.blacklist.stream().skip((page - 1) * 7).limit(7L).forEach(name -> this.sendMessage(AutoFriendUtils.of(EnumChatFormatting.BLUE + name + EnumChatFormatting.GRAY + " - ").append("[REMOVE]").setColor(EnumChatFormatting.RED).setClickEvent(ClickEvent.Action.RUN_COMMAND, "/f remove " + name).setHoverEvent(HoverEvent.Action.SHOW_TEXT, AutoFriendUtils.of("Remove " + name).setColor(EnumChatFormatting.RED).build()).append(" - ").setColor(EnumChatFormatting.GRAY).append("[UNBLACKLIST]").setColor(EnumChatFormatting.GREEN).setClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/autofriend blacklist remove " + name).setHoverEvent(HoverEvent.Action.SHOW_TEXT, AutoFriendUtils.of("Blacklist " + name).setColor(EnumChatFormatting.RED).build()).build().toString()));
-                        this.sendMessage(EnumChatFormatting.GRAY + "----------------------");
                     }
                 } else {
-                    this.throwError("You haven't blacklisted anyone");
+                    this.throwError("Blacklisted list empty");
                 }
             } else if (args[1].equalsIgnoreCase("add") || args[1].equalsIgnoreCase("remove")) {
                 if (args.length > 2 && this.username.matcher(args[2]).matches()) {
@@ -73,14 +71,14 @@ public class AutofriendCommand implements BaseCommand {
                     } else {
                         AutofriendMod.blacklist.remove(args[2]);
                     }
-                    this.sendMessage(EnumChatFormatting.BLUE + (args[1].equals("add") ? ("Added " + EnumChatFormatting.RED + args[2] + EnumChatFormatting.BLUE + " to") : ("Removed " + EnumChatFormatting.GREEN + args[2] + EnumChatFormatting.BLUE + " from")) + " your blacklist.");
+                    this.sendMessage(EnumChatFormatting.BLUE + (args[1].equals("add") ? ("Added " + EnumChatFormatting.RED + args[2] + EnumChatFormatting.BLUE + " to") : ("Removed " + EnumChatFormatting.GREEN + args[2] + EnumChatFormatting.BLUE + " from")) + " blacklist.");
                     AutofriendMod.writeBlacklist();
                 } else {
                     this.throwError("Invalid username. Usage: " + usage);
                 }
             }
         } else {
-            this.throwError("Unknown usage! Usage: " + usage);
+            this.throwError("Usage: " + usage);
         }
     }
 }

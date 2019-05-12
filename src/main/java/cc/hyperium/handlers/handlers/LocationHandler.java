@@ -124,7 +124,6 @@ public class LocationHandler {
             NettyClient.getClient().write(UpdateLocationPacket.build(Minigame.HOUSING.name()));
             if (Hyperium.INSTANCE.getHandlers().getFlipHandler().getSelf() != 0)
                 NettyClient.getClient().write(ServerCrossDataPacket.build(new JsonHolder().put("type", "flip_update").put("flip_state", 2)));
-
         }
     }
 

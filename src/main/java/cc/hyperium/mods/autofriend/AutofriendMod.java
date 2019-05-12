@@ -32,7 +32,7 @@ public class AutofriendMod extends AbstractMod {
 
     @Override
     public Metadata getModMetadata() {
-        return new Metadata(this, "Autofriend Mod", "1.0", "ConorTheDev & 2PI");
+        return new Metadata(this, "Autofriend Mod", "1", "2Pi");
     }
 
     @InvokeEvent
