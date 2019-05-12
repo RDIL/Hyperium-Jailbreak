@@ -229,8 +229,7 @@ public class Hyperium {
 
             try {
                 //Execute and get the response.
-                HttpResponse response = null;
-                response = httpclient.execute(httppost);
+                httpclient.execute(httppost);
             } catch (IOException e) {
                 e.printStackTrace();
             }
