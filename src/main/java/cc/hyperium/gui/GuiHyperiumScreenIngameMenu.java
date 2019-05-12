@@ -214,7 +214,7 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
 
         Multithreading.runAsync(() -> {
             HttpClient httpclient = HttpClients.createDefault();
-            HttpPost httppost = new HttpPost("https://backend.rdil.rocks/getOnline");
+            HttpPost httppost = new HttpPost("http://backend.rdil.rocks/getOnline");
 
             // Request parameters and other properties.
             List<NameValuePair> params = new ArrayList<NameValuePair>(0);
