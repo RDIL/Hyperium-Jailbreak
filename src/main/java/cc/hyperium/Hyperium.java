@@ -227,17 +227,14 @@ public class Hyperium {
                 e.printStackTrace();
             }
 
-            //Execute and get the response.
-            HttpResponse response = null;
             try {
+                //Execute and get the response.
+                HttpResponse response = null;
                 response = httpclient.execute(httppost);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             Minecraft.getMinecraft().crashed(new CrashReport("Hyperium Shutdown Failure", e));
         }
 
