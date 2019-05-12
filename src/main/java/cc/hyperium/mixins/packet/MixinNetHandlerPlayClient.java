@@ -158,8 +158,6 @@ public abstract class MixinNetHandlerPlayClient {
                 packetBuffer.readBytes(payload);
                 String message = new String(payload, Charsets.UTF_8);
 
-                if (LoginReplyHandler.SHOW_MESSAGES)
-                    GeneralChatHandler.instance().sendMessage("Packet message on channel " + packetIn.getChannelName() + " -> " + message);
                 if ("REGISTER".equalsIgnoreCase(packetIn.getChannelName())) {
                     if (message.contains("Hyperium")) {
                         PacketBuffer buffer = new PacketBuffer(Unpooled.buffer());

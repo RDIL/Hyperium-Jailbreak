@@ -37,19 +37,18 @@ public class CommandLogs implements BaseCommand {
             reader.close();
             in.close();
         } catch (IOException e) {
-            GeneralChatHandler.instance().sendMessage("Error whilst reading log.");
+            GeneralChatHandler.instance().sendMessage("Error reading log.");
             e.printStackTrace();
             return;
         }
         message = new StringBuilder(message.toString().replaceAll(System.getProperty("user.name"), "{USERNAME}"));
 
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(message.toString()), null);
-        GeneralChatHandler.instance().sendMessage("Data copied to clipboard. Please paste in hastebin.com (This has been opened), save and send in Discord");
+        GeneralChatHandler.instance().sendMessage("Copied to clipboard. Please paste in hastebin.com (This has been opened), save and send in Discord");
         Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
         if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
             try {
                 desktop.browse(new URL("https://hastebin.com").toURI());
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
