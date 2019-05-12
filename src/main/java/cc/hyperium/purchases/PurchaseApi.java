@@ -166,5 +166,6 @@ public class PurchaseApi {
         HyperiumPurchase value = new HyperiumPurchase(uuid, get(url + uuid.toString()));
         EventBus.INSTANCE.post(new PurchaseLoadEvent(uuid, value, true));
         purchasePlayers.put(uuid, value);
+        Hyperium.INSTANCE.getHandlers().getCapeHandler().deleteCape(uuid);
     }
 }
