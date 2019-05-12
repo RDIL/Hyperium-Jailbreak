@@ -31,6 +31,14 @@ import cc.hyperium.event.minigames.MinigameListener;
 import cc.hyperium.gui.*;
 import cc.hyperium.handlers.HyperiumHandlers;
 import cc.hyperium.handlers.handlers.stats.PlayerStatsGui;
+import cc.hyperium.installer.utils.http.HttpEntity;
+import cc.hyperium.installer.utils.http.HttpResponse;
+import cc.hyperium.installer.utils.http.NameValuePair;
+import cc.hyperium.installer.utils.http.client.HttpClient;
+import cc.hyperium.installer.utils.http.client.entity.UrlEncodedFormEntity;
+import cc.hyperium.installer.utils.http.client.methods.HttpPost;
+import cc.hyperium.installer.utils.http.impl.client.HttpClients;
+import cc.hyperium.installer.utils.http.message.BasicNameValuePair;
 import cc.hyperium.mixinsimp.client.resources.HyperiumLocale;
 import cc.hyperium.mixinsimp.renderer.FontFixValues;
 import cc.hyperium.mods.HyperiumModIntegration;
@@ -45,9 +53,13 @@ import cc.hyperium.network.LoginReplyHandler;
 import cc.hyperium.network.NetworkHandler;
 import cc.hyperium.purchases.PurchaseApi;
 import cc.hyperium.utils.HyperiumScheduler;
+import cc.hyperium.utils.JsonHolder;
 import cc.hyperium.utils.StaffUtils;
 import cc.hyperium.utils.mods.CompactChat;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import jb.Metadata;
+import me.cubxity.libs.org.apache.commons.io.IOUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.crash.CrashReport;
 import org.apache.logging.log4j.LogManager;
@@ -55,7 +67,10 @@ import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 import rocks.rdil.jailbreak.chat.CommonChatResponder;
 import rocks.rdil.jailbreak.Jailbreak;
-import java.io.File;
+import java.io.*;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.*;
 
 public class Hyperium {
     public static final Hyperium INSTANCE = new Hyperium();
@@ -153,6 +168,34 @@ public class Hyperium {
             } catch (ClassNotFoundException e) {
                 optifineInstalled = false;
             }
+            try {
+                HttpClient httpclient = HttpClients.createDefault();
+                HttpPost httppost = new HttpPost("https://backend.rdil.rocks/join");
+
+                // Request parameters and other properties.
+                List<NameValuePair> params = new ArrayList<NameValuePair>(1);
+                params.add(new BasicNameValuePair("uuid", "123123"));
+                try {
+                    httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
+                //Execute and get the response.
+                HttpResponse response = null;
+                try {
+                    response = httpclient.execute(httppost);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                HttpEntity entity = response.getEntity();
+            }
+            catch (Exception e){
+                System.out.println(e);
+            }
+
+
+
         } catch (Throwable t) {
             Minecraft.getMinecraft().crashed(new CrashReport("Hyperium Startup Failure", t));
         }
@@ -185,6 +228,35 @@ public class Hyperium {
 
     private void shutdown() {
         CONFIG.save();
+
+        // Remove from online players
+        try{
+            HttpClient httpclient = HttpClients.createDefault();
+            cc.hyperium.installer.utils.http.client.methods.HttpPost httppost = new HttpPost("https://backend.rdil.rocks/leave");
+
+            // Request parameters and other properties.
+            List<cc.hyperium.installer.utils.http.NameValuePair> params = new ArrayList<NameValuePair>(0);
+            try {
+                httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
+            //Execute and get the response.
+            HttpResponse response = null;
+            try {
+                response = httpclient.execute(httppost);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            HttpEntity entity = response.getEntity();
+
+
+        }
+        catch (Exception e){
+            Minecraft.getMinecraft().crashed(new CrashReport("Hyperium Shutdown Failure", e));
+        }
+
         // Tell the modules the game is shutting down
         EventBus.INSTANCE.post(new GameShutDownEvent());
     }
