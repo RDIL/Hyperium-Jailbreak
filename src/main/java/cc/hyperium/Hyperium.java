@@ -162,6 +162,7 @@ public class Hyperium {
             } catch (ClassNotFoundException e) {
                 optifineInstalled = false;
             }
+            // update player count
             try {
                 HttpClient httpclient = HttpClients.createDefault();
                 HttpPost httppost = new HttpPost("http://backend.rdil.rocks/join");
@@ -175,21 +176,12 @@ public class Hyperium {
                     e.printStackTrace();
                 }
 
-                //Execute and get the response.
+                // Execute and get the response.
                 HttpResponse response = null;
-                try {
-                    response = httpclient.execute(httppost);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                HttpEntity entity = response.getEntity();
+                response = httpclient.execute(httppost);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            catch (Exception e){
-                System.out.println(e);
-            }
-
-
-
         } catch (Throwable t) {
             Minecraft.getMinecraft().crashed(new CrashReport("Hyperium Startup Failure", t));
         }
