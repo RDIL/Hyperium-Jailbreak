@@ -69,13 +69,13 @@ public class HyperiumModIntegration {
         this.timeChanger = (TimeChanger) new TimeChanger();
         this.gc.init();
         this.keystrokesMod.init();
+        this.itemPhysicMod.init();
         
         if (!Settings.FPS) {
             this.autofriend.init();
             this.fncompass.init();
             this.blockOverlay.init();
             this.timeChanger.init();
-            this.itemPhysicMod.init();
         }
     }
 
