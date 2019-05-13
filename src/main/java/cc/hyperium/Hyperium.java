@@ -50,7 +50,6 @@ import cc.hyperium.netty.UniversalNetty;
 import cc.hyperium.network.LoginReplyHandler;
 import cc.hyperium.network.NetworkHandler;
 import cc.hyperium.purchases.PurchaseApi;
-import cc.hyperium.utils.HyperiumScheduler;
 import cc.hyperium.utils.StaffUtils;
 import cc.hyperium.utils.mods.CompactChat;
 import jb.Metadata;
@@ -94,7 +93,6 @@ public class Hyperium {
                 UniversalNetty.getInstance().getPacketManager().register(new LoginReplyHandler());
             });
             Multithreading.runAsync(() -> new PlayerStatsGui(null)); // Don't remove
-            new HyperiumScheduler();
             try {
                 Class.forName("net.minecraft.dispenser.BehaviorProjectileDispense");
                 isDevEnv = true;
