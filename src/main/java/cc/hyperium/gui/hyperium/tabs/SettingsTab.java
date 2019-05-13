@@ -9,7 +9,6 @@ import cc.hyperium.gui.hyperium.RGBFieldSet;
 import cc.hyperium.gui.hyperium.components.AbstractTab;
 import cc.hyperium.gui.hyperium.components.AbstractTabComponent;
 import cc.hyperium.gui.hyperium.components.CollapsibleTabComponent;
-import cc.hyperium.gui.hyperium.components.LinkComponent;
 import cc.hyperium.gui.hyperium.components.RGBComponent;
 import cc.hyperium.gui.hyperium.components.SelectorComponent;
 import cc.hyperium.gui.hyperium.components.SliderComponent;

@@ -33,8 +33,7 @@ public final class ToggleChatMod extends AbstractMod {
     private ToggleBaseHandler toggleHandler;
 
     public ToggleChatMod() {
-        Metadata metadata = new Metadata(this, "ToggleChatLite", "1.0", "boomboompower");
-        metadata.setDisplayName(ChatColor.AQUA + "ToggleChatLite");
+        Metadata metadata = new Metadata(this, "ToggleChat", "1", "boomboompower");
         this.meta = metadata;
     }
 

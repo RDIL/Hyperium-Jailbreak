@@ -10,7 +10,6 @@ import cc.hyperium.utils.ChatColor;
 import net.minecraft.client.Minecraft;
 
 public class AutoGGListener {
-    private final Minecraft mc = Minecraft.getMinecraft();
     private final AutoGG mod;
     boolean invoked = false;
 
@@ -25,8 +24,8 @@ public class AutoGGListener {
 
     @InvokeEvent
     public void onChat(final ChatEvent event) {
-        if (this.mod.getConfig().ANTI_GG && invoked) {
-            if (event.getChat().getUnformattedText().toLowerCase().endsWith("gg") || event.getChat().getUnformattedText().endsWith("Good Game")) event.setCancelled(true);
+        if (this.mod.getConfig().ANTI_GG && invoked && event.getChat().getUnformattedText().toLowerCase().endsWith("gg") || event.getChat().getUnformattedText().endsWith("Good Game")) {
+            event.setCancelled(true);
         }
         if (!this.mod.getConfig().isToggled() || this.mod.isRunning() || this.mod.getTriggers().isEmpty()) return;
 
