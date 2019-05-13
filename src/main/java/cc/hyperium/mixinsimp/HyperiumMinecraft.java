@@ -234,7 +234,7 @@ public class HyperiumMinecraft {
         System.exit(1);
     }
 
-    public void shutdown(CallbackInfo ci) {
+    public void shutdown() {
         AddonMinecraftBootstrap.getLoadedAddons().forEach(IAddon::onClose);
     }
 }
