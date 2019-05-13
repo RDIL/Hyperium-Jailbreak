@@ -15,7 +15,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-version = "2.6"
+version = "2.7"
 
 buildscript {
     repositories {
@@ -80,7 +80,7 @@ dependencies {
     embed group: 'com.nativelibs4java', name: 'bridj', version: '0.7.0'
     embed 'com.github.hyperiumjailbreak:DeobfStack:2.1'
     embed 'com.github.HyperiumClient:Installer:1.9'
-    embed 'rocks.rdil.MojangAPI:MojangAPI:4.1'
+    embed 'rocks.rdil.MojangAPI:MojangAPI:3.1'
     embed fileTree(dir: 'libs', include: 'Netty Client.jar')
     compile fileTree(dir: 'libs', include: '*.jar')
 }

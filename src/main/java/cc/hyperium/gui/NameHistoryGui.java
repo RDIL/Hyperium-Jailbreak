@@ -30,7 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import rocks.rdil.api.MojangAPI;
+import me.kbrewster.mojangapi.MojangAPI;
 
 public class NameHistoryGui extends GuiScreen {
     private String name;

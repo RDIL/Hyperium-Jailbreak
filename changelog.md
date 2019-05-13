@@ -1,6 +1,6 @@
 # Changelog
 
-## Staging (release queue)
+## v2.7
 
 ```diff
 * Replaced bors with mergify
@@ -9,6 +9,9 @@
 + Improved font renderer
 - Removed crash reporting for privacy
 - Removed old mixins
+- Remove Hyperium capes
++ Bug fixes
++ Added our own player count
 ```
 
 ## v2.6

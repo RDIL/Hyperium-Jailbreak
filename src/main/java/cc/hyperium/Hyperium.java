@@ -31,7 +31,6 @@ import cc.hyperium.event.minigames.MinigameListener;
 import cc.hyperium.gui.*;
 import cc.hyperium.handlers.HyperiumHandlers;
 import cc.hyperium.handlers.handlers.stats.PlayerStatsGui;
-import cc.hyperium.installer.utils.http.HttpResponse;
 import cc.hyperium.installer.utils.http.NameValuePair;
 import cc.hyperium.installer.utils.http.client.HttpClient;
 import cc.hyperium.installer.utils.http.client.entity.UrlEncodedFormEntity;

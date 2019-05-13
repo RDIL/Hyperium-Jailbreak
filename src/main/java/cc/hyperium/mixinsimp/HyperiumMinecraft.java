@@ -47,8 +47,6 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.io.File;
-import java.io.IOException;
-import java.lang.management.ManagementFactory;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;

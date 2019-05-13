@@ -1,6 +1,5 @@
 package cc.hyperium.network;
 
-import cc.hyperium.Hyperium;
 import cc.hyperium.config.Settings;
 import cc.hyperium.netty.NettyClient;
 import cc.hyperium.netty.packet.PacketHandler;
@@ -11,7 +10,6 @@ import cc.hyperium.netty.packet.packets.serverbound.UpdateLocationPacket;
 import cc.hyperium.utils.JsonHolder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ServerData;
-import java.util.Arrays;
 
 public class LoginReplyHandler implements PacketHandler<LoginReplyPacket> {
     @Override
