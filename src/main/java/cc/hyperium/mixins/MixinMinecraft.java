@@ -161,7 +161,7 @@ public abstract class MixinMinecraft {
 
     @Inject(method = "toggleFullscreen", at = @At(value = "INVOKE", target = "Lorg/lwjgl/opengl/Display;setVSyncEnabled(Z)V", shift = At.Shift.AFTER))
     private void fullScreenFix(CallbackInfo ci) throws LWJGLException {
-        hyperiumMinecraft.fullScreenFix(ci, fullscreen, displayWidth, displayHeight);
+        hyperiumMinecraft.fullScreenFix(fullscreen, displayWidth, displayHeight);
     }
 
     @Overwrite
