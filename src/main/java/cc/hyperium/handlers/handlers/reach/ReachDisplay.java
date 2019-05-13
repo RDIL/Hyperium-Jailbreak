@@ -20,14 +20,11 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import org.lwjgl.opengl.GL11;
-
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReachDisplay {
-
-
     public static double dis = 0.0;
     private List<Hit> hits = new ArrayList<>();
     private boolean locked = true;
@@ -108,11 +105,9 @@ public class ReachDisplay {
         double d0 = 6;
         Vec3 vec3 = entity.getPositionEyes(0.0F);
 
-
         Vec3 vec31 = entity.getLook(0.0F);
         Vec3 vec32 = vec3.addVector(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0);
         float f = 1.0F;
-
 
         Entity entity1 = entityEvent.getEntity();
         float f1 = .1F;
@@ -127,7 +122,6 @@ public class ReachDisplay {
     }
 
     class Hit {
-
         private Vec3 pos;
         private double distance;
         private long start = System.currentTimeMillis();

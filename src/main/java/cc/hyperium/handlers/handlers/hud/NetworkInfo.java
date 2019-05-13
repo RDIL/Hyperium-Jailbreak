@@ -34,7 +34,7 @@ public class NetworkInfo {
         if (info == null || info.getResponseTime() < 0) {
             GeneralChatHandler.instance().sendMessage(EnumChatFormatting.RED + "No info about " + name);
         } else {
-            GeneralChatHandler.instance().sendMessage(EnumChatFormatting.WHITE.toString() + EnumChatFormatting.BOLD + info.getGameProfile().getName() + EnumChatFormatting.WHITE + ": " + info.getResponseTime() + "ms");
+            GeneralChatHandler.instance().sendMessage(EnumChatFormatting.WHITE.toString() + info.getGameProfile().getName() + EnumChatFormatting.BLUE + ": " + info.getResponseTime() + "ms");
         }
     }
 }
