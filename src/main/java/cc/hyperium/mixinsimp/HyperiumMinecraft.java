@@ -78,7 +78,7 @@ public class HyperiumMinecraft {
         EventBus.INSTANCE.post(new InitializationEvent());
     }
 
-    public void runTick(CallbackInfo ci, Profiler mcProfiler) {
+    public void runTick(Profiler mcProfiler) {
         mcProfiler.startSection("hyperium_tick");
         EventBus.INSTANCE.post(new TickEvent());
         mcProfiler.endSection();
