@@ -110,7 +110,7 @@ public class HyperiumMinecraft {
         EventBus.INSTANCE.post(new SingleplayerJoinEvent());
     }
 
-    public void displayFix(boolean fullscreen, int displayWidth, int displayHeight) throws LWJGLException {
+    public void displayFix(CallbackInfo ci, boolean fullscreen, int displayWidth, int displayHeight) throws LWJGLException {
         Display.setFullscreen(false);
         if (fullscreen) {
             if (Settings.WINDOWED_FULLSCREEN) {
