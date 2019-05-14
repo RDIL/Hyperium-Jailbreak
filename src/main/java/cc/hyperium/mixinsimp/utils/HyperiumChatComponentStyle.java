@@ -1,6 +1,5 @@
 package cc.hyperium.mixinsimp.utils;
 
-import net.minecraft.util.ChatComponentStyle;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 public class HyperiumChatComponentStyle {

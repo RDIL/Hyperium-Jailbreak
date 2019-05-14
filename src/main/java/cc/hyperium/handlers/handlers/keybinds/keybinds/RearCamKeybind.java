@@ -4,11 +4,7 @@ import cc.hyperium.handlers.handlers.keybinds.HyperiumBind;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 
-/**
- * @author KodingKing
- */
 public class RearCamKeybind extends HyperiumBind {
-
     public RearCamKeybind() {
         super("Rear Cam", Keyboard.KEY_R);
     }

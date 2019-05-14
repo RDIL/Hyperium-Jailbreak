@@ -151,7 +151,7 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
 
         GlStateManager.translate(0, height - 50, 0);
 
-        if (System.currentTimeMillis() - lastUpdate > 2000L) {
+        if (System.currentTimeMillis() - lastUpdate > 1500L) {
             refreshData();
         }
 
@@ -233,7 +233,6 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
                     StringWriter writer = new StringWriter();
                     IOUtils.copy(instream, writer, "UTF-8");
                     String theString = writer.toString();
-                    System.out.println(theString);
                     JsonObject jsonObject = new JsonParser().parse(theString).getAsJsonObject();
                     data = new JsonHolder(jsonObject);
                 } catch (IOException e) {

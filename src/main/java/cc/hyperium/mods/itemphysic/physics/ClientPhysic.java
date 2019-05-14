@@ -1,9 +1,7 @@
 package cc.hyperium.mods.itemphysic.physics;
 
 import cc.hyperium.mods.itemphysic.ItemDummyContainer;
-
 import java.util.Random;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
@@ -18,11 +16,8 @@ import org.lwjgl.opengl.GL11;
 
 public class ClientPhysic {
     public static Minecraft mc = Minecraft.getMinecraft();
-
     public static long tick;
-
     public static double rotation;
-
     public static Random random = new Random();
 
     public static ResourceLocation getEntityTexture() {
@@ -86,9 +81,7 @@ public class ClientPhysic {
                     item.rotationPitch += rotation;
                 }
             } else {
-
-                if (!Double.isNaN(item.posX) && !Double.isNaN(item.posY) && !Double
-                    .isNaN(item.posZ) && item.worldObj != null) {
+                if (!Double.isNaN(item.posX) && !Double.isNaN(item.posY) && !Double.isNaN(item.posZ) && item.worldObj != null) {
                     if (item.onGround) {
                         item.rotationPitch = 0;
                     } else {
@@ -108,7 +101,6 @@ public class ClientPhysic {
                 GlStateManager.pushMatrix();
 
                 if (k > 0) {
-
                     float f7 = (random.nextFloat() * 2.0F - 1.0F) * 0.15F;
                     float f9 = (random.nextFloat() * 2.0F - 1.0F) * 0.15F;
                     float f6 = (random.nextFloat() * 2.0F - 1.0F) * 0.15F;

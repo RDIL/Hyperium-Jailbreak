@@ -39,7 +39,6 @@ import net.minecraft.crash.CrashReport;
 import net.minecraft.init.Bootstrap;
 import net.minecraft.profiler.Profiler;
 import net.minecraft.util.Timer;
-import net.minecraft.world.WorldSettings;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;

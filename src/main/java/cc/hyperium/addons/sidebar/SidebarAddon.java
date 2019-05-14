@@ -26,12 +26,10 @@ import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.RenderScoreboardEvent;
 import net.minecraft.client.Minecraft;
-import org.apache.logging.log4j.Logger;
 import java.io.File;
 import java.io.IOException;
 
 public class SidebarAddon extends AbstractAddon {
-    private static final Logger logger = Hyperium.LOGGER;
     private File saveFile;
     private GuiSidebar guiSidebar;
 
@@ -43,15 +41,12 @@ public class SidebarAddon extends AbstractAddon {
         this.saveFile = new File(mc.mcDataDir, "hyperium/sidebaraddon.json");
         this.guiSidebar = new GuiSidebar();
         this.loadConfig();
-        logger.info("Successfully loaded SidebarAddon!");
         return this;
     }
 
     @Override
     public Metadata getAddonMetadata() {
-        AbstractAddon.Metadata metadata = new AbstractAddon.Metadata(this, "SidebarAddon", "1.0.1", "Amplifiable");
-        metadata.setDescription("Allows for full scoreboard customization");
-        return metadata;
+        return new AbstractAddon.Metadata(this, "SidebarAddon", "1", "Amplifiable");
     }
 
     public GuiSidebar getSidebarGui() {
