@@ -87,7 +87,7 @@ public class GuiKeybinds extends HyperiumGui {
             keybindEntries.add(keybindEntry);
         }
 
-        resetButton = new GuiButton(1337, rightGui - 100, bottomGui - 20, fontRendererObj.getStringWidth("Reset all binds.") + 5, buttonHeight, "Reset all binds.");
+        resetButton = new GuiButton(1337, rightGui - 100, bottomGui - 20, fontRendererObj.getStringWidth("Reset All") + 5, buttonHeight, "Reset all binds.");
         backButton = new GuiButton(1338, rightGui - 150, bottomGui - 20, fontRendererObj.getStringWidth("Back") + 5, buttonHeight, "Back");
     }
 

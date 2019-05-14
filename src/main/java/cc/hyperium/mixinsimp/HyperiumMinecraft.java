@@ -57,8 +57,7 @@ public class HyperiumMinecraft {
         this.parent = parent;
     }
 
-    public void preinit(CallbackInfo ci, List<IResourcePack> defaultResourcePacks,
-                        DefaultResourcePack mcDefaultResourcePack, List<IResourcePack> resourcePacks) {
+    public void preinit(List<IResourcePack> defaultResourcePacks, DefaultResourcePack mcDefaultResourcePack) {
         EventBus.INSTANCE.register(Hyperium.INSTANCE);
 
         defaultResourcePacks.add(mcDefaultResourcePack);
@@ -69,25 +68,23 @@ public class HyperiumMinecraft {
         EventBus.INSTANCE.post(new PreInitializationEvent());
     }
 
-    public void loop(CallbackInfo info, boolean inGameHasFocus, WorldClient theWorld,
-                     EntityPlayerSP thePlayer, RenderManager renderManager, Timer timer) {
+    public void loop(boolean inGameHasFocus, WorldClient theWorld, EntityPlayerSP thePlayer, RenderManager renderManager, Timer timer) {
         if (inGameHasFocus && theWorld != null) {
-            RenderPlayerEvent event = new RenderPlayerEvent(thePlayer, renderManager, renderManager.viewerPosZ, renderManager.viewerPosY, renderManager.viewerPosZ,
-                timer.renderPartialTicks);
+            new RenderPlayerEvent(thePlayer, renderManager, renderManager.viewerPosZ, renderManager.viewerPosY, renderManager.viewerPosZ,timer.renderPartialTicks);
         }
     }
 
-    public void startGame(CallbackInfo info) {
+    public void startGame() {
         EventBus.INSTANCE.post(new InitializationEvent());
     }
 
-    public void runTick(CallbackInfo ci, Profiler mcProfiler) {
+    public void runTick(Profiler mcProfiler) {
         mcProfiler.startSection("hyperium_tick");
         EventBus.INSTANCE.post(new TickEvent());
         mcProfiler.endSection();
     }
 
-    public void runTickKeyboard(CallbackInfo ci) {
+    public void runTickKeyboard() {
         int key = Keyboard.getEventKey();
         boolean repeat = Keyboard.isRepeatEvent();
         boolean press = Keyboard.getEventKeyState();
@@ -101,16 +98,15 @@ public class HyperiumMinecraft {
         }
     }
 
-    public void clickMouse(CallbackInfo ci) {
+    public void clickMouse() {
         EventBus.INSTANCE.post(new LeftMouseClickEvent());
     }
 
-    public void rightClickMouse(CallbackInfo ci) {
+    public void rightClickMouse() {
         EventBus.INSTANCE.post(new RightMouseClickEvent());
     }
 
-    public void launchIntegratedServer(String folderName, String worldName,
-                                       WorldSettings worldSettingsIn, CallbackInfo ci) {
+    public void launchIntegratedServer() {
         EventBus.INSTANCE.post(new SingleplayerJoinEvent());
     }
 
@@ -139,7 +135,7 @@ public class HyperiumMinecraft {
         ci.cancel();
     }
 
-    public void fullScreenFix(CallbackInfo ci, boolean fullscreen, int displayWidth, int displayHeight) throws LWJGLException {
+    public void fullScreenFix(boolean fullscreen, int displayWidth, int displayHeight) throws LWJGLException {
         if (Settings.WINDOWED_FULLSCREEN) {
             if (fullscreen) {
                 System.setProperty("org.lwjgl.opengl.Window.undecorated", "true");
@@ -197,11 +193,11 @@ public class HyperiumMinecraft {
         if (Hyperium.INSTANCE.getHandlers() != null) Hyperium.INSTANCE.getHandlers().getKeybindHandler().releaseAllKeybinds();
     }
 
-    public void onStartGame(CallbackInfo ci) {
+    public void onStartGame() {
         SplashProgress.setProgress(1, "Starting Game...");
     }
 
-    public void loadWorld(WorldClient worldClient, CallbackInfo ci) {
+    public void loadWorld() {
         if (Minecraft.getMinecraft().theWorld != null) new WorldUnloadEvent().post();
 
         EventBus.INSTANCE.post(new WorldChangeEvent());
@@ -230,9 +226,7 @@ public class HyperiumMinecraft {
             crashReportDir = new File(Minecraft.getMinecraft().mcDataDir, "crash-reports");
         }
 
-        File crashReportFile = new File(crashReportDir,
-            crashReportPrefix + (new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss")).format(new Date()) + "-jbc.txt"
-        );
+        File crashReportFile = new File(crashReportDir, crashReportPrefix + (new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss")).format(new Date()) + "-jbc.txt");
 
         crashReportIn.saveToFile(crashReportFile);
         Bootstrap.printToSYSOUT(crashReportIn.getCompleteReport());
@@ -240,9 +234,7 @@ public class HyperiumMinecraft {
         System.exit(1);
     }
 
-    public void shutdown(CallbackInfo ci) {
+    public void shutdown() {
         AddonMinecraftBootstrap.getLoadedAddons().forEach(IAddon::onClose);
     }
-
-    public void startTick(CallbackInfo info, Profiler mcProfiler) {}
 }

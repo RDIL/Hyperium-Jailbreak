@@ -107,7 +107,6 @@ public class ReachDisplay {
 
         Vec3 vec31 = entity.getLook(0.0F);
         Vec3 vec32 = vec3.addVector(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0);
-        float f = 1.0F;
 
         Entity entity1 = entityEvent.getEntity();
         float f1 = .1F;
