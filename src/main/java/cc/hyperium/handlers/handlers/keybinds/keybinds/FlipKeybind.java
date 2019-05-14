@@ -27,7 +27,6 @@ import cc.hyperium.utils.UUIDUtil;
 import org.lwjgl.input.Keyboard;
 
 public class FlipKeybind extends HyperiumBind {
-
     private boolean inverted;
 
     public FlipKeybind() {
@@ -63,6 +62,4 @@ public class FlipKeybind extends HyperiumBind {
                 client.write(ServerCrossDataPacket.build(new JsonHolder().put("type", "flip_update").put("flip_state", state)));
         }
     }
-
 }
-

@@ -26,9 +26,7 @@ import cc.hyperium.netty.NettyClient;
 import cc.hyperium.netty.packet.packets.serverbound.ServerCrossDataPacket;
 import cc.hyperium.utils.JsonHolder;
 import cc.hyperium.utils.UUIDUtil;
-
 import java.util.UUID;
-
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 
@@ -57,7 +55,6 @@ public class FlossKeybind extends HyperiumBind {
             flossDanceHandler.startAnimation(uuid);
             if (client != null)
                 client.write(ServerCrossDataPacket.build(new JsonHolder().put("type", "floss_update").put("flossing", true)));
-
         }
     }
 
@@ -69,6 +66,5 @@ public class FlossKeybind extends HyperiumBind {
         NettyClient client = NettyClient.getClient();
         if (client != null)
             client.write(ServerCrossDataPacket.build(new JsonHolder().put("type", "floss_update").put("flossing", false)));
-
     }
 }

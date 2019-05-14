@@ -20,8 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class CachedThreadDownloader {
     private static final AtomicInteger counter = new AtomicInteger();
     private static final ExecutorService THREAD_POOL = new ThreadPoolExecutor(0, 100,
-        60L, TimeUnit.SECONDS,
-        new SynchronousQueue<>(),
+        60L, TimeUnit.SECONDS, new SynchronousQueue<>(),
         r -> {
             Thread thread = new Thread(r, "Texture Downloader #" + counter.getAndIncrement());
             thread.setDaemon(true);
@@ -56,10 +55,7 @@ public class CachedThreadDownloader {
     }
 
     public void download() {
-
         HttpURLConnection httpurlconnection = null;
-//        ThreadDownloadImageData.logger.debug("Downloading http texture from {} to {}", new Object[]{ThreadDownloadImageData.this.imageUrl, ThreadDownloadImageData.this.cacheFile});
-
         try {
             httpurlconnection = (HttpURLConnection) (new URL(imageUrl)).openConnection(Minecraft.getMinecraft().getProxy());
             httpurlconnection.setRequestProperty("User-Agent", "Hyperium Client");
@@ -94,12 +90,10 @@ public class CachedThreadDownloader {
             if (httpurlconnection != null) {
                 httpurlconnection.disconnect();
             }
-
         }
     }
 
     public void process() {
-
         THREAD_POOL.execute(() -> {
             try {
                 download();
@@ -112,7 +106,5 @@ public class CachedThreadDownloader {
                 e.printStackTrace();
             }
         });
-
-
     }
 }

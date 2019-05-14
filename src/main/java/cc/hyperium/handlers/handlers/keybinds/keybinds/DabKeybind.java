@@ -28,11 +28,9 @@ import cc.hyperium.utils.JsonHolder;
 import cc.hyperium.utils.UUIDUtil;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
-
 import java.util.UUID;
 
 public class DabKeybind extends HyperiumBind {
-
     public DabKeybind() {
         super("Dab", Keyboard.KEY_B);
     }
