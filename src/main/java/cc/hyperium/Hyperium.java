@@ -158,25 +158,25 @@ public class Hyperium {
             } catch (ClassNotFoundException e) {
                 optifineInstalled = false;
             }
-            // update player count
-            try {
-                HttpClient httpclient = HttpClients.createDefault();
-                HttpPost httppost = new HttpPost("http://backend.rdil.rocks/join");
-
-                // Request parameters and other properties.
-                List<NameValuePair> params = new ArrayList<NameValuePair>(1);
-                params.add(new BasicNameValuePair("uuid", "123123"));
+            Multithreading.runAsync(() -> {
                 try {
-                    httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
-                } catch (UnsupportedEncodingException e) {
+                    HttpClient httpclient = HttpClients.createDefault();
+                    HttpPost httppost = new HttpPost("http://backend.rdil.rocks/join");
+
+                    List<NameValuePair> params = new ArrayList<NameValuePair>(1);
+                    params.add(new BasicNameValuePair("uuid", "123123"));
+                    try {
+                        httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+
+                    // Execute and get the response.
+                    httpclient.execute(httppost);
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-                // Execute and get the response.
-                httpclient.execute(httppost);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            });
         } catch (Throwable t) {
             Minecraft.getMinecraft().crashed(new CrashReport("Hyperium Startup Failure", t));
         }
@@ -210,8 +210,7 @@ public class Hyperium {
     private void shutdown() {
         CONFIG.save();
 
-        // Remove from online players
-        try{
+        Multithreading.runAsync(() -> {
             HttpClient httpclient = HttpClients.createDefault();
             HttpPost httppost = new HttpPost("http://backend.rdil.rocks/leave");
 
@@ -224,14 +223,11 @@ public class Hyperium {
             }
 
             try {
-                //Execute and get the response.
                 httpclient.execute(httppost);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } catch (Exception e) {
-            Minecraft.getMinecraft().crashed(new CrashReport("Hyperium Shutdown Failure", e));
-        }
+        });
 
         // Tell the modules the game is shutting down
         EventBus.INSTANCE.post(new GameShutDownEvent());
