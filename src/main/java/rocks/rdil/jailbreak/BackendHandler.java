@@ -5,7 +5,6 @@ import cc.hyperium.installer.utils.http.client.HttpClient;
 import cc.hyperium.installer.utils.http.client.entity.UrlEncodedFormEntity;
 import cc.hyperium.installer.utils.http.client.methods.HttpPost;
 import cc.hyperium.installer.utils.http.impl.client.HttpClients;
-import cc.hyperium.installer.utils.http.message.BasicNameValuePair;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +17,7 @@ public class BackendHandler {
             HttpClient httpclient = HttpClients.createDefault();
             HttpPost httppost = new HttpPost("http://backend.rdil.rocks/join");
 
-            List<NameValuePair> params = new ArrayList<NameValuePair>(1);
-            params.add(new BasicNameValuePair("uuid", "123123"));
+            List<NameValuePair> params = new ArrayList<NameValuePair>(0);
             try {
                 httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
             } catch (UnsupportedEncodingException e) {
