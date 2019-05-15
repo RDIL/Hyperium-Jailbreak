@@ -75,7 +75,7 @@ public class Hyperium {
     private boolean firstLaunch = false;
     private AutoGG autogg = new AutoGG();
     public Jailbreak j = new Jailbreak();
-    public BackendHandler bh = new BackendHandler;
+    private BackendHandler bh = new BackendHandler();
 
     @InvokeEvent(priority = Priority.HIGH)
     public void init(InitializationEvent event) {
