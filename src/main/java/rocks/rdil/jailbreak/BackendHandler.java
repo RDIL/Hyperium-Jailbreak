@@ -6,6 +6,8 @@ import cc.hyperium.installer.utils.http.client.entity.UrlEncodedFormEntity;
 import cc.hyperium.installer.utils.http.client.methods.HttpPost;
 import cc.hyperium.installer.utils.http.impl.client.HttpClients;
 import cc.hyperium.installer.utils.http.message.BasicNameValuePair;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 public class BackendHandler {
     public BackendHandler() {}
