@@ -19,9 +19,7 @@ package cc.hyperium.addons.customcrosshair.gui.items;
 
 import cc.hyperium.addons.customcrosshair.CustomCrosshairAddon;
 import cc.hyperium.addons.customcrosshair.utils.CustomCrosshairGraphics;
-
 import java.awt.Color;
-
 import net.minecraft.client.gui.GuiScreen;
 
 public class CCSlider extends CCGuiItem {
@@ -35,10 +33,6 @@ public class CCSlider extends CCGuiItem {
     private Color boxColour;
 
     private Runnable callback;
-
-    public static final String README = "I'd like to thank boomboompower for fixing this class for me. " +
-                                        "Go sub to him: https://www.youtube.com/channel/UC63_abmxSPyoGneeDPsVpmQ " +
-                                        "His twitter: https://twitter.com/xBOOMBOOMPOWERx";
 
     public CCSlider(final GuiScreen screen) {
         this(screen, -1, "no name", 0, 0, 100, 10, 0, 100);
