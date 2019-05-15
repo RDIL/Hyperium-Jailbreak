@@ -8,6 +8,7 @@ import cc.hyperium.installer.utils.http.impl.client.HttpClients;
 import cc.hyperium.installer.utils.http.message.BasicNameValuePair;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class BackendHandler {
     public BackendHandler() {}
@@ -46,7 +47,7 @@ public class BackendHandler {
             }
 
             httpclient.execute(httppost);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
