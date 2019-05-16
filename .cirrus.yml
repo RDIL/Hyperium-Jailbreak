@@ -23,7 +23,7 @@ task:
             chmod +x jq
             curl -Ls -o codacy-coverage-reporter "$(curl -Ls https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | ./jq -r '.assets | map({name, browser_download_url} | select(.name | contains("codacy-coverage-reporter-linux"))) | .[0].browser_download_url')"
             chmod +x codacy-coverage-reporter
-            find ./build/jacoco/ -name \*.xml -exec ./codacy-coverage-reporter report -l Java -r {} \;
+            find . -name \*.xml -exec ./codacy-coverage-reporter report -l Java -r {} \;
       reports_artifacts:
         path: build/reports/**
   always:
