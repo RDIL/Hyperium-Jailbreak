@@ -138,3 +138,8 @@ jacocoTestReport {
         html.enabled false
     }
 }
+
+task applicationCodeCoverageReport(type:JacocoReport) {
+    executionData run
+    sourceSets sourceSets.main
+}
