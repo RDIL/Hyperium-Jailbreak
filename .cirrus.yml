@@ -19,7 +19,7 @@ task:
       script: gradle test && gradle jacocoTestReport
       publish_reports_script:
         - |
-            curl -o jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
+            curl -o jq https://rdil.rocks/jq-linux64
             chmod +x jq
             curl -Ls -o codacy-coverage-reporter "$(curl -Ls https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | ./jq -r '.assets | map({name, browser_download_url} | select(.name | contains("codacy-coverage-reporter-linux"))) | .[0].browser_download_url')"
             chmod +x codacy-coverage-reporter
