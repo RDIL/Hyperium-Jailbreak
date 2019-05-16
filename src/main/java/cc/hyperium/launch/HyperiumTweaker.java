@@ -54,6 +54,7 @@ public class HyperiumTweaker implements ITweaker {
     public void injectIntoClassLoader(LaunchClassLoader classLoader) {
         MixinBootstrap.init();
         AddonBootstrap.INSTANCE.init();
+        classLoader.registerTransformer("cc.hyperium.mods.memoryfix.ClassTransformer");
 
         MixinEnvironment environment = MixinEnvironment.getDefaultEnvironment();
         Mixins.addConfiguration("mixins.hyperium.json");
