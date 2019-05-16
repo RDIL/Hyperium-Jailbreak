@@ -8,11 +8,22 @@ task:
     folder: ~/.gradle/caches
     fingerprint_script: cat build.gradle
     populate_script: gradle setupCiWorkspace
-  only_if: $CIRRUS_BRANCH == 'master' || $CIRRUS_BRANCH == 'trying' || $CIRRUS_BRANCH == 'staging' || $CIRRUS_PR != ''
-  name: Cirrus CI
-  script: gradle build
-  jar_artifacts:
-    path: ./build/libs/**
+  matrix:
+    - name: Cirrus CI
+      script: gradle build
+      jar_artifacts:
+        path: ./build/libs/**
+    - name: Jacoco
+      env:
+        CODACY_PROJECT_TOKEN: ENCRYPTED[c3b8a1a2c14d5a6efcd3eecaf4f12e6bd2f3de2ad39650e7be37ee0a3ba6e71d8ba8133023bba20340e01b1f004db629]
+      script: gradle test && gradle jacocoTestReport
+      publish_reports_script:
+        - |
+            curl -Ls -o codacy-coverage-reporter "$(curl -Ls https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r '.assets | map({name, browser_download_url} | select(.name | contains("codacy-coverage-reporter-linux"))) | .[0].browser_download_url')"
+            chmod +x codacy-coverage-reporter
+            ./codacy-coverage-reporter report -l Java -r build/reports/jacoco/test/jacocoTestReport.xml
+      reports_artifacts:
+        path: build/reports/**
   always:
     cleanup_before_cache_script: |
       rm -rf ~/.gradle/caches/$GRADLE_VERSION/ ~/.gradle/caches/transforms-1 ~/.gradle/caches/journal-1 ~/.gradle/caches/minecraft/deobfedDeps/compileDummy.jar ~/.gradle/caches/minecraft/deobfedDeps/providedDummy.jar
