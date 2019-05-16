@@ -128,4 +128,13 @@ jar {
 
 jacoco {
     toolVersion = "0.8.1"
+    reportsDir = file("$buildDir/reports/jacoco")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled false
+        html.enabled false
+    }
 }
