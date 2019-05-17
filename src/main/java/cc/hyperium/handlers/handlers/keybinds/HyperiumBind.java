@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
-import org.apache.commons.text.WordUtils;
 
 public class HyperiumBind {
     private final int defaultKeyCode;
@@ -59,13 +58,7 @@ public class HyperiumBind {
     }
 
     public String getKeyDescription() {
-        String message = this.description;
-
-        if (this.capitalizeDescription()) {
-            message = WordUtils.capitalizeFully(message);
-        }
-
-        return message;
+        return this.description;
     }
 
     protected String getRealDescription() {
