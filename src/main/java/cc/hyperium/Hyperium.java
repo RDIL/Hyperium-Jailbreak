@@ -176,7 +176,6 @@ public class Hyperium {
         hyperiumCommandHandler.registerCommand(new CommandGarbageCollect());
         hyperiumCommandHandler.registerCommand(new CommandMessage());
         hyperiumCommandHandler.registerCommand(new CommandDisableCommand());
-        hyperiumCommandHandler.registerCommand(new Stacktest());
         if(!Settings.FPS) {
             hyperiumCommandHandler.registerCommand(new CustomLevelheadCommand());
             hyperiumCommandHandler.registerCommand(new AutofriendCommand());
