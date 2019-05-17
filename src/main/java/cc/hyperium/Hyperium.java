@@ -155,7 +155,7 @@ public class Hyperium {
                 optifineInstalled = false;
             }
             // update player count
-            this.bh.apiJoinRequest();
+            this.bh.apiRequest("join");
         } catch (Throwable t) {
             Minecraft.getMinecraft().crashed(new CrashReport("Startup Failure", t));
         }
@@ -190,7 +190,7 @@ public class Hyperium {
         CONFIG.save();
 
         // Remove from online players
-        this.bh.apiLeaveRequest();
+        this.bh.apiRequest("leave");
 
         // Tell the modules the game is shutting down
         EventBus.INSTANCE.post(new GameShutDownEvent());
