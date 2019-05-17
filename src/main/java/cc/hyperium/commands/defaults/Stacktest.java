@@ -15,7 +15,7 @@ public class Stacktest implements BaseCommand {
     }
 
     @Override
-    public void onExecute(String[] args) {
+    public void onExecute(String[] args) throws Exception {
         throw new IOException("This is a test");
     }
 }
