@@ -54,8 +54,6 @@ import rocks.rdil.jailbreak.chat.CommonChatResponder;
 import rocks.rdil.jailbreak.Jailbreak;
 import rocks.rdil.jailbreak.BackendHandler;
 import java.io.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class Hyperium {
     public static final Hyperium INSTANCE = new Hyperium();
@@ -154,7 +152,7 @@ public class Hyperium {
                 optifineInstalled = false;
             }
             // update player count
-            this.bh.apiJoinRequest();
+            this.bh.apiRequest("join");
 
             // Check for updates
             this.bh.apiUpdateCheck();
@@ -192,7 +190,7 @@ public class Hyperium {
         CONFIG.save();
 
         // Remove from online players
-        this.bh.apiLeaveRequest();
+        this.bh.apiRequest("leave");
 
         // Tell the modules the game is shutting down
         EventBus.INSTANCE.post(new GameShutDownEvent());
