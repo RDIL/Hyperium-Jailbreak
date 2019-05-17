@@ -158,11 +158,9 @@ public class Hyperium {
 
             // Check for updates
             this.bh.apiUpdateCheck();
-
         } catch (Throwable t) {
             Minecraft.getMinecraft().crashed(new CrashReport("Startup Failure", t));
         }
-
     }
 
     private void registerCommands() {
@@ -198,28 +196,6 @@ public class Hyperium {
 
         // Tell the modules the game is shutting down
         EventBus.INSTANCE.post(new GameShutDownEvent());
-    }
-
-    @InvokeEvent
-    public void worldSwap(ServerJoinEvent event) {
-        System.out.println(event);
-        boolean update = this.bh.getUpdate();
-        Runnable wait = new Runnable(){
-            public void run(){
-                while (Minecraft.getMinecraft().thePlayer == null){}
-                if (update) {
-                    try{
-                    Thread.sleep(250);
-                    Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText
-                            (EnumChatFormatting.RED + "A new update for Hyperium Jailbreak is available at " +
-                                    EnumChatFormatting.BLUE + "https://www.rdil.rocks/update"));
-                    }
-                    catch (Exception e){};
-                }
-            }
-        };
-        ExecutorService executor = Executors.newCachedThreadPool();
-        executor.submit(wait);
     }
 
     public ConfirmationPopup getConfirmation() {
