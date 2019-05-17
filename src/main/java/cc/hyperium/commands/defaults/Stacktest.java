@@ -1,7 +1,7 @@
 package cc.hyperium.commands.defaults;
 
 import cc.hyperium.commands.BaseCommand;
-import net.minecraft.client.Minecraft;
+import java.io.IOException;
 
 public class Stacktest implements BaseCommand {
     @Override
