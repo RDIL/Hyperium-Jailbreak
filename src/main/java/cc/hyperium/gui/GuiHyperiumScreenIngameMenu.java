@@ -151,7 +151,7 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
 
         GlStateManager.translate(0, height - 50, 0);
 
-        if (System.currentTimeMillis() - lastUpdate > 1500L) {
+        if (System.currentTimeMillis() - lastUpdate > 2000L) {
             refreshData();
         }
 
