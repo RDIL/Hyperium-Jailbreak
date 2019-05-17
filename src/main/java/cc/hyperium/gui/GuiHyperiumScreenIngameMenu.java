@@ -161,7 +161,7 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
         GlStateManager.translate(current.getScaledWidth() / 2, 5, 0);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
-        drawCenteredString(fontRendererObj, I18n.format("gui.ingamemenu.playercount"), 0, -5, 0xFFFFFF);
+        drawCenteredString(fontRendererObj, "HyperiumJailbreak Player Count:", 0, -5, 0xFFFFFF);
         GlStateManager.translate(0F, 10F, 0F);
         GlStateManager.scale(1, 1, 1);
         GlStateManager.rotate(baseAngle, 1.0F, 0.0F, 0.0F);
@@ -179,27 +179,28 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
             i = (e - (Math.abs((360) - baseAngle))) / e;
         }
 
-        if (i > 0) {
-            drawCenteredString(fontRendererObj, I18n.format("gui.ingamemenu.playercount.now", ChatFormatting.GREEN + formatter.format(data.optInt("online")) + ChatFormatting.RESET), 0, 0, 0xFFFFFF);
-        }
+        if (i > 0) drawCenteredString(fontRendererObj, "Now Online:" + ChatFormatting.GREEN + formatter.format(data.optInt("online")) + ChatFormatting.RESET, 0, 0, 0xFFFFFF);
 
         GlStateManager.translate(0.0F, 0.0F, -z);
         GlStateManager.rotate(90, 1.0F, 0.0F, 0.0F);
         GlStateManager.translate(0.0F, 0.0F, z);
         i = (e - Math.abs(270 - baseAngle)) / e;
 
-        if (i > 0) {
-            drawCenteredString(fontRendererObj, I18n.format("gui.ingamemenu.playercount.lasthour", ChatFormatting.GREEN + formatter.format(data.optInt("hour")) + ChatFormatting.RESET), 0, 0, 0xFFFFFF);
-        }
+        if (i > 0) drawCenteredString(fontRendererObj, "Last hour:" + ChatFormatting.GREEN + formatter.format(data.optInt("hour")) + ChatFormatting.RESET, 0, 0, 0xFFFFFF);
 
         GlStateManager.translate(0.0F, 0.0F, -z);
         GlStateManager.rotate(90, 1.0F, 0.0F, 0.0F);
         GlStateManager.translate(0.0F, 0.0F, z);
         i = (e - Math.abs(180 - baseAngle)) / e;
 
-        if (i > 0) {
-            drawCenteredString(fontRendererObj, I18n.format("gui.ingamemenu.playercount.lastday", ChatFormatting.GREEN + formatter.format(data.optInt("day")) + ChatFormatting.RESET), 0, 0, 0xFFFFFF);
-        }
+        if (i > 0) drawCenteredString(fontRendererObj, "Last day:" + ChatFormatting.GREEN + formatter.format(data.optInt("day")) + ChatFormatting.RESET, 0, 0, 0xFFFFFF);
+
+        GlStateManager.translate(0.0F, 0.0F, -z);
+        GlStateManager.rotate(90, 1.0F, 0.0F, 0.0F);
+        GlStateManager.translate(0.0F, 0.0F, z);
+        i = (e - Math.abs(90 - baseAngle)) / e;
+
+        if (i > 0) drawCenteredString(fontRendererObj, ChatFormatting.RED + "Thank you for your support!" + ChatFormatting.RESET, 0, 0, 0xFFFFFF);
 
         GlStateManager.popMatrix();
     }
