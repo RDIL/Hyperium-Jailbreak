@@ -19,9 +19,7 @@ package cc.hyperium.mods.keystrokes.keys.impl;
 
 import cc.hyperium.mods.keystrokes.KeystrokesMod;
 import cc.hyperium.mods.keystrokes.keys.IKey;
-
 import java.awt.Color;
-
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
@@ -30,7 +28,6 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 public class Key extends IKey {
-
     private final KeyBinding key;
     private boolean wasPressed;
     private long lastPress;

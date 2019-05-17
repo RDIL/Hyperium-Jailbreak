@@ -29,18 +29,11 @@ import cc.hyperium.mods.keystrokes.screen.GuiScreenKeystrokes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * The KeystrokesRenderer, taken and modified from the v3 source
- *
- * @author Fyu and boomboompower
- */
 public class KeystrokesRenderer {
-
     private final Minecraft mc = Minecraft.getMinecraft();
     private final KeystrokesMod mod;
     private final Key[] movementKeys = new Key[4];
@@ -87,8 +80,7 @@ public class KeystrokesRenderer {
             if (this.mc.currentScreen instanceof GuiScreenKeystrokes || this.mc.currentScreen instanceof GuiScreenColor) {
                 try {
                     this.mc.currentScreen.handleInput();
-                } catch (IOException ignored) {
-                }
+                } catch (IOException ignored) {}
             }
 
         } else if (this.mc.inGameHasFocus && !this.mc.gameSettings.showDebugInfo) {

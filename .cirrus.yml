@@ -8,9 +8,8 @@ task:
     folder: ~/.gradle/caches
     fingerprint_script: cat build.gradle
     populate_script: gradle setupCiWorkspace
-  only_if: $CIRRUS_BRANCH == 'master' || $CIRRUS_BRANCH == 'trying' || $CIRRUS_BRANCH == 'staging' || $CIRRUS_PR != ''
   name: Cirrus CI
-  script: gradle build
+  script: gradle build && gradle dependencies
   jar_artifacts:
     path: ./build/libs/**
   always:

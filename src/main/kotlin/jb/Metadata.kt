@@ -25,7 +25,7 @@ val MODID
 
 val VERSION
     @JvmName("getVersion")
-    get() = "2.7"
+    get() = "2.8dev"
 
 val BLACKLISTED
     @JvmName("getBlacklisted")

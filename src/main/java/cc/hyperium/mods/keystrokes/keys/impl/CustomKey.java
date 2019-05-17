@@ -27,11 +27,9 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
-
 import java.awt.*;
 
 public class CustomKey extends IKey {
-
     private int key;
     private boolean wasPressed;
     private long lastPress;
@@ -85,7 +83,6 @@ public class CustomKey extends IKey {
         }
 
         Gui.drawRect(left, top, right, bottom, new Color(0, 0, 0, 120).getRGB() + (color << 16) + (color << 8) + color);
-
         hitbox.setLeft(left);
         hitbox.setTop(top);
         hitbox.setRight(right);
@@ -125,7 +122,6 @@ public class CustomKey extends IKey {
     public void setType(int type) {
         this.type = type;
     }
-
 
     public GuiBlock getHitbox() {
         return hitbox;

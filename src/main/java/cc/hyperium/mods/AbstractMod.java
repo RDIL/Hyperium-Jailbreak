@@ -35,7 +35,7 @@ public abstract class AbstractMod {
         private String displayName;
 
         public Metadata(AbstractMod mod, String name) {
-            this(mod, name, "1.0");
+            this(mod, name, "1");
         }
 
         public Metadata(AbstractMod mod, String name, String version) {
