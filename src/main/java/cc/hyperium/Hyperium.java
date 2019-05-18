@@ -22,7 +22,12 @@ import cc.hyperium.commands.defaults.*;
 import cc.hyperium.config.DefaultConfig;
 import cc.hyperium.config.Settings;
 import cc.hyperium.cosmetics.HyperiumCosmetics;
-import cc.hyperium.event.*;
+import cc.hyperium.event.EventBus;
+import cc.hyperium.event.GameShutDownEvent;
+import cc.hyperium.event.InitializationEvent;
+import cc.hyperium.event.InvokeEvent;
+import cc.hyperium.event.Priority;
+import cc.hyperium.event.ServerJoinEvent;
 import cc.hyperium.event.minigames.MinigameListener;
 import cc.hyperium.gui.*;
 import cc.hyperium.handlers.HyperiumHandlers;
@@ -191,22 +196,19 @@ public class Hyperium {
 
     @InvokeEvent
     public void worldSwap(ServerJoinEvent event) {
-        System.out.println(event);
         boolean update = this.bh.getUpdate();
-        System.out.println(update);
-        Runnable wait = new Runnable(){
+        Runnable wait = new Runnable() {
             public void run(){
                 while (Minecraft.getMinecraft().thePlayer == null){
                     noop();
                 }
                 if (update) {
-                    try{
+                    try {
                         Thread.sleep(250);
-                        Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText
-                                (EnumChatFormatting.RED + "A new update for Hyperium Jailbreak is available at " +
-                                        EnumChatFormatting.BLUE + "https://www.rdil.rocks/update"));
+                        Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "A new update for Hyperium Jailbreak is available at " + EnumChatFormatting.BLUE + "https://rdil.rocks/update"));
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                    catch (Exception e){};
                 }
             }
         };
@@ -264,7 +266,7 @@ public class Hyperium {
         return modIntegration;
     }
 
-    public static void noop(){
+    private static void noop(){
         try {
             Thread.sleep(5);
         } catch (InterruptedException e) {
@@ -272,7 +274,3 @@ public class Hyperium {
         }
     }
 }
-
-
-
-
