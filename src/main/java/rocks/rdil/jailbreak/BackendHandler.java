@@ -7,7 +7,6 @@ import cc.hyperium.installer.utils.http.client.entity.UrlEncodedFormEntity;
 import cc.hyperium.installer.utils.http.client.methods.HttpPost;
 import cc.hyperium.installer.utils.http.impl.client.HttpClients;
 import cc.hyperium.installer.utils.http.util.EntityUtils;
-
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,25 +49,13 @@ public class BackendHandler {
 
             // Execute and get the response.
             String response = EntityUtils.toString(httpclient.execute(httppost).getEntity(), "UTF-8");
-            //System.out.println(response);
-            if (!response.equals(jb.Metadata.getVersion())){
-                //System.out.println("HITITITTI");
-                update = true;
-            }
-            else{
-                update = false;
-            }
+            update = !response.equals(jb.Metadata.getVersion());
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-
     }
 
-    public boolean getUpdate(){
+    public boolean getUpdate() {
         return update;
     }
 }
-
-
