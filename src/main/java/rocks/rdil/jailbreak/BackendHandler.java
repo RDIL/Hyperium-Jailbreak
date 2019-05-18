@@ -1,4 +1,3 @@
-
 package rocks.rdil.jailbreak;
 
 import cc.hyperium.installer.utils.http.NameValuePair;

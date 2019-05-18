@@ -46,12 +46,11 @@ import cc.hyperium.network.LoginReplyHandler;
 import cc.hyperium.network.NetworkHandler;
 import cc.hyperium.purchases.PurchaseApi;
 import cc.hyperium.utils.StaffUtils;
+import cc.hyperium.utils.ChatColor;
 import cc.hyperium.utils.mods.CompactChat;
 import jb.Metadata;
 import net.minecraft.client.Minecraft;
 import net.minecraft.crash.CrashReport;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
@@ -194,28 +193,6 @@ public class Hyperium {
         hyperiumCommandHandler.registerCommand(new CommandKeybinds());
     }
 
-    @InvokeEvent
-    public void worldSwap(ServerJoinEvent event) {
-        boolean update = this.bh.getUpdate();
-        Runnable wait = new Runnable() {
-            public void run(){
-                while (Minecraft.getMinecraft().thePlayer == null){
-                    noop();
-                }
-                if (update) {
-                    try {
-                        Thread.sleep(250);
-                        Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "A new update for Hyperium Jailbreak is available at " + EnumChatFormatting.BLUE + "https://rdil.rocks/update"));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        };
-        ExecutorService executor = Executors.newCachedThreadPool();
-        executor.submit(wait);
-    }
-
     private void shutdown() {
         CONFIG.save();
 
@@ -266,11 +243,33 @@ public class Hyperium {
         return modIntegration;
     }
 
-    private static void noop(){
+    private static void noop() {
         try {
             Thread.sleep(5);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @InvokeEvent
+    public void worldSwap(ServerJoinEvent event) {
+        boolean update = this.bh.getUpdate();
+        Runnable wait = new Runnable() {
+            public void run() {
+                while (Minecraft.getMinecraft().thePlayer == null) {
+                    noop();
+                }
+                if (update) {
+                    try {
+                        Thread.sleep(2000);
+                        getHandlers().getGeneralChatHandler().sendMessage(ChatColor.DARK_PURPLE + "An update for the client is now available at https://rdil.rocks/update", false);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        ExecutorService executor = Executors.newCachedThreadPool();
+        executor.submit(wait);
     }
 }
