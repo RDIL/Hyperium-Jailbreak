@@ -67,59 +67,6 @@ public abstract class AbstractHypixelStats {
         return now.get(Calendar.WEEK_OF_YEAR) == timeToCheck.get(Calendar.WEEK_OF_YEAR);
     }
 
-    public List<StatsDisplayItem> getQuests(HypixelApiPlayer player) {
-        JsonHolder quests = null;
-        try {
-            quests = Hyperium.INSTANCE.getHandlers().getDataHandler().getQuests().get();
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        ArrayList<StatsDisplayItem> statsDisplayItems = new ArrayList<>();
-        totalDaily = 0;
-        totalWeekly = 0;
-
-        completedDaily = 0;
-        completedWeekly = 0;
-
-        process(player, statsDisplayItems, quests.optJSONObject("quests").optJSONArray(getGameType().getQuestName()));
-        return statsDisplayItems;
-    }
-
-    private void process(HypixelApiPlayer player, ArrayList<StatsDisplayItem> statsDisplayItems, JsonArray ob) {
-        for (JsonElement jsonElement : ob) {
-            JsonHolder quest = new JsonHolder(jsonElement.getAsJsonObject());
-            String quest_backend = quest.optString("id");
-            StringBuilder tmp = new StringBuilder(HypixelAPI.INSTANCE.getFrontendNameOfQuest(quest_backend));
-            JsonHolder playerQuestData = player.getQuests().optJSONObject(HypixelAPI.INSTANCE.getFrontendNameOfQuest(quest_backend));
-            long last_completed = playerQuestData.optLong("last_completed");
-            tmp.append(": ");
-            JsonArray requirements = quest.optJSONArray("requirements");
-            boolean daily = requirements.size() > 0 && new JsonHolder(requirements.get(0).getAsJsonObject()).optString("type").equalsIgnoreCase("DailyResetQuestRequirement");
-            boolean completed = daily ? isToday(last_completed) : isWeek(last_completed);
-            if (completed) {
-                if (daily)
-                    completedDaily++;
-                else completedWeekly++;
-            }
-            if (daily)
-                totalDaily++;
-            else totalWeekly++;
-            tmp.append(completed ? C.GREEN + "Completed" : C.RED + "Not Completed");
-            statsDisplayItems.add(new DisplayLine(tmp.toString()));
-            JsonArray tasks = quest.optJSONArray("objectives");
-            JsonHolder objectives = playerQuestData.optJSONObject("active").optJSONObject("objectives");
-            for (JsonElement task : tasks) {
-                JsonHolder task1 = new JsonHolder(task.getAsJsonObject());
-                String line = task1.optString("text");
-                if (task1.optString("type").equalsIgnoreCase("IntegerObjective"))
-                    line += (objectives.optInt(task1.optString("id")) + "/" + task1.optInt("integer"));
-                if (!completed && !line.isEmpty())
-                    statsDisplayItems.add(new DisplayLine("  - " + line));
-            }
-        }
-    }
-
     public List<StatsDisplayItem> getPreview(HypixelApiPlayer player) {
         ArrayList<StatsDisplayItem> items = new ArrayList<>();
         GameType gameType = GameType.fromRealName(getName());
