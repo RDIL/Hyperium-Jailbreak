@@ -17,25 +17,18 @@
 
 package cc.hyperium.mods.chromahud.api;
 
-
 import cc.hyperium.mods.chromahud.ChromaHUDApi;
 import cc.hyperium.utils.JsonHolder;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Sk1er
- */
 public abstract class DisplayItem extends Dimension {
-
     protected final JsonHolder data;
     private int ordinal;
 
     public DisplayItem(JsonHolder data, int ordinal) {
         this.data = data;
         this.ordinal = ordinal;
-
     }
 
     public JsonHolder getData() {
@@ -43,9 +36,7 @@ public abstract class DisplayItem extends Dimension {
         return data;
     }
 
-    public void save() {
-
-    }
+    public void save() {}
 
     public String name() {
         return ChromaHUDApi.getInstance().getName(data.optString("type"));

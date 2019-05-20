@@ -5,27 +5,18 @@ import cc.hyperium.event.ActionPerformedEvent;
 import cc.hyperium.event.InitGuiEvent;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.gui.integrations.HypixelFriendsGui;
-import cc.hyperium.handlers.handlers.quests.PlayerQuestsGui;
 import cc.hyperium.mixins.gui.IMixinGuiScreen;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import java.util.HashMap;
-import java.util.concurrent.ExecutionException;
 import java.util.function.Consumer;
 
 public class HypixelGuiAugmenter {
     private final HashMap<GuiButton, Consumer<GuiButton>> lobbyAdds = new HashMap<>();
 
     public HypixelGuiAugmenter() {
-        lobbyAdds.put(new GuiButton(500001, 1, 1, 100, 20, "View Quests"), button -> {
-            try {
-                new PlayerQuestsGui(Hyperium.INSTANCE.getHandlers().getDataHandler().getCurrentUser().get()).show();
-            } catch (InterruptedException | ExecutionException e) {
-                e.printStackTrace();
-            }
-        });
-        lobbyAdds.put(new GuiButton(500002, 1, 22, 100, 20, "View Friends"), button -> new HypixelFriendsGui().show());
+        lobbyAdds.put(new GuiButton(500002, 1, 1, 100, 20, "View Friends"), button -> new HypixelFriendsGui().show());
     }
 
     @InvokeEvent

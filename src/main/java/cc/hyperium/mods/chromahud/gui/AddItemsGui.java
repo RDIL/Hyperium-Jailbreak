@@ -146,7 +146,7 @@ public class AddItemsGui extends GuiScreen {
             Color defaultColor = new Color(255, 255, 255, 100);
 
             int cursorY = 50 + offset;
-            drawCenteredString(mc.fontRendererObj, "Click Explore to see examples!", current.getScaledWidth() / 2, cursorY - 30, Color.RED.getRGB());
+            drawCenteredString(mc.fontRendererObj, "Click Explore for examples.", current.getScaledWidth() / 2, cursorY - 30, Color.RED.getRGB());
             List<ChromaHUDParser> parsers = ChromaHUDApi.getInstance().getParsers();
             for (ChromaHUDParser parser : parsers) {
                 Map<String, String> names = parser.getNames();

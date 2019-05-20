@@ -17,7 +17,6 @@
 
 package cc.hyperium.mods.chromahud.displayitems.chromahud;
 
-
 import cc.hyperium.mods.chromahud.ElementRenderer;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
 import cc.hyperium.utils.JsonHolder;
@@ -26,13 +25,9 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Mitchell Katz on 5/29/2017.
- */
 public class ArmourHud extends DisplayItem {
     private List<ItemStack> list = new ArrayList<>();
     private int ordinal;
@@ -67,7 +62,6 @@ public class ArmourHud extends DisplayItem {
                 list.add(new ItemStack(Item.getItemById(276), 1));
                 list.add(new ItemStack(Item.getItemById(261), 1));
                 list.add(new ItemStack(Item.getItemById(262), 64));
-
             } else {
                 list.add(new ItemStack(Item.getItemById(276), 1));
                 list.add(new ItemStack(Item.getItemById(261), 1));
@@ -111,11 +105,8 @@ public class ArmourHud extends DisplayItem {
         }
         if (hand && heldItem != null && armourOnTop)
             items.add(heldItem);
-
-
         return items;
     }
-
 
     public void toggleDurability() {
         this.dur = !dur;

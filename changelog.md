@@ -1,5 +1,26 @@
 # Changelog
 
+## v2.8.1
+
+> This is a minor release.
+
+```diff
+- Removed quest tracking
++ Decreased server join lag
+* Cleaned up ChromaHUD
+```
+
+## v2.8
+
+```diff
++ Added automatic update checker
+- Removed DeobfStack (removes 2MB from Jar!)
+* Cleanup
++ Added MemoryFix mod
+- Removed unused code
+- Removed armor base mixin
+```
+
 ## v2.7
 
 ```diff

@@ -19,7 +19,6 @@ package cc.hyperium.handlers.handlers.chat;
 
 import cc.hyperium.Hyperium;
 import cc.hyperium.utils.JsonHolder;
-
 import java.util.Map;
 import java.util.regex.Pattern;
 import net.minecraft.util.IChatComponent;
@@ -35,18 +34,17 @@ public abstract class HyperiumChatHandler {
     public void callback(JsonHolder data) {}
 
     public enum ChatRegexType {
-        SKYWARS_RATING, //
-        PRIVATE_MESSAGE_TO, //
-        PRIVATE_MESSAGE_FROM, //
-        FRIEND_REQUEST, //
-        GUILD_CHAT, //
-        PARTY_CHAT, //
-        PARTY_INVITE, //
-        SKYWARS_KILL, //
-        BEDWARS_KILL, //
-        MEGAWALLS_KILL, //
-        BLITZ_KILL, //
-        QUEST_COMPLETE, //
-        WIN //
+        SKYWARS_RATING,
+        PRIVATE_MESSAGE_TO,
+        PRIVATE_MESSAGE_FROM,
+        FRIEND_REQUEST,
+        GUILD_CHAT,
+        PARTY_CHAT,
+        PARTY_INVITE,
+        SKYWARS_KILL,
+        BEDWARS_KILL,
+        MEGAWALLS_KILL,
+        BLITZ_KILL,
+        WIN
     }
 }

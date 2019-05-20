@@ -24,20 +24,14 @@ import cc.hyperium.utils.JsonHolder;
 import com.google.gson.JsonObject;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Mitchell Katz on 5/25/2017.
- */
 public class CordsDisplay extends DisplayItem {
-
     public int state = 0;
     public int precision = 1;
     private JsonObject raw;
-
 
     public CordsDisplay(JsonHolder options, int orderinal) {
         super(options, orderinal);
@@ -87,7 +81,7 @@ public class CordsDisplay extends DisplayItem {
                     tmp.add("[Y] " + df.format(player.posY));
                     tmp.add("[Z] " + df.format(player.posZ));
                 }
-            } else tmp.add("Illegal state of cords unit (" + state + ")");
+            } else tmp.add("ERROR");
         } else {
             if (!Settings.CHROMAHUD_SQUAREBRACE_PREFIX_OPTION) tmp.add("X: null, Y: null, Z: null");
             else tmp.add("[X] null, [Y] null, [Z] null");
@@ -95,6 +89,5 @@ public class CordsDisplay extends DisplayItem {
         ElementRenderer.draw(x, y, tmp);
         this.width = isConfig ? ElementRenderer.maxWidth(tmp) : 0;
         this.height = tmp.size() * 10;
-
     }
 }

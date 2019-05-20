@@ -16,6 +16,9 @@
  */
 
 package cc.hyperium;
+import cc.hyperium.gui.ConfirmationPopup;
+import cc.hyperium.gui.SplashProgress;
+import cc.hyperium.gui.ColourOptions;
 import cc.hyperium.addons.InternalAddons;
 import cc.hyperium.commands.HyperiumCommandHandler;
 import cc.hyperium.commands.defaults.*;
@@ -29,7 +32,6 @@ import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.Priority;
 import cc.hyperium.event.ServerJoinEvent;
 import cc.hyperium.event.minigames.MinigameListener;
-import cc.hyperium.gui.*;
 import cc.hyperium.handlers.HyperiumHandlers;
 import cc.hyperium.handlers.handlers.stats.PlayerStatsGui;
 import cc.hyperium.mixinsimp.client.resources.HyperiumLocale;
@@ -57,7 +59,7 @@ import org.lwjgl.opengl.Display;
 import rocks.rdil.jailbreak.chat.CommonChatResponder;
 import rocks.rdil.jailbreak.Jailbreak;
 import rocks.rdil.jailbreak.BackendHandler;
-import java.io.*;
+import java.io.File;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -187,7 +189,6 @@ public class Hyperium {
             hyperiumCommandHandler.registerCommand(new CustomLevelheadCommand());
             hyperiumCommandHandler.registerCommand(new AutofriendCommand());
             hyperiumCommandHandler.registerCommand(new CommandStatistics());
-            hyperiumCommandHandler.registerCommand(new CommandQuests());
         }
         hyperiumCommandHandler.registerCommand(new CommandGuild());
         hyperiumCommandHandler.registerCommand(new CommandKeybinds());

@@ -35,7 +35,6 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(EntityPlayerSP.class)
 public class MixinEntityPlayerSP extends AbstractClientPlayer {
-
     private HyperiumEntityPlayerSP hyperiumEntityPlayerSP = new HyperiumEntityPlayerSP((EntityPlayerSP) (Object) this);
 
     @Shadow

@@ -4,7 +4,6 @@ import cc.hyperium.gui.GuiBlock;
 import cc.hyperium.gui.HyperiumGui;
 import cc.hyperium.gui.Icons;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
-import cc.hyperium.handlers.handlers.quests.PlayerQuestsGui;
 import cc.hyperium.handlers.handlers.stats.display.StatsDisplayItem;
 import cc.hyperium.handlers.handlers.stats.fields.ArcadeStats;
 import cc.hyperium.handlers.handlers.stats.fields.ArenaStats;
@@ -93,7 +92,7 @@ public class PlayerStatsGui extends HyperiumGui {
                         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                         connection.setRequestMethod("GET");
                         connection.setUseCaches(true);
-                        connection.addRequestProperty("User-Agent", "Mozilla/4.76 Hyperium");
+                        connection.addRequestProperty("User-Agent", "Mozilla/4.76");
                         connection.setReadTimeout(15000);
                         connection.setConnectTimeout(15000);
                         connection.setDoOutput(true);
@@ -124,17 +123,15 @@ public class PlayerStatsGui extends HyperiumGui {
             focused = null;
             offset = 0;
         }
-        if (flag2)
-            if (mouseButton == 0) {
-                for (AbstractHypixelStats abstractHypixelStats : location.keySet()) {
-                    if (location.get(abstractHypixelStats).isMouseOver(mouseX, mouseY)) {
-                        focused = abstractHypixelStats;
-                        hovered = null;
-                        offset = 0;
-                    }
+        if (flag2 && mouseButton == 0) {
+            for (AbstractHypixelStats abstractHypixelStats : location.keySet()) {
+                if (location.get(abstractHypixelStats).isMouseOver(mouseX, mouseY)) {
+                    focused = abstractHypixelStats;
+                    hovered = null;
+                    offset = 0;
                 }
             }
-
+        }
     }
 
     @Override
@@ -261,9 +258,19 @@ public class PlayerStatsGui extends HyperiumGui {
             GlStateManager.translate(-16, -16, 0);
             drawScaledCustomSizeModalRect(0, 0, 0, 0, 64, 64, 16, 16, 64, 64);
             GlStateManager.popMatrix();
-            int printY = 55 - offset;
+            print(current, deepStats, 55 - offset);
+        }
+    }
 
-            PlayerQuestsGui.print(current, deepStats, printY);
+    public static void print(ScaledResolution current, List<StatsDisplayItem> deepStats, int printY) {
+        for (StatsDisplayItem statsDisplayItem : deepStats) {
+            GlStateManager.pushMatrix();
+            GlStateManager.resetColor();
+            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+            int y = (95) + printY;
+            if (y > 73 + 64 && y < current.getScaledHeight() - 50) statsDisplayItem.draw(current.getScaledWidth() / 2 - statsDisplayItem.width / 2, y);
+            printY += statsDisplayItem.height;
+            GlStateManager.popMatrix();
         }
     }
 }

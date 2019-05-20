@@ -125,17 +125,7 @@ public class ConfirmationPopup {
                 this.systemTime += (1000 / 60);
             }
 
-            this.percentComplete = HyperiumGui.clamp(
-                HyperiumGui.easeOut(
-                    this.percentComplete,
-                    this.framesLeft < lowerThreshold ? 0.0f :
-                        this.framesLeft > upperThreshold ? 1.0f : framesLeft,
-                    0.01f,
-                    15f
-                ),
-                0.0f,
-                1.0f
-            );
+            this.percentComplete = HyperiumGui.clamp(HyperiumGui.easeOut(this.percentComplete, this.framesLeft < lowerThreshold ? 0.0f : this.framesLeft > upperThreshold ? 1.0f : framesLeft, 0.01f, 15f), 0.0f, 1.0f);
 
             FontRenderer fr = Minecraft.getMinecraft().fontRendererObj;
             ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
@@ -145,13 +135,7 @@ public class ConfirmationPopup {
             int currWidth = (int) (halfWidth * percentComplete);
 
             // Background
-            Gui.drawRect(
-                middle - currWidth,
-                50,
-                middle + currWidth,
-                95,
-                new Color(30, 30, 30).getRGB()
-            );
+            Gui.drawRect(middle - currWidth, 50, middle + currWidth, 95, new Color(30, 30, 30).getRGB());
 
             if (this.percentComplete == 1.0F) {
                 long length = upperThreshold - lowerThreshold;
@@ -159,13 +143,7 @@ public class ConfirmationPopup {
                 float progress = 1.0F - HyperiumGui.clamp((float) current / (float) length, 0.0F, 1.0F);
 
                 // Progress
-                Gui.drawRect(
-                    middle - currWidth,
-                    93,
-                    (int) (middle - currWidth + (210 * progress)),
-                    95,
-                    new Color(149, 201, 144).getRGB()
-                );
+                Gui.drawRect(middle - currWidth, 93, (int) (middle - currWidth + (210 * progress)), 95, new Color(149, 201, 144).getRGB());
 
                 fr.drawString(text, sr.getScaledWidth() / 2 - fr.getStringWidth(text) / 2, 58, 0xFFFFFF);
 
@@ -176,5 +154,4 @@ public class ConfirmationPopup {
             return false;
         }
     }
-
 }

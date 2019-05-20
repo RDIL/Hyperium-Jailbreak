@@ -35,7 +35,6 @@ public class GeneralStats extends AbstractHypixelStats {
         items.add(new DisplayLine(bold("Karma: ", player.getKarma()), Color.WHITE.getRGB()));
         items.add(new DisplayLine(bold("Friends: ", player.getFriendCount()), Color.WHITE.getRGB()));
         items.add(new DisplayLine(bold("Achievement Points: ", player.getAchievementPoints()), Color.WHITE.getRGB()));
-        items.add(new DisplayLine(bold("Quest Completed: ", player.getTotalQuests()), Color.WHITE.getRGB()));
         items.add(new DisplayLine(bold("Current Coins: ", player.getTotalCoins()), Color.WHITE.getRGB()));
         items.add(new DisplayLine(bold("Total Kills: ", player.getTotalKills()), Color.WHITE.getRGB()));
         items.add(new DisplayLine(bold("Total Wins: ", player.getTotalWins()), Color.WHITE.getRGB()));

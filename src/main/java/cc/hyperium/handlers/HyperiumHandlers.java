@@ -46,7 +46,6 @@ import cc.hyperium.handlers.handlers.chat.FriendRequestChatHandler;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import cc.hyperium.handlers.handlers.chat.HyperiumChatHandler;
 import cc.hyperium.handlers.handlers.chat.PartyInviteChatHandler;
-import cc.hyperium.handlers.handlers.chat.QuestTrackingChatHandler;
 import cc.hyperium.handlers.handlers.chat.RankedRatingChatHandler;
 import cc.hyperium.handlers.handlers.chat.WinTrackingChatHandler;
 import cc.hyperium.handlers.handlers.data.HypixelAPI;
@@ -125,7 +124,6 @@ public class HyperiumHandlers {
         dataHandler = new HypixelAPI();
         registerChatHandler(new RankedRatingChatHandler());
         registerChatHandler(new DMChatHandler());
-        registerChatHandler(new QuestTrackingChatHandler());
         registerChatHandler(new WinTrackingChatHandler());
         registerChatHandler(new FriendRequestChatHandler());
         registerChatHandler(new PartyInviteChatHandler());

@@ -4,7 +4,6 @@ import cc.hyperium.Hyperium;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.WorldChangeEvent;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
-import cc.hyperium.purchases.HyperiumPurchase;
 import cc.hyperium.purchases.PurchaseApi;
 import cc.hyperium.utils.CapeUtils;
 import cc.hyperium.utils.UUIDUtil;
