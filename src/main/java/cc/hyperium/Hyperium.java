@@ -16,6 +16,7 @@
  */
 
 package cc.hyperium;
+import cc.hyperium.gui.ConfirmationPopup;
 import cc.hyperium.addons.InternalAddons;
 import cc.hyperium.commands.HyperiumCommandHandler;
 import cc.hyperium.commands.defaults.*;
@@ -56,6 +57,7 @@ import org.lwjgl.opengl.Display;
 import rocks.rdil.jailbreak.chat.CommonChatResponder;
 import rocks.rdil.jailbreak.Jailbreak;
 import rocks.rdil.jailbreak.BackendHandler;
+import java.io.File;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
