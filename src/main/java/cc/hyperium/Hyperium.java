@@ -17,6 +17,8 @@
 
 package cc.hyperium;
 import cc.hyperium.gui.ConfirmationPopup;
+import cc.hyperium.gui.SplashProgress;
+import cc.hyperium.gui.ColourOptions;
 import cc.hyperium.addons.InternalAddons;
 import cc.hyperium.commands.HyperiumCommandHandler;
 import cc.hyperium.commands.defaults.*;
