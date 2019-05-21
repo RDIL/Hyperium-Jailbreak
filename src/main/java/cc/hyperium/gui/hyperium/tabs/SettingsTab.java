@@ -71,7 +71,7 @@ public class SettingsTab extends AbstractTab {
             new LinkComponent(
                 this, Collections.emptyList(), "CustomCrosshairMod", new GuiCustomCrosshairEditCrosshair(InternalAddons.getCustomCrosshairAddon())
             ), true, Category.MODS, items
-        ));
+        );
 
         apply(
             new LinkComponent(
