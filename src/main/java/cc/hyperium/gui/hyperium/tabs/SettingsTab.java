@@ -4,6 +4,8 @@ import cc.hyperium.config.Category;
 import cc.hyperium.config.SelectorSetting;
 import cc.hyperium.config.SliderSetting;
 import cc.hyperium.config.ToggleSetting;
+import cc.hyperium.addons.customcrosshair.gui.GuiCustomCrosshairEditCrosshair;
+import cc.hyperium.addons.customcrosshair.CustomCrosshairAddon;
 import cc.hyperium.gui.hyperium.HyperiumMainGui;
 import cc.hyperium.gui.hyperium.RGBFieldSet;
 import cc.hyperium.gui.hyperium.components.AbstractTab;
@@ -63,7 +65,11 @@ public class SettingsTab extends AbstractTab {
             }
         }
 
-        apply(new LinkComponent(this));
+        apply(
+            new LinkComponent(
+                this, Collections.emptyList(), "CustomCrosshairMod", new GuiCustomCrosshairEditCrosshair(CustomCrosshairMod.getCrosshairMod()
+            ), true, Category.MODS, items
+        ));
 
         for (RGBFieldSet rgbFieldSet : gui.getRgbFields()) {
             apply(new RGBComponent(this, rgbFieldSet), rgbFieldSet.isMods(), rgbFieldSet.getCategory(), items);
