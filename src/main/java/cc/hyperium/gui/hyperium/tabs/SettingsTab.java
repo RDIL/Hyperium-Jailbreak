@@ -80,8 +80,8 @@ public class SettingsTab extends AbstractTab {
         ));
 
         apply(
-            new LinkComponent(this, Collections.emptyList(), "SidebarMod", new GuiSidebar(), true, Category.MODS, items
-        ));
+            new LinkComponent(this, Collections.emptyList(), "SidebarMod", new GuiSidebar()), true, Category.MODS, items
+        );
 
         for (RGBFieldSet rgbFieldSet : gui.getRgbFields()) {
             apply(new RGBComponent(this, rgbFieldSet), rgbFieldSet.isMods(), rgbFieldSet.getCategory(), items);
