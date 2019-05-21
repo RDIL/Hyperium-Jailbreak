@@ -26,9 +26,11 @@ import cc.hyperium.utils.ChatUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.Entity;
 import net.minecraft.potion.Potion;
 import net.minecraft.world.World;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -81,5 +83,10 @@ public class MixinEntityPlayerSP extends AbstractClientPlayer {
             this.timeInPortal = 0.0F;
         }
         super.removePotionEffectClient(potionId);
+    }
+
+    @Redirect(method = "onLivingUpdate", at = @At(value = "FIELD", target = "Lnet/minecraft/client/Minecraft;currentScreen:Lnet/minecraft/client/gui/GuiScreen;", ordinal = 0))
+    private GuiScreen getCurrentScreen(Minecraft mc) {
+        return null;
     }
 }
