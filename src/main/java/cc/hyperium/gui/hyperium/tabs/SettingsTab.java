@@ -69,13 +69,13 @@ public class SettingsTab extends AbstractTab {
 
         apply(
             new LinkComponent(
-                this, Collections.emptyList(), "CustomCrosshairMod", new GuiCustomCrosshairEditCrosshair(InternalAddons.getCustomCrosshairAddon()
+                this, Collections.emptyList(), "CustomCrosshairMod", new GuiCustomCrosshairEditCrosshair(InternalAddons.getCustomCrosshairAddon())
             ), true, Category.MODS, items
         ));
 
         apply(
             new LinkComponent(
-                this, Collections.emptyList(), "BossbarMod", new GuiBossbarSetting(InternalAddons.getBossbarAddon()
+                this, Collections.emptyList(), "BossbarMod", new GuiBossbarSetting(InternalAddons.getBossbarAddon())
             ), true, Category.MODS, items
         ));
 
