@@ -20,15 +20,15 @@ public class InternalAddons {
         this.bossbarAddon.init();
     }
 
-    public CustomCrosshairAddon getCustomCrosshairAddon() {
+    public static CustomCrosshairAddon getCustomCrosshairAddon() {
         return customCrosshairAddon;
     }
 
-    public SidebarAddon getSidebarAddon() {
+    public static SidebarAddon getSidebarAddon() {
         return sidebarAddon;
     }
 
-    public BossbarAddon getBossbarAddon() {
+    public static BossbarAddon getBossbarAddon() {
         return bossbarAddon;
     }
 }
