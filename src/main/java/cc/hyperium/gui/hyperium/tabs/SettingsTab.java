@@ -77,7 +77,7 @@ public class SettingsTab extends AbstractTab {
             new LinkComponent(
                 this, Collections.emptyList(), "BossbarMod", new GuiBossbarSetting(InternalAddons.getBossbarAddon())
             ), true, Category.MODS, items
-        ));
+        );
 
         apply(
             new LinkComponent(this, Collections.emptyList(), "SidebarMod", new GuiSidebar()), true, Category.MODS, items
