@@ -5,7 +5,9 @@ import cc.hyperium.config.SelectorSetting;
 import cc.hyperium.config.SliderSetting;
 import cc.hyperium.config.ToggleSetting;
 import cc.hyperium.addons.customcrosshair.gui.GuiCustomCrosshairEditCrosshair;
-import cc.hyperium.addons.customcrosshair.CustomCrosshairAddon;
+import cc.hyperium.addons.bossbar.gui.GuiBossbarSetting;
+import cc.hyperium.addons.sidebar.gui.GuiSidebar;
+import cc.hyperium.addons.InternalAddons;
 import cc.hyperium.gui.hyperium.HyperiumMainGui;
 import cc.hyperium.gui.hyperium.RGBFieldSet;
 import cc.hyperium.gui.hyperium.components.AbstractTab;
@@ -67,8 +69,18 @@ public class SettingsTab extends AbstractTab {
 
         apply(
             new LinkComponent(
-                this, Collections.emptyList(), "CustomCrosshairMod", new GuiCustomCrosshairEditCrosshair(CustomCrosshairMod.getCrosshairMod()
+                this, Collections.emptyList(), "CustomCrosshairMod", new GuiCustomCrosshairEditCrosshair(InternalAddons.getCustomCrosshairAddon()
             ), true, Category.MODS, items
+        ));
+
+        apply(
+            new LinkComponent(
+                this, Collections.emptyList(), "BossbarMod", new GuiBossbarSetting(InternalAddons.getBossbarAddon()
+            ), true, Category.MODS, items
+        ));
+
+        apply(
+            new LinkComponent(this, Collections.emptyList(), "SidebarMod", new GuiSidebar(), true, Category.MODS, items
         ));
 
         for (RGBFieldSet rgbFieldSet : gui.getRgbFields()) {
