@@ -46,7 +46,7 @@ public class SidebarAddon extends AbstractAddon {
 
     @Override
     public Metadata getAddonMetadata() {
-        return new AbstractAddon.Metadata(this, "SidebarAddon", "1", "Amplifiable");
+        return new AbstractAddon.Metadata(this, "SidebarAddon", "1", "Amp");
     }
 
     public GuiSidebar getSidebarGui() {

@@ -47,7 +47,7 @@ public class CustomCrosshairAddon extends AbstractAddon {
 
     @Override
     public Metadata getAddonMetadata() {
-        return new AbstractAddon.Metadata(this, "Custom Crosshair Addon", "0.5.3", "Amp");
+        return new AbstractAddon.Metadata(this, "CustomCrosshair", "0.5.3", "Amp");
     }
 
     public void resetCrosshair() {
