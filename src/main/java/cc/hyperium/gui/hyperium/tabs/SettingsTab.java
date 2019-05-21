@@ -13,6 +13,7 @@ import cc.hyperium.gui.hyperium.components.RGBComponent;
 import cc.hyperium.gui.hyperium.components.SelectorComponent;
 import cc.hyperium.gui.hyperium.components.SliderComponent;
 import cc.hyperium.gui.hyperium.components.ToggleComponent;
+import cc.hyperium.gui.hyperium.components.LinkComponent;
 import net.minecraft.client.resources.I18n;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -61,6 +62,8 @@ public class SettingsTab extends AbstractTab {
                 }
             }
         }
+
+        apply(new LinkComponent(this));
 
         for (RGBFieldSet rgbFieldSet : gui.getRgbFields()) {
             apply(new RGBComponent(this, rgbFieldSet), rgbFieldSet.isMods(), rgbFieldSet.getCategory(), items);
