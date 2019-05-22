@@ -33,12 +33,6 @@ public class HyperiumNetworkPlayerInfo {
             ((IMixinNetworkPlayerInfo) parent).callLoadPlayerTextures();
         }
 
-        PlayerGetSkinEvent event = new PlayerGetSkinEvent(gameProfile, skin);
-
-        EventBus.INSTANCE.post(event);
-
-        skin = event.getSkin();
-
         ResourceLocation normalizedSkin = normalizeSkin(skin, gameProfile);
         ((IMixinNetworkPlayerInfo) parent).setLocationSkin(normalizedSkin);
         return normalizedSkin;
