@@ -1,7 +1,6 @@
 package cc.hyperium.mixinsimp.entity;
 
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.PlayerGetSkinEvent;
 import cc.hyperium.mixins.entity.IMixinNetworkPlayerInfo;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.client.network.NetworkPlayerInfo;
