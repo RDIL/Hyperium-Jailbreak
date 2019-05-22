@@ -1,7 +1,6 @@
 package cc.hyperium.mixinsimp.entity;
 
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.PlayerGetCapeEvent;
 import cc.hyperium.event.PlayerGetSkinEvent;
 import cc.hyperium.mixins.entity.IMixinNetworkPlayerInfo;
 import com.mojang.authlib.GameProfile;
@@ -22,12 +21,6 @@ public class HyperiumNetworkPlayerInfo {
         if (cape == null) {
             ((IMixinNetworkPlayerInfo) parent).callLoadPlayerTextures();
         }
-
-        PlayerGetCapeEvent event = new PlayerGetCapeEvent(gameProfile, cape);
-
-        EventBus.INSTANCE.post(event);
-
-        cape = event.getCape();
 
         ((IMixinNetworkPlayerInfo) parent).setLocationCape(cape);
         return cape;
