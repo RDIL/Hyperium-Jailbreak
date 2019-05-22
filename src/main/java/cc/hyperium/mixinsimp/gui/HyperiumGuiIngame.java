@@ -24,7 +24,7 @@ public class HyperiumGuiIngame {
         this.parent = parent;
     }
 
-    public void renderSelectedItem(ScaledResolution sr) {
+    public void renderSelectedItem() {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
