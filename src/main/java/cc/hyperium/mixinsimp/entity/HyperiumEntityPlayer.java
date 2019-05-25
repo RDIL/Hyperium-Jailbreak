@@ -35,9 +35,7 @@ public class HyperiumEntityPlayer {
         if (last != parent.isSwingInProgress) {
             last = parent.isSwingInProgress;
             if (parent.isSwingInProgress) {
-                EventBus.INSTANCE.post(
-                    new PlayerSwingEvent(parent.getUniqueID(), parent.getPositionVector(), parent.getLookVec(),
-                        parent.getPosition()));
+                EventBus.INSTANCE.post(new PlayerSwingEvent(parent.getUniqueID(), parent.getPositionVector(), parent.getLookVec(), parent.getPosition()));
             }
         }
     }
@@ -102,10 +100,6 @@ public class HyperiumEntityPlayer {
 
     public void attackTargetEntityWithCurrentItem(Entity targetEntity) {
         EventBus.INSTANCE.post(new PlayerAttackEntityEvent(parent.getUniqueID(), targetEntity));
-    }
-
-    public void onDeath(DamageSource source) {
-        EventBus.INSTANCE.post(new LivingDeathEvent(parent, source));
     }
 
     public void setName(String name) {
