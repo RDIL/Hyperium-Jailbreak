@@ -2,7 +2,6 @@ package cc.hyperium.mixinsimp.entity;
 
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.LivingDeathEvent;
 import cc.hyperium.event.PlayerAttackEntityEvent;
 import cc.hyperium.event.PlayerSwingEvent;
 import cc.hyperium.mixins.entity.IMixinEntity;
