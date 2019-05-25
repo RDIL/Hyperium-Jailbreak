@@ -33,7 +33,6 @@
     "entity.MixinEntity",
     "entity.MixinEntityLivingBase",
     "entity.MixinEntityPlayer",
-    "entity.MixinEntityPlayerMP",
     "entity.MixinEntityPlayerSP",
     "entity.MixinEntityRenderer",
     "entity.MixinNetworkPlayerInfo",
