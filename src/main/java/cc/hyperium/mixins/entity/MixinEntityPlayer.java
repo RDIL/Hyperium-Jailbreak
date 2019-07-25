@@ -18,7 +18,6 @@
 package cc.hyperium.mixins.entity;
 
 import cc.hyperium.mixinsimp.entity.HyperiumEntityPlayer;
-import cc.hyperium.mixinsimp.entity.IMixinEntityPlayer;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -37,7 +36,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(EntityPlayer.class)
-public abstract class MixinEntityPlayer extends EntityLivingBase implements IMixinEntityPlayer {
+public abstract class MixinEntityPlayer extends EntityLivingBase {
     public MixinEntityPlayer(World worldIn) {
         super(worldIn);
     }
@@ -83,8 +82,7 @@ public abstract class MixinEntityPlayer extends EntityLivingBase implements IMix
         if (cir.getReturnValue() == null) return;
     }
 
-    @Override
-    public void setDisplayName(String name) {
+    private void setDisplayName(String name) {
         hyperiumEntityPlayer.setName(name);
     }
 }
