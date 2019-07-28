@@ -18,7 +18,7 @@ public class BackendHandler {
     public void apiRequest(String url) {
         try {
             HttpPost httppost = new HttpPost("http://backend.rdil.rocks/" + url);
-
+            httppost.setHeader("User-Agent", "HyperiumJailbreak v" + jb.Metadata.getVersion());
             List<NameValuePair> params = new ArrayList<NameValuePair>(0);
             try {
                 httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
