@@ -28,10 +28,6 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(ItemRenderer.class)
 public class MixinItemRenderer {
-    @Final
-    @Shadow
-    private Minecraft mc;
-
     @Shadow
     private ItemStack itemToRender;
 

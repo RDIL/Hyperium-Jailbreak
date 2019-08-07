@@ -17,7 +17,8 @@
 
 package cc.hyperium.mixins.gui;
 
-import cc.hyperium.mixinsimp.gui.HyperiumGuiDisconnecting;
+import cc.hyperium.event.EventBus;
+import cc.hyperium.event.ServerLeaveEvent;
 import net.minecraft.client.gui.GuiDisconnected;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.IChatComponent;
@@ -28,10 +29,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiDisconnected.class)
 public class MixinGuiDisconnecting {
-    private HyperiumGuiDisconnecting hyperiumGuiDisconnecting = new HyperiumGuiDisconnecting();
-
     @Inject(method = "<init>", at = @At("RETURN"))
     private void init(GuiScreen screen, String reasonLocalizationKey, IChatComponent chatComp, CallbackInfo ci) {
-        hyperiumGuiDisconnecting.init();
+        EventBus.INSTANCE.post(new ServerLeaveEvent());
     }
 }
