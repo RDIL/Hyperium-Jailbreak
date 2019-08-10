@@ -25,7 +25,6 @@ import net.minecraft.client.multiplayer.ServerList;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import org.apache.logging.log4j.Logger;
 
 public class HyperiumServerList {
     public static void func_147414_b(ServerData p_147414_0_) {
@@ -43,7 +42,7 @@ public class HyperiumServerList {
         serverlist.saveServerList();
     }
 
-    public void loadServers(List<ServerData> servers, Logger logger, Minecraft mc) {
+    public void loadServers(List<ServerData> servers, Minecraft mc) {
         try {
             servers.clear();
             NBTTagCompound nbttagcompound = CompressedStreamTools.read(new File(mc.mcDataDir, "servers.dat"));
@@ -53,12 +52,12 @@ public class HyperiumServerList {
             for (int i = 0; i < nbttaglist.tagCount(); ++i) {
                 servers.add(ServerData.getServerDataFromNBTCompound(nbttaglist.getCompoundTagAt(i)));
             }
-        } catch (Exception exception) {
-            logger.error("Couldn\'t load server list", exception);
+        } catch (Exception exe) {
+            exe.printStackTrace();
         }
     }
 
-    public void saveServerList(List<ServerData> servers, Logger logger, Minecraft mc) {
+    public void saveServerList(List<ServerData> servers, Minecraft mc) {
         try {
             NBTTagList nbttaglist = new NBTTagList();
 
@@ -69,8 +68,8 @@ public class HyperiumServerList {
             NBTTagCompound nbttagcompound = new NBTTagCompound();
             nbttagcompound.setTag("servers", nbttaglist);
             CompressedStreamTools.safeWrite(nbttagcompound, new File(mc.mcDataDir, "servers.dat"));
-        } catch (Exception exception) {
-            logger.error("Couldn\'t save server list", exception);
+        } catch (Exception exe) {
+            exe.printStackTrace();
         }
     }
 
@@ -99,12 +98,12 @@ public class HyperiumServerList {
         return servers.size();
     }
 
-    public void swapServers(List<ServerData> servers, Logger logger, Minecraft mc, int p_78857_1_, int p_78857_2_) {
+    public void swapServers(List<ServerData> servers, Minecraft mc, int p_78857_1_, int p_78857_2_) {
         try {
             ServerData serverdata = this.getServerData(servers, p_78857_1_);
             servers.set(p_78857_1_, this.getServerData(servers, p_78857_2_));
             servers.set(p_78857_2_, serverdata);
-            this.saveServerList(servers, logger, mc);
+            this.saveServerList(servers, mc);
         } catch (Exception ignored) {}
     }
 

@@ -18,19 +18,15 @@
 package cc.hyperium.commands.defaults;
 import cc.hyperium.Hyperium;
 import cc.hyperium.commands.BaseCommand;
-import cc.hyperium.gui.CrashReportGUI;
 import cc.hyperium.handlers.handlers.HypixelDetector;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import cc.hyperium.mods.chromahud.ChromaHUDApi;
-import cc.hyperium.mods.sk1ercommon.Sk1erMod;
 import cc.hyperium.network.NetworkHandler;
 import cc.hyperium.purchases.HyperiumPurchase;
 import cc.hyperium.purchases.PurchaseApi;
 import cc.hyperium.utils.JsonHolder;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
 import java.util.List;
 
 public class CommandDebug implements BaseCommand {
@@ -138,9 +134,5 @@ public class CommandDebug implements BaseCommand {
             GeneralChatHandler.instance().sendMessage("Enabled logging, please restart your game to begin. It will be auto disabled after next launch.");
             return;
         }
-        String message = get();
-        String haste = CrashReportGUI.haste(message);
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(haste), null);
-        GeneralChatHandler.instance().sendMessage("Link copied: " + haste);
     }
 }

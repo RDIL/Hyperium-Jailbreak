@@ -24,7 +24,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import jb.Metadata;
 
 public class GuiHyperiumScreen extends GuiScreen {
     public static ResourceLocation background = new ResourceLocation("textures/material/backgrounds/1.png");
@@ -86,13 +85,10 @@ public class GuiHyperiumScreen extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        switch (getStyle()) {
-            case DEFAULT:
-                drawDefaultStyleScreen(mouseX, mouseY);
-                break;
-            case HYPERIUM:
-                drawHyperiumStyleScreen(mouseX, mouseY, partialTicks);
-                break;
+        if(getStyle() == GuiStyle.DEFAULT) {
+            drawDefaultStyleScreen(mouseX, mouseY);
+        } else {
+             drawHyperiumStyleScreen(mouseX, mouseY, partialTicks);
         }
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
@@ -178,14 +174,8 @@ public class GuiHyperiumScreen extends GuiScreen {
 
         if (!Hyperium.INSTANCE.isDevEnv()) GuiPlayerRenderer.renderPlayerWithRotation(width - 118, -4, val);
         ScissorState.endScissor();
-
-        /* Render Hyperium version number */
         fr.drawStringScaled("Hyperium Jailbreak", width - 152, 39, 0xFFFFFF, .75);
 
-        /* Display copyright disclaimers at bottom of screen */
-        sfr.drawString(I18n.format("menu.left").toUpperCase(), 1, height - 7, 0x55FFFFFF);
-        String s = I18n.format("menu.right").toUpperCase();
-        sfr.drawString(s, width - sfr.getWidth(s) - 1, height - 7, 0x55FFFFFF);
         GlStateManager.popMatrix();
     }
 
@@ -201,9 +191,9 @@ public class GuiHyperiumScreen extends GuiScreen {
         this.drawGradientRect(0, 0, this.width, this.height, 0, Integer.MIN_VALUE);
         GlStateManager.pushMatrix();
         GlStateManager.scale(4F, 4F, 1F);
-        this.drawCenteredString(fontRendererObj, Metadata.getModid(), width / 8, 40 / 4, 0xFFFFFF);
+        this.drawCenteredString(fontRendererObj, Hyperium.modid, width / 8, 40 / 4, 0xFFFFFF);
         GlStateManager.popMatrix();
-        String s = String.format("%s %s", Metadata.getModid(), Metadata.getVersion());
+        String s = String.format("%s %s", Hyperium.modid, Hyperium.version);
         this.drawString(this.fontRendererObj, s, 2, this.height - 10, -1);
         String s1 = I18n.format("menu.right");
         this.drawString(this.fontRendererObj, s1, this.width - this.fontRendererObj.getStringWidth(s1) - 2, this.height - 10, -1);

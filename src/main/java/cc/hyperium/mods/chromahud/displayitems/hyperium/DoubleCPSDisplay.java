@@ -6,12 +6,10 @@ import cc.hyperium.utils.JsonHolder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import cc.hyperium.config.Settings;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class DoubleCPSDisplay extends DisplayItem {
-
     private final FontRenderer fr = Minecraft.getMinecraft().fontRendererObj;
 
     public DoubleCPSDisplay(JsonHolder data, int ordinal) {
@@ -42,6 +40,4 @@ public class DoubleCPSDisplay extends DisplayItem {
         this.width = maxWidth;
         ElementRenderer.draw(x, y, list);
     }
-
-
 }

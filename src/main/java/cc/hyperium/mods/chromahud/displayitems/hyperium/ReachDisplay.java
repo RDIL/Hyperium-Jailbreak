@@ -26,11 +26,9 @@ import cc.hyperium.utils.JsonHolder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
-
 import java.text.DecimalFormat;
 
 public class ReachDisplay extends DisplayItem {
-
     private final Minecraft mc = Minecraft.getMinecraft();
     private String rangeText;
     private long lastAttack;

@@ -70,7 +70,7 @@ public class ToggleChatConfig {
 
             this.toggleFile.createNewFile();
             FileWriter writer = new FileWriter(this.toggleFile);
-            BufferedWriter bufferedWriter = new BufferedWriter(writer);
+            new BufferedWriter(writer);
 
             for (ToggleBase base : this.theMod.getToggleHandler().getToggles().values()) {
                 this.toggleJson.addProperty("show" + base.getName().replace(" ", "_"), base.isEnabled());

@@ -17,8 +17,6 @@
 
 package cc.hyperium.handlers.handlers;
 
-import cc.hyperium.Hyperium;
-import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.JoinHypixelEvent;
@@ -29,7 +27,6 @@ import cc.hyperium.event.SingleplayerJoinEvent;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ServerData;
-import java.awt.Color;
 import java.util.regex.Pattern;
 
 public class HypixelDetector {

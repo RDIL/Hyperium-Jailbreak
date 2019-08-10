@@ -1,6 +1,5 @@
 package cc.hyperium.internal.addons
 
-import cc.hyperium.Hyperium
 import java.io.IOException
 import java.util.concurrent.ConcurrentHashMap
 
@@ -24,7 +23,7 @@ object AddonMinecraftBootstrap {
     fun init() {
         try {
             if (AddonBootstrap.phase != AddonBootstrap.Phase.INIT) {
-                throw IOException("Bootstrap is currently at Phase.${AddonBootstrap.phase} when it should be at Phase.INIT")
+                throw IOException("Bootstrap currently at Phase.${AddonBootstrap.phase}, it should be at INIT")
             }
 
             val toLoadMap = AddonBootstrap.addonManifests.map { it.name to it }.toMap().toMutableMap()
@@ -43,7 +42,6 @@ object AddonMinecraftBootstrap {
                         val dependencyManifest = toLoadMap[dependency]
                         if (dependencyManifest == null) {
                             toLoadMap.remove(manifest.name)
-                            Hyperium.LOGGER.error("Can't load addon ${manifest.name}. Its dependency, $dependency, isn't available.")
                             MISSING_DEPENDENCIES_MAP.computeIfAbsent(manifest) { ArrayList() }.add(dependency)
                             continue@loadBeforeLoop
                         }
@@ -53,7 +51,6 @@ object AddonMinecraftBootstrap {
                             iterator.remove()
                             toLoadMap.remove(manifest.name)
                             done = false
-                            Hyperium.LOGGER.error("Can't load addon ${manifest.name} because it and ${dependencyManifest.name} depend on each other.")
                             DEPENDENCIES_LOOP_MAP.computeIfAbsent(manifest) { ArrayList() }.add(dependencyManifest)
                             continue@loadBeforeLoop
                         }
@@ -119,7 +116,6 @@ object AddonMinecraftBootstrap {
             }
 
             if (cycle) {
-                Hyperium.LOGGER.error("Cycle in the topological sort for the addons. No ordering possible")
                 return
             }
 
@@ -130,14 +126,14 @@ object AddonMinecraftBootstrap {
                 toLoad.remove(addon)
             }
 
-            val loaded = ArrayList<IAddon>() // sorry Kevin but I want to put all errors in an arraylist
+            val loaded = ArrayList<IAddon>()
             for (addon in toLoad) {
                 try {
                     val o = Class.forName(addon.mainClass).newInstance()
                     if (o is IAddon) {
                         loaded.add(o)
                     } else {
-                        throw IOException("Main class isn't an instance of IAddon!")
+                        throw IOException("Main class isn't instance of IAddon")
                     }
                 } catch (e: Throwable) {
                     e.printStackTrace()

@@ -17,11 +17,11 @@
 
 package cc.hyperium.mods.chromahud.displayitems.hyperium;
 
+import cc.hyperium.Hyperium;
 import cc.hyperium.config.Settings;
 import cc.hyperium.mods.chromahud.ElementRenderer;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
 import cc.hyperium.utils.JsonHolder;
-import jb.Metadata;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,11 +34,11 @@ public class HyperiumInfoDisplay extends DisplayItem {
     public void draw(int x, double y, boolean config) {
         List<String> list = new ArrayList<>();
         if (!Settings.CHROMAHUD_SQUAREBRACE_PREFIX_OPTION) {
-            list.add("Client: " + Metadata.getModid());
-            list.add("Version " + Metadata.getVersion());
+            list.add("Client: " + Hyperium.modid);
+            list.add("Version " + Hyperium.version);
         } else {
-            list.add("[Client] " + Metadata.getModid());
-            list.add("[Version] " + Metadata.getVersion());
+            list.add("[Client] " + Hyperium.modid);
+            list.add("[Version] " + Hyperium.version);
         }
         ElementRenderer.draw(x, y, list);
         this.width = config ? ElementRenderer.maxWidth(list) : 0;

@@ -5,7 +5,6 @@ import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.multiplayer.ServerList;
-import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -13,9 +12,6 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(ServerList.class)
 public class MixinServerList {
-    @Shadow
-    @Final
-    private static Logger logger;
     @Shadow
     @Final
     private List<ServerData> servers;
@@ -32,12 +28,12 @@ public class MixinServerList {
 
     @Overwrite
     public void loadServerList() {
-        hyperiumServerList.loadServers(this.servers, logger, this.mc);
+        hyperiumServerList.loadServers(this.servers, this.mc);
     }
 
     @Overwrite
     public void saveServerList() {
-        hyperiumServerList.saveServerList(this.servers, logger, this.mc);
+        hyperiumServerList.saveServerList(this.servers, this.mc);
     }
 
     @Overwrite
@@ -62,7 +58,7 @@ public class MixinServerList {
 
     @Overwrite
     public void swapServers(int p_78857_1_, int p_78857_2_) {
-        hyperiumServerList.swapServers(this.servers, logger, this.mc, p_78857_1_, p_78857_2_);
+        hyperiumServerList.swapServers(this.servers, this.mc, p_78857_1_, p_78857_2_);
     }
 
     @Overwrite

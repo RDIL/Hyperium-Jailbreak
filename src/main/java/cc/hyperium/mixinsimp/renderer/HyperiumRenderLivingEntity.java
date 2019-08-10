@@ -63,13 +63,11 @@ public class HyperiumRenderLivingEntity<T extends EntityLivingBase> {
 
     public void renderName(T entity, double x, double y, double z, RenderManager renderManager) {
         if (((IMixinRenderLivingEntity<T>) parent).callCanRenderName(entity)) {
-
             double d0 = entity.getDistanceSqToEntity(renderManager.livingPlayer);
             float f = entity.isSneaking() ? 32.0F : 64.0F;
 
             if (d0 < (double) (f * f)) {
                 String s = entity.getDisplayName().getFormattedText();
-                float f1 = 0.02666667F;
                 GlStateManager.alphaFunc(516, 0.1F);
 
                 if (entity.isSneaking() && (Settings.SHOW_OWN_NAME || !entity.equals(Minecraft.getMinecraft().thePlayer))) {
@@ -109,5 +107,4 @@ public class HyperiumRenderLivingEntity<T extends EntityLivingBase> {
             }
         }
     }
-
 }

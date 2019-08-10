@@ -4,9 +4,7 @@ import cc.hyperium.config.Settings;
 import cc.hyperium.event.ChatEvent;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.mixins.gui.IMixinGuiNewChat;
-
 import java.util.List;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ChatLine;
 import net.minecraft.client.gui.Gui;
@@ -85,9 +83,7 @@ public class HyperiumGuiNewChat {
                                     Gui.drawRect(i2, j2 - 9, i2 + l + 4, j2, l1 / 2 << 24);
                                 String s = chatline.getChatComponent().getFormattedText();
                                 GlStateManager.enableBlend();
-                                mc.fontRendererObj
-                                    .drawStringWithShadow(s, (float) i2, (float) (j2 - 8),
-                                        16777215 + (l1 << 24));
+                                mc.fontRendererObj.drawStringWithShadow(s, (float) i2, (float) (j2 - 8), 16777215 + (l1 << 24));
                                 GlStateManager.disableAlpha();
                                 GlStateManager.disableBlend();
                             }
@@ -122,8 +118,7 @@ public class HyperiumGuiNewChat {
         }
 
         int i = MathHelper.floor_float((float) parent.getChatWidth() / parent.getChatScale());
-        List<IChatComponent> list = GuiUtilRenderComponents
-            .func_178908_a(chatComponent, i, mc.fontRendererObj, false, false);
+        List<IChatComponent> list = GuiUtilRenderComponents.func_178908_a(chatComponent, i, mc.fontRendererObj, false, false);
         boolean flag = parent.getChatOpen();
 
         for (IChatComponent ichatcomponent : list) {

@@ -237,25 +237,22 @@ public class DisplayElementConfig extends GuiScreen {
         int bottom = posY(3);
         float x;
         float y;
-        if (mouseX > left && mouseX < right) {
-            if (mouseY > top && mouseY < bottom) {
-                x = mouseX - left;
-                y = mouseY - top;
-
-                x /= scale;
-                y /= scale;
-                if (y > 0 && y <= 256)
-                    if (x < 256 && x > 0) {
-                        this.hue = (int) x;
-                        this.saturation = (int) (256 - y);
-                        regenImage();
-                        lastX = mouseX;
-                        lastY = mouseY;
-                    } else if (x > 256 + 15 && x < 256 + 15 + 15) {
-                        this.brightness = (int) y;
-                        regenImage();
-                    }
-            }
+        if ((mouseX > left && mouseX < right) && (mouseY > top && mouseY < bottom)) {
+            x = mouseX - left;
+            y = mouseY - top;
+            x /= scale;
+            y /= scale;
+            if (y > 0 && y <= 256)
+                if (x < 256 && x > 0) {
+                    this.hue = (int) x;
+                    this.saturation = (int) (256 - y);
+                    regenImage();
+                    lastX = mouseX;
+                    lastY = mouseY;
+                } else if (x > 256 + 15 && x < 256 + 15 + 15) {
+                    this.brightness = (int) y;
+                    regenImage();
+                }
         }
     }
 
@@ -357,7 +354,6 @@ public class DisplayElementConfig extends GuiScreen {
             case 4: {
                 return startY() + availableSpace();
             }
-
             default:
                 throw new IllegalArgumentException("Vertex not found " + vertex);
         }

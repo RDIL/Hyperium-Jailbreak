@@ -6,7 +6,6 @@ import cc.hyperium.addons.customcrosshair.CustomCrosshairAddon;
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.RenderHUDEvent;
-import cc.hyperium.event.RenderSelectedItemEvent;
 import cc.hyperium.mods.chromahud.displayitems.hyperium.ScoreboardDisplay;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -25,8 +24,7 @@ public class HyperiumGuiIngame {
         this.parent = parent;
     }
 
-    public void renderSelectedItem(ScaledResolution sr) {
-        EventBus.INSTANCE.post(new RenderSelectedItemEvent(sr));
+    public void renderSelectedItem() {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
@@ -49,7 +47,7 @@ public class HyperiumGuiIngame {
 
             ScaledResolution scaledresolution = new ScaledResolution(Minecraft.getMinecraft());
             int i = scaledresolution.getScaledWidth();
-            if (Settings.BOSSBAR_TEXT_ONLY || (!BossbarConfig.barEnabled && BossbarConfig.textEnabled)) {
+            if (!BossbarConfig.barEnabled && BossbarConfig.textEnabled) {
                 String s = BossStatus.bossName;
                 if (BossbarConfig.x != -1) {
                     parent.getFontRenderer().drawStringWithShadow(s, (float) (BossbarConfig.x + 91 - parent.getFontRenderer().getStringWidth(s) / 2), BossbarConfig.y - 10, 16777215);

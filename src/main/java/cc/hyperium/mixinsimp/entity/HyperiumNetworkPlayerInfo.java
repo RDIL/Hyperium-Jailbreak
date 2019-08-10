@@ -1,8 +1,5 @@
 package cc.hyperium.mixinsimp.entity;
 
-import cc.hyperium.event.EventBus;
-import cc.hyperium.event.PlayerGetCapeEvent;
-import cc.hyperium.event.PlayerGetSkinEvent;
 import cc.hyperium.mixins.entity.IMixinNetworkPlayerInfo;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.client.network.NetworkPlayerInfo;
@@ -23,12 +20,6 @@ public class HyperiumNetworkPlayerInfo {
             ((IMixinNetworkPlayerInfo) parent).callLoadPlayerTextures();
         }
 
-        PlayerGetCapeEvent event = new PlayerGetCapeEvent(gameProfile, cape);
-
-        EventBus.INSTANCE.post(event);
-
-        cape = event.getCape();
-
         ((IMixinNetworkPlayerInfo) parent).setLocationCape(cape);
         return cape;
     }
@@ -39,12 +30,6 @@ public class HyperiumNetworkPlayerInfo {
         if (skin == null) {
             ((IMixinNetworkPlayerInfo) parent).callLoadPlayerTextures();
         }
-
-        PlayerGetSkinEvent event = new PlayerGetSkinEvent(gameProfile, skin);
-
-        EventBus.INSTANCE.post(event);
-
-        skin = event.getSkin();
 
         ResourceLocation normalizedSkin = normalizeSkin(skin, gameProfile);
         ((IMixinNetworkPlayerInfo) parent).setLocationSkin(normalizedSkin);

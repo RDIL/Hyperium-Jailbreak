@@ -20,7 +20,6 @@ package cc.hyperium.mods.chromahud.api;
 import java.util.function.Consumer;
 
 public class StringConfig {
-
     private final Consumer<DisplayItem> load;
     private final Consumer<DisplayItem> draw;
     private String string;
@@ -33,12 +32,8 @@ public class StringConfig {
 
     public StringConfig(String string) {
         this.string = string;
-        load = (displayItem) -> {
-        };
-        draw = (displayItem) -> {
-        };
-
-
+        load = (displayItem) -> {};
+        draw = (displayItem) -> {};
     }
 
     public Consumer<DisplayItem> getLoad() {

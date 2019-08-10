@@ -24,7 +24,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.client.config.GuiSlider;
 
 public class GuiSliderFadeTime extends GuiSlider {
-
     private final KeystrokesSettings settings;
     private final GuiScreenKeystrokes keystrokesGui;
 
@@ -64,5 +63,4 @@ public class GuiSliderFadeTime extends GuiSlider {
             this.displayString = this.dispString + "Normal";
         }
     }
-
 }

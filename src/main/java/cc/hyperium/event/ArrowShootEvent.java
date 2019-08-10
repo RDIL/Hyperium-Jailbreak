@@ -23,7 +23,6 @@ import net.minecraft.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public final class ArrowShootEvent extends Event {
-
     @NotNull
     private final EntityArrow arrow;
 

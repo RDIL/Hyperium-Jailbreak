@@ -17,19 +17,13 @@
 
 package cc.hyperium.mods.levelhead.renderer;
 
-
 import cc.hyperium.utils.JsonHolder;
 
-/**
- * @author Sk1er
- */
 public class LevelheadTag {
     private LevelheadComponent header;
     private LevelheadComponent footer;
 
-    public LevelheadTag() {
-    }
-
+    public LevelheadTag() {}
 
     public LevelheadComponent getHeader() {
         return header;
@@ -38,7 +32,6 @@ public class LevelheadTag {
     public LevelheadComponent getFooter() {
         return footer;
     }
-
 
     public void construct(JsonHolder holder) {
         if (header == null) {
@@ -55,9 +48,7 @@ public class LevelheadTag {
         }
         if (!this.footer.isCustom()) {
             this.footer = holder.footer;
-
         }
-
     }
 
     private LevelheadComponent build(JsonHolder holder, boolean isHeader) {

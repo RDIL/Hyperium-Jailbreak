@@ -5,7 +5,6 @@ import cc.hyperium.Hyperium;
 import cc.hyperium.config.ConfigOpt;
 import cc.hyperium.config.PostConfigHandler;
 import cc.hyperium.config.PreSaveHandler;
-import cc.hyperium.gui.CapesGui;
 import cc.hyperium.gui.CustomLevelheadConfigurer;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import cc.hyperium.netty.INetty;
@@ -97,14 +96,9 @@ public class NetworkHandler implements INetty, PostConfigHandler, PreSaveHandler
                 Hyperium.INSTANCE.getHandlers().getFlipHandler().state(uuid, 0);
             }
         } else if (type.equalsIgnoreCase("refresh_cosmetics")) {
-            if (Minecraft.getMinecraft().currentScreen instanceof CapesGui) {
-                ((CapesGui) Minecraft.getMinecraft().currentScreen).updatePurchases();
-            } else {
-                PurchaseApi.getInstance().refreshSelf();
-            }
-        } else if (type.equalsIgnoreCase("custom_levelhead_success")) {
-            if (Minecraft.getMinecraft().currentScreen instanceof CustomLevelheadConfigurer)
-                Minecraft.getMinecraft().displayGuiScreen(null);
+            PurchaseApi.getInstance().refreshSelf();
+        } else if (type.equalsIgnoreCase("custom_levelhead_success") && Minecraft.getMinecraft().currentScreen instanceof CustomLevelheadConfigurer) {
+            Minecraft.getMinecraft().displayGuiScreen(null);
         } else if (type.equalsIgnoreCase("cache_update")) {
             PurchaseApi.getInstance().reload(UUID.fromString(jsonHolder.optString("uuid")));
         }

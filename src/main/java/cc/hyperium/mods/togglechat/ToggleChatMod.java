@@ -23,7 +23,6 @@ import cc.hyperium.mods.AbstractMod;
 import cc.hyperium.mods.togglechat.commands.CommandToggleChat;
 import cc.hyperium.mods.togglechat.config.ToggleChatConfig;
 import cc.hyperium.mods.togglechat.toggles.ToggleBaseHandler;
-import cc.hyperium.utils.ChatColor;
 
 public final class ToggleChatMod extends AbstractMod {
     private final Metadata meta;
@@ -33,8 +32,7 @@ public final class ToggleChatMod extends AbstractMod {
     private ToggleBaseHandler toggleHandler;
 
     public ToggleChatMod() {
-        Metadata metadata = new Metadata(this, "ToggleChatLite", "1.0", "boomboompower");
-        metadata.setDisplayName(ChatColor.AQUA + "ToggleChatLite");
+        Metadata metadata = new Metadata(this, "ToggleChat", "1", "boomboompower");
         this.meta = metadata;
     }
 

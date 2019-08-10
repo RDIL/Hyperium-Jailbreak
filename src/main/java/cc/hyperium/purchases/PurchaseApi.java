@@ -46,7 +46,6 @@ public class PurchaseApi {
     private final Map<UUID, HyperiumPurchase> purchasePlayers = new ConcurrentHashMap<>();
     private final Map<EnumPurchaseType, Class<? extends AbstractHyperiumPurchase>> purchaseClasses = new HashMap<>();
     private final Map<String, UUID> nameToUuid = new HashMap<>();
-    private JsonHolder capeAtlas = new JsonHolder();
 
     private PurchaseApi() {
         register(EnumPurchaseType.DEADMAU5_COSMETIC, EarsCosmetic.class);
@@ -54,16 +53,11 @@ public class PurchaseApi {
         for (EnumPurchaseType enumPurchaseType : EnumPurchaseType.values()) {
             purchaseClasses.putIfAbsent(enumPurchaseType, DefaultCosmetic.class);
         }
-        Multithreading.runAsync(() -> capeAtlas = get("https://api.hyperium.cc/capeAtlas"));
         getSelf();
     }
 
     public static PurchaseApi getInstance() {
         return instance;
-    }
-
-    public JsonHolder getCapeAtlas() {
-        return capeAtlas;
     }
 
     @InvokeEvent

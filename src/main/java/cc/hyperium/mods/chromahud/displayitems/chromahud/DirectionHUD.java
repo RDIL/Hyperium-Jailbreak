@@ -25,9 +25,6 @@ import cc.hyperium.config.Settings;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Mitchell Katz on 6/1/2017.
- */
 public class DirectionHUD extends DisplayItem {
     private static final String[] dir = {"South", "South West", "West", "North West", "North", "North East", "East", "South East"};
     private static final String[] dirShort = {"S", "SW", "W", "NW", "N", "NE", "E", "SE"};
@@ -61,5 +58,4 @@ public class DirectionHUD extends DisplayItem {
         ElementRenderer.draw(x, y, list);
         this.width = isConfig ? ElementRenderer.maxWidth(list) : 0;
     }
-
 }

@@ -71,7 +71,7 @@ public class DefaultConfig {
 
     public void save() {
         for (Object o : configObjects)
-            saveToJsonFromRamObject(o);
+            loadToJson(o);
         saveFile();
     }
 
@@ -81,15 +81,11 @@ public class DefaultConfig {
         }
         if (object instanceof PreConfigHandler)
             ((PreConfigHandler) object).preUpdate();
-        loadToClass(object);
+        loadToClassObject(object);
         configObjects.add(object);
         if (object instanceof PostConfigHandler)
             ((PostConfigHandler) object).postUpdate();
         return object;
-    }
-
-    private void loadToClass(Object o) {
-        loadToClassObject(o);
     }
 
     private void loadToClassObject(Object object) {
@@ -112,10 +108,6 @@ public class DefaultConfig {
                 }
             }
         });
-    }
-
-    private void saveToJsonFromRamObject(Object o) {
-        loadToJson(o);
     }
 
     private void loadToJson(Object object) {

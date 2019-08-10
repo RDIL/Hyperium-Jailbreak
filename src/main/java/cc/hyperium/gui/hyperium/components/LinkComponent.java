@@ -27,8 +27,7 @@ public class LinkComponent extends AbstractTabComponent {
 
         lines.clear();
 
-        lines = font.splitString(label,
-            (width + 25) / 2); //16 for icon, 3 for render offset and then some more
+        lines = font.splitString(label,(width + 25) / 2); // 16 for icon, 3 for render offset and then some more
 
         GlStateManager.pushMatrix();
         if (hover) {
@@ -38,8 +37,7 @@ public class LinkComponent extends AbstractTabComponent {
 
         int line1 = 0;
         for (String line : lines) {
-            font.drawString(line.replaceAll("_", " ").toUpperCase(), x + 3, y + 5 + 17 * line1,
-                0xffffff);
+            font.drawString(line.replaceAll("_", " ").toUpperCase(), x + 3, y + 5 + 17 * line1, 0xffffff);
             line1++;
         }
         GlStateModifier.INSTANCE.reset();
@@ -49,7 +47,6 @@ public class LinkComponent extends AbstractTabComponent {
     public int getHeight() {
         return 18 * lines.size();
     }
-
 
     @Override
     public void onClick(int x, int y) {

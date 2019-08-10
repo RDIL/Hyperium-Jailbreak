@@ -17,16 +17,10 @@
 
 package cc.hyperium.mods.levelhead.renderer;
 
-/**
- * @author Sk1er
- */
 public class LevelheadComponent {
     private String value;
-    //chroma
     private boolean chroma;
-    //Basic color code color
     private String color;
-    //RGBA
     private boolean rgb;
     private int red;
     private int green;
@@ -43,7 +37,6 @@ public class LevelheadComponent {
     }
 
     public void setColor(String color) {
-
         this.color = color;
     }
 

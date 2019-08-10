@@ -44,7 +44,6 @@ public class LevelHeadCommand implements BaseCommand {
     public void onExecute(String[] args) {
         if (args.length == 1) {
             if (args[0].equalsIgnoreCase("dumpcache")) {
-                int prevCache = this.mod.levelCache.size();
                 this.mod.levelCache.clear();
                 return;
             } else if (args[0].equalsIgnoreCase("toggle")) {

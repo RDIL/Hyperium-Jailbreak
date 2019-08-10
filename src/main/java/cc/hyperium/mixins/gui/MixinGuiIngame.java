@@ -76,7 +76,7 @@ public abstract class MixinGuiIngame extends Gui {
 
     @Inject(method = "renderSelectedItem", at = @At(value = "RETURN", target = "Lnet/minecraft/client/renderer/GlStateManager;popMatrix()V"))
     private void onRenderSelectedItem(ScaledResolution p_181551_1_, CallbackInfo ci) {
-        hyperiumGuiIngame.renderSelectedItem(p_181551_1_);
+        hyperiumGuiIngame.renderSelectedItem();
     }
 
     @Overwrite

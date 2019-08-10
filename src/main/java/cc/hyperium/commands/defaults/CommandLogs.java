@@ -3,6 +3,7 @@ package cc.hyperium.commands.defaults;
 import cc.hyperium.commands.BaseCommand;
 import cc.hyperium.commands.CommandException;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
+import cc.hyperium.mods.sk1ercommon.Multithreading;
 import net.minecraft.client.Minecraft;
 import java.awt.Desktop;
 import java.awt.Toolkit;
@@ -26,33 +27,34 @@ public class CommandLogs implements BaseCommand {
 
     @Override
     public void onExecute(String[] args) throws CommandException {
-        StringBuilder message = new StringBuilder();
-        try {
-            FileReader in = new FileReader(new File(Minecraft.getMinecraft().mcDataDir, "logs" + File.separator + "latest.log"));
-            BufferedReader reader = new BufferedReader(in);
-            String line;
-            while ((line = reader.readLine()) != null) {
-                message.append(line).append("\n");
-            }
-            reader.close();
-            in.close();
-        } catch (IOException e) {
-            GeneralChatHandler.instance().sendMessage("Error whilst reading log.");
-            e.printStackTrace();
-            return;
-        }
-        message = new StringBuilder(message.toString().replaceAll(System.getProperty("user.name"), "{USERNAME}"));
-
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(message.toString()), null);
-        GeneralChatHandler.instance().sendMessage("Data copied to clipboard. Please paste in hastebin.com (This has been opened), save and send in Discord");
-        Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
-        if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
+        Multithreading.runAsync(() -> {
+            StringBuilder message = new StringBuilder();
             try {
-                desktop.browse(new URL("https://hastebin.com").toURI());
-
-            } catch (Exception e) {
+                FileReader in = new FileReader(new File(Minecraft.getMinecraft().mcDataDir, "logs" + File.separator + "latest.log"));
+                BufferedReader reader = new BufferedReader(in);
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    message.append(line).append("\n");
+                }
+                reader.close();
+                in.close();
+            } catch (IOException e) {
+                GeneralChatHandler.instance().sendMessage("Error reading log");
                 e.printStackTrace();
+                return;
             }
-        }
+            message = new StringBuilder(message.toString().replaceAll(System.getProperty("user.name"), "{USERNAME}"));
+
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(message.toString()), null);
+            GeneralChatHandler.instance().sendMessage("Copied to clipboard. Please paste in hastebin.com (it has been opened), save and send to staff");
+            Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+            if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
+                try {
+                    desktop.browse(new URL("https://hastebin.com").toURI());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }

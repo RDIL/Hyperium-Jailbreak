@@ -1,14 +1,22 @@
 package cc.hyperium.gui;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.config.Settings;
 import cc.hyperium.gui.hyperium.HyperiumMainGui;
 import cc.hyperium.gui.keybinds.GuiKeybinds;
+import cc.hyperium.installer.utils.http.HttpEntity;
+import cc.hyperium.installer.utils.http.HttpResponse;
+import cc.hyperium.installer.utils.http.NameValuePair;
+import cc.hyperium.installer.utils.http.client.HttpClient;
+import cc.hyperium.installer.utils.http.client.entity.UrlEncodedFormEntity;
+import cc.hyperium.installer.utils.http.client.methods.HttpPost;
+import cc.hyperium.installer.utils.http.impl.client.HttpClients;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
-import cc.hyperium.purchases.PurchaseApi;
 import cc.hyperium.utils.JsonHolder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.mojang.realmsclient.gui.ChatFormatting;
+import org.apache.commons.io.IOUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiMainMenu;
@@ -23,7 +31,12 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.server.MinecraftServer;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
     private static JsonHolder data = new JsonHolder();
@@ -55,7 +68,7 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
 
         guibutton.enabled = this.mc.isSingleplayer() && !this.mc.getIntegratedServer().getPublic();
 
-        buttonList.add(new GuiButton(9, this.width / 2 - 100, height / 4 + 56, 98, 20, I18n.format("button.ingame.hyperiumsettings")));
+        buttonList.add(new GuiButton(9, this.width / 2 - 100, height / 4 + 56, 98, 20, "Client Settings"));
         buttonList.add(new GuiButton(8, this.width / 2 + 2, height / 4 + 56, 98, 20, "Keybinds"));
 
         WorldClient theWorld = Minecraft.getMinecraft().theWorld;
@@ -79,26 +92,16 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
                 break;
 
             case 1:
-                if (Settings.CONFIRM_DISCONNECT) {
-                    Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new GuiConfirmDisconnect());
+                boolean integratedServerRunning = this.mc.isIntegratedServerRunning();
+                button.enabled = false;
+                this.mc.theWorld.sendQuittingDisconnectingPacket();
+                this.mc.loadWorld(null);
+
+                if (integratedServerRunning) {
+                    Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new GuiMainMenu());
                 } else {
-                    boolean integratedServerRunning = this.mc.isIntegratedServerRunning();
-                    button.enabled = false;
-                    this.mc.theWorld.sendQuittingDisconnectingPacket();
-                    this.mc.loadWorld(null);
-
-                    if (integratedServerRunning) {
-                        Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new GuiMainMenu());
-                    } else {
-                        Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new GuiMultiplayer(new GuiMainMenu()));
-                    }
+                    Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new GuiMultiplayer(new GuiMainMenu()));
                 }
-                break;
-
-            case 2:
-                break;
-
-            case 3:
                 break;
 
             default:
@@ -132,14 +135,11 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
             case 10:
                 Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new GuiIngameMultiplayer(Minecraft.getMinecraft().currentScreen));
                 break;
-
         }
-
     }
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-
         super.drawScreen(mouseX, mouseY, partialTicks);
         GlStateManager.pushMatrix();
 
@@ -155,7 +155,7 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
         GlStateManager.translate(current.getScaledWidth() / 2, 5, 0);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
-        drawCenteredString(fontRendererObj, I18n.format("gui.ingamemenu.playercount"), 0, -5, 0xFFFFFF);
+        drawCenteredString(fontRendererObj, "HyperiumJailbreak Player Count:", 0, -5, 0xFFFFFF);
         GlStateManager.translate(0F, 10F, 0F);
         GlStateManager.scale(1, 1, 1);
         GlStateManager.rotate(baseAngle, 1.0F, 0.0F, 0.0F);
@@ -173,34 +173,28 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
             i = (e - (Math.abs((360) - baseAngle))) / e;
         }
 
-        if (i > 0) {
-            drawCenteredString(fontRendererObj, I18n.format("gui.ingamemenu.playercount.now", ChatFormatting.GREEN + formatter.format(data.optInt("online")) + ChatFormatting.RESET), 0, 0, 0xFFFFFF);
-        }
+        if (i > 0) drawCenteredString(fontRendererObj, "Now Online: " + ChatFormatting.GREEN + formatter.format(data.optInt("online")) + ChatFormatting.RESET, 0, 0, 0xFFFFFF);
 
         GlStateManager.translate(0.0F, 0.0F, -z);
         GlStateManager.rotate(90, 1.0F, 0.0F, 0.0F);
         GlStateManager.translate(0.0F, 0.0F, z);
         i = (e - Math.abs(270 - baseAngle)) / e;
 
-        if (i > 0) {
-            drawCenteredString(fontRendererObj, I18n.format("gui.ingamemenu.playercount.lastday", ChatFormatting.GREEN + formatter.format(data.optInt("day")) + ChatFormatting.RESET), 0, 0, 0xFFFFFF);
-        }
+        if (i > 0) drawCenteredString(fontRendererObj, "Last hour: " + ChatFormatting.GREEN + formatter.format(data.optInt("hour")) + ChatFormatting.RESET, 0, 0, 0xFFFFFF);
 
         GlStateManager.translate(0.0F, 0.0F, -z);
         GlStateManager.rotate(90, 1.0F, 0.0F, 0.0F);
         GlStateManager.translate(0.0F, 0.0F, z);
         i = (e - Math.abs(180 - baseAngle)) / e;
 
-        if (i > 0) {
-            drawCenteredString(fontRendererObj, I18n.format("gui.ingamemenu.playercount.lastweek", ChatFormatting.GREEN + formatter.format(data.optInt("week")) + ChatFormatting.RESET), 0, 0, 0xFFFFFF);
-        }
+        if (i > 0) drawCenteredString(fontRendererObj, ChatFormatting.BLUE + "Last day: " + ChatFormatting.GREEN + formatter.format(data.optInt("day")) + ChatFormatting.RESET, 0, 0, 0xFFFFFF);
 
         GlStateManager.translate(0.0F, 0.0F, -z);
         GlStateManager.rotate(90, 1.0F, 0.0F, 0.0F);
         GlStateManager.translate(0.0F, 0.0F, z);
         i = (e - Math.abs(90 - baseAngle)) / e;
 
-        if (i > 0) drawCenteredString(fontRendererObj, I18n.format("gui.ingamemenu.playercount.alltime", ChatFormatting.GREEN + formatter.format(data.optInt("all")) + ChatFormatting.RESET), 0, 0, 0xFFFFFF);
+        if (i > 0) drawCenteredString(fontRendererObj, ChatFormatting.BLUE + "Thank you for your support!" + ChatFormatting.RESET, 0, 0, 0xFFFFFF);
 
         GlStateManager.popMatrix();
     }
@@ -209,7 +203,35 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
         lastUpdate = System.currentTimeMillis() * 2;
 
         Multithreading.runAsync(() -> {
-            data = PurchaseApi.getInstance().get("https://api.hyperium.cc/users");
+            HttpClient httpclient = HttpClients.createDefault();
+            HttpPost httppost = new HttpPost("http://backend.rdil.rocks/getOnline");
+            httppost.setHeader("User-Agent", "HyperiumJailbreak");
+            List<NameValuePair> params = new ArrayList<NameValuePair>(0);
+            try {
+                httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
+            HttpResponse response = null;
+            try {
+                response = httpclient.execute(httppost);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            HttpEntity entity = response.getEntity();
+
+            if (entity != null) {
+                try (InputStream instream = entity.getContent()) {
+                    StringWriter writer = new StringWriter();
+                    IOUtils.copy(instream, writer, "UTF-8");
+                    String theString = writer.toString();
+                    JsonObject jsonObject = new JsonParser().parse(theString).getAsJsonObject();
+                    data = new JsonHolder(jsonObject);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             lastUpdate = System.currentTimeMillis();
         });
     }

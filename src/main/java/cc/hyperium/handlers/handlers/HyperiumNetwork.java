@@ -17,13 +17,13 @@
 
 package cc.hyperium.handlers.handlers;
 
+import cc.hyperium.Hyperium;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.ServerJoinEvent;
 import cc.hyperium.launch.HyperiumTweaker;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.utils.JsonHolder;
 import io.netty.buffer.Unpooled;
-import jb.Metadata;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.network.PacketBuffer;
@@ -44,10 +44,10 @@ public class HyperiumNetwork {
             netHandler.addToSendQueue(
                 new C17PacketCustomPayload("hyperium",
                     new PacketBuffer(Unpooled.buffer()).writeString(new JsonHolder()
-                        .put("id", Metadata.getModid())
+                        .put("id", Hyperium.modid)
                         .put("optifine", HyperiumTweaker.INSTANCE.isUsingOptifine())
                         .put("forge", HyperiumTweaker.INSTANCE.isUsingForge())
-                        .put("version", Metadata.getVersion()).toString())));
+                        .put("version", Hyperium.version).toString())));
         });
     }
 }

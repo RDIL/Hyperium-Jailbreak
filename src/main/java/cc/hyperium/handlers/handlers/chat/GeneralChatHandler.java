@@ -95,7 +95,6 @@ public class GeneralChatHandler {
                 // false && boolean will always be false, so it skipped the
                 // HyperiumChatHandler#chatReceived method
                 state = chatHandler.chatReceived(event.getChat(), strip(event.getChat())) && state;
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -111,7 +110,7 @@ public class GeneralChatHandler {
 
         for (HyperiumChatHandler.ChatRegexType type : HyperiumChatHandler.ChatRegexType.values()) {
             if (!data.has(type.name().toLowerCase())) {
-                Hyperium.LOGGER.error("Could not find chat regex type " + type.name().toLowerCase() + " in the remote file.");
+                Hyperium.LOGGER.error("Could not find chat regex type " + type.name().toLowerCase());
                 continue;
             }
 

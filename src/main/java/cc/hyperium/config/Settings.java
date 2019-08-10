@@ -101,20 +101,12 @@ public class Settings {
     @ToggleSetting(name = "gui.settings.windowedfullscreen", category = IMPROVEMENTS)
     public static boolean WINDOWED_FULLSCREEN = false;
 
-    @ConfigOpt(alt = "cc.hyperium.gui.settings.items.GeneralSetting;bossBarTextOnlyEnabled")
-    @ToggleSetting(name = "gui.settings.bossbartextonly")
-    public static boolean BOSSBAR_TEXT_ONLY = false;
-
     @ConfigOpt(alt = "cc.hyperium.gui.settings.items.GeneralSetting;staticFovEnabled")
     @ToggleSetting(name = "gui.settings.staticfov", category = IMPROVEMENTS)
     public static boolean STATIC_FOV = false;
 
     @ConfigOpt
     public static int SETTINGS_ALPHA = 100;
-
-    @ConfigOpt(alt = "cc.hyperium.gui.settings.items.GeneralSetting;blurGuiBackgroundsEnabled")
-    @ToggleSetting(name = "gui.settings.blurredguibackground")
-    public static boolean BLUR_GUI = false;
 
     @ConfigOpt
     @SelectorSetting(name = "Hat Type", category = COSMETICS, items = "NONE")
@@ -131,10 +123,6 @@ public class Settings {
     @ConfigOpt(alt = "cc.hyperium.handlers.handlers.OtherConfigOptions;showCosmeticsEveryWhere")
     @ToggleSetting(category = COSMETICS, name = "gui.settings.showcosmeticseverywhere")
     public static boolean SHOW_COSMETICS_EVERYWHERE = true;
-
-    @ConfigOpt
-    @ToggleSetting(category = COSMETICS, name = "gui.settings.loadoptifinecapes")
-    public static boolean LOAD_OPTIFINE_CAPES = true;
 
     @ConfigOpt(alt = "cc.hyperium.gui.settings.items.CosmeticSettings;dabToggle")
     public static boolean DAB_TOGGLE = false;
@@ -255,10 +243,6 @@ public class Settings {
     @ToggleSetting(category = MISC, name = "gui.settings.showconfirmationpopup")
     public static boolean SHOW_INGAME_CONFIRMATION_POPUP = true;
 
-    @ConfigOpt(alt = "cc.hyperium.handlers.handlers.OtherConfigOptions;savePreviusChatMessages")
-    @ToggleSetting(category = GENERAL, name = "gui.settings.persistentchatmessages")
-    public static boolean PERSISTENT_CHAT = false;
-
     @ConfigOpt(alt = "cc.hyperium.handlers.handlers.OtherConfigOptions;friendsFirstIntag")
     @ToggleSetting(category = HYPIXEL, name = "gui.settings.friendsfirstintab")
     public static boolean FRIENDS_FIRST_IN_TAB = true;
@@ -270,10 +254,6 @@ public class Settings {
     @ConfigOpt(alt = "cc.hyperium.handlers.handlers.OtherConfigOptions;pingOnDm")
     @ToggleSetting(category = HYPIXEL, name = "gui.settings.pingondm")
     public static boolean PING_ON_DM = true;
-
-    public static boolean IMPROVE_PARTICLES = false;
-    public static boolean IMPROVE_ENTITY_HANDLING = false;
-    public static boolean IMPROVE_PARTICLE_RUN = false; /* any reason why this isnt used at all? */
 
     @ConfigOpt()
     @ToggleSetting(category = GENERAL, name = "gui.settings.sprintbypassstaticfov")
@@ -358,14 +338,6 @@ public class Settings {
     @ConfigOpt
     @ToggleSetting(name = "gui.settings.showhitdistances", category = REACH, mods = true)
     public static boolean SHOW_HIT_DISTANCES = false;
-
-    @ConfigOpt
-    @ToggleSetting(name = "gui.settings.motionblurenabled", category = MOTION_BLUR, mods = true)
-    public static boolean MOTION_BLUR_ENABLED = false;
-
-    @ConfigOpt
-    @SliderSetting(name = "gui.settings.motionblurintensity", min = 0F, max = 7F, category = MOTION_BLUR, mods = true)
-    public static double MOTION_BLUR_AMOUNT = 4.0F;
 
     @ConfigOpt
     @ToggleSetting(name = "gui.settings.autofriendenabled", category = AUTOFRIEND, mods = true)
@@ -511,14 +483,6 @@ public class Settings {
     @ConfigOpt
     @ToggleSetting(name = "gui.settings.disableitemframes", category = IMPROVEMENTS)
     public static boolean DISABLE_ITEMFRAMES = false;
-
-    @ConfigOpt
-    @ToggleSetting(name = "gui.settings.confirmdisconnect", category = MISC)
-    public static boolean CONFIRM_DISCONNECT = false;
-
-    @ConfigOpt
-    @ToggleSetting(name = "gui.settings.confirmquit", category = MISC)
-    public static boolean CONFIRM_QUIT = false;
 
     @ConfigOpt
     @ToggleSetting(name ="gui.settings.shinypotions.matchcolor", category = ANIMATIONS)

@@ -48,7 +48,6 @@ public class HyperiumCommandHandler {
     private final GeneralChatHandler chatHandler;
     private final Minecraft mc;
     private String[] latestAutoComplete;
-    public boolean runningCommand = false;
 
     public HyperiumCommandHandler() {
         this.mc = Minecraft.getMinecraft();
@@ -63,11 +62,8 @@ public class HyperiumCommandHandler {
         if (chatLine.startsWith("/") && chatLine.length() > 1 && executeCommand(chatLine)) {
             // It is one of our commands, we'll cancel the event so it isn't
             // sent to the server, and we'll close the currently opened gui
+            this.mc.displayGuiScreen(null);
             event.setCancelled(true);
-            if (runningCommand) {
-                this.mc.displayGuiScreen(null);
-                runningCommand = false;
-            }
         }
     }
 
@@ -79,10 +75,10 @@ public class HyperiumCommandHandler {
         // Check if arguments are provided.
         if (commandLine.contains(" ")) {
             String[] syntax = commandLine.split(" ");
-            commandName = syntax[0];
+            commandName = syntax[0].toLowerCase();
             args = Arrays.copyOfRange(syntax, 1, syntax.length);
         } else {
-            commandName = commandLine;
+            commandName = commandLine.toLowerCase();
         }
 
         // Disabled commands will be ignored
@@ -252,9 +248,5 @@ public class HyperiumCommandHandler {
             writer.close();
             fileWriter.close();
         } catch (IOException ignored) {}
-    }
-
-    public Map<String, BaseCommand> getCommands() {
-        return commands;
     }
 }

@@ -4,7 +4,6 @@ import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.SpawnpointChangeEvent;
 import cc.hyperium.mixins.world.IMixinWorld;
-import cc.hyperium.mods.sk1ercommon.Multithreading;
 import net.minecraft.client.Minecraft;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
@@ -21,12 +20,8 @@ import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.storage.WorldInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.CountDownLatch;
 
 public class HyperiumWorld {
     private World parent;
@@ -167,91 +162,6 @@ public class HyperiumWorld {
     }
 
     private void updateDefaultEntities(Profiler theProfiler, List<Entity> loadedEntityList) {
-
-        boolean improveEntityHandling = Settings.IMPROVE_ENTITY_HANDLING;
-        if (improveEntityHandling) {
-            theProfiler.endStartSection("hyperium_entity_async");
-            boolean profilingEnabled = theProfiler.profilingEnabled;
-            theProfiler.profilingEnabled = false;
-            int total = loadedEntityList.size();
-            int threads = total / 25 + 1;
-            HashMap<Integer, List<Entity>> fx = new HashMap<>();
-            int tmp = 0;
-            for (int i = 0; i < threads; i++) {
-                fx.computeIfAbsent(tmp, integer -> new ArrayList<>());
-            }
-            List<Integer> nulls = new ArrayList<>();
-            for (Entity entity : loadedEntityList) {
-                if (entity == null)
-                    nulls.add(tmp);
-                else
-                    fx.computeIfAbsent(tmp, integer -> new ArrayList<>()).add(entity);
-                tmp++;
-                if (tmp > threads)
-                    tmp = 0;
-            }
-            for (Integer aNull : nulls) {
-                loadedEntityList.remove(aNull.intValue());
-            }
-            CountDownLatch latch = new CountDownLatch(fx.values().size());
-
-            ConcurrentLinkedQueue<Entity> toRemove = new ConcurrentLinkedQueue<>();
-            for (List<Entity> entityFXES : fx.values()) {
-                Multithreading.runAsync(() -> {
-                    try {
-                        for (Entity entity : entityFXES) {
-                            if (entity == null) {
-                                continue;
-                            }
-                            try {
-                                if (entity.ridingEntity != null) {
-                                    if (!entity.ridingEntity.isDead && entity.ridingEntity.riddenByEntity == entity) {
-                                        continue;
-                                    }
-
-                                    entity.ridingEntity.riddenByEntity = null;
-                                    entity.ridingEntity = null;
-                                }
-                                theProfiler.profilingEnabled = false;
-
-                                updateEntity(entity);
-                                if (entity.isDead) {
-                                    toRemove.add(entity);
-                                }
-                            } catch (Throwable throwable) {
-                                throwable.printStackTrace();
-                            }
-                        }
-                    } catch (Throwable t) {
-                        t.printStackTrace();
-                    }
-                    latch.countDown();
-                });
-            }
-
-            try {
-                latch.await();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            for (Entity entity : toRemove) {
-                if (entity == null) {
-                    continue;
-                }
-                int k1 = entity.chunkCoordX;
-                int i2 = entity.chunkCoordZ;
-
-                if (entity.addedToChunk && ((IMixinWorld) parent).callIsChunkLoaded(k1, i2, true)) {
-                    parent.getChunkFromChunkCoords(k1, i2).removeEntity(entity);
-                }
-                loadedEntityList.remove(entity);
-                ((IMixinWorld) parent).callOnEntityRemoved(entity);
-            }
-            theProfiler.profilingEnabled = profilingEnabled;
-            theProfiler.endSection();
-            return;
-
-        }
         theProfiler.endStartSection("regular");
         for (int i1 = 0; i1 < loadedEntityList.size(); ++i1) {
             Entity entity2 = loadedEntityList.get(i1);

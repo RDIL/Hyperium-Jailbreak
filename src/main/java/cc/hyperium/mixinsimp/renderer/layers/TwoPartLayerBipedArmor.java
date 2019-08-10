@@ -8,18 +8,7 @@ import net.minecraft.client.renderer.entity.layers.LayerArmorBase;
 import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 
-/**
- * Used to render the armor right in two parts. Is called in
- * {@link MixinRenderPlayer#injectTwoPartLayerBipedArmor(LayerRenderer)} to
- * replace the normal {@link LayerBipedArmor}. Mixin would be preferred, but is
- * not possible as far as I know, since you don't know if
- * {@link LayerBipedArmor} is used for player armor rendering or other entity
- * armor rendering
- *
- * @author 9Y0
- */
 public class TwoPartLayerBipedArmor extends LayerArmorBase<ModelBiped> {
-
     public TwoPartLayerBipedArmor(RendererLivingEntity<?> rendererIn) {
         super(rendererIn);
     }
@@ -29,15 +18,6 @@ public class TwoPartLayerBipedArmor extends LayerArmorBase<ModelBiped> {
         this.field_177186_d = new ModelBiped(1.0F);
     }
 
-    /**
-     * The only method which is edited. Shows some more model te make everything
-     * render properly.
-     *
-     * @param model     The model which gets rendered
-     * @param armorSlot The slot of the armor (1 = boots, 2 = leggins, etc..). Don't ask
-     *                  me why it doesn't start at 0.
-     * @author 9Y0
-     */
     protected void func_177179_a(ModelBiped model, int armorSlot) {
         model.setInvisible(false);
         IMixinModelBiped modelBiped = (IMixinModelBiped) model;

@@ -344,15 +344,10 @@ public class GuiCustomCrosshairEditCrosshair extends CustomCrosshairScreen {
     }
 
     protected void keyTyped(final char typedChar, final int keyCode) throws IOException {
-        switch (keyCode) {
-            case 200: {
-                this.scrollbar.setValue(this.scrollbar.getValue() - 5);
-                break;
-            }
-            case 208: {
-                this.scrollbar.setValue(this.scrollbar.getValue() + 5);
-                break;
-            }
+        if(keyCode == 200) {
+            this.scrollbar.setValue(this.scrollbar.getValue() - 5);
+        } else if (keyCode == 208) {
+            this.scrollbar.setValue(this.scrollbar.getValue() + 5);
         }
         super.keyTyped(typedChar, keyCode);
     }

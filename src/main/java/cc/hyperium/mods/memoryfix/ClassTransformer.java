@@ -23,6 +23,9 @@ public class ClassTransformer implements IClassTransformer {
             case "cc.hyperium.mods.memoryfix.CapeImageBuffer":
                 // Redirect our stub calls to optifine
                 return transformMethods(bytes, this::transformCapeImageBuffer);
+            case "net.minecraft.client.resources.AbstractResourcePack":
+                // fix for memory issues
+                return transformMethods(bytes, this::transformAbstractResourcePack);
             default:
                 return bytes;
         }
@@ -70,6 +73,23 @@ public class ClassTransformer implements IClassTransformer {
                     methodInsn.setOpcode(Opcodes.INVOKEVIRTUAL);
                     methodInsn.owner = "net/minecraft/client/entity/AbstractClientPlayer";
                     methodInsn.desc = "(Lnet/minecraft/util/ResourceLocation;)V";
+                }
+            }
+        }
+    }
+
+    private void transformAbstractResourcePack(ClassNode clazz, MethodNode method) {
+        if ((method.name.equals("getPackImage") || method.name.equals("func_110586_a")) && method.desc.equals("()Ljava/awt/image/BufferedImage;")) {
+            Iterator<AbstractInsnNode> iter = method.instructions.iterator();
+            while (iter.hasNext()) {
+                AbstractInsnNode insn = iter.next();
+                if (insn.getOpcode() == Opcodes.ARETURN) {
+                    method.instructions.insertBefore(insn, new MethodInsnNode(
+                            Opcodes.INVOKESTATIC,
+                            "cc.hyperium.mods.memoryfix.TexturePackFix".replace('.', '/'),
+                            "scalePackImage",
+                            "(Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage;",
+                            false));
                 }
             }
         }

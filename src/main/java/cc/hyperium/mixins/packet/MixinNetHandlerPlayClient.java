@@ -20,11 +20,9 @@ package cc.hyperium.mixins.packet;
 import cc.hyperium.Hyperium;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.ServerChatEvent;
-import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import cc.hyperium.internal.addons.AddonBootstrap;
 import cc.hyperium.internal.addons.AddonManifest;
 import cc.hyperium.mods.timechanger.TimeChanger;
-import cc.hyperium.network.LoginReplyHandler;
 import com.google.common.base.Charsets;
 import com.google.common.collect.ObjectArrays;
 import io.netty.buffer.Unpooled;
@@ -60,7 +58,6 @@ import java.net.URISyntaxException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import jb.Metadata;
 
 @SuppressWarnings("unused")
 @Mixin(NetHandlerPlayClient.class)
@@ -158,30 +155,26 @@ public abstract class MixinNetHandlerPlayClient {
                 packetBuffer.readBytes(payload);
                 String message = new String(payload, Charsets.UTF_8);
 
-                if (LoginReplyHandler.SHOW_MESSAGES)
-                    GeneralChatHandler.instance().sendMessage("Packet message on channel " + packetIn.getChannelName() + " -> " + message);
-                if ("REGISTER".equalsIgnoreCase(packetIn.getChannelName())) {
-                    if (message.contains("Hyperium")) {
-                        PacketBuffer buffer = new PacketBuffer(Unpooled.buffer());
-                        buffer.writeString("Hyperium;" + Metadata.getVersion());
-                        addToSendQueue(new C17PacketCustomPayload("REGISTER", buffer));
-                        PacketBuffer addonbuffer = new PacketBuffer(Unpooled.buffer());
-                        List<AddonManifest> addons = AddonBootstrap.INSTANCE.getAddonManifests();
-                        addonbuffer.writeInt(addons.size());
-                        for (AddonManifest addonmanifest : addons) {
-                            String addonName = addonmanifest.getName();
-                            String version = addonmanifest.getVersion();
-                            if (addonName == null) {
-                                addonName = addonmanifest.getMainClass();
-                            }
-                            if (version == null) {
-                                version = "unknown";
-                            }
-                            addonbuffer.writeString(addonName);
-                            addonbuffer.writeString(version);
+                if ("REGISTER".equalsIgnoreCase(packetIn.getChannelName()) && message.contains("Hyperium")) {
+                    PacketBuffer buffer = new PacketBuffer(Unpooled.buffer());
+                    buffer.writeString("Hyperium;" + Hyperium.modid);
+                    addToSendQueue(new C17PacketCustomPayload("REGISTER", buffer));
+                    PacketBuffer addonbuffer = new PacketBuffer(Unpooled.buffer());
+                    List<AddonManifest> addons = AddonBootstrap.INSTANCE.getAddonManifests();
+                    addonbuffer.writeInt(addons.size());
+                    for (AddonManifest addonmanifest : addons) {
+                        String addonName = addonmanifest.getName();
+                        String version = addonmanifest.getVersion();
+                        if (addonName == null) {
+                            addonName = addonmanifest.getMainClass();
                         }
-                        addToSendQueue(new C17PacketCustomPayload("hyperium|Addons", addonbuffer));
+                        if (version == null) {
+                            version = "unknown";
+                        }
+                        addonbuffer.writeString(addonName);
+                        addonbuffer.writeString(version);
                     }
+                    addToSendQueue(new C17PacketCustomPayload("hyperium|Addons", addonbuffer));
                 }
             }
         } catch (Exception e) {
@@ -211,7 +204,7 @@ public abstract class MixinNetHandlerPlayClient {
             if (isLevelProtocol && (url.contains("..") || !url.endsWith("/resources.zip"))) {
                 EntityPlayerSP thePlayer = Minecraft.getMinecraft().thePlayer;
                 if (thePlayer != null) {
-                    thePlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + EnumChatFormatting.BOLD.toString() + "[WARNING] The current server has tried to hack your client, but HyperiumJailbreak stopped it."));
+                    thePlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + EnumChatFormatting.BOLD.toString() + "[WARNING] The current server has tried to hack you, but HyperiumJailbreak stopped it."));
                 }
                 throw new URISyntaxException(url, "Invalid levelstorage resourcepack path");
             }

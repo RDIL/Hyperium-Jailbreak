@@ -72,7 +72,6 @@ public class LevelHeadGui extends GuiScreen {
     private GuiButton prefixButton;
     private boolean isCustom = false;
     private GuiTextField textField;
-    private GuiButton buttonType;
 
     private int calculateHeight(int row) {
         return 55 + row * 23;
@@ -165,7 +164,7 @@ public class LevelHeadGui extends GuiScreen {
         }), null);
 
         JsonHolder types = instance.getTypes();
-        reg(this.buttonType = new GuiButton(4, this.width / 2 - 155, calculateHeight(3), 150 * 2 + 10, 20, "Current Type: " + types.optJSONObject(instance.getType()).optString("name")), button -> {
+        reg(new GuiButton(4, this.width / 2 - 155, calculateHeight(3), 150 * 2 + 10, 20, "Current Type: " + types.optJSONObject(instance.getType()).optString("name")), button -> {
             String currentType = instance.getType();
             List<String> keys = types.getKeys();
             int i = keys.indexOf(currentType);
@@ -393,13 +392,12 @@ public class LevelHeadGui extends GuiScreen {
     }
 
     private void drawTitle() {
-        String text = "Levelhead Jailbreak";
+        String text = "Levelhead for HJB";
 
         drawCenteredString(mc.fontRendererObj, text, this.width / 2, 5, Color.WHITE.getRGB());
         drawHorizontalLine(this.width / 2 - mc.fontRendererObj.getStringWidth(text) / 2 - 5, this.width / 2 + mc.fontRendererObj.getStringWidth(text) / 2 + 5, 15, Color.WHITE.getRGB());
         drawCenteredString(mc.fontRendererObj, ChatColor.YELLOW + "Custom Levelhead Status: " + (isCustom ? ChatColor.GREEN + "Enabled" : ChatColor.RED + "Disabled / Inactive"), this.width / 2,
             20, Color.WHITE.getRGB());
-
     }
 
     private void drawLook() {
@@ -429,7 +427,7 @@ public class LevelHeadGui extends GuiScreen {
             }
 
         } else {
-            drawCenteredString(renderer, "LevelHead is disabled", this.width / 2, 30, Color.WHITE.getRGB());
+            drawCenteredString(renderer, "Levelhead disabled", this.width / 2, 30, Color.WHITE.getRGB());
             drawCenteredString(renderer, "Player level\'s will not appear", this.width / 2, 40, Color.WHITE.getRGB());
         }
     }

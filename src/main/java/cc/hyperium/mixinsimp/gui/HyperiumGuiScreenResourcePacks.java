@@ -1,18 +1,13 @@
 package cc.hyperium.mixinsimp.gui;
 
-import cc.hyperium.utils.ChatColor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiResourcePackAvailable;
 import net.minecraft.client.gui.GuiResourcePackSelected;
 import net.minecraft.client.gui.GuiScreenResourcePacks;
-import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.resources.ResourcePackListEntry;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.List;
 
 public class HyperiumGuiScreenResourcePacks {
@@ -42,8 +37,7 @@ public class HyperiumGuiScreenResourcePacks {
         return availableResourcePacksList;
     }
 
-    public void drawScreen(GuiResourcePackAvailable availableResourcePacksList, GuiResourcePackSelected selectedResourcePacksList, int mouseX, int mouseY
-        , float partialTicks, FontRenderer fontRendererObj, int width) {
+    public void drawScreen(GuiResourcePackAvailable availableResourcePacksList, GuiResourcePackSelected selectedResourcePacksList, int mouseX, int mouseY, float partialTicks, FontRenderer fontRendererObj, int width) {
         parent.drawBackground(0);
         availableResourcePacksList.drawScreen(mouseX, mouseY, partialTicks);
         selectedResourcePacksList.drawScreen(mouseX, mouseY, partialTicks);

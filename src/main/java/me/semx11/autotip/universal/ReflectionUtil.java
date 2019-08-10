@@ -91,36 +91,26 @@ public class ReflectionUtil {
         UnableToFindMethodException(String[] methodNames, Exception e) {
             super("Could not find methods: " + String.join(", ", methodNames), e);
         }
-
     }
 
     public static class UnableToFindClassException extends RuntimeException {
-
         private static final long serialVersionUID = 3898634214210207487L;
-
         UnableToFindClassException(String[] classNames, Exception e) {
             super("Could not find classes: " + String.join(", ", classNames), e);
         }
-
     }
 
     public static class UnableToAccessFieldException extends RuntimeException {
-
         private static final long serialVersionUID = 3624431716334716913L;
-
         UnableToAccessFieldException(String[] fieldNames, Exception e) {
             super("Could not access fields: " + String.join(", ", fieldNames), e);
         }
-
     }
 
     public static class UnableToFindFieldException extends RuntimeException {
-
         private static final long serialVersionUID = 6746871885265039462L;
-
         UnableToFindFieldException(String[] fieldNames, Exception e) {
             super("Could not find fields: " + String.join(", ", fieldNames), e);
         }
-
     }
 }

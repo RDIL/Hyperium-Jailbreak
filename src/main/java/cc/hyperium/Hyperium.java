@@ -16,6 +16,9 @@
  */
 
 package cc.hyperium;
+import cc.hyperium.gui.ConfirmationPopup;
+import cc.hyperium.gui.SplashProgress;
+import cc.hyperium.gui.ColourOptions;
 import cc.hyperium.addons.InternalAddons;
 import cc.hyperium.commands.HyperiumCommandHandler;
 import cc.hyperium.commands.defaults.*;
@@ -27,12 +30,11 @@ import cc.hyperium.event.GameShutDownEvent;
 import cc.hyperium.event.InitializationEvent;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.Priority;
+import cc.hyperium.event.ServerJoinEvent;
 import cc.hyperium.event.minigames.MinigameListener;
-import cc.hyperium.gui.*;
 import cc.hyperium.handlers.HyperiumHandlers;
 import cc.hyperium.handlers.handlers.stats.PlayerStatsGui;
 import cc.hyperium.mixinsimp.client.resources.HyperiumLocale;
-import cc.hyperium.mixinsimp.renderer.FontFixValues;
 import cc.hyperium.mods.HyperiumModIntegration;
 import cc.hyperium.mods.autofriend.command.AutofriendCommand;
 import cc.hyperium.mods.autogg.AutoGG;
@@ -44,10 +46,9 @@ import cc.hyperium.netty.UniversalNetty;
 import cc.hyperium.network.LoginReplyHandler;
 import cc.hyperium.network.NetworkHandler;
 import cc.hyperium.purchases.PurchaseApi;
-import cc.hyperium.utils.HyperiumScheduler;
 import cc.hyperium.utils.StaffUtils;
+import cc.hyperium.utils.ChatColor;
 import cc.hyperium.utils.mods.CompactChat;
-import jb.Metadata;
 import net.minecraft.client.Minecraft;
 import net.minecraft.crash.CrashReport;
 import org.apache.logging.log4j.LogManager;
@@ -55,11 +56,15 @@ import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 import rocks.rdil.jailbreak.chat.CommonChatResponder;
 import rocks.rdil.jailbreak.Jailbreak;
+import rocks.rdil.jailbreak.BackendHandler;
 import java.io.File;
+import java.util.*;
 
 public class Hyperium {
+    public static final String modid = "Hyperium";
+    public static final String version = "2.11.0";
     public static final Hyperium INSTANCE = new Hyperium();
-    public static final Logger LOGGER = LogManager.getLogger(Metadata.getModid());
+    public static final Logger LOGGER = LogManager.getLogger(modid);
     public static final File folder = new File("hyperium");
     public static final DefaultConfig CONFIG = new DefaultConfig(new File(folder, "CONFIG.json"));
     private final GeneralStatisticsTracking statTrack = new GeneralStatisticsTracking();
@@ -74,6 +79,7 @@ public class Hyperium {
     private boolean firstLaunch = false;
     private AutoGG autogg = new AutoGG();
     public Jailbreak j = new Jailbreak();
+    private BackendHandler bh = new BackendHandler();
 
     @InvokeEvent(priority = Priority.HIGH)
     public void init(InitializationEvent event) {
@@ -87,7 +93,6 @@ public class Hyperium {
                 UniversalNetty.getInstance().getPacketManager().register(new LoginReplyHandler());
             });
             Multithreading.runAsync(() -> new PlayerStatsGui(null)); // Don't remove
-            new HyperiumScheduler();
             try {
                 Class.forName("net.minecraft.dispenser.BehaviorProjectileDispense");
                 isDevEnv = true;
@@ -106,15 +111,14 @@ public class Hyperium {
             SplashProgress.setProgress(5, "Loading Handlers");
             EventBus.INSTANCE.register(autogg);
             handlers = new HyperiumHandlers();
-            handlers.postInit();
+            handlers.getGeneralChatHandler().post();
 
-            SplashProgress.setProgress(6, "Registering Utilities");
+            SplashProgress.setProgress(6, "Loading Utilities");
             minigameListener = new MinigameListener();
             EventBus.INSTANCE.register(minigameListener);
             EventBus.INSTANCE.register(new ToggleSprintContainer());
             EventBus.INSTANCE.register(CompactChat.getInstance());
             EventBus.INSTANCE.register(confirmation);
-            if (!Settings.FPS) EventBus.INSTANCE.register(new BlurHandler());
 
             // Register statistics tracking.
             EventBus.INSTANCE.register(statTrack);
@@ -143,9 +147,7 @@ public class Hyperium {
             SplashProgress.setProgress(12, "Reloading Jailbreak Manager");
             Minecraft.getMinecraft().refreshResources();
 
-            SplashProgress.setProgress(13, "Almost Done, Finishing Up");
-            if (FontFixValues.INSTANCE == null) FontFixValues.INSTANCE = new FontFixValues();
-            Multithreading.runAsync(() -> EventBus.INSTANCE.register(FontFixValues.INSTANCE));
+            SplashProgress.setProgress(13, "Finishing Up...");
 
             // Check if OptiFine is installed.
             try {
@@ -154,8 +156,10 @@ public class Hyperium {
             } catch (ClassNotFoundException e) {
                 optifineInstalled = false;
             }
+            // update player count
+            this.bh.apiRequest("join");
         } catch (Throwable t) {
-            Minecraft.getMinecraft().crashed(new CrashReport("Hyperium Startup Failure", t));
+            Minecraft.getMinecraft().crashed(new CrashReport("Startup Failure", t));
         }
     }
 
@@ -178,7 +182,6 @@ public class Hyperium {
             hyperiumCommandHandler.registerCommand(new CustomLevelheadCommand());
             hyperiumCommandHandler.registerCommand(new AutofriendCommand());
             hyperiumCommandHandler.registerCommand(new CommandStatistics());
-            hyperiumCommandHandler.registerCommand(new CommandQuests());
         }
         hyperiumCommandHandler.registerCommand(new CommandGuild());
         hyperiumCommandHandler.registerCommand(new CommandKeybinds());
@@ -186,6 +189,10 @@ public class Hyperium {
 
     private void shutdown() {
         CONFIG.save();
+
+        // Remove from online players
+        this.bh.apiRequest("leave");
+
         // Tell the modules the game is shutting down
         EventBus.INSTANCE.post(new GameShutDownEvent());
     }
@@ -228,5 +235,32 @@ public class Hyperium {
 
     public HyperiumModIntegration getModIntegration() {
         return modIntegration;
+    }
+
+    private static void noop() {
+        try {
+            Thread.sleep(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @InvokeEvent
+    public void worldSwap(ServerJoinEvent event) {
+        Multithreading.runAsync(new Runnable() {
+            public void run() {
+                while (Minecraft.getMinecraft().thePlayer == null) {
+                    noop();
+                }
+                if (Hyperium.INSTANCE.bh.apiUpdateCheck()) {
+                    try {
+                        Thread.sleep(2000);
+                        getHandlers().getGeneralChatHandler().sendMessage(ChatColor.RED + "An update for the client is now available at " + ChatColor.WHITE + "https://rdil.rocks/update", false);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 }

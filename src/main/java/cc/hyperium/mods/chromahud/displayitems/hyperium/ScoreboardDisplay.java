@@ -68,7 +68,6 @@ public class ScoreboardDisplay extends DisplayItem {
             }
 
             int i1 = collection.size() * Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT;
-            int k1 = 3;
             int l1 = starX;
             if (ElementRenderer.getCurrent().isRightSided()) l1 -= i;
             int j = 0;
@@ -80,7 +79,6 @@ public class ScoreboardDisplay extends DisplayItem {
                 String s1 = ScorePlayerTeam.formatPlayerName(scoreplayerteam1, score1.getPlayerName());
                 String s2 = EnumChatFormatting.RED + "" + score1.getScorePoints();
                 k = ((int) startY) + (collection.size() - j + 1) * Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT;
-                int l = p_180475_2_.getScaledWidth() - k1 + 2;
                 if (ElementRenderer.getCurrent().isHighlighted()) {
                     if (guiF)
                         Gui.drawRect(l1 - 2, k, l1 + i, k + Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT, 1342177280);

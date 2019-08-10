@@ -26,14 +26,11 @@ import cc.hyperium.netty.NettyClient;
 import cc.hyperium.netty.packet.packets.serverbound.ServerCrossDataPacket;
 import cc.hyperium.utils.JsonHolder;
 import cc.hyperium.utils.UUIDUtil;
-
 import java.util.UUID;
-
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 
 public class TPoseKeybind extends HyperiumBind {
-
     public TPoseKeybind() {
         super("T-Pose", Keyboard.KEY_N);
     }
@@ -62,8 +59,7 @@ public class TPoseKeybind extends HyperiumBind {
                 tPoseHandler.stopAnimation(uuid);
             }
             if (client != null) {
-                client.write(ServerCrossDataPacket
-                    .build(new JsonHolder().put("type", "tpose_update").put("posing", tPoseToggled)));
+                client.write(ServerCrossDataPacket.build(new JsonHolder().put("type", "tpose_update").put("posing", tPoseToggled)));
             }
             return;
         }
@@ -83,11 +79,9 @@ public class TPoseKeybind extends HyperiumBind {
             tPoseHandler.startAnimation(uuid);
         }
         if (client != null) {
-            client.write(ServerCrossDataPacket
-                .build(new JsonHolder().put("type", "tpose_update").put("posing", true)));
+            client.write(ServerCrossDataPacket.build(new JsonHolder().put("type", "tpose_update").put("posing", true)));
         }
     }
-
 
     @Override
     public void onRelease() {
@@ -102,8 +96,7 @@ public class TPoseKeybind extends HyperiumBind {
         Hyperium.INSTANCE.getHandlers().getTPoseHandler().stopAnimation(UUIDUtil.getClientUUID());
         NettyClient client = NettyClient.getClient();
         if (client != null) {
-            client.write(ServerCrossDataPacket
-                .build(new JsonHolder().put("type", "tpose_update").put("posing", false)));
+            client.write(ServerCrossDataPacket.build(new JsonHolder().put("type", "tpose_update").put("posing", false)));
         }
     }
 }

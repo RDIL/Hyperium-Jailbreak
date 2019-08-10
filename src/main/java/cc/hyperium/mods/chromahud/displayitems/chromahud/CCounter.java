@@ -17,22 +17,16 @@
 
 package cc.hyperium.mods.chromahud.displayitems.chromahud;
 
-
 import cc.hyperium.mods.chromahud.ElementRenderer;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
 import cc.hyperium.utils.JsonHolder;
 import net.minecraft.client.Minecraft;
 
-/**
- * @author Sk1er
- */
 public class CCounter extends DisplayItem {
-
     public CCounter(JsonHolder raw, int ordinal) {
         super(raw, ordinal);
         this.height = 10;
     }
-
 
     @Override
     public void draw(int starX, double startY, boolean ignored) {
@@ -40,6 +34,4 @@ public class CCounter extends DisplayItem {
         ElementRenderer.draw(starX, startY, string);
         this.width = Minecraft.getMinecraft().fontRendererObj.getStringWidth(string);
     }
-
-
 }

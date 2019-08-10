@@ -1,14 +1,11 @@
 package cc.hyperium.handlers.handlers.animation.cape;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.config.Settings;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.WorldChangeEvent;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
-import cc.hyperium.purchases.HyperiumPurchase;
 import cc.hyperium.purchases.PurchaseApi;
 import cc.hyperium.utils.CapeUtils;
-import cc.hyperium.utils.JsonHolder;
 import cc.hyperium.utils.UUIDUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
@@ -89,23 +86,8 @@ public class CapeHandler {
             if (cape == null) {
                 setCape(player.getUniqueID(), NullCape.INSTANCE);
                 Multithreading.runAsync(() -> {
-                    HyperiumPurchase hyperiumPurchase = PurchaseApi.getInstance()
-                        .getPackageSync(uuid);
-                    JsonHolder holder = hyperiumPurchase.getPurchaseSettings().optJSONObject("cape");
-                    String s = holder.optString("type");
-                    if (s.equalsIgnoreCase("CUSTOM_IMAGE")) {
-                        loadStaticCape(uuid, holder.optString("url"));
-                        return;
-                    } else if (!s.isEmpty()) {
-                        JsonHolder jsonHolder = PurchaseApi.getInstance().getCapeAtlas()
-                            .optJSONObject(s);
-                        String url = jsonHolder.optString("url");
-                        if (!url.isEmpty()) {
-                            loadStaticCape(uuid, url);
-                            return;
-                        }
-                    }
-                    if (Settings.LOAD_OPTIFINE_CAPES) loadStaticCape(uuid, "http://s.optifine.net/capes/" + player.getGameProfile().getName() + ".png");
+                    PurchaseApi.getInstance().getPackageSync(uuid);
+                    loadStaticCape(uuid, "http://s.optifine.net/capes/" + player.getGameProfile().getName() + ".png");
                 });
                 return capes.getOrDefault(uuid, NullCape.INSTANCE).get();
             }

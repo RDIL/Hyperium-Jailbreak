@@ -10,6 +10,5 @@
   "bedwars_kill": "(?<player>\\S{1,16}) played|lost|tangoed|slipped|fell|died|fought|stumbled|be|was|took (?<msg>.*) by|for|from|to (?<killer>\\S{1,16}).*",
   "megawalls_kill": "(?<player>\\S{1,16}) (was|met|lost|drank|be) (?<msg>.*) (by|from|for|to) (?<killer>\\S{1,16})",
   "blitz_kill": "(?<player>\\S{1,16}) was killed by (?<killer>\\S{1,16})",
-  "quest_complete": "(?<type>Daily|Weekly)? Quest: (?<name>.*) Completed!",
   "win": "(^\\S+) - (?<winners>.*)"
 }

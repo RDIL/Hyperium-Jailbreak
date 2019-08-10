@@ -31,7 +31,6 @@ public class CosmeticHat extends AbstractCosmetic {
         if (CosmeticsUtil.shouldHide()) return;
 
         if (this.isPurchasedBy(player.getUniqueID()) && !player.isInvisible()) {
-
             HyperiumPurchase packageIfReady = PurchaseApi.getInstance().getPackageIfReady(player.getUniqueID());
             if (packageIfReady.getCachedSettings().getCurrentHatType() != getPurchaseType()) return;
 
@@ -55,9 +54,5 @@ public class CosmeticHat extends AbstractCosmetic {
 
             GlStateManager.popMatrix();
         }
-    }
-
-    private boolean shouldRender(AbstractClientPlayer entity) {
-        return !entity.isInvisibleToPlayer(Minecraft.getMinecraft().thePlayer);
     }
 }

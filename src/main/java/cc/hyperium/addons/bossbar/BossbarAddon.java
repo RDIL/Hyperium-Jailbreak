@@ -9,7 +9,6 @@ import cc.hyperium.addons.bossbar.gui.GuiBossbarSetting;
 public class BossbarAddon extends AbstractAddon {
     private BossbarConfig bossbarConfig;
     private GuiBossbarSetting guiBossBarSetting;
-    private CommandBossbar commandBossbar;
 
     public GuiBossbarSetting getGuiBossBarSetting() {
         return guiBossBarSetting;
@@ -19,8 +18,7 @@ public class BossbarAddon extends AbstractAddon {
     public AbstractAddon init() {
         bossbarConfig = new BossbarConfig();
         guiBossBarSetting = new GuiBossbarSetting(this);
-        commandBossbar = new CommandBossbar(this);
-        Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(commandBossbar);
+        Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(new CommandBossbar(this));
         return this;
     }
 
@@ -30,8 +28,6 @@ public class BossbarAddon extends AbstractAddon {
 
     @Override
     public Metadata getAddonMetadata() {
-        AbstractAddon.Metadata metadata = new AbstractAddon.Metadata(this, "BossbarAddon", "1.0", "SiroQ");
-        metadata.setDescription("Allows for full bossbar customization");
-        return metadata;
+        return new AbstractAddon.Metadata(this, "BossbarAddon", "1", "SiroQ");
     }
 }

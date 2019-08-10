@@ -16,10 +16,8 @@ public class CommonChatResponder {
 
     @InvokeEvent
     public void onChat(ChatEvent e) {
-        if (e.getChat().getUnformattedText().contains(this.listenFor)) {
-            if (!this.onlyOnHypixel || HypixelDetector.getInstance().isHypixel()) {
-                Minecraft.getMinecraft().thePlayer.sendChatMessage("/achat" + this.say);
-            }
+        if (e.getChat().getUnformattedText().contains(this.listenFor) && !this.onlyOnHypixel || HypixelDetector.getInstance().isHypixel()) {
+            Minecraft.getMinecraft().thePlayer.sendChatMessage("/achat" + this.say);
         }
     }
 }

@@ -4,13 +4,11 @@ import cc.hyperium.config.Category;
 import cc.hyperium.config.SelectorSetting;
 import cc.hyperium.config.SliderSetting;
 import cc.hyperium.config.ToggleSetting;
-import cc.hyperium.gui.CapesGui;
 import cc.hyperium.gui.hyperium.HyperiumMainGui;
 import cc.hyperium.gui.hyperium.RGBFieldSet;
 import cc.hyperium.gui.hyperium.components.AbstractTab;
 import cc.hyperium.gui.hyperium.components.AbstractTabComponent;
 import cc.hyperium.gui.hyperium.components.CollapsibleTabComponent;
-import cc.hyperium.gui.hyperium.components.LinkComponent;
 import cc.hyperium.gui.hyperium.components.RGBComponent;
 import cc.hyperium.gui.hyperium.components.SelectorComponent;
 import cc.hyperium.gui.hyperium.components.SliderComponent;
@@ -63,9 +61,6 @@ public class SettingsTab extends AbstractTab {
                 }
             }
         }
-
-        // Link to capes GUI.
-        apply(new LinkComponent(this, Collections.emptyList(), "YouTuber Capes", new CapesGui()), false, Category.COSMETICS, items);
 
         for (RGBFieldSet rgbFieldSet : gui.getRgbFields()) {
             apply(new RGBComponent(this, rgbFieldSet), rgbFieldSet.isMods(), rgbFieldSet.getCategory(), items);

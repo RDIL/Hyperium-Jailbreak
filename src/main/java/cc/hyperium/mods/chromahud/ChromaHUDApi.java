@@ -28,7 +28,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 public class ChromaHUDApi {
     private static ChromaHUDApi instance;
@@ -119,7 +118,6 @@ public class ChromaHUDApi {
                     elements.add(e);
             } catch (Exception e) {
                 e.printStackTrace();
-                Logger.getLogger("ChromaHUD").severe("A fatal error occurred while loading the display element " + object);
             }
         }
     }

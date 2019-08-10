@@ -14,4 +14,3 @@ public @interface SelectorSetting {
     boolean enabled() default true;
     boolean mods() default false;
 }
-

@@ -17,7 +17,6 @@ import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.util.ReportedException;
 import net.minecraft.util.ResourceLocation;
-import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -80,7 +79,7 @@ public class HyperiumTextureManager {
         }
     }
 
-    public boolean loadTexture(ResourceLocation textureLocation, ITextureObject textureObj, IResourceManager theResourceManager, Logger logger) {
+    public boolean loadTexture(ResourceLocation textureLocation, ITextureObject textureObj, IResourceManager theResourceManager) {
         ITextureObject textureCopy = textures.get(textureLocation.toString());
         if (textureCopy != null) {
             textureObj = textureCopy;
@@ -90,7 +89,6 @@ public class HyperiumTextureManager {
         try {
             textureObj.loadTexture(theResourceManager);
         } catch (IOException ioexception) {
-            logger.warn("Failed to load texture: " + textureLocation, ioexception);
             textureObj = TextureUtil.missingTexture;
             textures.put(textureLocation.toString(), textureObj);
             flag = false;

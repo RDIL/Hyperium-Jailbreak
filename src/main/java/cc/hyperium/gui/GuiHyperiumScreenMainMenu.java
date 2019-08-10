@@ -131,11 +131,7 @@ public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen implements GuiY
         }
 
         if (button.id == 4) {
-            if (Settings.CONFIRM_QUIT) {
-                Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new GuiConfirmQuit());
-            } else {
-                this.mc.shutdown();
-            }
+            this.mc.shutdown();
         }
 
         if (button.id == 11) {

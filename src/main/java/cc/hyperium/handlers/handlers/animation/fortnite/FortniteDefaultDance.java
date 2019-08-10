@@ -10,7 +10,7 @@ public class FortniteDefaultDance extends AnimatedDance {
     @Override
     public JsonHolder getData() {
         try {
-            return new JsonHolder(IOUtils.toString(new URL("https://static.sk1er.club/hyperium/fortnite_dance.json")));
+            return new JsonHolder(IOUtils.toString(new URL("https://raw.githubusercontent.com/hyperiumjailbreak/tools/master/json_dumps/fn.json")));
         } catch (IOException e) {
             e.printStackTrace();
         }

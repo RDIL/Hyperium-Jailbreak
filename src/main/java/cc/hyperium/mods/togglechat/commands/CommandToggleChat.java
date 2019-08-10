@@ -24,21 +24,9 @@ import cc.hyperium.utils.ChatColor;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * The BaseCommand implementation for ToggleChat's command with aliases
- *
- * @author boomboompower
- */
 public class CommandToggleChat implements BaseCommand {
-
-    /**
-     * The "mod" instance
-     */
     private final ToggleChatMod mod;
 
-    /**
-     * Default constructor
-     */
     public CommandToggleChat(ToggleChatMod impl) {
         this.mod = impl;
     }

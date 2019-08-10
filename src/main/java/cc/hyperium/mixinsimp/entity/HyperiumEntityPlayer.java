@@ -2,7 +2,6 @@ package cc.hyperium.mixinsimp.entity;
 
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.LivingDeathEvent;
 import cc.hyperium.event.PlayerAttackEntityEvent;
 import cc.hyperium.event.PlayerSwingEvent;
 import cc.hyperium.mixins.entity.IMixinEntity;
@@ -12,7 +11,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.IChatComponent;
 
 public class HyperiumEntityPlayer {
@@ -25,7 +23,6 @@ public class HyperiumEntityPlayer {
     private long lastChangeTime = System.currentTimeMillis();
     private int timeDelay = 1000 / 60;
     private IChatComponent cachedName;
-    private long lastNameUpdate = 0L;
     private String displayName;
 
     public HyperiumEntityPlayer(EntityPlayer parent) {
@@ -36,9 +33,7 @@ public class HyperiumEntityPlayer {
         if (last != parent.isSwingInProgress) {
             last = parent.isSwingInProgress;
             if (parent.isSwingInProgress) {
-                EventBus.INSTANCE.post(
-                    new PlayerSwingEvent(parent.getUniqueID(), parent.getPositionVector(), parent.getLookVec(),
-                        parent.getPosition()));
+                EventBus.INSTANCE.post(new PlayerSwingEvent(parent.getUniqueID(), parent.getPositionVector(), parent.getLookVec(), parent.getPosition()));
             }
         }
     }
@@ -89,27 +84,20 @@ public class HyperiumEntityPlayer {
 
     public IChatComponent getDisplayName() {
         if (cachedName == null || System.currentTimeMillis() - lastChangeTime > 50L) {
-            IChatComponent ichatcomponent = new ChatComponentText(ScorePlayerTeam
-                .formatPlayerName(parent.getTeam(), displayName));
+            IChatComponent ichatcomponent = new ChatComponentText(ScorePlayerTeam.formatPlayerName(parent.getTeam(), displayName));
             ichatcomponent.getChatStyle().setChatClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/msg " + parent.getName() + " "));
-            //Unneeded for client
+            // Unneeded for client
             if (Minecraft.getMinecraft().isIntegratedServerRunning()) {
-                ichatcomponent.getChatStyle()
-                    .setChatHoverEvent(((IMixinEntity) parent).callGetHoverEvent());
+                ichatcomponent.getChatStyle().setChatHoverEvent(((IMixinEntity) parent).callGetHoverEvent());
             }
             ichatcomponent.getChatStyle().setInsertion(parent.getName());
             this.cachedName = ichatcomponent;
-            lastNameUpdate = System.currentTimeMillis();
         }
         return cachedName;
     }
 
     public void attackTargetEntityWithCurrentItem(Entity targetEntity) {
         EventBus.INSTANCE.post(new PlayerAttackEntityEvent(parent.getUniqueID(), targetEntity));
-    }
-
-    public void onDeath(DamageSource source) {
-        EventBus.INSTANCE.post(new LivingDeathEvent(parent, source));
     }
 
     public void setName(String name) {

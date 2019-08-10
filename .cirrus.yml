@@ -1,6 +1,5 @@
 task:
-  auto_cancellation: $CIRRUS_BRANCH != master' && $CIRRUS_TAG != ''
-  use_compute_credits: true
+  auto_cancellation: $CIRRUS_BRANCH != 'master' || $CIRRUS_TAG != ''
   container:
     image: gradle:jdk8
     cpu: 4
@@ -8,10 +7,9 @@ task:
   gradle_cache:
     folder: ~/.gradle/caches
     fingerprint_script: cat build.gradle
-    populate_script: gradle setupCiWorkspace --scan
-  only_if: $CIRRUS_BRANCH == 'master' || $CIRRUS_BRANCH == 'trying' || $CIRRUS_BRANCH == 'staging' || $CIRRUS_PR != ''
+    populate_script: gradle setupCiWorkspace
   name: Cirrus CI
-  script: gradle build
+  script: gradle build --build-cache --parallel
   jar_artifacts:
     path: ./build/libs/**
   always:

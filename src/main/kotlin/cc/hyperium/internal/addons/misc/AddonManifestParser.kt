@@ -22,8 +22,7 @@ class AddonManifestParser {
             jsonFile.deleteOnExit()
 
             jarInputStream = jar.getInputStream(entry)
-            val os = FileOutputStream(jsonFile)
-            copyInputStream(jarInputStream, os)
+            copyInputStream(jarInputStream, FileOutputStream(jsonFile))
 
             val contents = Files.toString(jsonFile, Charset.defaultCharset())
 

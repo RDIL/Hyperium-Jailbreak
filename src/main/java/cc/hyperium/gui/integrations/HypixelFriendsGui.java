@@ -38,7 +38,6 @@ import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.util.EnumChatFormatting;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
-
 import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -197,7 +196,6 @@ public class HypixelFriendsGui extends HyperiumGui {
         if (tick % 20 == 0) {
             rebuildFriends();
         }
-
     }
 
     private void rebuildFriends() {
@@ -256,7 +254,6 @@ public class HypixelFriendsGui extends HyperiumGui {
         if (cols <= 0)
             return;
 
-        GuiBoxItem<HypixelApiFriendObject> lastE = null;
         for (HypixelApiFriendObject object : friends.get()) {
             if (drawX + columnWidth > friendsBlock.getRight()) {
                 drawX = friendsBlock.getLeft();

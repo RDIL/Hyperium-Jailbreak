@@ -43,7 +43,6 @@ public class DragonHeadRenderer extends ModelBase {
     private Minecraft mc;
     private ModelRenderer jaw;
     private ModelRenderer head;
-    private boolean playerUsesFullHeight;
     private DragonCosmetic dragonCosmetic;
     private ResourceLocation selectedLoc;
     private HashMap<UUID, JumpState> timeMap = new HashMap<>();

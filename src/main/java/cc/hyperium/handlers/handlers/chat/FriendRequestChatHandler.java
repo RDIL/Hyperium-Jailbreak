@@ -4,12 +4,10 @@ import cc.hyperium.event.EventBus;
 import cc.hyperium.event.FriendRemoveEvent;
 import cc.hyperium.event.HypixelFriendRequestEvent;
 import net.minecraft.util.IChatComponent;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FriendRequestChatHandler extends HyperiumChatHandler {
-
     @Override
     public boolean chatReceived(IChatComponent component, String text) {
         Matcher matcher1 = Pattern.compile("You removed ((?<rank>\\[.+] )?(?<player>\\w+)) from your friends list!").matcher(text);
@@ -17,9 +15,7 @@ public class FriendRequestChatHandler extends HyperiumChatHandler {
             String rank = "";
             try {
                 rank = matcher1.group("rank");
-            } catch (Exception ignored) {
-
-            }
+            } catch (Exception ignored) {}
             String player = matcher1.group("player");
             EventBus.INSTANCE.post(new FriendRemoveEvent(rank + player, player));
         }
@@ -31,7 +27,6 @@ public class FriendRequestChatHandler extends HyperiumChatHandler {
         if (matcher.find()) {
             EventBus.INSTANCE.post(new HypixelFriendRequestEvent(matcher.group("player")));
         }
-
 
         return false;
     }

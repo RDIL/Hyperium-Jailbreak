@@ -17,14 +17,12 @@ import cc.hyperium.event.SingleplayerJoinEvent;
 import cc.hyperium.event.TickEvent;
 import cc.hyperium.event.WorldChangeEvent;
 import cc.hyperium.event.WorldUnloadEvent;
-import cc.hyperium.gui.CrashReportGUI;
 import cc.hyperium.gui.GuiHyperiumScreenMainMenu;
 import cc.hyperium.internal.addons.AddonBootstrap;
 import cc.hyperium.internal.addons.AddonMinecraftBootstrap;
 import cc.hyperium.internal.addons.IAddon;
 import cc.hyperium.mixins.IMixinMinecraft;
 import cc.hyperium.utils.AddonWorkspaceResourcePack;
-import cc.hyperium.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.GuiGameOver;
@@ -41,23 +39,16 @@ import net.minecraft.crash.CrashReport;
 import net.minecraft.init.Bootstrap;
 import net.minecraft.profiler.Profiler;
 import net.minecraft.util.Timer;
-import net.minecraft.world.WorldSettings;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.management.ManagementFactory;
-import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import rocks.rdil.jailbreak.util.OS;
 
 public class HyperiumMinecraft {
     private Minecraft parent;
@@ -65,8 +56,7 @@ public class HyperiumMinecraft {
         this.parent = parent;
     }
 
-    public void preinit(CallbackInfo ci, List<IResourcePack> defaultResourcePacks,
-                        DefaultResourcePack mcDefaultResourcePack, List<IResourcePack> resourcePacks) {
+    public void preinit(List<IResourcePack> defaultResourcePacks, DefaultResourcePack mcDefaultResourcePack) {
         EventBus.INSTANCE.register(Hyperium.INSTANCE);
 
         defaultResourcePacks.add(mcDefaultResourcePack);
@@ -77,25 +67,23 @@ public class HyperiumMinecraft {
         EventBus.INSTANCE.post(new PreInitializationEvent());
     }
 
-    public void loop(CallbackInfo info, boolean inGameHasFocus, WorldClient theWorld,
-                     EntityPlayerSP thePlayer, RenderManager renderManager, Timer timer) {
+    public void loop(boolean inGameHasFocus, WorldClient theWorld, EntityPlayerSP thePlayer, RenderManager renderManager, Timer timer) {
         if (inGameHasFocus && theWorld != null) {
-            RenderPlayerEvent event = new RenderPlayerEvent(thePlayer, renderManager, renderManager.viewerPosZ, renderManager.viewerPosY, renderManager.viewerPosZ,
-                timer.renderPartialTicks);
+            new RenderPlayerEvent(thePlayer, renderManager, renderManager.viewerPosZ, renderManager.viewerPosY, renderManager.viewerPosZ,timer.renderPartialTicks);
         }
     }
 
-    public void startGame(CallbackInfo info) {
+    public void startGame() {
         EventBus.INSTANCE.post(new InitializationEvent());
     }
 
-    public void runTick(CallbackInfo ci, Profiler mcProfiler) {
+    public void runTick(Profiler mcProfiler) {
         mcProfiler.startSection("hyperium_tick");
         EventBus.INSTANCE.post(new TickEvent());
         mcProfiler.endSection();
     }
 
-    public void runTickKeyboard(CallbackInfo ci) {
+    public void runTickKeyboard() {
         int key = Keyboard.getEventKey();
         boolean repeat = Keyboard.isRepeatEvent();
         boolean press = Keyboard.getEventKeyState();
@@ -109,16 +97,15 @@ public class HyperiumMinecraft {
         }
     }
 
-    public void clickMouse(CallbackInfo ci) {
+    public void clickMouse() {
         EventBus.INSTANCE.post(new LeftMouseClickEvent());
     }
 
-    public void rightClickMouse(CallbackInfo ci) {
+    public void rightClickMouse() {
         EventBus.INSTANCE.post(new RightMouseClickEvent());
     }
 
-    public void launchIntegratedServer(String folderName, String worldName,
-                                       WorldSettings worldSettingsIn, CallbackInfo ci) {
+    public void launchIntegratedServer() {
         EventBus.INSTANCE.post(new SingleplayerJoinEvent());
     }
 
@@ -147,7 +134,7 @@ public class HyperiumMinecraft {
         ci.cancel();
     }
 
-    public void fullScreenFix(CallbackInfo ci, boolean fullscreen, int displayWidth, int displayHeight) throws LWJGLException {
+    public void fullScreenFix(boolean fullscreen, int displayWidth, int displayHeight) throws LWJGLException {
         if (Settings.WINDOWED_FULLSCREEN) {
             if (fullscreen) {
                 System.setProperty("org.lwjgl.opengl.Window.undecorated", "true");
@@ -164,22 +151,6 @@ public class HyperiumMinecraft {
         }
         Display.setResizable(false);
         Display.setResizable(true);
-    }
-
-    public void setWindowIcon() {
-        if (!OS.isMacintosh()) {
-            try (InputStream inputStream16x = Minecraft.class
-                .getResourceAsStream("/assets/hyperium/icons/icon-16x.png");
-                 InputStream inputStream32x = Minecraft.class
-                     .getResourceAsStream("/assets/hyperium/icons/icon-32x.png")) {
-                ByteBuffer[] icons = new ByteBuffer[]{
-                    Utils.INSTANCE.readImageToBuffer(inputStream16x),
-                    Utils.INSTANCE.readImageToBuffer(inputStream32x)};
-                Display.setIcon(icons);
-            } catch (Exception e) {
-                Hyperium.LOGGER.error("Couldn't set Icon. Error:", e);
-            }
-        }
     }
 
     public void displayGuiScreen(GuiScreen guiScreenIn, GuiScreen currentScreen,
@@ -199,13 +170,10 @@ public class HyperiumMinecraft {
         if (event.isCancelled()) return;
 
         guiScreenIn = event.getGui();
-        if (old != null && guiScreenIn != old) old.onGuiClosed();
+        if (old != null && !guiScreenIn.equals(old)) old.onGuiClosed();
         if (old != null) EventBus.INSTANCE.unregister(old);
 
-        if (guiScreenIn instanceof GuiHyperiumScreenMainMenu) {
-            gameSettings.showDebugInfo = false;
-            if (!Settings.PERSISTENT_CHAT) ingameGUI.getChatGUI().clearChatMessages();
-        }
+        if (guiScreenIn instanceof GuiHyperiumScreenMainMenu) gameSettings.showDebugInfo = false;
 
         ((IMixinMinecraft) parent).setCurrentScreen(guiScreenIn);
 
@@ -224,11 +192,11 @@ public class HyperiumMinecraft {
         if (Hyperium.INSTANCE.getHandlers() != null) Hyperium.INSTANCE.getHandlers().getKeybindHandler().releaseAllKeybinds();
     }
 
-    public void onStartGame(CallbackInfo ci) {
+    public void onStartGame() {
         SplashProgress.setProgress(1, "Starting Game...");
     }
 
-    public void loadWorld(WorldClient worldClient, CallbackInfo ci) {
+    public void loadWorld() {
         if (Minecraft.getMinecraft().theWorld != null) new WorldUnloadEvent().post();
 
         EventBus.INSTANCE.post(new WorldChangeEvent());
@@ -246,7 +214,6 @@ public class HyperiumMinecraft {
     }
 
     public void displayCrashReport(CrashReport crashReportIn) {
-        // Separate Hyperium crash reports.
         String data = crashReportIn.getCauseStackTraceOrString();
         File crashReportDir;
         String crashReportPrefix = "crash-";
@@ -258,75 +225,15 @@ public class HyperiumMinecraft {
             crashReportDir = new File(Minecraft.getMinecraft().mcDataDir, "crash-reports");
         }
 
-        File crashReportFile = new File(crashReportDir,
-            crashReportPrefix + (new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss")).format(new Date()) + "-jbc.txt"
-        );
+        File crashReportFile = new File(crashReportDir, crashReportPrefix + (new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss")).format(new Date()) + "-jbc.txt");
 
         crashReportIn.saveToFile(crashReportFile);
         Bootstrap.printToSYSOUT(crashReportIn.getCompleteReport());
 
-        try {
-            Display.setFullscreen(false);
-            Display.setDisplayMode(new DisplayMode(720, 480));
-            Display.update();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        // Intercept the crash with Hyperium crash report GUI.
-        int crashAction = CrashReportGUI.handle(crashReportIn);
-
-        switch (crashAction) {
-            case 0:
-                System.exit(-1);
-                break;
-            case 1:
-                try {
-                    parent.shutdown();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    System.exit(-1); // if minecraft could not exit normally
-                }
-                break;
-            case 2:
-                try {
-                    // Restart the client using the command line.
-                    StringBuilder cmd = new StringBuilder();
-                    String[] command = System.getProperty("sun.java.command").split(" ");
-                    cmd.append(System.getProperty("java.home")).append(File.separator).append("bin")
-                        .append(File.separator).append("java ");
-                    ManagementFactory.getRuntimeMXBean().getInputArguments().forEach(s -> {
-                        if (!s.contains("-agentlib")) {
-                            cmd.append(s).append(" ");
-                        }
-                    });
-                    if (command[0].endsWith(".jar")) {
-                        cmd.append("-jar ").append(new File(command[0]).getPath()).append(" ");
-                    } else {
-                        cmd.append("-cp \"").append(System.getProperty("java.class.path"))
-                            .append("\" ").append(command[0]).append(" ");
-                    }
-                    for (int i = 1; i < command.length; i++) {
-                        cmd.append(command[i]).append(" ");
-                    }
-                    Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-                        try {
-                            Runtime.getRuntime().exec(cmd.toString());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }));
-                    parent.shutdown();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-                break;
-        }
+        System.exit(1);
     }
 
-    public void shutdown(CallbackInfo ci) {
+    public void shutdown() {
         AddonMinecraftBootstrap.getLoadedAddons().forEach(IAddon::onClose);
     }
-
-    public void startTick(CallbackInfo info, Profiler mcProfiler) {}
 }

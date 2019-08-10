@@ -22,19 +22,17 @@ import cc.hyperium.mods.keystrokes.KeystrokesMod;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.client.config.GuiSlider;
-
 import java.io.IOException;
 
 public class GuiScreenColor extends GuiScreen {
-
-    private final KeystrokesMod mod; // OOP
+    private final KeystrokesMod mod;
 
     private final IScrollable scrollable1; // Red
     private final IScrollable scrollable2; // Green
     private final IScrollable scrollable3; // Blue
     private final IScrollable scrollable4; // Gamma
 
-    private boolean updated = false; // Have the values been changed?
+    private boolean updated = false; // Have the values changed?
 
     GuiScreenColor(KeystrokesMod mod, IScrollable scrollable1, IScrollable scrollable2, IScrollable scrollable3) {
         this.mod = mod;

@@ -43,19 +43,17 @@ public class VanillaEnhancementsHud {
             EntityPlayerSP thePlayer = mc.thePlayer;
             if (thePlayer != null) {
                 ItemStack heldItem = thePlayer.getHeldItem();
-                if (heldItem != null) {
-                    if (heldItem.getUnlocalizedName().equalsIgnoreCase("item.bow")) {
-                        int c = 0;
-                        for (ItemStack is : thePlayer.inventory.mainInventory) {
-                            if (is != null && is.getUnlocalizedName().equalsIgnoreCase("item.arrow")) {
-                                c += is.stackSize;
-                            }
+                if (heldItem != null && heldItem.getUnlocalizedName().equalsIgnoreCase("item.bow")) {
+                    int c = 0;
+                    for (ItemStack is : thePlayer.inventory.mainInventory) {
+                        if (is != null && is.getUnlocalizedName().equalsIgnoreCase("item.arrow")) {
+                            c += is.stackSize;
                         }
-                        ScaledResolution current = ResolutionUtil.current();
-                        FontRenderer fontRendererObj = mc.fontRendererObj;
-                        final int offset = (mc.playerController.getCurrentGameType() == WorldSettings.GameType.CREATIVE) ? 10 : 0;
-                        this.mc.fontRendererObj.drawString(Integer.toString(c), (float) (current.getScaledWidth() - fontRendererObj.getStringWidth(Integer.toString(c)) >> 1), (float) (current.getScaledHeight() - 46 - offset), 16777215, true);
                     }
+                    ScaledResolution current = ResolutionUtil.current();
+                    FontRenderer fontRendererObj = mc.fontRendererObj;
+                    final int offset = (mc.playerController.getCurrentGameType() == WorldSettings.GameType.CREATIVE) ? 10 : 0;
+                    this.mc.fontRendererObj.drawString(Integer.toString(c), (float) (current.getScaledWidth() - fontRendererObj.getStringWidth(Integer.toString(c)) >> 1), (float) (current.getScaledHeight() - 46 - offset), 16777215, true);
                 }
             }
         }
@@ -111,14 +109,12 @@ public class VanillaEnhancementsHud {
 
     @InvokeEvent
     public void onRenderArmor(GuiDrawScreenEvent e) {
-        if (Settings.ARMOR_PROT_POTENTIONAL || Settings.ARMOR_PROJ_POTENTIONAL) {
-            if (e.getScreen() instanceof GuiInventory || e.getScreen() instanceof GuiContainerCreative) {
-                ScaledResolution res = new ScaledResolution(mc);
-                int white = 16777215;
-                String message = this.getArmorString();
-                lastMessage = message;
-                mc.currentScreen.drawString(mc.fontRendererObj, message, 10, res.getScaledHeight() - 16, white);
-            }
+        if ((Settings.ARMOR_PROT_POTENTIONAL || Settings.ARMOR_PROJ_POTENTIONAL) && e.getScreen() instanceof GuiInventory || e.getScreen() instanceof GuiContainerCreative) {
+            ScaledResolution res = new ScaledResolution(mc);
+            int white = 16777215;
+            String message = this.getArmorString();
+            lastMessage = message;
+            mc.currentScreen.drawString(mc.fontRendererObj, message, 10, res.getScaledHeight() - 16, white);
         }
     }
 

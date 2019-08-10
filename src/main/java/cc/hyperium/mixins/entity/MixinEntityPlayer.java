@@ -18,7 +18,6 @@
 package cc.hyperium.mixins.entity;
 
 import cc.hyperium.mixinsimp.entity.HyperiumEntityPlayer;
-import cc.hyperium.mixinsimp.entity.IMixinEntityPlayer;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -26,7 +25,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.scoreboard.Team;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -38,8 +36,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(EntityPlayer.class)
-public abstract class MixinEntityPlayer extends EntityLivingBase implements IMixinEntityPlayer {
-
+public abstract class MixinEntityPlayer extends EntityLivingBase {
     public MixinEntityPlayer(World worldIn) {
         super(worldIn);
     }
@@ -80,18 +77,12 @@ public abstract class MixinEntityPlayer extends EntityLivingBase implements IMix
         return hyperiumEntityPlayer.getDisplayName();
     }
 
-    @Inject(method = "onDeath", at = @At("HEAD"))
-    private void onDeath(DamageSource source, CallbackInfo ci) {
-        hyperiumEntityPlayer.onDeath(source);
-    }
-
     @Inject(method = "dropItem", at = @At("RETURN"))
     private void itemDrop(ItemStack droppedItem, boolean dropAround, boolean traceItem, CallbackInfoReturnable<EntityItem> cir) {
         if (cir.getReturnValue() == null) return;
     }
 
-    @Override
-    public void setDisplayName(String name) {
+    private void setDisplayName(String name) {
         hyperiumEntityPlayer.setName(name);
     }
 }

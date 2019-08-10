@@ -25,7 +25,6 @@ import net.minecraft.client.renderer.texture.ITickableTextureObject;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
-import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -35,10 +34,6 @@ import java.util.Map;
 
 @Mixin(TextureManager.class)
 public abstract class MixinTextureManager {
-    @Shadow
-    @Final
-    private static Logger logger;
-
     private HyperiumTextureManager hyperiumTextureManager = new HyperiumTextureManager((TextureManager) (Object) this);
 
     @Shadow
@@ -54,7 +49,7 @@ public abstract class MixinTextureManager {
 
     @Overwrite
     public boolean loadTexture(ResourceLocation textureLocation, ITextureObject textureObj) {
-        return hyperiumTextureManager.loadTexture(textureLocation, textureObj, theResourceManager, logger);
+        return hyperiumTextureManager.loadTexture(textureLocation, textureObj, theResourceManager);
     }
 
     @Overwrite

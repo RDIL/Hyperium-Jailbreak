@@ -87,7 +87,7 @@ public class GuiKeybinds extends HyperiumGui {
             keybindEntries.add(keybindEntry);
         }
 
-        resetButton = new GuiButton(1337, rightGui - 100, bottomGui - 20, fontRendererObj.getStringWidth("Reset all binds.") + 5, buttonHeight, "Reset all binds.");
+        resetButton = new GuiButton(1337, rightGui - 100, bottomGui - 20, fontRendererObj.getStringWidth("Reset All") + 5, buttonHeight, "Reset All");
         backButton = new GuiButton(1338, rightGui - 150, bottomGui - 20, fontRendererObj.getStringWidth("Back") + 5, buttonHeight, "Back");
     }
 
@@ -95,7 +95,7 @@ public class GuiKeybinds extends HyperiumGui {
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         drawDefaultBackground();
-        drawCenteredString(fontRendererObj, "Hyperium Keybinds", width / 2, topGui - 10, Color.WHITE.getRGB());
+        drawCenteredString(fontRendererObj, "Keybinds", width / 2, topGui - 10, Color.WHITE.getRGB());
         drawRect(leftGui, topGui, rightGui, bottomGui, new Color(30, 30, 30, 100).getRGB());
 
         // Divide entries into columns.
@@ -238,8 +238,8 @@ public class GuiKeybinds extends HyperiumGui {
 
     @Override
     protected void keyTyped(char typedChar, int keyCode) throws IOException {
-        if (keyCode == Keyboard.KEY_ESCAPE) {
-            if (areKeysListening()) return;
+        if (keyCode == Keyboard.KEY_ESCAPE && areKeysListening()) {
+            return;
         }
         super.keyTyped(typedChar, keyCode);
     }

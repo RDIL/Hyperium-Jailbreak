@@ -1,8 +1,80 @@
 # Changelog
 
-## Staging (release queue)
+## v2.10.1
 
-Nothing in the release queue now, check back later.
+```diff
+* Fixed player counts, update checking, backend HTTP, and more.
+```
+
+## v2.10.0
+
+```diff
+- Downgraded Kotlin standard library
+* FIXED CRASHES RELATED TO JOINING GAMES!!!
+- Removed last of optimized item renderer
+- Removed broken text in pause menu
++ Made /logs async
++ The clients commands now work when not all lowercase (e.g. /hYpErIuM or /HYPERIUM work)
+* Cleanup & removed unused method
+```
+
+## v2.9.1
+
+> This is a minor release.
+
+```diff
+* Updated Kotlin version
+```
+
+## v2.9
+
+```diff
++ Lava bucket fix (prevents false bans)
+```
+
+## v2.8.2
+
+> This is a minor release.
+
+```diff
+- Removed some useless events
++ Improved addon performance
+```
+
+## v2.8.1
+
+> This is a minor release.
+
+```diff
+- Removed quest tracking
++ Decreased server join lag
+* Cleaned up ChromaHUD
+```
+
+## v2.8
+
+```diff
++ Added automatic update checker
+- Removed DeobfStack (removes 2MB from Jar!)
+* Cleanup
++ Added MemoryFix mod
+- Removed unused code
+- Removed armor base mixin
+```
+
+## v2.7
+
+```diff
+* Replaced bors with mergify
+- Removed duplicated setting
+- Removed blurs which caused issues
++ Improved font renderer
+- Removed crash reporting for privacy
+- Removed old mixins
+- Remove Hyperium capes
++ Bug fixes
++ Added our own player count
+```
 
 ## v2.6
 

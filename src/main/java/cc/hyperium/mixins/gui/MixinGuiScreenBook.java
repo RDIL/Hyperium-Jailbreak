@@ -12,10 +12,4 @@ public interface MixinGuiScreenBook {
 
     @Accessor
     int getCurrPage();
-
-    @Accessor
-    void setBookPages(NBTTagList tagList);
-
-    @Accessor
-    void setCurrPage(int page);
 }

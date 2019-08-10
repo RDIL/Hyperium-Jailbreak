@@ -36,11 +36,9 @@ public class CustomLevelheadConfigurer extends HyperiumGui {
         Multithreading.runAsync(() -> levelhead_propose = PurchaseApi.getInstance().get("https://api.hyperium.cc/levelhead_propose/" + UUIDUtil.getUUIDWithoutDashes()));
         Multithreading.runAsync(() -> {
             JsonHolder jsonHolder = PurchaseApi.getInstance().get("https://api.hyperium.cc/levelhead/" + UUIDUtil.getUUIDWithoutDashes());
-            if (!jsonHolder.optBoolean("levelhead")) {
-                if (Minecraft.getMinecraft().currentScreen instanceof CustomLevelheadConfigurer) {
-                    mc.displayGuiScreen(null);
-                    GeneralChatHandler.instance().sendMessage("You must purchase Custom Levelhead to use!");
-                }
+            if (!jsonHolder.optBoolean("levelhead") && Minecraft.getMinecraft().currentScreen instanceof CustomLevelheadConfigurer) {
+                mc.displayGuiScreen(null);
+                GeneralChatHandler.instance().sendMessage("You must buy Custom Levelhead to use!");
             }
         });
         refresh();
@@ -59,9 +57,7 @@ public class CustomLevelheadConfigurer extends HyperiumGui {
             ServerCrossDataPacket build = ServerCrossDataPacket.build(new JsonHolder().put("levelhead_propose", true).put("internal", true).put("propose", true).put("header", header.getText()).put("level", level.getText()));
             if (client1 != null)
                 client1.write(build);
-        }, button -> {
-
-        });
+        }, button -> {});
         reg("Refresh", new GuiButton(nextId(), ResolutionUtil.current().getScaledWidth() / 2 - i / 4, 80, i / 2, 20, "Refresh"), button -> {
             refresh();
             cooldown = 0;

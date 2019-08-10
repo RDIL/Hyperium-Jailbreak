@@ -20,4 +20,3 @@ package cc.hyperium.commands;
 public class CommandUsageException extends CommandException {
     public CommandUsageException() {}
 }
-

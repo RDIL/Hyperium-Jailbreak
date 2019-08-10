@@ -4,7 +4,6 @@ import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.IImageBuffer;
 import net.minecraft.client.renderer.ImageBufferDownload;
 import net.minecraft.util.ResourceLocation;
-
 import java.awt.image.BufferedImage;
 import java.lang.ref.WeakReference;
 
@@ -24,8 +23,7 @@ public class CapeImageBuffer implements IImageBuffer {
         return null;
     }
 
-    private static void setLocationOfCape(AbstractClientPlayer player, ResourceLocation resourceLocation) {
-    }
+    private static void setLocationOfCape(AbstractClientPlayer player, ResourceLocation resourceLocation) {}
 
     @Override
     public BufferedImage parseUserSkin(BufferedImage image) {

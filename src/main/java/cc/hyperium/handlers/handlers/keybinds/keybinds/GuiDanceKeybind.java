@@ -22,7 +22,6 @@ import cc.hyperium.handlers.handlers.keybinds.HyperiumBind;
 import org.lwjgl.input.Keyboard;
 
 public class GuiDanceKeybind extends HyperiumBind {
-
     public GuiDanceKeybind() {
         super("Use Dances", Keyboard.KEY_SEMICOLON);
     }
@@ -32,8 +31,6 @@ public class GuiDanceKeybind extends HyperiumBind {
         new GuiDances().show();
     }
 
-
     @Override
-    public void onRelease() {
-    }
+    public void onRelease() {}
 }
