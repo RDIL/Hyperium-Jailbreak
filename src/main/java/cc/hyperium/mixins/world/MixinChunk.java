@@ -40,31 +40,13 @@ import java.util.Map;
 
 @Mixin(Chunk.class)
 public class MixinChunk {
-    @Shadow
-    private boolean hasEntities;
-
-    @Shadow
-    private boolean isChunkLoaded;
-
-    @Shadow
-    @Final
-    public int xPosition;
-
-    @Shadow
-    @Final
-    public int zPosition;
-
-    @Shadow
-    @Final
-    private World worldObj;
-
-    @Shadow
-    @Final
-    private Map<BlockPos, TileEntity> chunkTileEntityMap;
-
-    @Shadow
-    @Final
-    private ClassInheritanceMultiMap<Entity>[] entityLists;
+    @Shadow private boolean hasEntities;
+    @Shadow private boolean isChunkLoaded;
+    @Shadow @Final public int xPosition;
+    @Shadow @Final public int zPosition;
+    @Shadow @Final private World worldObj;
+    @Shadow @Final private Map<BlockPos, TileEntity> chunkTileEntityMap;
+    @Shadow @Final private ClassInheritanceMultiMap<Entity>[] entityLists;
 
     private HyperiumChunk hyperiumChunk = new HyperiumChunk();
 

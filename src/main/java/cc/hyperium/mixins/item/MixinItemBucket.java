@@ -2,10 +2,8 @@ package cc.hyperium.mixins.item;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBucket;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
@@ -15,8 +13,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(ItemBucket.class)
 public class MixinItemBucket {
-    @Shadow
-    private Block isFull;
+    @Shadow private Block isFull;
 
     @Overwrite
     public boolean tryPlaceContainedLiquid(World worldIn, BlockPos pos) {

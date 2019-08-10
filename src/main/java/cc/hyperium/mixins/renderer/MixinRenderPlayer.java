@@ -43,15 +43,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(RenderPlayer.class)
 public abstract class MixinRenderPlayer extends RendererLivingEntity<AbstractClientPlayer> {
-
     private HyperiumRenderPlayer hyperiumRenderPlayer = new HyperiumRenderPlayer((RenderPlayer) (Object) this);
 
     public MixinRenderPlayer(RenderManager renderManagerIn, ModelBase modelBaseIn, float shadowSizeIn) {
         super(renderManagerIn, modelBaseIn, shadowSizeIn);
     }
 
-    @Shadow
-    public abstract ModelPlayer getMainModel();
+    @Shadow public abstract ModelPlayer getMainModel();
 
     @SuppressWarnings("unchecked")
     @ModifyArg(method = "<init>(Lnet/minecraft/client/renderer/entity/RenderManager;Z)V", at = @At(value = "INVOKE", ordinal = 0, target = "Lnet/minecraft/client/renderer/entity/RenderPlayer;addLayer(Lnet/minecraft/client/renderer/entity/layers/LayerRenderer;)Z"))
@@ -82,7 +80,6 @@ public abstract class MixinRenderPlayer extends RendererLivingEntity<AbstractCli
                 if (entityIn != Minecraft.getMinecraft().thePlayer) {
                     this.renderLivingLabel(entityIn, score.getScorePoints() + " " + scoreobjective.getDisplayName(), x, y, z, 64);
                     y += (double) ((float) this.getFontRendererFromRenderManager().FONT_HEIGHT * 1.15F * p_177069_9_);
-
                 }
                 RenderNameTagEvent.CANCEL = false;
 
@@ -91,4 +88,3 @@ public abstract class MixinRenderPlayer extends RendererLivingEntity<AbstractCli
         super.renderOffsetLivingLabel(entityIn, x, y, z, str, p_177069_9_, p_177069_10_);
     }
 }
-

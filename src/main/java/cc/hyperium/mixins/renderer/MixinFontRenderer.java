@@ -4,7 +4,6 @@ import cc.hyperium.handlers.HyperiumHandlers;
 import cc.hyperium.handlers.handlers.FontRendererData;
 import cc.hyperium.mixinsimp.client.GlStateModifier;
 import cc.hyperium.mixinsimp.renderer.CachedString;
-import cc.hyperium.mixinsimp.renderer.StringHash;
 import cc.hyperium.mods.nickhider.NickHider;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -21,66 +20,26 @@ import java.util.Random;
 
 @Mixin(FontRenderer.class)
 public abstract class MixinFontRenderer {
-    @Shadow
-    public int FONT_HEIGHT;
-
-    @Shadow
-    public Random fontRandom;
-
-    @Shadow
-    private int[] colorCode;
-
-    @Shadow
-    private float posX;
-
-    @Shadow
-    private float posY;
-
-    @Shadow
-    private float red;
-
-    @Shadow
-    private float blue;
-
-    @Shadow
-    private float green;
-
-    @Shadow
-    private float alpha;
-
-    @Shadow
-    private boolean boldStyle;
-
-    @Shadow
-    private boolean unicodeFlag;
-
-    @Shadow
-    private int textColor;
-
-    @Shadow
-    private boolean randomStyle;
-
-    @Shadow
-    private boolean italicStyle;
-
-    @Shadow
-    private boolean underlineStyle;
-
-    @Shadow
-    private boolean strikethroughStyle;
-
-    @Shadow
-    public abstract int getCharWidth(char character);
-
-    @Shadow
-    protected abstract float func_181559_a(char ch, boolean italic);
-
-    @Shadow
-    public abstract int drawString(String text, int x, int y, int color);
-
-    @Shadow
-    public abstract int drawString(String text, float x, float y, int color, boolean dropShadow);
-
+    @Shadow public int FONT_HEIGHT;
+    @Shadow public Random fontRandom;
+    @Shadow private int[] colorCode;
+    @Shadow private float posX;
+    @Shadow private float posY;
+    @Shadow private float red;
+    @Shadow private float blue;
+    @Shadow private float green;
+    @Shadow private float alpha;
+    @Shadow private boolean boldStyle;
+    @Shadow private boolean unicodeFlag;
+    @Shadow private int textColor;
+    @Shadow private boolean randomStyle;
+    @Shadow private boolean italicStyle;
+    @Shadow private boolean underlineStyle;
+    @Shadow private boolean strikethroughStyle;
+    @Shadow public abstract int getCharWidth(char character);
+    @Shadow protected abstract float func_181559_a(char ch, boolean italic);
+    @Shadow public abstract int drawString(String text, int x, int y, int color);
+    @Shadow public abstract int drawString(String text, float x, float y, int color, boolean dropShadow);
     public void setColor(float red, float g, float b, float a) {GlStateManager.color(red, g, b, a);}
 
     @Overwrite
@@ -93,7 +52,6 @@ public abstract class MixinFontRenderer {
         final float posY = this.posY;
         this.posY = 0;
         this.posX = 0;
-        StringHash hash = new StringHash(text, red, green, blue, alpha, shadow);
         GlStateManager.translate(posX, posY, 0F);
         boolean hasObf = false;
         CachedString value = new CachedString(text, list, this.posX - posX, this.posY - posY);
