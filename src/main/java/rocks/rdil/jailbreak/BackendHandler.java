@@ -1,5 +1,6 @@
 package rocks.rdil.jailbreak;
 
+import cc.hyperium.Hyperium;
 import cc.hyperium.installer.utils.http.NameValuePair;
 import cc.hyperium.installer.utils.http.client.HttpClient;
 import cc.hyperium.installer.utils.http.client.entity.UrlEncodedFormEntity;
@@ -46,7 +47,7 @@ public class BackendHandler {
 
             // Execute and get the response.
             String response = EntityUtils.toString(httpclient.execute(httppost).getEntity(), "UTF-8");
-            return !response.equals(jb.Metadata.getVersion());
+            return !response.equals(Hyperium.version);
         } catch (Exception e) {
             return false;
         }

@@ -49,7 +49,6 @@ import cc.hyperium.purchases.PurchaseApi;
 import cc.hyperium.utils.StaffUtils;
 import cc.hyperium.utils.ChatColor;
 import cc.hyperium.utils.mods.CompactChat;
-import jb.Metadata;
 import net.minecraft.client.Minecraft;
 import net.minecraft.crash.CrashReport;
 import org.apache.logging.log4j.LogManager;
@@ -62,8 +61,10 @@ import java.io.File;
 import java.util.*;
 
 public class Hyperium {
+    public static final String modid = "Hyperium";
+    public static final String version = "2.11.0";
     public static final Hyperium INSTANCE = new Hyperium();
-    public static final Logger LOGGER = LogManager.getLogger(Metadata.getModid());
+    public static final Logger LOGGER = LogManager.getLogger(modid);
     public static final File folder = new File("hyperium");
     public static final DefaultConfig CONFIG = new DefaultConfig(new File(folder, "CONFIG.json"));
     private final GeneralStatisticsTracking statTrack = new GeneralStatisticsTracking();

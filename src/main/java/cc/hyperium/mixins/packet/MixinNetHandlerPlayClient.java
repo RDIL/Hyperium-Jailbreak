@@ -58,7 +58,6 @@ import java.net.URISyntaxException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import jb.Metadata;
 
 @SuppressWarnings("unused")
 @Mixin(NetHandlerPlayClient.class)
@@ -158,7 +157,7 @@ public abstract class MixinNetHandlerPlayClient {
 
                 if ("REGISTER".equalsIgnoreCase(packetIn.getChannelName()) && message.contains("Hyperium")) {
                     PacketBuffer buffer = new PacketBuffer(Unpooled.buffer());
-                    buffer.writeString("Hyperium;" + Metadata.getVersion());
+                    buffer.writeString("Hyperium;" + Hyperium.modid);
                     addToSendQueue(new C17PacketCustomPayload("REGISTER", buffer));
                     PacketBuffer addonbuffer = new PacketBuffer(Unpooled.buffer());
                     List<AddonManifest> addons = AddonBootstrap.INSTANCE.getAddonManifests();

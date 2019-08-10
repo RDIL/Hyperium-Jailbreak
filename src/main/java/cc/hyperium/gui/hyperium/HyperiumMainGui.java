@@ -25,7 +25,6 @@ import java.lang.reflect.Field;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
-import jb.Metadata;
 
 public class HyperiumMainGui extends HyperiumGui {
     public static HyperiumMainGui INSTANCE = new HyperiumMainGui();
@@ -146,7 +145,7 @@ public class HyperiumMainGui extends HyperiumGui {
         currentTab.setFilter(searchField.getText().isEmpty() ? null : searchField.getText());
         currentTab.render(xg, yg * 2, xg * 9, yg * 7);
 
-        smol.drawString(Metadata.getVersion(), this.width - smol.getWidth(Metadata.getVersion()) - 1,
+        smol.drawString(Hyperium.version, this.width - smol.getWidth(Hyperium.version) - 1,
             height - 10, 0xffffffff);
 
         Icons.ARROW_LEFT.bind();

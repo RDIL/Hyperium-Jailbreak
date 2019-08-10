@@ -1,6 +1,5 @@
 package cc.hyperium.internal.addons.strategy
 
-import jb.BLACKLISTED
 import cc.hyperium.internal.addons.AddonBootstrap
 import cc.hyperium.internal.addons.AddonManifest
 import cc.hyperium.internal.addons.misc.AddonManifestParser
@@ -10,6 +9,10 @@ import java.io.IOException
 import java.util.jar.JarFile
 
 class DefaultAddonLoader : AddonLoaderStrategy() {
+    val BLACKLISTED
+    @JvmName("getBlacklisted")
+    get() = arrayOf("AutoFriend", "Custom Crosshair Addon", "Tab Toggle", "SidebarAddon", "BossbarAddon", "FortniteCompassMod", "Item Physic")
+
     @Throws(Exception::class)
     override fun load(file: File?): AddonManifest? {
         if (file == null) throw IOException("Could not load file; parameter issued was null.")
