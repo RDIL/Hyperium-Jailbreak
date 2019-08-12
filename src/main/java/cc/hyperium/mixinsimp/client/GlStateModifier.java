@@ -19,22 +19,15 @@ package cc.hyperium.mixinsimp.client;
 
 import me.semx11.autotip.universal.ReflectionUtil;
 import net.minecraft.client.renderer.GlStateManager;
-
 import java.lang.reflect.Field;
 
 public class GlStateModifier implements IGlStateModifier {
-
     public static final IGlStateModifier INSTANCE = new GlStateModifier();
     private Object[] theArray;
-    //private GlStateManager stateManager;
     private Field textureNamefield;
     private Field redColorField = null;
     private Object colorStateObject = null;
     private Field activeTextureUnitField = null;
-
-    private GlStateModifier() {
-        //stateManager = new GlStateManager();
-    }
 
     public void setTexture(int id) {
         if (theArray == null) {
@@ -56,7 +49,6 @@ public class GlStateModifier implements IGlStateModifier {
                         textureNamefield = aClass.getDeclaredField("b");
                     } catch (NoSuchFieldException e2) {
                         e2.printStackTrace();
-                        // At this point there is no hope.
                     }
                 }
             }
@@ -73,8 +65,7 @@ public class GlStateModifier implements IGlStateModifier {
         try {
             if (activeTextureUnitField != null)
                 activeTextureUnit = ((int) activeTextureUnitField.get(null));
-        } catch (ReflectionUtil.UnableToAccessFieldException | IllegalAccessException ignored) {
-        }
+        } catch (ReflectionUtil.UnableToAccessFieldException | IllegalAccessException ignored) {}
 
         if (theArray == null || textureNamefield == null || activeTextureUnit == -1) {
             return;
@@ -86,10 +77,8 @@ public class GlStateModifier implements IGlStateModifier {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-
     }
 
-    @Override
     public void resetColor() {
         if (colorStateObject == null) {
             Class<?> aClass = ReflectionUtil.findClazz("net.minecraft.client.renderer.GlStateManager", "bfl");
@@ -115,7 +104,6 @@ public class GlStateModifier implements IGlStateModifier {
                     e.printStackTrace();
                 }
             }
-
         }
         if (redColorField == null) {
             Class<?> aClass = ReflectionUtil.findClazz("net.minecraft.client.renderer.GlStateManager$Color", "bfl$e");
@@ -132,8 +120,7 @@ public class GlStateModifier implements IGlStateModifier {
                     }
                 }
             }
-            if (redColorField != null)
-                redColorField.setAccessible(true);
+            if (redColorField != null) redColorField.setAccessible(true);
         }
         if (colorStateObject == null || redColorField == null) {
             return;
@@ -144,9 +131,4 @@ public class GlStateModifier implements IGlStateModifier {
             e.printStackTrace();
         }
     }
-
-    public void reset() {
-        setTexture(-1);
-    }
-
 }
