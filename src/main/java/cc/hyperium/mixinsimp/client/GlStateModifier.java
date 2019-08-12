@@ -22,7 +22,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import java.lang.reflect.Field;
 
 public class GlStateModifier implements IGlStateModifier {
-    public static final IGlStateModifier INSTANCE = new GlStateModifier();
     private Object[] theArray;
     private Field textureNamefield;
     private Field redColorField = null;
