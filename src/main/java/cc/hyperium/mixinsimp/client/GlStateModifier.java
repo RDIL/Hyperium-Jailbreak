@@ -21,7 +21,7 @@ import me.semx11.autotip.universal.ReflectionUtil;
 import net.minecraft.client.renderer.GlStateManager;
 import java.lang.reflect.Field;
 
-public class GlStateModifier implements IGlStateModifier {
+public class GlStateModifier {
     private Object[] theArray;
     private Field textureNamefield;
     private Field redColorField = null;
