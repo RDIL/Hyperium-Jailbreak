@@ -21,12 +21,13 @@ import me.semx11.autotip.universal.ReflectionUtil;
 import net.minecraft.client.renderer.GlStateManager;
 import java.lang.reflect.Field;
 
-public class GlStateModifier {
+public class GlStateModifier implements IGlStateModifier {
     private Object[] theArray;
     private Field textureNamefield;
     private Field redColorField = null;
     private Object colorStateObject = null;
     private Field activeTextureUnitField = null;
+    public static final IGlStateModifier INSTANCE = new GlStateModifier();
 
     public void setTexture(int id) {
         if (theArray == null) {
