@@ -132,4 +132,8 @@ public class GlStateModifier implements IGlStateModifier {
             e.printStackTrace();
         }
     }
+
+    public void reset() {
+        setTexture(-1);
+    }
 }
