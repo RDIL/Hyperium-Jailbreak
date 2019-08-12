@@ -1,4 +1,3 @@
-
 /*
  *     Copyright (C) 2018  Hyperium <https://hyperium.cc/>
  *
