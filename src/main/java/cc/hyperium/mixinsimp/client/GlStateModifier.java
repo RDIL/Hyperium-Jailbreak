@@ -79,6 +79,7 @@ public class GlStateModifier implements IGlStateModifier {
         }
     }
 
+    @Override
     public void resetColor() {
         if (colorStateObject == null) {
             Class<?> aClass = ReflectionUtil.findClazz("net.minecraft.client.renderer.GlStateManager", "bfl");
