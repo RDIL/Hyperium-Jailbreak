@@ -1,5 +1,6 @@
 package cc.hyperium.mixins.client.renderer.entity;
 
+import cc.hyperium.config.Settings;
 import net.minecraft.client.renderer.entity.RenderLightningBolt;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import org.spongepowered.asm.mixin.Mixin;
