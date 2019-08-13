@@ -17,11 +17,12 @@ public abstract class AbstractCosmetic {
     private final Map<UUID, Boolean> purchasedBy = new ConcurrentHashMap<>();
     private boolean selfUnlocked;
 
-    public AbstractCosmetic(boolean selfOnly, EnumPurchaseType purchaseType) {
+    public AbstractCosmetic(EnumPurchaseType purchaseType) {
         this.purchaseType = purchaseType;
         try {
             PurchaseApi.getInstance().getPackageAsync(UUIDUtil.getClientUUID(), hyperiumPurchase -> {
-                if (hyperiumPurchase == null && !Hyperium.INSTANCE.isDevEnv) return;
+                if (Hyperium.INSTANCE.isDevEnv) return;
+                if (hyperiumPurchase == null) return;
                 selfUnlocked = hyperiumPurchase.hasPurchased(purchaseType);
             });
         } catch (Exception e) {

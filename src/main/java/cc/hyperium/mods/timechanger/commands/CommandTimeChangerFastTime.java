@@ -18,7 +18,6 @@
 package cc.hyperium.mods.timechanger.commands;
 
 import cc.hyperium.commands.BaseCommand;
-import cc.hyperium.commands.CommandException;
 import cc.hyperium.commands.CommandUsageException;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import cc.hyperium.mods.timechanger.TimeChanger;
@@ -43,7 +42,7 @@ public class CommandTimeChangerFastTime implements BaseCommand {
     }
 
     @Override
-    public void onExecute(String[] args) throws CommandException {
+    public void onExecute(String[] args) throws CommandUsageException {
         if (args.length == 0) {
             throw new CommandUsageException();
         }

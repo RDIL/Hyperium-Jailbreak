@@ -80,7 +80,6 @@ public class HyperiumMainGui extends HyperiumGui {
         tabs = Collections.singletonList(new SettingsTab(this));
         scollMultiplier = 2;
         setTab(tabIndex);
-
     }
 
     public HashMap<Field, Supplier<String[]>> getCustomStates() {

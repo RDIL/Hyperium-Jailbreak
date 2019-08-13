@@ -30,7 +30,6 @@ import cc.hyperium.mods.timechanger.commands.CommandTimeChangerSunset;
 import net.minecraft.client.Minecraft;
 
 public class TimeChanger extends AbstractMod {
-    private final Metadata metadata = new Metadata(this, "timechanger", "1", "fyu");
     private final Minecraft mc = Minecraft.getMinecraft();
 
     private double fastTimeMultiplier = 1.0D;
@@ -53,7 +52,7 @@ public class TimeChanger extends AbstractMod {
 
     @Override
     public Metadata getModMetadata() {
-        return this.metadata;
+        return new Metadata(this, "timechanger", "1", "fyu");
     }
 
     public TimeType getTimeType() {
@@ -62,10 +61,6 @@ public class TimeChanger extends AbstractMod {
 
     public void setTimeType(TimeType timeType) {
         this.timeType = timeType;
-    }
-
-    public double getFastTimeMutliplier() {
-        return this.fastTimeMultiplier;
     }
 
     public void setFastTimeMultiplier(double fastTimeMultiplier) {

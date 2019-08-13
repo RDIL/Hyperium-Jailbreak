@@ -26,10 +26,6 @@ public class NetworkHandler implements INetty, PostConfigHandler, PreSaveHandler
     private boolean post = false;
     private List<String> verboseLogs = new ArrayList<>();
 
-    public boolean isLog() {
-        return log;
-    }
-
     public void setLog(boolean log) {
         this.log = log;
     }

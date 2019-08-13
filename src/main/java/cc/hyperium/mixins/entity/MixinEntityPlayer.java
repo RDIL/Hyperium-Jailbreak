@@ -40,15 +40,9 @@ public abstract class MixinEntityPlayer extends EntityLivingBase {
     public MixinEntityPlayer(World worldIn) {
         super(worldIn);
     }
-
-    @Shadow
-    public abstract boolean isPlayerSleeping();
-
-    @Shadow
-    public abstract Team getTeam();
-
-    @Shadow
-    public abstract String getName();
+    @Shadow public abstract boolean isPlayerSleeping();
+    @Shadow public abstract Team getTeam();
+    @Shadow public abstract String getName();
 
     private HyperiumEntityPlayer hyperiumEntityPlayer = new HyperiumEntityPlayer((EntityPlayer) (Object) this);
 

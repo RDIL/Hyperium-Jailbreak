@@ -18,7 +18,6 @@
 package cc.hyperium.utils;
 
 public final class SafeNumberParsing {
-
     public static int safeParseInt(String input, int fallback) {
         try {
             return Integer.parseInt(input);

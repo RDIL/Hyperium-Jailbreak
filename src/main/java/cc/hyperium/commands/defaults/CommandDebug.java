@@ -132,7 +132,6 @@ public class CommandDebug implements BaseCommand {
         if (args.length == 1 && args[0].equalsIgnoreCase("log")) {
             Hyperium.INSTANCE.getNetworkHandler().setLog(true);
             GeneralChatHandler.instance().sendMessage("Enabled logging, please restart your game to begin. It will be auto disabled after next launch.");
-            return;
         }
     }
 }

@@ -12,7 +12,7 @@ import java.util.UUID;
 public class StaffUtils {
     private static final HashMap<UUID, StaffSettings> STAFF_CACHE = new HashMap<>();
     public static boolean isStaff(UUID uuid) {
-        return STAFF_CACHE.keySet().contains(uuid);
+        return STAFF_CACHE.containsKey(uuid);
     }
 
     public static DotColour getColor(UUID uuid) {

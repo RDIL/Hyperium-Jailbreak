@@ -23,7 +23,7 @@ import cc.hyperium.purchases.EnumPurchaseType;
 
 public class DragonCosmetic extends AbstractCosmetic {
     public DragonCosmetic() {
-        super(false, EnumPurchaseType.DRAGON_HEAD);
+        super(EnumPurchaseType.DRAGON_HEAD);
         EventBus.INSTANCE.register(new DragonHeadRenderer(this));
     }
 }

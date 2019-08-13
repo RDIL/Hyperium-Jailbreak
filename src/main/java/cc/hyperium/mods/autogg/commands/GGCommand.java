@@ -2,14 +2,12 @@ package cc.hyperium.mods.autogg.commands;
 
 import cc.hyperium.Hyperium;
 import cc.hyperium.commands.BaseCommand;
-import cc.hyperium.commands.CommandException;
 import cc.hyperium.commands.CommandUsageException;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import cc.hyperium.mods.autogg.AutoGG;
 import cc.hyperium.utils.ChatColor;
 
 public class GGCommand implements BaseCommand {
-
     private final AutoGG mod;
 
     public GGCommand(AutoGG mod) {
@@ -27,7 +25,7 @@ public class GGCommand implements BaseCommand {
     }
 
     @Override
-    public void onExecute(String[] args) throws CommandException {
+    public void onExecute(String[] args) throws CommandUsageException {
         if (args.length == 0 || args.length > 2) {
             throw new CommandUsageException();
         }
@@ -76,18 +74,10 @@ public class GGCommand implements BaseCommand {
         }
     }
 
-    /**
-     * Sends a message to the client
-     *
-     * @param message the message to send
-     */
     private void showMessage(final String message) {
         GeneralChatHandler.instance().sendMessage(message, false);
     }
 
-    /**
-     * Saves the config
-     */
     private void saveConfig() {
         Hyperium.CONFIG.save();
     }

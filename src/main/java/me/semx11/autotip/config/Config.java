@@ -13,11 +13,8 @@ import me.semx11.autotip.gson.exclusion.Exclude;
 import org.apache.commons.io.FileUtils;
 
 public class Config {
-
-    @Exclude
-    private final Autotip autotip;
-    @Exclude
-    private final File configFile;
+    @Exclude private final Autotip autotip;
+    @Exclude private final File configFile;
 
     private boolean enabled = true;
     private Locale locale = Locale.forLanguageTag("en-US");
@@ -100,5 +97,4 @@ public class Config {
         this.messageOption = that.messageOption == null ? this.messageOption : that.messageOption;
         return this;
     }
-
 }

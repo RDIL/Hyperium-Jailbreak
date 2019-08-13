@@ -17,13 +17,9 @@
 
 package cc.hyperium.handlers.handlers.chat;
 
-import cc.hyperium.event.EventBus;
-import cc.hyperium.event.HypixelWinEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.util.IChatComponent;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.regex.Matcher;
 
 public class WinTrackingChatHandler extends HyperiumChatHandler {
@@ -41,16 +37,12 @@ public class WinTrackingChatHandler extends HyperiumChatHandler {
                     winners[i] = winner.split(" ")[1];
                 }
             }
-            EventBus.INSTANCE.post(new HypixelWinEvent(Arrays.asList(winners)));
         }
 
         // Should actually change the regex tho
         EntityPlayerSP thePlayer = Minecraft.getMinecraft().thePlayer;
         if (thePlayer == null)
             return false;
-        if (text.toLowerCase().contains(thePlayer.getName().toLowerCase() + " winner!")) {
-            EventBus.INSTANCE.post(new HypixelWinEvent(Collections.singletonList(thePlayer.getName())));
-        }
         return false;
     }
 }

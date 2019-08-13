@@ -27,7 +27,7 @@ public class DragonCompanion extends AbstractCosmetic {
     private HashMap<EntityPlayer, CustomDragon> dragonHashMap = new HashMap<>();
 
     public DragonCompanion() {
-        super(false, EnumPurchaseType.DRAGON_COMPANION);
+        super(EnumPurchaseType.DRAGON_COMPANION);
     }
 
     @InvokeEvent

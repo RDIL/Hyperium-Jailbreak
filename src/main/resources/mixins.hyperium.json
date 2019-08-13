@@ -27,7 +27,6 @@
     "client.resources.MixinLocale",
     "entity.IMixinAbstractClientPlayer",
     "entity.IMixinEntity",
-    "entity.IMixinEntityFx",
     "entity.IMixinEntityRenderer",
     "entity.IMixinNetworkPlayerInfo",
     "entity.MixinAbstractClientPlayer",

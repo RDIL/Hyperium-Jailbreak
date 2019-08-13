@@ -61,7 +61,6 @@ public enum ChatColor {
         if (input == null) return null;
         return Pattern.compile("(?i)" + COLOR_CHAR + "[0-9A-FK-OR]").matcher(input).replaceAll("");
     }
-    private static Pattern P = Pattern.compile("(?i)\\u00a7[0-9A-FK-OR]");
     public static String translateAlternateColorCodes(char altColorChar, String textToTranslate) {
         char[] b = textToTranslate.toCharArray();
         for (int i = 0; i < b.length - 1; i++) {
@@ -88,10 +87,5 @@ public enum ChatColor {
 
     public boolean isColor() {
         return !isFormat && this != RESET;
-    }
-
-    private static final Pattern PATTERN = Pattern.compile("(?i)\\u00a7[0-9A-FK-OR]");
-    public static String stripFormatting(String text) {
-        return text == null ? null : PATTERN.matcher(text).replaceAll("");
     }
 }

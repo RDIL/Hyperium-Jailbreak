@@ -15,6 +15,7 @@ public abstract class MixinGuiMultiplayer implements IMixinGuiMultiplayer {
     public void makeDirectConnect() {
         directConnect = true;
     }
+
     @Shadow
     private ServerData selectedServer;
 

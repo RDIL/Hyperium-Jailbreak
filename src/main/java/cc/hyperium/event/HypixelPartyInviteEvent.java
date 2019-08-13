@@ -21,7 +21,6 @@ import com.google.common.base.Preconditions;
 import org.jetbrains.annotations.NotNull;
 
 public final class HypixelPartyInviteEvent extends Event {
-
     @NotNull
     private final String from;
 

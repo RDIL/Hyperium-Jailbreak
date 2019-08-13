@@ -37,22 +37,14 @@ import java.util.List;
 
 @Mixin(EntityRenderer.class)
 public abstract class MixinEntityRenderer {
-    @Shadow
-    private float thirdPersonDistance;
-    @Shadow
-    private float thirdPersonDistanceTemp;
-    @Shadow
-    private boolean cloudFog;
-    @Shadow
-    private Minecraft mc;
-    @Shadow
-    private Entity pointedEntity;
+    @Shadow private float thirdPersonDistance;
+    @Shadow private float thirdPersonDistanceTemp;
+    @Shadow private boolean cloudFog;
+    @Shadow private Minecraft mc;
+    @Shadow private Entity pointedEntity;
     private HyperiumEntityRenderer hyperiumEntityRenderer = new HyperiumEntityRenderer((EntityRenderer) (Object) this);
-    @Shadow
-    @Final
-    public static int shaderCount;
-    @Shadow
-    private int shaderIndex;
+    @Shadow @Final public static int shaderCount;
+    @Shadow private int shaderIndex;
 
     //endStartSection
     @Inject(method = "updateCameraAndRender", at = @At(value = "INVOKE", target = "Lnet/minecraft/profiler/Profiler;endStartSection(Ljava/lang/String;)V", shift = At.Shift.AFTER))

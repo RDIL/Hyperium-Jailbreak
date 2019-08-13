@@ -25,7 +25,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface ConfigOpt {
-    String comment() default "";
-    boolean ignore() default false;
     String alt() default "";
 }

@@ -26,7 +26,7 @@ public class WingsCosmetic extends AbstractCosmetic {
     private final ResourceLocation dragon = new ResourceLocation("textures/cosmetics/wings/dragonwings.png");
 
     public WingsCosmetic() {
-        super(true, EnumPurchaseType.WING_COSMETIC);
+        super(EnumPurchaseType.WING_COSMETIC);
         EventBus.INSTANCE.register(new WingsRenderer(this));
     }
 

@@ -71,9 +71,8 @@ public class WebsiteUtils {
     }
 
     public static String buildRatio(int a, int b) {
-
-        double c = (double) a;
-        double d = (double) b;
+        double c = a;
+        double d = b;
         if (a + b == 0) {
             return "0";
         }

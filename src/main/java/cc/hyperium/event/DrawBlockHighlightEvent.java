@@ -23,7 +23,6 @@ import net.minecraft.util.MovingObjectPosition;
 import org.jetbrains.annotations.NotNull;
 
 public final class DrawBlockHighlightEvent extends CancellableEvent {
-
     @NotNull
     private final EntityPlayer player;
 

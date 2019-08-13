@@ -29,10 +29,6 @@ public class GlobalSettings {
         return xpPerTipReceived;
     }
 
-    public LocalDate getXpChangeDate() {
-        return xpChangeDate;
-    }
-
     public List<GameGroup> getGameGroups() {
         return gameGroups;
     }
@@ -50,7 +46,6 @@ public class GlobalSettings {
     }
 
     public static class GameGroup {
-
         private String name;
         private Set<String> games;
 
@@ -61,7 +56,6 @@ public class GlobalSettings {
         public Set<String> getGames() {
             return games;
         }
-
     }
 
     public static class GameAlias {

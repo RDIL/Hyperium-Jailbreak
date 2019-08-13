@@ -3,7 +3,6 @@ package me.semx11.autotip.chat;
 import java.util.function.Consumer;
 
 public class KeyHelper {
-
     private final MessageUtil messageUtil;
     private final String rootKey;
 
@@ -61,7 +60,5 @@ public class KeyHelper {
         public String getKey(String key) {
             return keyHelper.getKey(key);
         }
-
     }
-
 }

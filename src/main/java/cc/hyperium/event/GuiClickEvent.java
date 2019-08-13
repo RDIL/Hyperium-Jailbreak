@@ -18,7 +18,6 @@
 package cc.hyperium.event;
 
 import net.minecraft.client.gui.GuiScreen;
-
 public class GuiClickEvent extends CancellableEvent {
     private int mouseX;
     private int mouseY;

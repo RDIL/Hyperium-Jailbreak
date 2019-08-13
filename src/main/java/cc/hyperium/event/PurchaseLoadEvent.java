@@ -12,14 +12,11 @@ public final class PurchaseLoadEvent extends Event {
     @NotNull
     private final HyperiumPurchase purchase;
 
-    private final boolean self;
-
-    public PurchaseLoadEvent(@NotNull UUID uuid, @NotNull HyperiumPurchase purchase, boolean self) {
+    public PurchaseLoadEvent(@NotNull UUID uuid, @NotNull HyperiumPurchase purchase) {
         Preconditions.checkNotNull(uuid, "uuid");
         Preconditions.checkNotNull(purchase, "purchase");
         this.uuid = uuid;
         this.purchase = purchase;
-        this.self = self;
     }
 
     @NotNull
@@ -30,9 +27,5 @@ public final class PurchaseLoadEvent extends Event {
     @NotNull
     public final HyperiumPurchase getPurchase() {
         return this.purchase;
-    }
-
-    public final boolean getSelf() {
-        return this.self;
     }
 }

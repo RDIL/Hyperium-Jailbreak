@@ -5,7 +5,7 @@ public class OS {
         OSUndefined,
         OSLinux,
         OSWindows,
-        OSMacintosh,
+        OSDarwin,
         OSUnknown,
     }
 
@@ -15,8 +15,8 @@ public class OS {
         return getOSType() == OSType.OSWindows;
     }
 
-    public static boolean isMacintosh() {
-        return getOSType() == OSType.OSMacintosh;
+    public static boolean isDarwin() {
+        return getOSType() == OSType.OSDarwin;
     }
 
     public static boolean isLinux() {
@@ -31,7 +31,7 @@ public class OS {
             else if (os.startsWith("linux"))
                 osType = OSType.OSLinux;
             else if (os.startsWith("mac"))
-                osType = OSType.OSMacintosh;
+                osType = OSType.OSDarwin;
             else
                 osType = OSType.OSUnknown;
         }

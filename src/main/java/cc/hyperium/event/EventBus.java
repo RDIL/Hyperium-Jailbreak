@@ -17,8 +17,6 @@
 
 package cc.hyperium.event;
 import com.google.common.reflect.TypeToken;
-import net.minecraft.client.Minecraft;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -28,7 +26,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @SuppressWarnings("UnstableApiUsage")
 public class EventBus {
     public static final EventBus INSTANCE = new EventBus();
-    public static boolean ALLOW_PROFILE = false;
     private HashMap<Class<?>, CopyOnWriteArrayList<EventSubscriber>> subscriptions = new HashMap<>();
     public void register(Object obj) {
         // also contains the class itself
@@ -83,35 +80,12 @@ public class EventBus {
         if (event == null) {
             return;
         }
-        if (event instanceof RenderTickEvent)
-            ALLOW_PROFILE = false;
-        /*
-            DO NOT SIMPLIFY ANY OF THE PROFILER CALLS USING
-            Profiler mcProfiler = Minecraft.getMinecraft().mcProfiler;
-            OR REMOVE THE ALLOW PROFILING FIELD.
-         */
-        boolean profile = Minecraft.getMinecraft().isCallingFromMinecraftThread() && Minecraft.getMinecraft().theWorld != null && ALLOW_PROFILE;
-        if (profile) {
-            Minecraft.getMinecraft().mcProfiler.startSection(event.getClass().getSimpleName());
-        }
         this.subscriptions.getOrDefault(event.getClass(), new CopyOnWriteArrayList<>()).forEach((sub) -> {
-            if (profile) {
-                String name = sub.getObjName();
-                Minecraft.getMinecraft().mcProfiler.startSection(name);
-                Minecraft.getMinecraft().mcProfiler.startSection(sub.getMethodName());
-            }
             try {
                 sub.getMethod().invoke(sub.getInstance(), event);
             } catch (Exception InvocationTargetException) {
                 InvocationTargetException.printStackTrace();
             }
-            if (profile) {
-                Minecraft.getMinecraft().mcProfiler.endSection();
-                Minecraft.getMinecraft().mcProfiler.endSection();
-            }
         });
-        if (profile) {
-            Minecraft.getMinecraft().mcProfiler.endSection();
-        }
     }
 }

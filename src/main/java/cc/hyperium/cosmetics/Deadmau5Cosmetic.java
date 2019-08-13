@@ -21,6 +21,6 @@ import cc.hyperium.purchases.EnumPurchaseType;
 
 public class Deadmau5Cosmetic extends AbstractCosmetic {
     public Deadmau5Cosmetic() {
-        super(true, EnumPurchaseType.DEADMAU5_COSMETIC);
+        super(EnumPurchaseType.DEADMAU5_COSMETIC);
     }
 }

@@ -25,7 +25,7 @@ import static cc.hyperium.config.Category.*;
 public class Settings {
     public static final Settings INSTANCE = new Settings();
 
-    @ConfigOpt(alt = "cc.hyperium.gui.settings.items.GeneralSetting;JailbreakFPSMode")
+    @ConfigOpt
     @ToggleSetting(name = "gui.settings.FPS", category = INTEGRATIONS)
     public static boolean FPS = false;
 
@@ -467,10 +467,6 @@ public class Settings {
     @ConfigOpt
     @ToggleSetting(name = "gui.settings.disabletitles", category = VANILLA_ENHANCEMENTS, mods = true)
     public static boolean HIDE_TITLES = false;
-
-    @ConfigOpt
-    @SliderSetting(name = "gui.settings.fpslimiteramount", isInt = true, min = 5, max = 60, category = IMPROVEMENTS)
-    public static int FPS_LIMITER_AMOUNT = 30;
 
     @ConfigOpt
     @ToggleSetting(name = "gui.settings.disablelightning", category = IMPROVEMENTS)

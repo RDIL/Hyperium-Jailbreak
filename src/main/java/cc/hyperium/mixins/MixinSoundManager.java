@@ -47,16 +47,6 @@ public class MixinSoundManager {
         hyperiumSoundManager.endUpdate(info);
     }
 
-    @Inject(method = "playSound", at = @At("HEAD"))
-    public void startPlaySound(CallbackInfo info) {
-        hyperiumSoundManager.startPlaySound(info);
-    }
-
-    @Inject(method = "playSound", at = @At("TAIL"))
-    public void endPlaySound(CallbackInfo info) {
-        hyperiumSoundManager.endPlaySound(info);
-    }
-
     @Inject(method = "stopAllSounds", at = @At("HEAD"))
     public void startStopAllSounds(CallbackInfo info) {
         hyperiumSoundManager.startStopAllSounds(info);

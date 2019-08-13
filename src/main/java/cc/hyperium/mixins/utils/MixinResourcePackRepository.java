@@ -29,9 +29,7 @@ import java.io.File;
 
 @Mixin(ResourcePackRepository.class)
 public class MixinResourcePackRepository {
-    @Final
-    @Shadow
-    private final File dirServerResourcepacks = null;
+    @Final @Shadow private final File dirServerResourcepacks = null;
     private HyperiumResourcePackRepository hyperiumResourcePackRepository = new HyperiumResourcePackRepository();
 
     @Inject(method = "func_183028_i", at = @At("HEAD"), cancellable = true)

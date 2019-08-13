@@ -45,7 +45,6 @@ public class PurchaseApi {
     private static final PurchaseApi instance = new PurchaseApi();
     private final Map<UUID, HyperiumPurchase> purchasePlayers = new ConcurrentHashMap<>();
     private final Map<EnumPurchaseType, Class<? extends AbstractHyperiumPurchase>> purchaseClasses = new HashMap<>();
-    private final Map<String, UUID> nameToUuid = new HashMap<>();
 
     private PurchaseApi() {
         register(EnumPurchaseType.DEADMAU5_COSMETIC, EarsCosmetic.class);
@@ -73,7 +72,6 @@ public class PurchaseApi {
                 if (purchase != null) {
                     purchasePlayers.put(id, purchase);
                 }
-                nameToUuid.clear();
             }
         });
     }
@@ -86,12 +84,12 @@ public class PurchaseApi {
             if (s.length() == 32 && s.charAt(12) != '4') {
 
                 HyperiumPurchase non_player = new HyperiumPurchase(uuid, new JsonHolder().put("non_player", true));
-                EventBus.INSTANCE.post(new PurchaseLoadEvent(uuid, non_player, false));
+                EventBus.INSTANCE.post(new PurchaseLoadEvent(uuid, non_player));
                 return non_player;
             }
 
             HyperiumPurchase hyperiumPurchase = new HyperiumPurchase(uuid, get(url + uuid.toString()));
-            EventBus.INSTANCE.post(new PurchaseLoadEvent(uuid, hyperiumPurchase, uuid.equals(UUIDUtil.getClientUUID())));
+            EventBus.INSTANCE.post(new PurchaseLoadEvent(uuid, hyperiumPurchase));
             return hyperiumPurchase;
         });
     }
@@ -158,13 +156,13 @@ public class PurchaseApi {
     public synchronized void refreshSelf() {
         UUID id = UUIDUtil.getClientUUID();
         HyperiumPurchase value = new HyperiumPurchase(id, get(url + id.toString()));
-        EventBus.INSTANCE.post(new PurchaseLoadEvent(id, value, true));
+        EventBus.INSTANCE.post(new PurchaseLoadEvent(id, value));
         purchasePlayers.put(id, value);
     }
 
     public void reload(UUID uuid) {
         HyperiumPurchase value = new HyperiumPurchase(uuid, get(url + uuid.toString()));
-        EventBus.INSTANCE.post(new PurchaseLoadEvent(uuid, value, true));
+        EventBus.INSTANCE.post(new PurchaseLoadEvent(uuid, value));
         purchasePlayers.put(uuid, value);
         Hyperium.INSTANCE.getHandlers().getCapeHandler().deleteCape(uuid);
     }

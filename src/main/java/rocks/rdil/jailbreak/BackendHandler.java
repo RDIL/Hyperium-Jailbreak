@@ -7,49 +7,45 @@ import cc.hyperium.installer.utils.http.client.entity.UrlEncodedFormEntity;
 import cc.hyperium.installer.utils.http.client.methods.HttpPost;
 import cc.hyperium.installer.utils.http.impl.client.HttpClients;
 import cc.hyperium.installer.utils.http.util.EntityUtils;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class BackendHandler {
-    private HttpClient httpclient = HttpClients.createDefault();
+    public static HttpClient httpclient = HttpClients.createDefault();
 
     public BackendHandler() {}
 
     public void apiRequest(String url) {
         try {
-            HttpPost httppost = new HttpPost("http://backend.rdil.rocks/" + url);
-            httppost.setHeader("User-Agent", "HyperiumJailbreak");
-            List<NameValuePair> params = new ArrayList<NameValuePair>(0);
-            try {
-                httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-
-            // Execute and get the response.
-            httpclient.execute(httppost);
-        } catch (Exception e) {
-            e.printStackTrace();
+            httpclient.execute(generate("https://backend.rdil.rocks/" + url));
+        } catch (IOException i) {
+            i.printStackTrace();
         }
     }
 
     public boolean apiUpdateCheck() {
         try {
-            HttpPost httppost = new HttpPost("http://backend.rdil.rocks/checkUpdate");
-            httppost.setHeader("User-Agent", "HyperiumJailbreak");
-            List<NameValuePair> params = new ArrayList<NameValuePair>(0);
-            try {
-                httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-
             // Execute and get the response.
-            String response = EntityUtils.toString(httpclient.execute(httppost).getEntity(), "UTF-8");
-            return !response.equals(Hyperium.version);
-        } catch (Exception e) {
+            return !Objects.equals(EntityUtils.toString(
+                    httpclient.execute(generate("https://backend.rdil.rocks/checkUpdate")).getEntity(), "UTF-8"
+            ), Hyperium.version);
+        } catch (IOException e) {
             return false;
         }
+    }
+
+    public static HttpPost generate(String url) {
+        HttpPost tmp = new HttpPost(url);
+        tmp.setHeader("User-agent", "HyperiumJailbreak");
+        List<NameValuePair> params = new ArrayList<NameValuePair>(0);
+        try {
+            tmp.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return tmp;
     }
 }

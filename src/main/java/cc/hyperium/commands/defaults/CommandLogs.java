@@ -1,7 +1,6 @@
 package cc.hyperium.commands.defaults;
 
 import cc.hyperium.commands.BaseCommand;
-import cc.hyperium.commands.CommandException;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import net.minecraft.client.Minecraft;
@@ -26,7 +25,7 @@ public class CommandLogs implements BaseCommand {
     }
 
     @Override
-    public void onExecute(String[] args) throws CommandException {
+    public void onExecute(String[] args) {
         Multithreading.runAsync(() -> {
             StringBuilder message = new StringBuilder();
             try {
@@ -46,11 +45,11 @@ public class CommandLogs implements BaseCommand {
             message = new StringBuilder(message.toString().replaceAll(System.getProperty("user.name"), "{USERNAME}"));
 
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(message.toString()), null);
-            GeneralChatHandler.instance().sendMessage("Copied to clipboard. Please paste in hastebin.com (it has been opened), save and send to staff");
+            GeneralChatHandler.instance().sendMessage("Copied to clipboard. Please paste in hastebin (it has been opened), save and send to staff");
             Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
             if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
                 try {
-                    desktop.browse(new URL("https://hastebin.com").toURI());
+                    desktop.browse(new URL("https://hasteb.in").toURI());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

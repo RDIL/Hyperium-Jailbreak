@@ -69,6 +69,5 @@ public abstract class MixinItemBow extends Item {
             }
             EventBus.INSTANCE.post(new ArrowShootEvent(lvt_8_1_, lvt_6_1_, p_onPlayerStoppedUsing_1_));
         }
-
     }
 }

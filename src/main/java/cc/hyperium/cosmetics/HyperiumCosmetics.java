@@ -37,9 +37,9 @@ public class HyperiumCosmetics {
         registerCosmetic(new DragonCosmetic());
         registerCosmetic(new DragonCompanion());
         registerCosmetic(new HamsterCompanion());
-        registerCosmetic(new CosmeticHat(false, EnumPurchaseType.HAT_TOPHAT).setModel(new ModelHatTophat(), new ResourceLocation("textures/cosmetics/hats/tophat.png")));
-        registerCosmetic(new CosmeticHat(false, EnumPurchaseType.HAT_FEZ).setModel(new ModelHatFez(), new ResourceLocation("textures/cosmetics/hats/fez.png")));
-        registerCosmetic(new CosmeticHat(false, EnumPurchaseType.HAT_LEGO).setModel(new ModelHatLego(), new ResourceLocation("textures/cosmetics/hats/lego.png")));
+        registerCosmetic(new CosmeticHat(EnumPurchaseType.HAT_TOPHAT).setModel(new ModelHatTophat(), new ResourceLocation("textures/cosmetics/hats/tophat.png")));
+        registerCosmetic(new CosmeticHat(EnumPurchaseType.HAT_FEZ).setModel(new ModelHatFez(), new ResourceLocation("textures/cosmetics/hats/fez.png")));
+        registerCosmetic(new CosmeticHat(EnumPurchaseType.HAT_LEGO).setModel(new ModelHatLego(), new ResourceLocation("textures/cosmetics/hats/lego.png")));
     }
 
     private void registerCosmetic(AbstractCosmetic cosmetic) {

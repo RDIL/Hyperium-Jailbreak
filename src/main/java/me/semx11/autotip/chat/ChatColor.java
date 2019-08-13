@@ -42,5 +42,4 @@ public enum ChatColor {
     public static String stripFormatting(String text) {
         return text == null ? null : PATTERN.matcher(text).replaceAll("");
     }
-
 }

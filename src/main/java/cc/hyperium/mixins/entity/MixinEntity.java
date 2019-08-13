@@ -45,120 +45,52 @@ import java.util.UUID;
 
 @Mixin(Entity.class)
 public abstract class MixinEntity {
-
-    @Shadow
-    public double posX;
-    @Shadow
-    public double posY;
-    @Shadow
-    public boolean noClip;
-    @Shadow
-    public World worldObj;
-    @Shadow
-    public double posZ;
-    @Shadow
-    public double motionX;
-    @Shadow
-    public double motionY;
-    @Shadow
-    public double motionZ;
-    @Shadow
-    public boolean onGround;
-    @Shadow
-    public float stepHeight;
-    @Shadow
-    public boolean isCollidedHorizontally;
-    @Shadow
-    public boolean isCollidedVertically;
-    @Shadow
-    public boolean isCollided;
-    @Shadow
-    public Entity ridingEntity;
-    @Shadow
-    public float distanceWalkedModified;
-    @Shadow
-    public float distanceWalkedOnStepModified;
-    @Shadow
-    public int fireResistance;
-    @Shadow
-    protected boolean isInWeb;
-    @Shadow
-    protected Random rand;
-    @Shadow
-    protected boolean inPortal;
+    @Shadow public double posX;
+    @Shadow public double posY;
+    @Shadow public boolean noClip;
+    @Shadow public World worldObj;
+    @Shadow public double posZ;
+    @Shadow public double motionX;
+    @Shadow public double motionY;
+    @Shadow public double motionZ;
+    @Shadow public boolean onGround;
+    @Shadow public float stepHeight;
+    @Shadow public boolean isCollidedHorizontally;
+    @Shadow public boolean isCollidedVertically;
+    @Shadow public boolean isCollided;
+    @Shadow public Entity ridingEntity;
+    @Shadow public float distanceWalkedModified;
+    @Shadow public float distanceWalkedOnStepModified;
+    @Shadow public int fireResistance;
+    @Shadow protected boolean isInWeb;
+    @Shadow protected Random rand;
     private HyperiumEntity hyperiumEntity = new HyperiumEntity((Entity) (Object) this);
-    @Shadow
-    private int nextStepDistance;
-    @Shadow
-    private int fire;
-    @Shadow
-    public abstract String getName();
-    @Shadow
-    public abstract UUID getUniqueID();
-
-    /**
-     * @author Sk1er
-     * @reason Cache render strings
-     */
-    @Overwrite
-    public IChatComponent getDisplayName() {
+    @Shadow private int nextStepDistance;
+    @Shadow private int fire;
+    @Shadow public abstract String getName();
+    @Shadow public abstract UUID getUniqueID();
+    @Overwrite public IChatComponent getDisplayName() {
         return hyperiumEntity.getDisplayName();
     }
-
-    @Shadow
-    public Vec3 getLook(float partialTicks) {
+    @Shadow public Vec3 getLook(float partialTicks) {
         return null;
     }
+    @Shadow public abstract AxisAlignedBB getEntityBoundingBox();
+    @Shadow public abstract void setEntityBoundingBox(AxisAlignedBB bb);
+    @Shadow protected abstract void resetPositionToBB();
+    @Shadow public abstract boolean isSneaking();
+    @Shadow protected abstract void updateFallState(double y, boolean onGroundIn, Block blockIn, BlockPos pos);
+    @Shadow protected abstract boolean canTriggerWalking();
+    @Shadow public abstract boolean isInWater();
+    @Shadow public abstract void playSound(String name, float volume, float pitch);
+    @Shadow protected abstract String getSwimSound();
+    @Shadow protected abstract void playStepSound(BlockPos pos, Block blockIn);
+    @Shadow protected abstract void doBlockCollisions();
+    @Shadow public abstract void addEntityCrashInfo(CrashReportCategory category);
+    @Shadow public abstract boolean isWet();
+    @Shadow protected abstract void dealFireDamage(int amount);
+    @Shadow public abstract void setFire(int seconds);
 
-    @Shadow
-    public abstract AxisAlignedBB getEntityBoundingBox();
-
-    @Shadow
-    public abstract void setEntityBoundingBox(AxisAlignedBB bb);
-
-    @Shadow
-    protected abstract void resetPositionToBB();
-
-    @Shadow
-    public abstract boolean isSneaking();
-
-    @Shadow
-    protected abstract void updateFallState(double y, boolean onGroundIn, Block blockIn, BlockPos pos);
-
-    @Shadow
-    protected abstract boolean canTriggerWalking();
-
-    @Shadow
-    public abstract boolean isInWater();
-
-    @Shadow
-    public abstract void playSound(String name, float volume, float pitch);
-
-    @Shadow
-    protected abstract String getSwimSound();
-
-    @Shadow
-    protected abstract void playStepSound(BlockPos pos, Block blockIn);
-
-    @Shadow
-    protected abstract void doBlockCollisions();
-
-    @Shadow
-    public abstract void addEntityCrashInfo(CrashReportCategory category);
-
-    @Shadow
-    public abstract boolean isWet();
-
-    @Shadow
-    protected abstract void dealFireDamage(int amount);
-
-    @Shadow
-    public abstract void setFire(int seconds);
-
-    /**
-     * @author - Sk1er
-     * @reason - Improve Particle Handling
-     */
     @Overwrite
     public void moveEntity(double x, double y, double z) {
         if (this.noClip) {

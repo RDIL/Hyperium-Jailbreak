@@ -17,10 +17,6 @@ public class HyperiumOverlay {
     private int offsetY = 0;
     private String name;
 
-    public HyperiumOverlay(String name) {
-        this(name, true);
-    }
-
     public HyperiumOverlay(String name, boolean alphabetic) {
         this.name = name;
 
@@ -39,24 +35,6 @@ public class HyperiumOverlay {
         }
     }
 
-    public void handleMouseInput() {
-        final ScaledResolution sr = ResolutionUtil.current();
-        int sw = sr.getScaledWidth();
-        int sh = sr.getScaledHeight();
-        final int mx = Mouse.getX() * sw / Minecraft.getMinecraft().displayWidth;
-        final int my = sh - Mouse.getY() * sh / Minecraft.getMinecraft().displayHeight - 1;
-
-        final Integer[] counter = new Integer[]{0};
-
-        components.forEach(c -> c.handleMouseInput(mx, my, sr.getScaledWidth() / 6 * 2, sr.getScaledHeight() / 4 + 20 * counter[0]++ + offsetY, sr.getScaledWidth() / 6 * 2, 20));
-
-        int i = Mouse.getEventDWheel();
-        if (i > 0 && offsetY != 0)
-            offsetY += 5;
-        else if (i < 0)
-            offsetY -= 5;
-    }
-
     public void mouseClicked() {
         final ScaledResolution sr = ResolutionUtil.current();
         int sw = sr.getScaledWidth();
@@ -71,26 +49,6 @@ public class HyperiumOverlay {
 
     public List<OverlayComponent> getComponents() {
         return components;
-    }
-
-    public void addToggle(String label, Field f, Consumer<Object> objectConsumer, boolean enabled, Object object) {
-        try {
-            Object o = f.get(object);
-            if (o == null) return;
-            if (o instanceof Boolean) {
-                components.add(new OverlayToggle(label, (boolean) o, b -> {
-                    if (objectConsumer != null)
-                        objectConsumer.accept(b);
-                    try {
-                        f.setBoolean(object, b);
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
-                }, enabled));
-            }
-        } catch (IllegalAccessException | IllegalArgumentException e) {
-            e.printStackTrace();
-        }
     }
 
     public void reset() {

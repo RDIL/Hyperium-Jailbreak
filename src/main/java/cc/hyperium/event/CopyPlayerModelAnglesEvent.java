@@ -24,7 +24,6 @@ import net.minecraft.client.entity.AbstractClientPlayer;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class CopyPlayerModelAnglesEvent extends Event {
-
     @NotNull
     private final AbstractClientPlayer entity;
     @NotNull

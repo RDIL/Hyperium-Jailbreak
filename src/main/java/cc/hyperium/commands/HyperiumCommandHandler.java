@@ -67,7 +67,7 @@ public class HyperiumCommandHandler {
         }
     }
 
-    public boolean executeCommand(String command) {
+    private boolean executeCommand(String command) {
         final String commandLine = command.startsWith("/") ? command.substring(1) : command;
         String commandName;
         String[] args = new String[]{};
@@ -96,10 +96,6 @@ public class HyperiumCommandHandler {
             } catch (CommandUsageException usageEx) {
                 // Throw a UsageException to trigger
                 this.chatHandler.sendMessage(ChatColor.RED + baseCommand.getUsage(), false);
-            } catch (CommandException knownEx) {
-                if (knownEx.getMessage() != null) {
-                    this.chatHandler.sendMessage(ChatColor.RED + knownEx.getMessage(), false);
-                }
             } catch (Exception exception) {
                 exception.printStackTrace();
                 this.chatHandler.sendMessage(ChatColor.RED + "An internal error occurred whilst performing this command", false);

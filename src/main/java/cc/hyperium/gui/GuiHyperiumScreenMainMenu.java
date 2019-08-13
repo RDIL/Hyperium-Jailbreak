@@ -94,7 +94,7 @@ public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen implements GuiY
         }
     }
 
-    public void addSingleplayerMultiplayerButtons(int p_73969_1_, int p_73969_2_) {
+    private void addSingleplayerMultiplayerButtons(int p_73969_1_, int p_73969_2_) {
         if(getStyle() == GuiStyle.DEFAULT) {
             addDefaultStyleSingleplayerMultiplayerButtons(p_73969_1_, p_73969_2_);
         } else {
@@ -164,27 +164,27 @@ public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen implements GuiY
         }
     }
 
-    public void addHyperiumStyleSingleplayerMultiplayerButtons() {
+    private void addHyperiumStyleSingleplayerMultiplayerButtons() {
         this.buttonList.add(new GuiButton(1, this.width / 2 - getIntendedWidth(295), this.height / 2 - getIntendedHeight(55), getIntendedWidth(110), getIntendedHeight(110), ""));
         this.buttonList.add(new GuiButton(2, this.width / 2 - getIntendedWidth(175), this.height / 2 - getIntendedHeight(55), getIntendedWidth(110), getIntendedHeight(110), ""));
         this.buttonList.add(new GuiButton(15, this.width / 2 + getIntendedWidth(65), this.height / 2 - getIntendedHeight(55), getIntendedWidth(110), getIntendedHeight(110), ""));
     }
 
-    public void addDefaultStyleSingleplayerMultiplayerButtons(int p_73969_1_, int p_73969_2_) {
+    private void addDefaultStyleSingleplayerMultiplayerButtons(int p_73969_1_, int p_73969_2_) {
         this.buttonList.add(new GuiButton(1, this.width / 2 - 100, p_73969_1_, I18n.format("menu.singleplayer")));
         this.buttonList.add(new GuiButton(2, this.width / 2 - 100, p_73969_1_ + p_73969_2_, I18n.format("menu.multiplayer")));
         //Change realms button ID to 16 to avoid conflicts
         this.buttonList.add(this.hypixelButton = new GuiButton(16, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 2, 200, 20, I18n.format("button.ingame.joinhypixel")));
 
-        this.buttonList.add(new GuiButton(15, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 3, I18n.format("button.ingame.hyperiumsettings")));
+        this.buttonList.add(new GuiButton(15, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 3, "Hyperium Settings"));
     }
 
-    public void addHyperiumStyleOptionsButton(int j) {
+    private void addHyperiumStyleOptionsButton(int j) {
         this.buttonList.add(new GuiButton(0, width / 2 - getIntendedWidth(55), height / 2 - getIntendedHeight(55), getIntendedWidth(110), getIntendedHeight(110), ""));
         this.buttonList.add(new GuiButton(4, width / 2 + getIntendedWidth(185), height / 2 - getIntendedHeight(55), getIntendedWidth(110), getIntendedHeight(110), ""));
     }
 
-    public void addDefaultStyleOptionsButton(int j) {
+    private void addDefaultStyleOptionsButton(int j) {
         this.buttonList.add(new GuiButton(0, this.width / 2 - 100, j + 56 + 12 + 24 - 5, 98, 20, I18n.format("menu.options")));
         this.buttonList.add(new GuiButton(4, this.width / 2 + 2, j + 56 + 12 + 24 - 5, 98, 20, I18n.format("menu.quit")));
     }

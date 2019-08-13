@@ -28,20 +28,15 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(NetworkPlayerInfo.class)
 public abstract class MixinNetworkPlayerInfo {
-    @Shadow
-    @Final
-    private GameProfile gameProfile;
-
-    @Shadow
-    private ResourceLocation locationSkin;
-    @Shadow
-    private ResourceLocation locationCape;
+    @Shadow @Final private GameProfile gameProfile;
+    @Shadow private ResourceLocation locationSkin;
+    @Shadow private ResourceLocation locationCape;
 
     private HyperiumNetworkPlayerInfo hyperiumNetworkPlayerInfo = new HyperiumNetworkPlayerInfo((NetworkPlayerInfo) (Object) this);
 
     @Overwrite
     public ResourceLocation getLocationCape() {
-        return hyperiumNetworkPlayerInfo.getLocationCape(this.gameProfile, this.locationCape);
+        return hyperiumNetworkPlayerInfo.getLocationCape(this.locationCape);
     }
 
     @Overwrite

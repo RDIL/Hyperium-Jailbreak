@@ -1,7 +1,6 @@
 package cc.hyperium.commands.defaults;
 
 import cc.hyperium.commands.BaseCommand;
-import cc.hyperium.commands.CommandException;
 import cc.hyperium.gui.CustomLevelheadConfigurer;
 
 public class CustomLevelheadCommand implements BaseCommand {
@@ -16,7 +15,7 @@ public class CustomLevelheadCommand implements BaseCommand {
     }
 
     @Override
-    public void onExecute(String[] args) throws CommandException {
+    public void onExecute(String[] args) {
         new CustomLevelheadConfigurer().show();
     }
 }

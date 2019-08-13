@@ -8,7 +8,6 @@ import me.semx11.autotip.util.StringUtil;
 import net.minecraft.client.Minecraft;
 
 public class MessageUtil {
-
     private static final String PREFIX = "&6A&eT &8> &7";
 
     private final Autotip autotip;
@@ -92,5 +91,4 @@ public class MessageUtil {
         Minecraft minecraft = autotip.getMinecraft();
         return minecraft != null && minecraft.thePlayer != null;
     }
-
 }

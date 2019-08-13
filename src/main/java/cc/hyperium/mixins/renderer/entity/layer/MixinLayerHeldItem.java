@@ -13,9 +13,7 @@ import org.spongepowered.asm.mixin.Shadow;
 public class MixinLayerHeldItem {
     private OldBlocking oldBlocking = new OldBlocking();
 
-    @Shadow
-    @Final
-    private RendererLivingEntity<?> livingEntityRenderer;
+    @Shadow @Final private RendererLivingEntity<?> livingEntityRenderer;
 
     @Overwrite
     public void doRenderLayer(EntityLivingBase entity, float f, float f2, float f3, float partialTicks, float f4, float f5, float scale) {

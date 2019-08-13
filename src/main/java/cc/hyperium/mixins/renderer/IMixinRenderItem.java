@@ -1,6 +1,5 @@
 package cc.hyperium.mixins.renderer;
 
-import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -16,9 +15,6 @@ import java.util.List;
 public interface IMixinRenderItem {
     @Accessor
     TextureManager getTextureManager();
-
-    @Accessor
-    ItemModelMesher getItemModelMesher();
 
     @Invoker
     void callSetupGuiTransform(int xPosition, int yPosition, boolean isGui3d);

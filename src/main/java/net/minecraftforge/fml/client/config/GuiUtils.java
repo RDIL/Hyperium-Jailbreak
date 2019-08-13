@@ -31,7 +31,7 @@ public class GuiUtils {
         drawContinuousTexturedBox(x, y, u, v, width, height, textureWidth, textureHeight, topBorder, bottomBorder, leftBorder, rightBorder, zLevel);
     }
 
-    public static void drawContinuousTexturedBox(int x, int y, int u, int v, int width, int height, int textureWidth, int textureHeight, int topBorder, int bottomBorder, int leftBorder, int rightBorder, float zLevel) {
+    private static void drawContinuousTexturedBox(int x, int y, int u, int v, int width, int height, int textureWidth, int textureHeight, int topBorder, int bottomBorder, int leftBorder, int rightBorder, float zLevel) {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
@@ -74,7 +74,7 @@ public class GuiUtils {
         }
     }
 
-    public static void drawTexturedModalRect(int x, int y, int u, int v, int width, int height, float zLevel) {
+    private static void drawTexturedModalRect(int x, int y, int u, int v, int width, int height, float zLevel) {
         float uScale = 1f / 0x100;
         float vScale = 1f / 0x100;
         Tessellator tessellator = Tessellator.getInstance();

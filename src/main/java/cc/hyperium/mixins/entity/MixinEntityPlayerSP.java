@@ -37,14 +37,9 @@ import org.spongepowered.asm.mixin.Shadow;
 public class MixinEntityPlayerSP extends AbstractClientPlayer {
     private HyperiumEntityPlayerSP hyperiumEntityPlayerSP = new HyperiumEntityPlayerSP();
 
-    @Shadow
-    private Minecraft mc;
-
-    @Shadow
-    public float prevTimeInPortal;
-
-    @Shadow
-    public float timeInPortal;
+    @Shadow protected Minecraft mc;
+    @Shadow public float prevTimeInPortal;
+    @Shadow public float timeInPortal;
 
     public MixinEntityPlayerSP(World worldIn, GameProfile playerProfile) {
         super(worldIn, playerProfile);

@@ -26,7 +26,7 @@ public interface BaseCommand {
     default List<String> getCommandAliases() {
         return new ArrayList<>();
     }
-    void onExecute(String[] args) throws CommandException;
+    void onExecute(String[] args) throws CommandUsageException;
     default List<String> onTabComplete(String[] args) {
         return null;
     }

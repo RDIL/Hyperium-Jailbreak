@@ -17,6 +17,6 @@
 
 package cc.hyperium.commands;
 
-public class CommandUsageException extends CommandException {
+public class CommandUsageException extends Exception {
     public CommandUsageException() {}
 }

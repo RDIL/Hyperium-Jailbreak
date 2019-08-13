@@ -19,7 +19,7 @@ public class HamsterCompanion extends AbstractCosmetic {
     private Map<UUID, EntityHamster> hamsters = new HashMap<>();
 
     public HamsterCompanion() {
-        super(false, EnumPurchaseType.HAMSTER_COMPANION);
+        super(EnumPurchaseType.HAMSTER_COMPANION);
     }
 
     @InvokeEvent

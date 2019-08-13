@@ -30,7 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import me.kbrewster.mojangapi.MojangAPI;
+import rocks.rdil.jailbreak.MojangAPI;
 
 public class NameHistoryGui extends GuiScreen {
     private String name;
@@ -44,7 +44,7 @@ public class NameHistoryGui extends GuiScreen {
         getNames(name);
     }
 
-    List<String> names = new ArrayList<>();
+    private List<String> names = new ArrayList<>();
     private final HyperiumFontRenderer fontRenderer = new HyperiumFontRenderer("Arial", Font.PLAIN, 16);
     private GuiTextField nameField;
     private int offset = 0;
@@ -111,7 +111,7 @@ public class NameHistoryGui extends GuiScreen {
         super.mouseClicked(mouseX, mouseY, mouseButton);
     }
 
-    public void getNames(String username) {
+    private void getNames(String username) {
         offset = 0;
         try {
             if (username.isEmpty()) {

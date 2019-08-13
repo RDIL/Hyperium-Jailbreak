@@ -49,10 +49,6 @@ public class BetterJsonObject {
         }
     }
 
-    public BetterJsonObject(JsonObject objectIn) {
-        this.data = objectIn != null ? objectIn : new JsonObject();
-    }
-
     public String optString(String key) {
         return optString(key, "");
     }
@@ -121,19 +117,16 @@ public class BetterJsonObject {
         return this.data;
     }
 
-    public BetterJsonObject addProperty(String key, String value) {
+    public void addProperty(String key, String value) {
         if (key != null) this.data.addProperty(key, value);
-        return this;
     }
 
-    public BetterJsonObject addProperty(String key, Number value) {
+    public void addProperty(String key, Number value) {
         if (key != null) this.data.addProperty(key, value);
-        return this;
     }
 
-    public BetterJsonObject addProperty(String key, Boolean value) {
+    public void addProperty(String key, Boolean value) {
         if (key != null) this.data.addProperty(key, value);
-        return this;
     }
 
     public BetterJsonObject add(String key, BetterJsonObject object) {

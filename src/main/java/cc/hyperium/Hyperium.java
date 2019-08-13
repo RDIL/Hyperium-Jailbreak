@@ -16,6 +16,7 @@
  */
 
 package cc.hyperium;
+import cc.hyperium.event.*;
 import cc.hyperium.gui.ConfirmationPopup;
 import cc.hyperium.gui.SplashProgress;
 import cc.hyperium.gui.ColourOptions;
@@ -25,12 +26,6 @@ import cc.hyperium.commands.defaults.*;
 import cc.hyperium.config.DefaultConfig;
 import cc.hyperium.config.Settings;
 import cc.hyperium.cosmetics.HyperiumCosmetics;
-import cc.hyperium.event.EventBus;
-import cc.hyperium.event.GameShutDownEvent;
-import cc.hyperium.event.InitializationEvent;
-import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.Priority;
-import cc.hyperium.event.ServerJoinEvent;
 import cc.hyperium.event.minigames.MinigameListener;
 import cc.hyperium.handlers.HyperiumHandlers;
 import cc.hyperium.handlers.handlers.stats.PlayerStatsGui;
@@ -173,7 +168,6 @@ public class Hyperium {
         hyperiumCommandHandler.registerCommand(new CommandPing());
         hyperiumCommandHandler.registerCommand(new CommandStats());
         hyperiumCommandHandler.registerCommand(new CommandParty());
-        hyperiumCommandHandler.registerCommand(new CommandResize());
         hyperiumCommandHandler.registerCommand(new CommandGarbageCollect());
         hyperiumCommandHandler.registerCommand(new CommandMessage());
         hyperiumCommandHandler.registerCommand(new CommandDisableCommand());
@@ -224,10 +218,6 @@ public class Hyperium {
         return this.isDevEnv;
     }
 
-    public Jailbreak getJailbreak() {
-        return j;
-    }
-
     public HyperiumHandlers getHandlers() {
         return handlers;
     }
@@ -253,7 +243,7 @@ public class Hyperium {
             if (Hyperium.INSTANCE.bh.apiUpdateCheck()) {
                 try {
                     Thread.sleep(2000);
-                    getHandlers().getGeneralChatHandler().sendMessage(ChatColor.RED + "An update for the client is now available at " + ChatColor.WHITE + "https://rdil.rocks/update", false);
+                    getHandlers().getGeneralChatHandler().sendMessage(ChatColor.RED + "An update for the client is now available at " + ChatColor.WHITE + "https://rdil.rocks/update", true);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

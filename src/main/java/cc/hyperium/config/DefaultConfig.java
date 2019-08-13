@@ -93,13 +93,7 @@ public class DefaultConfig {
         if (!config.has(c.getName())) config.add(c.getName(), new JsonObject());
         Arrays.stream(c.getDeclaredFields()).filter(f -> f.isAnnotationPresent(ConfigOpt.class) && config.has(c.getName())).forEach(f -> {
             f.setAccessible(true);
-            ConfigOpt co = f.getAnnotation(ConfigOpt.class);
             JsonObject tmp = config.get(c.getName()).getAsJsonObject();
-            if (!co.alt().isEmpty() && config.has(co.alt().split(";")[0]) && !tmp.has(f.getName())) {
-                JsonObject ot = config.get(co.alt().split(";")[0]).getAsJsonObject();
-                if (ot.has(co.alt().split(";")[1]))
-                    tmp.add(f.getName(), ot.get(co.alt().split(";")[1]));
-            }
             if (tmp.has(f.getName())) {
                 try {
                     f.set(object, gson.fromJson(tmp.get(f.getName()), f.getType()));

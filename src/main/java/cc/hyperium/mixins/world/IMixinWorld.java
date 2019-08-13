@@ -8,9 +8,6 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(World.class)
 public interface IMixinWorld {
-    @Accessor
-    float getRainingStrength();
-
     @Invoker
     boolean callIsChunkLoaded(int x, int z, boolean allowEmpty);
 

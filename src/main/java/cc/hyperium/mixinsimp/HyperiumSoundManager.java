@@ -31,10 +31,6 @@ public class HyperiumSoundManager {
         lock.unlock();
     }
 
-    public void startPlaySound(CallbackInfo info) {}
-
-    public void endPlaySound(CallbackInfo info) {}
-
     public void startStopAllSounds(CallbackInfo info) {
         lock.lock();
     }

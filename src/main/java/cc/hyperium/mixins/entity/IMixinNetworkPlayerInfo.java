@@ -16,7 +16,4 @@ public interface IMixinNetworkPlayerInfo {
 
     @Accessor
     void setLocationSkin(ResourceLocation locationSkin);
-
-    @Accessor
-    void setPlayerTexturesLoaded(boolean loaded);
 }

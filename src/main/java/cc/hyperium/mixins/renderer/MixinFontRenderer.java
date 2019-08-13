@@ -85,7 +85,6 @@ public abstract class MixinFontRenderer {
                     value.setLastAlpha(alpha);
                 } else if (i1 == 16) {
                     this.randomStyle = true;
-                    hasObf = true;
                 } else if (i1 == 17) {
                     this.boldStyle = true;
                 } else if (i1 == 18) {

@@ -4,8 +4,6 @@ import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.RenderHUDEvent;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.PositionedSoundRecord;
-import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
@@ -167,15 +165,6 @@ public class VictoryRoyale extends AbstractMod {
             if (effect.getPotionID() == 14) {
                 return;
             }
-        }
-
-        SoundHandler soundHandler = Minecraft.getMinecraft().getSoundHandler();
-        if (soundHandler == null || Minecraft.getMinecraft().theWorld == null) {
-            return;
-        }
-        if (Settings.VICTORY_ROYALE)
-        {
-            soundHandler.playSound(PositionedSoundRecord.create(new ResourceLocation("victory-royale"), (float) Minecraft.getMinecraft().thePlayer.posX, (float) Minecraft.getMinecraft().thePlayer.posY, (float) Minecraft.getMinecraft().thePlayer.posZ));
         }
 
         start = System.currentTimeMillis();

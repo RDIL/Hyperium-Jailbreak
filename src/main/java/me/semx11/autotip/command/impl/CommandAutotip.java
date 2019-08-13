@@ -41,7 +41,6 @@ public class CommandAutotip extends CommandAbstract {
         return autotip.getLocaleHolder().getKey("command.usage");
     }
 
-
     @Override
     public List<String> getCommandAliases() {
         if (!autotip.getMcVersion().equals(MinecraftVersion.V1_8)) {

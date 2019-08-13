@@ -87,7 +87,7 @@ public class SplashProgress {
 
         ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
 
-        double nProgress = (double) PROGRESS;
+        double nProgress = PROGRESS;
         double calc = (nProgress / MAX) * sr.getScaledWidth();
 
         Gui.drawRect(0, sr.getScaledHeight() - 35, sr.getScaledWidth(), sr.getScaledHeight(), new Color(0, 0, 0, 50).getRGB());

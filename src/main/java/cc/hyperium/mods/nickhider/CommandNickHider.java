@@ -1,6 +1,5 @@
 package cc.hyperium.mods.nickhider;
 import cc.hyperium.commands.BaseCommand;
-import cc.hyperium.commands.CommandException;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import net.minecraft.util.EnumChatFormatting;
 
@@ -17,7 +16,7 @@ public class CommandNickHider implements BaseCommand {
         GeneralChatHandler.instance().sendMessage(in);
     }
     @Override
-    public void onExecute(String[] args) throws CommandException {
+    public void onExecute(String[] args) {
         if (args.length == 0) {
             sendMessage("Nick hider status: " + (NickHider.INSTANCE.isEnabled() ? EnumChatFormatting.GREEN + "Enabled" : EnumChatFormatting.RED + "Disabled"));
             sendMessage("Hide others " + (NickHider.INSTANCE.isSelfOnly() ? EnumChatFormatting.RED + "No" : EnumChatFormatting.GREEN + "Yes"));

@@ -189,11 +189,6 @@ public class HyperiumFontRenderer {
         return (int) x / 2;
     }
 
-    public int drawStringWithShadow(String text, float x, float y, int color) {
-        drawString(StringUtils.stripControlCodes(text), x + 0.5F, y + 0.5F, 0x000000);
-        return drawString(text, x, y, color);
-    }
-
     public void drawCenteredString(String text, float x, float y, int color) {
         drawString(text, x - (int) getWidth(text) / 2, y, color);
     }
@@ -209,7 +204,6 @@ public class HyperiumFontRenderer {
 
             return width / 2.0F / antiAliasingFactor;
         });
-
     }
 
     public int getStringWidth(String text) {

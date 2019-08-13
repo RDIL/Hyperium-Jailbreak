@@ -13,7 +13,7 @@ public class HyperiumNetworkPlayerInfo {
         this.parent = parent;
     }
 
-    public ResourceLocation getLocationCape(GameProfile gameProfile, ResourceLocation locationCape) {
+    public ResourceLocation getLocationCape(ResourceLocation locationCape) {
         ResourceLocation cape = locationCape;
 
         if (cape == null) {

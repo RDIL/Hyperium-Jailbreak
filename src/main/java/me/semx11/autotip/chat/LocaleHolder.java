@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
 import me.semx11.autotip.util.ErrorReport;
 
 public class LocaleHolder {
-
     private static final Pattern SPLIT_PATTERN = Pattern.compile("\\.");
 
     private final Map<String, String> cache = new ConcurrentHashMap<>();
@@ -24,10 +23,6 @@ public class LocaleHolder {
 
     public Locale getLocale() {
         return locale;
-    }
-
-    public JsonObject getRoot() {
-        return root;
     }
 
     public String getKey(String key) {
@@ -62,5 +57,4 @@ public class LocaleHolder {
         }
         return obj.getAsString();
     }
-
 }

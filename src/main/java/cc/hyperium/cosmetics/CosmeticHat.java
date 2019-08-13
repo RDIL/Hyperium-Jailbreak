@@ -15,8 +15,8 @@ import org.lwjgl.opengl.GL11;
 public class CosmeticHat extends AbstractCosmetic {
     public ModelBase hatModel;
     public ResourceLocation hatTexture;
-    public CosmeticHat(boolean selfOnly, EnumPurchaseType purchaseType) {
-        super(selfOnly, purchaseType);
+    public CosmeticHat(EnumPurchaseType purchaseType) {
+        super(purchaseType);
     }
     public CosmeticHat setModel(ModelBase givenModel, ResourceLocation givenTexture) {
         this.hatModel = givenModel;
