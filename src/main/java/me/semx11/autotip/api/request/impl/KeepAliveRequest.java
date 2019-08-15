@@ -11,7 +11,6 @@ import me.semx11.autotip.api.request.Request;
 import org.apache.http.client.methods.HttpUriRequest;
 
 public class KeepAliveRequest implements Request<KeepAliveReply> {
-
     private final SessionKey sessionKey;
 
     private KeepAliveRequest(SessionKey sessionKey) {
@@ -38,5 +37,4 @@ public class KeepAliveRequest implements Request<KeepAliveReply> {
     public RequestType getType() {
         return RequestType.KEEP_ALIVE;
     }
-
 }

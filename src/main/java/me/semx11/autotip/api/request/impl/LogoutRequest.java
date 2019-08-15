@@ -11,7 +11,6 @@ import me.semx11.autotip.api.request.Request;
 import org.apache.http.client.methods.HttpUriRequest;
 
 public class LogoutRequest implements Request<LogoutReply> {
-
     private final SessionKey sessionKey;
 
     private LogoutRequest(SessionKey sessionKey) {
@@ -38,5 +37,4 @@ public class LogoutRequest implements Request<LogoutReply> {
     public RequestType getType() {
         return RequestType.LOGOUT;
     }
-
 }

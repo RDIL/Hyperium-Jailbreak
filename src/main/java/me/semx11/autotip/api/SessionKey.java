@@ -1,7 +1,6 @@
 package me.semx11.autotip.api;
 
 public class SessionKey {
-
     private final String key;
 
     public SessionKey(String key) {
@@ -16,5 +15,4 @@ public class SessionKey {
     public String toString() {
         return key;
     }
-
 }

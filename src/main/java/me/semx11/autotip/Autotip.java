@@ -42,7 +42,7 @@ import java.util.List;
 @SuppressWarnings("unchecked")
 public class Autotip {
     public static final Logger LOGGER = Hyperium.LOGGER;
-    public static final String VERSION = "3.0";
+    private static final String VERSION = "3.0";
     public static IChatComponent tabHeader;
     private final List<Event> events = new ArrayList<>();
     private final List<CommandAbstract> commands = new ArrayList<>();

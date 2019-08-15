@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import me.semx11.autotip.Autotip;
 
 public class StatsRange extends Stats {
-
     private final LocalDate start;
     private final LocalDate end;
 
@@ -15,14 +14,6 @@ public class StatsRange extends Stats {
         }
         this.start = start;
         this.end = end;
-    }
-
-    public LocalDate getStart() {
-        return start;
-    }
-
-    public LocalDate getEnd() {
-        return end;
     }
 
     public String getStartString() {
@@ -49,5 +40,4 @@ public class StatsRange extends Stats {
         super.merge(that);
         return this;
     }
-
 }

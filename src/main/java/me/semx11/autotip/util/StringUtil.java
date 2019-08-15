@@ -11,7 +11,7 @@ public class StringUtil {
         return params(input, true, params);
     }
 
-    public static String params(String input, boolean color, Object... params) {
+    private static String params(String input, boolean color, Object... params) {
         if (color) {
             input = format(input);
         }

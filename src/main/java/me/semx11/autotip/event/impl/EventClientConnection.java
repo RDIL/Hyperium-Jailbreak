@@ -26,11 +26,11 @@ public class EventClientConnection implements Event {
         return lastLogin;
     }
 
-    public Object getHeader() {
+    private Object getHeader() {
         return Autotip.tabHeader;
     }
 
-    public void setHeader(IChatComponent component) {
+    private void setHeader(IChatComponent component) {
         Minecraft.getMinecraft().ingameGUI.getTabList().setHeader(component);
     }
 

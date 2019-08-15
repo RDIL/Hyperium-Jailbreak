@@ -59,7 +59,6 @@ public class GlobalSettings {
     }
 
     public static class GameAlias {
-
         private String alias;
         private List<String> aliases;
 

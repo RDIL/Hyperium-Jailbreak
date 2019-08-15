@@ -13,7 +13,6 @@ import me.semx11.autotip.util.Version;
 import org.apache.http.client.methods.HttpUriRequest;
 
 public class LocaleRequest implements Request<LocaleReply> {
-
     private final Locale locale;
     private final Version version;
 
@@ -43,5 +42,4 @@ public class LocaleRequest implements Request<LocaleReply> {
     public RequestType getType() {
         return RequestType.LOCALE;
     }
-
 }

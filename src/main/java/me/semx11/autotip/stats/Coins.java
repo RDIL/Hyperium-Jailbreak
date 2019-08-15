@@ -33,24 +33,8 @@ public class Coins implements Comparable<Coins> {
         return FORMAT.format(coinsSent);
     }
 
-    public int getSentInt() {
-        return coinsSent;
-    }
-
-    public void addSent(int coins) {
-        coinsSent += coins;
-    }
-
     public String getReceived() {
         return FORMAT.format(coinsReceived);
-    }
-
-    public int getReceivedInt() {
-        return coinsReceived;
-    }
-
-    public void addReceived(int coins) {
-        coinsReceived += coins;
     }
 
     public Coins merge(final Coins that) {
@@ -63,5 +47,4 @@ public class Coins implements Comparable<Coins> {
     public int compareTo(Coins that) {
         return Integer.compare(this.getTotalInt(), that.getTotalInt());
     }
-
 }

@@ -32,15 +32,7 @@ public class TaskManager {
         return executor;
     }
 
-    public void schedule(Runnable runnable, long delay) {
-        try {
-            scheduler.schedule(runnable, delay, SECONDS).get();
-        } catch (InterruptedException | ExecutionException e) {
-            ErrorReport.reportException(e);
-        }
-    }
-
-    public <T> T scheduleAndAwait(Callable<T> callable, long delay) {
+    <T> T scheduleAndAwait(Callable<T> callable, long delay) {
         try {
             return scheduler.schedule(callable, delay, SECONDS).get();
         } catch (InterruptedException | ExecutionException e) {
@@ -58,7 +50,7 @@ public class TaskManager {
         this.catchFutureException(type, future);
     }
 
-    public void addRepeatingTask(TaskType type, Runnable command, long delay, long period) {
+    void addRepeatingTask(TaskType type, Runnable command, long delay, long period) {
         if (tasks.containsKey(type)) {
             return;
         }
@@ -67,7 +59,7 @@ public class TaskManager {
         this.catchFutureException(type, future);
     }
 
-    public void cancelTask(TaskType type) {
+    void cancelTask(TaskType type) {
         if (tasks.containsKey(type)) {
             tasks.get(type).cancel(true);
             tasks.remove(type);

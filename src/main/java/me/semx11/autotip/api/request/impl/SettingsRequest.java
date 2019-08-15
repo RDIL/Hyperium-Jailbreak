@@ -12,7 +12,6 @@ import me.semx11.autotip.util.Version;
 import org.apache.http.client.methods.HttpUriRequest;
 
 public class SettingsRequest implements Request<SettingsReply> {
-
     private final Version version;
 
     private SettingsRequest(Autotip autotip) {
@@ -39,5 +38,4 @@ public class SettingsRequest implements Request<SettingsReply> {
     public RequestType getType() {
         return RequestType.SETTINGS;
     }
-
 }

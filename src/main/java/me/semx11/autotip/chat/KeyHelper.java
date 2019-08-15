@@ -11,7 +11,7 @@ public class KeyHelper {
         this.rootKey = rootKey;
     }
 
-    public ChatComponentBuilder getBuilder(String key, Object... params) {
+    private ChatComponentBuilder getBuilder(String key, Object... params) {
         return messageUtil.getBuilder(this.getKey(key), params);
     }
 

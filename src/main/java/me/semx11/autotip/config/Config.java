@@ -11,6 +11,7 @@ import me.semx11.autotip.Autotip;
 import me.semx11.autotip.chat.MessageOption;
 import me.semx11.autotip.gson.exclusion.Exclude;
 import org.apache.commons.io.FileUtils;
+import org.omg.IOP.Encoding;
 
 public class Config {
     @Exclude private final Autotip autotip;
@@ -79,7 +80,7 @@ public class Config {
 
     public Config load() {
         try {
-            String json = FileUtils.readFileToString(configFile);
+            String json = FileUtils.readFileToString(configFile, "UTF-8");
             return this.merge(autotip.getGson().fromJson(json, Config.class)).save();
         } catch (FileNotFoundException e) {
             Autotip.LOGGER.info("config.at does not exist, creating...");

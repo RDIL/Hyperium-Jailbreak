@@ -12,7 +12,6 @@ import me.semx11.autotip.api.request.Request;
 import org.apache.http.client.methods.HttpUriRequest;
 
 public class LoginRequest implements Request<LoginReply> {
-
     private final Autotip autotip;
     private final GameProfile profile;
     private final String hash;
@@ -51,5 +50,4 @@ public class LoginRequest implements Request<LoginReply> {
     public RequestType getType() {
         return RequestType.LOGIN;
     }
-
 }

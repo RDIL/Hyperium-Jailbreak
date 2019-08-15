@@ -6,7 +6,6 @@ import me.semx11.autotip.Autotip;
 import me.semx11.autotip.config.Config;
 
 public class ConfigCreator implements InstanceCreator<Config> {
-
     private final Autotip autotip;
 
     public ConfigCreator(Autotip autotip) {
@@ -17,5 +16,4 @@ public class ConfigCreator implements InstanceCreator<Config> {
     public Config createInstance(Type type) {
         return new Config(autotip);
     }
-
 }

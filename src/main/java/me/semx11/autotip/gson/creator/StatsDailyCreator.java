@@ -6,7 +6,6 @@ import me.semx11.autotip.Autotip;
 import me.semx11.autotip.stats.StatsDaily;
 
 public class StatsDailyCreator implements InstanceCreator<StatsDaily> {
-
     private final Autotip autotip;
 
     public StatsDailyCreator(Autotip autotip) {
@@ -17,5 +16,4 @@ public class StatsDailyCreator implements InstanceCreator<StatsDaily> {
     public StatsDaily createInstance(Type type) {
         return new StatsDaily(autotip);
     }
-
 }

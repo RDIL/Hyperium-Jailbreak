@@ -50,5 +50,4 @@ public class Version implements Comparable<Version> {
     public String toString() {
         return this.get();
     }
-
 }

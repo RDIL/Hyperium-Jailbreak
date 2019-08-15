@@ -40,5 +40,4 @@ public enum MessageOption {
     public String toString() {
         return format;
     }
-
 }

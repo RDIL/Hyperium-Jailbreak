@@ -29,24 +29,12 @@ public class FileUtil {
         }
     }
 
-    public Path getStatsDir() {
+    private Path getStatsDir() {
         return statsDir;
     }
 
     public boolean exists(String path) {
         return Files.exists(this.getPath(path));
-    }
-
-    public void delete(File file) {
-        this.delete(file.toPath());
-    }
-
-    public void delete(Path path) {
-        try {
-            Files.delete(path);
-        } catch (IOException e) {
-            Autotip.LOGGER.error("Could not delete file " + path);
-        }
     }
 
     public File getStatsFile(LocalDate localDate) {
@@ -81,7 +69,7 @@ public class FileUtil {
         return this.getPath(path).toFile();
     }
 
-    public Path getPath(String path) {
+    private Path getPath(String path) {
         return this.getPath(this.userDir, path);
     }
 

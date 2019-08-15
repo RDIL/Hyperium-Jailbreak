@@ -14,7 +14,6 @@ import me.semx11.autotip.config.GlobalSettings.GameGroup;
 import me.semx11.autotip.gson.exclusion.Exclude;
 
 public abstract class Stats {
-
     static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final DecimalFormat FORMAT = (DecimalFormat) NumberFormat.getInstance(Locale.US);
 
@@ -109,10 +108,6 @@ public abstract class Stats {
         this.xpReceived += xp;
     }
 
-    public Map<String, Coins> getGameStatistics() {
-        return gameStatistics;
-    }
-
     public void addCoinsSent(String game, int coins) {
         this.addCoins(game, coins, 0);
     }
@@ -191,5 +186,4 @@ public abstract class Stats {
         }
         messageUtil.separator();
     }
-
 }

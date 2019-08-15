@@ -19,11 +19,11 @@ public class MessageUtil {
         this.autotip = autotip;
     }
 
-    public ChatComponentBuilder getBuilder(String text, Object... params) {
+    ChatComponentBuilder getBuilder(String text, Object... params) {
         return this.getBuilder(true, text, params);
     }
 
-    public ChatComponentBuilder getBuilder(boolean prefix, String text, Object... params) {
+    private ChatComponentBuilder getBuilder(boolean prefix, String text, Object... params) {
         return ChatComponentBuilder.of(prefix, text, params);
     }
 
@@ -52,7 +52,7 @@ public class MessageUtil {
         this.sendRaw("&6&m&l----------------------------------");
     }
 
-    public void sendRaw(String msg, Object... params) {
+    private void sendRaw(String msg, Object... params) {
         msg = StringUtil.params(msg, params);
         if (this.isPlayerLoaded()) {
             this.flushQueues();

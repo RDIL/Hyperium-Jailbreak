@@ -11,16 +11,11 @@ import me.semx11.autotip.gson.exclusion.Exclude;
 import me.semx11.autotip.stats.StatsDaily;
 
 public class StatsMessage extends Message {
-
     @Exclude
     private final Map<String, StatsMessageMatcher> statsMessageCache = new ConcurrentHashMap<>();
 
     private StatsType statsType;
     private List<HoverMessage> hoverMessages;
-
-    public StatsMessage() {
-        super();
-    }
 
     public StatsMessage(Pattern pattern, MessageOption hideFor, StatsType statsType) {
         super(pattern, hideFor);
@@ -53,5 +48,4 @@ public class StatsMessage extends Message {
             }
         }
     }
-
 }

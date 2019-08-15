@@ -11,7 +11,6 @@ import me.semx11.autotip.api.request.Request;
 import org.apache.http.client.methods.HttpUriRequest;
 
 public class TipRequest implements Request<TipReply> {
-
     private final SessionKey sessionKey;
 
     private TipRequest(SessionKey sessionKey) {
@@ -38,5 +37,4 @@ public class TipRequest implements Request<TipReply> {
     public RequestType getType() {
         return RequestType.TIP;
     }
-
 }

@@ -72,9 +72,7 @@ public class StatsManager {
         StatsRange range = new StatsRange(autotip, start, end);
         Stream.iterate(start, date -> date.plusDays(1))
                 .limit(ChronoUnit.DAYS.between(start, end) + 1)
-                .forEach(date -> {
-                    range.merge(this.get(date));
-                });
+                .forEach(date -> range.merge(this.get(date)));
         return range;
     }
 
@@ -96,7 +94,7 @@ public class StatsManager {
     private StatsDaily load(StatsDaily stats) {
         File file = stats.getFile();
         try {
-            String json = FileUtils.readFileToString(file);
+            String json = FileUtils.readFileToString(file, "UTF-8");
             return stats.merge(autotip.getGson().fromJson(json, StatsDaily.class));
         } catch (FileNotFoundException e) {
             // Skip
