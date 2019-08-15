@@ -59,7 +59,7 @@ import java.util.function.Consumer;
 public class LevelHeadGui extends GuiScreen {
     private final String ENABLED = ChatColor.GREEN + "Enabled";
     private final String DISABLED = ChatColor.RED + "Disabled";
-    private final String COLOR_CHAR = "\u00a7";
+    private static final String COLOR_CHAR = "\u00a7";
     private static final String colors = "0123456789abcdef";
     private final List<GuiButton> sliders = new ArrayList<>();
     private final Map<GuiButton, Consumer<GuiButton>> clicks = new HashMap<>();
