@@ -11,7 +11,6 @@ import me.semx11.autotip.Autotip;
 import me.semx11.autotip.chat.MessageOption;
 import me.semx11.autotip.gson.exclusion.Exclude;
 import org.apache.commons.io.FileUtils;
-import org.omg.IOP.Encoding;
 
 public class Config {
     @Exclude private final Autotip autotip;
