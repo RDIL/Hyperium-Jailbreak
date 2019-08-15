@@ -34,7 +34,7 @@ public class HyperiumEntityRenderer {
         EventBus.INSTANCE.post(new RenderEvent());
     }
     
-    public void orientCamera(float partialTicks, float thirdPersonDistanceTemp, float thirdPersonDistance, boolean cloudFog, Minecraft mc){
+    public void orientCamera(float partialTicks, float thirdPersonDistanceTemp, float thirdPersonDistance, Minecraft mc){
         PerspectiveModifierHandler perspectiveHandler = Hyperium.INSTANCE.getHandlers().getPerspectiveHandler();
         Entity entity = mc.getRenderViewEntity();
         float f = entity.getEyeHeight();
@@ -135,11 +135,6 @@ public class HyperiumEntityRenderer {
 
         ((IMixinEntityRenderer) parent).setCloudFog(mc.renderGlobal.hasCloudFog(d0, d2, d3, partialTicks));
 
-    }
-
-    public void loadShader(ResourceLocation resourceLocation){
-        // Uses an accessor to call the original load shader method.
-        ((IMixinEntityRenderer) parent).callLoadShader(resourceLocation);
     }
 
     public void disableBlurShader(){

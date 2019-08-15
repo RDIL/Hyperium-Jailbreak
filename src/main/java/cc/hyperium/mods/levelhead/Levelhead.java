@@ -45,10 +45,8 @@ import java.util.Set;
 import java.util.UUID;
 
 public class Levelhead extends AbstractMod {
-    public final String MODID = "LEVEL_HEAD";
-    public final String VERSION = "5.0";
+    private final String VERSION = "5.0";
     public final Map<UUID, LevelheadTag> levelCache = new HashMap<>();
-    private final Metadata meta;
     private final Map<UUID, Integer> timeCheck = new HashMap<>();
     public UUID userUuid = null;
     public int count = 1;
@@ -59,14 +57,10 @@ public class Levelhead extends AbstractMod {
     private Set<UUID> existedMorethan5Seconds = new HashSet<>();
     private long waitUntil = System.currentTimeMillis();
     private int updates = 0;
-    private Sk1erMod mod;
     private LevelheadConfig config;
     private JsonHolder types = new JsonHolder();
 
-    public Levelhead() {
-        Metadata metadata = new Metadata(this, "Levelhead", "5.0", "Sk1er");
-        this.meta = metadata;
-    }
+    public Levelhead() {}
 
     public int getRGBColor() {
         return Color.HSBtoRGB(System.currentTimeMillis() % 1000L / 1000.0f, 0.8f, 0.8f);
@@ -77,11 +71,9 @@ public class Levelhead extends AbstractMod {
     }
 
     public AbstractMod init() {
-        mod = new Sk1erMod(MODID, VERSION);
-        Multithreading.runAsync(() -> types = new JsonHolder(mod.rawWithAgent("https://api.sk1er.club/levelhead_config")));
+        Multithreading.runAsync(() -> types = new JsonHolder(new Sk1erMod().rawWithAgent("https://api.sk1er.club/levelhead_config")));
         this.config = new LevelheadConfig();
         Hyperium.CONFIG.register(config);
-        register(mod);
         register(this);
         userUuid = UUIDUtil.getClientUUID();
         register(new LevelHeadRender(this), this);
@@ -91,7 +83,7 @@ public class Levelhead extends AbstractMod {
 
     @Override
     public Metadata getModMetadata() {
-        return this.meta;
+        return new Metadata(this, "Levelhead", "5.0", "Sk1er");
     }
 
     @SuppressWarnings("SimplifiableIfStatement")
@@ -178,7 +170,7 @@ public class Levelhead extends AbstractMod {
         updates++;
         levelCache.put(uuid, null);
         Multithreading.runAsync(() -> {
-            String raw = mod.rawWithAgent(
+            String raw = Sk1erMod.getInstance().rawWithAgent(
                 "https://api.sk1er.club/levelheadv5/" + trimUuid(uuid) + "/" + type
                     + "/" + trimUuid(Minecraft.getMinecraft().getSession().getProfile().getId()) +
                     "/" + VERSION);
@@ -186,14 +178,14 @@ public class Levelhead extends AbstractMod {
             if (!object.optBoolean("success")) {
                 object.put("strlevel", "Error");
             }
-            LevelheadTag value = buildTag(object, uuid);
+            LevelheadTag value = buildTag(object);
             levelCache.put(uuid, value);
             trueValueCache.put(uuid, object.optString("strlevel"));
         });
         Multithreading.POOL.submit(this::clearCache);
     }
 
-    public LevelheadTag buildTag(JsonHolder object, UUID uuid) {
+    public LevelheadTag buildTag(JsonHolder object) {
         LevelheadTag value = new LevelheadTag();
         JsonHolder headerObj = new JsonHolder();
         JsonHolder footerObj = new JsonHolder();
@@ -211,7 +203,7 @@ public class Levelhead extends AbstractMod {
             headerObj.put("custom", true);
         }
         try {
-            if (object.optInt("level") != Integer.valueOf(object.optString("strlevel"))) {
+            if (object.optInt("level") != Integer.parseInt(object.optString("strlevel"))) {
                 footerObj.put("custom", true);
             }
         } catch (Exception ignored) {

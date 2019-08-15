@@ -7,7 +7,7 @@ task:
   gradle_cache:
     folder: ~/.gradle/caches
     fingerprint_script: cat build.gradle
-    populate_script: gradle setupCiWorkspace
+    populate_script: gradle setupCiWorkspace --parallel
   name: Cirrus CI
   script: gradle build --build-cache --parallel
   jar_artifacts:

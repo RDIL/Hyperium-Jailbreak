@@ -21,16 +21,11 @@ import org.apache.commons.io.IOUtils;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 public class Sk1erMod {
     private static Sk1erMod instance;
-    private String modid;
-    private String version;
-
-    public Sk1erMod(String modid, String version) {
-        this.modid = modid;
-        this.version = version;
+    public Sk1erMod() {
         instance = this;
     }
 
@@ -44,12 +39,12 @@ public class Sk1erMod {
             HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
             connection.setRequestMethod("GET");
             connection.setUseCaches(true);
-            connection.addRequestProperty("User-Agent", "Mozilla/4.76 (" + modid + " V" + version + ") via Hyperium ");
+            connection.addRequestProperty("User-Agent", "Mozilla/4.76 (Hyperium V1.0.5)");
             connection.setReadTimeout(15000);
             connection.setConnectTimeout(15000);
             connection.setDoOutput(true);
             InputStream is = connection.getInputStream();
-            return IOUtils.toString(is, Charset.forName("UTF-8"));
+            return IOUtils.toString(is, StandardCharsets.UTF_8);
         } catch (Exception e) {
             e.printStackTrace();
         }

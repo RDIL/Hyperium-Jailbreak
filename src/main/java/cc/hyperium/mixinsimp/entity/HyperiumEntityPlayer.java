@@ -16,8 +16,8 @@ import net.minecraft.util.IChatComponent;
 public class HyperiumEntityPlayer {
     private EntityPlayer parent;
 
-    private final float sneakingHeight = 1.54F;
-    private final float standingHeight = 1.62F;
+    private static final float sneakingHeight = 1.54F;
+    private static final float standingHeight = 1.62F;
     private boolean last = false;
     private float currentHeight = 1.62F;
     private long lastChangeTime = System.currentTimeMillis();

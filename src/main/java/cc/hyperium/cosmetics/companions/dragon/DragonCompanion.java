@@ -136,36 +136,36 @@ public class DragonCompanion extends AbstractCosmetic {
         }
     }
 
-    class CustomDragon {
+    static class CustomDragon {
         EntityDragon dragon;
         AnimationState animationState;
 
-        public CustomDragon(EntityDragon dragon, AnimationState point) {
+        CustomDragon(EntityDragon dragon, AnimationState point) {
             this.dragon = dragon;
             this.animationState = point;
         }
     }
 
-    class AnimationPoint {
+    static class AnimationPoint {
         double x, y, z;
 
-        public AnimationPoint(double x, double y, double z) {
+        AnimationPoint(double x, double y, double z) {
             this.x = x;
             this.y = y;
             this.z = z;
         }
 
-        public double distanceSqTo(AnimationPoint other) {
+        double distanceSqTo(AnimationPoint other) {
             return Math.pow(other.x - x, 2) + Math.pow(other.y - y, 2) + Math.pow(other.z - z, 2);
         }
 
-        public double distanceTo(AnimationPoint animationPoint) {
+        double distanceTo(AnimationPoint animationPoint) {
             return Math.sqrt(distanceSqTo(animationPoint));
         }
     }
 
-    class AnimationState {
-        private final int BOUNDS = 4;
+    static class AnimationState {
+        private static final int BOUNDS = 4;
         AnimationPoint last;
         AnimationPoint next;
         AnimationPoint nextNext;
@@ -175,12 +175,12 @@ public class DragonCompanion extends AbstractCosmetic {
         private long totalTime = 0;
         private long endTime;
 
-        public AnimationState() {
+        AnimationState() {
             next = generateRandom(null);
             switchToNext(null, false);
         }
 
-        public void switchToNext(EntityPlayer player, boolean toofar) {
+        void switchToNext(EntityPlayer player, boolean toofar) {
             if (nextNext == null)
                 nextNext = toofar ? new AnimationPoint(player.posX, player.posY + 3, player.posZ) : generateRandom(player);
             last = toofar ? getCurrent(player) : next;
@@ -196,16 +196,16 @@ public class DragonCompanion extends AbstractCosmetic {
             endTime = start + totalTime;
         }
 
-        public AnimationPoint getCurrent(EntityPlayer player) {
+        AnimationPoint getCurrent(EntityPlayer player) {
             long l = System.currentTimeMillis();
             if (l > endTime) switchToNext(player, false);
             double percent = (double) (l - start) / (double) totalTime;
             return new AnimationPoint(interpolate(this.last.x, next.x, percent),
-                interpolate(this.last.y, next.y, percent),
-                interpolate(this.last.z, next.z, percent));
+                    interpolate(this.last.y, next.y, percent),
+                    interpolate(this.last.z, next.z, percent));
         }
 
-        public boolean nextFrameisNewPoint(EntityPlayer player) {
+        boolean nextFrameisNewPoint(EntityPlayer player) {
             long endTime = this.endTime;
             boolean b = System.currentTimeMillis() + 50L >= endTime;
             if (b) nextNext = generateRandom(player);
@@ -223,8 +223,8 @@ public class DragonCompanion extends AbstractCosmetic {
             double posZ = player == null ? 0 : player.posZ;
             double y = current.nextDouble(.5 + posY, posY + BOUNDS + (double) BOUNDS / 2D);
             return new AnimationPoint(current.nextDouble(-BOUNDS + posX, BOUNDS + posX),
-                y,
-                current.nextDouble(-BOUNDS + posZ, BOUNDS + posZ));
+                    y,
+                    current.nextDouble(-BOUNDS + posZ, BOUNDS + posZ));
         }
     }
 }

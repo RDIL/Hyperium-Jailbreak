@@ -26,6 +26,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -43,26 +44,21 @@ public class NickHider {
     private final List<Nick> nicks = new ArrayList<>();
     private File suggestedConfigurationFile = new File(Hyperium.folder, "nick_data.json");
     private HashMap<String, String> cache = new HashMap<>();
-    private HashMap<String, String> remaps = new HashMap<>();
     private Set<String> usedNicks = new HashSet<>();
-    private Sk1erMod sk1erMod;
+    private static final Sk1erMod sk1erMod = new Sk1erMod();
     private NickHiderConfig config;
-    private boolean forceDown = false;
     private String override = null;
     public NickHider() {
         INSTANCE = this;
     }
-    public Set<String> getUsedNicks() {
-        return usedNicks;
-    }
-    public String getPseudo_key() {
+    String getPseudo_key() {
         return config.getPseudo_key();
     }
-    public void setPseudo_key(String pseudo_key) {
+    void setPseudo_key(String pseudo_key) {
         config.setPseudo_key(pseudo_key);
     }
     private List<String> namesDatabase = new ArrayList<>();
-    public String getPseudo(String input) {
+    private String getPseudo(String input) {
         int i = input.hashCode() + getPseudo_key().hashCode();
         if (i < 0) {
             i = -i;
@@ -75,7 +71,6 @@ public class NickHider {
     }
 
     public void init() {
-        sk1erMod = Sk1erMod.getInstance();
         Multithreading.runAsync(() -> namesDatabase.addAll(Arrays.asList(sk1erMod.rawWithAgent("https://sk1er.club/words.txt").split("\n"))));
         if (suggestedConfigurationFile.exists()) {
             try {
@@ -112,7 +107,7 @@ public class NickHider {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             String s = new Gson().toJson(this.config);
             try {
-                FileUtils.write(suggestedConfigurationFile, s);
+                FileUtils.write(suggestedConfigurationFile, s, StandardCharsets.UTF_8);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -142,7 +137,7 @@ public class NickHider {
         }
     }
 
-    public void setOwnName(String name) {
+    void setOwnName(String name) {
         override = name;
         String name1 = Minecraft.getMinecraft().getSession().getProfile().getName();
         usedNicks.remove(name1.toLowerCase());
@@ -177,11 +172,7 @@ public class NickHider {
         return ObjectArrays.concat(in, re, String.class);
     }
 
-    public List<Nick> getNicks() {
-        return nicks;
-    }
-
-    public HashMap<String, String> getCache() {
+    HashMap<String, String> getCache() {
         return cache;
     }
 
@@ -218,7 +209,7 @@ public class NickHider {
         return config.isHideSkins();
     }
 
-    public void setHideSkins(boolean hideSkins) {
+    void setHideSkins(boolean hideSkins) {
         this.config.setHideSkins(hideSkins);
     }
 
@@ -228,14 +219,13 @@ public class NickHider {
         usedNicks.clear();
     }
 
-    public void remap(String key, String newKey) {
+    private void remap(String key, String newKey) {
         key = key.toLowerCase();
         if (usedNicks.contains(key))
             return;
         if (key.isEmpty() || key.contains(" "))
             return;
         usedNicks.add(key);
-        remaps.put(key, newKey);
         Nick nick = new Nick(Pattern.compile(key.toLowerCase(), Pattern.CASE_INSENSITIVE), key, newKey);
         nicks.add(nick);
         cache.clear();
@@ -245,8 +235,6 @@ public class NickHider {
         if (config == null) {
             config = new NickHiderConfig();
         }
-        if (forceDown)
-            return input;
         if (!config.isEnabled())
             return input;
         if (nicks.size() == 0)
@@ -266,7 +254,7 @@ public class NickHider {
         return config.isEnabled();
     }
 
-    public boolean isSelfOnly() {
+    boolean isSelfOnly() {
         return config.isSelfOnly();
     }
 
@@ -275,16 +263,16 @@ public class NickHider {
         reset();
     }
 
-    public void toggleSelf() {
+    void toggleSelf() {
         config.setSelfOnly(!config.isSelfOnly());
         reset();
     }
 
-    class Nick {
+    static class Nick {
         public Pattern pattern;
-        public String oldName;
-        public String newName;
-        public Nick(Pattern pattern, String oldName, String newName) {
+        String oldName;
+        String newName;
+        Nick(Pattern pattern, String oldName, String newName) {
             this.pattern = pattern;
             this.oldName = oldName;
             this.newName = newName;

@@ -59,8 +59,8 @@ import java.util.function.Consumer;
 public class LevelHeadGui extends GuiScreen {
     private final String ENABLED = ChatColor.GREEN + "Enabled";
     private final String DISABLED = ChatColor.RED + "Disabled";
-    private final String COLOR_CHAR = String.valueOf("\u00a7");
-    private final String colors = "0123456789abcdef";
+    private final String COLOR_CHAR = "\u00a7";
+    private static final String colors = "0123456789abcdef";
     private final List<GuiButton> sliders = new ArrayList<>();
     private final Map<GuiButton, Consumer<GuiButton>> clicks = new HashMap<>();
     private final Minecraft mc;
@@ -313,14 +313,14 @@ public class LevelHeadGui extends GuiScreen {
         }
     }
 
-    public void updatePeopleToValues() {
+    private void updatePeopleToValues() {
         Levelhead levelhead = Hyperium.INSTANCE.getModIntegration().getLevelhead();
         levelhead.levelCache.forEach((uuid, levelheadTag) -> {
             String value = levelhead.getTrueValueCache().get(uuid);
             if (value == null)
                 return;
             JsonHolder footer = new JsonHolder().put("level", NumberUtils.isNumber(value) ? Long.parseLong(value) : -1).put("strlevel", value);
-            LevelheadTag tag = levelhead.buildTag(footer, uuid);
+            LevelheadTag tag = levelhead.buildTag(footer);
             levelheadTag.reApply(tag);
         });
     }
@@ -349,7 +349,7 @@ public class LevelHeadGui extends GuiScreen {
     }
 
     @Override
-    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) {
         textField.mouseClicked(mouseX, mouseY, mouseButton);
         if (mouseButton == 0 && customBlock.isMouseOver(mouseX, mouseY)) {
             new CustomLevelheadConfigurer().show();
@@ -404,7 +404,7 @@ public class LevelHeadGui extends GuiScreen {
         FontRenderer renderer = mc.fontRendererObj;
         if (Hyperium.INSTANCE.getModIntegration().getLevelhead().getConfig().isEnabled()) {
             drawCenteredString(renderer, "This is how levels will display", this.width / 2, 30, Color.WHITE.getRGB());
-            LevelheadTag levelheadTag = Hyperium.INSTANCE.getModIntegration().getLevelhead().buildTag(new JsonHolder(), null);
+            LevelheadTag levelheadTag = Hyperium.INSTANCE.getModIntegration().getLevelhead().buildTag(new JsonHolder());
             LevelheadComponent header = levelheadTag.getHeader();
             int h = 40;
             if (header.isChroma())

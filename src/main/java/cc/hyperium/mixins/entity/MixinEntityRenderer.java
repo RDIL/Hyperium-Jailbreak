@@ -39,7 +39,6 @@ import java.util.List;
 public abstract class MixinEntityRenderer {
     @Shadow private float thirdPersonDistance;
     @Shadow private float thirdPersonDistanceTemp;
-    @Shadow private boolean cloudFog;
     @Shadow private Minecraft mc;
     @Shadow private Entity pointedEntity;
     private HyperiumEntityRenderer hyperiumEntityRenderer = new HyperiumEntityRenderer((EntityRenderer) (Object) this);
@@ -59,7 +58,7 @@ public abstract class MixinEntityRenderer {
 
     @Overwrite
     private void orientCamera(float partialTicks) {
-        hyperiumEntityRenderer.orientCamera(partialTicks, this.thirdPersonDistanceTemp, this.thirdPersonDistance, this.cloudFog, this.mc);
+        hyperiumEntityRenderer.orientCamera(partialTicks, this.thirdPersonDistanceTemp, this.thirdPersonDistance, this.mc);
     }
 
     @Inject(method = "renderWorldPass", at = @At(value = "INVOKE_STRING", target = "Lnet/minecraft/profiler/Profiler;endStartSection(Ljava/lang/String;)V", args = "ldc=outline"), cancellable = true)
@@ -79,7 +78,7 @@ public abstract class MixinEntityRenderer {
             if (this.mc.theWorld != null) {
                 this.mc.mcProfiler.startSection("pick");
                 this.mc.pointedEntity = null;
-                double d0 = (double) this.mc.playerController.getBlockReachDistance();
+                double d0 = this.mc.playerController.getBlockReachDistance();
                 this.mc.objectMouseOver = entity.rayTrace(d0, partialTicks);
                 double d1 = d0;
                 Vec3 vec3 = entity.getPositionEyes(partialTicks);

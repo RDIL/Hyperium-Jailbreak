@@ -1,6 +1,5 @@
 package cc.hyperium.handlers.handlers.animation.cape;
 
-import cc.hyperium.Hyperium;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.WorldChangeEvent;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
@@ -14,7 +13,6 @@ import net.minecraft.client.renderer.ThreadDownloadImageData;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.util.ResourceLocation;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantLock;
@@ -22,13 +20,8 @@ import java.util.concurrent.locks.ReentrantLock;
 public class CapeHandler {
     public static final ReentrantLock LOCK = new ReentrantLock();
     private final ConcurrentHashMap<UUID, ICape> capes = new ConcurrentHashMap<>();
-    private File CACHE_DIR;
 
-    public CapeHandler() {
-        CACHE_DIR = new File(Hyperium.folder, "CAPE_CACHE");
-        CACHE_DIR.mkdir();
-        Runtime.getRuntime().addShutdownHook(new Thread(CACHE_DIR::delete));
-    }
+    public CapeHandler() {}
 
     @InvokeEvent
     public void worldSwap(WorldChangeEvent event) {

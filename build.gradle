@@ -83,7 +83,6 @@ dependencies {
     }
     embed group: 'com.nativelibs4java', name: 'bridj', version: '0.7.0'
     embed ('com.github.HyperiumClient:Installer:1.9') {
-        exclude module: 'kotlin-stdlib'
         exclude module: 'gson'
         exclude module: 'LaunchWrapperPatcher'
     }
