@@ -242,10 +242,9 @@ public class GuiDances extends HyperiumGui {
 
         GlStateManager.translate(0, 50, 0);
 
-        float v = 3000F;
-        GlStateManager.rotate(System.currentTimeMillis() % (int) v / v * 360F, 0, 1.0F, 0);
         GlStateManager.translate(0, 0, -50);
         GuiInventory.drawEntityOnScreen(0, 0, 50, 0, 0, Minecraft.getMinecraft().thePlayer);
+        GlStateManager.translate(0, 0, -50);
         GlStateManager.depthFunc(515);
         GlStateManager.resetColor();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
