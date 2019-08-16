@@ -3,7 +3,6 @@ import cc.hyperium.Hyperium;
 import cc.hyperium.config.Category;
 import cc.hyperium.config.Settings;
 import cc.hyperium.gui.HyperiumGui;
-import cc.hyperium.gui.Icons;
 import cc.hyperium.gui.MaterialTextField;
 import cc.hyperium.gui.hyperium.components.AbstractTab;
 import cc.hyperium.gui.hyperium.tabs.SettingsTab;
@@ -12,7 +11,6 @@ import cc.hyperium.mixinsimp.client.GlStateModifier;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
 import cc.hyperium.utils.HyperiumFontRenderer;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -116,26 +114,13 @@ public class HyperiumMainGui extends HyperiumGui {
         if (Minecraft.getMinecraft().theWorld == null) renderHyperiumBackground(ResolutionUtil.current());
 
         GlStateModifier.INSTANCE.reset();
-        Icons.LIGHTBULB.bind();
 
-        int w = yg * 88 / 144;
-        int x = this.width / 2 - w - 10;
-        int x1 = this.width / 2 + 10;
-
-        drawRect(x - 3, 0, x + w + 3, yg, new Color(0, 0, 0, 50).getRGB());
-        drawScaledCustomSizeModalRect(x, 0, 0, 0, 88, 128, w,
-            yg, 88, 128);
-        Icons.LIGHTBULB_SOLID.bind();
-        drawRect(x1 - 3, 0, x1 + w + 3, yg, new Color(0, 0, 0, 50).getRGB());
-
-        drawScaledCustomSizeModalRect(x1, 0, 0, 0, 88, 128, w,
-            yg, 88, 128);
         if (Minecraft.getMinecraft().theWorld == null) {
             this.drawGradientRect(0, 0, this.width, this.height, -2130706433, 16777215);
             this.drawGradientRect(0, 0, this.width, this.height, 0, Integer.MIN_VALUE);
         }
-        drawRect(xg, yg, xg * 10, yg * 2, new Color(0, 0, 0, Settings.SETTINGS_ALPHA).getRGB());
-        drawRect(xg, yg * 2, xg * 10, yg * 9, new Color(0, 0, 0, Settings.SETTINGS_ALPHA / 2).getRGB());
+        drawRect(xg, yg, xg * 10, yg * 2, new Color(0, 0, 0, 225).getRGB());
+        drawRect(xg, yg * 2, xg * 10, yg * 9, new Color(0, 0, 0, 225 / 2).getRGB());
         searchField.render(mouseX, mouseY);
         GlStateModifier.INSTANCE.reset();
 
@@ -148,13 +133,7 @@ public class HyperiumMainGui extends HyperiumGui {
         smol.drawString(Hyperium.version, this.width - smol.getWidth(Hyperium.version) - 1,
             height - 10, 0xffffffff);
 
-        Icons.ARROW_LEFT.bind();
         GlStateManager.pushMatrix();
-        Gui.drawScaledCustomSizeModalRect(this.width / 2 - xg, yg * 9, 0, 0, 144, 144, yg / 2, yg / 2,
-            144, 144);
-        Icons.ARROW_RIGHT.bind();
-        Gui.drawScaledCustomSizeModalRect(this.width / 2 + xg - (yg / 2), yg * 9, 0, 0, 144, 144, yg / 2,
-            yg / 2, 144, 144);
         GlStateManager.popMatrix();
     }
 
@@ -175,45 +154,6 @@ public class HyperiumMainGui extends HyperiumGui {
     @Override
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
         super.mouseClicked(mouseX, mouseY, mouseButton);
-        int yg = (height / 10); // Y grid
-        int xg = (width / 11);  // X grid
-
-        int w = yg * 88 / 144;
-        int x = this.width / 2 - w - 10;
-        int x1 = this.width / 2 + 10;
-
-        if (mouseY > 0 && mouseY < yg) {
-            int settingsAlpha = Settings.SETTINGS_ALPHA;
-            if (mouseX >= x && mouseX <= x + w) {
-                if (settingsAlpha >= 100) {
-                    Settings.SETTINGS_ALPHA -= 25;
-                }
-            } else if (mouseX >= x + w && mouseX <= x1 + w) {
-                if (settingsAlpha <= 225)
-                    Settings.SETTINGS_ALPHA += 25;
-            }
-        }
-
-        if (mouseY >= yg * 9 && mouseY <= yg * 10) {
-            int size = tabs.size();
-            int i = tabs.indexOf(currentTab);
-            int ix = width / 2 - xg;
-            if (mouseX >= ix && mouseX <= ix + xg / 2) {
-                i--;
-                if (i < 0) {
-                    i = size - 1;
-                }
-                setTab(i);
-            }
-            ix = width / 2 + xg / 2;
-            if (mouseX >= ix && mouseX <= ix + xg / 2) {
-                i++;
-                if (i > size - 1) {
-                    i = 0;
-                }
-                setTab(i);
-            }
-        }
 
         searchField.onClick(mouseX, mouseY, mouseButton);
     }

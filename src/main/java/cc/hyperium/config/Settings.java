@@ -106,9 +106,6 @@ public class Settings {
     public static boolean STATIC_FOV = false;
 
     @ConfigOpt
-    public static int SETTINGS_ALPHA = 100;
-
-    @ConfigOpt
     @SelectorSetting(name = "Hat Type", category = COSMETICS, items = "NONE")
     public static String HAT_TYPE = "NONE";
 
