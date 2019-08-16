@@ -40,7 +40,7 @@ public class BackendHandler {
     public static HttpPost generate(String url) {
         HttpPost tmp = new HttpPost(url);
         tmp.setHeader("User-agent", "HyperiumJailbreak");
-        List<NameValuePair> params = new ArrayList<NameValuePair>(0);
+        List<NameValuePair> params = new ArrayList<>(0);
         try {
             tmp.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
         } catch (UnsupportedEncodingException e) {

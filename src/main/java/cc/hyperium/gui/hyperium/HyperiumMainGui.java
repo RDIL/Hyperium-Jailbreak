@@ -40,7 +40,6 @@ public class HyperiumMainGui extends HyperiumGui {
     private List<RGBFieldSet> rgbFields = new ArrayList<>();
     private MaterialTextField searchField;
 
-
     private HyperiumMainGui() {
         smol = new HyperiumFontRenderer(Settings.GUI_FONT, 14.0F, 0, 1.0F);
         font = new HyperiumFontRenderer(Settings.GUI_FONT, 16.0F, 0, 1.0F);
