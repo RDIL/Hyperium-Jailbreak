@@ -168,13 +168,17 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            System.out.println(response);
             HttpEntity entity = response.getEntity();
+            System.out.println(entity);
 
             if (entity != null) {
                 try (InputStream instream = entity.getContent()) {
+                    System.out.println(instream);
                     StringWriter writer = new StringWriter();
                     IOUtils.copy(instream, writer, "UTF-8");
                     data = new JsonHolder(new JsonParser().parse(writer.toString()).getAsJsonObject());
+                    System.out.println(writer.toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
