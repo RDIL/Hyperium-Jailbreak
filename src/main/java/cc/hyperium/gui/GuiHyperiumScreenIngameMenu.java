@@ -5,6 +5,7 @@ import cc.hyperium.gui.hyperium.HyperiumMainGui;
 import cc.hyperium.gui.keybinds.GuiKeybinds;
 import cc.hyperium.installer.utils.http.HttpEntity;
 import cc.hyperium.installer.utils.http.HttpResponse;
+import cc.hyperium.installer.utils.http.HttpClients;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
 import cc.hyperium.utils.JsonHolder;
@@ -161,7 +162,7 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
         Multithreading.runAsync(() -> {
             HttpResponse response = null;
             try {
-                response = BackendHandler.httpclient.execute(
+                response = HttpClients.createDefault().execute(
                         BackendHandler.generate("https://backend.rdil.rocks/getOnline")
                 );
             } catch (IOException e) {
