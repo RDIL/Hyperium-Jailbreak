@@ -71,12 +71,12 @@ public class SettingsTab extends AbstractTab {
             }
         }
 
-        apply(new LinkComponent(this, Collections.emptyList(), "Sidebar Mod", new GuiScreenSettings(Hyperium.INSTANCE.getInternalAddons().getSidebarAddon())), true, Category.OTHER, items);
-        apply(new LinkComponent(this, Collections.emptyList(), "Keystrokes", new GuiScreenKeystrokes(Hyperium.INSTANCE.getModIntegration().getKeystrokesMod())), true, Category.OTHER, items);
-        apply(new LinkComponent(this, Collections.emptyList(), "Togglechat", new ToggleChatMainGui(Hyperium.INSTANCE.getModIntegration().getToggleChat(), 0)), true, Category.OTHER, items);
+        apply(new LinkComponent(this, Collections.emptyList(), "Sidebar Mod", new GuiScreenSettings(Hyperium.INSTANCE.getInternalAddons().getSidebarAddon())), true, Category.MODS, items);
+        apply(new LinkComponent(this, Collections.emptyList(), "Keystrokes Config GUI", new GuiScreenKeystrokes(Hyperium.INSTANCE.getModIntegration().getKeystrokesMod())), true, Category.KEYSTROKES, items);
+        apply(new LinkComponent(this, Collections.emptyList(), "Togglechat", new ToggleChatMainGui(Hyperium.INSTANCE.getModIntegration().getToggleChat(), 0)), true, Category.MODS, items);
         apply(new LinkComponent(this, Collections.emptyList(), "Keybinds", new GuiKeybinds()), false, Category.GENERAL, items);
-        apply(new LinkComponent(this, Collections.emptyList(), "Bossbar Addon", new GuiBossbarSetting()), true, Category.OTHER, items);
-        apply(new LinkComponent(this, Collections.emptyList(), "Custom Crosshair", new GuiCustomCrosshairEditCrosshair(Hyperium.INSTANCE.getInternalAddons().getCustomCrosshairAddon())), true, Category.OTHER, items);
+        apply(new LinkComponent(this, Collections.emptyList(), "Bossbar Customizer", new GuiBossbarSetting()), true, Category.MODS, items);
+        apply(new LinkComponent(this, Collections.emptyList(), "Custom Crosshair", new GuiCustomCrosshairEditCrosshair(Hyperium.INSTANCE.getInternalAddons().getCustomCrosshairAddon())), true, Category.INTEGRATIONS, items);
         apply(new LinkComponent(this, Collections.emptyList(), "ChromaHUD", new GeneralConfigGui(Hyperium.INSTANCE.getModIntegration().getChromaHUD())), true, Category.CHROMAHUD, items);
 
         for (RGBFieldSet rgbFieldSet : gui.getRgbFields()) {
