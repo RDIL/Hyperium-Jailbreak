@@ -1,5 +1,6 @@
 package cc.hyperium.gui.hyperium.tabs;
 
+import cc.hyperium.Hyperium;
 import cc.hyperium.addons.bossbar.gui.GuiBossbarSetting;
 import cc.hyperium.addons.customcrosshair.gui.GuiCustomCrosshairEditCrosshair;
 import cc.hyperium.addons.sidebar.gui.screen.GuiScreenSettings;
