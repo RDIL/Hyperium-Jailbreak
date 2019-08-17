@@ -11,6 +11,7 @@ import cc.hyperium.config.ToggleSetting;
 import cc.hyperium.gui.hyperium.HyperiumMainGui;
 import cc.hyperium.gui.hyperium.RGBFieldSet;
 import cc.hyperium.gui.hyperium.components.AbstractTab;
+import cc.hyperium.gui.hyperium.components.LinkComponent;
 import cc.hyperium.gui.hyperium.components.AbstractTabComponent;
 import cc.hyperium.gui.hyperium.components.CollapsibleTabComponent;
 import cc.hyperium.gui.hyperium.components.RGBComponent;
