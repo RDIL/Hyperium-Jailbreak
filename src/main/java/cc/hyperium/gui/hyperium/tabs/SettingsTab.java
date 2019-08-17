@@ -75,7 +75,7 @@ public class SettingsTab extends AbstractTab {
         apply(new LinkComponent(this, Collections.emptyList(), "Keystrokes Config GUI", new GuiScreenKeystrokes(Hyperium.INSTANCE.getModIntegration().getKeystrokesMod())), true, Category.KEYSTROKES, items);
         apply(new LinkComponent(this, Collections.emptyList(), "Togglechat", new ToggleChatMainGui(Hyperium.INSTANCE.getModIntegration().getToggleChat(), 0)), true, Category.MODS, items);
         apply(new LinkComponent(this, Collections.emptyList(), "Keybinds", new GuiKeybinds()), false, Category.GENERAL, items);
-        apply(new LinkComponent(this, Collections.emptyList(), "Bossbar Customizer", new GuiBossbarSetting()), true, Category.MODS, items);
+        apply(new LinkComponent(this, Collections.emptyList(), "Bossbar Customizer", new GuiBossbarSetting(Hyperium.INSTANCE.getInternalAddons().getBossbarAddon())), true, Category.MODS, items);
         apply(new LinkComponent(this, Collections.emptyList(), "Custom Crosshair", new GuiCustomCrosshairEditCrosshair(Hyperium.INSTANCE.getInternalAddons().getCustomCrosshairAddon())), true, Category.INTEGRATIONS, items);
         apply(new LinkComponent(this, Collections.emptyList(), "ChromaHUD", new GeneralConfigGui(Hyperium.INSTANCE.getModIntegration().getChromaHUD())), true, Category.CHROMAHUD, items);
 
