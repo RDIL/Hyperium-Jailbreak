@@ -72,6 +72,7 @@ public class Hyperium {
     private NetworkHandler networkHandler;
     private boolean firstLaunch = false;
     private AutoGG autogg = new AutoGG();
+    private InternalAddons intAddons;
     public Jailbreak j = new Jailbreak();
     private BackendHandler bh = new BackendHandler();
 
@@ -132,7 +133,7 @@ public class Hyperium {
 
             SplashProgress.setProgress(11, "Loading Mods");
             modIntegration = new HyperiumModIntegration();
-            new InternalAddons();
+            this.intAddons = new InternalAddons();
 
             StaffUtils.clearCache();
 
@@ -220,6 +221,10 @@ public class Hyperium {
 
     public HyperiumHandlers getHandlers() {
         return handlers;
+    }
+
+    public InternalAddons getInternalAddons() {
+        return intAddons;
     }
 
     public HyperiumModIntegration getModIntegration() {
