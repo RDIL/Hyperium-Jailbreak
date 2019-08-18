@@ -93,7 +93,7 @@ dependencies {
 
 mixin {
     defaultObfuscationEnv notch
-    add sourceSets.main
+    add sourceSets.main, "mixin.hyperium.refmap.json"
 }
 
 repositories {
