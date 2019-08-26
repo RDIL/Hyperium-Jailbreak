@@ -19,14 +19,8 @@ version = "2.12.0"
 
 buildscript {
     repositories {
-        maven {
-            name = "forge"
-            url = "https://files.minecraftforge.net/maven"
-        }
-        maven {
-            name = 'sponge'
-            url = 'https://repo.spongepowered.org/maven'
-        }
+        maven { url = "https://files.minecraftforge.net/maven" }
+        maven { url = 'https://repo.spongepowered.org/maven' }
         maven { url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/gradle-plugin-proxy" }
     }
     dependencies {
@@ -98,10 +92,7 @@ mixin {
 repositories {
     maven { url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/java" }
     maven { url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/jitpack-proxy" }
-    maven {
-        name = 'sponge'
-        url = 'https://repo.spongepowered.org/maven/'
-    }
+    maven { url = 'https://repo.spongepowered.org/maven/' }
 }
 
 processResources {
