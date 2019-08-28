@@ -1,0 +1,2 @@
+*.jar linguist-language=Java linguist-vendored=false
+*.gradle linguist-language=Groovy linguist-vendored=false
