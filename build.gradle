@@ -75,7 +75,7 @@ dependencies {
         exclude module: 'gson'
         exclude module: 'LaunchWrapperPatcher'
     }
-    embed 'com.github.hyperiumjailbreak:LaunchWrapperPatcher:19b19c5b4f'
+    embed 'com.github.hyperiumjailbreak:LaunchWrapperPatcher:code_cleanup-SNAPSHOT'
     embed fileTree(dir: 'libs', include: 'Netty Client.jar')
     compile fileTree(dir: 'libs', include: '*.jar')
 }
