@@ -79,7 +79,7 @@ public abstract class MixinRenderPlayer extends RendererLivingEntity<AbstractCli
                 RenderNameTagEvent.CANCEL = true;
                 if (entityIn != Minecraft.getMinecraft().thePlayer) {
                     this.renderLivingLabel(entityIn, score.getScorePoints() + " " + scoreobjective.getDisplayName(), x, y, z, 64);
-                    y += (double) ((float) this.getFontRendererFromRenderManager().FONT_HEIGHT * 1.15F * p_177069_9_);
+                    y += (float) this.getFontRendererFromRenderManager().FONT_HEIGHT * 1.15F * p_177069_9_;
                 }
                 RenderNameTagEvent.CANCEL = false;
 

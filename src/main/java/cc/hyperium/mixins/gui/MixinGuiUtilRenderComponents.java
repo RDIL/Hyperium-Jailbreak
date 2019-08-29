@@ -1,9 +1,7 @@
 package cc.hyperium.mixins.gui;
 
 import cc.hyperium.mixinsimp.gui.HyperiumGuiUtilRenderComponents;
-
 import java.util.List;
-
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiUtilRenderComponents;
 import net.minecraft.util.IChatComponent;

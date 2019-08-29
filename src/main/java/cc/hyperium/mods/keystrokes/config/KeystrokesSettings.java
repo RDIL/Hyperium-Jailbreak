@@ -311,7 +311,7 @@ public class KeystrokesSettings {
     }
 
     public int getWidth() {
-        return 74; // Hardcoded value
+        return 74;
     }
 
     public List<CustomKeyWrapper> getConfigWrappers() {

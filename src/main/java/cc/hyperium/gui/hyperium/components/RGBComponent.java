@@ -38,7 +38,6 @@ public class RGBComponent extends AbstractTabComponent {
         return 18;
     }
 
-
     @Override
     public void onClick(int x, int y) {}
 }

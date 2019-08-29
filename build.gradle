@@ -90,7 +90,6 @@ dependencies {
     }
     embed 'com.github.hyperiumjailbreak:LaunchWrapperPatcher:48296037cc'
     embed fileTree(dir: 'libs', include: '*.jar')
-    compile fileTree(dir: 'libs', include: '*.jar')
 }
 
 mixin {
@@ -138,9 +137,11 @@ jar {
     )
     configurations.embed.each { dep ->
         from(project.zipTree(dep)) {
+            exclude 'icons/hyperium.png', 'icons/hyperium-transparent.png'
             exclude 'META-INF', 'META-INF/**'
             exclude 'org/jetbrains/annotations', 'org/jetbrains/annotations/**'
             exclude 'junit/', 'junit/**'
+            exclude 'com/google/gson/extras/examples', 'com/google/gson/extras/examples/**'
         }
     }
 }

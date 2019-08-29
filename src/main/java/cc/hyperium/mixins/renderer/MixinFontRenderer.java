@@ -53,7 +53,6 @@ public abstract class MixinFontRenderer {
         this.posY = 0;
         this.posX = 0;
         GlStateManager.translate(posX, posY, 0F);
-        boolean hasObf = false;
         CachedString value = new CachedString(text, list, this.posX - posX, this.posY - posY);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 0.0F);
         this.func_181559_a('.', this.italicStyle);

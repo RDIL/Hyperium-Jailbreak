@@ -102,7 +102,7 @@ public abstract class MixinGuiIngame extends Gui {
 
             this.playerHealth = currentHealth;
             int lastPlayerHealth = this.lastPlayerHealth;
-            this.rand.setSeed((long) (this.updateCounter * 312871));
+            this.rand.setSeed(this.updateCounter * 31287);
             FoodStats foodstats = entityplayer.getFoodStats();
             int foodLevel = foodstats.getFoodLevel();
             IAttributeInstance iattributeinstance = entityplayer.getEntityAttribute(SharedMonsterAttributes.maxHealth);

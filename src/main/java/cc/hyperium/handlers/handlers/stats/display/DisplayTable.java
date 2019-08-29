@@ -30,10 +30,6 @@ public class DisplayTable extends StatsDisplayItem {
         int columns = rows[0].length;
         rowSpacing = new int[columns];
 
-        /*
-       4 3 2
-       3 2 1
-         */
         for (String[] row : rows) {
             for (int i = 0; i < columns; i++) {
                 rowSpacing[i] = Math.max(rowSpacing[i], Minecraft.getMinecraft().fontRendererObj.getStringWidth(row[i]) + 15);
@@ -64,5 +60,4 @@ public class DisplayTable extends StatsDisplayItem {
         }
         GlStateManager.popMatrix();
     }
-
 }

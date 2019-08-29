@@ -41,7 +41,7 @@ public class ClientPhysic {
             i = 187;
         }
 
-        random.setSeed((long) i);
+        random.setSeed(i);
 
         Minecraft.getMinecraft().getTextureManager().bindTexture(getEntityTexture());
         Minecraft.getMinecraft().getTextureManager().getTexture(getEntityTexture())

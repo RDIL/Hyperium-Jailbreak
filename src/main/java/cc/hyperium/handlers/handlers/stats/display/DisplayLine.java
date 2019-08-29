@@ -26,7 +26,6 @@ public class DisplayLine extends StatsDisplayItem {
         this.scale = scale;
     }
 
-
     @Override
     public void draw(int x, int y) {
         GlStateManager.scale(scale, scale, scale);

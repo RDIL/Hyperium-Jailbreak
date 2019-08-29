@@ -63,7 +63,7 @@ public abstract class MixinWorld {
     protected List<Entity> unloadedEntityList;
 
     @Shadow
-    private WorldInfo worldInfo;
+    protected WorldInfo worldInfo;
 
     @Shadow
     @Final

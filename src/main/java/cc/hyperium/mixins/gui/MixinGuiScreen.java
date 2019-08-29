@@ -17,12 +17,10 @@
 
 package cc.hyperium.mixins.gui;
 
-import cc.hyperium.Hyperium;
 import cc.hyperium.mixinsimp.gui.HyperiumGuiScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.util.IChatComponent;
 import org.lwjgl.input.Keyboard;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -30,18 +28,14 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.io.IOException;
 
 @Mixin(GuiScreen.class)
 public abstract class MixinGuiScreen {
     @Shadow
-    private Minecraft mc;
+    protected Minecraft mc;
 
     private HyperiumGuiScreen hyperiumGuiScreen = new HyperiumGuiScreen((GuiScreen) (Object) this);
-
-    @Shadow
-    protected abstract void setText(String newChatText, boolean shouldOverwrite);
 
     @Shadow
     protected abstract void actionPerformed(GuiButton button) throws IOException;

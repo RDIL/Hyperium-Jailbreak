@@ -71,13 +71,13 @@ public class SettingsTab extends AbstractTab {
             }
         }
 
-        apply(new LinkComponent(this, Collections.emptyList(), "Sidebar Mod", new GuiScreenSettings(Hyperium.INSTANCE.getInternalAddons().getSidebarAddon())), true, Category.MODS, items);
-        apply(new LinkComponent(this, Collections.emptyList(), "Keystrokes Config GUI", new GuiScreenKeystrokes(Hyperium.INSTANCE.getModIntegration().getKeystrokesMod())), true, Category.KEYSTROKES, items);
-        apply(new LinkComponent(this, Collections.emptyList(), "Togglechat", new ToggleChatMainGui(Hyperium.INSTANCE.getModIntegration().getToggleChat(), 0)), true, Category.MODS, items);
-        apply(new LinkComponent(this, Collections.emptyList(), "Keybinds", new GuiKeybinds()), false, Category.GENERAL, items);
-        apply(new LinkComponent(this, Collections.emptyList(), "Bossbar Customizer", new GuiBossbarSetting(Hyperium.INSTANCE.getInternalAddons().getBossbarAddon())), true, Category.MODS, items);
-        apply(new LinkComponent(this, Collections.emptyList(), "Custom Crosshair", new GuiCustomCrosshairEditCrosshair(Hyperium.INSTANCE.getInternalAddons().getCustomCrosshairAddon())), true, Category.INTEGRATIONS, items);
-        apply(new LinkComponent(this, Collections.emptyList(), "ChromaHUD", new GeneralConfigGui(Hyperium.INSTANCE.getModIntegration().getChromaHUD())), true, Category.CHROMAHUD, items);
+        apply(new LinkComponent(this, Collections.emptyList(), "Open Sidebar Customizer", new GuiScreenSettings(Hyperium.INSTANCE.getInternalAddons().getSidebarAddon())), true, Category.MODS, items);
+        apply(new LinkComponent(this, Collections.emptyList(), "Open Keystrokes Customizer", new GuiScreenKeystrokes(Hyperium.INSTANCE.getModIntegration().getKeystrokesMod())), true, Category.MODS, items);
+        apply(new LinkComponent(this, Collections.emptyList(), "Open ToggleChat Customizer", new ToggleChatMainGui(Hyperium.INSTANCE.getModIntegration().getToggleChat(), 0)), true, Category.MODS, items);
+        apply(new LinkComponent(this, Collections.emptyList(), "Open Keybind Customizer", new GuiKeybinds()), false, Category.GENERAL, items);
+        apply(new LinkComponent(this, Collections.emptyList(), "Open Bossbar Customizer", new GuiBossbarSetting(Hyperium.INSTANCE.getInternalAddons().getBossbarAddon())), true, Category.MODS, items);
+        apply(new LinkComponent(this, Collections.emptyList(), "Open Crosshair Customizer", new GuiCustomCrosshairEditCrosshair(Hyperium.INSTANCE.getInternalAddons().getCustomCrosshairAddon())), true, Category.INTEGRATIONS, items);
+        apply(new LinkComponent(this, Collections.emptyList(), "Open ChromaHUD Customizer", new GeneralConfigGui(Hyperium.INSTANCE.getModIntegration().getChromaHUD())), true, Category.MODS, items);
 
         for (RGBFieldSet rgbFieldSet : gui.getRgbFields()) {
             apply(new RGBComponent(this, rgbFieldSet), rgbFieldSet.isMods(), rgbFieldSet.getCategory(), items);
