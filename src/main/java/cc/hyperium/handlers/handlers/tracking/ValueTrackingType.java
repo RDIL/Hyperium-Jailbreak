@@ -1,18 +1,14 @@
 package cc.hyperium.handlers.handlers.tracking;
 
 public enum ValueTrackingType {
-    COINS("Coins", StatisticViewingGui.CompressionType.SUM, StatisticViewingGui.MissingDataHandling.ZERO),
-    EXPERIENCE("Experience", StatisticViewingGui.CompressionType.SUM, StatisticViewingGui.MissingDataHandling.ZERO),
-    ERROR("Error", StatisticViewingGui.CompressionType.SUM, StatisticViewingGui.MissingDataHandling.ZERO);
+    COINS("Coins"),
+    EXPERIENCE("Experience"),
+    ERROR("Error");
 
     private String name;
-    private StatisticViewingGui.CompressionType compressionType;
-    private StatisticViewingGui.MissingDataHandling missingDataHandling;
 
-    ValueTrackingType(String name, StatisticViewingGui.CompressionType compressionType, StatisticViewingGui.MissingDataHandling missingDataHandling) {
+    ValueTrackingType(String name) {
         this.name = name;
-        this.compressionType = compressionType;
-        this.missingDataHandling = missingDataHandling;
     }
 
     public static ValueTrackingType parse(String in) {
@@ -24,15 +20,7 @@ public enum ValueTrackingType {
         return ERROR;
     }
 
-    public StatisticViewingGui.MissingDataHandling getMissingDataHandling() {
-        return missingDataHandling;
-    }
-
     public String getDisplay() {
         return name;
-    }
-
-    public StatisticViewingGui.CompressionType getCompressionType() {
-        return compressionType;
     }
 }
