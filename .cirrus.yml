@@ -8,13 +8,13 @@ task:
     folder: ~/.gradle/caches
     fingerprint_script: cat build.gradle
     populate_script: gradle setupCiWorkspace --build-cache
-  dotgradle_cache:
-    folder: .gradle
+  previous_builds_cache:
+    folder: build
   name: Cirrus CI
   script: gradle build
   jar_artifacts:
     path: ./build/libs/**
   always:
     cleanup_before_cache_script: |
-      rm -rf ~/.gradle/caches/$GRADLE_VERSION/ ~/.gradle/caches/transforms-1 ~/.gradle/caches/journal-1 ~/.gradle/caches/minecraft/deobfedDeps/compileDummy.jar ~/.gradle/caches/minecraft/deobfedDeps/providedDummy.jar
+      rm -rf ~/.gradle/caches/$GRADLE_VERSION/ ~/.gradle/caches/transforms-1 ~/.gradle/caches/journal-1 ~/.gradle/caches/minecraft/deobfedDeps/compileDummy.jar ~/.gradle/caches/minecraft/deobfedDeps/providedDummy.jar ./build/libs
       find ~/.gradle/caches/ -name "*.lock" -type f -delete
