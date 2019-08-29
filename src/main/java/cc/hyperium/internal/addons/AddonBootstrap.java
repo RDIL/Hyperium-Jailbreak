@@ -17,7 +17,7 @@ import java.util.jar.JarFile;
 public class AddonBootstrap {
     private static ArrayList<File> addonResourcePack = new ArrayList<>();
     public static AddonBootstrap INSTANCE = new AddonBootstrap();
-    private ArrayList<File> jars;
+    private List<File> jars;
     private ArrayList<AddonManifest> addonManifests = new ArrayList<>();
     private ArrayList<AddonManifest> pendingManifests = new ArrayList<>();
     private File modDirectory = new File("addons");
@@ -40,7 +40,7 @@ public class AddonBootstrap {
         }
         FilenameFilter filenameFilter = (dir, name) -> name.toLowerCase().endsWith(".jar");
 
-        jars = (ArrayList<File>) Arrays.asList(Objects.requireNonNull(modDirectory.listFiles(filenameFilter)));
+        jars = Arrays.asList(Objects.requireNonNull(modDirectory.listFiles(filenameFilter)));
     }
 
     public void init() {
@@ -125,20 +125,16 @@ public class AddonBootstrap {
         return pendingManifests;
     }
 
-    public static ArrayList<File> getAddonResourcePack() {
+    @SuppressWarnings("unused") public static ArrayList<File> getAddonResourcePack() {
         return addonResourcePack;
     }
 
-    public ArrayList<File> getJars() {
+    public List<File> getJars() {
         return jars;
     }
 
     public DefaultAddonLoader getLoader() {
         return loader;
-    }
-
-    public File getModDirectory() {
-        return modDirectory;
     }
 
     public File getPendingDirectory() {

@@ -7,7 +7,10 @@ out/
 run/
 src/api/
 src/test/
-.idea/
+.idea/modules/
+.idea/workspace.xml
+.idea/$*
+.idea/misc.xml
 .DS_Store
 .AppleDesktop
 Temporary Items

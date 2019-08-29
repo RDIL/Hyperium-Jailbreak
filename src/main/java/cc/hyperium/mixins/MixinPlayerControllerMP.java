@@ -14,7 +14,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@SuppressWarnings("unused")
 @Mixin(PlayerControllerMP.class)
 public class MixinPlayerControllerMP {
     @Inject(method = "onPlayerRightClick", at = @At("HEAD"))
