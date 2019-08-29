@@ -12,7 +12,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import org.apache.commons.io.FileUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -56,7 +55,6 @@ public class HypixelValueTracking {
         items.sort(Comparator.comparingLong(ValueTrackingItem::getTime));
         return items;
     }
-
 
     private List<ValueTrackingItem> getAllItemsOnDay(long day) {
         JsonHolder jsonHolder = readFile(getFileOnDay(day));
@@ -105,11 +103,6 @@ public class HypixelValueTracking {
 
     private File getCurrent() {
         return getFileOnDay(System.currentTimeMillis());
-    }
-
-    @InvokeEvent
-    public void ratingChangeEvent(RankedRatingChangeEvent event) {
-        post(ValueTrackingType.RANKED_RATING, event.getRating());
     }
 
     @InvokeEvent
