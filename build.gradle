@@ -88,7 +88,7 @@ dependencies {
         exclude module: 'gson'
         exclude module: 'LaunchWrapperPatcher'
     }
-    embed 'com.github.hyperiumjailbreak:LaunchWrapperPatcher:19b19c5b4f'
+    embed 'com.github.hyperiumjailbreak:LaunchWrapperPatcher:48296037cc'
     embed fileTree(dir: 'libs', include: '*.jar')
 }
 
