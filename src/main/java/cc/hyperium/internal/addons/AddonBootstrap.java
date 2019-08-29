@@ -156,4 +156,11 @@ public class AddonBootstrap {
     public static ArrayList<File> getAddonResourcePacks() {
         return addonResourcePack;
     }
+
+    public enum Phase {
+        NOT_STARTED,
+        PREINIT,
+        INIT,
+        DEFAULT;
+    }
 }

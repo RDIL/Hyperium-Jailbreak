@@ -7,9 +7,6 @@ object AddonMinecraftBootstrap {
     @JvmStatic
     val LOADED_ADDONS = ArrayList<IAddon>()
         @JvmName("getLoadedAddons") get
-    @JvmStatic
-    val ADDON_ERRORS = ArrayList<Throwable>()
-        @JvmName("getAddonLoadErrors") get
 
     @JvmStatic
     val MISSING_DEPENDENCIES_MAP = ConcurrentHashMap<AddonManifest, ArrayList<String>>()
@@ -22,7 +19,7 @@ object AddonMinecraftBootstrap {
     @JvmStatic
     fun init() {
         try {
-            if (AddonBootstrap.INSTANCE.phase != Phase.INIT) {
+            if (AddonBootstrap.INSTANCE.phase != AddonBootstrap.Phase.INIT) {
                 throw IOException("Bootstrap currently at Phase.${AddonBootstrap.INSTANCE.phase}, it should be at INIT")
             }
 
@@ -121,7 +118,6 @@ object AddonMinecraftBootstrap {
 
             val dontLoad: ArrayList<AddonManifest> = ArrayList()
 
-
             for (addon in dontLoad) {
                 toLoad.remove(addon)
             }
@@ -137,13 +133,12 @@ object AddonMinecraftBootstrap {
                     }
                 } catch (e: Throwable) {
                     e.printStackTrace()
-                    ADDON_ERRORS.add(e)
                 }
             }
 
             LOADED_ADDONS.addAll(loaded)
             LOADED_ADDONS.forEach(IAddon::onLoad)
-            AddonBootstrap.INSTANCE.phase = Phase.DEFAULT
+            AddonBootstrap.INSTANCE.phase = AddonBootstrap.Phase.DEFAULT
         } catch (ignored: Exception) {}
     }
 }
