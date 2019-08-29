@@ -59,25 +59,14 @@ public class StatisticViewingGui extends HyperiumGui {
                 map.computeIfAbsent(valueTrackingItem.getType(), valueTrackingType -> new ArrayList<>()).add(valueTrackingItem);
             }
             for (ValueTrackingType type : map.keySet()) {
-                if (type.getCompressionType() == CompressionType.SUM) {
-                    int sum = 0;
-                    for (ValueTrackingItem valueTrackingItem : valueTrackingItems) {
-                        if (valueTrackingItem.getType() == type)
-                            sum += valueTrackingItem.getValue();
-                    }
-                    ValueTrackingItem e = new ValueTrackingItem(type, sum, masterTimeOne + delta * (long) integer);
-                    dataPoints.computeIfAbsent(integer, integer1 -> new ArrayList<>()).add(e);
-                    masterDataSet.add(e);
-                } else if (type.getCompressionType() == CompressionType.MAX) {
-                    int max = -Integer.MAX_VALUE;
-                    for (ValueTrackingItem valueTrackingItem : valueTrackingItems) {
-                        if (valueTrackingItem.getType() == type)
-                            max = Math.max(max, valueTrackingItem.getValue());
-                    }
-                    ValueTrackingItem e = new ValueTrackingItem(type, max, masterTimeOne + delta * (long) integer);
-                    dataPoints.computeIfAbsent(integer, integer1 -> new ArrayList<>()).add(e);
-                    masterDataSet.add(e);
+                int sum = 0;
+                for (ValueTrackingItem valueTrackingItem : valueTrackingItems) {
+                    if (valueTrackingItem.getType() == type)
+                        sum += valueTrackingItem.getValue();
                 }
+                ValueTrackingItem e = new ValueTrackingItem(type, sum, masterTimeOne + delta * (long) integer);
+                dataPoints.computeIfAbsent(integer, integer1 -> new ArrayList<>()).add(e);
+                masterDataSet.add(e);
             }
         }
 
@@ -310,15 +299,6 @@ public class StatisticViewingGui extends HyperiumGui {
             }
         }
         GlStateManager.popMatrix();
-    }
-
-    enum CompressionType {
-        MAX,
-        SUM,
-    }
-    enum MissingDataHandling {
-        ZERO,
-        AVERAGE
     }
 }
 
