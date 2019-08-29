@@ -22,11 +22,11 @@ object AddonMinecraftBootstrap {
     @JvmStatic
     fun init() {
         try {
-            if (AddonBootstrap.phase != AddonBootstrap.Phase.INIT) {
-                throw IOException("Bootstrap currently at Phase.${AddonBootstrap.phase}, it should be at INIT")
+            if (AddonBootstrap.INSTANCE.phase != Phase.INIT) {
+                throw IOException("Bootstrap currently at Phase.${AddonBootstrap.INSTANCE.phase}, it should be at INIT")
             }
 
-            val toLoadMap = AddonBootstrap.addonManifests.map { it.name to it }.toMap().toMutableMap()
+            val toLoadMap = AddonBootstrap.INSTANCE.addonManifests.map { it.name to it }.toMap().toMutableMap()
             val iterator = toLoadMap.iterator()
 
             var done = false
@@ -83,7 +83,7 @@ object AddonMinecraftBootstrap {
             toLoad.clear()
 
             // order
-            while (!toSort.isEmpty()) {
+            while (toSort.isNotEmpty()) {
                 // remove a node n from toSort
                 val n = toSort.iterator().next()
                 toSort.remove(n)
@@ -143,7 +143,7 @@ object AddonMinecraftBootstrap {
 
             LOADED_ADDONS.addAll(loaded)
             LOADED_ADDONS.forEach(IAddon::onLoad)
-            AddonBootstrap.phase = AddonBootstrap.Phase.DEFAULT
+            AddonBootstrap.INSTANCE.phase = Phase.DEFAULT
         } catch (ignored: Exception) {}
     }
 }
