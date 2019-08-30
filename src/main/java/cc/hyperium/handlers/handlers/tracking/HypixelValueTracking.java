@@ -4,7 +4,6 @@ import cc.hyperium.Hyperium;
 import cc.hyperium.event.HypixelGetCoinsEvent;
 import cc.hyperium.event.HypixelGetXPEvent;
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.RankedRatingChangeEvent;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.utils.JsonHolder;
 import com.google.gson.Gson;
@@ -12,7 +11,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import org.apache.commons.io.FileUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
