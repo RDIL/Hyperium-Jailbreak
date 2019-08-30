@@ -1,17 +1,17 @@
 task:
   auto_cancellation: $CIRRUS_BRANCH != 'master' || $CIRRUS_TAG != ''
   container:
-    dockerfile: .ci/Dockerfile
+    image: gradle:4.10.3-jdk8
     cpu: 8
     memory: 16G
   gradle_cache:
     folder: ~/.gradle/caches
     fingerprint_script: cat build.gradle
-    populate_script: gradle setupCiWorkspace --build-cache
+    populate_script: gradle setupCiWorkspace --build-cache --parallel -Dorg.gradle.jvmargs=-Xmx14336M
   previous_builds_cache:
     folder: build
   name: Cirrus CI
-  script: gradle build
+  script: gradle build --parallel -Dorg.gradle.jvmargs=-Xmx14336M
   jar_artifacts:
     path: ./build/libs/**
   always:
