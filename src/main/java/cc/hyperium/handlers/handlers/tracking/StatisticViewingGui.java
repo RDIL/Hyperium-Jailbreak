@@ -84,50 +84,6 @@ public class StatisticViewingGui extends HyperiumGui {
     }
 
     @Override
-    protected void pack() {
-        reg("Next Graph", new GuiButton(nextId(), 1, 1, "Next Graph"), button -> {
-            int i = types.indexOf(currentType);
-            i++;
-            if (i > types.size() - 1)
-                i = 0;
-            currentType = types.get(i);
-        }, button -> {});
-        reg("Time", new GuiButton(nextId(), 1, 22, "Change Time"), button -> {
-            timeFac++;
-            if (timeFac > 3)
-                timeFac = 0;
-            masterTimeTwo = System.currentTimeMillis();
-            if (timeFac == 0) {
-                masterTimeOne = masterTimeTwo - TimeUnit.HOURS.toMillis(1);
-
-            } else if (timeFac == 1) {
-                masterTimeOne = masterTimeTwo - TimeUnit.DAYS.toMillis(1);
-
-            } else if (timeFac == 2) {
-                masterTimeOne = masterTimeTwo - TimeUnit.DAYS.toMillis(7);
-
-            } else if (timeFac == 3) {
-                masterTimeOne = masterTimeTwo - TimeUnit.DAYS.toMillis(30);
-            }
-            refreshData();
-        }, button -> {
-            String tmp = "Set range to: ";
-            if (timeFac == 0) {
-                tmp += "1 day";
-            } else if (timeFac == 1) {
-                tmp += "1 week";
-
-            } else if (timeFac == 2) {
-                tmp += "1 month";
-
-            } else if (timeFac == 3) {
-                tmp += "1 hour";
-            }
-            button.displayString = tmp;
-        });
-    }
-
-    @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         super.drawScreen(mouseX, mouseY, partialTicks);
         drawScaledText(currentType.getDisplay(), width / 2, 10, 2.0F, Color.WHITE.getRGB(), true, true);
