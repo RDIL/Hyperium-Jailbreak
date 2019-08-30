@@ -55,7 +55,6 @@ public class HypixelValueTracking {
         return items;
     }
 
-
     private List<ValueTrackingItem> getAllItemsOnDay(long day) {
         JsonHolder jsonHolder = readFile(getFileOnDay(day));
         ArrayList<ValueTrackingItem> valueTrackingItems = new ArrayList<>();
@@ -63,7 +62,6 @@ public class HypixelValueTracking {
             valueTrackingItems.add(GSON.fromJson(data.getAsJsonObject(), ValueTrackingItem.class));
         }
         return valueTrackingItems;
-
     }
 
     private File getFileOnDay(long day) {
@@ -98,16 +96,10 @@ public class HypixelValueTracking {
             e.printStackTrace();
         }
         return new JsonHolder();
-
     }
 
     private File getCurrent() {
         return getFileOnDay(System.currentTimeMillis());
-    }
-
-    @InvokeEvent
-    public void ratingChangeEvent(RankedRatingChangeEvent event) {
-        post(ValueTrackingType.RANKED_RATING, event.getRating());
     }
 
     @InvokeEvent
