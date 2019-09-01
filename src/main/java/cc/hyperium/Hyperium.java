@@ -73,13 +73,16 @@ public class Hyperium {
     private boolean firstLaunch = false;
     private AutoGG autogg = new AutoGG();
     private InternalAddons intAddons;
-    public Jailbreak j = new Jailbreak();
     private BackendHandler bh = new BackendHandler();
 
     @InvokeEvent(priority = Priority.HIGH)
     public void init(InitializationEvent event) {
         HyperiumLocale.registerHyperiumLang("en_US");
-        this.j.debug();
+        Hyperium.LOGGER.info("----------------");
+        Hyperium.LOGGER.warn("This project is NOT RUN BY THE HYPERIUM TEAM");
+        Hyperium.LOGGER.warn("Please report bugs by DMing rdil#0001 on Discord");
+        Hyperium.LOGGER.warn("or by emailing me@rdil.rocks");
+        Hyperium.LOGGER.info("----------------");
         try {
             Multithreading.runAsync(() -> {
                 networkHandler = new NetworkHandler();
