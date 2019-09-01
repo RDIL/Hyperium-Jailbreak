@@ -50,7 +50,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 import rocks.rdil.jailbreak.chat.CommonChatResponder;
-import rocks.rdil.jailbreak.Jailbreak;
 import rocks.rdil.jailbreak.BackendHandler;
 import java.io.File;
 
