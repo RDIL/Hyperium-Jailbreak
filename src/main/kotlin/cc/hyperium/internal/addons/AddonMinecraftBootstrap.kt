@@ -19,7 +19,7 @@ object AddonMinecraftBootstrap {
     @JvmStatic
     fun init() {
         try {
-            if (AddonBootstrap.phase != Phase.INIT) {
+            if (AddonBootstrap.phase != AddonBootstrap.Phase.INIT) {
                 throw IOException("Bootstrap currently at Phase.${AddonBootstrap.phase}, it should be at INIT")
             }
 
@@ -138,7 +138,7 @@ object AddonMinecraftBootstrap {
 
             LOADED_ADDONS.addAll(loaded)
             LOADED_ADDONS.forEach(IAddon::onLoad)
-            AddonBootstrap.phase = Phase.DEFAULT
+            AddonBootstrap.phase = AddonBoostrap.Phase.DEFAULT
         } catch (ignored: Exception) {}
     }
 }
