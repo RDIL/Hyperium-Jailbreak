@@ -1,6 +1,5 @@
 package cc.hyperium.mods.blockoverlay;
 
-import cc.hyperium.Hyperium;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.mods.AbstractMod;
 
