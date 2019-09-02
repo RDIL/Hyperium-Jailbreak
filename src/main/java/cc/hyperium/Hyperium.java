@@ -77,11 +77,11 @@ public class Hyperium {
     @InvokeEvent(priority = Priority.HIGH)
     public void init(InitializationEvent event) {
         HyperiumLocale.registerHyperiumLang("en_US");
-        Hyperium.LOGGER.info("----------------");
-        Hyperium.LOGGER.warn("This project is NOT RUN BY THE HYPERIUM TEAM");
-        Hyperium.LOGGER.warn("Please report bugs by DMing rdil#0001 on Discord");
-        Hyperium.LOGGER.warn("or by emailing me@rdil.rocks");
-        Hyperium.LOGGER.info("----------------");
+        this.LOGGER.info("----------------");
+        this.LOGGER.warn("This project is NOT RUN BY THE HYPERIUM TEAM");
+        this.LOGGER.warn("Please report bugs by DMing rdil#0001 on Discord");
+        this.LOGGER.warn("or by emailing me@rdil.rocks");
+        this.LOGGER.info("----------------");
         try {
             Multithreading.runAsync(() -> {
                 networkHandler = new NetworkHandler();
