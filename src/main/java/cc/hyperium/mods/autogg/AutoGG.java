@@ -30,11 +30,14 @@ public class AutoGG extends AbstractMod {
         // The GetTriggers class
         Multithreading.POOL.submit(() -> {
             try {
-                final String rawTriggers = IOUtils.toString(
-                    new URL("https://raw.githubusercontent.com/hyperiumjailbreak/tools/master/autoggtriggers.txt"),
-                        StandardCharsets.UTF_8
+                triggers = new ArrayList<>(
+                    Arrays.asList(
+                        IOUtils.toString(
+                            new URL("https://raw.githubusercontent.com/hyperiumjailbreak/tools/master/autoggtriggers.txt"),
+                            StandardCharsets.UTF_8
+                        ).split("\n")
+                    )
                 );
-                triggers = new ArrayList<>(Arrays.asList(rawTriggers.split("\n")));
             } catch (Exception e) {
                 e.printStackTrace();
             }
