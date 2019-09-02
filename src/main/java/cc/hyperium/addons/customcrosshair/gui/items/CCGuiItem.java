@@ -31,14 +31,6 @@ public class CCGuiItem {
     private GuiScreen currentScreen;
     protected List<String> helpText;
 
-    public CCGuiItem(final GuiScreen screen) {
-        this(screen, -1, "no-name", 0, 0, 10, 10);
-    }
-
-    public CCGuiItem(final GuiScreen screen, final int id) {
-        this(screen, id, "no-name", 0, 0, 10, 10);
-    }
-
     public CCGuiItem(final GuiScreen screen, final int id, final String displayText, final int posX, final int posY, final int width, final int height) {
         this.actionID = id;
         this.posX = posX;

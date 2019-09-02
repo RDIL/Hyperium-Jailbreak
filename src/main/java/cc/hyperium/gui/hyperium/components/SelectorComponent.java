@@ -56,7 +56,6 @@ public class SelectorComponent extends AbstractTabComponent {
         return 0;
     }
 
-
     @Override
     public void render(int x, int y, int width, int mouseX, int mouseY) {
         HyperiumFontRenderer font = tab.gui.getFont();

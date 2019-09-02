@@ -10,9 +10,9 @@ public class InternalAddons {
     private final BossbarAddon bossbarAddon;
 
     public InternalAddons() {
-        this.customCrosshairAddon = (CustomCrosshairAddon) new CustomCrosshairAddon();
-        this.sidebarAddon = (SidebarAddon) new SidebarAddon();
-        this.bossbarAddon = (BossbarAddon) new BossbarAddon();
+        this.customCrosshairAddon = new CustomCrosshairAddon();
+        this.sidebarAddon = new SidebarAddon();
+        this.bossbarAddon = new BossbarAddon();
         if (!Settings.FPS) {
             this.customCrosshairAddon.init();
         }

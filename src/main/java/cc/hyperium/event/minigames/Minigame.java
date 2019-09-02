@@ -53,10 +53,6 @@ public enum Minigame {
         this.id = id;
     }
 
-    public String getScoreName() {
-        return scoreName;
-    }
-
     public int getId() {
         return id;
     }

@@ -4,7 +4,7 @@ import cc.hyperium.config.Category;
 import cc.hyperium.config.Settings;
 import cc.hyperium.gui.HyperiumGui;
 import cc.hyperium.gui.hyperium.components.AbstractTab;
-import cc.hyperium.gui.hyperium.tabs.SettingsTab;
+import cc.hyperium.gui.hyperium.components.SettingsTab;
 import cc.hyperium.handlers.handlers.SettingsHandler;
 import cc.hyperium.mixinsimp.client.GlStateModifier;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
@@ -116,8 +116,7 @@ public class HyperiumMainGui extends HyperiumGui {
         drawRect(xg, yg * 2, xg * 10, yg * 9, new Color(0, 0, 0, 225 / 2).getRGB());
         GlStateModifier.INSTANCE.reset();
 
-        title.drawCenteredString(I18n.format(currentTab.getTitle()), this.width / 2,
-            yg + (yg / 2 - 8), 0xFFFFFF);
+        title.drawCenteredString(I18n.format(currentTab.getTitle()), this.width / 2, yg + (yg / 2 - 8), 0xFFFFFF);
 
         currentTab.render(xg, yg * 2, xg * 9, yg * 7);
 

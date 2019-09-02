@@ -26,7 +26,6 @@ public abstract class AbstractAddon {
     public abstract Metadata getAddonMetadata();
     public class Metadata {
         private final AbstractAddon addon;
-        private final String author;
         private final String name;
         private final String version;
         private String description;
@@ -44,7 +43,6 @@ public abstract class AbstractAddon {
             checkNotNull(author, "Author cannot be null (" + author + ")");
             this.addon = addon;
             this.name = name;
-            this.author = author;
             this.version = version;
             this.displayName = name;
         }
@@ -61,10 +59,6 @@ public abstract class AbstractAddon {
             return this.version;
         }
 
-        public String getAuthor() {
-            return this.author != null ? this.author : "";
-        }
-
         public String getDisplayName() {
             return this.displayName != null ? this.displayName : getName();
         }
@@ -73,11 +67,11 @@ public abstract class AbstractAddon {
             return this.description != null ? this.description : "";
         }
 
-        public void setDisplayName(String name) {
+        @Deprecated public void setDisplayName(String name) {
             this.displayName = name;
         }
 
-        public void setDescription(String description) {
+        @Deprecated public void setDescription(String description) {
             this.description = description;
         }
     }

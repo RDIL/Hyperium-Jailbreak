@@ -93,7 +93,6 @@ public class ToggleComponent extends AbstractTabComponent {
         return 18 * lines.size();
     }
 
-
     @Override
     public void onClick(int x, int y) {
         if (y < 18 * lines.size()) {

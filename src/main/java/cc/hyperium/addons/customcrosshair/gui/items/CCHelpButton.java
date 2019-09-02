@@ -24,7 +24,6 @@ import net.minecraft.client.gui.GuiScreen;
 import java.util.List;
 
 public class CCHelpButton extends CCGuiItem {
-
     public CCHelpButton(final GuiScreen screen, final List<String> text) {
         super(screen, -1, "", 0, 0, 10, 10);
         this.helpText = text;

@@ -1,4 +1,4 @@
-package cc.hyperium.gui.hyperium.tabs;
+package cc.hyperium.gui.hyperium.components;
 
 import cc.hyperium.Hyperium;
 import cc.hyperium.addons.bossbar.gui.GuiBossbarSetting;
@@ -10,14 +10,6 @@ import cc.hyperium.config.SliderSetting;
 import cc.hyperium.config.ToggleSetting;
 import cc.hyperium.gui.hyperium.HyperiumMainGui;
 import cc.hyperium.gui.hyperium.RGBFieldSet;
-import cc.hyperium.gui.hyperium.components.AbstractTab;
-import cc.hyperium.gui.hyperium.components.LinkComponent;
-import cc.hyperium.gui.hyperium.components.AbstractTabComponent;
-import cc.hyperium.gui.hyperium.components.CollapsibleTabComponent;
-import cc.hyperium.gui.hyperium.components.RGBComponent;
-import cc.hyperium.gui.hyperium.components.SelectorComponent;
-import cc.hyperium.gui.hyperium.components.SliderComponent;
-import cc.hyperium.gui.hyperium.components.ToggleComponent;
 import cc.hyperium.gui.keybinds.GuiKeybinds;
 import cc.hyperium.mods.chromahud.gui.GeneralConfigGui;
 import cc.hyperium.mods.keystrokes.screen.GuiScreenKeystrokes;
@@ -75,7 +67,7 @@ public class SettingsTab extends AbstractTab {
         apply(new LinkComponent(this, Collections.emptyList(), "Open Keystrokes Customizer", new GuiScreenKeystrokes(Hyperium.INSTANCE.getModIntegration().getKeystrokesMod())), true, Category.MODS, items);
         apply(new LinkComponent(this, Collections.emptyList(), "Open ToggleChat Customizer", new ToggleChatMainGui(Hyperium.INSTANCE.getModIntegration().getToggleChat(), 0)), true, Category.MODS, items);
         apply(new LinkComponent(this, Collections.emptyList(), "Open Keybind Customizer", new GuiKeybinds()), false, Category.GENERAL, items);
-        apply(new LinkComponent(this, Collections.emptyList(), "Open Bossbar Customizer", new GuiBossbarSetting(Hyperium.INSTANCE.getInternalAddons().getBossbarAddon())), true, Category.MODS, items);
+        apply(new LinkComponent(this, Collections.emptyList(), "Open Bossbar Customizer", new GuiBossbarSetting()), true, Category.MODS, items);
         apply(new LinkComponent(this, Collections.emptyList(), "Open Crosshair Customizer", new GuiCustomCrosshairEditCrosshair(Hyperium.INSTANCE.getInternalAddons().getCustomCrosshairAddon())), true, Category.INTEGRATIONS, items);
         apply(new LinkComponent(this, Collections.emptyList(), "Open ChromaHUD Customizer", new GeneralConfigGui(Hyperium.INSTANCE.getModIntegration().getChromaHUD())), true, Category.MODS, items);
 

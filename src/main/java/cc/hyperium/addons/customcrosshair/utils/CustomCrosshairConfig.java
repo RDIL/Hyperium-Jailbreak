@@ -174,10 +174,10 @@ public class CustomCrosshairConfig {
                             this.crosshairMod.getCrosshair().setThickness(Integer.parseInt(value));
                             break;
                         case "rainbow":
-                            this.crosshairMod.getCrosshair().setRainbowCrosshair(Boolean.valueOf(value));
+                            this.crosshairMod.getCrosshair().setRainbowCrosshair(Boolean.parseBoolean(value));
                             break;
                         case "rainbow_speed":
-                            this.crosshairMod.getCrosshair().setRainbowSpeed(Integer.valueOf(value));
+                            this.crosshairMod.getCrosshair().setRainbowSpeed(Integer.parseInt(value));
                             break;
                         default:
                             if (!attribute.equals("dynamic_bow")) {
@@ -196,7 +196,7 @@ public class CustomCrosshairConfig {
         }
     }
 
-    private boolean writeSaveFile(final int crosshairType, final boolean enabled, final int colour_red, final int colour_green, final int colour_blue, final int colour_opacity, final boolean visibleDefault, final boolean visibleHiddenGui, final boolean visibleDebug, final boolean visibleSpectator, final boolean visibleThirdPerson, final boolean outline, final int outlineColour_red, final int outlineColour_green, final int outlineColour_blue, final int outlineColour_opacity, final boolean dot, final int dotColour_red, final int dotColour_green, final int dotColour_blue, final int dotColour_opacity, final int width, final int height, final int gap, final int thickness, final boolean dynamicBow, final boolean rainbow, final int rainbowspeed) {
+    private void writeSaveFile(final int crosshairType, final boolean enabled, final int colour_red, final int colour_green, final int colour_blue, final int colour_opacity, final boolean visibleDefault, final boolean visibleHiddenGui, final boolean visibleDebug, final boolean visibleSpectator, final boolean visibleThirdPerson, final boolean outline, final int outlineColour_red, final int outlineColour_green, final int outlineColour_blue, final int outlineColour_opacity, final boolean dot, final int dotColour_red, final int dotColour_green, final int dotColour_blue, final int dotColour_opacity, final int width, final int height, final int gap, final int thickness, final boolean dynamicBow, final boolean rainbow, final int rainbowspeed) {
         try {
             final FileWriter fileWriter = new FileWriter(this.saveFile);
             final BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
@@ -234,10 +234,8 @@ public class CustomCrosshairConfig {
                 bufferedWriter.newLine();
             }
             bufferedWriter.close();
-            return true;
         } catch (Exception exceptionWriting) {
             exceptionWriting.printStackTrace();
-            return false;
         }
     }
 

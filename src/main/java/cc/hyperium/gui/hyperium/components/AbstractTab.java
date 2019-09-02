@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
 
 public abstract class AbstractTab {
     protected List<AbstractTabComponent> components = new ArrayList<>();
-    protected Map<AbstractTabComponent, Boolean> clickStates = new HashMap<>();
+    Map<AbstractTabComponent, Boolean> clickStates = new HashMap<>();
     protected HyperiumMainGui gui;
-    protected String title;
+    private String title;
     private SimpleAnimValue scrollAnim = new SimpleAnimValue(0L, 0f, 0f);
     private int scroll = 0;
     private String filter;

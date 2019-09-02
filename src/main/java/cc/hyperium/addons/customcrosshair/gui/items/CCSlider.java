@@ -34,10 +34,6 @@ public class CCSlider extends CCGuiItem {
 
     private Runnable callback;
 
-    public CCSlider(final GuiScreen screen) {
-        this(screen, -1, "no name", 0, 0, 100, 10, 0, 100);
-    }
-
     public CCSlider(final GuiScreen screen, final int id, final String displayText, final int posX, final int posY, final int width, final int height, final int minValue, final int maxValue) {
         super(screen, id, displayText, posX, posY, width, height);
         this.setMinMaxValue(minValue, maxValue);
@@ -124,10 +120,6 @@ public class CCSlider extends CCGuiItem {
 
     public int getMinValue() {
         return (int) this.minValue;
-    }
-
-    public int getMaxValue() {
-        return (int) this.maxValue;
     }
 
     public int getValue() {

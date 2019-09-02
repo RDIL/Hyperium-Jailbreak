@@ -1,6 +1,5 @@
 package cc.hyperium.addons.bossbar.gui;
 
-import cc.hyperium.addons.bossbar.BossbarAddon;
 import cc.hyperium.addons.bossbar.config.BossbarConfig;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -13,7 +12,7 @@ public class GuiBossbarPosition extends GuiScreen {
     private int oldStatusBarTime;
     private float oldHealthScale;
 
-    public GuiBossbarPosition(GuiScreen parent, BossbarAddon addon) {
+    public GuiBossbarPosition(GuiScreen parent) {
         this.parent = parent;
     }
 

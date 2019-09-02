@@ -33,10 +33,6 @@ public class GuiCustomCrosshairEditColour extends CustomCrosshairScreen {
     private CCSlider slider_rainbowspeed;
     private String title;
 
-    public GuiCustomCrosshairEditColour(CustomCrosshairAddon addon, final Color colour) {
-        this(addon, colour, "Edit Color...");
-    }
-
     public GuiCustomCrosshairEditColour(CustomCrosshairAddon addon, final Color colour, final String text) {
         super(addon);
         this.editColour = colour;

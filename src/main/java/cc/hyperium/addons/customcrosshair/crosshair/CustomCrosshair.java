@@ -156,10 +156,10 @@ public class CustomCrosshair {
                             renderColour);
                         break;
                     case ARROW:
-                        this.drawArrowCrosshair(screenWidth, screenHeight, renderGap, renderColour);
+                        this.drawArrowCrosshair(screenWidth, screenHeight, renderColour);
                         break;
                     case X:
-                        this.drawXCrosshair(screenWidth, screenHeight, renderGap, renderColour);
+                        this.drawXCrosshair(screenWidth, screenHeight, renderColour);
                         break;
                     default:
                         this.drawCrossCrosshair(screenWidth, screenHeight, renderGap, renderColour);
@@ -267,8 +267,7 @@ public class CustomCrosshair {
             .drawCircle(screenWidth + 0.5, screenHeight + 0.5, renderGap + 1, renderColour);
     }
 
-    private void drawXCrosshair(int screenWidth, int screenHeight, int renderGap,
-                                Color renderColour) {
+    private void drawXCrosshair(int screenWidth, int screenHeight, Color renderColour) {
         GL11.glDisable(2848);
         GL11.glDisable(2832);
         GlStateManager.disableAlpha();
@@ -315,8 +314,7 @@ public class CustomCrosshair {
             screenWidth + renderGap, screenHeight + renderGap, renderColour);
     }
 
-    private void drawArrowCrosshair(int screenWidth, int screenHeight, int renderGap,
-                                    Color renderColour) {
+    private void drawArrowCrosshair(int screenWidth, int screenHeight, Color renderColour) {
         GL11.glDisable(2848);
         GL11.glDisable(2832);
         GlStateManager.disableAlpha();

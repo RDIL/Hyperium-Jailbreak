@@ -21,12 +21,10 @@ import cc.hyperium.Hyperium;
 import cc.hyperium.addons.customcrosshair.gui.GuiCustomCrosshairEditCrosshair;
 import cc.hyperium.addons.customcrosshair.CustomCrosshairAddon;
 import cc.hyperium.commands.BaseCommand;
-
 import java.util.Collections;
 import java.util.List;
 
 public class CommandCustomCrosshair implements BaseCommand {
-
     private CustomCrosshairAddon addon;
 
     public CommandCustomCrosshair(CustomCrosshairAddon addon) {

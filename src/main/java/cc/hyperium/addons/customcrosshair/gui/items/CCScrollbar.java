@@ -89,15 +89,7 @@ public class CCScrollbar extends CCGuiItem {
         return this.value;
     }
 
-    public int getMinValue() {
-        return this.minValue;
-    }
-
     public int getMaxValue() {
         return this.maxValue;
-    }
-
-    public boolean isMouseDown() {
-        return this.mouseDown;
     }
 }
