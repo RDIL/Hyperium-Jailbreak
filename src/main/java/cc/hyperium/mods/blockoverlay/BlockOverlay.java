@@ -14,7 +14,6 @@ public class BlockOverlay extends AbstractMod {
         this.settings = new BlockOverlaySettings(Hyperium.folder);
         this.settings.load();
         EventBus.INSTANCE.register(new BlockOverlayRender(this));
-        Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(new BlockOverlayCommand(this));
         return this;
     }
 
