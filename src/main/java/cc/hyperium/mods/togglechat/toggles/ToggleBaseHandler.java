@@ -43,31 +43,18 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ToggleBaseHandler {
-
     private final Map<String, ToggleBase> toggles = new LinkedHashMap<>();
 
     public Map<String, ToggleBase> getToggles() {
         return new LinkedHashMap<>(this.toggles);
     }
 
-    /**
-     * Adds the developers own ToggleBase
-     *
-     * @param toggleBase the developers toggle
-     */
     public void addToggle(ToggleBase toggleBase) {
         if (toggleBase != null && toggleBase.getName() != null) {
             this.toggles.put(toggleBase.getName().toLowerCase().replace(" ", "_"), toggleBase);
         }
     }
 
-    /**
-     * Run through all bases and check if the
-     * given text should be toggled
-     *
-     * @param input text to test
-     * @return the formatted text
-     */
     public boolean shouldToggle(String input) {
         for (ToggleBase parser : this.toggles.values()) {
             if (!parser.isEnabled() && parser.shouldToggle(input)) return true;
@@ -101,23 +88,10 @@ public class ToggleBaseHandler {
         this.toggles.put("officer", new TypeOfficer());
     }
 
-    /**
-     * Gets a toggle by the given name, may return null
-     *
-     * @param name the toggle's name
-     * @return a ToggleBase instance if found, or else null
-     */
     public ToggleBase getToggle(String name) {
         return this.toggles.getOrDefault(name, null);
     }
 
-    /**
-     * Checks to see if the registered parsers contains a parser
-     * with the given name.
-     *
-     * @param name The toggle's name to test for
-     * @return true if it is registered
-     */
     public boolean hasToggle(String name) {
         return this.toggles.containsKey(name) && getToggle(name) != null;
     }

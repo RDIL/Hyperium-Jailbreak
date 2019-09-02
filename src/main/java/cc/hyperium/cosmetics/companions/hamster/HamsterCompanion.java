@@ -2,7 +2,10 @@ package cc.hyperium.cosmetics.companions.hamster;
 
 import cc.hyperium.config.Settings;
 import cc.hyperium.cosmetics.AbstractCosmetic;
-import cc.hyperium.event.*;
+import cc.hyperium.event.InvokeEvent;
+import cc.hyperium.event.RenderEntitiesEvent;
+import cc.hyperium.event.RenderPlayerEvent;
+import cc.hyperium.event.TickEvent;
 import cc.hyperium.purchases.EnumPurchaseType;
 import cc.hyperium.purchases.HyperiumPurchase;
 import cc.hyperium.purchases.PurchaseApi;
@@ -11,7 +14,6 @@ import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-
 import java.util.*;
 
 public class HamsterCompanion extends AbstractCosmetic {

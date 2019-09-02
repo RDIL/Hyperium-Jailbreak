@@ -7,9 +7,9 @@ task:
   gradle_cache:
     folder: ~/.gradle/caches
     fingerprint_script: cat build.gradle
-    populate_script: gradle setupCiWorkspace --parallel --build-cache
+    populate_script: gradle setupCiWorkspace --build-cache --parallel -Dorg.gradle.jvmargs=-Xmx14336M
   name: Cirrus CI
-  script: gradle build --parallel
+  script: gradle build --parallel -Dorg.gradle.jvmargs=-Xmx14336M
   jar_artifacts:
     path: ./build/libs/**
   always:

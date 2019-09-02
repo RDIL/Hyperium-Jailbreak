@@ -59,25 +59,14 @@ public class StatisticViewingGui extends HyperiumGui {
                 map.computeIfAbsent(valueTrackingItem.getType(), valueTrackingType -> new ArrayList<>()).add(valueTrackingItem);
             }
             for (ValueTrackingType type : map.keySet()) {
-                if (type.getCompressionType() == CompressionType.SUM) {
-                    int sum = 0;
-                    for (ValueTrackingItem valueTrackingItem : valueTrackingItems) {
-                        if (valueTrackingItem.getType() == type)
-                            sum += valueTrackingItem.getValue();
-                    }
-                    ValueTrackingItem e = new ValueTrackingItem(type, sum, masterTimeOne + delta * (long) integer);
-                    dataPoints.computeIfAbsent(integer, integer1 -> new ArrayList<>()).add(e);
-                    masterDataSet.add(e);
-                } else if (type.getCompressionType() == CompressionType.MAX) {
-                    int max = -Integer.MAX_VALUE;
-                    for (ValueTrackingItem valueTrackingItem : valueTrackingItems) {
-                        if (valueTrackingItem.getType() == type)
-                            max = Math.max(max, valueTrackingItem.getValue());
-                    }
-                    ValueTrackingItem e = new ValueTrackingItem(type, max, masterTimeOne + delta * (long) integer);
-                    dataPoints.computeIfAbsent(integer, integer1 -> new ArrayList<>()).add(e);
-                    masterDataSet.add(e);
+                int sum = 0;
+                for (ValueTrackingItem valueTrackingItem : valueTrackingItems) {
+                    if (valueTrackingItem.getType() == type)
+                        sum += valueTrackingItem.getValue();
                 }
+                ValueTrackingItem e = new ValueTrackingItem(type, sum, masterTimeOne + delta * (long) integer);
+                dataPoints.computeIfAbsent(integer, integer1 -> new ArrayList<>()).add(e);
+                masterDataSet.add(e);
             }
         }
 
@@ -87,60 +76,7 @@ public class StatisticViewingGui extends HyperiumGui {
             if (valueTrackingItems == null) {
                 for (ValueTrackingType type : types) {
                     MissingDataHandling missingDataHandling = type.getMissingDataHandling();
-                    if (missingDataHandling == MissingDataHandling.ZERO) {
-                        masterDataSet.add(new ValueTrackingItem(type, 0, masterTimeOne + delta * (long) integer));
-                    } else {
-                        //Find average of values on both sides.
-                        ValueTrackingItem left = null;
-                        int lI = 0;
-                        ValueTrackingItem right = null;
-                        int rI = DATA_POINTS - 1;
-                        OUTSIDE1:
-                        for (int j = integer; j >= 0; j--) {
-                            List<ValueTrackingItem> tmp1 = dataPoints.get(j);
-                            if (tmp1 != null) {
-                                for (ValueTrackingItem valueTrackingItem : tmp1) {
-                                    if (valueTrackingItem.getType() == type) {
-                                        left = valueTrackingItem;
-                                        lI = j;
-                                        break OUTSIDE1;
-                                    }
-                                }
-                            }
-                        }
-                        OUTSIDE2:
-                        for (int j = integer; j < DATA_POINTS; j++) {
-                            List<ValueTrackingItem> tmp1 = dataPoints.get(j);
-                            if (tmp1 != null) {
-                                for (ValueTrackingItem valueTrackingItem : tmp1) {
-                                    if (valueTrackingItem.getType() == type) {
-                                        right = valueTrackingItem;
-                                        rI = j;
-                                        break OUTSIDE2;
-                                    }
-                                }
-                            }
-                        }
-                        if (left == null && right == null) {
-                            masterDataSet.add(new ValueTrackingItem(type, 0, masterTimeOne + delta * (long) integer));
-                            continue;
-                        }
-                        if (right == null) {
-                            right = new ValueTrackingItem(type, left.getValue(), masterTimeTwo);
-                        }
-                        if (left == null) {
-                            left = new ValueTrackingItem(type, right.getValue(), masterTimeOne);
-                        }
-
-                        int delta1 = right.getValue() - left.getValue();
-                        rI -= lI;
-                        int temp = integer - lI;
-                        double percent = (double) temp / (double) rI;
-                        double v = left.getValue() + (percent * ((double) delta1));
-                        masterDataSet.add(new ValueTrackingItem(type, (int) v, masterTimeOne + delta * (long) integer));
-
-                    }
-
+                    masterDataSet.add(new ValueTrackingItem(type, 0, masterTimeOne + delta * (long) integer));
                 }
             }
         }
@@ -251,7 +187,6 @@ public class StatisticViewingGui extends HyperiumGui {
             GL11.glBlendFunc(770, 771);
             GL11.glEnable(2848);
             GL11.glHint(GL11.GL_PERSPECTIVE_CORRECTION_HINT, GL11.GL_NICEST);
-
 
             long time = valueTrackingItem.getTime();
             time -= masterTimeOne;

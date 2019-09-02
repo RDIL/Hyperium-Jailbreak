@@ -50,7 +50,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 import rocks.rdil.jailbreak.chat.CommonChatResponder;
-import rocks.rdil.jailbreak.Jailbreak;
 import rocks.rdil.jailbreak.BackendHandler;
 import java.io.File;
 
@@ -73,13 +72,16 @@ public class Hyperium {
     private boolean firstLaunch = false;
     private AutoGG autogg = new AutoGG();
     private InternalAddons intAddons;
-    public Jailbreak j = new Jailbreak();
     private BackendHandler bh = new BackendHandler();
 
     @InvokeEvent(priority = Priority.HIGH)
     public void init(InitializationEvent event) {
         HyperiumLocale.registerHyperiumLang("en_US");
-        this.j.debug();
+        this.LOGGER.info("----------------");
+        this.LOGGER.warn("This project is NOT RUN BY THE HYPERIUM TEAM");
+        this.LOGGER.warn("Please report bugs by DMing rdil#0001 on Discord");
+        this.LOGGER.warn("or by emailing me@rdil.rocks");
+        this.LOGGER.info("----------------");
         try {
             Multithreading.runAsync(() -> {
                 networkHandler = new NetworkHandler();

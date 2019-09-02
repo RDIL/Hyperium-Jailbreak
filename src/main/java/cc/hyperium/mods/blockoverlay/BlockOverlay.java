@@ -1,6 +1,5 @@
 package cc.hyperium.mods.blockoverlay;
 
-import cc.hyperium.Hyperium;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.mods.AbstractMod;
 
@@ -14,7 +13,6 @@ public class BlockOverlay extends AbstractMod {
         this.settings = new BlockOverlaySettings(Hyperium.folder);
         this.settings.load();
         EventBus.INSTANCE.register(new BlockOverlayRender(this));
-        Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(new BlockOverlayCommand(this));
         return this;
     }
 
