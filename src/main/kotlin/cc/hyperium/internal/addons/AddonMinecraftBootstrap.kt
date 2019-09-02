@@ -19,11 +19,11 @@ object AddonMinecraftBootstrap {
     @JvmStatic
     fun init() {
         try {
-            if (AddonBootstrap.INSTANCE.phase != AddonBootstrap.Phase.INIT) {
-                throw IOException("Bootstrap currently at Phase.${AddonBootstrap.INSTANCE.phase}, it should be at INIT")
+            if (AddonBootstrap.phase != AddonBootstrap.Phase.INIT) {
+                throw IOException("Bootstrap currently at AddonBoostrap.Phase.${AddonBootstrap.phase}, it should be at INIT")
             }
 
-            val toLoadMap = AddonBootstrap.INSTANCE.addonManifests.map { it.name to it }.toMap().toMutableMap()
+            val toLoadMap = AddonBootstrap.addonManifests.map { it.name to it }.toMap().toMutableMap()
             val iterator = toLoadMap.iterator()
 
             var done = false
@@ -138,7 +138,7 @@ object AddonMinecraftBootstrap {
 
             LOADED_ADDONS.addAll(loaded)
             LOADED_ADDONS.forEach(IAddon::onLoad)
-            AddonBootstrap.INSTANCE.phase = AddonBootstrap.Phase.DEFAULT
+            AddonBootstrap.phase = AddonBootstrap.Phase.DEFAULT
         } catch (ignored: Exception) {}
     }
 }
