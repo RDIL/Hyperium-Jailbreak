@@ -20,7 +20,7 @@ object AddonMinecraftBootstrap {
     fun init() {
         try {
             if (AddonBootstrap.phase != AddonBootstrap.Phase.INIT) {
-                throw IOException("Bootstrap currently at Phase.${AddonBootstrap.phase}, it should be at INIT")
+                throw IOException("Bootstrap currently at AddonBoostrap.Phase.${AddonBootstrap.phase}, it should be at INIT")
             }
 
             val toLoadMap = AddonBootstrap.addonManifests.map { it.name to it }.toMap().toMutableMap()
