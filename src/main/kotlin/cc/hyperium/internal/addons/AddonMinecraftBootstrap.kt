@@ -138,7 +138,7 @@ object AddonMinecraftBootstrap {
 
             LOADED_ADDONS.addAll(loaded)
             LOADED_ADDONS.forEach(IAddon::onLoad)
-            AddonBootstrap.phase = AddonBoostrap.Phase.DEFAULT
+            AddonBootstrap.phase = AddonBootstrap.Phase.DEFAULT
         } catch (ignored: Exception) {}
     }
 }
