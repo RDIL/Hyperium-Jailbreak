@@ -1,7 +1,6 @@
 package cc.hyperium.mixins.renderer.model;
 
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.PostCopyPlayerModelAnglesEvent;
 import cc.hyperium.event.PreCopyPlayerModelAnglesEvent;
 import cc.hyperium.mixinsimp.renderer.model.IMixinModelPlayer;
 import net.minecraft.client.entity.AbstractClientPlayer;
@@ -216,10 +215,6 @@ public class MixinModelPlayer extends MixinModelBiped implements IMixinModelPlay
         copyModelAnglesAndOffest(this.bipedRightLeg, this.bipedRightLowerLeg);
         copyModelAnglesAndOffest(this.bipedLeftLegwear, this.bipedLeftLowerLegwear);
         copyModelAnglesAndOffest(this.bipedRightLegwear, this.bipedRightLowerLegwear);
-
-        if (entityIn instanceof AbstractClientPlayer) {
-            EventBus.INSTANCE.post(new PostCopyPlayerModelAnglesEvent(((AbstractClientPlayer) entityIn), this));
-        }
     }
 
     @Inject(method = "setInvisible", at = @At("RETURN"))

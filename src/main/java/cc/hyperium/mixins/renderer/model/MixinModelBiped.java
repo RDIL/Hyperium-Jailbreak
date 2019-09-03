@@ -2,7 +2,6 @@ package cc.hyperium.mixins.renderer.model;
 
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.PostCopyPlayerModelAnglesEvent;
 import cc.hyperium.event.PreCopyPlayerModelAnglesEvent;
 import cc.hyperium.mixinsimp.renderer.model.IMixinModelBiped;
 import cc.hyperium.mixinsimp.renderer.model.IMixinModelBox;
@@ -56,10 +55,10 @@ public class MixinModelBiped extends ModelBase implements IMixinModelBiped {
     @Shadow
     public boolean aimedBow;
 
-    protected ModelRenderer bipedLeftForeArm;
-    protected ModelRenderer bipedRightForeArm;
-    protected ModelRenderer bipedLeftLowerLeg;
-    protected ModelRenderer bipedRightLowerLeg;
+    ModelRenderer bipedLeftForeArm;
+    ModelRenderer bipedRightForeArm;
+    ModelRenderer bipedLeftLowerLeg;
+    ModelRenderer bipedRightLowerLeg;
 
     @Inject(method = "<init>(FFII)V", at = @At("RETURN"))
     private void injectModelChanges(float modelSize, float p_i1149_2_, int textureWidthIn, int textureHeightIn, CallbackInfo ci) {
@@ -98,7 +97,7 @@ public class MixinModelBiped extends ModelBase implements IMixinModelBiped {
         }
     }
 
-    protected void fixTopAndBottomOfLimbWrongTextures(ModelRenderer... models) {
+    void fixTopAndBottomOfLimbWrongTextures(ModelRenderer... models) {
         for (ModelRenderer model : models) {
             // We only need the first box since we know there only is one
             ModelBox box = model.cubeList.get(0);
@@ -276,12 +275,10 @@ public class MixinModelBiped extends ModelBase implements IMixinModelBiped {
 
             copyModelAnglesAndOffest(this.bipedLeftLeg, this.bipedLeftLowerLeg);
             copyModelAnglesAndOffest(this.bipedRightLeg, this.bipedRightLowerLeg);
-
-            if (isPlayer) EventBus.INSTANCE.post(new PostCopyPlayerModelAnglesEvent(((AbstractClientPlayer) entityIn), this));
         }
     }
 
-    protected void copyModelAnglesAndOffest(ModelRenderer src, ModelRenderer dest) {
+    void copyModelAnglesAndOffest(ModelRenderer src, ModelRenderer dest) {
         copyModelAngles(src, dest);
         dest.offsetX = src.offsetX;
         dest.offsetY = src.offsetY;
