@@ -34,13 +34,8 @@ public abstract class HyperiumChatHandler {
     public void callback(JsonHolder data) {}
 
     public enum ChatRegexType {
-        PRIVATE_MESSAGE_TO,
         PRIVATE_MESSAGE_FROM,
         FRIEND_REQUEST,
-        GUILD_CHAT,
-        PARTY_CHAT,
-        PARTY_INVITE,
-        BLITZ_KILL,
-        WIN
+        PARTY_INVITE
     }
 }
