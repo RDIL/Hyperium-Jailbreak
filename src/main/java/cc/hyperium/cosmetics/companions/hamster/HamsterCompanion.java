@@ -5,6 +5,7 @@ import cc.hyperium.cosmetics.AbstractCosmetic;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.RenderEntitiesEvent;
 import cc.hyperium.event.RenderPlayerEvent;
+import cc.hyperium.event.WorldChangeEvent;
 import cc.hyperium.event.TickEvent;
 import cc.hyperium.purchases.EnumPurchaseType;
 import cc.hyperium.purchases.HyperiumPurchase;
