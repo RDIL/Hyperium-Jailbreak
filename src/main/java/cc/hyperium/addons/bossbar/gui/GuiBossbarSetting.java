@@ -1,5 +1,6 @@
 package cc.hyperium.addons.bossbar.gui;
 
+import cc.hyperium.addons.bossbar.BossbarAddon;
 import cc.hyperium.addons.bossbar.config.BossbarConfig;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -7,6 +8,11 @@ import net.minecraft.util.EnumChatFormatting;
 import java.io.IOException;
 
 public class GuiBossbarSetting extends GuiScreen {
+    private BossbarAddon addon;
+
+    public GuiBossbarSetting(BossbarAddon addon) {
+        this.addon = addon;
+    }
     public GuiBossbarSetting() {}
 
     @Override
