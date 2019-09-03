@@ -141,6 +141,7 @@ jar {
             exclude 'META-INF', 'META-INF/**'
             exclude 'org/jetbrains/annotations', 'org/jetbrains/annotations/**'
             exclude 'junit/', 'junit/**'
+            exclude 'junit/**/**'
             exclude 'com/google/gson/extras/examples', 'com/google/gson/extras/examples/**'
         }
     }
