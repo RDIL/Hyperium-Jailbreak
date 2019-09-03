@@ -140,8 +140,11 @@ jar {
             exclude 'icons/hyperium.png', 'icons/hyperium-transparent.png'
             exclude 'META-INF', 'META-INF/**'
             exclude 'org/jetbrains/annotations', 'org/jetbrains/annotations/**'
-            exclude 'junit/', 'junit/**'
-            exclude 'junit/**/**'
+            exclude 'junit', 'junit/**'
+            exclude 'junit/extensions', 'junit/extensions/**'
+            exclude 'junit/runner', 'junit/runner/**'
+            exclude 'junit/framework', 'junit/framework/**'
+            exclude 'junit/textui', 'junit/textui/**'
             exclude 'com/google/gson/extras/examples', 'com/google/gson/extras/examples/**'
         }
     }
