@@ -14,7 +14,6 @@ import cc.hyperium.gui.keybinds.GuiKeybinds;
 import cc.hyperium.mods.chromahud.gui.GeneralConfigGui;
 import cc.hyperium.mods.keystrokes.screen.GuiScreenKeystrokes;
 import cc.hyperium.mods.togglechat.gui.ToggleChatMainGui;
-import cc.hyperium.mods.blockoverlay.BlockOverlayGui;
 import net.minecraft.client.resources.I18n;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -71,7 +70,6 @@ public class SettingsTab extends AbstractTab {
         apply(new LinkComponent(this, Collections.emptyList(), "Open Bossbar Customizer", new GuiBossbarSetting()), true, Category.MODS, items);
         apply(new LinkComponent(this, Collections.emptyList(), "Open Crosshair Customizer", new GuiCustomCrosshairEditCrosshair(Hyperium.INSTANCE.getInternalAddons().getCustomCrosshairAddon())), true, Category.INTEGRATIONS, items);
         apply(new LinkComponent(this, Collections.emptyList(), "Open ChromaHUD Customizer", new GeneralConfigGui(Hyperium.INSTANCE.getModIntegration().getChromaHUD())), true, Category.MODS, items);
-        apply(new LinkComponent(this, Collections.emptyList(), "Open BlockOverlay Customizer", new BlockOverlayGui(Hyperium.INSTANCE.getModIntegration().getBlockOverlay())), true, Category.MODS, items);
 
         for (RGBFieldSet rgbFieldSet : gui.getRgbFields()) {
             apply(new RGBComponent(this, rgbFieldSet), rgbFieldSet.isMods(), rgbFieldSet.getCategory(), items);
