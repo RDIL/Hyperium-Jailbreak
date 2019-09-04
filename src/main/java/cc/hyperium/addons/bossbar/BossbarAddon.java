@@ -17,7 +17,7 @@ public class BossbarAddon extends AbstractAddon {
     @Override
     public AbstractAddon init() {
         bossbarConfig = new BossbarConfig();
-        guiBossBarSetting = new GuiBossbarSetting();
+        guiBossBarSetting = new GuiBossbarSetting(this);
         Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(new CommandBossbar(this));
         return this;
     }
