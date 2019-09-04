@@ -12,7 +12,7 @@ public class GuiBossbarPosition extends GuiScreen {
     private int oldStatusBarTime;
     private float oldHealthScale;
 
-    public GuiBossbarPosition(GuiScreen parent) {
+    public GuiBossbarPosition(GuiScreen parent, BossbarAddon addon) {
         this.parent = parent;
     }
 
