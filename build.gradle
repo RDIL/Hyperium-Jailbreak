@@ -137,7 +137,6 @@ jar {
     )
     configurations.embed.each { dep ->
         from(project.zipTree(dep)) {
-            exclude 'icons/hyperium.png', 'icons/hyperium-transparent.png'
             exclude 'META-INF', 'META-INF/**'
             exclude 'org/jetbrains/annotations', 'org/jetbrains/annotations/**'
             exclude 'junit', 'junit/**'
