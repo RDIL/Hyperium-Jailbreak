@@ -8,8 +8,9 @@ import net.minecraft.util.EnumChatFormatting;
 import java.io.IOException;
 
 public class GuiBossbarSetting extends GuiScreen {
-    public GuiBossbarSetting(BossbarAddon addon) {}
-    public GuiBossbarSetting() {}
+    public GuiBossbarSetting(BossbarAddon addon) {
+        this.addon = addon;
+    }
 
     @Override
     public void initGui() {
