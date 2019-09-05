@@ -26,7 +26,6 @@ import cc.hyperium.event.MouseButtonEvent;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.DabKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.FlipKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.FlossKeybind;
-import cc.hyperium.handlers.handlers.keybinds.keybinds.FortniteDefaultDanceKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.FriendsKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.GuiDanceKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.GuiKeybind;
@@ -55,7 +54,6 @@ public class KeyBindHandler {
         registerKeyBinding(new FlossKeybind());
         registerKeyBinding(new ToggleSprintKeybind());
         registerKeyBinding(new TogglePerspectiveKeybind());
-        registerKeyBinding(new FortniteDefaultDanceKeybind());
         registerKeyBinding(new TPoseKeybind());
         registerKeyBinding(new GuiDanceKeybind());
         registerKeyBinding(new RearCamKeybind());
