@@ -80,20 +80,6 @@ public class GuiDances extends HyperiumGui {
             abstractAnimationHandler.get(Minecraft.getMinecraft().thePlayer.getUniqueID()).stopAnimation();
         });
 
-        this.handlers.put("Fortnite Default Dance", (netty) -> {
-            AbstractAnimationHandler abstractAnimationHandler = Hyperium.INSTANCE.getHandlers().getFortniteDefaultDance();
-            abstractAnimationHandler.get(Minecraft.getMinecraft().thePlayer.getUniqueID()).ensureAnimationFor(60);
-
-            Hyperium.INSTANCE.getHandlers().getFortniteDefaultDance().getStates().put(UUIDUtil.getClientUUID(), System.currentTimeMillis());
-            NettyClient client = NettyClient.getClient();
-            if (client != null && netty)
-                client.write(ServerCrossDataPacket.build(new JsonHolder().put("type", "fortnite_default_dance")));
-        });
-        this.cancel.put("Fortnite Default Dance", () -> {
-            AbstractAnimationHandler abstractAnimationHandler = Hyperium.INSTANCE.getHandlers().getFortniteDefaultDance();
-            abstractAnimationHandler.get(Minecraft.getMinecraft().thePlayer.getUniqueID()).stopAnimation();
-        });
-
         this.handlers.put("T-Pose", (netty) -> {
             AbstractAnimationHandler abstractAnimationHandler = Hyperium.INSTANCE.getHandlers().getTPoseHandler();
             abstractAnimationHandler.get(Minecraft.getMinecraft().thePlayer.getUniqueID()).ensureAnimationFor(seconds);
