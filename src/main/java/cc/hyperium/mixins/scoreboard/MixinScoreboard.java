@@ -17,7 +17,6 @@
 
 package cc.hyperium.mixins.scoreboard;
 
-import cc.hyperium.mixinsimp.scoreboard.HyperiumScoreboard;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Scoreboard;
 import org.spongepowered.asm.mixin.Final;
@@ -28,18 +27,25 @@ import java.util.Map;
 
 @Mixin(Scoreboard.class)
 public abstract class MixinScoreboard {
-    @Shadow
-    @Final
-    private Map<String, ScorePlayerTeam> teams;
+    @Shadow @Final private Map<String, ScorePlayerTeam> teams;
 
-    @Shadow
-    @Final
-    private Map<String, ScorePlayerTeam> teamMemberships;
+    @Shadow @Final private Map<String, ScorePlayerTeam> teamMemberships;
 
-    private HyperiumScoreboard hyperiumScoreboard = new HyperiumScoreboard((Scoreboard) (Object) this);
+    @Shadow private void func_96513_c;
 
     @Overwrite
     public void removeTeam(ScorePlayerTeam team) {
-        hyperiumScoreboard.removeTeam(team, teams, teamMemberships);
+        if (team == null) {
+            return;
+        }
+
+        if (team.getRegisteredName() != null) {
+            teams.remove(team.getRegisteredName());
+        }
+        for (String s : team.getMembershipCollection()) {
+            teamMemberships.remove(s);
+        }
+
+        this.func_96513_c(team);
     }
 }
