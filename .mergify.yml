@@ -1,6 +1,5 @@
 pull_request_rules:
   - name: CommentOnOpen
-    conditions: []
     actions:
       comment: ":tada: **Thank you for your Pull Request!** :tada:"
   - name: RequestMaintainerReview
