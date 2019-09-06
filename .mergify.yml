@@ -1,13 +1,11 @@
 pull_request_rules:
   - name: CommentOnOpen
-    conditions:
-      - closed!=true
+    conditions: []
     actions:
       comment: ":tada: **Thank you for your Pull Request!** :tada:"
   - name: RequestMaintainerReview
     conditions:
       - author!=RDIL
-      - closed!=true
     actions:
       request_reviews:
         users:
@@ -16,7 +14,6 @@ pull_request_rules:
     conditions:
       - label=Auto-Merge
       - status-success=Cirrus CI
-      - closed!=true
     actions:
       merge:
         method: squash
