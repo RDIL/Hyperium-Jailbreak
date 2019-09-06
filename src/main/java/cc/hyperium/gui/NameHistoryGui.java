@@ -30,7 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import rocks.rdil.jailbreak.MojangAPI;
+import com.hyperiumjailbreak.MojangAPI;
 
 public class NameHistoryGui extends GuiScreen {
     private String name;
