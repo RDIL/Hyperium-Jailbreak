@@ -1,6 +1,5 @@
 package me.semx11.autotip.config;
 
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -11,7 +10,6 @@ public class GlobalSettings {
     private String hypixelHeader;
     private int xpPerTipSent;
     private int xpPerTipReceived;
-    private LocalDate xpChangeDate;
     private List<GameGroup> gameGroups;
     private List<GameAlias> gameAliases;
     private List<Message> messages;
