@@ -1,5 +1,8 @@
 package me.semx11.autotip.command.impl;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -17,6 +20,8 @@ import me.semx11.autotip.util.MinecraftVersion;
 import static net.minecraft.command.CommandBase.getListOfStringsMatchingLastWord;
 
 public class CommandAutotip extends CommandAbstract {
+    private static final DateTimeFormatter WAVE_FORMAT = DateTimeFormatter.ofPattern("mm:ss");
+
     public CommandAutotip(Autotip autotip) {
         super(autotip);
     }
