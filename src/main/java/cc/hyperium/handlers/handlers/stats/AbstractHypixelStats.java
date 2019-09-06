@@ -7,11 +7,9 @@ import club.sk1er.website.api.requests.HypixelApiPlayer;
 import club.sk1er.website.utils.WebsiteUtils;
 import net.hypixel.api.GameType;
 import net.minecraft.util.EnumChatFormatting;
-import java.awt.*;
+import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.TimeZone;
 
 public abstract class AbstractHypixelStats {
     private int totalWeekly;
@@ -40,15 +38,6 @@ public abstract class AbstractHypixelStats {
     public abstract String getName();
 
     public abstract GameType getGameType();
-
-    private boolean isToday(long last_completed) {
-        Calendar now = Calendar.getInstance();
-        now.setTimeZone(TimeZone.getTimeZone("EST"));
-        Calendar timeToCheck = Calendar.getInstance();
-        timeToCheck.setTimeZone(TimeZone.getTimeZone("EST"));
-        timeToCheck.setTimeInMillis(last_completed);
-        return now.get(Calendar.DAY_OF_YEAR) == timeToCheck.get(Calendar.DAY_OF_YEAR);
-    }
 
     public List<StatsDisplayItem> getPreview(HypixelApiPlayer player) {
         ArrayList<StatsDisplayItem> items = new ArrayList<>();
