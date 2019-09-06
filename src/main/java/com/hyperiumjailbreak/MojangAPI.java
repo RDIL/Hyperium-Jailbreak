@@ -1,4 +1,4 @@
-package rocks.rdil.jailbreak;
+package com.hyperiumjailbreak;
 
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.util.EntityUtils;
