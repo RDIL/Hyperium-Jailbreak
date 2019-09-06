@@ -49,8 +49,8 @@ import net.minecraft.crash.CrashReport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
-import rocks.rdil.jailbreak.chat.CommonChatResponder;
-import rocks.rdil.jailbreak.BackendHandler;
+import com.hyperiumjailbreak.CommonChatResponder;
+import rocks.rdil.BackendHandler;
 import java.io.File;
 
 public class Hyperium {
