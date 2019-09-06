@@ -2,7 +2,6 @@ package me.semx11.autotip.command.impl;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Collections;
 import java.util.List;
 import me.semx11.autotip.Autotip;
