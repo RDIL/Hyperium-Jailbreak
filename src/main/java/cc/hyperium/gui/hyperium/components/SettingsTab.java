@@ -88,7 +88,7 @@ public class SettingsTab extends AbstractTab {
         CollapsibleTabComponent collapsibleTabComponent = items.computeIfAbsent(
             (mods ? Category.MODS : category),
             category1 ->
-                new CollapsibleTabComponent(SettingsTab.this,
+                new CollapsibleTabComponent(this,
                     Collections.singletonList(category1.name()),
                     category1.getDisplay()));
         if (mods) {
