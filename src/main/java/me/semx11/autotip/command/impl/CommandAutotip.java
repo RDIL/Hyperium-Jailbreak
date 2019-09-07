@@ -1,30 +1,21 @@
 package me.semx11.autotip.command.impl;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 import me.semx11.autotip.Autotip;
 import me.semx11.autotip.chat.MessageOption;
 import me.semx11.autotip.chat.MessageUtil;
 import me.semx11.autotip.command.CommandAbstract;
 import me.semx11.autotip.config.Config;
 import me.semx11.autotip.core.SessionManager;
-import me.semx11.autotip.core.StatsManager;
 import me.semx11.autotip.core.TaskManager;
 import me.semx11.autotip.core.TaskManager.TaskType;
 import me.semx11.autotip.util.MinecraftVersion;
-
 import static net.minecraft.command.CommandBase.getListOfStringsMatchingLastWord;
 
 public class CommandAutotip extends CommandAbstract {
-    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("d/M/yyyy");
     private static final DateTimeFormatter WAVE_FORMAT = DateTimeFormatter.ofPattern("mm:ss");
 
     public CommandAutotip(Autotip autotip) {
@@ -56,7 +47,6 @@ public class CommandAutotip extends CommandAbstract {
         MessageUtil messageUtil = autotip.getMessageUtil();
         TaskManager taskManager = autotip.getTaskManager();
         SessionManager manager = autotip.getSessionManager();
-        StatsManager stats = autotip.getStatsManager();
 
         if (args.length <= 0) {
             messageUtil.sendKey("command.usage");
@@ -64,80 +54,6 @@ public class CommandAutotip extends CommandAbstract {
         }
 
         switch (args[0].toLowerCase()) {
-            case "s":
-            case "stats":
-                LocalDate now = LocalDate.now();
-
-                if (args.length <= 1) {
-                    stats.get(now).print();
-                    return;
-                }
-
-                String param = args[1].toLowerCase();
-                switch (param) {
-                    case "d":
-                    case "day":
-                    case "daily":
-                    case "today":
-                        stats.get(now).print();
-                        break;
-                    case "w":
-                    case "week":
-                    case "weekly":
-                        stats.getRange(now.with(DayOfWeek.MONDAY), now.with(DayOfWeek.SUNDAY))
-                                .print();
-                        break;
-                    case "m":
-                    case "month":
-                    case "monthly":
-                        stats.getRange(now.withDayOfMonth(1),
-                                now.withDayOfMonth(now.lengthOfMonth())).print();
-                        break;
-                    case "y":
-                    case "year":
-                    case "yearly":
-                        stats.getRange(now.withDayOfYear(1),
-                                now.withDayOfYear(now.lengthOfYear())).print();
-                        break;
-                    case "a":
-                    case "all":
-                    case "total":
-                    case "life":
-                    case "lifetime":
-                        stats.getAll().print();
-                        break;
-                    default:
-                        if (param.contains("-")) {
-                            List<LocalDate> dates = Arrays.stream(param.split("-"))
-                                    .map(string -> {
-                                        try {
-                                            return LocalDate.parse(string, DATE_FORMAT);
-                                        } catch (DateTimeParseException e) {
-                                            return null;
-                                        }
-                                    })
-                                    .filter(Objects::nonNull)
-                                    .limit(2)
-                                    .sorted()
-                                    .collect(Collectors.toList());
-                            if (dates.size() != 2) {
-                                messageUtil.sendKey("command.stats.invalidRange");
-                                return;
-                            }
-                            stats.getRange(dates.get(0), dates.get(1)).print();
-                        } else if (param.contains("/")) {
-                            try {
-                                LocalDate date = LocalDate.parse(param, DATE_FORMAT);
-                                stats.get(date).print();
-                            } catch (DateTimeParseException e) {
-                                messageUtil.sendKey("command.stats.invalidDate");
-                            }
-                        } else {
-                            messageUtil.sendKey("command.stats.usage");
-                        }
-                        break;
-                }
-                break;
             case "m":
             case "messages":
                 try {

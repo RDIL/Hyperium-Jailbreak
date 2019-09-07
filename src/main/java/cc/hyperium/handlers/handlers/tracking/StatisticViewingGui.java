@@ -75,7 +75,6 @@ public class StatisticViewingGui extends HyperiumGui {
             List<ValueTrackingItem> valueTrackingItems = dataPoints.get(integer);
             if (valueTrackingItems == null) {
                 for (ValueTrackingType type : types) {
-                    MissingDataHandling missingDataHandling = type.getMissingDataHandling();
                     masterDataSet.add(new ValueTrackingItem(type, 0, masterTimeOne + delta * (long) integer));
                 }
             }

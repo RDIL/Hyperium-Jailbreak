@@ -14,12 +14,13 @@ public class BlockOverlay extends AbstractMod {
         this.settings = new BlockOverlaySettings(Hyperium.folder);
         this.settings.load();
         EventBus.INSTANCE.register(new BlockOverlayRender(this));
+        Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(new BlockOverlayCommand(this));
         return this;
     }
 
     @Override
     public Metadata getModMetadata() {
-        return new Metadata(this, "BlockOverlay", "1", "aycy & powns");
+        return new Metadata(this, "BlockOverlay", "1", "aycy&powns");
     }
 
     public BlockOverlaySettings getSettings() {

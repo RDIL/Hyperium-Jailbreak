@@ -1,5 +1,6 @@
 package cc.hyperium.addons.bossbar.gui;
 
+import cc.hyperium.addons.bossbar.BossbarAddon;
 import cc.hyperium.addons.bossbar.config.BossbarConfig;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -7,7 +8,11 @@ import net.minecraft.util.EnumChatFormatting;
 import java.io.IOException;
 
 public class GuiBossbarSetting extends GuiScreen {
-    public GuiBossbarSetting() {}
+    private BossbarAddon addon;
+
+    public GuiBossbarSetting(BossbarAddon addon) {
+        this.addon = addon;
+    }
 
     @Override
     public void initGui() {
@@ -40,7 +45,7 @@ public class GuiBossbarSetting extends GuiScreen {
                 button.displayString = "Bar: " + this.getSuffix(BossbarConfig.barEnabled);
                 break;
             case 3:
-                mc.displayGuiScreen(new GuiBossbarPosition(this));
+                mc.displayGuiScreen(new GuiBossbarPosition(this, this.addon));
                 break;
             case 4:
                 BossbarConfig.bossBarEnabled = true;

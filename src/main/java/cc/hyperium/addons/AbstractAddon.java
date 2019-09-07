@@ -40,7 +40,6 @@ public abstract class AbstractAddon {
             checkNotNull(addon, "Addon instance cannot be null");
             checkArgument(!StringUtils.isEmpty(name), "Name cannot be null or empty (" + name + ")");
             checkArgument(!StringUtils.isEmpty(version), "Version cannot be null or empty (" + version + ")");
-            checkNotNull(author, "Author cannot be null (" + author + ")");
             this.addon = addon;
             this.name = name;
             this.version = version;

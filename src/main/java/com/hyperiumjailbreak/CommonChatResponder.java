@@ -1,4 +1,5 @@
-package rocks.rdil.jailbreak.chat;
+package com.hyperiumjailbreak;
+
 import cc.hyperium.event.ChatEvent;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.handlers.handlers.HypixelDetector;
@@ -8,6 +9,7 @@ public class CommonChatResponder {
     private String listenFor;
     private String say;
     private boolean onlyOnHypixel;
+
     public CommonChatResponder(String listenFor, String say, boolean onlyOnHypixel) {
         this.listenFor = listenFor;
         this.say = say;

@@ -20,16 +20,13 @@ version = "3.0-devpack1"
 buildscript {
     repositories {
         maven {
-            name "SpongePowered"
+            url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/gradle-plugin-proxy"
+        }
+        maven {
             url "https://repo.spongepowered.org/maven"
         }
         maven {
-            name "proxies.MinecraftForge"
             url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/forge-proxy"
-        }
-        maven {
-            name "proxies.GradlePlugins"
-            url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/gradle-plugin-proxy"
         }
     }
     dependencies {
@@ -37,7 +34,7 @@ buildscript {
             exclude module: 'gson'
         }
         classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.41"
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.41'
     }
 }
 
@@ -89,7 +86,7 @@ dependencies {
         exclude module: 'LaunchWrapperPatcher'
     }
     embed 'com.github.hyperiumjailbreak:LaunchWrapperPatcher:48296037cc'
-    embed fileTree(dir: 'libs', include: '*.jar')
+    embed 'com.hyperiumjailbreak:gson-extras:0.2.1'
 }
 
 mixin {
@@ -99,12 +96,13 @@ mixin {
 
 repositories {
     maven {
-        name "proxies.JitPack"
         url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/jitpack-proxy"
     }
     maven {
-        name "SpongePowered"
         url "https://repo.spongepowered.org/maven/"
+    }
+    maven {
+        url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/libs"
     }
 }
 
@@ -137,7 +135,6 @@ jar {
     )
     configurations.embed.each { dep ->
         from(project.zipTree(dep)) {
-            exclude 'icons/hyperium.png', 'icons/hyperium-transparent.png'
             exclude 'META-INF', 'META-INF/**'
             exclude 'org/jetbrains/annotations', 'org/jetbrains/annotations/**'
             exclude 'junit', 'junit/**'

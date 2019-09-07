@@ -5,7 +5,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.particle.EntityParticleEmitter;
-import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -34,18 +33,12 @@ import java.util.concurrent.CountDownLatch;
 
 @Mixin(EffectRenderer.class)
 public abstract class MixinEffectRenderer {
-    @Shadow
-    @Final
-    private static ResourceLocation particleTextures;
-    @Shadow
-    protected World worldObj;
-    @Shadow
-    private Map<Integer, IParticleFactory> particleTypes;
+    @Shadow @Final private static ResourceLocation particleTextures;
+    @Shadow protected World worldObj;
     // its not happy about this but we can't do better because Minecraft
     private ConcurrentLinkedQueue<EntityFX>[][] modifiedFxLayer = new ConcurrentLinkedQueue[4][];
     private ConcurrentLinkedQueue<EntityParticleEmitter> modifiedParticlEmmiters = new ConcurrentLinkedQueue<>();
-    @Shadow
-    private TextureManager renderer;
+    @Shadow private TextureManager renderer;
 
     @Inject(method = "<init>", at = @At("RETURN"))
     public void load(World in, TextureManager manager, CallbackInfo info) {
