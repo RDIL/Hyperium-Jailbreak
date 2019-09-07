@@ -1,4 +1,4 @@
-package cc.hyperium.mixins.nbt;
+package cc.hyperium.mixins;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;

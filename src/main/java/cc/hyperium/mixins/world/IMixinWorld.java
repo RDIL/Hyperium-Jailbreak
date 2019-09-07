@@ -8,12 +8,9 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(World.class)
 public interface IMixinWorld {
-    @Invoker
-    boolean callIsChunkLoaded(int x, int z, boolean allowEmpty);
+    @Invoker boolean callIsChunkLoaded(int x, int z, boolean allowEmpty);
 
-    @Invoker
-    void callOnEntityRemoved(Entity entityIn);
+    @Invoker void callOnEntityRemoved(Entity entityIn);
 
-    @Accessor
-    void setProcessingLoadedTiles(boolean in);
+    @Accessor void setProcessingLoadedTiles(boolean in);
 }

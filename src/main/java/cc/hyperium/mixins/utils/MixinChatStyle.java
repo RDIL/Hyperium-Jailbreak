@@ -34,52 +34,52 @@ public abstract class MixinChatStyle {
     }
 
     @Inject(method = "setColor", at = @At("HEAD"))
-    public void setColor(EnumChatFormatting color, CallbackInfoReturnable<ChatStyle> info) {
+    private void setColor(EnumChatFormatting color, CallbackInfoReturnable<ChatStyle> info) {
         hyperiumChatStyle.resetCache();
     }
 
     @Inject(method = "setBold", at = @At("HEAD"))
-    public void setBold(Boolean boldIn, CallbackInfoReturnable<ChatStyle> callbackInfoReturnable) {
+    private void setBold(Boolean boldIn, CallbackInfoReturnable<ChatStyle> cir) {
         hyperiumChatStyle.resetCache();
     }
 
     @Inject(method = "setItalic", at = @At("HEAD"))
-    public void setItalic(Boolean boldIn, CallbackInfoReturnable<ChatStyle> callbackInfoReturnable) {
+    private void setItalic(Boolean boldIn, CallbackInfoReturnable<ChatStyle> cir) {
         hyperiumChatStyle.resetCache();
     }
 
     @Inject(method = "setStrikethrough", at = @At("HEAD"))
-    public void setStrikethrough(Boolean boldIn, CallbackInfoReturnable<ChatStyle> callbackInfoReturnable) {
+    private void setStrikethrough(Boolean boldIn, CallbackInfoReturnable<ChatStyle> cir) {
         hyperiumChatStyle.resetCache();
     }
 
     @Inject(method = "setUnderlined", at = @At("HEAD"))
-    public void setUnderlined(Boolean boldIn, CallbackInfoReturnable<ChatStyle> callbackInfoReturnable) {
+    private void setUnderlined(Boolean boldIn, CallbackInfoReturnable<ChatStyle> cir) {
         hyperiumChatStyle.resetCache();
     }
 
     @Inject(method = "setObfuscated", at = @At("HEAD"))
-    public void setObfuscated(Boolean boldIn, CallbackInfoReturnable<ChatStyle> callbackInfoReturnable) {
+    private void setObfuscated(Boolean boldIn, CallbackInfoReturnable<ChatStyle> cir) {
         hyperiumChatStyle.resetCache();
     }
 
     @Inject(method = "setChatClickEvent", at = @At("HEAD"))
-    public void setChatClickEvent(ClickEvent boldIn, CallbackInfoReturnable<ChatStyle> callbackInfoReturnable) {
+    private void setChatClickEvent(ClickEvent boldIn, CallbackInfoReturnable<ChatStyle> cir) {
         hyperiumChatStyle.resetCache();
     }
 
     @Inject(method = "setChatHoverEvent", at = @At("HEAD"))
-    public void setChatHoverEvent(HoverEvent boldIn, CallbackInfoReturnable<ChatStyle> callbackInfoReturnable) {
+    private void setChatHoverEvent(HoverEvent boldIn, CallbackInfoReturnable<ChatStyle> cir) {
         hyperiumChatStyle.resetCache();
     }
 
     @Inject(method = "setInsertion", at = @At("HEAD"))
-    public void setChatHoverEvent(String boldIn, CallbackInfoReturnable<ChatStyle> callbackInfoReturnable) {
+    private void setChatHoverEvent(String boldIn, CallbackInfoReturnable<ChatStyle> cir) {
         hyperiumChatStyle.resetCache();
     }
 
     @Inject(method = "setParentStyle", at = @At("HEAD"))
-    public void setChatHoverEvent(ChatStyle boldIn, CallbackInfoReturnable<ChatStyle> callbackInfoReturnable) {
+    private void setChatHoverEvent(ChatStyle boldIn, CallbackInfoReturnable<ChatStyle> cir) {
         hyperiumChatStyle.resetCache();
     }
 }

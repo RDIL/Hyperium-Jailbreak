@@ -12,8 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(CrashReport.class)
 public abstract class MixinCrashReport {
-    @Shadow
-    public abstract CrashReportCategory makeCategoryDepth(String categoryName, int stacktraceLength);
+    @Shadow public abstract CrashReportCategory makeCategoryDepth(String categoryName, int stacktraceLength);
 
     @Inject(method = "populateEnvironment", at = @At("HEAD"))
     public void add(CallbackInfo info) {

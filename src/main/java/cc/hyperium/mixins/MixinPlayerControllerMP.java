@@ -24,9 +24,9 @@ public class MixinPlayerControllerMP {
         final float f3 = (float)(hitVec.zCoord - hitPos.getZ());
         final C08PacketPlayerBlockPlacement packet = new C08PacketPlayerBlockPlacement(hitPos, side.getIndex(), player.inventory.getCurrentItem(), f, f2, f3);
         if (heldStack.getUnlocalizedName().equals("item.bucketLava")) {
-            worldIn.setBlockState(new BlockPos((double)packet.getPlacedBlockOffsetX(), (double)packet.getPlacedBlockOffsetY(), (double)packet.getPlacedBlockOffsetZ()), Blocks.flowing_lava.getDefaultState());
+            worldIn.setBlockState(new BlockPos(packet.getPlacedBlockOffsetX(), packet.getPlacedBlockOffsetY(), packet.getPlacedBlockOffsetZ()), Blocks.flowing_lava.getDefaultState());
         } else if (heldStack.getUnlocalizedName().equals("item.bucketWater")) {
-            worldIn.setBlockState(new BlockPos((double)packet.getPlacedBlockOffsetX(), (double)packet.getPlacedBlockOffsetY(), (double)packet.getPlacedBlockOffsetZ()), Blocks.flowing_water.getDefaultState());
+            worldIn.setBlockState(new BlockPos(packet.getPlacedBlockOffsetX(), packet.getPlacedBlockOffsetY(), packet.getPlacedBlockOffsetZ()), Blocks.flowing_water.getDefaultState());
         }
     }
 }

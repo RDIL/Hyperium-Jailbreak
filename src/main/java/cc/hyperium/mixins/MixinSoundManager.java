@@ -38,22 +38,22 @@ public class MixinSoundManager {
     }
 
     @Inject(method = "updateAllSounds", at = @At("HEAD"))
-    public void startUpdate(CallbackInfo info) {
+    private void startUpdate(CallbackInfo info) {
         hyperiumSoundManager.startUpdate(info);
     }
 
     @Inject(method = "updateAllSounds", at = @At("TAIL"))
-    public void endUpdate(CallbackInfo info) {
+    private void endUpdate(CallbackInfo info) {
         hyperiumSoundManager.endUpdate(info);
     }
 
     @Inject(method = "stopAllSounds", at = @At("HEAD"))
-    public void startStopAllSounds(CallbackInfo info) {
+    private void startStopAllSounds(CallbackInfo info) {
         hyperiumSoundManager.startStopAllSounds(info);
     }
 
     @Inject(method = "stopAllSounds", at = @At("TAIL"))
-    public void endStopAllSounds(CallbackInfo info) {
+    private void endStopAllSounds(CallbackInfo info) {
         hyperiumSoundManager.endStopAllSounds(info);
     }
 }

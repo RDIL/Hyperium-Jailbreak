@@ -7,12 +7,9 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(Minecraft.class)
 public interface IMixinMinecraft {
-    @Accessor
-    void setDisplayWidth(int width);
+    @Accessor void setDisplayWidth(int width);
 
-    @Accessor
-    void setDisplayHeight(int height);
+    @Accessor void setDisplayHeight(int height);
 
-    @Accessor
-    void setCurrentScreen(GuiScreen screen);
+    @Accessor void setCurrentScreen(GuiScreen screen);
 }

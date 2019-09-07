@@ -38,47 +38,17 @@ import java.util.List;
 
 @Mixin(World.class)
 public abstract class MixinWorld {
-    @Shadow
-    @Final
-    public List<Entity> loadedEntityList;
-
-    @Shadow
-    @Final
-    public Profiler theProfiler;
-
-    @Shadow
-    @Final
-    public List<Entity> weatherEffects;
-
-    @Shadow
-    @Final
-    public List<TileEntity> tickableTileEntities;
-
-    @Shadow
-    @Final
-    public List<TileEntity> loadedTileEntityList;
-
-    @Shadow
-    @Final
-    protected List<Entity> unloadedEntityList;
-
-    @Shadow
-    protected WorldInfo worldInfo;
-
-    @Shadow
-    @Final
-    private WorldBorder worldBorder;
-
-    @Shadow
-    @Final
-    private List<TileEntity> tileEntitiesToBeRemoved;
-
-    @Shadow
-    @Final
-    private List<TileEntity> addedTileEntityList;
-
+    @Shadow @Final public List<Entity> loadedEntityList;
+    @Shadow @Final public Profiler theProfiler;
+    @Shadow @Final public List<Entity> weatherEffects;
+    @Shadow @Final public List<TileEntity> tickableTileEntities;
+    @Shadow @Final public List<TileEntity> loadedTileEntityList;
+    @Shadow @Final protected List<Entity> unloadedEntityList;
+    @Shadow protected WorldInfo worldInfo;
+    @Shadow @Final private WorldBorder worldBorder;
+    @Shadow @Final private List<TileEntity> tileEntitiesToBeRemoved;
+    @Shadow @Final private List<TileEntity> addedTileEntityList;
     private HyperiumWorld hyperiumWorld = new HyperiumWorld((World) (Object) this);
-
     @Inject(method = "setSpawnPoint", at = @At("HEAD"))
     private void setSpawnPoint(BlockPos pos, CallbackInfo ci) {
         hyperiumWorld.setSpawnPoint(pos, ci);
@@ -119,8 +89,7 @@ public abstract class MixinWorld {
         hyperiumWorld.getLight(pos, checkNeighbors, ci);
     }
 
-    @Overwrite
-    public void updateEntities() {
+    @Overwrite public void updateEntities() {
         hyperiumWorld.updateEntities(theProfiler, weatherEffects, loadedEntityList, unloadedEntityList, tickableTileEntities, worldBorder, loadedTileEntityList, tileEntitiesToBeRemoved, addedTileEntityList);
     }
 }

@@ -30,8 +30,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class MixinEnchantment {
     private HyperiumEnchantment enchantment = new HyperiumEnchantment();
 
-    @Shadow
-    public abstract String getName();
+    @Shadow public abstract String getName();
 
     @Inject(method = "getTranslatedName", at = @At("HEAD"), cancellable = true)
     private void getTranslatedName(int level, CallbackInfoReturnable<String> ci) {

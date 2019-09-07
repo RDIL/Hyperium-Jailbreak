@@ -41,8 +41,7 @@ public class ParticleOverlay {
     private long last;
 
     private ParticleOverlay() {
-        int max = Settings.MAX_PARTICLES;
-        for (int i = 0; i < max; i++) {
+        for (int i = 0; i < Settings.MAX_PARTICLES; i++) {
             particles.add(new Particle());
         }
     }
@@ -165,7 +164,7 @@ public class ParticleOverlay {
         CHROMA_2
     }
 
-    class Particle {
+    static class Particle {
         private float x;
         private float y;
         private float xVec;
@@ -182,7 +181,7 @@ public class ParticleOverlay {
             yVec = (float) ThreadLocalRandom.current().nextDouble(-.003, .003);
         }
 
-        public void update() {
+        void update() {
             x += xVec;
             if (x > 1.0)
                 x = x - 1.0F;

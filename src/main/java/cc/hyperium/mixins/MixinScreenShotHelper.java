@@ -29,14 +29,11 @@ import java.nio.IntBuffer;
 
 @Mixin(ScreenShotHelper.class)
 class MixinScreenShotHelper {
-    @Shadow
-    private static IntBuffer pixelBuffer;
+    @Shadow private static IntBuffer pixelBuffer;
 
-    @Shadow
-    private static int[] pixelValues;
+    @Shadow private static int[] pixelValues;
 
-    @Overwrite
-    public static IChatComponent saveScreenshot(File gameDirectory, String screenshotName, int width, int height, Framebuffer buffer) {
+    @Overwrite public static IChatComponent saveScreenshot(File gameDirectory, String screenshotName, int width, int height, Framebuffer buffer) {
         return HyperiumScreenshotHelper.saveScreenshot(gameDirectory, screenshotName, width, height, buffer, pixelBuffer, pixelValues);
     }
 }
