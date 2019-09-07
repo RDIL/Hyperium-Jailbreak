@@ -1,14 +1,4 @@
 pull_request_rules:
-  - name: CommentOnOpen
-    actions:
-      comment: ":tada: **Thank you for your Pull Request!** :tada:"
-  - name: RequestMaintainerReview
-    conditions:
-      - author!=RDIL
-    actions:
-      request_reviews:
-        users:
-          - "RDIL"
   - name: AutoMerge
     conditions:
       - label=Auto-Merge
