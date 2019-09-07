@@ -86,7 +86,7 @@ dependencies {
         exclude module: 'LaunchWrapperPatcher'
     }
     embed 'com.github.hyperiumjailbreak:LaunchWrapperPatcher:48296037cc'
-    embed fileTree(dir: 'libs', include: '*.jar')
+    embed 'com.hyperiumjailbreak:gson-extras:0.2.1'
 }
 
 mixin {
@@ -100,6 +100,9 @@ repositories {
     }
     maven {
         url "https://repo.spongepowered.org/maven/"
+    }
+    maven {
+        url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/libs"
     }
 }
 
