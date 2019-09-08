@@ -1,7 +1,6 @@
 # Jailbroken Hyperium
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/966f221ca8b44ac5b7027246c2b22388)](https://app.codacy.com/app/hyperiumjailbreak/client?utm_source=github.com&utm_medium=referral&utm_content=hyperiumjailbreak/client&utm_campaign=Badge_Grade_Dashboard)
-[![Commits since latest stable](https://img.shields.io/github/commits-since/hyperiumjailbreak/client/latest.svg?color=blueviolet)](https://github.com/hyperiumjailbreak/client/commits/master)
 [![CI Status](https://api.cirrus-ci.com/github/hyperiumjailbreak/client.svg?branch=master)](https://cirrus-ci.com/github/hyperiumjailbreak/client)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=hyperiumjailbreak/client)](https://dependabot.com)
 [![Powered by CloudRepo](https://img.shields.io/badge/powered%20by-CloudRepo-9cf.svg)](https://cloudrepo.io)
