@@ -28,8 +28,6 @@ public abstract class AbstractAddon {
         private final AbstractAddon addon;
         private final String name;
         private final String version;
-        private String description;
-        private String displayName;
         public Metadata(AbstractAddon addon, String name) {
             this(addon, name, "1.0");
         }
@@ -43,7 +41,6 @@ public abstract class AbstractAddon {
             this.addon = addon;
             this.name = name;
             this.version = version;
-            this.displayName = name;
         }
 
         public AbstractAddon getAddon() {
@@ -56,22 +53,6 @@ public abstract class AbstractAddon {
 
         public String getVersion() {
             return this.version;
-        }
-
-        public String getDisplayName() {
-            return this.displayName != null ? this.displayName : getName();
-        }
-
-        public String getDescription() {
-            return this.description != null ? this.description : "";
-        }
-
-        @Deprecated public void setDisplayName(String name) {
-            this.displayName = name;
-        }
-
-        @Deprecated public void setDescription(String description) {
-            this.description = description;
         }
     }
 }
