@@ -14,20 +14,12 @@ public class HyperiumGuiOptions {
 
     public void initGui(List<GuiButton> buttonList) {
         buttonList.forEach(b -> {
-            if (b.id == 200) {
-                b.yPosition = parent.height - 30;
-            }
-            if (b.displayString.startswith("Snooper")) {
-                System.out.println(b.xPosition);
-                System.out.println(b.yPosition);
-            }
+            if (b.id == 200) b.yPosition = parent.height - 30;
+            if (b.id == 104) b.displayString = "Hyperium Settings...";
         });
-        buttonList.add(new GuiButton(114514, parent.width / 2 - 155, parent.height / 6 + 18, 150, 20, "Hyperium Settings..."));
     }
 
     public void actionPerformed(GuiButton button) {
-        if (button.id == 114514) {
-            HyperiumMainGui.INSTANCE.show();
-        }
+        if (button.id == 104) HyperiumMainGui.INSTANCE.show();
     }
 }
