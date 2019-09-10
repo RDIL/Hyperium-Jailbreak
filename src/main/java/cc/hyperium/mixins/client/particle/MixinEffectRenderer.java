@@ -72,8 +72,7 @@ public abstract class MixinEffectRenderer {
     @Overwrite
     private void updateEffectLayer(int p_178922_1_) {
         for (int i = 0; i < 2; ++i) {
-            int finalI = i;
-            this.updateEffectAlphaLayer(this.modifiedFxLayer[p_178922_1_][finalI]);
+            this.updateEffectAlphaLayer(this.modifiedFxLayer[p_178922_1_][i]);
         }
     }
 
