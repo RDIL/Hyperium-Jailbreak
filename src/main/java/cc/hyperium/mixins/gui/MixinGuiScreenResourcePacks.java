@@ -50,7 +50,7 @@ public class MixinGuiScreenResourcePacks extends GuiScreen {
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
-    public void updateList() {
+    private void updateList() {
         availableResourcePacksList = hyperiumGuiResourcePack.updateList(availableResourcePacks, mc, height, width);
     }
 }

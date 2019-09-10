@@ -17,7 +17,7 @@ public class HyperiumGuiMainMenu {
         parent.drawDefaultBackground();
     }
 
-    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+    public void drawScreen() {
         if (!AddonMinecraftBootstrap.getDependenciesLoopMap().isEmpty() || !AddonMinecraftBootstrap.getMissingDependenciesMap().isEmpty()) {
             Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new GuiAddonError());
         } else {

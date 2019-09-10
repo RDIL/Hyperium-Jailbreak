@@ -19,7 +19,7 @@ public class HyperiumGuiScreen {
         this.parent = parent;
     }
 
-    public void drawWorldBackground(int tint, Minecraft mc, CallbackInfo ci) {
+    public void drawWorldBackground(Minecraft mc, CallbackInfo ci) {
         if (mc.theWorld != null && Settings.FAST_CONTAINER) {
             ci.cancel();
         }
@@ -47,10 +47,9 @@ public class HyperiumGuiScreen {
         EventBus.INSTANCE.post(new GuiKeyTypedEvent(parent, typedChar, keyCode));
     }
 
-    public void drawScreen(int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         EventBus.INSTANCE.post(new GuiDrawScreenEvent(parent, mouseX, mouseY, partialTicks));
     }
 
-    public void onGuiClosed(CallbackInfo ci) {
-    }
+    public void onGuiClosed() {}
 }

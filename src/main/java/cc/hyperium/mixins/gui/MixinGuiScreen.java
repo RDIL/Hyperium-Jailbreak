@@ -54,12 +54,12 @@ public abstract class MixinGuiScreen {
 
     @Inject(method = "drawScreen", at = @At("HEAD"), cancellable = true)
     private void drawScreen(int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
-        hyperiumGuiScreen.drawScreen(mouseX, mouseY, partialTicks, ci);
+        hyperiumGuiScreen.drawScreen(mouseX, mouseY, partialTicks);
     }
 
     @Inject(method = "drawWorldBackground", at = @At("HEAD"), cancellable = true)
     private void drawWorldBackground(int tint, CallbackInfo ci) {
-        hyperiumGuiScreen.drawWorldBackground(tint, this.mc, ci);
+        hyperiumGuiScreen.drawWorldBackground(this.mc, ci);
     }
 
     @Inject(method = "mouseClicked", at = @At("HEAD"), cancellable = true)
@@ -74,7 +74,7 @@ public abstract class MixinGuiScreen {
 
     @Inject(method = "onGuiClosed", at = @At("HEAD"))
     private void onGuiClosed(CallbackInfo ci) {
-        hyperiumGuiScreen.onGuiClosed(ci);
+        hyperiumGuiScreen.onGuiClosed();
     }
 
     @Inject(method = "actionPerformed", at = @At("HEAD"), cancellable = true)

@@ -27,9 +27,9 @@ public class MixinItemBucket {
             final int i = pos.getX();
             final int j = pos.getY();
             final int k = pos.getZ();
-            worldIn.playSoundEffect((double)(i + 0.5f), (double)(j + 0.5f), (double)(k + 0.5f), "random.fizz", 0.5f, 2.6f + (worldIn.rand.nextFloat() - worldIn.rand.nextFloat()) * 0.8f);
+            worldIn.playSoundEffect((i + 0.5f), (j + 0.5f), (k + 0.5f), "random.fizz", 0.5f, 2.6f + (worldIn.rand.nextFloat() - worldIn.rand.nextFloat()) * 0.8f);
             for (int l = 0; l < 8; ++l) {
-                worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, i + Math.random(), j + Math.random(), k + Math.random(), 0.0, 0.0, 0.0, new int[0]);
+                worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, i + Math.random(), j + Math.random(), k + Math.random(), 0.0, 0.0, 0.0);
             }
         } else {
             if (!worldIn.isRemote && flag && !material.isLiquid()) {

@@ -12,7 +12,6 @@ import java.util.List;
 
 public class HyperiumGuiScreenResourcePacks {
     private GuiScreenResourcePacks parent;
-    private GuiResourcePackAvailable availableResourcePacksList;
 
     public HyperiumGuiScreenResourcePacks(GuiScreenResourcePacks parent) {
         this.parent = parent;
@@ -27,12 +26,12 @@ public class HyperiumGuiScreenResourcePacks {
         });
     }
 
-    public void mouseClicked(int mouseX, int mouseY, int mouseButton) {}
+    public void mouseClicked() {}
 
     public GuiResourcePackAvailable updateList(List<ResourcePackListEntry> availableResourcePacks, Minecraft mc, int height, int width) {
-        this.availableResourcePacksList = new GuiResourcePackAvailable(mc, 200, height,availableResourcePacks);
-        this.availableResourcePacksList.setSlotXBoundsFromLeft(width / 2 - 4 - 200);
-        this.availableResourcePacksList.registerScrollButtons(7, 8);
+        GuiResourcePackAvailable availableResourcePacksList = new GuiResourcePackAvailable(mc, 200, height, availableResourcePacks);
+        availableResourcePacksList.setSlotXBoundsFromLeft(width / 2 - 4 - 200);
+        availableResourcePacksList.registerScrollButtons(7, 8);
 
         return availableResourcePacksList;
     }

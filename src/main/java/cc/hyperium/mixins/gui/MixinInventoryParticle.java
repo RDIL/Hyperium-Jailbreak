@@ -26,21 +26,20 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiContainer.class)
-
 public class MixinInventoryParticle {
     @Shadow
-    private int guiLeft;
+    protected int guiLeft;
 
     @Shadow
-    private int guiTop;
+    protected int guiTop;
 
     @Shadow
-    private int xSize;
+    protected int xSize;
 
     private HyperiumInventoryParticle hyperiumInventoryParticle = new HyperiumInventoryParticle();
 
     @Inject(method = "drawScreen", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/inventory/GuiContainer;drawGuiContainerBackgroundLayer(FII)V"))
     private void draw(int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
-        hyperiumInventoryParticle.draw(mouseX, mouseY, partialTicks, this.guiLeft, this.xSize, this.guiTop, ci);
+        hyperiumInventoryParticle.draw(mouseX, mouseY, this.guiLeft, this.xSize, this.guiTop);
     }
 }

@@ -71,7 +71,7 @@ public abstract class MixinGuiIngame extends Gui {
 
     @Inject(method = "renderGameOverlay", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/settings/KeyBinding;isKeyDown()Z"))
     private void renderGameOverlay(float partialTicks, CallbackInfo ci) {
-        hyperiumGuiIngame.renderGameOverlay(partialTicks, ci);
+        hyperiumGuiIngame.renderGameOverlay(partialTicks);
     }
 
     @Inject(method = "renderSelectedItem", at = @At(value = "RETURN", target = "Lnet/minecraft/client/renderer/GlStateManager;popMatrix()V"))
@@ -88,10 +88,10 @@ public abstract class MixinGuiIngame extends Gui {
 
             if (currentHealth < this.playerHealth && entityplayer.hurtResistantTime > 0) {
                 this.lastSystemTime = Minecraft.getSystemTime();
-                this.healthUpdateCounter = (long) (this.updateCounter + 20);
+                this.healthUpdateCounter = (this.updateCounter + 20);
             } else if (currentHealth > this.playerHealth && entityplayer.hurtResistantTime > 0) {
                 this.lastSystemTime = Minecraft.getSystemTime();
-                this.healthUpdateCounter = (long) (this.updateCounter + 10);
+                this.healthUpdateCounter = (this.updateCounter + 10);
             }
 
             if (Minecraft.getSystemTime() - this.lastSystemTime > 1000L) {
@@ -226,7 +226,7 @@ public abstract class MixinGuiIngame extends Gui {
             } else if (entity instanceof EntityLivingBase) {
                 this.mc.mcProfiler.endStartSection("mountHealth");
                 EntityLivingBase entitylivingbase = (EntityLivingBase) entity;
-                int tempHealth = (int) Math.ceil((double) entitylivingbase.getHealth());
+                int tempHealth = (int) Math.ceil(entitylivingbase.getHealth());
                 float maxHealth = entitylivingbase.getMaxHealth();
                 int maxHeart = (int) (maxHealth + 0.5F) / 2;
                 if (maxHeart > 30) {

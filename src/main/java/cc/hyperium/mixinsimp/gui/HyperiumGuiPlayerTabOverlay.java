@@ -86,12 +86,10 @@ public class HyperiumGuiPlayerTabOverlay {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         mc.getTextureManager().bindTexture(Gui.icons);
         int i = 0;
-        int j = 0;
+        int j;
 
         if (ping < 0) {
             j = 5;
-        } else if (ping < 150) {
-            j = 0;
         } else if (ping < 300) {
             j = 1;
         } else if (ping < 600) {
@@ -236,7 +234,7 @@ public class HyperiumGuiPlayerTabOverlay {
                 if (Settings.SHOW_ONLINE_PLAYERS) {
                     String s = "⚫";
 
-                    boolean online = false;
+                    boolean online;
 
                     if (mc.getSession().getProfile().getId() == gameprofile.getId()) {
                         online = true;

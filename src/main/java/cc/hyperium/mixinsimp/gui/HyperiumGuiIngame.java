@@ -14,7 +14,6 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.boss.BossStatus;
 import net.minecraft.scoreboard.ScoreObjective;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 public class HyperiumGuiIngame {
@@ -28,11 +27,9 @@ public class HyperiumGuiIngame {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    public void renderGameOverlay(float part, CallbackInfo ci) {
-        Minecraft.getMinecraft().mcProfiler.startSection("hyperium_overlay");
+    public void renderGameOverlay(float part) {
         EventBus.INSTANCE.post(new RenderHUDEvent(part));
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        Minecraft.getMinecraft().mcProfiler.endSection();
     }
 
     public void renderScoreboard(ScoreObjective objective, ScaledResolution resolution) {

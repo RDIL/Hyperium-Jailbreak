@@ -21,7 +21,7 @@ public class HyperiumGuiButton {
     private GuiButton parent;
     private long systemTime = Minecraft.getSystemTime();
     private float selectPercent = 0.0f;
-    boolean enabled = true;
+    private boolean enabled = true;
 
     public HyperiumGuiButton(GuiButton parent) {
         this.parent = parent;
@@ -98,7 +98,7 @@ public class HyperiumGuiButton {
         drawRect(x, y1 - size, x1, y1, borderC);
     }
 
-    public int getChromaColor() {
+    private int getChromaColor() {
         return Color.HSBtoRGB(System.currentTimeMillis() % 5000L / 5000.0f, 1.0f, 1.0f);
     }
 }
