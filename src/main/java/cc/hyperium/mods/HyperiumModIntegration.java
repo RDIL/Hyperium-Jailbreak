@@ -45,7 +45,6 @@ public class HyperiumModIntegration {
     private final AutofriendMod autofriend;
     private final FortniteCompassMod fncompass;
     private final ItemPhysicMod itemPhysicMod;
-    private final VictoryRoyale victoryRoyale;
 
     public HyperiumModIntegration() {
         this.chromaHUD = ((ChromaHUD) new ChromaHUD().init());
@@ -58,7 +57,6 @@ public class HyperiumModIntegration {
         NickHider nickHider = new NickHider();
         nickHider.init();
         new TabToggleMod().init();
-        this.victoryRoyale = (VictoryRoyale) new VictoryRoyale().init();
         this.autofriend = new AutofriendMod();
         this.fncompass = new FortniteCompassMod();
         this.itemPhysicMod = new ItemPhysicMod();
@@ -128,9 +126,5 @@ public class HyperiumModIntegration {
 
     public ItemPhysicMod getItemPhysicMod() {
         return itemPhysicMod;
-    }
-
-    public VictoryRoyale getVictoryRoyale() {
-        return victoryRoyale;
     }
 }
