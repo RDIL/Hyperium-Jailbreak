@@ -20,8 +20,6 @@ package cc.hyperium.mixins.packet;
 import cc.hyperium.Hyperium;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.ServerChatEvent;
-import cc.hyperium.internal.addons.AddonBootstrap;
-import cc.hyperium.internal.addons.AddonManifest;
 import cc.hyperium.mods.timechanger.TimeChanger;
 import com.google.common.base.Charsets;
 import com.google.common.collect.ObjectArrays;
@@ -159,20 +157,7 @@ public abstract class MixinNetHandlerPlayClient {
                     buffer.writeString("Hyperium;" + Hyperium.modid);
                     addToSendQueue(new C17PacketCustomPayload("REGISTER", buffer));
                     PacketBuffer addonbuffer = new PacketBuffer(Unpooled.buffer());
-                    List<AddonManifest> addons = AddonBootstrap.INSTANCE.getAddonManifests();
-                    addonbuffer.writeInt(addons.size());
-                    for (AddonManifest addonmanifest : addons) {
-                        String addonName = addonmanifest.getName();
-                        String version = addonmanifest.getVersion();
-                        if (addonName == null) {
-                            addonName = addonmanifest.getMainClass();
-                        }
-                        if (version == null) {
-                            version = "unknown";
-                        }
-                        addonbuffer.writeString(addonName);
-                        addonbuffer.writeString(version);
-                    }
+                    addonbuffer.writeInt(0);
                     addToSendQueue(new C17PacketCustomPayload("hyperium|Addons", addonbuffer));
                 }
             }
