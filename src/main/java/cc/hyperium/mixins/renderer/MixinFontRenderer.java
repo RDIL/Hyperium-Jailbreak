@@ -47,13 +47,12 @@ public abstract class MixinFontRenderer {
         // Should help fix issues
         GlStateModifier.INSTANCE.reset();
 
-        int list = 0;
         final float posX = this.posX;
         final float posY = this.posY;
         this.posY = 0;
         this.posX = 0;
         GlStateManager.translate(posX, posY, 0F);
-        CachedString value = new CachedString(text, list, this.posX - posX, this.posY - posY);
+        CachedString value = new CachedString(text, this.posX - posX, this.posY - posY);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 0.0F);
         this.func_181559_a('.', this.italicStyle);
         GlStateManager.color(red, blue, green, alpha);
@@ -78,10 +77,6 @@ public abstract class MixinFontRenderer {
                     float green = (float) (j1 >> 8 & 255) / 255.0F;
                     float blue = (float) (j1 & 255) / 255.0F;
                     setColor(red, green, blue, alpha);
-                    value.setLastRed(red);
-                    value.setLastBlue(blue);
-                    value.setLastGreen(green);
-                    value.setLastAlpha(alpha);
                 } else if (i1 == 16) {
                     this.randomStyle = true;
                 } else if (i1 == 17) {
@@ -99,10 +94,6 @@ public abstract class MixinFontRenderer {
                     this.underlineStyle = false;
                     this.italicStyle = false;
                     setColor(this.red, this.blue, this.green, alpha);
-                    value.setLastRed(this.red);
-                    value.setLastBlue(this.blue);
-                    value.setLastGreen(this.green);
-                    value.setLastAlpha(alpha);
                 }
 
                 ++i;
@@ -163,7 +154,7 @@ public abstract class MixinFontRenderer {
         GlStateManager.translate(-posX, -posY, 0F);
     }
 
-    protected void doDraw(float f) {
+    private void doDraw(float f) {
         {
             {
                 if (this.strikethroughStyle) {
@@ -171,10 +162,10 @@ public abstract class MixinFontRenderer {
                     WorldRenderer worldrenderer = tessellator.getWorldRenderer();
                     GlStateManager.disableTexture2D();
                     worldrenderer.begin(7, DefaultVertexFormats.POSITION);
-                    worldrenderer.pos((double) this.posX, (double) (this.posY + (float) (this.FONT_HEIGHT / 2)), 0.0D).endVertex();
-                    worldrenderer.pos((double) (this.posX + f), (double) (this.posY + (float) (this.FONT_HEIGHT / 2)), 0.0D).endVertex();
-                    worldrenderer.pos((double) (this.posX + f), (double) (this.posY + (float) (this.FONT_HEIGHT / 2) - 1.0F), 0.0D).endVertex();
-                    worldrenderer.pos((double) this.posX, (double) (this.posY + (float) (this.FONT_HEIGHT / 2) - 1.0F), 0.0D).endVertex();
+                    worldrenderer.pos(this.posX, (this.posY + (float) (this.FONT_HEIGHT / 2)), 0.0D).endVertex();
+                    worldrenderer.pos((this.posX + f), (this.posY + (float) (this.FONT_HEIGHT / 2)), 0.0D).endVertex();
+                    worldrenderer.pos((this.posX + f), (this.posY + (float) (this.FONT_HEIGHT / 2) - 1.0F), 0.0D).endVertex();
+                    worldrenderer.pos(this.posX, (this.posY + (float) (this.FONT_HEIGHT / 2) - 1.0F), 0.0D).endVertex();
                     tessellator.draw();
                     GlStateManager.enableTexture2D();
                 }
@@ -184,10 +175,10 @@ public abstract class MixinFontRenderer {
                     GlStateManager.disableTexture2D();
                     worldrenderer1.begin(7, DefaultVertexFormats.POSITION);
                     int l = this.underlineStyle ? -1 : 0;
-                    worldrenderer1.pos((double) (this.posX + (float) l), (double) (this.posY + (float) this.FONT_HEIGHT), 0.0D).endVertex();
-                    worldrenderer1.pos((double) (this.posX + f), (double) (this.posY + (float) this.FONT_HEIGHT), 0.0D).endVertex();
-                    worldrenderer1.pos((double) (this.posX + f), (double) (this.posY + (float) this.FONT_HEIGHT - 1.0F), 0.0D).endVertex();
-                    worldrenderer1.pos((double) (this.posX + (float) l), (double) (this.posY + (float) this.FONT_HEIGHT - 1.0F), 0.0D).endVertex();
+                    worldrenderer1.pos((this.posX + (float) l), (this.posY + (float) this.FONT_HEIGHT), 0.0D).endVertex();
+                    worldrenderer1.pos((this.posX + f), (this.posY + (float) this.FONT_HEIGHT), 0.0D).endVertex();
+                    worldrenderer1.pos((this.posX + f), (this.posY + (float) this.FONT_HEIGHT - 1.0F), 0.0D).endVertex();
+                    worldrenderer1.pos((this.posX + (float) l), (this.posY + (float) this.FONT_HEIGHT - 1.0F), 0.0D).endVertex();
                     tessellator1.draw();
                     GlStateManager.enableTexture2D();
                 }
