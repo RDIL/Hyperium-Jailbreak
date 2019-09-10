@@ -62,7 +62,6 @@ public class DabHandler extends AbstractPreCopyAnglesAnimationHandler {
 
             player.getBipedHeadwear().rotateAngleX = (float) Math.toRadians(-rotationX * heldPercent) + (float) Math.toRadians(45.0f * heldPercent + rotationX);
             player.getBipedHeadwear().rotateAngleY = (float) Math.toRadians(rotationY * heldPercent) + (float) Math.toRadians(-35.0f * heldPercent - rotationY);
-
         }
     }
 

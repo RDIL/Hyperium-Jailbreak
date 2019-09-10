@@ -50,7 +50,6 @@ public class CommandQueue {
                 if (runnable != null) {
                     runnable.run();
                 }
-
             }
         }
     }

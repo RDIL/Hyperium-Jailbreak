@@ -25,5 +25,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface ConfigOpt {
-    String alt() default "";
+    @Deprecated String alt() default "";
 }

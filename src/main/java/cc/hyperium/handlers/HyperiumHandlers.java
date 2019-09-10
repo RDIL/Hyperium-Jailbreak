@@ -39,11 +39,7 @@ import cc.hyperium.handlers.handlers.animation.FlossDanceHandler;
 import cc.hyperium.handlers.handlers.animation.TPoseHandler;
 import cc.hyperium.handlers.handlers.animation.YeetHandler;
 import cc.hyperium.handlers.handlers.animation.cape.CapeHandler;
-import cc.hyperium.handlers.handlers.chat.DMChatHandler;
-import cc.hyperium.handlers.handlers.chat.FriendRequestChatHandler;
-import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
-import cc.hyperium.handlers.handlers.chat.HyperiumChatHandler;
-import cc.hyperium.handlers.handlers.chat.PartyInviteChatHandler;
+import cc.hyperium.handlers.handlers.chat.*;
 import cc.hyperium.handlers.handlers.data.HypixelAPI;
 import cc.hyperium.handlers.handlers.hud.VanillaEnhancementsHud;
 import cc.hyperium.handlers.handlers.keybinds.KeyBindHandler;
@@ -115,6 +111,7 @@ public class HyperiumHandlers {
         registerChatHandler(new DMChatHandler());
         registerChatHandler(new FriendRequestChatHandler());
         registerChatHandler(new PartyInviteChatHandler());
+        registerChatHandler(new GuildChatHandler());
         EventBus.INSTANCE.register(this);
         register(commandHandler = new HyperiumCommandHandler());
     }

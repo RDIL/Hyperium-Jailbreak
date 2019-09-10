@@ -90,7 +90,6 @@ public abstract class AbstractAnimationHandler {
         player.getBipedHead().rotateAngleZ = 0F;
         player.getBipedHeadwear().rotateAngleZ = 0F;
 
-
         if (player instanceof IMixinModelPlayer) {
             IMixinModelPlayer player1 = (IMixinModelPlayer) player;
             player1.getBipedBodywear().rotateAngleZ = 0F;
@@ -197,7 +196,7 @@ public abstract class AbstractAnimationHandler {
         }
     }
 
-    public class AnimationState {
+    public static class AnimationState {
         public int frames = 0;
         private long systemTime;
         private boolean toggled;

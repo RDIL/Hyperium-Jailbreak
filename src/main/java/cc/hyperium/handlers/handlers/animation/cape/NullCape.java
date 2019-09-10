@@ -6,8 +6,6 @@ import net.minecraft.util.ResourceLocation;
 public class NullCape implements ICape {
     public static final NullCape INSTANCE = new NullCape();
 
-    private NullCape() {}
-
     @Override
     public ResourceLocation get() {
         return null;

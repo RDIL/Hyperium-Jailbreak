@@ -96,7 +96,6 @@ public class LocationHandler {
             sendingWhereAmI = false;
             event.setCancelled(true);
         }
-
     }
 
     @InvokeEvent
@@ -111,7 +110,6 @@ public class LocationHandler {
             NettyClient.getClient().write(UpdateLocationPacket.build(event.getTo()));
         if (Hyperium.INSTANCE.getHandlers().getFlipHandler().getSelf() != 0)
             NettyClient.getClient().write(ServerCrossDataPacket.build(new JsonHolder().put("type", "flip_update").put("flip_state", 1)));
-
     }
 
     @InvokeEvent

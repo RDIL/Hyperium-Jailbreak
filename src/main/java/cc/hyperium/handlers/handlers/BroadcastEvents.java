@@ -52,7 +52,6 @@ public class BroadcastEvents {
                 achievementsGotten.add(ach);
             }
         }
-
     }
 
     private List<String> achievementsGotten = new ArrayList<>();

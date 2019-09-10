@@ -24,66 +24,47 @@ import cc.hyperium.config.ToggleSetting;
 import cc.hyperium.utils.ChatColor;
 
 public class LevelheadConfig {
-    @ConfigOpt(alt = "club.sk1er.mods.levelhead.config.LevelheadConfig;enabled")
-    @ToggleSetting(category = Category.LEVEL_HEAD, mods = true, name = "Enable")
+    @ConfigOpt @ToggleSetting(category = Category.LEVEL_HEAD, mods = true, name = "Enable")
     public boolean enabled = true;
 
-    @ConfigOpt(alt = "club.sk1er.mods.levelhead.config.LevelheadConfig;showSelf")
-    @ToggleSetting(category = Category.LEVEL_HEAD, mods = true, name = "Show Self")
+    @ConfigOpt @ToggleSetting(category = Category.LEVEL_HEAD, mods = true, name = "Show Self")
     public boolean showSelf = true;
 
-    @ConfigOpt(alt = "club.sk1er.mods.levelhead.config.LevelheadConfig;renderDistance")
-    @SliderSetting(name = "Render Distance", mods = true, category = Category.LEVEL_HEAD, min = 5, max = 64, isInt = true)
+    @ConfigOpt @SliderSetting(name = "Render Distance", mods = true, category = Category.LEVEL_HEAD, min = 5, max = 64, isInt = true)
     public int renderDistance = 64;
 
-    @ConfigOpt(alt = "club.sk1er.mods.levelhead.config.LevelheadConfig;purgeSize")
-    @SliderSetting(name = "Cache Size", mods = true, category = Category.LEVEL_HEAD, min = 150, max = 5000, isInt = true)
+    @ConfigOpt @SliderSetting(name = "Cache Size", mods = true, category = Category.LEVEL_HEAD, min = 150, max = 5000, isInt = true)
     public int purgeSize = 500;
 
-    @ConfigOpt(alt = "club.sk1er.mods.levelhead.config.LevelheadConfig;headerChroma")
-    public boolean headerChroma = false;
+    @ConfigOpt public boolean headerChroma = false;
 
-    @ConfigOpt(alt = "club.sk1er.mods.levelhead.config.LevelheadConfig;headerRgb")
-    public boolean headerRgb = false;
+    @ConfigOpt public boolean headerRgb = false;
 
-    @ConfigOpt(alt = "club.sk1er.mods.levelhead.config.LevelheadConfig;headerColor")
-    public String headerColor = ChatColor.AQUA.toString();
+    @ConfigOpt public String headerColor = ChatColor.AQUA.toString();
 
-    @ConfigOpt(alt = "club.sk1er.mods.levelhead.config.LevelheadConfig;headerRed")
-    public int headerRed = 255;
+    @ConfigOpt public int headerRed = 255;
 
-    @ConfigOpt(alt = "club.sk1er.mods.levelhead.config.LevelheadConfig;headerGreen")
-    public int headerGreen = 255;
+    @ConfigOpt public int headerGreen = 255;
 
-    @ConfigOpt(alt = "club.sk1er.mods.levelhead.config.LevelheadConfig;headerBlue")
-    public int headerBlue = 250;
+    @ConfigOpt public int headerBlue = 250;
 
-    @ConfigOpt(alt = "club.sk1er.mods.levelhead.config.LevelheadConfig;headerAlpha")
-    public double headerAlpha = 1.0;
+    @ConfigOpt public double headerAlpha = 1.0;
 
-    @ConfigOpt(alt = "club.sk1er.mods.levelhead.config.LevelheadConfig;customHeader")
-    public String customHeader = "Level";
+    @ConfigOpt public String customHeader = "Level";
 
-    @ConfigOpt(alt = "club.sk1er.mods.levelhead.config.LevelheadConfig;footerChroma")
-    public boolean footerChroma = false;
+    @ConfigOpt public boolean footerChroma = false;
 
-    @ConfigOpt(alt = "club.sk1er.mods.levelhead.config.LevelheadConfig;footerRgb")
-    public boolean footerRgb = false;
+    @ConfigOpt public boolean footerRgb = false;
 
-    @ConfigOpt(alt = "club.sk1er.mods.levelhead.config.LevelheadConfig;footerColor")
-    public String footerColor = ChatColor.YELLOW.toString();
+    @ConfigOpt public String footerColor = ChatColor.YELLOW.toString();
 
-    @ConfigOpt(alt = "club.sk1er.mods.levelhead.config.LevelheadConfig;footerRed")
-    public int footerRed = 255;
+    @ConfigOpt public int footerRed = 255;
 
-    @ConfigOpt(alt = "club.sk1er.mods.levelhead.config.LevelheadConfig;footerGreen")
-    public int footerGreen = 255;
+    @ConfigOpt public int footerGreen = 255;
 
-    @ConfigOpt(alt = "club.sk1er.mods.levelhead.config.LevelheadConfig;footerBlue")
-    public int footerBlue = 250;
+    @ConfigOpt public int footerBlue = 250;
 
-    @ConfigOpt(alt = "club.sk1er.mods.levelhead.config.LevelheadConfig;footerAlpha")
-    public double footerAlpha = 1.0;
+    @ConfigOpt public double footerAlpha = 1.0;
 
     public boolean isFooterChroma() {
         return footerChroma;
@@ -137,10 +118,6 @@ public class LevelheadConfig {
         return footerAlpha;
     }
 
-    public void setFooterAlpha(double footerAlpha) {
-        this.footerAlpha = footerAlpha;
-    }
-
     public boolean isHeaderChroma() {
         return headerChroma;
     }
@@ -191,10 +168,6 @@ public class LevelheadConfig {
 
     public double getHeaderAlpha() {
         return headerAlpha;
-    }
-
-    public void setHeaderAlpha(double headerAlpha) {
-        this.headerAlpha = headerAlpha;
     }
 
     public boolean isEnabled() {
