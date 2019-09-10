@@ -122,7 +122,7 @@ jar {
             it.isDirectory() ? it : zipTree(it)
         }
     }
-    embed.exclude module: 'junit'
+    configurations.embed.exclude module: 'junit'
     exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
 }
 
