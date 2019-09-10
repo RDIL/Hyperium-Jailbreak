@@ -31,7 +31,7 @@ public class ReachDisplay {
 
     @InvokeEvent
     public void renderWorld(RenderEntitiesEvent event) {
-        hits.removeIf(hit -> System.currentTimeMillis() - hit.start > 3000L);
+        hits.removeIf(hit -> System.currentTimeMillis() - hit.start > 2500L);
 
         for (Hit hit : hits) {
             String string = Double.toString(hit.distance);
@@ -106,18 +106,15 @@ public class ReachDisplay {
         Vec3 vec3 = entity.getPositionEyes(0.0F);
 
         Vec3 vec31 = entity.getLook(0.0F);
-        Vec3 vec32 = vec3.addVector(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0);
 
         Entity entity1 = entityEvent.getEntity();
         float f1 = .1F;
         AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().expand((double) f1, (double) f1, (double) f1);
-        MovingObjectPosition movingobjectposition = axisalignedbb.calculateIntercept(vec3, vec32);
+        MovingObjectPosition movingobjectposition = axisalignedbb.calculateIntercept(vec3, vec3.addVector(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0));
         if (movingobjectposition == null) {
             return;
         }
-        Vec3 vec33 = movingobjectposition.hitVec;
-        hits.add(new Hit(vec33, dis));
-
+        hits.add(new Hit(movingobjectposition.hitVec, dis));
     }
 
     class Hit {
