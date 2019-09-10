@@ -122,7 +122,6 @@ jar {
             it.isDirectory() ? it : zipTree(it)
         }
     }
-    configurations.embed.exclude module: 'junit'
     exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
 }
 
@@ -139,7 +138,6 @@ jar {
             exclude 'META-INF', 'META-INF/**'
             exclude 'org/jetbrains/annotations', 'org/jetbrains/annotations/**'
             exclude 'junit', 'junit/**'
-            exclude 'com/google/gson/extras/examples', 'com/google/gson/extras/examples/**'
         }
     }
 }
