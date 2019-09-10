@@ -24,7 +24,6 @@ import java.awt.Color;
 import java.util.UUID;
 
 public class HyperiumRender<T extends Entity> {
-
     private Render<T> parent;
 
     public HyperiumRender(Render<T> parent) {
@@ -45,7 +44,7 @@ public class HyperiumRender<T extends Entity> {
         }
     }
 
-    public void renderOffsetLivingLabel(T entityIn, double x, double y, double z, String str, float p_177069_9_, double p_177069_10_) {
+    public void renderOffsetLivingLabel(T entityIn, double x, double y, double z, String str) {
         ((IMixinRender) parent).callRenderLivingLabel(entityIn, str, x, y, z, Math.min(64 * 64, Hyperium.INSTANCE.getHandlers().getConfigOptions().renderNameDistance));
     }
 
@@ -88,10 +87,10 @@ public class HyperiumRender<T extends Entity> {
                 GlStateManager.disableTexture2D();
                 worldrenderer.begin(7, DefaultVertexFormats.POSITION_COLOR);
                 float a = .25F;
-                worldrenderer.pos((double) (-j - 1), (double) (-1), 0.0D).color(0.0F, 0.0F, 0.0F, a).endVertex();
-                worldrenderer.pos((double) (-j - 1), (double) (8), 0.0D).color(0.0F, 0.0F, 0.0F, a).endVertex();
-                worldrenderer.pos((double) (j + 1), (double) (8), 0.0D).color(0.0F, 0.0F, 0.0F, a).endVertex();
-                worldrenderer.pos((double) (j + 1), (double) (-1), 0.0D).color(0.0F, 0.0F, 0.0F, a).endVertex();
+                worldrenderer.pos((-j - 1), (-1), 0.0D).color(0.0F, 0.0F, 0.0F, a).endVertex();
+                worldrenderer.pos((-j - 1), (8), 0.0D).color(0.0F, 0.0F, 0.0F, a).endVertex();
+                worldrenderer.pos((j + 1), (8), 0.0D).color(0.0F, 0.0F, 0.0F, a).endVertex();
+                worldrenderer.pos((j + 1), (-1), 0.0D).color(0.0F, 0.0F, 0.0F, a).endVertex();
                 tessellator.draw();
             }
             GlStateManager.enableTexture2D();

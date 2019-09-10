@@ -16,14 +16,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Render.class)
 public abstract class MixinRender<T extends Entity> {
-    @Shadow
-    @Final
-    private RenderManager renderManager;
+    @Shadow @Final private RenderManager renderManager;
     private HyperiumRender<T> hyperiumRender = new HyperiumRender<>((Render<T>) (Object) this);
 
     @Overwrite
     protected void renderOffsetLivingLabel(T entityIn, double x, double y, double z, String str, float p_177069_9_, double p_177069_10_) {
-        hyperiumRender.renderOffsetLivingLabel(entityIn, x, y, z, str, p_177069_9_, p_177069_10_);
+        hyperiumRender.renderOffsetLivingLabel(entityIn, x, y, z, str);
     }
 
     @Overwrite

@@ -17,7 +17,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class CachedThreadDownloader {
+class CachedThreadDownloader {
     private static final AtomicInteger counter = new AtomicInteger();
     private static final ExecutorService THREAD_POOL = new ThreadPoolExecutor(0, 100,
         60L, TimeUnit.SECONDS, new SynchronousQueue<>(),
@@ -46,7 +46,7 @@ public class CachedThreadDownloader {
     private int code;
     private ResourceLocation location;
 
-    public CachedThreadDownloader(String imageUrl, File cacheFile, IImageBuffer imageBuffer, ThreadDownloadImageData base, ResourceLocation location) {
+    CachedThreadDownloader(String imageUrl, File cacheFile, IImageBuffer imageBuffer, ThreadDownloadImageData base, ResourceLocation location) {
         this.imageUrl = imageUrl;
         this.cacheFile = cacheFile;
         this.imageBuffer = imageBuffer;
@@ -81,11 +81,9 @@ public class CachedThreadDownloader {
                     bufferedimage = imageBuffer.parseUserSkin(bufferedimage);
                 }
                 this.image = bufferedimage;
-                return;
             }
-        } catch (Exception exception) {
-            exception.printStackTrace(System.out);
-            return;
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             if (httpurlconnection != null) {
                 httpurlconnection.disconnect();

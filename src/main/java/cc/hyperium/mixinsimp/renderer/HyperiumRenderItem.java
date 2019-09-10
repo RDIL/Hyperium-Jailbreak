@@ -124,7 +124,7 @@ public class HyperiumRenderItem {
         }
     }
 
-    public void renderPot(IBakedModel model, int color) {
+    private void renderPot(IBakedModel model, int color) {
         GlStateManager.depthMask(false);
         GlStateManager.disableLighting();
         GlStateManager.blendFunc(768, 1);
