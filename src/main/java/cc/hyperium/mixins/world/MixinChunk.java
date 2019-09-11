@@ -92,10 +92,8 @@ public class MixinChunk {
     @Overwrite public void addEntity(Entity entityIn) {
         synchronized (entityLists) {
             this.hasEntities = true;
-            int i = MathHelper.floor_double(entityIn.posX / 16.0D);
-            int j = MathHelper.floor_double(entityIn.posZ / 16.0D);
 
-            if (i != this.xPosition || j != this.zPosition) {
+            if (MathHelper.floor_double(entityIn.posX / 16.0D) != this.xPosition || j != this.zPosition) {
                 entityIn.setDead();
             }
 
@@ -166,12 +164,11 @@ public class MixinChunk {
 
     @Overwrite public <T extends Entity> void getEntitiesOfTypeWithinAAAB(Class<? extends T> entityClass, AxisAlignedBB aabb, List<T> listToFill, Predicate<? super T> p_177430_4_) {
         synchronized (entityLists) {
-            int i = MathHelper.floor_double((aabb.minY - 2.0D) / 16.0D);
-            int j = MathHelper.floor_double((aabb.maxY + 2.0D) / 16.0D);
-            i = MathHelper.clamp_int(i, 0, this.entityLists.length - 1);
-            j = MathHelper.clamp_int(j, 0, this.entityLists.length - 1);
+            int s = MathHelper.floor_double((aabb.minY - 2.0D) / 16.0D);
+            int i = MathHelper.clamp_int(s, 0, this.entityLists.length - 1);
+            int j = MathHelper.clamp_int(s, 0, this.entityLists.length - 1);
 
-            for (int k = i; k <= j; ++k) {
+            for (i <= j; i++) {
                 for (T t : this.entityLists[k].getByClass(entityClass)) {
                     if (t.getEntityBoundingBox().intersectsWith(aabb) && (p_177430_4_ == null || p_177430_4_.apply(t))) {
                         listToFill.add(t);
