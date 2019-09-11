@@ -141,5 +141,5 @@ jar {
 }
 
 CopySpec.each { cs ->
-    println(cs.duplicateStrategy)
+    println(cs.duplicatesStrategy)
 }
