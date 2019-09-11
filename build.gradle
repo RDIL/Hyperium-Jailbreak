@@ -139,3 +139,7 @@ jar {
         }
     }
 }
+
+CopySpec.each { cs ->
+    println(cs.duplicateStrategy)
+}
