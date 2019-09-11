@@ -165,10 +165,9 @@ public class MixinChunk {
     @Overwrite public <T extends Entity> void getEntitiesOfTypeWithinAAAB(Class<? extends T> entityClass, AxisAlignedBB aabb, List<T> listToFill, Predicate<? super T> p_177430_4_) {
         synchronized (entityLists) {
             int s = MathHelper.floor_double((aabb.minY - 2.0D) / 16.0D);
-            int i = MathHelper.clamp_int(s, 0, this.entityLists.length - 1);
             int j = MathHelper.clamp_int(s, 0, this.entityLists.length - 1);
 
-            for (i <= j; i++) {
+            for (int k = 0; k <= j; k++) {
                 for (T t : this.entityLists[k].getByClass(entityClass)) {
                     if (t.getEntityBoundingBox().intersectsWith(aabb) && (p_177430_4_ == null || p_177430_4_.apply(t))) {
                         listToFill.add(t);
