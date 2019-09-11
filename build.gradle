@@ -49,6 +49,7 @@ apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'kotlin'
 apply plugin: 'java'
 apply plugin: 'base'
+apply plugin: 'hjb.DisableTests'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
