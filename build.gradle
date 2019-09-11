@@ -140,6 +140,6 @@ jar {
     }
 }
 
-CopySpec.each { cs ->
-    println(cs.duplicatesStrategy)
+all.each { cs ->
+    cs instanceof CopySpec ? println(cs.duplicatesStrategy) : cs
 }
