@@ -93,7 +93,8 @@ public class MixinChunk {
         synchronized (entityLists) {
             this.hasEntities = true;
 
-            if (MathHelper.floor_double(entityIn.posX / 16.0D) != this.xPosition || j != this.zPosition) {
+            int c = MathHelper.floor_double(entityIn.posX / 16.0D);
+            if (c != this.xPosition || c != this.zPosition) {
                 entityIn.setDead();
             }
 
@@ -132,8 +133,8 @@ public class MixinChunk {
     @Overwrite public void getEntitiesWithinAABBForEntity(Entity entityIn, AxisAlignedBB aabb, List<Entity> listToFill, com.google.common.base.Predicate<? super Entity> p_177414_4_) {
         synchronized (entityLists) {
             int s = MathHelper.floor_double((aabb.minY - 2.0D) / 16.0D);
-            int i = MathHelper.clamp_int(i, 0, this.entityLists.length - 1);
-            int j = MathHelper.clamp_int(j, 0, this.entityLists.length - 1);
+            int i = MathHelper.clamp_int(s, 0, this.entityLists.length - 1);
+            int j = MathHelper.clamp_int(s, 0, this.entityLists.length - 1);
 
             for (int k = i; k <= j; k++) {
                 if (!this.entityLists[k].isEmpty()) {
