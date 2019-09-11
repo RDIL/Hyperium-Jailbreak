@@ -9,7 +9,7 @@ task:
     fingerprint_script: cat build.gradle
     populate_script: gradle setupCiWorkspace --build-cache --parallel -Dorg.gradle.jvmargs=-Xmx14336M
   name: Cirrus CI
-  script: gradle build --parallel -Dorg.gradle.jvmargs=-Xmx14336M && ls build/classes/main && ls build/classes/java
+  script: gradle build --parallel -Dorg.gradle.jvmargs=-Xmx14336M
   jar_artifacts:
     path: ./build/libs/**
     type: application/java-archive
