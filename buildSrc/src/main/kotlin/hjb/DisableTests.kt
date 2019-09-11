@@ -20,7 +20,7 @@ import org.gradle.api.tasks.testing.AbstractTestTask
 import org.gradle.language.base.plugins.LifecycleBasePlugin.CHECK_TASK_NAME
 
 @Plugin(
-    id = "hjb.DisableTests",
+    id = "hjb-disable-tests",
     description = "Plugin that disables all check and test tasks. Also this plugin disables test source sets tasks.",
     tags = ["java"]
 )
@@ -96,7 +96,6 @@ class DisableTestsPlugin : BaseReflectiveProjectPlugin() {
                 }
             }
         }
-
     }
 }
 
