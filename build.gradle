@@ -48,7 +48,7 @@ apply plugin: 'net.minecraftforge.gradle.tweaker-client'
 apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'kotlin'
 apply plugin: 'java'
-apply plugin: 'name.remal.disable-tests'
+apply plugin: 'base'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -138,8 +138,4 @@ jar {
             exclude 'org/jetbrains/annotations', 'org/jetbrains/annotations/**'
         }
     }
-}
-
-all.each { cs ->
-    cs instanceof CopySpec ? println(cs.duplicatesStrategy) : cs
 }
