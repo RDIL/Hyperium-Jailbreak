@@ -141,3 +141,8 @@ jar {
         }
     }
 }
+
+//task removeUnusedLibsFromJar(type: Delete) {
+//  delete 'uglyFolder', 'uglyFile'
+//  followSymlinks = true
+//}
