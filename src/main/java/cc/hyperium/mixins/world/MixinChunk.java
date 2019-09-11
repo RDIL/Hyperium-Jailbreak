@@ -131,12 +131,11 @@ public class MixinChunk {
 
     @Overwrite public void getEntitiesWithinAABBForEntity(Entity entityIn, AxisAlignedBB aabb, List<Entity> listToFill, com.google.common.base.Predicate<? super Entity> p_177414_4_) {
         synchronized (entityLists) {
-            int i = MathHelper.floor_double((aabb.minY - 2.0D) / 16.0D);
-            int j = MathHelper.floor_double((aabb.maxY + 2.0D) / 16.0D);
-            i = MathHelper.clamp_int(i, 0, this.entityLists.length - 1);
-            j = MathHelper.clamp_int(j, 0, this.entityLists.length - 1);
+            int s = MathHelper.floor_double((aabb.minY - 2.0D) / 16.0D);
+            int i = MathHelper.clamp_int(i, 0, this.entityLists.length - 1);
+            int j = MathHelper.clamp_int(j, 0, this.entityLists.length - 1);
 
-            for (int k = i; k <= j; ++k) {
+            for (int k = i; k <= j; k++) {
                 if (!this.entityLists[k].isEmpty()) {
                     for (Entity entity : this.entityLists[k]) {
                         if (entity.getEntityBoundingBox().intersectsWith(aabb) && entity != entityIn) {
