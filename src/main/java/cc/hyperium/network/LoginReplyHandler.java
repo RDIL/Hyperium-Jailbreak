@@ -1,6 +1,5 @@
 package cc.hyperium.network;
 
-import cc.hyperium.config.Settings;
 import cc.hyperium.netty.NettyClient;
 import cc.hyperium.netty.packet.PacketHandler;
 import cc.hyperium.netty.packet.PacketType;
