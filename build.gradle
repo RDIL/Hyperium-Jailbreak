@@ -122,7 +122,7 @@ jar {
             it.isDirectory() ? it : zipTree(it)
         }
     }
-    exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA', 'junit', 'junit/**', 'me/lpk/gui', 'me/lpk/gui/**', 'me/apk/mapping', 'me/lpk/mapping/**', 'me/apk/log', 'me/lpk/log/**'
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA', 'junit', 'junit/**'
     manifest.attributes(
         "MixinConfigs": 'mixins.hyperium.json',
         "TweakClass": 'cc.hyperium.launch.HyperiumTweaker',
