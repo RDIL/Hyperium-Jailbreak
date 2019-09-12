@@ -24,7 +24,6 @@ import java.lang.reflect.Field;
 public class GlStateModifier implements IGlStateModifier {
     private Object[] theArray;
     private Field textureNamefield;
-    private Object colorStateObject = null;
     private Field activeTextureUnitField = null;
     public static final IGlStateModifier INSTANCE = new GlStateModifier();
 
