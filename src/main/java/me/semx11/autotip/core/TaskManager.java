@@ -71,10 +71,6 @@ public class TaskManager {
         });
     }
 
-    private ThreadFactory getFactory(String name) {
-        return new ThreadFactoryBuilder().setNameFormat(name).setUncaughtExceptionHandler((t, e) -> e.printStackTrace()).build();
-    }
-
     public enum TaskType {
         LOGIN, KEEP_ALIVE, TIP_WAVE, TIP_CYCLE, LOGOUT
     }
