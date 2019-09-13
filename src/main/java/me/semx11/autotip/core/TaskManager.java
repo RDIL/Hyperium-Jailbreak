@@ -8,14 +8,10 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 
 public class TaskManager {
-    private final ExecutorService executor = Multithreading.POOL;
-    private final ScheduledExecutorService scheduler = Multithreading.RUNNABLE_POOL;
     private final Map<TaskType, Future> tasks;
 
     public TaskManager() {
@@ -24,7 +20,7 @@ public class TaskManager {
 
     <T> T scheduleAndAwait(Callable<T> callable, long delay) {
         try {
-            return scheduler.schedule(callable, delay, SECONDS).get();
+            return Multithreading.RUNNABLE_POOL.schedule(callable, delay, SECONDS).get();
         } catch (InterruptedException | ExecutionException e) {
             return null;
         }
@@ -34,7 +30,7 @@ public class TaskManager {
         if (tasks.containsKey(type)) {
             return;
         }
-        Future<?> future = executor.submit(task);
+        Future<?> future = Multithreading.POOL.submit(task);
         tasks.put(type, future);
         this.catchFutureException(type, future);
     }
@@ -43,7 +39,7 @@ public class TaskManager {
         if (tasks.containsKey(type)) {
             return;
         }
-        ScheduledFuture future = scheduler.scheduleAtFixedRate(command, delay, period, SECONDS);
+        ScheduledFuture future = Multithreading.RUNNABLE_POOL.scheduleAtFixedRate(command, delay, period, SECONDS);
         tasks.put(type, future);
         this.catchFutureException(type, future);
     }
@@ -56,7 +52,7 @@ public class TaskManager {
     }
 
     private void catchFutureException(TaskType type, Future future) {
-        this.executor.execute(() -> {
+        Multithreading.runAsync(() -> {
             try {
                 future.get();
             } catch (CancellationException ignored) {
