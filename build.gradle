@@ -41,7 +41,6 @@ buildscript {
 
 configurations {
     embed
-    compile.extendsFrom(embed)
 }
 
 apply plugin: 'net.minecraftforge.gradle.tweaker-client'
@@ -50,8 +49,7 @@ apply plugin: 'kotlin'
 apply plugin: 'java'
 apply plugin: 'org.gradle.crypto.checksum'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = targetCompatibility = 1.8
 
 group = "cc.hyperium"
 archivesBaseName = "Hyperium"
@@ -118,7 +116,7 @@ processResources {
 }
 
 jar {
-    dependsOn configurations.compile
+    dependsOn configurations.embed
     from {
         configurations.embed.collect {
             it.isDirectory() ? it : zipTree(it)
