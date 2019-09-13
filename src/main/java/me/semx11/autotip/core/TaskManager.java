@@ -3,7 +3,6 @@ package me.semx11.autotip.core;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 import cc.hyperium.mods.sk1ercommon.Multithreading;
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CancellationException;
@@ -13,7 +12,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.ThreadFactory;
 
 public class TaskManager {
     private final ExecutorService executor = Multithreading.POOL;
