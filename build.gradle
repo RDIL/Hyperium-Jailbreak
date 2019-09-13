@@ -146,7 +146,7 @@ import org.gradle.crypto.checksum.Checksum
 
 task md5(type: Checksum, dependsOn: 'jar') {
     files = fileTree(dir: 'build/libs', include: '*.jar')
-    outputDir = new File("build/libs"))
+    outputDir = new File("build/libs")
     algorithm = Checksum.Algorithm.MD5
 }
 
