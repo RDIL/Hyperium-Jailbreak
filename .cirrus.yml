@@ -9,10 +9,16 @@ task:
     fingerprint_script: cat build.gradle
     populate_script: gradle setupCiWorkspace --build-cache --parallel -Dorg.gradle.jvmargs=-Xmx14336M
   name: Cirrus CI
-  script: gradle build --parallel -Dorg.gradle.jvmargs=-Xmx14336M
+  script: gradle build makeChecksums --parallel -Dorg.gradle.jvmargs=-Xmx14336M
   jar_artifacts:
-    path: ./build/libs/**
+    path: ./build/libs/*.jar
     type: application/java-archive
+  checksum_1_artifacts:
+    path: ./build/libs/*.sha512
+    type: text/plain
+  checksum_2_artifacts:
+    path: ./build/libs/*.md5
+    type: text/plain
   always:
     cleanup_before_cache_script: |
       rm -rf ~/.gradle/caches/$GRADLE_VERSION/ ~/.gradle/caches/transforms-1 ~/.gradle/caches/journal-1 ~/.gradle/caches/minecraft/deobfedDeps/compileDummy.jar ~/.gradle/caches/minecraft/deobfedDeps/providedDummy.jar
