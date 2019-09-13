@@ -1,5 +1,6 @@
 package me.semx11.autotip.event.impl;
 
+import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.ServerJoinEvent;
 import cc.hyperium.event.ServerLeaveEvent;
@@ -47,7 +48,7 @@ public class EventClientConnection implements Event {
 
         this.lastLogin = System.currentTimeMillis();
 
-        taskManager.getExecutor().execute(() -> {
+        Multithreading.runAsync(() -> {
             Object header;
             int attempts = 0;
             while ((header = this.getHeader()) == null) {
