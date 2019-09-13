@@ -13,11 +13,8 @@ task:
   jar_artifacts:
     path: ./build/libs/*.jar
     type: application/java-archive
-  checksum_1_artifacts:
+  checksum_artifacts:
     path: ./build/libs/*.sha512
-    type: text/plain
-  checksum_2_artifacts:
-    path: ./build/libs/*.md5
     type: text/plain
   always:
     cleanup_before_cache_script: |
