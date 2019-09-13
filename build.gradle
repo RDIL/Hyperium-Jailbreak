@@ -140,20 +140,18 @@ jar {
     }
 }
 
-task makeChecksums {
-    dependsOn jar, md5, sha512
-}
+task makeChecksums(dependsOn: ['jar', 'md5', 'sha512']) {}
 
 import org.gradle.crypto.checksum.Checksum
 
 task md5(type: Checksum, dependsOn: 'jar') {
     files = fileTree(dir: 'build/libs', include: '*.jar')
     outputDir = new File(fileTree(dir: 'build/libs'))
-    algorithm = Checksum.Algorithm.SHA512
+    algorithm = Checksum.Algorithm.MD5
 }
 
 task sha512(type: Checksum, dependsOn: 'jar') {
     files = fileTree(dir: 'build/libs', include: '*.jar')
     outputDir = new File(fileTree(dir: 'build/libs'))
-    algorithm = Checksum.Algorithm.MD5
+    algorithm = Checksum.Algorithm.SHA512
 }
