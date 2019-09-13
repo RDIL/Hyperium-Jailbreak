@@ -2,6 +2,7 @@ package me.semx11.autotip.core;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
+import cc.hyperium.mods.sk1ercommon.Multithreading;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -9,34 +10,24 @@ import java.util.concurrent.CancellationException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ThreadFactory;
-import me.semx11.autotip.util.ErrorReport;
 
 public class TaskManager {
-    private final ExecutorService executor;
-    private final ScheduledExecutorService scheduler;
-
+    private final ExecutorService executor = Multithreading.POOL;
+    private final ScheduledExecutorService scheduler = Multithreading.RUNNABLE_POOL;
     private final Map<TaskType, Future> tasks;
 
     public TaskManager() {
-        this.executor = Executors.newCachedThreadPool(this.getFactory("AutotipThread"));
-        this.scheduler = Executors.newScheduledThreadPool(3, this.getFactory("AutotipScheduler"));
         this.tasks = new ConcurrentHashMap<>();
-    }
-
-    public ExecutorService getExecutor() {
-        return executor;
     }
 
     <T> T scheduleAndAwait(Callable<T> callable, long delay) {
         try {
             return scheduler.schedule(callable, delay, SECONDS).get();
         } catch (InterruptedException | ExecutionException e) {
-            ErrorReport.reportException(e);
             return null;
         }
     }
@@ -71,9 +62,9 @@ public class TaskManager {
             try {
                 future.get();
             } catch (CancellationException ignored) {
-                // Manual cancellation of a repeating task.
+                // Manual cancellation
             } catch (InterruptedException | ExecutionException e) {
-                ErrorReport.reportException(e);
+                e.printStackTrace();
             } finally {
                 tasks.remove(type);
             }
@@ -81,9 +72,7 @@ public class TaskManager {
     }
 
     private ThreadFactory getFactory(String name) {
-        return new ThreadFactoryBuilder().setNameFormat(name)
-                .setUncaughtExceptionHandler((t, e) -> ErrorReport.reportException(e))
-                .build();
+        return new ThreadFactoryBuilder().setNameFormat(name).setUncaughtExceptionHandler((t, e) -> e.printStackTrace()).build();
     }
 
     public enum TaskType {
