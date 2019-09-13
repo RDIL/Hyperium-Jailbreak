@@ -34,7 +34,7 @@ public class Multithreading {
         }
     });
 
-    private static final ScheduledExecutorService RUNNABLE_POOL = Executors.newScheduledThreadPool(10, new ThreadFactory() {
+    public static final ScheduledExecutorService RUNNABLE_POOL = Executors.newScheduledThreadPool(10, new ThreadFactory() {
         private final AtomicInteger counter = new AtomicInteger(0);
 
         @Override
