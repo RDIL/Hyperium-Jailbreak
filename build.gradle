@@ -41,6 +41,7 @@ buildscript {
 
 configurations {
     embed
+    compile.extendsFrom(embed)
 }
 
 apply plugin: 'net.minecraftforge.gradle.tweaker-client'
@@ -116,7 +117,7 @@ processResources {
 }
 
 jar {
-    dependsOn configurations.embed
+    dependsOn configurations.compile
     from {
         configurations.embed.collect {
             it.isDirectory() ? it : zipTree(it)
