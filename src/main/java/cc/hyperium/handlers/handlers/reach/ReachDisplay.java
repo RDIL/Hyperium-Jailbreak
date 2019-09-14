@@ -68,10 +68,10 @@ public class ReachDisplay {
             int j = fontrenderer.getStringWidth(string) / 2;
             GlStateManager.disableTexture2D();
             worldrenderer.begin(7, DefaultVertexFormats.POSITION_COLOR);
-            worldrenderer.pos((double) (-j - 1), (double) (-1 + i), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
-            worldrenderer.pos((double) (-j - 1), (double) (8 + i), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
-            worldrenderer.pos((double) (j + 1), (double) (8 + i), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
-            worldrenderer.pos((double) (j + 1), (double) (-1 + i), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
+            worldrenderer.pos((-j - 1), (-1 + i), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
+            worldrenderer.pos((-j - 1), (8 + i), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
+            worldrenderer.pos((j + 1), (8 + i), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
+            worldrenderer.pos((j + 1), (-1 + i), 0.0D).color(0.0F, 0.0F, 0.0F, 0.25F).endVertex();
             tessellator.draw();
             GlStateManager.enableTexture2D();
 
@@ -109,7 +109,7 @@ public class ReachDisplay {
 
         Entity entity1 = entityEvent.getEntity();
         float f1 = .1F;
-        AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().expand((double) f1, (double) f1, (double) f1);
+        AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().expand(f1, f1, f1);
         MovingObjectPosition movingobjectposition = axisalignedbb.calculateIntercept(vec3, vec3.addVector(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0));
         if (movingobjectposition == null) {
             return;
@@ -117,7 +117,7 @@ public class ReachDisplay {
         hits.add(new Hit(movingobjectposition.hitVec, dis));
     }
 
-    class Hit {
+    static class Hit {
         private Vec3 pos;
         private double distance;
         private long start = System.currentTimeMillis();

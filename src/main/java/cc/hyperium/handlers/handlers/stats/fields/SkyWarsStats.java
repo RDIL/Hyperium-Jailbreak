@@ -5,13 +5,12 @@ import cc.hyperium.handlers.handlers.stats.display.DisplayLine;
 import cc.hyperium.handlers.handlers.stats.display.DisplayTable;
 import cc.hyperium.handlers.handlers.stats.display.StatsDisplayItem;
 import cc.hyperium.utils.JsonHolder;
-import club.sk1er.website.api.requests.HypixelApiPlayer;
-import club.sk1er.website.utils.WebsiteUtils;
+import net.hypixel.api.HypixelApiPlayer;
+import cc.hyperium.network.WebsiteUtils;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import net.hypixel.api.GameType;
 
 public class SkyWarsStats extends AbstractHypixelStats {

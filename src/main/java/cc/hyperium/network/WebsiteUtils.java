@@ -1,4 +1,4 @@
-package club.sk1er.website.utils;
+package cc.hyperium.network;
 
 import com.google.gson.JsonObject;
 import java.text.DecimalFormat;

@@ -3,8 +3,8 @@ package cc.hyperium.handlers.handlers.stats;
 import cc.hyperium.handlers.handlers.stats.display.DisplayLine;
 import cc.hyperium.handlers.handlers.stats.display.StatsDisplayItem;
 import cc.hyperium.utils.JsonHolder;
-import club.sk1er.website.api.requests.HypixelApiPlayer;
-import club.sk1er.website.utils.WebsiteUtils;
+import net.hypixel.api.HypixelApiPlayer;
+import cc.hyperium.network.WebsiteUtils;
 import net.hypixel.api.GameType;
 import net.minecraft.util.EnumChatFormatting;
 import java.awt.Color;
@@ -12,27 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractHypixelStats {
-    private int totalWeekly;
-    private int totalDaily;
-    private int completedDaily;
-    private int completedWeekly;
-
-    public int getTotalWeekly() {
-        return totalWeekly;
-    }
-
-    public int getTotalDaily() {
-        return totalDaily;
-    }
-
-    public int getCompletedDaily() {
-        return completedDaily;
-    }
-
-    public int getCompletedWeekly() {
-        return completedWeekly;
-    }
-
     public abstract String getImage();
 
     public abstract String getName();

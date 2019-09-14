@@ -28,7 +28,7 @@ import cc.hyperium.mods.chromahud.NumberUtil;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
 import cc.hyperium.utils.ChatColor;
 import cc.hyperium.utils.JsonHolder;
-import club.sk1er.website.api.requests.HypixelApiFriendObject;
+import net.hypixel.api.HypixelApiFriendObject;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.client.Minecraft;

@@ -1,4 +1,4 @@
-package club.sk1er.website.api.requests;
+package net.hypixel.api;
 import cc.hyperium.utils.JsonHolder;
 import com.google.gson.JsonArray;
 

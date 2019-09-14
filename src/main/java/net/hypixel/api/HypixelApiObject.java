@@ -15,7 +15,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package club.sk1er.website.api.requests;
+package net.hypixel.api;
 
 import cc.hyperium.utils.JsonHolder;
 

@@ -31,8 +31,8 @@ import cc.hyperium.mixinsimp.client.GlStateModifier;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
 import cc.hyperium.utils.RenderUtils;
-import club.sk1er.website.api.requests.HypixelApiGuild;
-import club.sk1er.website.api.requests.HypixelApiPlayer;
+import net.hypixel.api.HypixelApiGuild;
+import net.hypixel.api.HypixelApiPlayer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
@@ -256,7 +256,7 @@ public class PlayerStatsGui extends HyperiumGui {
         }
     }
 
-    public static void print(ScaledResolution current, List<StatsDisplayItem> deepStats, int printY) {
+    private static void print(ScaledResolution current, List<StatsDisplayItem> deepStats, int printY) {
         for (StatsDisplayItem statsDisplayItem : deepStats) {
             GlStateManager.pushMatrix();
             GlStateManager.resetColor();

@@ -84,11 +84,8 @@ public class CommandDebug implements BaseCommand {
                 builder.append(printer.toJson(response.getObject()));
         }
         builder.append("\n");
-        builder.append("\n");
         HypixelDetector instance = HypixelDetector.getInstance();
         if (instance != null) builder.append("Hypixel: ").append(instance.isHypixel());
-        builder.append("\n");
-        builder.append("\n");
         builder.append("\n\n");
         NetworkHandler networkHandler = Hyperium.INSTANCE.getNetworkHandler();
         if (networkHandler != null) {
@@ -102,18 +99,13 @@ public class CommandDebug implements BaseCommand {
         }
         tryConfig(builder);
         builder.append("\n");
-        builder.append("\n");
         tryChromaHUD(builder);
-        builder.append("\n");
         builder.append("\n");
         tryKeybinds(builder);
         builder.append("\n");
-        builder.append("\n");
         tryLevelhead(builder);
         builder.append("\n");
-        builder.append("\n");
         builder.append("Levelhead");
-        builder.append("\n");
         return builder.toString();
     }
 

@@ -2,11 +2,9 @@ package cc.hyperium.handlers.handlers.stats.fields;
 
 import cc.hyperium.handlers.handlers.stats.AbstractHypixelStats;
 import cc.hyperium.handlers.handlers.stats.display.DisplayLine;
-import cc.hyperium.handlers.handlers.stats.display.DisplayTable;
 import cc.hyperium.handlers.handlers.stats.display.StatsDisplayItem;
 import cc.hyperium.utils.JsonHolder;
-import club.sk1er.website.Pet;
-import club.sk1er.website.api.requests.HypixelApiPlayer;
+import net.hypixel.api.HypixelApiPlayer;
 import net.hypixel.api.GameType;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -62,21 +60,6 @@ public class GeneralStats extends AbstractHypixelStats {
         items.add(new DisplayLine(bold("Times voted: ", player.getInt("voting#total"))));
 
         items.add(new DisplayLine(""));
-
-        JsonHolder petss2 = player.getRoot().optJSONObject("petStats");
-        List<String[]> strings = new ArrayList<>();
-        strings.add(new String[]{"Name", "Level"});
-        for (String in : petss2.getKeys()) {
-            JsonHolder tmp = petss2.optJSONObject(in);
-            Pet pet = new Pet(tmp);
-            String name;
-            if (tmp.has("name"))
-                name = tmp.optString("name");
-            else name = in.replace("_", " ").toLowerCase();
-            strings.add(new String[]{name, Integer.toString(pet.level)});
-        }
-        items.add(new DisplayLine("Pets", Color.WHITE.getRGB(), 2));
-        items.add(new DisplayTable(strings));
 
         return items;
     }

@@ -2,7 +2,7 @@ package cc.hyperium.handlers.handlers.stats.fields;
 
 import cc.hyperium.handlers.handlers.stats.AbstractHypixelStats;
 import cc.hyperium.handlers.handlers.stats.display.StatsDisplayItem;
-import club.sk1er.website.api.requests.HypixelApiPlayer;
+import net.hypixel.api.HypixelApiPlayer;
 import net.hypixel.api.GameType;
 import java.util.List;
 

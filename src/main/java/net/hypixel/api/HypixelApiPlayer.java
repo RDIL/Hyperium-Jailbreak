@@ -15,11 +15,11 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package club.sk1er.website.api.requests;
+package net.hypixel.api;
 import cc.hyperium.handlers.handlers.data.HypixelAPI;
 import cc.hyperium.utils.JsonHolder;
-import club.sk1er.website.utils.WebsiteUtils;
-import net.hypixel.api.GameType;
+import cc.hyperium.network.WebsiteUtils;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.concurrent.ExecutionException;
@@ -123,8 +123,7 @@ public class HypixelApiPlayer implements HypixelApiObject {
             }
         } else if (getRoot().has("newPackageRank")) {
             return getRoot().optString("newPackageRank");
-        }
-        else if (getRoot().has("packageRank")) {
+        } else if (getRoot().has("packageRank")) {
             return getRoot().optString("packageRank");
         }
         return "NONE";

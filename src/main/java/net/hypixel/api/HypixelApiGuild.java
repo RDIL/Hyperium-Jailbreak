@@ -1,6 +1,6 @@
-package club.sk1er.website.api.requests;
+package net.hypixel.api;
 import cc.hyperium.utils.JsonHolder;
-import club.sk1er.website.utils.WebsiteUtils;
+import cc.hyperium.network.WebsiteUtils;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import java.util.ArrayList;

@@ -12,11 +12,6 @@ public class DisplayTable extends StatsDisplayItem {
     private String[][] rows;
     private int[] rowSpacing;
 
-    public DisplayTable(String[]... rows) {
-        this.rows = rows;
-        build();
-    }
-
     public DisplayTable(List<String[]> strings) {
         String[][] data = new String[strings.size()][];
         for (int i = 0; i < strings.size(); i++) {
