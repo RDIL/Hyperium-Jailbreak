@@ -154,7 +154,7 @@ public abstract class MixinFontRenderer {
         GlStateManager.translate(-posX, -posY, 0F);
     }
 
-    private void doDraw(float f) {
+    protected void doDraw(float f) {
         {
             {
                 if (this.strikethroughStyle) {
