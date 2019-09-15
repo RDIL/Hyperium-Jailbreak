@@ -9,10 +9,6 @@ task:
     fingerprint_script: cat build.gradle
     populate_script: gradle setupCiWorkspace --build-cache --parallel -Dorg.gradle.jvmargs=-Xmx14336M
   name: Cirrus CI
-  always:
-    kotlin_class_cache:
-      folder: build/kotlin
-      fingerprint_script: find . -name *.kt -exec cat {} \;
   script: gradle build sha512 --parallel -Dorg.gradle.jvmargs=-Xmx14336M
   jar_artifacts:
     path: ./build/libs/*.jar
