@@ -16,26 +16,4 @@ public class StatsHandler {
             }
         });
     }
-
-    public void loadGuildByPlayer(String player) {
-        Multithreading.runAsync(() -> {
-            try {
-                HypixelApiGuild apiGuild = HypixelAPI.INSTANCE.getGuildFromPlayer(player).get();
-                new GuildStatsGui(apiGuild).show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
-
-    public void loadGuildByName(String name) {
-        Multithreading.runAsync(() -> {
-            try {
-                HypixelApiGuild apiGuild = HypixelAPI.INSTANCE.getGuildFromName(name).get();
-                new GuildStatsGui(apiGuild).show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
 }
