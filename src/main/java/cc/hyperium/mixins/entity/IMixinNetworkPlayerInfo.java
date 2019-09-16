@@ -13,7 +13,4 @@ public interface IMixinNetworkPlayerInfo {
 
     @Accessor
     void setLocationCape(ResourceLocation locationCape);
-
-    @Accessor
-    void setLocationSkin(ResourceLocation locationSkin);
 }
