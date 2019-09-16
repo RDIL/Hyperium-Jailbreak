@@ -30,9 +30,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath ('net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT') {
-            exclude module: 'gson'
-        }
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
         classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.50'
         classpath 'gradle.plugin.org.gradle.crypto:checksum:1.2.0'
@@ -50,7 +48,7 @@ apply plugin: 'kotlin'
 apply plugin: 'java'
 apply plugin: 'org.gradle.crypto.checksum'
 
-sourceCompatibility = targetCompatibility = 1.8
+sourceCompatibility = 1.8
 
 archivesBaseName = "Hyperium"
 
