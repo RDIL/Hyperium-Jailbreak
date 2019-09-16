@@ -16,8 +16,6 @@
  */
 
 package cc.hyperium.mixins.utils;
-
-import cc.hyperium.mixinsimp.HyperiumResourcePackRepository;
 import net.minecraft.client.resources.ResourcePackRepository;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
