@@ -28,10 +28,10 @@ import net.minecraft.util.StatCollector;
 
 @Mixin(Enchantment.class)
 public abstract class MixinEnchantment {
-    @Shadow public abstract String getName();
+    @Shadow abstract String getName();
 
     @Inject(method = "getTranslatedName", at = @At("HEAD"), cancellable = true)
     private void getTranslatedName(int level, CallbackInfoReturnable<String> ci) {
-        if (!Settings.ROMAN_NUMERALS) ci.setReturnValue(StatCollector.translateToLocal(name) + " " + level);
+        if (!Settings.ROMAN_NUMERALS) ci.setReturnValue(StatCollector.translateToLocal(getName()) + " " + level);
     }
 }
