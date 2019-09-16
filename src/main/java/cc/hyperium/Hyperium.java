@@ -179,7 +179,6 @@ public class Hyperium {
             hyperiumCommandHandler.registerCommand(new AutofriendCommand());
             hyperiumCommandHandler.registerCommand(new CommandStatistics());
         }
-        hyperiumCommandHandler.registerCommand(new CommandGuild());
         hyperiumCommandHandler.registerCommand(new CommandKeybinds());
     }
 
