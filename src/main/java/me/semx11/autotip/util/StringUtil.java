@@ -8,13 +8,7 @@ public class StringUtil {
     private static final Pattern PARAM_PATTERN = Pattern.compile("\\{}");
 
     public static String params(String input, Object... params) {
-        return params(input, true, params);
-    }
-
-    private static String params(String input, boolean color, Object... params) {
-        if (color) {
-            input = format(input);
-        }
+        input = format(input);
         if (params == null) {
             return input;
         }

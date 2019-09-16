@@ -20,10 +20,6 @@ public class StatsDaily extends Stats {
         return date;
     }
 
-    public String getDateString() {
-        return DATE_FORMATTER.format(date);
-    }
-
     public File getFile() {
         return autotip.getFileUtil().getStatsFile(date);
     }

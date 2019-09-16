@@ -19,14 +19,6 @@ public class MessageUtil {
         this.autotip = autotip;
     }
 
-    ChatComponentBuilder getBuilder(String text, Object... params) {
-        return this.getBuilder(true, text, params);
-    }
-
-    private ChatComponentBuilder getBuilder(boolean prefix, String text, Object... params) {
-        return ChatComponentBuilder.of(prefix, text, params);
-    }
-
     public KeyHelper getKeyHelper(String rootKey) {
         return new KeyHelper(this, rootKey);
     }
@@ -43,12 +35,7 @@ public class MessageUtil {
         this.sendRaw(PREFIX + msg, params);
     }
 
-    public void send(String msg, String url, String hoverText, Object... params) {
-        UniversalUtil.addChatMessage(StringUtil.params(PREFIX + msg, params), url,
-                StringUtil.format(hoverText));
-    }
-
-    public void separator() {
+    void separator() {
         this.sendRaw("&6&m&l----------------------------------");
     }
 

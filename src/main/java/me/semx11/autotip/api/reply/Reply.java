@@ -1,9 +1,6 @@
 package me.semx11.autotip.api.reply;
 
-import me.semx11.autotip.api.RequestType;
-
 public abstract class Reply {
-
     private boolean success;
     private String cause;
 
@@ -21,7 +18,4 @@ public abstract class Reply {
     public String getCause() {
         return cause;
     }
-
-    public abstract RequestType getRequestType();
-
 }

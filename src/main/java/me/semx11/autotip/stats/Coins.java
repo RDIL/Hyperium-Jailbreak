@@ -5,7 +5,6 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 public class Coins implements Comparable<Coins> {
-
     private static final DecimalFormat FORMAT = (DecimalFormat) NumberFormat.getInstance(Locale.US);
 
     private int coinsSent;
@@ -21,15 +20,15 @@ public class Coins implements Comparable<Coins> {
         this.coinsReceived = that.coinsReceived;
     }
 
-    public String getTotal() {
+    String getTotal() {
         return FORMAT.format(this.getTotalInt());
     }
 
-    public int getTotalInt() {
+    private int getTotalInt() {
         return coinsSent + coinsReceived;
     }
 
-    public String getSent() {
+    String getSent() {
         return FORMAT.format(coinsSent);
     }
 
@@ -37,7 +36,7 @@ public class Coins implements Comparable<Coins> {
         return FORMAT.format(coinsReceived);
     }
 
-    public Coins merge(final Coins that) {
+    Coins merge(final Coins that) {
         this.coinsSent += that.coinsSent;
         this.coinsReceived += that.coinsReceived;
         return this;

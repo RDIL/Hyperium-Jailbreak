@@ -25,7 +25,7 @@ import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.server.MinecraftServer;
-import rocks.rdil.BackendHandler;
+import com.hyperiumjailbreak.BackendHandler;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;

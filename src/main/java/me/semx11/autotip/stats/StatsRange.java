@@ -16,15 +16,6 @@ public class StatsRange extends Stats {
         this.end = end;
     }
 
-    public String getStartString() {
-        return DATE_FORMATTER.format(start);
-    }
-
-    public String getEndString() {
-        return DATE_FORMATTER.format(end);
-    }
-
-
     @Override
     public StatsRange merge(final Stats that) {
         if (that instanceof StatsRange) {

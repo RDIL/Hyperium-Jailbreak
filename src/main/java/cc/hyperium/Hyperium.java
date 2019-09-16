@@ -50,7 +50,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 import com.hyperiumjailbreak.CommonChatResponder;
-import rocks.rdil.BackendHandler;
+import com.hyperiumjailbreak.BackendHandler;
 import java.io.File;
 
 public class Hyperium {
@@ -77,11 +77,9 @@ public class Hyperium {
     @InvokeEvent(priority = Priority.HIGH)
     public void init(InitializationEvent event) {
         HyperiumLocale.registerHyperiumLang("en_US");
-        this.LOGGER.info("----------------");
-        this.LOGGER.warn("This project is NOT RUN BY THE HYPERIUM TEAM");
-        this.LOGGER.warn("Please report bugs by DMing rdil#0001 on Discord");
-        this.LOGGER.warn("or by emailing me@rdil.rocks");
-        this.LOGGER.info("----------------");
+        LOGGER.warn("This project is NOT RUN BY THE HYPERIUM TEAM");
+        LOGGER.warn("Please report bugs by DMing rdil#0001 on Discord");
+        LOGGER.warn("or by emailing me@rdil.rocks");
         try {
             Multithreading.runAsync(() -> {
                 networkHandler = new NetworkHandler();

@@ -19,14 +19,9 @@ package net.hypixel.api;
 import cc.hyperium.handlers.handlers.data.HypixelAPI;
 import cc.hyperium.utils.JsonHolder;
 import cc.hyperium.network.WebsiteUtils;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.concurrent.ExecutionException;
 
 public class HypixelApiPlayer implements HypixelApiObject {
-    public static final DateFormat DMY = new SimpleDateFormat("dd/MM, YYYY");
-    public static final DateFormat DMYHHMMSS = new SimpleDateFormat("dd/MM, YYYY HH:mm:ss");
     private final JsonHolder player;
     public HypixelApiPlayer(JsonHolder holder) {
         this.player = holder;
@@ -49,7 +44,7 @@ public class HypixelApiPlayer implements HypixelApiObject {
     public String getUUID() {
         return getRoot().optString("uuid");
     }
-    public JsonHolder getRoot() {
+    private JsonHolder getRoot() {
         return player.optJSONObject("player");
     }
 

@@ -13,8 +13,6 @@ public class Message {
     protected Pattern pattern;
     private MessageOption hideFor;
 
-    Message() {}
-
     Message(Pattern pattern) {
         this(pattern, MessageOption.HIDDEN);
     }

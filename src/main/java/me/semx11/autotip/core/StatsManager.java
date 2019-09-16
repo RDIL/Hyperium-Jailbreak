@@ -62,7 +62,7 @@ public class StatsManager {
         return stats;
     }
 
-    public StatsRange getRange(LocalDate start, LocalDate end) {
+    private StatsRange getRange(LocalDate start, LocalDate end) {
         if (start.isBefore(fileUtil.getFirstDate())) {
             start = fileUtil.getFirstDate();
         }
