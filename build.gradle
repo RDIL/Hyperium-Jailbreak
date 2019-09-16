@@ -52,7 +52,6 @@ apply plugin: 'org.gradle.crypto.checksum'
 
 sourceCompatibility = targetCompatibility = 1.8
 
-group = "cc.hyperium"
 archivesBaseName = "Hyperium"
 
 compileJava.options.encoding = 'UTF-8'
