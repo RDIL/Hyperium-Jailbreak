@@ -21,15 +21,27 @@ else
 fi
 
 ENCODED_PW=`echo -n ${USER_ID}:${CR_DEPLOY_TOKEN} | base64 -`
-FILE_TO_UPLOAD=build/libs/**
+FILE_TO_UPLOAD=build/libs/*.jar
 
 TARGET_URL=https://${ORGANIZATION_ID}.mycloudrepo.io/repositories/${REPOSITORY_ID}/
 
 HTTP_STATUS=`curl -s -w "%{http_code}" -X PUT ${TARGET_URL} -H "Authorization: Basic ${ENCODED_PW}" -d @${FILE_TO_UPLOAD}`
 
 if [[ ${HTTP_STATUS} -eq 200 ]]; then
-  echo File Successfully uploaded to CloudRepo and can be retrieved from [${TARGET_URL}]!
+  echo Jar successfully uploaded to CloudRepo and can be retrieved from [${TARGET_URL}]!
 else
-  echo Failed to upload file to CloudRepo [${TARGET_URL}] Result: $HTTP_STATUS
+  echo Failed to upload Jar file to CloudRepo [${TARGET_URL}] Result: $HTTP_STATUS
   exit 1
 fi
+
+FILE_TO_UPLOAD=build/libs/*.sha512
+
+HTTP_STATUS=`curl -s -w "%{http_code}" -X PUT ${TARGET_URL} -H "Authorization: Basic ${ENCODED_PW}" -d @${FILE_TO_UPLOAD}`
+
+if [[ ${HTTP_STATUS} -eq 200 ]]; then
+  echo SHA File Successfully uploaded to CloudRepo and can be retrieved from [${TARGET_URL}]!
+else
+  echo Failed to upload SHA file to CloudRepo [${TARGET_URL}] Result: $HTTP_STATUS
+  exit 1
+fi
+
