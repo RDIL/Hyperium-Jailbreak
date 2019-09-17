@@ -12,6 +12,8 @@ src/test/
 .idea/$*
 .idea/misc.xml
 .idea/uiDesigner.xml
+.idea/libraries/
+.idea/modules.xml
 .DS_Store
 .AppleDesktop
 Temporary Items
