@@ -44,4 +44,3 @@ else
   echo Failed to upload SHA file to CloudRepo [${TARGET_URL}] Result: $HTTP_STATUS
   exit 1
 fi
-
