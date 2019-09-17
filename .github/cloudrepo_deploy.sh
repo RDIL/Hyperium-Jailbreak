@@ -1,20 +1,35 @@
 #!/bin/bash
 
-USER_ID=chris@example.com
-PASSPHRASE=changeme
+USER_ID=deploy@rdil.rocks
 
 ORGANIZATION_ID=hyperiumjailbreak
-REPOSITORY_ID=example-repo
+if [[ -z ${CIRRUS_TAG} ]]; then
+  echo "Error: no tag specified. Use export CIRRUS_TAG=theTagIdHere"
+  exit 1
+fi
 
-ENCODED_PW=`echo -n ${USER_ID}:${PASSPHRASE} | base64 -`
-FILE_TO_UPLOAD=build/libs/*.jar
+if [[ -z ${CR_DEPLOY_TOKEN} ]]; then
+  echo "Error, it seems you don't have the deploy token set. Set it first by running export CR_DEPLOY_TOKEN=thePasswordHere"
+  exit 1
+fi
+
+if [[ ${CIRRUS_TAG} == *"dev"* ]]; then
+  # dev build, need to upload to devpack repo
+  REPOSITORY_ID="devpacks"
+else
+  REPOSITORY_ID="releases"
+fi
+
+ENCODED_PW=`echo -n ${USER_ID}:${CR_DEPLOY_TOKEN} | base64 -`
+FILE_TO_UPLOAD=build/libs/**
 
 TARGET_URL=https://${ORGANIZATION_ID}.mycloudrepo.io/repositories/${REPOSITORY_ID}/
 
 HTTP_STATUS=`curl -s -w "%{http_code}" -X PUT ${TARGET_URL} -H "Authorization: Basic ${ENCODED_PW}" -d @${FILE_TO_UPLOAD}`
 
 if [[ ${HTTP_STATUS} -eq 200 ]]; then
-    echo File Successfully uploaded to CloudRepo and can be retrieved from [${TARGET_URL}]!
+  echo File Successfully uploaded to CloudRepo and can be retrieved from [${TARGET_URL}]!
 else
-    echo Failed to upload file to CloudRepo [${TARGET_URL}] Result: $HTTP_STATUS
+  echo Failed to upload file to CloudRepo [${TARGET_URL}] Result: $HTTP_STATUS
+  exit 1
 fi
