@@ -65,11 +65,10 @@ minecraft {
 }
 
 dependencies {
-    embed('org.spongepowered:mixin:0.7.11-SNAPSHOT') {
+    embed('com.github.SpongePowered:Mixin:0.8-SNAPSHOT') {
         exclude module: 'launchwrapper'
         exclude module: 'guava'
         exclude module: 'gson'
-        exclude module: 'commons-io'
     }
     embed 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.50'
     embed 'com.github.ben-manes.caffeine:caffeine:2.8.0'
@@ -95,9 +94,6 @@ mixin {
 repositories {
     maven {
         url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/jitpack-proxy"
-    }
-    maven {
-        url "https://repo.spongepowered.org/maven/"
     }
     maven {
         url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/libs"
