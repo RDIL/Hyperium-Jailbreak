@@ -15,7 +15,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-version = "3.0-devpack3"
+version = "3.0-devpack4"
 
 buildscript {
     repositories {
