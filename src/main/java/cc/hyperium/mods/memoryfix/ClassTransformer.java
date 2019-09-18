@@ -1,15 +1,15 @@
 package cc.hyperium.mods.memoryfix;
 
 import net.minecraft.launchwrapper.IClassTransformer;
-import org.ow2.asm.lib.ClassReader;
-import org.ow2.asm.lib.ClassWriter;
-import org.ow2.asm.lib.Opcodes;
-import org.ow2.asm.lib.commons.ClassRemapper;
-import org.ow2.asm.lib.commons.Remapper;
-import org.ow2.asm.lib.tree.AbstractInsnNode;
-import org.ow2.asm.lib.tree.ClassNode;
-import org.ow2.asm.lib.tree.MethodInsnNode;
-import org.ow2.asm.lib.tree.MethodNode;
+import org.ow2.asm.ClassReader;
+import org.ow2.asm.ClassWriter;
+import org.ow2.asm.Opcodes;
+import org.ow2.asm.commons.ClassRemapper;
+import org.ow2.asm.commons.Remapper;
+import org.ow2.asm.tree.AbstractInsnNode;
+import org.ow2.asm.tree.ClassNode;
+import org.ow2.asm.tree.MethodInsnNode;
+import org.ow2.asm.tree.MethodNode;
 import java.util.Iterator;
 import java.util.function.BiConsumer;
 
