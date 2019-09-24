@@ -84,6 +84,7 @@ dependencies {
     }
     embed 'com.github.hyperiumjailbreak:LaunchWrapperPatcher:d686ad4dd0'
     embed 'com.hyperiumjailbreak:gson-extras:0.2.2'
+    embed 'org.ow2.asm:asm-tree:6.2'
 }
 
 mixin {
