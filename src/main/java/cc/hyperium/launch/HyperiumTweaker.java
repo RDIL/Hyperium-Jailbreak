@@ -54,7 +54,6 @@ public class HyperiumTweaker implements ITweaker {
     public void injectIntoClassLoader(LaunchClassLoader classLoader) {
         MixinBootstrap.init();
         AddonBootstrap.INSTANCE.init();
-        classLoader.registerTransformer("cc.hyperium.mods.memoryfix.ClassTransformer");
 
         MixinEnvironment environment = MixinEnvironment.getDefaultEnvironment();
         Mixins.addConfiguration("mixins.hyperium.json");
@@ -64,6 +63,7 @@ public class HyperiumTweaker implements ITweaker {
             environment.setObfuscationContext("searge"); // Switch's to forge searge mappings
         }
         if (this.OPTIFINE) {
+            classLoader.registerTransformer("cc.hyperium.mods.memoryfix.ClassTransformer");
             environment.setObfuscationContext("notch"); // Switch's to notch mappings
         }
         if (environment.getObfuscationContext() == null) {
