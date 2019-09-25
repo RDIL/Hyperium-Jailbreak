@@ -23,7 +23,7 @@ buildscript {
             url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/gradle-plugin-proxy"
         }
         maven {
-            url "https://repo.spongepowered.org/maven"
+            url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/sponge-proxy"
         }
         maven {
             url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/forge-proxy"
@@ -97,7 +97,7 @@ repositories {
         url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/jitpack-proxy"
     }
     maven {
-        url "https://repo.spongepowered.org/maven/"
+        url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/sponge-proxy"
     }
     maven {
         url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/libs"
