@@ -40,11 +40,6 @@ public class HyperiumModIntegration {
     private final Autotip autotip;
     private final AutoGG autogg;
     private final cc.hyperium.mods.GlintColorizer gc;
-    private final BlockOverlay blockOverlay;
-    private final OldAnimations oldanimations;
-    private final AutofriendMod autofriend;
-    private final FortniteCompassMod fncompass;
-    private final ItemPhysicMod itemPhysicMod;
 
     public HyperiumModIntegration() {
         this.chromaHUD = ((ChromaHUD) new ChromaHUD().init());
@@ -53,25 +48,23 @@ public class HyperiumModIntegration {
         this.autotip = new Autotip();
         autotip.init();
         this.autogg = ((AutoGG) new AutoGG().init());
-        this.oldanimations = ((OldAnimations) new OldAnimations().init());
-        NickHider nickHider = new NickHider();
-        nickHider.init();
+        new OldAnimations().init();
+        new NickHider().init();
         new TabToggleMod().init();
-        this.autofriend = new AutofriendMod();
-        this.fncompass = new FortniteCompassMod();
-        this.itemPhysicMod = new ItemPhysicMod();
+        AutofriendMod autofriend = new AutofriendMod();
+        FortniteCompassMod fncompass = new FortniteCompassMod();
+        new ItemPhysicMod().init();
         this.gc = new cc.hyperium.mods.GlintColorizer();
-        this.blockOverlay = new BlockOverlay();
+        BlockOverlay blockOverlay = new BlockOverlay();
         this.keystrokesMod = new KeystrokesMod();
         this.timeChanger = new TimeChanger();
         this.gc.init();
         this.keystrokesMod.init();
-        this.itemPhysicMod.init();
         
         if (!Settings.FPS) {
-            this.autofriend.init();
-            this.fncompass.init();
-            this.blockOverlay.init();
+            autofriend.init();
+            fncompass.init();
+            blockOverlay.init();
             this.timeChanger.init();
         }
     }
@@ -106,25 +99,5 @@ public class HyperiumModIntegration {
 
     public cc.hyperium.mods.GlintColorizer getGlintcolorizer() {
         return gc;
-    }
-
-    public BlockOverlay getBlockOverlay() {
-        return blockOverlay;
-    }
-
-    public OldAnimations getOldanimations() {
-        return oldanimations;
-    }
-
-    public AutofriendMod getAutofriend() {
-        return autofriend;
-    }
-
-    public FortniteCompassMod getFncompass() {
-        return fncompass;
-    }
-
-    public ItemPhysicMod getItemPhysicMod() {
-        return itemPhysicMod;
     }
 }

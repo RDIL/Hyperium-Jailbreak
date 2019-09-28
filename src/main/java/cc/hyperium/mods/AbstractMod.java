@@ -28,7 +28,6 @@ public abstract class AbstractMod {
 
     public class Metadata {
         private final AbstractMod mod;
-        private final String author;
         private final String name;
         private final String version;
 
@@ -46,11 +45,8 @@ public abstract class AbstractMod {
             checkNotNull(mod, "Mod instance cannot be null");
             checkArgument(!StringUtils.isEmpty(name), "Name cannot be null or empty (" + name + ")");
             checkArgument(!StringUtils.isEmpty(version), "Version cannot be null or empty (" + version + ")");
-            checkNotNull(author, "Author cannot be null (" + author + ")");
-
             this.mod = mod;
             this.name = name;
-            this.author = author;
             this.version = version;
             this.displayName = name;
         }
@@ -67,16 +63,8 @@ public abstract class AbstractMod {
             return this.version;
         }
 
-        public String getAuthor() {
-            return this.author != null ? this.author : "";
-        }
-
         public String getDisplayName() {
             return this.displayName != null ? this.displayName : getName();
-        }
-
-        public void setDisplayName(String name) {
-            this.displayName = name;
         }
     }
 }

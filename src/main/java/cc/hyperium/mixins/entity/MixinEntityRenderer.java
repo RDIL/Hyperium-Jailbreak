@@ -52,7 +52,7 @@ public abstract class MixinEntityRenderer {
     }
 
     @Inject(method = "activateNextShader", at = @At("INVOKE_ASSIGN"))
-    public void activateNextShader(CallbackInfo callbackInfo) {
+    private void activateNextShader(CallbackInfo callbackInfo) {
         HyperiumEntityRenderer.INSTANCE.isUsingShader = this.shaderIndex != shaderCount;
     }
 
