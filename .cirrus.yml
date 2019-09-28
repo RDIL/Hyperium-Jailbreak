@@ -15,15 +15,7 @@ task:
   checksum_artifacts:
     path: ./build/libs/*.sha512
     type: text/plain
-  matrix:
-    - name: Cirrus CI
-    - name: Deploy
-      only_if: $CIRRUS_TAG != ''
-      env:
-        CR_DEPLOY_TOKEN: ENCRYPTED[1a2ed7d9ed2efa1ee67511efb5d40a10ae7764ba1007d5932f9dd6fba02be03f8fff6cbcf2ffbc62c43b8dc4f09f9ec8]
-      deploy_script: |
-        chmod +x .github/cloudrepo_deploy.sh
-        bash .github/cloudrepo_deploy.sh
+  name: Cirrus CI
   always:
     cleanup_before_cache_script: |
       rm -rf ~/.gradle/caches/$GRADLE_VERSION/ ~/.gradle/caches/transforms-1 ~/.gradle/caches/journal-1 ~/.gradle/caches/minecraft/deobfedDeps/compileDummy.jar ~/.gradle/caches/minecraft/deobfedDeps/providedDummy.jar
