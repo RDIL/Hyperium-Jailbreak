@@ -90,7 +90,6 @@ gui.settings.broadcastachievements=Broadcast achievements
 gui.settings.sendguildwelcomemessage=Send guild welcome message
 gui.settings.itemphysics=Item physics
 gui.settings.disable_dances=Disable dances
-gui.settings.victoryroyale=Victory royale
 gui.settings.hyperiumprefix=Show chat prefix
 gui.settings.betterf1=Hide names in F1
 gui.settings.buttonstyle=Button style
