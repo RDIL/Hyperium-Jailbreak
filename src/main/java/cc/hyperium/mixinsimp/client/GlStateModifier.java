@@ -24,6 +24,8 @@ import java.lang.reflect.Field;
 public class GlStateModifier implements IGlStateModifier {
     private Object[] theArray;
     private Field textureNamefield;
+    private Field redColorField = null;
+    private Object colorStateObject = null;
     private Field activeTextureUnitField = null;
     public static final IGlStateModifier INSTANCE = new GlStateModifier();
 
@@ -72,6 +74,60 @@ public class GlStateModifier implements IGlStateModifier {
 
         try {
             textureNamefield.set(o, id);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void resetColor() {
+        if (colorStateObject == null) {
+            Class<?> aClass = ReflectionUtil.findClazz("net.minecraft.client.renderer.GlStateManager", "bfl");
+            Field tmp = null;
+            try {
+                tmp = aClass.getDeclaredField("colorState");
+            } catch (NoSuchFieldException e) {
+                try {
+                    tmp = aClass.getDeclaredField("field_179170_t");
+                } catch (NoSuchFieldException e1) {
+                    try {
+                        tmp = aClass.getDeclaredField("t");
+                    } catch (NoSuchFieldException e2) {
+                        e2.printStackTrace();
+                    }
+                }
+            }
+            if (tmp != null) {
+                tmp.setAccessible(true);
+                try {
+                    colorStateObject = tmp.get(null);
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        if (redColorField == null) {
+            Class<?> aClass = ReflectionUtil.findClazz("net.minecraft.client.renderer.GlStateManager$Color", "bfl$e");
+            try {
+                redColorField = aClass.getDeclaredField("red");
+            } catch (NoSuchFieldException e) {
+                try {
+                    redColorField = aClass.getDeclaredField("field_179195_a");
+                } catch (NoSuchFieldException e1) {
+                    try {
+                        redColorField = aClass.getDeclaredField("a");
+                    } catch (NoSuchFieldException e2) {
+                        e2.printStackTrace();
+                    }
+                }
+            }
+            if (redColorField != null) redColorField.setAccessible(true);
+        }
+        if (colorStateObject == null || redColorField == null) {
+            return;
+        }
+        try {
+            redColorField.set(colorStateObject, -1);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
