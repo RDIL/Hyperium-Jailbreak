@@ -2,6 +2,7 @@ package me.semx11.autotip;
 
 import cc.hyperium.Hyperium;
 import cc.hyperium.event.EventBus;
+import com.hyperiumjailbreak.ChatCanceller;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mojang.authlib.GameProfile;
@@ -120,6 +121,7 @@ public class Autotip {
     }
 
     public void init() {
+        EventBus.INSTANCE.register(new ChatCanceller("already tipped"));
         RequestHandler.setAutotip(this);
         UniversalUtil.setAutotip(this);
         this.minecraft = Minecraft.getMinecraft();
