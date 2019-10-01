@@ -164,7 +164,7 @@ public class ParticleOverlay {
         CHROMA_2
     }
 
-    static class Particle {
+    class Particle {
         private float x;
         private float y;
         private float xVec;
