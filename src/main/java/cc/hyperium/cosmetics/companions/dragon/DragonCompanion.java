@@ -136,7 +136,7 @@ public class DragonCompanion extends AbstractCosmetic {
         }
     }
 
-    static class CustomDragon {
+    class CustomDragon {
         EntityDragon dragon;
         AnimationState animationState;
 
@@ -146,7 +146,7 @@ public class DragonCompanion extends AbstractCosmetic {
         }
     }
 
-    static class AnimationPoint {
+    class AnimationPoint {
         double x, y, z;
 
         AnimationPoint(double x, double y, double z) {
@@ -164,8 +164,8 @@ public class DragonCompanion extends AbstractCosmetic {
         }
     }
 
-    static class AnimationState {
-        private static final int BOUNDS = 4;
+    class AnimationState {
+        private final int BOUNDS = 4;
         AnimationPoint last;
         AnimationPoint next;
         AnimationPoint nextNext;
