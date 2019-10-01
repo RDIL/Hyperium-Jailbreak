@@ -6,7 +6,6 @@ import java.util.concurrent.ConcurrentHashMap
 object AddonMinecraftBootstrap {
     @JvmStatic
     val LOADED_ADDONS = ArrayList<IAddon>()
-        @JvmName("getLoadedAddons") get
 
     @JvmStatic
     val MISSING_DEPENDENCIES_MAP = ConcurrentHashMap<AddonManifest, ArrayList<String>>()
