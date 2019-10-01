@@ -2,10 +2,10 @@ package com.hyperiumjailbreak;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.ChatEvent;
 
-public class CommonChatCanceller {
+public class ChatCanceller {
     private String whatToListenFor;
 
-    public CommonChatCanceller(String whatToListenFor) {
+    public ChatCanceller(String whatToListenFor) {
         this.whatToListenFor = whatToListenFor;
     }
 
