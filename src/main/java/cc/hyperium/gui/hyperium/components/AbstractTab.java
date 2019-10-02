@@ -20,7 +20,6 @@ public abstract class AbstractTab {
     private String title;
     private SimpleAnimValue scrollAnim = new SimpleAnimValue(0L, 0f, 0f);
     private int scroll = 0;
-    private String filter;
 
     public AbstractTab(HyperiumMainGui gui, String title) {
         this.gui = gui;
@@ -44,7 +43,7 @@ public abstract class AbstractTab {
             scrollAnim = new SimpleAnimValue(1000L, scrollAnim.getValue(), scroll * 18);
         y += scrollAnim.getValue();
         /* Render each tab component */
-        for (AbstractTabComponent comp : filter == null ? components : components.stream().filter(c -> c.filter(filter)).collect(Collectors.toList())) {
+        for (AbstractTabComponent comp : components) {
             comp.render(x, y, width, mx, my);
 
             /* If mouse is over component, set as hovered */
@@ -72,10 +71,6 @@ public abstract class AbstractTab {
         return this.title;
     }
 
-    public String getFilter() {
-        return this.filter;
-    }
-
     public void handleMouseInput() {
         if (Mouse.getEventDWheel() > 0)
             scroll++;
@@ -83,9 +78,5 @@ public abstract class AbstractTab {
             scroll--;
         if (scroll > 0)
             scroll = 0;
-    }
-
-    public void setFilter(String filter) {
-        this.filter = filter;
     }
 }
