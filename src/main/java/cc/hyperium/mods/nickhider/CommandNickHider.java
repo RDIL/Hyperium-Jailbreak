@@ -18,7 +18,7 @@ public class CommandNickHider implements BaseCommand {
     @Override
     public void onExecute(String[] args) {
         if (args.length == 0) {
-            sendMessage("Nick hider status: " + (NickHider.INSTANCE.isEnabled() ? EnumChatFormatting.GREEN + "Enabled" : EnumChatFormatting.RED + "Disabled"));
+            sendMessage("Status: " + (NickHider.INSTANCE.isEnabled() ? EnumChatFormatting.GREEN + "Enabled" : EnumChatFormatting.RED + "Disabled"));
             sendMessage("Hide others " + (NickHider.INSTANCE.isSelfOnly() ? EnumChatFormatting.RED + "No" : EnumChatFormatting.GREEN + "Yes"));
             sendMessage("Skins: " + (NickHider.INSTANCE.isHideSkins() ? EnumChatFormatting.RED + "Off" : EnumChatFormatting.GREEN + "On"));
             sendMessage("/nickhider <toggle,skin,self,pseudo>");
@@ -30,7 +30,7 @@ public class CommandNickHider implements BaseCommand {
                 sendMessage("Toggled " + (NickHider.INSTANCE.isEnabled() ? EnumChatFormatting.GREEN + "On" : EnumChatFormatting.RED + "Off"));
             } else if (args[0].equalsIgnoreCase("self")) {
                 NickHider.INSTANCE.toggleSelf();
-                sendMessage("Hide others " + (NickHider.INSTANCE.isSelfOnly() ? EnumChatFormatting.RED + "No" : EnumChatFormatting.GREEN + "Yes"));
+                sendMessage("Hide others: " + (NickHider.INSTANCE.isSelfOnly() ? EnumChatFormatting.RED + "No" : EnumChatFormatting.GREEN + "Yes"));
             } else if (args[0].equalsIgnoreCase("pseudo")) {
                 sendMessage("/nickhider pseudo <show,new,psudo>");
             } else if (args[0].equalsIgnoreCase("skin")) {
@@ -47,7 +47,7 @@ public class CommandNickHider implements BaseCommand {
                 } else {
                     NickHider.INSTANCE.setPseudo_key(tmp);
                     NickHider.INSTANCE.reset();
-                    sendMessage("Set new pseudo");
+                    sendMessage("Done.");
                 }
             } else if (args[0].equalsIgnoreCase("myname")) {
                 String arg = args[1];
