@@ -13,7 +13,6 @@ public abstract class AbstractTabComponent {
     protected List<String> tags = new ArrayList<>();
     protected AbstractTab tab;
     private boolean fc = false; // search query cache
-    private String sc = "";  // filter cache
     private List<Consumer<Object>> stateChanges = new ArrayList<>();
     private boolean enabled = true;
 
@@ -23,7 +22,7 @@ public abstract class AbstractTabComponent {
     }
 
     public int getHeight() {
-        return (tab.getFilter() != null && !filter(tab.getFilter())) ? 0 : 18;
+        return 18;
     }
 
     public void render(int x, int y, int width, int mouseX, int mouseY) {
@@ -31,13 +30,6 @@ public abstract class AbstractTabComponent {
         if (hover)
             Gui.drawRect(x, y, x + width, y + 18, 0xa0000000);
         GlStateManager.popMatrix();
-    }
-
-    public boolean filter(String s) {
-        String fs = s.toLowerCase();
-        boolean a = (s.equals(sc) ? fc : (fc = tags.stream().anyMatch(t -> t.contains(fs))));
-        sc = s;
-        return a;
     }
 
     public void onClick(int x, int y) {}
