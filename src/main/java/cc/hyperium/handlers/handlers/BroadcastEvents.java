@@ -6,7 +6,6 @@ import cc.hyperium.event.AchievementGetEvent;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.ServerChatEvent;
-import me.lpk.util.StringUtils;
 import net.minecraft.util.EnumChatFormatting;
 import java.util.ArrayList;
 import java.util.List;
