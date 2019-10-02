@@ -94,6 +94,10 @@ public class SettingsTab extends AbstractTab {
         if (mods) {
             boolean b = false;
             for (AbstractTabComponent abs : collapsibleTabComponent.getChildren()) {
+                if (abs instanceof LinkComponent) {
+                    collapsibleTabComponent.addChild(component);
+                    return;
+                }
                 if (((CollapsibleTabComponent) abs).getLabel().equalsIgnoreCase(category.getDisplay())) {
                     ((CollapsibleTabComponent) abs).addChild(component);
                     b = true;
