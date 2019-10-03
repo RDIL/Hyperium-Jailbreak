@@ -7,8 +7,8 @@ task:
   gradle_cache:
     folder: ~/.gradle/caches
     fingerprint_script: cat build.gradle
-    populate_script: gradle setupCiWorkspace —-no-daemon --build-cache --parallel -Dorg.gradle.jvmargs=-Xmx14336M
-  script: gradle build sha512 --no-daemon --parallel -Dorg.gradle.jvmargs=-Xmx14336M
+    populate_script: gradle setupCiWorkspace --build-cache ---Dorg.gradle.jvmargs=-Xmx14336M
+  script: gradle build sha512 -Dorg.gradle.jvmargs=-Xmx14336M
   jar_artifacts:
     path: ./build/libs/*.jar
     type: application/java-archive
