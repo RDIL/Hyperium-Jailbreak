@@ -78,7 +78,8 @@ dependencies {
         exclude module: 'lwjgl'
     }
     embed group: 'com.nativelibs4java', name: 'bridj', version: '0.7.0'
-    embed group: 'org.ow2.asm', name: 'asm-all', version: '7.0'
+    embed group: 'org.ow2.asm', name: 'asm-tree', version: '7.0'
+    embed group: 'org.ow2.asm', name: 'asm-commons', version: '7.0'
     embed ('com.github.HyperiumClient:Installer:1.9') {
         exclude module: 'gson'
         exclude module: 'LaunchWrapperPatcher'
