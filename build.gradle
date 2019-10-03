@@ -83,9 +83,7 @@ dependencies {
     embed group: 'org.ow2.asm', name: 'asm-commons', version: '5.0.3'
     embed ('com.github.HyperiumClient:Installer:1.9') {
         exclude module: 'gson'
-        exclude module: 'LaunchWrapperPatcher'
     }
-    embed 'com.github.hyperiumjailbreak:LaunchWrapperPatcher:d686ad4dd0'
     embed 'com.hyperiumjailbreak:gson-extras:0.2.2'
 }
 
