@@ -15,7 +15,6 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
     private boolean collapsed = true;
     private String label;
     private CollapsibleTabComponent parent;
-    private String tmpf;
 
     public CollapsibleTabComponent(AbstractTab tab, List<String> tags, String label) {
         super(tab, tags);
@@ -107,10 +106,9 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
         if (collapsed) {
             return 18;
         } else {
-            List<AbstractTabComponent> children = this.tmpf == null ? this.children : this.children.stream().filter(c -> c.filter(tmpf)).collect(Collectors.toList());
             if (parent != null) {
                 int h = 18;
-                for (AbstractTabComponent child : children) {
+                for (AbstractTabComponent child : this.children) {
                     h += child.getHeight();
                 }
                 return h;
@@ -150,14 +148,6 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
         }
     }
 
-    @Override
-    public boolean filter(String s) {
-        boolean b = super.filter(s);
-        if (b)
-            tmpf = s;
-        return b;
-    }
-
     public void sortSelf() {
         children.sort(Comparator.comparing(this::getLabel));
     }
@@ -173,6 +163,6 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
             return ((ToggleComponent) component).getLabel();
         if (component instanceof SelectorComponent)
             return ((SelectorComponent) component).getLabel();
-        return "ZZZ";
+        return "No Title";
     }
 }
