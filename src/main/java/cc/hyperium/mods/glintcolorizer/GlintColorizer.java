@@ -14,7 +14,6 @@ public class GlintColorizer extends AbstractMod {
     }
     @Override
     public AbstractMod init() {
-        Hyperium.CONFIG.register(this);
         Hyperium.CONFIG.register(colors);
         EventBus.INSTANCE.register(this);
         Colors.setonepoint8color(Colors.glintR, Colors.glintG, Colors.glintB);
