@@ -24,7 +24,7 @@ public enum Category {
     TAB_TOGGLE("Tab Toggle"),
     ITEM_PHYSIC("Item Physics"),
     TOGGLESPRINT("Toggle Sprint"),
-    HYPIXELSKYBLOCK("SkyBlock");
+    HYPIXELSKYBLOCK("Hypixel SkyBlock");
 
     private String display;
 
