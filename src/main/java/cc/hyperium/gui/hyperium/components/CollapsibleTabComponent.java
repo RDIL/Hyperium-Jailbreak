@@ -34,7 +34,6 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
     }
 
     public boolean isCollapsed() {
-
         return collapsed;
     }
 
@@ -71,7 +70,7 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
         boolean right = false;
         int prevH = 0;
 
-        for (AbstractTabComponent comp : tmpf == null ? children : children.stream().filter(c -> c.filter(tmpf)).collect(Collectors.toList())) {
+        for (AbstractTabComponent comp : children) {
             if (parent != null) right = false;
 
             comp.render(right ? x + width / 2 : x, y, parent != null ? width : width / 2, mouseX, mouseY);
@@ -130,7 +129,6 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
                 }
             }
             compH += leftHeight;
-            tmpf = null;
             return compH;
         }
     }
