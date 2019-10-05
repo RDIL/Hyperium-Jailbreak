@@ -26,14 +26,12 @@ import net.minecraft.network.NetworkManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.gen.Invoker;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiConnecting.class)
 public abstract class MixinGuiConnecting extends GuiScreen {
-    @Invoker public abstract void drawDefaultBackground();
     @Shadow private NetworkManager networkManager;
 
     @Inject(method = "connect", at = @At("HEAD"))
@@ -45,7 +43,7 @@ public abstract class MixinGuiConnecting extends GuiScreen {
      * @author Reece Dunham and Mojang
      */
     @Overwrite public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        this.drawDefaultBackground();
+        this.drawWorldBackground(0);
 
         this.drawCenteredString(this.fontRendererObj, I18n.format(this.networkManager == null? "connect.connecting" : "connect.authorizing"), this.width / 2, this.height / 2 - 50, 16777215);
 

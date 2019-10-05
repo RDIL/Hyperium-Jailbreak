@@ -15,6 +15,9 @@ import org.spongepowered.asm.mixin.Shadow;
 public class MixinItemBucket {
     @Shadow private Block isFull;
 
+    /**
+     * @author Reece Dunham and Mojang
+     */
     @Overwrite
     public boolean tryPlaceContainedLiquid(World worldIn, BlockPos pos) {
         if (isFull == Blocks.air) {

@@ -218,7 +218,7 @@ public class Settings {
     public static String PAUSE_STYLE = GuiStyle.HYPERIUM.name();
 
     @ConfigOpt @ToggleSetting(name = "gui.settings.fastworldswitching", category = IMPROVEMENTS)
-    public static boolean FAST_WORLD_LOADING = true;
+    public static boolean FAST_WORLD_LOADING = false;
 
     @ConfigOpt public static int MAX_WORLD_PARTICLES_INT = 10000;
 

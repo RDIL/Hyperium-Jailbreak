@@ -18,7 +18,7 @@ import java.awt.Color;
 public class BlockOverlayRender {
     private BlockOverlay mod;
 
-    public BlockOverlayRender(BlockOverlay mod) {
+    BlockOverlayRender(BlockOverlay mod) {
         this.mod = mod;
     }
 
