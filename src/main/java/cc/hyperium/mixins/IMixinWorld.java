@@ -1,4 +1,4 @@
-package cc.hyperium.mixins.world;
+package cc.hyperium.mixins;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
