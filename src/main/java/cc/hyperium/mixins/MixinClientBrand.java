@@ -1,4 +1,4 @@
-package cc.hyperium.mixins.client;
+package cc.hyperium.mixins;
 
 import net.minecraft.client.ClientBrandRetriever;
 import org.spongepowered.asm.mixin.Mixin;
