@@ -1,4 +1,4 @@
-package cc.hyperium.mixins.client.renderer.entity;
+package cc.hyperium.mixins.client;
 
 import cc.hyperium.mixinsimp.client.renderer.entity.HyperiumRendererLivingEntity;
 import net.minecraft.client.renderer.entity.Render;
