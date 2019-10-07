@@ -3,7 +3,7 @@ package cc.hyperium.mixinsimp.world;
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.SpawnpointChangeEvent;
-import cc.hyperium.mixins.world.IMixinWorld;
+import cc.hyperium.mixins.IMixinWorld;
 import net.minecraft.client.Minecraft;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
