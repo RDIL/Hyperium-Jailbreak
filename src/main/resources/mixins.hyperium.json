@@ -16,6 +16,10 @@
     "MixinTextureManager",
     "MixinPlayerControllerMP",
     "MixinSnooper",
+    "IMixinWorld",
+    "MixinChunk",
+    "MixinWorld",
+    "MixinScoreboard",
     "client.MixinClientBrand",
     "client.MixinGameSettings",
     "client.MixinLoadingScreen",
@@ -100,13 +104,9 @@
     "renderer.model.MixinModelBiped",
     "renderer.model.MixinModelBox",
     "renderer.model.MixinModelPlayer",
-    "scoreboard.MixinScoreboard",
     "utils.MixinChatComponentStyle",
     "utils.MixinChatStyle",
     "utils.MixinClassInheritanceMultiMap",
-    "utils.MixinResourcePackRepository",
-    "world.IMixinWorld",
-    "world.MixinChunk",
-    "world.MixinWorld"
+    "utils.MixinResourcePackRepository"
   ]
 }
