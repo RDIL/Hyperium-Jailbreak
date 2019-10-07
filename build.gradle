@@ -15,7 +15,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-version = "3.0-devpack5"
+version = "3.0.0beta"
 
 buildscript {
     repositories {
