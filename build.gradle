@@ -121,7 +121,7 @@ jar {
             it.isDirectory() ? it : zipTree(it)
         }
     }
-    exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA', 'junit', 'junit/**'
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA', 'junit', 'junit/**', 'com/google/errorprone', 'com/google/errorprone/**', 'META-INF/maven/com/google/errorprone', 'META-INF/maven/com/google/errorprone/**'
     manifest.attributes(
         "MixinConfigs": 'mixins.hyperium.json',
         "TweakClass": 'cc.hyperium.launch.HyperiumTweaker',
