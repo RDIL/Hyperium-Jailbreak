@@ -15,7 +15,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package cc.hyperium.mixins.world;
+package cc.hyperium.mixins;
 
 import cc.hyperium.mixinsimp.world.HyperiumWorld;
 import net.minecraft.entity.Entity;
