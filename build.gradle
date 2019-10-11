@@ -79,11 +79,6 @@ dependencies {
         exclude module: 'lwjgl'
     }
     embed group: 'com.nativelibs4java', name: 'bridj', version: '0.7.0'
-    embed ('com.github.HyperiumClient:Installer:1.9') {
-        exclude module: 'gson'
-        exclude module: 'LaunchWrapperPatcher'
-    }
-    embed 'com.github.hyperiumjailbreak:LaunchWrapperPatcher:d686ad4dd0'
     embed 'com.hyperiumjailbreak:gson-extras:0.2.2'
 }
 
