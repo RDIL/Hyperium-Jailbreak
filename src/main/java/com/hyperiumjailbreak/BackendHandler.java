@@ -1,12 +1,12 @@
 package com.hyperiumjailbreak;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.installer.utils.http.NameValuePair;
-import cc.hyperium.installer.utils.http.client.HttpClient;
-import cc.hyperium.installer.utils.http.client.entity.UrlEncodedFormEntity;
-import cc.hyperium.installer.utils.http.client.methods.HttpPost;
-import cc.hyperium.installer.utils.http.impl.client.HttpClients;
-import cc.hyperium.installer.utils.http.util.EntityUtils;
+import com.hyperiumjailbreak.http.NameValuePair;
+import com.hyperiumjailbreak.http.client.HttpClient;
+import com.hyperiumjailbreak.http.http.client.entity.UrlEncodedFormEntity;
+import com.hyperiumjailbreak.http.utils.http.client.methods.HttpPost;
+import com.hyperiumjailbreak.http.http.impl.client.HttpClients;
+import com.hyperiumjailbreak.http.http.util.EntityUtils;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
