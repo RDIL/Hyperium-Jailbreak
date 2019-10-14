@@ -80,6 +80,7 @@ dependencies {
     }
     embed group: 'com.nativelibs4java', name: 'bridj', version: '0.7.0'
     embed 'com.hyperiumjailbreak:gson-extras:0.2.2'
+    embed 'com.hyperiumjailbreak:LibInstaller:0.2'
 }
 
 mixin {
@@ -122,7 +123,7 @@ jar {
         "TweakClass": 'cc.hyperium.launch.HyperiumTweaker',
         "TweakOrder": 0,
         "Manifest-Version": 1.0,
-        "Main-Class": 'cc.hyperium.installer.InstallerStart'
+        "Main-Class": 'com.hyperiumjailbreak.InstallerMain'
     )
     configurations.embed.each { dep ->
         from(project.zipTree(dep)) {
