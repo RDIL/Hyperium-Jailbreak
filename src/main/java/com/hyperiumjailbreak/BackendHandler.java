@@ -42,7 +42,7 @@ public class BackendHandler {
     }
 
     public static String getRawText(String url) {
-        String s;
+        String s = "";
         try {
             s = IOUtils.toString(httpclient.execute(new HttpGet(url)).getEntity().getContent(), "UTF-8");
         } catch (Exception e) {
