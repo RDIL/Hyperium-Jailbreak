@@ -9,7 +9,6 @@ import com.hyperiumjailbreak.http.client.methods.HttpGet;
 import com.hyperiumjailbreak.http.impl.client.HttpClients;
 import com.hyperiumjailbreak.http.util.EntityUtils;
 import org.apache.commons.io.IOUtils;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +22,7 @@ public class BackendHandler {
     public void apiRequest(String url) {
         try {
             httpclient.execute(generate("https://backend.rdil.rocks/" + url));
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -37,22 +36,21 @@ public class BackendHandler {
                         generate("https://backend.rdil.rocks/checkUpdate")
                     ).getEntity(), "UTF-8"
             ), Hyperium.version);
-        } catch (IOException e) {
+        } catch (Exception e) {
             return false;
         }
     }
 
     public static String getRawText(String url) {
         try {
-            return IOUtils.toString(client.execute(new HttpGet(url)).getEntity().getContent(), "UTF-8");
-        } catch (IOException e) {
+            return IOUtils.toString(httpclient.execute(new HttpGet(url)).getEntity().getContent(), "UTF-8");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public static HttpPost generate(String url) {
         HttpPost tmp = new HttpPost(url);
-        tmp.setHeader("User-agent", "HyperiumJailbreak");
         List<NameValuePair> params = new ArrayList<NameValuePair>(0);
         try {
             tmp.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
