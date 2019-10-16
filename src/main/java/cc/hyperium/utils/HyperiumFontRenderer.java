@@ -16,7 +16,7 @@
  */
 
 package cc.hyperium.utils;
-import cc.hyperium.installer.InstallerMain;
+import cc.hyperium.installer.ProtectionDomain;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.StringUtils;
 import org.lwjgl.opengl.GL11;
@@ -123,7 +123,7 @@ public class HyperiumFontRenderer {
     }
 
     private Font getFontFromInput(String path) throws IOException, FontFormatException {
-        return Font.createFont(Font.TRUETYPE_FONT, InstallerMain.class.getResourceAsStream(path));
+        return Font.createFont(Font.TRUETYPE_FONT, ProtectionDomain.class.getResourceAsStream(path));
     }
 
     public void drawStringScaled(String text, int givenX, int givenY, int color, double givenScale) {
