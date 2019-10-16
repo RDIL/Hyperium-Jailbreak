@@ -2,6 +2,7 @@ package cc.hyperium.utils;
 
 import cc.hyperium.utils.staff.StaffSettings;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
+import com.hyperiumjailbreak.BackendHandler;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -21,7 +22,7 @@ public class StaffUtils {
 
     private static HashMap<UUID, StaffSettings> getStaff() throws IOException {
         HashMap<UUID, StaffSettings> staff = new HashMap<>();
-        String content = InstallerUtils.getRaw("https://raw.githubusercontent.com/hyperiumjailbreak/tools/master/staff.json");
+        String content = BackendHandler.getRawText("https://raw.githubusercontent.com/hyperiumjailbreak/tools/master/staff.json");
         JsonParser parser = new JsonParser();
         JsonArray array = parser.parse(content).getAsJsonArray();
         for (int i = 0; i < array.size(); i++) {
