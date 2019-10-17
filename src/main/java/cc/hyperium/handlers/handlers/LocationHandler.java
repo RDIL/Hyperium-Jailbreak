@@ -48,11 +48,7 @@ public class LocationHandler {
     public void serverJoinEvent(ServerJoinEvent event) {
         NettyClient client = NettyClient.getClient();
         if (client != null) {
-            this.location = event.getServer();
             client.write(UpdateLocationPacket.build("Other"));
-            if (Settings.SEND_SERVER)
-                client.write(ServerCrossDataPacket.build(new JsonHolder().put("internal", true).put("server_update", event.getServer() + ":" + event.getPort())));
-
         }
     }
 
@@ -62,8 +58,6 @@ public class LocationHandler {
         NettyClient client = NettyClient.getClient();
         if (client != null) {
             client.write(UpdateLocationPacket.build("offline"));
-            if (Settings.SEND_SERVER)
-                client.write(ServerCrossDataPacket.build(new JsonHolder().put("internal", true).put("server_update", "Offline")));
         }
     }
 
@@ -130,8 +124,7 @@ public class LocationHandler {
         Hyperium instance = Hyperium.INSTANCE;
         HyperiumHandlers handlers = instance.getHandlers();
         if (handlers == null) return;
-        HypixelDetector hypixelDetector = handlers.getHypixelDetector();
-        if (!hypixelDetector.isHypixel())
+        if (!handlers.getHypixelDetector().isHypixel())
             ticksInWorld = 0;
         if (ticksInWorld < 20) {
             ticksInWorld++;
