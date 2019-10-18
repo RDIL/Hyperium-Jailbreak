@@ -8,15 +8,11 @@ task:
     folder: ~/.gradle/caches
     fingerprint_script: cat build.gradle
     populate_script: gradle setupCiWorkspace --build-cache -Dorg.gradle.jvmargs=-Xmx14336M
-  script: gradle build sha512 -Dorg.gradle.jvmargs=-Xmx14336M
+  script: gradle build -Dorg.gradle.jvmargs=-Xmx14336M
   jar_artifacts:
     path: ./build/libs/*.jar
     type: application/java-archive
-  checksum_artifacts:
-    path: ./build/libs/*.sha512
-    type: text/plain
   name: Cirrus CI
-  always:
-    cleanup_before_cache_script: |
-      rm -rf ~/.gradle/caches/$GRADLE_VERSION/ ~/.gradle/caches/transforms-1 ~/.gradle/caches/journal-1 ~/.gradle/caches/minecraft/deobfedDeps/compileDummy.jar ~/.gradle/caches/minecraft/deobfedDeps/providedDummy.jar
-      find ~/.gradle/caches/ -name "*.lock" -type f -delete
+  cleanup_before_cache_script: |
+    rm -rf ~/.gradle/caches/$GRADLE_VERSION/ ~/.gradle/caches/transforms-1 ~/.gradle/caches/journal-1 ~/.gradle/caches/minecraft/deobfedDeps/compileDummy.jar ~/.gradle/caches/minecraft/deobfedDeps/providedDummy.jar
+    find ~/.gradle/caches/ -name "*.lock" -type f -delete
