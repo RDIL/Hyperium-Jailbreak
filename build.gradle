@@ -48,7 +48,8 @@ apply plugin: 'kotlin'
 apply plugin: 'java'
 apply plugin: 'org.gradle.crypto.checksum'
 
-sourceCompatibility = targetCompatibility = 1.8
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 
 archivesBaseName = "Hyperium"
 
