@@ -119,7 +119,7 @@ jar {
         "TweakClass": 'cc.hyperium.launch.HyperiumTweaker',
         "TweakOrder": 0,
         "Manifest-Version": 1.0,
-        "Main-Class": 'com.hyperiumjailbreak.InstallerMain'
+        "Main-Class": 'com.hyperiumjailbreak.InstallerMainKt'
     )
     configurations.embed.each { dep ->
         from(project.zipTree(dep)) {
