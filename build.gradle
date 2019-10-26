@@ -79,7 +79,7 @@ dependencies {
     }
     embed group: 'com.nativelibs4java', name: 'bridj', version: '0.7.0'
     embed 'com.hyperiumjailbreak:gson-extras:0.2.2'
-    embed 'com.hyperiumjailbreak:LibInstaller:0.8-snap3'
+    embed 'com.hyperiumjailbreak:LibInstaller:0.8-snap4'
 }
 
 mixin {
