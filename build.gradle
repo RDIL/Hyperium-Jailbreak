@@ -79,7 +79,7 @@ dependencies {
     }
     embed group: 'com.nativelibs4java', name: 'bridj', version: '0.7.0'
     embed 'com.hyperiumjailbreak:gson-extras:0.2.2'
-    embed 'com.hyperiumjailbreak:LibInstaller:0.8-snap9'
+    embed 'com.github.HyperiumClient:Old-Installer:1.9'
 }
 
 mixin {
@@ -94,6 +94,9 @@ repositories {
     }
     maven {
         url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/sponge-proxy"
+    }
+    maven {
+        url "https://jitpack.io"
     }
 }
 

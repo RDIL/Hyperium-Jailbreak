@@ -1,9 +1,10 @@
-package cc.hyperium.mods;
+package cc.hyperium.mods.glintcolorizer;
 
 import cc.hyperium.Hyperium;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.TickEvent;
+import cc.hyperium.mods.AbstractMod;
 import cc.hyperium.mods.glintcolorizer.Colors;
 import java.awt.Color;
 
@@ -12,6 +13,7 @@ public class GlintColorizer extends AbstractMod {
     public Colors getColors() {
         return colors;
     }
+
     @Override
     public AbstractMod init() {
         Hyperium.CONFIG.register(colors);
@@ -38,6 +40,7 @@ public class GlintColorizer extends AbstractMod {
     public Metadata getModMetadata() {
         return new Metadata(this, "GlintColor", "1", "powns");
     }
+    
     private int getIntFromColor(int red, int green, int blue) {
         red = (red << 16) & 0x00FF0000;
         green = (green << 8) & 0x0000FF00;

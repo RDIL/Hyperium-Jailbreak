@@ -28,3 +28,8 @@ Temporary Items
 .VolumeIcon.icns
 .idea/codeStyles
 .idea/compiler.xml
+.classpath
+.project
+.settings
+.theia
+bin

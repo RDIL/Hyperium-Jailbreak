@@ -139,7 +139,7 @@ public class Hyperium {
 
             Runtime.getRuntime().addShutdownHook(new Thread(this::shutdown));
 
-            SplashProgress.setProgress(12, "Reloading Jailbreak Manager");
+            SplashProgress.setProgress(12, "Reloading Minecraft...");
             Minecraft.getMinecraft().refreshResources();
 
             SplashProgress.setProgress(13, "Finishing Up...");

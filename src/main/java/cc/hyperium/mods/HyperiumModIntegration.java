@@ -29,6 +29,7 @@ import cc.hyperium.mods.oldanimations.OldAnimations;
 import cc.hyperium.mods.tabtoggle.TabToggleMod;
 import cc.hyperium.mods.timechanger.TimeChanger;
 import cc.hyperium.mods.togglechat.ToggleChatMod;
+import cc.hyperium.mods.glintcolorizer.GlintColorizer;
 import me.semx11.autotip.Autotip;
 
 public class HyperiumModIntegration {
@@ -39,7 +40,7 @@ public class HyperiumModIntegration {
     private final ChromaHUD chromaHUD;
     private final Autotip autotip;
     private final AutoGG autogg;
-    private final cc.hyperium.mods.GlintColorizer gc;
+    private final GlintColorizer gc;
 
     public HyperiumModIntegration() {
         this.chromaHUD = ((ChromaHUD) new ChromaHUD().init());
@@ -54,7 +55,7 @@ public class HyperiumModIntegration {
         AutofriendMod autofriend = new AutofriendMod();
         FortniteCompassMod fncompass = new FortniteCompassMod();
         new ItemPhysicMod().init();
-        this.gc = new cc.hyperium.mods.GlintColorizer();
+        this.gc = new GlintColorizer();
         BlockOverlay blockOverlay = new BlockOverlay();
         this.keystrokesMod = new KeystrokesMod();
         this.timeChanger = new TimeChanger();
@@ -97,7 +98,7 @@ public class HyperiumModIntegration {
         return autogg;
     }
 
-    public cc.hyperium.mods.GlintColorizer getGlintcolorizer() {
+    public GlintColorizer getGlintcolorizer() {
         return gc;
     }
 }
