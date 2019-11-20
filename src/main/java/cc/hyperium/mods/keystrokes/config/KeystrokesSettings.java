@@ -72,6 +72,7 @@ public class KeystrokesSettings {
             BufferedReader f = new BufferedReader(new FileReader(this.configFile));
             List<String> options = f.lines().collect(Collectors.toList());
             StringBuilder builder = new StringBuilder();
+            f.close();
 
             if (options.isEmpty()) return;
 

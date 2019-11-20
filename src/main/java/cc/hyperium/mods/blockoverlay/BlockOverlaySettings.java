@@ -65,6 +65,7 @@ public class BlockOverlaySettings {
                 this.overlayBlue = (float) json.optDouble("overlayBlue");
                 this.overlayAlpha = (float) json.optDouble("overlayAlpha");
                 this.chromaSpeed = json.optInt("chromaSpeed");
+                bufferedReader.close();
             }
         } catch (Exception e) {}
     }

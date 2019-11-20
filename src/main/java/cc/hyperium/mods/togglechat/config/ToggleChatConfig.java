@@ -52,6 +52,7 @@ public class ToggleChatConfig {
                     builder.append(current);
                 }
                 this.toggleJson = new BetterJsonObject(builder.toString());
+                reader.close();
             } catch (Exception ex) {
                 saveToggles();
             }
@@ -70,13 +71,14 @@ public class ToggleChatConfig {
 
             this.toggleFile.createNewFile();
             FileWriter writer = new FileWriter(this.toggleFile);
-            new BufferedWriter(writer);
+            BufferedWriter closable = new BufferedWriter(writer);
 
             for (ToggleBase base : this.theMod.getToggleHandler().getToggles().values()) {
                 this.toggleJson.addProperty("show" + base.getName().replace(" ", "_"), base.isEnabled());
             }
 
             this.toggleJson.writeToFile(this.toggleFile);
+            closable.close();
         } catch (Exception ex) {
             ex.printStackTrace();
         }

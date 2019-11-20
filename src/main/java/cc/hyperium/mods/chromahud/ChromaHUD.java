@@ -146,6 +146,7 @@ public class ChromaHUD extends AbstractMod {
             String line;
             while ((line = br.readLine()) != null) builder.append(line);
             String done = builder.toString();
+            br.close();
             data = new JsonHolder(done);
         } catch (Exception e) {
             e.printStackTrace();
