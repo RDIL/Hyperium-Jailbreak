@@ -2,7 +2,8 @@ ports:
 - port: 40487
 - port: 35259
 - port: 17684
+- port: 40891
+- port: 39771
 
 tasks:
-- init: echo 'init script' # runs during prebuild
-  command: ./gradlew setupDecompWorkspace
+- command: ./gradlew setupDecompWorkspace
