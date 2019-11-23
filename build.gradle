@@ -55,12 +55,12 @@ compileJava.options.encoding = 'UTF-8'
 compileJava.options.compilerArgs << "-Xlint:none"
 
 minecraft {
-    version = "1.8.9"
-    tweakClass = "cc.hyperium.launch.HyperiumTweaker"
-    mappings = "stable_20"
-    runDir = 'run'
+    version "1.8.9"
+    tweakClass "cc.hyperium.launch.HyperiumTweaker"
+    mappings "stable_20"
+    runDir 'run'
     clientJvmArgs = ["-XX:-DisableExplicitGC"] // fast world loading
-    makeObfSourceJar = false
+    makeObfSourceJar false
 }
 
 dependencies {
@@ -80,7 +80,6 @@ dependencies {
     embed group: 'com.nativelibs4java', name: 'bridj', version: '0.7.0'
     embed 'com.hyperiumjailbreak:gson-extras:0.2.2'
     embed 'com.github.HyperiumClient:Old-Installer:1.9'
-    embed 'org.apache.logging.log4j:log4j-core:2.0-beta9'
 }
 
 mixin {
