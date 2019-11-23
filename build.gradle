@@ -80,6 +80,7 @@ dependencies {
     embed group: 'com.nativelibs4java', name: 'bridj', version: '0.7.0'
     embed 'com.hyperiumjailbreak:gson-extras:0.2.2'
     embed 'com.github.HyperiumClient:Old-Installer:1.9'
+    embed 'org.apache.logging.log4j:log4j-core:2.0-beta9'
 }
 
 mixin {
@@ -116,7 +117,7 @@ jar {
             it.isDirectory() ? it : zipTree(it)
         }
     }
-    exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA', 'junit', 'junit/**'
+    exclude 'junit', 'junit/**'
     manifest.attributes(
         "MixinConfigs": 'mixins.hyperium.json',
         "TweakClass": 'cc.hyperium.launch.HyperiumTweaker',
@@ -126,7 +127,6 @@ jar {
     )
     configurations.embed.each { dep ->
         from(project.zipTree(dep)) {
-            exclude 'META-INF', 'META-INF/**'
             exclude 'org/jetbrains/annotations', 'org/jetbrains/annotations/**'
         }
     }

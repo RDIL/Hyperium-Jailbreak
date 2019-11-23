@@ -5,6 +5,7 @@
   "refmap": "mixin.hyperium.refmap.json",
   "verbose": false,
   "minVersion": "0.7.10",
+  "plugin": "cc.hyperium.MixinPlugin",
   "mixins": [
     "IMixinMinecraft",
     "MixinCrashReport",

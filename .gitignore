@@ -7,13 +7,6 @@ out/
 run/
 src/api/
 src/test/
-.idea/modules/
-.idea/workspace.xml
-.idea/$*
-.idea/misc.xml
-.idea/uiDesigner.xml
-.idea/libraries/
-.idea/modules.xml
 .DS_Store
 .AppleDesktop
 Temporary Items
@@ -33,3 +26,4 @@ Temporary Items
 .settings
 .theia
 bin
+.idea
