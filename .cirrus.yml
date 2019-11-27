@@ -8,10 +8,6 @@ task:
     folder: ~/.gradle/caches
     fingerprint_script: cat build.gradle
     populate_script: gradle setupCiWorkspace --build-cache -Dorg.gradle.jvmargs=-Xmx14336M
-  kotlin_compiled_output_cache:
-    folder: build/classes/kotlin
-  kotlin_jvm_meta_cache:
-    folder: build/kotlin
   script: gradle build -Dorg.gradle.jvmargs=-Xmx14336M
   jar_artifacts:
     path: ./build/libs/*.jar

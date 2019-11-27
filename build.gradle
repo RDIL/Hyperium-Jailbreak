@@ -59,7 +59,7 @@ minecraft {
     tweakClass "cc.hyperium.launch.HyperiumTweaker"
     mappings "stable_20"
     runDir 'run'
-    clientJvmArgs = ["-XX:-DisableExplicitGC"] // fast world loading
+    clientJvmArgs = ["-XX:-DisableExplicitGC"]
     makeObfSourceJar false
 }
 
