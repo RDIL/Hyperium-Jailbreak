@@ -50,7 +50,6 @@ sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
 archivesBaseName = "Hyperium"
-
 compileJava.options.encoding = 'UTF-8'
 compileJava.options.compilerArgs << "-Xlint:none"
 
