@@ -131,7 +131,6 @@ public class EditItemsGui extends GuiScreen {
         if (modifying != null) {
             List<ButtonConfig> configs = ChromaHUDApi.getInstance().getButtonConfigs(modifying.getType());
             if (configs != null && !configs.isEmpty()) {
-
                 for (ButtonConfig config : configs) {
                     GuiButton button = config.getButton();
                     if (button.mousePressed(mc, mouseX, mouseY)) {

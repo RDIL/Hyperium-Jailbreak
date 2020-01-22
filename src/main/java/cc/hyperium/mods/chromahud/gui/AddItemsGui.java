@@ -82,12 +82,8 @@ public class AddItemsGui extends GuiScreen {
             adding = true;
             offset = 0;
         }, (guiButton) -> guiButton.enabled = !adding);
-        reg("Explore", new GuiButton(nextId(), 2, 23, 100, 20, "Explore"), (guiButton) -> {
-            adding = false;
-            offset = 0;
-        }, (guiButton) -> guiButton.enabled = adding);
 
-        reg("Down", new GuiButton(nextId(), 2, 23 + 21 * 2, 100, 20, "Scroll Down"), (guiButton) -> offset += 50, (guiButton) -> { });
+        reg("Down", new GuiButton(nextId(), 2, 23 + 21 * 2, 100, 20, "Scroll Down"), (guiButton) -> offset += 50, (guiButton) -> {});
         reg("Up", new GuiButton(nextId(), 2, 23 + 21, 100, 20, "Scroll Up"), (guiButton) -> offset -= 50, (guiButton) -> {});
         reg("Back", new GuiButton(nextId(), 2, ResolutionUtil.current().getScaledHeight() - 22, 100, 20, "Back"), (guiButton) -> Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new EditItemsGui(element, mod)), (guiButton) -> {});
     }
@@ -100,9 +96,7 @@ public class AddItemsGui extends GuiScreen {
     @Override
     protected void actionPerformed(GuiButton button) {
         Consumer<GuiButton> guiButtonConsumer = clicks.get(button);
-        if (guiButtonConsumer != null) {
-            guiButtonConsumer.accept(button);
-        }
+        if (guiButtonConsumer != null) guiButtonConsumer.accept(button);
     }
 
     @Override
@@ -146,7 +140,6 @@ public class AddItemsGui extends GuiScreen {
             Color defaultColor = new Color(255, 255, 255, 100);
 
             int cursorY = 50 + offset;
-            drawCenteredString(mc.fontRendererObj, "Click Explore for examples.", current.getScaledWidth() / 2, cursorY - 30, Color.RED.getRGB());
             List<ChromaHUDParser> parsers = ChromaHUDApi.getInstance().getParsers();
             for (ChromaHUDParser parser : parsers) {
                 Map<String, String> names = parser.getNames();
@@ -158,13 +151,15 @@ public class AddItemsGui extends GuiScreen {
                     int height = 20;
                     mc.fontRendererObj.drawString(text1, (current.getScaledWidth() / 2 - 80 + width / 2 - mc.fontRendererObj.getStringWidth(text1) / 2), cursorY + (height - 8) / 2, j, false);
                     int i = ResolutionUtil.current().getScaledHeight() - (Mouse.getY() / current.getScaleFactor());
-                    if (Mouse.isButtonDown(0) && !mouseLock && i >= cursorY && i <= cursorY + 23) {
-                        int i1 = Mouse.getX() / current.getScaleFactor();
-                        if (i1 >= current.getScaledWidth() / 2 - 80 && i1 <= current.getScaledWidth() / 2 + 80) {
-                            DisplayItem item = ChromaHUDApi.getInstance().parse(s, 0, new JsonHolder().put("type", s));
-                            element.getDisplayItems().add(item);
-                            element.adjustOrdinal();
-                            Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new EditItemsGui(element, mod));
+                    if (Mouse.isButtonDown(0) && !mouseLock) {
+                        if (i >= cursorY && i <= cursorY + 23) {
+                            int i1 = Mouse.getX() / current.getScaleFactor();
+                            if (i1 >= current.getScaledWidth() / 2 - 80 && i1 <= current.getScaledWidth() / 2 + 80) {
+                                DisplayItem item = ChromaHUDApi.getInstance().parse(s, 0, new JsonHolder().put("type", s));
+                                element.getDisplayItems().add(item);
+                                element.adjustOrdinal();
+                                Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new EditItemsGui(element, mod));
+                            }
                         }
                     }
                     cursorY += 23;

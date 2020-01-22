@@ -6,4 +6,4 @@ ports:
 - port: 39771
 
 tasks:
-- command: ./gradlew setupDecompWorkspace
+- command: ./gradlew setupDevWorkspace
