@@ -16,7 +16,7 @@
  */
 
 package cc.hyperium.utils;
-import cc.hyperium.installer.InstallerMain;;
+import cc.hyperium.installer.InstallerMain;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.StringUtils;
 import org.lwjgl.opengl.GL11;

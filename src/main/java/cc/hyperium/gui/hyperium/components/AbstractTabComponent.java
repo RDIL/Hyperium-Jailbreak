@@ -12,7 +12,6 @@ public abstract class AbstractTabComponent {
     public boolean hover;
     protected List<String> tags = new ArrayList<>();
     protected AbstractTab tab;
-    private boolean fc = false; // search query cache
     private List<Consumer<Object>> stateChanges = new ArrayList<>();
     private boolean enabled = true;
 

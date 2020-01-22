@@ -2,7 +2,6 @@ package cc.hyperium.handlers.handlers.stats;
 
 import cc.hyperium.handlers.handlers.data.HypixelAPI;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
-import net.hypixel.api.HypixelApiGuild;
 import net.hypixel.api.HypixelApiPlayer;
 
 public class StatsHandler {
