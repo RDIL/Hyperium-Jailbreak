@@ -15,6 +15,8 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// todo: v3 - refactor this class
+
 package cc.hyperium.gui;
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.HypixelFriendRequestEvent;
