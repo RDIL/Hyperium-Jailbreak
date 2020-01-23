@@ -5,7 +5,7 @@ import cc.hyperium.addons.bossbar.config.BossbarConfig;
 import cc.hyperium.addons.customcrosshair.CustomCrosshairAddon;
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.RenderHUDEvent;
+import cc.hyperium.event.render.RenderHUDEvent;
 import cc.hyperium.mods.chromahud.displayitems.hyperium.ScoreboardDisplay;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;

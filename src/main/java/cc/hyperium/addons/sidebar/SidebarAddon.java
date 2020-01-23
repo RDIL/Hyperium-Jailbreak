@@ -24,7 +24,7 @@ import cc.hyperium.addons.sidebar.config.Configuration;
 import cc.hyperium.addons.sidebar.gui.GuiSidebar;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.RenderScoreboardEvent;
+import cc.hyperium.event.render.RenderScoreboardEvent;
 import net.minecraft.client.Minecraft;
 import java.io.File;
 import java.io.IOException;

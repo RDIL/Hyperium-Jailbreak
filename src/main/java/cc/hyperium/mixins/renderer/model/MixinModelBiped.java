@@ -2,7 +2,7 @@ package cc.hyperium.mixins.renderer.model;
 
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.PreCopyPlayerModelAnglesEvent;
+import cc.hyperium.event.model.PreCopyPlayerModelAnglesEvent;
 import cc.hyperium.mixinsimp.renderer.model.IMixinModelBiped;
 import cc.hyperium.mixinsimp.renderer.model.IMixinModelBox;
 import net.minecraft.client.entity.AbstractClientPlayer;

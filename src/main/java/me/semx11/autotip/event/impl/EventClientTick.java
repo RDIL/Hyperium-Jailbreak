@@ -1,7 +1,7 @@
 package me.semx11.autotip.event.impl;
 
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.TickEvent;
+import cc.hyperium.event.client.TickEvent;
 import me.semx11.autotip.Autotip;
 import me.semx11.autotip.event.Event;
 

@@ -3,7 +3,7 @@ package cc.hyperium.gui.keybinds;
 import cc.hyperium.Hyperium;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.KeypressEvent;
+import cc.hyperium.event.interact.KeypressEvent;
 import cc.hyperium.handlers.handlers.keybinds.HyperiumBind;
 import java.awt.Color;
 import net.minecraft.client.Minecraft;

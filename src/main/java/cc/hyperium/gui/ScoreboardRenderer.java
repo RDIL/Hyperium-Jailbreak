@@ -1,7 +1,7 @@
 package cc.hyperium.gui;
 import cc.hyperium.config.ConfigOpt;
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.RenderScoreboardEvent;
+import cc.hyperium.event.render.RenderScoreboardEvent;
 import cc.hyperium.utils.RenderUtils;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;

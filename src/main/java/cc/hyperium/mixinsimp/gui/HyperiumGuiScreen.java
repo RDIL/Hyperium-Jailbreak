@@ -1,12 +1,12 @@
 package cc.hyperium.mixinsimp.gui;
 
 import cc.hyperium.config.Settings;
-import cc.hyperium.event.ActionPerformedEvent;
+import cc.hyperium.event.interact.ActionPerformedEvent;
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.GuiClickEvent;
-import cc.hyperium.event.GuiDrawScreenEvent;
-import cc.hyperium.event.GuiKeyTypedEvent;
-import cc.hyperium.event.InitGuiEvent;
+import cc.hyperium.event.gui.GuiClickEvent;
+import cc.hyperium.event.gui.GuiDrawScreenEvent;
+import cc.hyperium.event.gui.GuiKeyTypedEvent;
+import cc.hyperium.event.gui.InitGuiEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;

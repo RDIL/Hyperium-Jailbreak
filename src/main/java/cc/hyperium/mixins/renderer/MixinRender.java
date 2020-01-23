@@ -1,6 +1,6 @@
 package cc.hyperium.mixins.renderer;
 
-import cc.hyperium.event.EntityRenderEvent;
+import cc.hyperium.event.render.EntityRenderEvent;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.mixinsimp.renderer.HyperiumRender;
 import net.minecraft.client.renderer.entity.Render;

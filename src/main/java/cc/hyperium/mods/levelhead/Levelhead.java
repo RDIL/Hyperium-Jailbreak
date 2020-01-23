@@ -21,7 +21,7 @@ import cc.hyperium.Hyperium;
 import cc.hyperium.config.ConfigOpt;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.TickEvent;
+import cc.hyperium.event.client.TickEvent;
 import cc.hyperium.mods.AbstractMod;
 import cc.hyperium.mods.levelhead.commands.LevelHeadCommand;
 import cc.hyperium.mods.levelhead.config.LevelheadConfig;

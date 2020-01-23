@@ -19,8 +19,8 @@ package cc.hyperium.mods.chromahud;
 
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.RenderHUDEvent;
-import cc.hyperium.event.TickEvent;
+import cc.hyperium.event.render.RenderHUDEvent;
+import cc.hyperium.event.client.TickEvent;
 import cc.hyperium.utils.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;

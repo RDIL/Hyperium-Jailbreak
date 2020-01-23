@@ -1,8 +1,8 @@
 package cc.hyperium.mods.tabtoggle;
 
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.KeypressEvent;
-import cc.hyperium.event.RenderHUDEvent;
+import cc.hyperium.event.interact.KeypressEvent;
+import cc.hyperium.event.render.RenderHUDEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.multiplayer.WorldClient;

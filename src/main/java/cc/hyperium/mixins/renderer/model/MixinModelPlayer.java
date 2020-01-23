@@ -1,7 +1,7 @@
 package cc.hyperium.mixins.renderer.model;
 
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.PreCopyPlayerModelAnglesEvent;
+import cc.hyperium.event.model.PreCopyPlayerModelAnglesEvent;
 import cc.hyperium.mixinsimp.renderer.model.IMixinModelPlayer;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelPlayer;

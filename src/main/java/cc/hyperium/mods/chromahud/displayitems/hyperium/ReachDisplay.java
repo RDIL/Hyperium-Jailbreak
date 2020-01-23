@@ -19,7 +19,7 @@ package cc.hyperium.mods.chromahud.displayitems.hyperium;
 
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.PlayerAttackEntityEvent;
+import cc.hyperium.event.entity.PlayerAttackEntityEvent;
 import cc.hyperium.mods.chromahud.ElementRenderer;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
 import cc.hyperium.utils.JsonHolder;

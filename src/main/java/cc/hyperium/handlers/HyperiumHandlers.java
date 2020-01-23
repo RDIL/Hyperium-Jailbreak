@@ -21,7 +21,7 @@ import cc.hyperium.Hyperium;
 import cc.hyperium.commands.HyperiumCommandHandler;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.TickEvent;
+import cc.hyperium.event.client.TickEvent;
 import cc.hyperium.gui.ScoreboardRenderer;
 import cc.hyperium.handlers.handlers.BroadcastEvents;
 import cc.hyperium.handlers.handlers.CommandQueue;

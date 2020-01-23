@@ -1,6 +1,6 @@
 package cc.hyperium.mixins.gui;
 
-import cc.hyperium.event.ActionPerformedEvent;
+import cc.hyperium.event.interact.ActionPerformedEvent;
 import cc.hyperium.event.EventBus;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;

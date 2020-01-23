@@ -2,7 +2,7 @@ package cc.hyperium.handlers.handlers;
 
 import cc.hyperium.cosmetics.CosmeticsUtil;
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.TickEvent;
+import cc.hyperium.event.client.TickEvent;
 import cc.hyperium.event.WorldChangeEvent;
 import cc.hyperium.utils.UUIDUtil;
 import net.minecraft.client.renderer.GlStateManager;

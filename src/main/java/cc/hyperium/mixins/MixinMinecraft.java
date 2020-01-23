@@ -20,7 +20,7 @@ package cc.hyperium.mixins;
 import cc.hyperium.gui.SplashProgress;
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.RenderTickEvent;
+import cc.hyperium.event.render.RenderTickEvent;
 import cc.hyperium.event.WorldLoadEvent;
 import cc.hyperium.mixinsimp.HyperiumMinecraft;
 import net.minecraft.client.Minecraft;

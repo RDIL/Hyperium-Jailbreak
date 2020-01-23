@@ -1,6 +1,6 @@
 package cc.hyperium.mixins.item;
 
-import cc.hyperium.event.ArrowShootEvent;
+import cc.hyperium.event.entity.ArrowShootEvent;
 import cc.hyperium.event.EventBus;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;

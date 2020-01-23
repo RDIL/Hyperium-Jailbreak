@@ -20,7 +20,7 @@ package cc.hyperium.mods.levelhead.renderer;
 import cc.hyperium.Hyperium;
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.RenderNameTagEvent;
+import cc.hyperium.event.render.RenderNameTagEvent;
 import cc.hyperium.mods.levelhead.Levelhead;
 import cc.hyperium.purchases.AbstractHyperiumPurchase;
 import cc.hyperium.purchases.EnumPurchaseType;

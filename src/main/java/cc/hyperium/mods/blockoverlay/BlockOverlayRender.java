@@ -1,6 +1,6 @@
 package cc.hyperium.mods.blockoverlay;
 
-import cc.hyperium.event.DrawBlockHighlightEvent;
+import cc.hyperium.event.render.DrawBlockHighlightEvent;
 import cc.hyperium.event.InvokeEvent;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;

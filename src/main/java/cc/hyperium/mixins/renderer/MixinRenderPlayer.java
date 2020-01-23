@@ -17,7 +17,7 @@
 
 package cc.hyperium.mixins.renderer;
 
-import cc.hyperium.event.RenderNameTagEvent;
+import cc.hyperium.event.render.RenderNameTagEvent;
 import cc.hyperium.mixinsimp.renderer.HyperiumRenderPlayer;
 import cc.hyperium.mixinsimp.renderer.layers.TwoPartLayerBipedArmor;
 import net.minecraft.client.Minecraft;

@@ -2,7 +2,7 @@ package cc.hyperium.mixins.renderer;
 
 import cc.hyperium.Hyperium;
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.RenderEntitiesEvent;
+import cc.hyperium.event.render.RenderEntitiesEvent;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.renderer.culling.ICamera;
 import net.minecraft.entity.Entity;

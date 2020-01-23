@@ -1,7 +1,7 @@
 package cc.hyperium.mixinsimp.renderer;
 
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.RenderPlayerEvent;
+import cc.hyperium.event.render.RenderPlayerEvent;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelPlayer;
 import net.minecraft.client.renderer.entity.RenderManager;

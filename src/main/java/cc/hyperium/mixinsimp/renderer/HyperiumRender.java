@@ -3,7 +3,7 @@ package cc.hyperium.mixinsimp.renderer;
 import cc.hyperium.Hyperium;
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.RenderNameTagEvent;
+import cc.hyperium.event.render.RenderNameTagEvent;
 import cc.hyperium.mixins.renderer.IMixinRender;
 import cc.hyperium.utils.ChatColor;
 import cc.hyperium.utils.StaffUtils;

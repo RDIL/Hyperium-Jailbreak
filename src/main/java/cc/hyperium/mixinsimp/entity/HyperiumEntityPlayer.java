@@ -2,8 +2,8 @@ package cc.hyperium.mixinsimp.entity;
 
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.PlayerAttackEntityEvent;
-import cc.hyperium.event.PlayerSwingEvent;
+import cc.hyperium.event.entity.PlayerAttackEntityEvent;
+import cc.hyperium.event.entity.PlayerSwingEvent;
 import cc.hyperium.mixins.entity.IMixinEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;

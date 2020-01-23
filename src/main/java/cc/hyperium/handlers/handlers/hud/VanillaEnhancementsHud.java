@@ -2,9 +2,9 @@ package cc.hyperium.handlers.handlers.hud;
 
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.GuiDrawScreenEvent;
+import cc.hyperium.event.gui.GuiDrawScreenEvent;
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.RenderHUDEvent;
+import cc.hyperium.event.render.RenderHUDEvent;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;

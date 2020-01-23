@@ -18,7 +18,7 @@
 package cc.hyperium.mods.keystrokes.render;
 
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.RenderHUDEvent;
+import cc.hyperium.event.render.RenderHUDEvent;
 import cc.hyperium.mods.keystrokes.KeystrokesMod;
 import cc.hyperium.mods.keystrokes.keys.impl.CPSKey;
 import cc.hyperium.mods.keystrokes.keys.impl.Key;

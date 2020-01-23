@@ -2,7 +2,7 @@ package cc.hyperium.mods;
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.RenderHUDEvent;
+import cc.hyperium.event.render.RenderHUDEvent;
 import cc.hyperium.mods.AbstractMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -17,7 +17,6 @@ import org.lwjgl.opengl.GL11;
 import java.awt.*;
 
 public class FortniteCompassMod extends AbstractMod {
-
     private static int offY = 0;
     private static int cwidth = 500;
     private static int offsetAll = 0;

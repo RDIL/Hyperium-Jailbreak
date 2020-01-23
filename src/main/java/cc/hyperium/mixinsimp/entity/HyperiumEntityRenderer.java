@@ -1,9 +1,9 @@
 package cc.hyperium.mixinsimp.entity;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.event.DrawBlockHighlightEvent;
+import cc.hyperium.event.render.DrawBlockHighlightEvent;
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.RenderEvent;
+import cc.hyperium.event.render.RenderEvent;
 import cc.hyperium.mixins.entity.IMixinEntityRenderer;
 import cc.hyperium.mods.PerspectiveModifierHandler;
 import net.minecraft.block.Block;

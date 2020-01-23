@@ -16,7 +16,13 @@
  */
 
 package cc.hyperium;
-import cc.hyperium.event.*;
+import cc.hyperium.event.client.InitializationEvent;
+import cc.hyperium.event.client.PreInitializationEvent;
+import cc.hyperium.event.client.GameShutDownEvent;
+import cc.hyperium.event.Priority;
+import cc.hyperium.event.ServerJoinEvent;
+import cc.hyperium.event.InvokeEvent;
+import cc.hyperium.event.EventBus;
 import cc.hyperium.gui.ConfirmationPopup;
 import cc.hyperium.gui.SplashProgress;
 import cc.hyperium.gui.ColourOptions;
