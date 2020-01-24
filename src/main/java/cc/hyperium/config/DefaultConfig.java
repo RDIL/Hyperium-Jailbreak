@@ -49,6 +49,7 @@ public class DefaultConfig {
 
                 String done = builder.toString();
                 config = new JsonParser().parse(done).getAsJsonObject();
+                br.close();
             } else {
                 config = new JsonObject();
                 saveFile();
