@@ -1,6 +1,6 @@
 package me.semx11.autotip.universal;
 
-import cc.hyperium.event.ServerChatEvent;
+import cc.hyperium.event.network.chat.ServerChatEvent;
 import me.semx11.autotip.Autotip;
 import me.semx11.autotip.chat.ChatColor;
 import me.semx11.autotip.util.MinecraftVersion;

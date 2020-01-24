@@ -18,7 +18,7 @@
 package cc.hyperium.mods.togglechat;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.Priority;
-import cc.hyperium.event.ServerChatEvent;
+import cc.hyperium.event.network.chat.ServerChatEvent;
 import cc.hyperium.mods.togglechat.toggles.ToggleBase;
 import cc.hyperium.mods.togglechat.toggles.defaults.TypeMessageSeparator;
 import cc.hyperium.utils.ChatColor;

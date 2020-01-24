@@ -18,7 +18,7 @@
 package cc.hyperium.mixins.entity;
 
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.SendChatMessageEvent;
+import cc.hyperium.event.network.chat.SendChatMessageEvent;
 import cc.hyperium.mixinsimp.entity.HyperiumEntityPlayerSP;
 import cc.hyperium.mods.nickhider.NickHider;
 import com.mojang.authlib.GameProfile;

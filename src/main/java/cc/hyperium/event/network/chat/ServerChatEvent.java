@@ -1,6 +1,7 @@
-package cc.hyperium.event;
+package cc.hyperium.event.network.chat;
 
 import net.minecraft.util.IChatComponent;
+import cc.hyperium.event.CancellableEvent;
 
 public class ServerChatEvent extends CancellableEvent {
     private final byte type;

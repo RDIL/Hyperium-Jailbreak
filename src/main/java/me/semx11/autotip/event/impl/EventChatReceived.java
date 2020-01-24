@@ -1,7 +1,7 @@
 package me.semx11.autotip.event.impl;
 
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.ServerChatEvent;
+import cc.hyperium.event.network.chat.ServerChatEvent;
 import me.semx11.autotip.Autotip;
 import me.semx11.autotip.chat.MessageOption;
 import me.semx11.autotip.command.impl.CommandLimbo;

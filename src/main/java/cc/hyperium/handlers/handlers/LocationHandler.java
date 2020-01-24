@@ -21,7 +21,7 @@ import cc.hyperium.Hyperium;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.JoinMinigameEvent;
-import cc.hyperium.event.ServerChatEvent;
+import cc.hyperium.event.network.chat.ServerChatEvent;
 import cc.hyperium.event.ServerJoinEvent;
 import cc.hyperium.event.ServerLeaveEvent;
 import cc.hyperium.event.ServerSwitchEvent;

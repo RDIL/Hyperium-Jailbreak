@@ -1,9 +1,10 @@
-package cc.hyperium.event;
+package cc.hyperium.event.network;
 
 import cc.hyperium.purchases.HyperiumPurchase;
 import java.util.UUID;
 import com.google.common.base.Preconditions;
 import org.jetbrains.annotations.NotNull;
+import cc.hyperium.event.Event;
 
 public final class PurchaseLoadEvent extends Event {
     @NotNull

@@ -18,7 +18,7 @@
 package cc.hyperium.commands;
 import cc.hyperium.Hyperium;
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.SendChatMessageEvent;
+import cc.hyperium.event.network.chat.SendChatMessageEvent;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import cc.hyperium.utils.ChatColor;
 import com.google.common.collect.Lists;

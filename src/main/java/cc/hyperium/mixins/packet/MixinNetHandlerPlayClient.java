@@ -19,7 +19,7 @@ package cc.hyperium.mixins.packet;
 
 import cc.hyperium.Hyperium;
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.ServerChatEvent;
+import cc.hyperium.event.network.chat.ServerChatEvent;
 import cc.hyperium.mods.timechanger.TimeChanger;
 import com.google.common.base.Charsets;
 import com.google.common.collect.ObjectArrays;

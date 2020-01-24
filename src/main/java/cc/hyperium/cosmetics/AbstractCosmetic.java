@@ -2,7 +2,7 @@ package cc.hyperium.cosmetics;
 
 import cc.hyperium.Hyperium;
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.PurchaseLoadEvent;
+import cc.hyperium.event.network.PurchaseLoadEvent;
 import cc.hyperium.event.WorldChangeEvent;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.purchases.EnumPurchaseType;
