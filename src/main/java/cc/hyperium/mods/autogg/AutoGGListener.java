@@ -3,7 +3,7 @@ package cc.hyperium.mods.autogg;
 import cc.hyperium.Hyperium;
 import cc.hyperium.event.ChatEvent;
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.WorldChangeEvent;
+import cc.hyperium.event.world.WorldChangeEvent;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.utils.ChatColor;
 import net.minecraft.client.Minecraft;

@@ -1,5 +1,6 @@
-package cc.hyperium.event;
+package cc.hyperium.event.world.audio;
 
+import cc.hyperium.event.CancellableEvent;
 import com.google.common.base.Preconditions;
 import net.minecraft.client.audio.ISound;
 import org.jetbrains.annotations.NotNull;

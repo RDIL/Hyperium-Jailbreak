@@ -4,7 +4,7 @@ import cc.hyperium.config.Settings;
 import cc.hyperium.cosmetics.CosmeticsUtil;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.render.RenderEvent;
-import cc.hyperium.event.WorldChangeEvent;
+import cc.hyperium.event.world.WorldChangeEvent;
 import cc.hyperium.mixinsimp.renderer.model.IMixinModelBiped;
 import cc.hyperium.mixinsimp.renderer.model.IMixinModelPlayer;
 import net.minecraft.client.Minecraft;

@@ -2,7 +2,7 @@ package cc.hyperium.mixinsimp;
 
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.SoundPlayEvent;
+import cc.hyperium.event.world.audio.SoundPlayEvent;
 import net.minecraft.client.audio.ISound;
 import org.lwjgl.opengl.Display;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;

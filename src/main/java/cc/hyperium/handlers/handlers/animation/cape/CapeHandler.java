@@ -1,7 +1,7 @@
 package cc.hyperium.handlers.handlers.animation.cape;
 
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.WorldChangeEvent;
+import cc.hyperium.event.world.WorldChangeEvent;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.purchases.PurchaseApi;
 import cc.hyperium.utils.CapeUtils;

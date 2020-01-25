@@ -25,7 +25,7 @@ import cc.hyperium.event.network.chat.ServerChatEvent;
 import cc.hyperium.event.network.server.ServerJoinEvent;
 import cc.hyperium.event.network.server.ServerLeaveEvent;
 import cc.hyperium.event.network.server.ServerSwitchEvent;
-import cc.hyperium.event.SpawnpointChangeEvent;
+import cc.hyperium.event.world.SpawnpointChangeEvent;
 import cc.hyperium.event.client.TickEvent;
 import cc.hyperium.event.network.server.hypixel.minigames.Minigame;
 import cc.hyperium.handlers.HyperiumHandlers;
