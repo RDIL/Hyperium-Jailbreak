@@ -2,8 +2,8 @@ package me.semx11.autotip.event.impl;
 
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.ServerJoinEvent;
-import cc.hyperium.event.ServerLeaveEvent;
+import cc.hyperium.event.network.server.ServerJoinEvent;
+import cc.hyperium.event.network.server.ServerLeaveEvent;
 import me.semx11.autotip.Autotip;
 import me.semx11.autotip.core.SessionManager;
 import me.semx11.autotip.core.TaskManager;

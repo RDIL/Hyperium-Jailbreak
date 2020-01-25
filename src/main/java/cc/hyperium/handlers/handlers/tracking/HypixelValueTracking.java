@@ -1,8 +1,8 @@
 package cc.hyperium.handlers.handlers.tracking;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.event.HypixelGetCoinsEvent;
-import cc.hyperium.event.HypixelGetXPEvent;
+import cc.hyperium.event.network.server.hypixel.HypixelGetCoinsEvent;
+import cc.hyperium.event.network.server.hypixel.HypixelGetXPEvent;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.utils.JsonHolder;

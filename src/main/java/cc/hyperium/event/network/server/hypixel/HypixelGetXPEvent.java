@@ -15,32 +15,17 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package cc.hyperium.event;
+package cc.hyperium.event.network.server.hypixel;
+import cc.hyperium.event.Event;
 
-import com.google.common.base.Preconditions;
-import org.jetbrains.annotations.NotNull;
+public final class HypixelGetXPEvent extends Event {
+    private final int xp;
 
-public final class FriendRemoveEvent extends Event {
-    @NotNull
-    private final String fullName;
-    @NotNull
-    private final String name;
-
-    public FriendRemoveEvent(@NotNull String fullName, @NotNull String name) {
-        Preconditions.checkNotNull(fullName, "fullName");
-        Preconditions.checkNotNull(name, "name");
-
-        this.fullName = fullName;
-        this.name = name;
+    public HypixelGetXPEvent(int xp) {
+        this.xp = xp;
     }
 
-    @NotNull
-    public final String getFullName() {
-        return this.fullName;
-    }
-
-    @NotNull
-    public final String getName() {
-        return this.name;
+    public final int getXp() {
+        return this.xp;
     }
 }

@@ -15,20 +15,16 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package cc.hyperium.event;
+package cc.hyperium.event.network.server.hypixel;
 
-import com.google.common.base.Preconditions;
+import cc.hyperium.event.network.server.hypixel.minigames.Minigame;
 
-public final class AchievementGetEvent extends Event {
-    private final String achievement;
-
-    public AchievementGetEvent(String achievement) {
-        Preconditions.checkNotNull(achievement, "achievement");
-
-        this.achievement = achievement;
+public class JoinMinigameEvent {
+    private final Minigame minigame;
+    public JoinMinigameEvent(Minigame minigame) {
+        this.minigame = minigame;
     }
-
-    public final String getAchievement() {
-        return this.achievement;
+    public Minigame getMinigame() {
+        return this.minigame;
     }
 }

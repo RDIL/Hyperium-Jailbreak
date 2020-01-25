@@ -1,7 +1,7 @@
 package cc.hyperium.handlers.handlers.data;
 import cc.hyperium.Hyperium;
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.JoinHypixelEvent;
+import cc.hyperium.event.network.server.hypixel.JoinHypixelEvent;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.mods.sk1ercommon.Sk1erMod;
 import cc.hyperium.netty.utils.Utils;

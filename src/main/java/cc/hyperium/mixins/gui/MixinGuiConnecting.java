@@ -18,7 +18,7 @@
 package cc.hyperium.mixins.gui;
 
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.ServerJoinEvent;
+import cc.hyperium.event.network.server.ServerJoinEvent;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.resources.I18n;

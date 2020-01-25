@@ -2,7 +2,7 @@ package cc.hyperium.handlers.handlers;
 
 import cc.hyperium.Hyperium;
 import cc.hyperium.config.Settings;
-import cc.hyperium.event.AchievementGetEvent;
+import cc.hyperium.event.network.server.hypixel.AchievementGetEvent;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.network.chat.ServerChatEvent;

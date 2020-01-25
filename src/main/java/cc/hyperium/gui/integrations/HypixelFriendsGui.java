@@ -19,7 +19,7 @@ package cc.hyperium.gui.integrations;
 
 import cc.hyperium.Hyperium;
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.FriendRemoveEvent;
+import cc.hyperium.event.network.server.hypixel.FriendRemoveEvent;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.gui.GuiBlock;
 import cc.hyperium.gui.GuiBoxItem;

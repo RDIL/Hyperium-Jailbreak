@@ -15,16 +15,29 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package cc.hyperium.event;
+package cc.hyperium.event.network.server.hypixel;
 
-public final class HypixelGetXPEvent extends Event {
-    private final int xp;
+import com.google.common.base.Preconditions;
+import org.jetbrains.annotations.NotNull;
+import cc.hyperium.event.Event;
 
-    public HypixelGetXPEvent(int xp) {
-        this.xp = xp;
+public final class JoinHypixelEvent extends Event {
+    @NotNull
+    private final ServerVerificationMethod method;
+
+    public JoinHypixelEvent(@NotNull ServerVerificationMethod method) {
+        Preconditions.checkNotNull(method, "method");
+
+        this.method = method;
     }
 
-    public final int getXp() {
-        return this.xp;
+    @NotNull
+    public final ServerVerificationMethod getMethod() {
+        return this.method;
+    }
+
+    public enum ServerVerificationMethod {
+        IP,
+        MOTD
     }
 }

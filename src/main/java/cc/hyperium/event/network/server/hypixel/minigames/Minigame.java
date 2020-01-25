@@ -15,7 +15,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package cc.hyperium.event.minigames;
+package cc.hyperium.event.network.server.hypixel.minigames;
 
 public enum Minigame {
     QUAKECRAFT("Quakecraft", "Quake", 2),

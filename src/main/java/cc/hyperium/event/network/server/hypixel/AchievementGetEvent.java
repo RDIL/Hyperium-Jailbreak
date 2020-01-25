@@ -15,28 +15,21 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package cc.hyperium.event;
+package cc.hyperium.event.network.server.hypixel;
 
 import com.google.common.base.Preconditions;
-import org.jetbrains.annotations.NotNull;
+import cc.hyperium.event.Event;
 
-public final class JoinHypixelEvent extends Event {
-    @NotNull
-    private final ServerVerificationMethod method;
+public final class AchievementGetEvent extends Event {
+    private final String achievement;
 
-    public JoinHypixelEvent(@NotNull ServerVerificationMethod method) {
-        Preconditions.checkNotNull(method, "method");
+    public AchievementGetEvent(String achievement) {
+        Preconditions.checkNotNull(achievement, "achievement");
 
-        this.method = method;
+        this.achievement = achievement;
     }
 
-    @NotNull
-    public final ServerVerificationMethod getMethod() {
-        return this.method;
-    }
-
-    public enum ServerVerificationMethod {
-        IP,
-        MOTD
+    public final String getAchievement() {
+        return this.achievement;
     }
 }

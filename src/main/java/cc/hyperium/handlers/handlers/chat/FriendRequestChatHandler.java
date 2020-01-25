@@ -1,8 +1,8 @@
 package cc.hyperium.handlers.handlers.chat;
 
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.FriendRemoveEvent;
-import cc.hyperium.event.HypixelFriendRequestEvent;
+import cc.hyperium.event.network.server.hypixel.HypixelFriendRequestEvent;
+import cc.hyperium.event.network.server.hypixel.FriendRemoveEvent;
 import net.minecraft.util.IChatComponent;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

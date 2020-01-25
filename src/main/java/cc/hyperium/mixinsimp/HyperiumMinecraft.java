@@ -13,7 +13,7 @@ import cc.hyperium.event.interact.MouseButtonEvent;
 import cc.hyperium.event.client.PreInitializationEvent;
 import cc.hyperium.event.render.RenderPlayerEvent;
 import cc.hyperium.event.interact.RightMouseClickEvent;
-import cc.hyperium.event.SingleplayerJoinEvent;
+import cc.hyperium.event.network.server.SingleplayerJoinEvent;
 import cc.hyperium.event.client.TickEvent;
 import cc.hyperium.event.WorldChangeEvent;
 import cc.hyperium.event.WorldUnloadEvent;

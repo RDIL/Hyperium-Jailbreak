@@ -2,7 +2,7 @@ package cc.hyperium.mods.autofriend;
 
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.HypixelFriendRequestEvent;
+import cc.hyperium.event.network.server.hypixel.HypixelFriendRequestEvent;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.mods.AbstractMod;
 import net.minecraft.client.Minecraft;

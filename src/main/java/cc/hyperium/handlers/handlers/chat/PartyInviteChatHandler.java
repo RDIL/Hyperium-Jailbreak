@@ -1,7 +1,7 @@
 package cc.hyperium.handlers.handlers.chat;
 
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.HypixelPartyInviteEvent;
+import cc.hyperium.event.network.server.hypixel.HypixelPartyInviteEvent;
 import net.minecraft.util.IChatComponent;
 import java.util.regex.Matcher;
 

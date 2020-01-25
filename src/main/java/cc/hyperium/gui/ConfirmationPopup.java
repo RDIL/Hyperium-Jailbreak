@@ -19,8 +19,8 @@
 
 package cc.hyperium.gui;
 import cc.hyperium.config.Settings;
-import cc.hyperium.event.HypixelFriendRequestEvent;
-import cc.hyperium.event.HypixelPartyInviteEvent;
+import cc.hyperium.event.network.server.hypixel.HypixelFriendRequestEvent;
+import cc.hyperium.event.network.server.hypixel.HypixelPartyInviteEvent;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.interact.KeypressEvent;
 import cc.hyperium.event.render.RenderHUDEvent;

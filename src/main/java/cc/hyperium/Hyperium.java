@@ -17,10 +17,9 @@
 
 package cc.hyperium;
 import cc.hyperium.event.client.InitializationEvent;
-import cc.hyperium.event.client.PreInitializationEvent;
 import cc.hyperium.event.client.GameShutDownEvent;
 import cc.hyperium.event.Priority;
-import cc.hyperium.event.ServerJoinEvent;
+import cc.hyperium.event.network.server.ServerJoinEvent;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.gui.ConfirmationPopup;
@@ -32,7 +31,7 @@ import cc.hyperium.commands.defaults.*;
 import cc.hyperium.config.DefaultConfig;
 import cc.hyperium.config.Settings;
 import cc.hyperium.cosmetics.HyperiumCosmetics;
-import cc.hyperium.event.minigames.MinigameListener;
+import cc.hyperium.event.network.server.hypixel.minigames.MinigameListener;
 import cc.hyperium.handlers.HyperiumHandlers;
 import cc.hyperium.handlers.handlers.stats.PlayerStatsGui;
 import cc.hyperium.mixinsimp.client.resources.HyperiumLocale;

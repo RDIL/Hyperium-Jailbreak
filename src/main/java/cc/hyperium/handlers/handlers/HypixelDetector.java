@@ -19,11 +19,11 @@ package cc.hyperium.handlers.handlers;
 
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.JoinHypixelEvent;
-import cc.hyperium.event.JoinHypixelEvent.ServerVerificationMethod;
-import cc.hyperium.event.ServerJoinEvent;
-import cc.hyperium.event.ServerLeaveEvent;
-import cc.hyperium.event.SingleplayerJoinEvent;
+import cc.hyperium.event.network.server.hypixel.JoinHypixelEvent;
+import cc.hyperium.event.network.server.hypixel.JoinHypixelEvent.ServerVerificationMethod;
+import cc.hyperium.event.network.server.ServerJoinEvent;
+import cc.hyperium.event.network.server.ServerLeaveEvent;
+import cc.hyperium.event.network.server.SingleplayerJoinEvent;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ServerData;

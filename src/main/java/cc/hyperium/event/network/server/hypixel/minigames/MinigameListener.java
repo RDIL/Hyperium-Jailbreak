@@ -1,9 +1,9 @@
-package cc.hyperium.event.minigames;
+package cc.hyperium.event.network.server.hypixel.minigames;
 
 import cc.hyperium.Hyperium;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.JoinMinigameEvent;
+import cc.hyperium.event.network.server.hypixel.JoinMinigameEvent;
 import cc.hyperium.event.client.TickEvent;
 import cc.hyperium.utils.ChatColor;
 import net.minecraft.client.Minecraft;

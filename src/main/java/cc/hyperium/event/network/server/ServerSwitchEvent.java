@@ -1,5 +1,6 @@
-package cc.hyperium.event;
+package cc.hyperium.event.network.server;
 
+import cc.hyperium.event.Event;
 import com.google.common.base.Preconditions;
 import org.jetbrains.annotations.NotNull;
 

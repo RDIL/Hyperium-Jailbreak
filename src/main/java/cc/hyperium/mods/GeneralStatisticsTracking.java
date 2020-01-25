@@ -20,7 +20,7 @@ package cc.hyperium.mods;
 import cc.hyperium.config.ConfigOpt;
 import cc.hyperium.event.ChatEvent;
 import cc.hyperium.event.EventBus;
-import cc.hyperium.event.HypixelGetCoinsEvent;
+import cc.hyperium.event.network.server.hypixel.HypixelGetCoinsEvent;
 import cc.hyperium.event.InvokeEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
