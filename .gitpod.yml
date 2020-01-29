@@ -1,9 +1,4 @@
-ports:
-- port: 40487
-- port: 35259
-- port: 17684
-- port: 40891
-- port: 39771
+image: gradle:4.10.3-jdk8
 
 tasks:
-- command: ./gradlew setupDevWorkspace
+- command: gradle setupDevWorkspace
