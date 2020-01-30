@@ -1,5 +1,2 @@
-image:
-  file: .gitpod.Dockerfile
-
 tasks:
-- command: gradle setupDevWorkspace
+- command: ./gradlew setupDevWorkspace
