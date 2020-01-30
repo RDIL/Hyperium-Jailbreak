@@ -1,4 +1,5 @@
-image: gradle:4.10.3-jdk8
+image:
+  file: .gitpod.Dockerfile
 
 tasks:
 - command: gradle setupDevWorkspace

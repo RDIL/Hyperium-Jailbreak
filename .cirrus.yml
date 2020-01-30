@@ -3,12 +3,12 @@ task:
   container:
     image: gradle:4.10.3-jdk8
     cpu: 4
-    memory: 15G
+    memory: 12G
   gradle_cache:
     folder: ~/.gradle/caches
     fingerprint_script: cat build.gradle
-    populate_script: gradle setupCiWorkspace --build-cache -Dorg.gradle.jvmargs=-Xmx14336M
-  script: gradle build -Dorg.gradle.jvmargs=-Xmx14336M
+    populate_script: gradle setupCiWorkspace --build-cache -Dorg.gradle.jvmargs=-Xmx11264M
+  script: gradle build -Dorg.gradle.jvmargs=-Xmx11264M
   jar_artifacts:
     path: ./build/libs/*.jar
     type: application/java-archive
