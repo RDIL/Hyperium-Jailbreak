@@ -3,6 +3,7 @@ package com.hyperiumjailbreak;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.render.RenderHUDEvent;
+import cc.hyperium.gui.HyperiumGui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -29,7 +30,7 @@ public class Popup {
         this.subtext = subtext;
 
         this.percentComplete = 0.0f;
-        this.systemTime = null;
+        this.systemTime = Minecraft.getSystemTime();
     }
     
     public void startShowing() {
@@ -75,8 +76,8 @@ public class Popup {
 
             String s = subtext;
             fr.drawString(s, sr.getScaledWidth() / 2 - fr.getStringWidth(s) / 2, 70, new Color(170, 170, 170).getRGB());
-
-            return false;
         }
+
+        return false;
     }
 }
