@@ -7,7 +7,6 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 
 public class HyperiumEntity {
-
     private Entity parent;
     private long nameCacheTime = System.currentTimeMillis();
     private IChatComponent cachedName;

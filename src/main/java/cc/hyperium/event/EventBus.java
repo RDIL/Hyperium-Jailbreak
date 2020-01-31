@@ -44,7 +44,7 @@ public class EventBus {
                     continue;
                 }
                 if (method.getParameters()[0] == null) {
-                    throw new IllegalArgumentException("Couldn't find parameter inside of " + method.getName() + "!");
+                    throw new IllegalArgumentException(method.getName() + " doesn't accept an event!");
                 }
 
                 Class<?> event = method.getParameters()[0].getType();
