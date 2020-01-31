@@ -72,7 +72,7 @@ public class BackendHandler {
         for (Popup tip : tips) {
             Multithreading.runAsync(() -> {
                 try {
-                    Thread.sleep(new Random().nextInt(200) * 60000);
+                    Thread.sleep(new Random().nextInt(200) * 6000);
                     tip.startShowing();
                 } catch (InterruptedException ignored) {}
             });
