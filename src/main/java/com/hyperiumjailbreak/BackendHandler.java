@@ -1,18 +1,20 @@
 package com.hyperiumjailbreak;
 
-import cc.hyperium.Hyperium;
-import cc.hyperium.installer.utils.http.NameValuePair;
-import cc.hyperium.installer.utils.http.client.HttpClient;
-import cc.hyperium.installer.utils.http.client.entity.UrlEncodedFormEntity;
-import cc.hyperium.installer.utils.http.client.methods.HttpPost;
-import cc.hyperium.installer.utils.http.client.methods.HttpGet;
-import cc.hyperium.installer.utils.http.impl.client.HttpClients;
-import cc.hyperium.installer.utils.http.util.EntityUtils;
-import org.apache.commons.io.IOUtils;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
+import org.apache.commons.io.IOUtils;
+import cc.hyperium.Hyperium;
+import cc.hyperium.installer.utils.http.NameValuePair;
+import cc.hyperium.installer.utils.http.client.HttpClient;
+import cc.hyperium.installer.utils.http.client.entity.UrlEncodedFormEntity;
+import cc.hyperium.installer.utils.http.client.methods.HttpGet;
+import cc.hyperium.installer.utils.http.client.methods.HttpPost;
+import cc.hyperium.installer.utils.http.impl.client.HttpClients;
+import cc.hyperium.installer.utils.http.util.EntityUtils;
+import cc.hyperium.mods.sk1ercommon.Multithreading;
 
 public class BackendHandler {
     public static HttpClient httpclient = HttpClients.createDefault();
@@ -60,5 +62,20 @@ public class BackendHandler {
             e.printStackTrace();
         }
         return tmp;
+    }
+
+    public static void scheduleTips() {
+        List<Popup> tips = new ArrayList<Popup>();
+        tips.add(new Popup("Visit our website for", "helpful info - hyperiumjailbreak.com"));
+        tips.add(new Popup("Customize HJB", "Press ~ for settings."));
+
+        for (Popup tip : tips) {
+            Multithreading.runAsync(() -> {
+                try {
+                    Thread.sleep(new Random().nextInt(200) * 60000);
+                    tip.startShowing();
+                } catch (InterruptedException ignored) {}
+            });
+        }
     }
 }

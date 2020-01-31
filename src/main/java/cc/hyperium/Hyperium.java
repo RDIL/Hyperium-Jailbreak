@@ -55,6 +55,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 import com.hyperiumjailbreak.CommonChatResponder;
+import com.hyperiumjailbreak.Popup;
 import com.hyperiumjailbreak.BackendHandler;
 import java.io.File;
 
@@ -104,6 +105,8 @@ public class Hyperium {
                 cosmetics = new HyperiumCosmetics();
                 if (Settings.THANK_WATCHDOG && !Settings.FPS) new CommonChatResponder("removed from your game for hacking", "Thanks Watchdog!", true);
             }
+
+            if(Settings.tips) BackendHandler.scheduleTips();
 
             // Creates the accounts dir
             firstLaunch = new File(folder.getAbsolutePath() + "/accounts").mkdirs();
@@ -251,7 +254,8 @@ public class Hyperium {
             }
             if (Hyperium.INSTANCE.bh.apiUpdateCheck()) {
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(5000);
+                    new Popup("Update Available", "Check chat for details.").startShowing();
                     getHandlers().getGeneralChatHandler().sendMessage(ChatColor.RED + "An update for the client is now available at " + ChatColor.WHITE + "https://rdil.rocks/update", true);
                 } catch (Exception e) {
                     e.printStackTrace();
