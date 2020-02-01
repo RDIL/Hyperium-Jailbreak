@@ -1,6 +1,5 @@
 package cc.hyperium.handlers.handlers.tracking;
 
-import cc.hyperium.Hyperium;
 import cc.hyperium.gui.HyperiumGui;
 import cc.hyperium.utils.RenderUtils;
 import net.minecraft.client.gui.GuiButton;
@@ -12,15 +11,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class StatisticViewingGui extends HyperiumGui {
     private static ValueTrackingType currentType = ValueTrackingType.COINS;
-    private final int DATA_POINTS = 200;
     private int timeFac = 0;
     private long masterTimeOne = System.currentTimeMillis() - TimeUnit.HOURS.toMillis(1);
     private long masterTimeTwo = System.currentTimeMillis();
@@ -34,52 +30,6 @@ public class StatisticViewingGui extends HyperiumGui {
     @Override
     public void initGui() {
         super.initGui();
-        refreshData();
-    }
-
-    private void refreshData() {
-        masterDataSet = Hyperium.INSTANCE.getHandlers().getHypixelValueTracking().getItemsBetween(masterTimeOne, masterTimeTwo);
-
-        ArrayList<ValueTrackingItem> tmp = new ArrayList<>(masterDataSet);
-        masterDataSet.clear();
-        long delta = (masterTimeTwo - masterTimeOne) / DATA_POINTS;
-        HashMap<Integer, List<ValueTrackingItem>> itemMap = new HashMap<>();
-        for (ValueTrackingItem valueTrackingItem : tmp) {
-            itemMap.computeIfAbsent((int) ((valueTrackingItem.getTime() - masterTimeOne) / delta), integer -> new ArrayList<>()).add(valueTrackingItem);
-        }
-
-        HashMap<Integer, List<ValueTrackingItem>> dataPoints = new HashMap<>();
-        for (int integer = 0; integer < DATA_POINTS; integer++) {
-
-            List<ValueTrackingItem> valueTrackingItems = itemMap.get(integer);
-            if (valueTrackingItems == null) // No data = no collision
-                continue;
-            HashMap<ValueTrackingType, List<ValueTrackingItem>> map = new HashMap<>();
-            for (ValueTrackingItem valueTrackingItem : valueTrackingItems) {
-                map.computeIfAbsent(valueTrackingItem.getType(), valueTrackingType -> new ArrayList<>()).add(valueTrackingItem);
-            }
-            for (ValueTrackingType type : map.keySet()) {
-                int sum = 0;
-                for (ValueTrackingItem valueTrackingItem : valueTrackingItems) {
-                    if (valueTrackingItem.getType() == type)
-                        sum += valueTrackingItem.getValue();
-                }
-                ValueTrackingItem e = new ValueTrackingItem(type, sum, masterTimeOne + delta * (long) integer);
-                dataPoints.computeIfAbsent(integer, integer1 -> new ArrayList<>()).add(e);
-                masterDataSet.add(e);
-            }
-        }
-
-        //Fill in missing data
-        for (int integer = 0; integer < DATA_POINTS; integer++) {
-            List<ValueTrackingItem> valueTrackingItems = dataPoints.get(integer);
-            if (valueTrackingItems == null) {
-                for (ValueTrackingType type : types) {
-                    masterDataSet.add(new ValueTrackingItem(type, 0, masterTimeOne + delta * (long) integer));
-                }
-            }
-        }
-        masterDataSet.sort(Comparator.comparingLong(ValueTrackingItem::getTime));
     }
 
     @Override
@@ -108,7 +58,6 @@ public class StatisticViewingGui extends HyperiumGui {
             } else if (timeFac == 3) {
                 masterTimeOne = masterTimeTwo - TimeUnit.DAYS.toMillis(30);
             }
-            refreshData();
 
         }, button -> {
             String tmp = "Set range to: ";

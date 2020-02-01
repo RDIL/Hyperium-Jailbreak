@@ -46,7 +46,6 @@ import cc.hyperium.handlers.handlers.keybinds.KeyBindHandler;
 import cc.hyperium.handlers.handlers.mixin.LayerDeadmau5HeadHandler;
 import cc.hyperium.handlers.handlers.reach.ReachDisplay;
 import cc.hyperium.handlers.handlers.stats.StatsHandler;
-import cc.hyperium.handlers.handlers.tracking.HypixelValueTracking;
 import cc.hyperium.mods.PerspectiveModifierHandler;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
 import net.minecraft.client.Minecraft;
@@ -75,7 +74,6 @@ public class HyperiumHandlers {
     private PerspectiveModifierHandler perspectiveHandler;
     private TPoseHandler tPoseHandler;
     private StatsHandler statsHandler;
-    private HypixelValueTracking hypixelValueTracking;
     private SettingsHandler settingsHandler;
     private YeetHandler yeetHandler;
 
@@ -94,7 +92,6 @@ public class HyperiumHandlers {
         register(locationHandler = new LocationHandler());
         register(new VanillaEnhancementsHud());
         register(layerDeadmau5HeadHandler = new LayerDeadmau5HeadHandler());
-        register(hypixelValueTracking = new HypixelValueTracking());
         register(new ResolutionUtil());
         register(capeHandler = new CapeHandler());
         register(guiDisplayHandler = new GuiDisplayHandler());
@@ -118,10 +115,6 @@ public class HyperiumHandlers {
 
     public YeetHandler getYeetHandler() {
         return yeetHandler;
-    }
-
-    public HypixelValueTracking getHypixelValueTracking() {
-        return hypixelValueTracking;
     }
 
     public StatsHandler getStatsHandler() {
