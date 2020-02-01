@@ -106,8 +106,6 @@ public class Hyperium {
                 if (Settings.THANK_WATCHDOG && !Settings.FPS) new CommonChatResponder("removed from your game for hacking", "Thanks Watchdog!", true);
             }
 
-            if(Settings.tips) BackendHandler.scheduleTips();
-
             // Creates the accounts dir
             firstLaunch = new File(folder.getAbsolutePath() + "/accounts").mkdirs();
 
