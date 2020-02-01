@@ -70,6 +70,7 @@ public class KeyBindConfig {
                     builder.append(current);
                 }
                 this.keyBindJson = new BetterJsonObject(builder.toString());
+                reader.close();
             } catch (Exception ex) {
                 save();
                 return;
