@@ -63,19 +63,4 @@ public class BackendHandler {
         }
         return tmp;
     }
-
-    public static void scheduleTips() {
-        List<Popup> tips = new ArrayList<Popup>();
-        tips.add(new Popup("Visit our website for", "helpful info - hyperiumjailbreak.com"));
-        tips.add(new Popup("Customize HJB", "Press ~ for settings."));
-
-        for (Popup tip : tips) {
-            Multithreading.runAsync(() -> {
-                try {
-                    Thread.sleep(new Random().nextInt(200) * 6000);
-                    tip.startShowing();
-                } catch (InterruptedException ignored) {}
-            });
-        }
-    }
 }

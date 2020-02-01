@@ -330,9 +330,6 @@ public class Settings {
     @ConfigOpt @ToggleSetting(name = "Hide Skeleton Hat Bones", category = HYPIXELSKYBLOCK)
     public static boolean hide_skeletonhat_bones = false;
 
-    @ConfigOpt @ToggleSetting(name = "Show Tips", category = GENERAL)
-    public static boolean tips = false;
-
     public static void register() {
         Hyperium.CONFIG.register(INSTANCE);
     }
