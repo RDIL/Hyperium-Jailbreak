@@ -15,8 +15,9 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package cc.hyperium.event;
+package cc.hyperium.event.network.chat;
 
+import cc.hyperium.event.CancellableEvent;
 import net.minecraft.util.IChatComponent;
 
 public class ChatEvent extends CancellableEvent {

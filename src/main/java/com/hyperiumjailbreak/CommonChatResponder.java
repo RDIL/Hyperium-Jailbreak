@@ -1,6 +1,6 @@
 package com.hyperiumjailbreak;
 
-import cc.hyperium.event.ChatEvent;
+import cc.hyperium.event.network.chat.ChatEvent;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.handlers.handlers.HypixelDetector;
 import net.minecraft.client.Minecraft;

@@ -1,6 +1,6 @@
 package com.hyperiumjailbreak;
 import cc.hyperium.event.InvokeEvent;
-import cc.hyperium.event.ChatEvent;
+import cc.hyperium.event.network.chat.ChatEvent;
 
 public class ChatCanceller {
     private String whatToListenFor;

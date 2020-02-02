@@ -18,7 +18,7 @@
 package cc.hyperium.utils.mods;
 
 import cc.hyperium.config.Settings;
-import cc.hyperium.event.ChatEvent;
+import cc.hyperium.event.network.chat.ChatEvent;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.Priority;
 import cc.hyperium.utils.ChatColor;

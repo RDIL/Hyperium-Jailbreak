@@ -1,7 +1,7 @@
 package cc.hyperium.mixinsimp.gui;
 
 import cc.hyperium.config.Settings;
-import cc.hyperium.event.ChatEvent;
+import cc.hyperium.event.network.chat.ChatEvent;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.mixins.gui.IMixinGuiNewChat;
 import java.util.List;
