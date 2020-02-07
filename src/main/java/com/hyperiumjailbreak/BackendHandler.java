@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 import org.apache.commons.io.IOUtils;
 import cc.hyperium.Hyperium;
 import cc.hyperium.installer.utils.http.NameValuePair;
@@ -14,7 +13,6 @@ import cc.hyperium.installer.utils.http.client.methods.HttpGet;
 import cc.hyperium.installer.utils.http.client.methods.HttpPost;
 import cc.hyperium.installer.utils.http.impl.client.HttpClients;
 import cc.hyperium.installer.utils.http.util.EntityUtils;
-import cc.hyperium.mods.sk1ercommon.Multithreading;
 
 public class BackendHandler {
     public static HttpClient httpclient = HttpClients.createDefault();

@@ -35,7 +35,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CountDownLatch;
 
@@ -47,7 +46,6 @@ public abstract class MixinEffectRenderer implements IMixinEffectRenderer {
     private ConcurrentLinkedQueue<EntityFX>[][] modifiedFxLayer = new ConcurrentLinkedQueue[4][];
     private ConcurrentLinkedQueue<EntityParticleEmitter> modifiedParticlEmmiters = new ConcurrentLinkedQueue<>();
     @Shadow private TextureManager renderer;
-    @Shadow private Random rand;
     private CountDownLatch latch;
 
     @Inject(method = "<init>", at = @At("RETURN"))
