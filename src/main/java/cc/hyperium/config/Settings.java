@@ -330,6 +330,9 @@ public class Settings {
     @ConfigOpt @ToggleSetting(name = "Hide Skeleton Hat Bones", category = HYPIXELSKYBLOCK)
     public static boolean hide_skeletonhat_bones = false;
 
+    @ConfigOpt @ToggleSetting(name = "BETA - Faster Particle Rendering", category = IMPROVEMENTS)
+    public static boolean IMPROVE_PARTICLE_PERF = false;
+
     public static void register() {
         Hyperium.CONFIG.register(INSTANCE);
     }

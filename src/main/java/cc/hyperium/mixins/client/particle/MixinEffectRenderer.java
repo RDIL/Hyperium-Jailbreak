@@ -1,10 +1,13 @@
 package cc.hyperium.mixins.client.particle;
 
 import cc.hyperium.config.Settings;
+import cc.hyperium.mixinsimp.IMixinEffectRenderer;
+import cc.hyperium.mods.sk1ercommon.Multithreading;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.particle.EntityParticleEmitter;
+import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -15,6 +18,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.entity.Entity;
+import net.minecraft.profiler.Profiler;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ReportedException;
@@ -27,17 +31,24 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CountDownLatch;
 
 @Mixin(EffectRenderer.class)
-public abstract class MixinEffectRenderer {
+public abstract class MixinEffectRenderer implements IMixinEffectRenderer {
     @Shadow @Final private static ResourceLocation particleTextures;
     @Shadow protected World worldObj;
-    // its not happy about this but we can't do better because Minecraft
+    @Shadow private Map<Integer, IParticleFactory> particleTypes;
     private ConcurrentLinkedQueue<EntityFX>[][] modifiedFxLayer = new ConcurrentLinkedQueue[4][];
     private ConcurrentLinkedQueue<EntityParticleEmitter> modifiedParticlEmmiters = new ConcurrentLinkedQueue<>();
     @Shadow private TextureManager renderer;
+    @Shadow private Random rand;
+    private CountDownLatch latch;
 
     @Inject(method = "<init>", at = @At("RETURN"))
     public void load(World in, TextureManager manager, CallbackInfo info) {
@@ -46,6 +57,16 @@ public abstract class MixinEffectRenderer {
 
             for (int j = 0; j < 2; ++j) {
                 this.modifiedFxLayer[i][j] = new ConcurrentLinkedQueue<>();
+            }
+        }
+    }
+
+    @Overwrite
+    private void moveToLayer(EntityFX effect, int p_178924_2_, int p_178924_3_) {
+        for (int i = 0; i < 4; ++i) {
+            if (this.modifiedFxLayer[i][p_178924_2_].contains(effect)) {
+                this.modifiedFxLayer[i][p_178924_2_].remove(effect);
+                this.modifiedFxLayer[i][p_178924_3_].add(effect);
             }
         }
     }
@@ -71,12 +92,60 @@ public abstract class MixinEffectRenderer {
     @Overwrite
     private void updateEffectLayer(int p_178922_1_) {
         for (int i = 0; i < 2; ++i) {
-            this.updateEffectAlphaLayer(this.modifiedFxLayer[p_178922_1_][i]);
+            int finalI = i;
+            if (Settings.IMPROVE_PARTICLE_PERF) {
+                Multithreading.runAsync(() -> {
+                    try {
+                        this.updateEffectAlphaLayer(this.modifiedFxLayer[p_178922_1_][finalI]);
+                    } catch (Throwable e) {
+                        e.printStackTrace();
+                    }
+                    latch.countDown();
+                });
+            } else {
+                this.updateEffectAlphaLayer(this.modifiedFxLayer[p_178922_1_][finalI]);
+            }
         }
     }
 
     private void updateEffectAlphaLayer(ConcurrentLinkedQueue<EntityFX> queue) {
-        queue.forEach(this::tickParticle);
+        if (Settings.IMPROVE_PARTICLE_PERF) {
+            int total = queue.size();
+            int threads = total / 100 + 1;
+            CountDownLatch latch = new CountDownLatch(threads);
+            HashMap<Integer, List<EntityFX>> fx = new HashMap<>();
+            int tmp = 0;
+            for (int i = 0; i < threads; i++) {
+                fx.computeIfAbsent(tmp, integer -> new ArrayList<>());
+            }
+            for (EntityFX entityFX : queue) {
+                fx.computeIfAbsent(tmp, integer -> new ArrayList<>()).add(entityFX);
+                tmp++;
+                if (tmp > threads)
+                    tmp = 0;
+            }
+            for (List<EntityFX> entityFXES : fx.values()) {
+                Multithreading.runAsync(() -> {
+                    try {
+                        for (EntityFX p : entityFXES) {
+                            try {
+                                tickParticle(p);
+                            } catch (Throwable t) {
+                                t.printStackTrace();
+                            }
+
+                        }
+                    } catch (Throwable e) {
+                        e.printStackTrace();
+                    }
+                    latch.countDown();
+                });
+            }
+        } else {
+            for (EntityFX p : queue) {
+                this.tickParticle(p);
+            }
+        }
         queue.removeIf(entityFX -> entityFX.isDead);
     }
 
@@ -144,17 +213,20 @@ public abstract class MixinEffectRenderer {
 
     @Overwrite
     public void updateEffects() {
-        CountDownLatch latch = null;
+        latch = Settings.IMPROVE_PARTICLE_PERF ? new CountDownLatch(8) : null;
 
         for (int i = 0; i < 4; ++i) {
             this.updateEffectLayer(i);
         }
+        Profiler mcProfiler = Minecraft.getMinecraft().mcProfiler;
+        mcProfiler.startSection("particle_wait");
         if (latch != null)
             try {
                 latch.await();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        mcProfiler.endSection();
 
         this.modifiedParticlEmmiters.forEach(EntityParticleEmitter::onUpdate);
         modifiedParticlEmmiters.removeIf(entityParticleEmitter -> entityParticleEmitter.isDead);
@@ -180,18 +252,21 @@ public abstract class MixinEffectRenderer {
 
                 ConcurrentLinkedQueue<EntityFX> entityFXES = this.modifiedFxLayer[i][j];
                 if (!entityFXES.isEmpty()) {
-                    if(j == 0) {
-                        GlStateManager.depthMask(false);
-                    }
-                    if(j == 1) {
-                        GlStateManager.depthMask(true);
+                    switch (j) {
+                        case 0:
+                            GlStateManager.depthMask(false);
+                            break;
+                        case 1:
+                            GlStateManager.depthMask(true);
                     }
 
-                    if(i == 0) {
-                        this.renderer.bindTexture(particleTextures);
-                    }
-                    if(i == 1) {
-                        this.renderer.bindTexture(TextureMap.locationBlocksTexture);
+                    switch (i) {
+                        case 0:
+                        default:
+                            this.renderer.bindTexture(particleTextures);
+                            break;
+                        case 1:
+                            this.renderer.bindTexture(TextureMap.locationBlocksTexture);
                     }
 
                     GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -212,6 +287,7 @@ public abstract class MixinEffectRenderer {
                             throw new ReportedException(crashreport);
                         }
                     }
+
                     tessellator.draw();
                 }
             }
@@ -220,5 +296,10 @@ public abstract class MixinEffectRenderer {
         GlStateManager.depthMask(true);
         GlStateManager.disableBlend();
         GlStateManager.alphaFunc(516, 0.1F);
+    }
+
+    @Override
+    public Map<Integer, IParticleFactory> getParticleMap() {
+        return particleTypes;
     }
 }
