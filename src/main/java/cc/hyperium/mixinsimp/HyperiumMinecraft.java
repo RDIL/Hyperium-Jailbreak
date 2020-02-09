@@ -5,7 +5,6 @@ import cc.hyperium.gui.SplashProgress;
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.gui.GuiOpenEvent;
-import cc.hyperium.event.client.InitializationEvent;
 import cc.hyperium.event.interact.KeypressEvent;
 import cc.hyperium.event.interact.KeyreleaseEvent;
 import cc.hyperium.event.interact.LeftMouseClickEvent;
@@ -74,7 +73,8 @@ public class HyperiumMinecraft {
     }
 
     public void startGame() {
-        EventBus.INSTANCE.post(new InitializationEvent());
+        EventBus.INSTANCE.post(new cc.hyperium.event.client.InitializationEvent());
+        EventBus.INSTANCE.post(new cc.hyperium.event.InitializationEvent());
     }
 
     public void runTick(Profiler mcProfiler) {
