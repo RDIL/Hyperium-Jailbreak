@@ -1,2 +1,3 @@
 tasks:
+- init: sdk install java 8.0.242.hs && ./gradlew setupDecompWorkspace
 - command: ./gradlew setupDevWorkspace
