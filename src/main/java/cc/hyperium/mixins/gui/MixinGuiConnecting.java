@@ -32,6 +32,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiConnecting.class)
 public abstract class MixinGuiConnecting extends GuiScreen {
+    private int frame;
+
+    @Inject(method = "<init>", at = @At("RETURN"))
+    private void constructorInjection(CallbackInfo callbackInfo) {
+        this.frame = 0;
+    }
+
     @Shadow private NetworkManager networkManager;
 
     @Inject(method = "connect", at = @At("HEAD"))
@@ -42,10 +49,15 @@ public abstract class MixinGuiConnecting extends GuiScreen {
     /**
      * @author Reece Dunham and Mojang
      */
-    @Overwrite public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+    @Overwrite
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        String[] frames = new String[]{"|", "/", "-", "\\"};
+
         this.drawWorldBackground(0);
 
+        this.frame = (this.frame == 3? 0 : this.frame + 1);
         this.drawCenteredString(this.fontRendererObj, I18n.format(this.networkManager == null? "connect.connecting" : "connect.authorizing"), this.width / 2, this.height / 2 - 50, 16777215);
+        this.drawCenteredString(this.fontRendererObj, frames[this.frame], this.width / 2, this.height / 2 - 30, 16777215);
 
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
