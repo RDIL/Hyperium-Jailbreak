@@ -333,6 +333,9 @@ public class Settings {
     @ConfigOpt @ToggleSetting(name = "BETA - Faster Particle Rendering", category = IMPROVEMENTS)
     public static boolean IMPROVE_PARTICLE_PERF = false;
 
+    @ConfigOpt @ToggleSetting(name = "Blink at the End of Night Vision", category = GENERAL)
+    public static boolean NIGHT_VISION_BLINKING = false;
+
     public static void register() {
         Hyperium.CONFIG.register(INSTANCE);
     }
