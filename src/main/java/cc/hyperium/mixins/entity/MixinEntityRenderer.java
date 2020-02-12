@@ -17,6 +17,7 @@
 
 package cc.hyperium.mixins.entity;
 
+import cc.hyperium.config.Settings;
 import cc.hyperium.handlers.handlers.reach.ReachDisplay;
 import cc.hyperium.mixinsimp.entity.HyperiumEntityRenderer;
 import com.google.common.base.Predicates;
@@ -37,6 +38,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.List;
 
 @Mixin(EntityRenderer.class)
@@ -152,6 +154,13 @@ public abstract class MixinEntityRenderer {
 
                 this.mc.mcProfiler.endSection();
             }
+        }
+    }
+
+    @Inject(method = "getNightVisionBrightness", at = @At("HEAD"), cancellable = true)
+    private void preventBlink(EntityLivingBase p_getNightVisionBrightness_1_, float p_getNightVisionBrightness_2_, CallbackInfoReturnable<Float> cir) {
+        if (!Settings.NIGHT_VISION_BLINKING) {
+            cir.setReturnValue(1.0F);
         }
     }
 }
