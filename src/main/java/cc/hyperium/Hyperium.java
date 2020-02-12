@@ -56,6 +56,7 @@ import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 import com.hyperiumjailbreak.CommonChatResponder;
 import com.hyperiumjailbreak.Popup;
+import com.hyperiumjailbreak.SkyblockAddonsUtils;
 import com.hyperiumjailbreak.BackendHandler;
 import java.io.File;
 
@@ -79,6 +80,7 @@ public class Hyperium {
     private AutoGG autogg = new AutoGG();
     private InternalAddons intAddons;
     private BackendHandler bh = new BackendHandler();
+    private SkyblockAddonsUtils sbu = new SkyblockAddonsUtils();
 
     @InvokeEvent(priority = Priority.HIGH)
     public void init(InitializationEvent event) {
@@ -234,6 +236,10 @@ public class Hyperium {
 
     public HyperiumModIntegration getModIntegration() {
         return modIntegration;
+    }
+
+    public SkyblockAddonsUtils getUtils() {
+        return sbu;
     }
 
     private static void noop() {

@@ -18,7 +18,7 @@ public class SkyblockModPort {
     public static boolean playing() {
         Scoreboard s = Minecraft.getMinecraft().theWorld.getScoreboard();
         ScoreObjective so = s.getObjectiveInDisplaySlot(1);
-        if(so != null) {
+        if (so != null) {
             String objectiveName = ChatColor.stripColor(so.getDisplayName());
             for(String skyblock : skyblockInAllLanguages) {
                 if (objectiveName.startsWith(skyblock)) {

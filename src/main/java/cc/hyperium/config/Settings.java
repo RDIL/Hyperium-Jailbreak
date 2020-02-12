@@ -336,6 +336,12 @@ public class Settings {
     @ConfigOpt @ToggleSetting(name = "Blink at the End of Night Vision", category = GENERAL)
     public static boolean NIGHT_VISION_BLINKING = false;
 
+    @ConfigOpt @ToggleSetting(name = "Hide Players in Lobbies", category = HYPIXELSKYBLOCK)
+    public static boolean SB_HIDE_PLAYERS_IN_LOBBY = false;
+
+    @ConfigOpt @ToggleSetting(name = "Hide Players in Auction House", category = HYPIXELSKYBLOCK)
+    public static boolean HIDE_AH_PLAYERS;
+
     public static void register() {
         Hyperium.CONFIG.register(INSTANCE);
     }

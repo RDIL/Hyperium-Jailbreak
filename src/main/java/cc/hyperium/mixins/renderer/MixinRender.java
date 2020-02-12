@@ -39,4 +39,3 @@ public abstract class MixinRender<T extends Entity> {
         EventBus.INSTANCE.post(new EntityRenderEvent(entity, (float) x, (float) y, (float) z, entity.rotationPitch, entityYaw, 1.0F));
     }
 }
-
