@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Render.class)
 public abstract class MixinRender<T extends Entity> {
-    @Shadow @Final private RenderManager renderManager;
+    @Shadow @Final protected RenderManager renderManager;
     private HyperiumRender<T> hyperiumRender = new HyperiumRender<>((Render<T>) (Object) this);
 
     @Overwrite

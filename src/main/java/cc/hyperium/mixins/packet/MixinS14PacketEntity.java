@@ -26,8 +26,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(S14PacketEntity.class)
 public class MixinS14PacketEntity {
-    @Shadow
-    private int entityId;
+    @Shadow protected int entityId;
 
     @Overwrite
     public Entity getEntity(World worldIn) {

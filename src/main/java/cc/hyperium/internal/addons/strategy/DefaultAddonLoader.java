@@ -23,7 +23,11 @@ public final class DefaultAddonLoader extends AddonLoaderStrategy {
             }
 
             final AddonManifest manifest = (new AddonManifestParser(jar)).getAddonManifest();
-            List<String> array = new ArrayList<>(Arrays.asList("AutoFriend", "Custom Crosshair Addon", "Tab Toggle", "SidebarAddon", "BossbarAddon", "FortniteCompassMod", "Item Physic"));
+            List<String> array = new ArrayList<>(
+                    Arrays.asList(
+                            "AutoFriend", "Custom Crosshair Addon", "Tab Toggle", "SidebarAddon", "BossbarAddon", "FortniteCompassMod", "Item Physic", "Particle Addon"
+                    )
+            );
 
             if (!array.contains(manifest.getName()) && AddonBootstrap.INSTANCE.getPendingManifests().stream().noneMatch(manifest1 -> array.contains(manifest1.getName()))) {
                 Launch.classLoader.addURL(file.toURI().toURL());

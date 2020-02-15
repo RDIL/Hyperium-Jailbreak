@@ -36,7 +36,7 @@ class AddonManifestParser {
         } catch (e: Exception) {
             e.printStackTrace()
         } finally {
-            if (jarInputStream != null) jarInputStream.close()
+            jarInputStream?.close()
             jar.close()
         }
     }

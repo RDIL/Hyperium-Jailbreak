@@ -21,12 +21,13 @@ import org.apache.commons.lang3.StringUtils;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+@SuppressWarnings("unused")
 public abstract class AbstractMod {
     public abstract AbstractMod init();
 
     public abstract Metadata getModMetadata();
 
-    public class Metadata {
+    public static class Metadata {
         private final AbstractMod mod;
         private final String name;
         private final String version;
@@ -63,6 +64,7 @@ public abstract class AbstractMod {
             return this.version;
         }
 
+        @Deprecated
         public String getDisplayName() {
             return this.displayName != null ? this.displayName : getName();
         }

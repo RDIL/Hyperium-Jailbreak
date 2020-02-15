@@ -28,7 +28,7 @@ import net.minecraft.util.StatCollector;
 
 @Mixin(Enchantment.class)
 public abstract class MixinEnchantment {
-    @Shadow abstract String getName();
+    @Shadow public abstract String getName();
 
     @Inject(method = "getTranslatedName", at = @At("HEAD"), cancellable = true)
     private void getTranslatedName(int level, CallbackInfoReturnable<String> ci) {

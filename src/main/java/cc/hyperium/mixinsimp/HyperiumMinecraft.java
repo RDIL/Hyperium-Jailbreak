@@ -163,15 +163,14 @@ public class HyperiumMinecraft {
             guiScreenIn = new GuiGameOver();
         }
 
-        GuiScreen old = currentScreen;
         GuiOpenEvent event = new GuiOpenEvent(guiScreenIn);
         EventBus.INSTANCE.post(event);
 
         if (event.isCancelled()) return;
 
         guiScreenIn = event.getGui();
-        if (old != null && guiScreenIn != old) old.onGuiClosed();
-        if (old != null) EventBus.INSTANCE.unregister(old);
+        if (currentScreen != null && guiScreenIn != currentScreen) currentScreen.onGuiClosed();
+        if (currentScreen != null) EventBus.INSTANCE.unregister(currentScreen);
 
         if (guiScreenIn instanceof GuiHyperiumScreenMainMenu) gameSettings.showDebugInfo = false;
 

@@ -14,24 +14,20 @@ public class HyperiumNetworkPlayerInfo {
     }
 
     public ResourceLocation getLocationCape(ResourceLocation locationCape) {
-        ResourceLocation cape = locationCape;
-
-        if (cape == null) {
+        if (locationCape == null) {
             ((IMixinNetworkPlayerInfo) parent).callLoadPlayerTextures();
         }
 
-        ((IMixinNetworkPlayerInfo) parent).setLocationCape(cape);
-        return cape;
+        ((IMixinNetworkPlayerInfo) parent).setLocationCape(locationCape);
+        return locationCape;
     }
 
     public ResourceLocation getLocationSkin(GameProfile gameProfile, ResourceLocation locationSkin) {
-        ResourceLocation skin = locationSkin;
-
-        if (skin == null) {
+        if (locationSkin == null) {
             ((IMixinNetworkPlayerInfo) parent).callLoadPlayerTextures();
         }
 
-        ResourceLocation normalizedSkin = normalizeSkin(skin, gameProfile);
+        ResourceLocation normalizedSkin = normalizeSkin(locationSkin, gameProfile);
         ((IMixinNetworkPlayerInfo) parent).setLocationSkin(normalizedSkin);
         return normalizedSkin;
     }

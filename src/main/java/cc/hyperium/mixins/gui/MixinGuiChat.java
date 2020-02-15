@@ -32,8 +32,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiChat.class)
 public class MixinGuiChat {
-    @Shadow
-    private GuiTextField inputField;
+    @Shadow protected GuiTextField inputField;
 
     private HyperiumGuiChat hyperiumGuiChat = new HyperiumGuiChat();
 

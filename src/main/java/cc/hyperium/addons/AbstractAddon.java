@@ -21,10 +21,12 @@ import org.apache.commons.lang3.StringUtils;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+@SuppressWarnings("unused")
 public abstract class AbstractAddon {
     public abstract AbstractAddon init();
     public abstract Metadata getAddonMetadata();
-    public class Metadata {
+
+    public static class Metadata {
         private final AbstractAddon addon;
         private final String name;
         private final String version;

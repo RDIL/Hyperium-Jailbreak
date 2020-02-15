@@ -28,6 +28,6 @@ public class BossbarAddon extends AbstractAddon {
 
     @Override
     public Metadata getAddonMetadata() {
-        return new AbstractAddon.Metadata(this, "BossbarAddon", "1", "SiroQ");
+        return new Metadata(this, "BossbarAddon", "1", "SiroQ");
     }
 }

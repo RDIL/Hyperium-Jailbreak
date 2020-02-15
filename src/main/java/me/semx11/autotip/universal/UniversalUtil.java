@@ -17,7 +17,6 @@ public class UniversalUtil {
     }
 
     public static MinecraftVersion getMinecraftVersion() {
-
         return MinecraftVersion.V1_8_9;
     }
 

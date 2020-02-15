@@ -71,11 +71,6 @@ public abstract class MixinEntityPlayer extends EntityLivingBase {
         return hyperiumEntityPlayer.getDisplayName();
     }
 
-    @Inject(method = "dropItem", at = @At("RETURN"))
-    private void itemDrop(ItemStack droppedItem, boolean dropAround, boolean traceItem, CallbackInfoReturnable<EntityItem> cir) {
-        if (cir.getReturnValue() == null) return;
-    }
-
     private void setDisplayName(String name) {
         hyperiumEntityPlayer.setName(name);
     }

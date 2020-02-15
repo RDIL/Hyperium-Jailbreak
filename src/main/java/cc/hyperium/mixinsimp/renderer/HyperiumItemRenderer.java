@@ -82,23 +82,21 @@ public class HyperiumItemRenderer {
                         ((IMixinItemRenderer) parent).callFunc_178104_a(abstractclientplayer, partialTicks);
                         if (Settings.OLD_EATING) {
                             this.transformFirstPersonItem(f, f1);
-                            break;
                         } else {
                             this.transformFirstPersonItem(f, 0.0F);
-                            break;
                         }
+                        break;
                     case BLOCK:
                         if (Settings.OLD_BLOCKHIT) {
                             this.transformFirstPersonItem(f, f1);
                             ((IMixinItemRenderer) parent).callFunc_178103_d();
                             GlStateManager.scale(0.83f, 0.88f, 0.85f);
                             GlStateManager.translate(-0.3f, 0.1f, 0.0f);
-                            break;
                         } else {
                             this.transformFirstPersonItem(f, 0f);
                             ((IMixinItemRenderer) parent).callFunc_178103_d();
-                            break;
                         }
+                        break;
 
                     case BOW:
                         if (Settings.OLD_BOW) {

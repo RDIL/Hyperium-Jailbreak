@@ -32,8 +32,7 @@ public final class ToggleChatMod extends AbstractMod {
     private ToggleBaseHandler toggleHandler;
 
     public ToggleChatMod() {
-        Metadata metadata = new Metadata(this, "ToggleChat", "1", "boomboompower");
-        this.meta = metadata;
+        this.meta = null;
     }
 
     public AbstractMod init() {

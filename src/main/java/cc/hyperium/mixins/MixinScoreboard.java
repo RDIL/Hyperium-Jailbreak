@@ -31,7 +31,7 @@ public abstract class MixinScoreboard {
 
     @Shadow @Final private Map<String, ScorePlayerTeam> teamMemberships;
 
-    @Shadow abstract void func_96513_c(ScorePlayerTeam team);
+    @Shadow public abstract void func_96513_c(ScorePlayerTeam team);
 
     @Overwrite
     public void removeTeam(ScorePlayerTeam team) {
