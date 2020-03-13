@@ -54,34 +54,6 @@ public class HyperiumGuiPlayerTabOverlay {
         final int ping = networkPlayerInfoIn.getResponseTime();
         final int x = p_175245_2_ + p_175245_1_ - (mc.fontRendererObj.getStringWidth(ping + "") >> 1) - 2;
         final int y = yIn + (mc.fontRendererObj.FONT_HEIGHT >> 2);
-        if (Settings.NUMBER_PING) {
-            int colour;
-
-            if (ping > 500) {
-                colour = 11141120;
-            } else if (ping > 300) {
-                colour = 11184640;
-            } else if (ping > 200) {
-                colour = 11193344;
-            } else if (ping > 135) {
-                colour = 2128640;
-            } else if (ping > 70) {
-                colour = 39168;
-            } else if (ping >= 0) {
-                colour = 47872;
-            } else {
-                colour = 11141120;
-            }
-
-            if (ping >= 0 && ping < 10000) {
-                GlStateManager.pushMatrix();
-                GlStateManager.scale(0.5f, 0.5f, 0.5f);
-                mc.fontRendererObj.drawString("   " + ping + "", (2 * x), (2 * y), colour);
-                GlStateManager.scale(2.0f, 2.0f, 2.0f);
-                GlStateManager.popMatrix();
-            }
-            return;
-        }
 
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         mc.getTextureManager().bindTexture(Gui.icons);

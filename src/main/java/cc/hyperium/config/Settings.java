@@ -49,9 +49,6 @@ public class Settings {
     @ConfigOpt @ToggleSetting(name = "gui.settings.smartsounds", category = IMPROVEMENTS)
     public static boolean SMART_SOUNDS = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.numericping", category = VANILLA_ENHANCEMENTS, mods = true)
-    public static boolean NUMBER_PING = true;
-
     @ConfigOpt @ToggleSetting(name = "gui.settings.arrowcountwhenholdingbow", category = VANILLA_ENHANCEMENTS, mods = true)
     public static boolean ARROW_COUNT = true;
 
