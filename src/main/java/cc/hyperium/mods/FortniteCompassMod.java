@@ -3,7 +3,6 @@ import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.render.RenderHUDEvent;
-import cc.hyperium.mods.AbstractMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -40,7 +39,7 @@ public class FortniteCompassMod extends AbstractMod {
 
     @Override
     public Metadata getModMetadata() {
-        return new Metadata(this, "FortniteCompassMod", "1.0", "CanalexMC, ConorTheDev & KiritoDev");
+        return null;
     }
 
     private void drawCompass(int screenWidth) {

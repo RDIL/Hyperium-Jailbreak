@@ -105,6 +105,9 @@ public class MixinModelBiped extends ModelBase implements IMixinModelBiped {
         }
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void render(Entity entityIn, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale) {
         this.setRotationAngles(p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale, entityIn);
@@ -118,31 +121,22 @@ public class MixinModelBiped extends ModelBase implements IMixinModelBiped {
             GlStateManager.pushMatrix();
             GlStateManager.scale(1.0F / f, 1.0F / f, 1.0F / f);
             GlStateManager.translate(0.0F, 24.0F * scale, 0.0F);
-            this.bipedBody.render(scale);
-            this.bipedRightArm.render(scale);
-            this.bipedLeftArm.render(scale);
-            this.bipedRightLeg.render(scale);
-            this.bipedLeftLeg.render(scale);
-            this.bipedHeadwear.render(scale);
-
-            if (getClass().equals(ModelBiped.class))
-                renderBiped(scale);
         } else {
             if (entityIn.isSneaking()) {
                 GlStateManager.translate(0.0F, 0.2F, 0.0F);
             }
 
             this.bipedHead.render(scale);
-            this.bipedBody.render(scale);
-            this.bipedRightArm.render(scale);
-            this.bipedLeftArm.render(scale);
-            this.bipedRightLeg.render(scale);
-            this.bipedLeftLeg.render(scale);
-            this.bipedHeadwear.render(scale);
 
-            if (getClass().equals(ModelBiped.class))
-                renderBiped(scale);
         }
+        this.bipedBody.render(scale);
+        this.bipedRightArm.render(scale);
+        this.bipedLeftArm.render(scale);
+        this.bipedRightLeg.render(scale);
+        this.bipedLeftLeg.render(scale);
+        this.bipedHeadwear.render(scale);
+        if (getClass().equals(ModelBiped.class))
+            renderBiped(scale);
 
         GlStateManager.popMatrix();
     }
@@ -154,6 +148,9 @@ public class MixinModelBiped extends ModelBase implements IMixinModelBiped {
         this.bipedRightLowerLeg.render(scale);
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void setRotationAngles(final float limbSwing, final float limbSwingAmount, final float ageInTicks, final float netHeadYaw, final float headPitch, final float scaleFactor, final Entity entityIn) {
         this.bipedHead.rotateAngleY = netHeadYaw / 57.295776f;

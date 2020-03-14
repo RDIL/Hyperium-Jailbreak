@@ -4,8 +4,6 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 public class CapeUtils {
-    public CapeUtils() {}
-
     public static BufferedImage parseCape(final BufferedImage img) {
         int imageWidth = 64;
         int imageHeight = 32;

@@ -48,7 +48,7 @@ public class AutoGG extends AbstractMod {
 
     @Override
     public Metadata getModMetadata() {
-        return new Metadata(this, "AutoGG", "2", "2Pi");
+        return null;
     }
 
     public AutoGGConfig getConfig() {
@@ -65,10 +65,6 @@ public class AutoGG extends AbstractMod {
 
     public List<String> getTriggers() {
         return triggers;
-    }
-
-    public void setTriggers(final ArrayList<String> triggersIn) {
-        triggers = triggersIn;
     }
 
     public boolean isHypixel() {

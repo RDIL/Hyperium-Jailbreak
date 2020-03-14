@@ -39,7 +39,7 @@ import java.util.List;
 @Mixin(RendererLivingEntity.class)
 public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> extends Render<T> {
     @Shadow
-    private List<LayerRenderer<T>> layerRenderers;
+    protected List<LayerRenderer<T>> layerRenderers;
 
     private HyperiumRenderLivingEntity<T> hyperiumRenderLivingEntity = new HyperiumRenderLivingEntity<>((RendererLivingEntity) (Object) this);
 
@@ -47,6 +47,9 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
         super(renderManager);
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     protected boolean canRenderName(T entity) {
         if (Settings.BETTERF1 && Minecraft.getMinecraft().gameSettings.hideGUI) {
@@ -79,21 +82,33 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
         return Minecraft.isGuiEnabled() && entity != this.renderManager.livingPlayer && !entity.isInvisibleToPlayer(entityplayersp) && entity.riddenByEntity == null;
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     protected void renderLayers(T entitylivingbaseIn, float p_177093_2_, float p_177093_3_, float partialTicks, float p_177093_5_, float p_177093_6_, float p_177093_7_, float p_177093_8_) {
         hyperiumRenderLivingEntity.renderLayers(entitylivingbaseIn, p_177093_2_, p_177093_3_, partialTicks, p_177093_5_, p_177093_6_, p_177093_7_, p_177093_8_, layerRenderers);
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     protected void rotateCorpse(T bat, float p_77043_2_, float p_77043_3_, float partialTicks) {
         hyperiumRenderLivingEntity.rotateCorpse(bat, p_77043_2_, p_77043_3_, partialTicks);
     }
 
+    /**
+     * @author hyperium
+     */
     @Override
     public boolean shouldRender(T livingEntity, ICamera camera, double camX, double camY, double camZ) {
         return super.shouldRender(livingEntity, camera, camX, camY, camZ);
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void renderName(T entity, double x, double y, double z) {
         hyperiumRenderLivingEntity.renderName(entity, x, y, z, renderManager);

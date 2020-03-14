@@ -139,6 +139,9 @@ public class MixinModelPlayer extends MixinModelBiped implements IMixinModelPlay
         );
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void render(Entity entityIn, float p_78088_2_, float p_78088_3_, float p_78088_4_, float p_78088_5_, float p_78088_6_, float scale) {
         super.render(entityIn, p_78088_2_, p_78088_3_, p_78088_4_, p_78088_5_, p_78088_6_, scale);
@@ -148,42 +151,25 @@ public class MixinModelPlayer extends MixinModelBiped implements IMixinModelPlay
             float f = 2.0F;
             GlStateManager.scale(1.0F / f, 1.0F / f, 1.0F / f);
             GlStateManager.translate(0.0F, 24.0F * scale, 0.0F);
-            this.bipedLeftLegwear.render(scale);
-            this.bipedRightLegwear.render(scale);
-            this.bipedLeftArmwear.render(scale);
-            this.bipedRightArmwear.render(scale);
-            this.bipedBodyWear.render(scale);
-
-            // Rendering the extra parts we created
-            this.bipedLeftForeArmwear.render(scale);
-            this.bipedLeftForeArm.render(scale);
-            this.bipedRightForeArmwear.render(scale);
-            this.bipedRightForeArm.render(scale);
-            this.bipedLeftLowerLeg.render(scale);
-            this.bipedLeftLowerLegwear.render(scale);
-            this.bipedRightLowerLeg.render(scale);
-            this.bipedRightLowerLegwear.render(scale);
         } else {
             if (entityIn.isSneaking()) {
                 GlStateManager.translate(0.0F, 0.2F, 0.0F);
             }
-
-            this.bipedLeftLegwear.render(scale);
-            this.bipedRightLegwear.render(scale);
-            this.bipedLeftArmwear.render(scale);
-            this.bipedRightArmwear.render(scale);
-            this.bipedBodyWear.render(scale);
-
-            // Rendering the extra parts we created
-            this.bipedLeftForeArmwear.render(scale);
-            this.bipedLeftForeArm.render(scale);
-            this.bipedRightForeArmwear.render(scale);
-            this.bipedRightForeArm.render(scale);
-            this.bipedLeftLowerLeg.render(scale);
-            this.bipedLeftLowerLegwear.render(scale);
-            this.bipedRightLowerLeg.render(scale);
-            this.bipedRightLowerLegwear.render(scale);
         }
+        // Rendering the extra parts we created
+        this.bipedLeftLegwear.render(scale);
+        this.bipedRightLegwear.render(scale);
+        this.bipedLeftArmwear.render(scale);
+        this.bipedRightArmwear.render(scale);
+        this.bipedBodyWear.render(scale);
+        this.bipedLeftForeArmwear.render(scale);
+        this.bipedLeftForeArm.render(scale);
+        this.bipedRightForeArmwear.render(scale);
+        this.bipedRightForeArm.render(scale);
+        this.bipedLeftLowerLeg.render(scale);
+        this.bipedLeftLowerLegwear.render(scale);
+        this.bipedRightLowerLeg.render(scale);
+        this.bipedRightLowerLegwear.render(scale);
 
         GlStateManager.popMatrix();
     }
