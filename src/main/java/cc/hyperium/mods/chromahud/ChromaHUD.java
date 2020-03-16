@@ -130,7 +130,7 @@ public class ChromaHUD extends AbstractMod {
 
     @Override
     public Metadata getModMetadata() {
-        return new Metadata(this, "ChromaHUD", "3", "Sk1er");
+        return null;
     }
 
     public void setup() {

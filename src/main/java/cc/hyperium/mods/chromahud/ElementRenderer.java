@@ -30,7 +30,6 @@ import net.minecraft.item.ItemStack;
 import org.lwjgl.input.Mouse;
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class ElementRenderer {
@@ -120,10 +119,7 @@ public class ElementRenderer {
     }
 
     public static int getCPS() {
-        Iterator<Long> iterator = clicks.iterator();
-        while (iterator.hasNext())
-            if (System.currentTimeMillis() - iterator.next() > 1000L)
-                iterator.remove();
+        clicks.removeIf(aLong -> System.currentTimeMillis() - aLong > 1000L);
         return clicks.size();
     }
 
@@ -168,10 +164,7 @@ public class ElementRenderer {
     }
 
     public static int getRightCPS() {
-        Iterator<Long> iterator = rClicks.iterator();
-        while (iterator.hasNext())
-            if (System.currentTimeMillis() - iterator.next() > 1000L)
-                iterator.remove();
+        rClicks.removeIf(aLong -> System.currentTimeMillis() - aLong > 1000L);
         return rClicks.size();
     }
 

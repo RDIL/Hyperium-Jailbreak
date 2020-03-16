@@ -24,9 +24,7 @@ import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.gui.GuiBlock;
 import cc.hyperium.gui.GuiBoxItem;
 import cc.hyperium.gui.HyperiumGui;
-import cc.hyperium.mods.chromahud.NumberUtil;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
-import cc.hyperium.utils.ChatColor;
 import cc.hyperium.utils.JsonHolder;
 import net.hypixel.api.HypixelApiFriendObject;
 import com.google.gson.JsonElement;
@@ -37,7 +35,6 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.util.EnumChatFormatting;
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
 import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -59,7 +56,6 @@ public class HypixelFriendsGui extends HyperiumGui {
     private GuiTextField textField;
     private GuiBoxItem<HypixelApiFriendObject> selectedItem = null;
     private int columnWidth;
-    private int removeTicks = 0;
 
     public HypixelFriendsGui() {
         rebuildFriends();
@@ -112,37 +108,6 @@ public class HypixelFriendsGui extends HyperiumGui {
                 }
             } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
-            }
-        });
-
-        reg("REMOVE", new GuiButton(nextId(), ResolutionUtil.current().getScaledWidth() - 153, 23 + 21 * 2, 150, 20, "Remove (Hold down)"), guiButton -> {
-
-        }, guiButton -> {
-            if (guiButton.isMouseOver() && Mouse.isButtonDown(0) && guiButton.enabled) {
-                if (selected.isEmpty()) {
-                    guiButton.displayString = "Select people first!";
-                    return;
-                }
-                removeTicks++;
-                final int totalTick = 100;
-                if (removeTicks >= totalTick) {
-                    Iterator<HypixelApiFriendObject> iterator = selected.iterator();
-                    while (iterator.hasNext()) {
-                        HypixelApiFriendObject next = iterator.next();
-                        if (iterator.hasNext())
-                            Hyperium.INSTANCE.getHandlers().getCommandQueue().queue("/friend remove " + next.getName());
-                        else
-                            Hyperium.INSTANCE.getHandlers().getCommandQueue().register("/friend remove " + next.getName(), () -> guiButton.enabled = true);
-                    }
-                    guiButton.enabled = false;
-                    selected.clear();
-                }
-                double remaining = totalTick - removeTicks;
-                guiButton.displayString = ChatColor.RED + "Removing in: " + NumberUtil.round(remaining / 20, 1);
-
-            } else {
-                removeTicks = 0;
-                guiButton.displayString = "Remove (Hold down)";
             }
         });
     }
@@ -340,7 +305,7 @@ public class HypixelFriendsGui extends HyperiumGui {
 
     }
 
-    class HypixelFriends {
+    static class HypixelFriends {
         private final List<HypixelApiFriendObject> all = new ArrayList<>();
         private List<HypixelApiFriendObject> working = new ArrayList<>();
 

@@ -15,6 +15,6 @@ public class ItemPhysicMod extends AbstractMod {
 
     @Override
     public Metadata getModMetadata() {
-        return new Metadata(this, "Item Physic", "1", "CreativeMD");
+        return null;
     }
 }

@@ -428,7 +428,7 @@ public class LevelHeadGui extends GuiScreen {
 
         } else {
             drawCenteredString(renderer, "Levelhead disabled", this.width / 2, 30, Color.WHITE.getRGB());
-            drawCenteredString(renderer, "Player level\'s will not appear", this.width / 2, 40, Color.WHITE.getRGB());
+            drawCenteredString(renderer, "Player levels will not appear", this.width / 2, 40, Color.WHITE.getRGB());
         }
     }
 

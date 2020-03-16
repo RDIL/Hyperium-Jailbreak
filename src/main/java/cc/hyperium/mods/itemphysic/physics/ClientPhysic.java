@@ -97,9 +97,8 @@ public class ClientPhysic {
 
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         for (int k = 0; k < j; ++k) {
+            GlStateManager.pushMatrix();
             if (flag1) {
-                GlStateManager.pushMatrix();
-
                 if (k > 0) {
                     float f7 = (random.nextFloat() * 2.0F - 1.0F) * 0.15F;
                     float f9 = (random.nextFloat() * 2.0F - 1.0F) * 0.15F;
@@ -110,8 +109,6 @@ public class ClientPhysic {
                 mc.getRenderItem().renderItem(itemstack, ibakedmodel);
                 GlStateManager.popMatrix();
             } else {
-                GlStateManager.pushMatrix();
-
                 mc.getRenderItem().renderItem(itemstack, ibakedmodel);
                 GlStateManager.popMatrix();
                 GlStateManager.translate(0.0F, 0.0F, 0.05375F);
