@@ -1,9 +1,7 @@
 package cc.hyperium.mixinsimp.gui;
 
-import cc.hyperium.Hyperium;
 import cc.hyperium.config.Settings;
 import cc.hyperium.handlers.handlers.data.HypixelAPI;
-import cc.hyperium.mixins.gui.IMixinGui;
 import cc.hyperium.mixins.gui.IMixinGuiPlayerTabOverlay;
 import cc.hyperium.utils.ChatColor;
 import cc.hyperium.utils.StaffUtils;
@@ -50,31 +48,30 @@ public class HyperiumGuiPlayerTabOverlay {
         }
     }
 
-    public void drawPing(int p_175245_1_, int p_175245_2_, int yIn, NetworkPlayerInfo networkPlayerInfoIn, float zLevel, Minecraft mc) {
-        final int ping = networkPlayerInfoIn.getResponseTime();
-        final int x = p_175245_2_ + p_175245_1_ - (mc.fontRendererObj.getStringWidth(ping + "") >> 1) - 2;
+    public void drawPing(int p_175245_1_, int p_175245_2_, int yIn, GameProfile person) {
+        String s = "⚫";
+        Minecraft mc = Minecraft.getMinecraft();
+
+        final int x = p_175245_2_ + p_175245_1_ - (mc.fontRendererObj.getStringWidth(s) >> 1) - 2;
         final int y = yIn + (mc.fontRendererObj.FONT_HEIGHT >> 2);
 
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         mc.getTextureManager().bindTexture(Gui.icons);
-        int i = 0;
-        int j;
 
-        if (ping < 0) {
-            j = 5;
-        } else if (ping < 300) {
-            j = 1;
-        } else if (ping < 600) {
-            j = 2;
-        } else if (ping < 1000) {
-            j = 3;
+        boolean green = mc.getSession().getProfile().getId() == person.getId();
+
+        if (StaffUtils.isStaff(person.getId())) {
+            StaffUtils.DotColour colour = StaffUtils.getColor(person.getId());
+            if (colour.isChroma) {
+                drawChromaWaveString(s, x, y);
+            } else {
+                String format = StaffUtils.getColor(person.getId()).baseColour + s;
+                mc.fontRendererObj.drawString(format, x, y, Color.WHITE.getRGB());
+            }
         } else {
-            j = 4;
+            String format = green ? ChatColor.GREEN + s : ChatColor.RED + s;
+            mc.fontRendererObj.drawString(format, x, y, Color.WHITE.getRGB());
         }
-
-        ((IMixinGui) parent).setZLevel(zLevel + 100.0F);
-        parent.drawTexturedModalRect(p_175245_2_ + p_175245_1_ - 5, yIn, i * 10, 176 + j * 8, 10, 8);
-        ((IMixinGui) parent).setZLevel(zLevel - 100.0F);
     }
 
     public void renderPlayerlist(int width, Scoreboard scoreboardIn, ScoreObjective scoreObjectiveIn, Ordering<NetworkPlayerInfo> field_175252_a, IChatComponent header, IChatComponent footer, Minecraft mc) {
@@ -201,33 +198,6 @@ public class HyperiumGuiPlayerTabOverlay {
                     j2 += 9;
                 }
 
-                int renderX = j2 + mc.fontRendererObj.getStringWidth(s1) + 2;
-
-                if (Settings.SHOW_ONLINE_PLAYERS) {
-                    String s = "⚫";
-
-                    boolean online;
-
-                    if (mc.getSession().getProfile().getId() == gameprofile.getId()) {
-                        online = true;
-                    } else {
-                        online = Hyperium.INSTANCE.getHandlers().getStatusHandler().isOnline(gameprofile.getId());
-                    }
-
-                    if (StaffUtils.isStaff(gameprofile.getId())) {
-                        StaffUtils.DotColour colour = StaffUtils.getColor(gameprofile.getId());
-                        if (colour.isChroma) {
-                            drawChromaWaveString(s, renderX, (k2 - 2));
-                        } else {
-                            String format = StaffUtils.getColor(gameprofile.getId()).baseColour + s;
-                            mc.fontRendererObj.drawString(format, renderX, (k2 - 2), Color.WHITE.getRGB());
-                        }
-                    } else {
-                        String format = online ? ChatColor.GREEN + s : ChatColor.RED + s;
-                        mc.fontRendererObj.drawString(format, renderX, (k2 - 2), Color.WHITE.getRGB());
-                    }
-                }
-
                 if (networkplayerinfo1.getGameType() == WorldSettings.GameType.SPECTATOR) {
                     s1 = EnumChatFormatting.ITALIC + s1;
                     mc.fontRendererObj.drawStringWithShadow(s1, (float) j2, (float) k2, -1862270977);
@@ -244,7 +214,7 @@ public class HyperiumGuiPlayerTabOverlay {
                     }
                 }
 
-                ((IMixinGuiPlayerTabOverlay) parent).callDrawPing(i1, j2 - (flag ? 9 : 0), k2, networkplayerinfo1);
+                this.drawPing(i1, j2 - (flag ? 9 : 0), k2, gameprofile);
             }
         }
 

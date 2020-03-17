@@ -172,9 +172,6 @@ public class Settings {
     @ConfigOpt @ToggleSetting(category = HYPIXEL, name = "gui.settings.friendsfirstintab")
     public static boolean FRIENDS_FIRST_IN_TAB = true;
 
-    @ConfigOpt @ToggleSetting(category = GENERAL, name = "gui.settings.onlineindicator")
-    public static boolean SHOW_ONLINE_PLAYERS = true;
-
     @ConfigOpt @ToggleSetting(category = HYPIXEL, name = "gui.settings.pingondm")
     public static boolean PING_ON_DM = true;
 
