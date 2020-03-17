@@ -101,7 +101,7 @@ public class HyperiumRender<T extends Entity> {
             if (show)
                 fontrenderer.drawString(str, -fontrenderer.getStringWidth(str) / 2, 0, -1);
             if (show)
-                if (Settings.SHOW_ONLINE_PLAYERS && Settings.SHOW_DOTS_ON_NAME_TAGS && entityIn instanceof EntityPlayer) {
+                if (Settings.SHOW_DOTS_ON_NAME_TAGS && entityIn instanceof EntityPlayer) {
                     String s = "⚫";
                     UUID gameProfileId = ((EntityPlayer) entityIn).getGameProfile().getId();
                     boolean online = Hyperium.INSTANCE.getHandlers().getStatusHandler().isOnline(gameProfileId);
