@@ -54,9 +54,7 @@ public abstract class MixinGuiPlayerTabOverlay extends Gui {
     private HyperiumGuiPlayerTabOverlay hyperiumGuiPlayerTabOverlay = new HyperiumGuiPlayerTabOverlay((GuiPlayerTabOverlay) (Object) this);
 
     @Overwrite
-    protected void drawPing(int p_175245_1_, int p_175245_2_, int yIn, NetworkPlayerInfo networkPlayerInfoIn) {
-        hyperiumGuiPlayerTabOverlay.drawPing(p_175245_1_, p_175245_2_, yIn, networkPlayerInfoIn, this.zLevel, this.mc);
-    }
+    protected void drawPing(int p_175245_1_, int p_175245_2_, int yIn, NetworkPlayerInfo networkPlayerInfoIn) { }
 
     @Overwrite
     public void renderPlayerlist(int width, Scoreboard scoreboardIn, ScoreObjective scoreObjectiveIn) {

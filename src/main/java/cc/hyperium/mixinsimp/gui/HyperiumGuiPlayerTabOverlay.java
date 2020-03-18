@@ -3,7 +3,6 @@ package cc.hyperium.mixinsimp.gui;
 import cc.hyperium.Hyperium;
 import cc.hyperium.config.Settings;
 import cc.hyperium.handlers.handlers.data.HypixelAPI;
-import cc.hyperium.mixins.gui.IMixinGui;
 import cc.hyperium.mixins.gui.IMixinGuiPlayerTabOverlay;
 import cc.hyperium.utils.ChatColor;
 import cc.hyperium.utils.StaffUtils;
@@ -48,33 +47,6 @@ public class HyperiumGuiPlayerTabOverlay {
             renderer.drawString(tmp, (float) ((double) x), (float) ((double) y), i, false);
             x += (double) renderer.getCharWidth(c);
         }
-    }
-
-    public void drawPing(int p_175245_1_, int p_175245_2_, int yIn, NetworkPlayerInfo networkPlayerInfoIn, float zLevel, Minecraft mc) {
-        final int ping = networkPlayerInfoIn.getResponseTime();
-        final int x = p_175245_2_ + p_175245_1_ - (mc.fontRendererObj.getStringWidth(ping + "") >> 1) - 2;
-        final int y = yIn + (mc.fontRendererObj.FONT_HEIGHT >> 2);
-
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        mc.getTextureManager().bindTexture(Gui.icons);
-        int i = 0;
-        int j;
-
-        if (ping < 0) {
-            j = 5;
-        } else if (ping < 300) {
-            j = 1;
-        } else if (ping < 600) {
-            j = 2;
-        } else if (ping < 1000) {
-            j = 3;
-        } else {
-            j = 4;
-        }
-
-        ((IMixinGui) parent).setZLevel(zLevel + 100.0F);
-        parent.drawTexturedModalRect(p_175245_2_ + p_175245_1_ - 5, yIn, i * 10, 176 + j * 8, 10, 8);
-        ((IMixinGui) parent).setZLevel(zLevel - 100.0F);
     }
 
     public void renderPlayerlist(int width, Scoreboard scoreboardIn, ScoreObjective scoreObjectiveIn, Ordering<NetworkPlayerInfo> field_175252_a, IChatComponent header, IChatComponent footer, Minecraft mc) {
