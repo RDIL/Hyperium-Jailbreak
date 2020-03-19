@@ -145,7 +145,7 @@ public class HyperiumGuiPlayerTabOverlay {
             int i5 = k4 % i4;
             int j2 = j1 + l4 * i1 + l4 * 5;
             int k2 = k1 + i5 * 9;
-            Gui.drawRect(j2, k2, j2 + i1 + 6, k2 + 8, 553648127);
+            Gui.drawRect(j2, k2, j2 + i1, k2 + 8, 553648127);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             GlStateManager.enableAlpha();
             GlStateManager.enableBlend();
