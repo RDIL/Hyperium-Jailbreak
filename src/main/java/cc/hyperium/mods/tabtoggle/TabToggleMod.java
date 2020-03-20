@@ -14,9 +14,4 @@ public class TabToggleMod extends AbstractMod {
         Hyperium.INSTANCE.getHandlers().getSettingsHandler().getSettingsObjects().add(object);
         return this;
     }
-
-    @Override
-    public Metadata getModMetadata() {
-        return new Metadata(this, "Tab Toggle", "1", "Hyperium");
-    }
 }

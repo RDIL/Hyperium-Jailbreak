@@ -33,6 +33,9 @@ class MixinScreenShotHelper {
 
     @Shadow private static int[] pixelValues;
 
+    /**
+     * @author hyperium
+     */
     @Overwrite public static IChatComponent saveScreenshot(File gameDirectory, String screenshotName, int width, int height, Framebuffer buffer) {
         return HyperiumScreenshotHelper.saveScreenshot(gameDirectory, screenshotName, width, height, buffer, pixelBuffer, pixelValues);
     }

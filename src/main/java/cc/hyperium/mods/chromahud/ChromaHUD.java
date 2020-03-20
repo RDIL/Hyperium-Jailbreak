@@ -128,11 +128,6 @@ public class ChromaHUD extends AbstractMod {
         return this;
     }
 
-    @Override
-    public Metadata getModMetadata() {
-        return null;
-    }
-
     public void setup() {
         JsonHolder data = new JsonHolder();
         try {

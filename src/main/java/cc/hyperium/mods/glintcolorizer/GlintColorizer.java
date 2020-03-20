@@ -36,11 +36,6 @@ public class GlintColorizer extends AbstractMod {
         Colors.onepoint8glintcolorI = getIntFromColor(Colors.glintR, Colors.glintG, Colors.glintB);
     }
 
-    @Override
-    public Metadata getModMetadata() {
-        return new Metadata(this, "GlintColor", "1", "powns");
-    }
-    
     private int getIntFromColor(int red, int green, int blue) {
         red = (red << 16) & 0x00FF0000;
         green = (green << 8) & 0x0000FF00;

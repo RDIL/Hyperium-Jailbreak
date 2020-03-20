@@ -50,11 +50,6 @@ public class TimeChanger extends AbstractMod {
         return this;
     }
 
-    @Override
-    public Metadata getModMetadata() {
-        return new Metadata(this, "timechanger", "1", "fyu");
-    }
-
     public TimeType getTimeType() {
         return this.timeType;
     }

@@ -79,6 +79,9 @@ public abstract class MixinNetHandlerPlayClient {
         return currentCompletions;
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void handleTimeUpdate(S03PacketTimeUpdate packet) {
         if (this.timeChanger == null) {
@@ -117,6 +120,9 @@ public abstract class MixinNetHandlerPlayClient {
         this.gameController.theWorld.setWorldTime(packetIn.getWorldTime());
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void handleAnimation(S0BPacketAnimation packetIn) {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, (INetHandlerPlayClient) getNetworkManager().getNetHandler(), this.gameController);
@@ -207,6 +213,9 @@ public abstract class MixinNetHandlerPlayClient {
     @Shadow
     public abstract void addToSendQueue(Packet p_147297_1_);
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void handleChat(S02PacketChat packetIn) {
         PacketThreadUtil.checkThreadAndEnqueue(packetIn, (INetHandlerPlayClient) getNetworkManager().getNetHandler(), this.gameController);

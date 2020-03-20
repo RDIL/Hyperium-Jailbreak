@@ -17,56 +17,6 @@
 
 package cc.hyperium.mods;
 
-import org.apache.commons.lang3.StringUtils;
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-
-@SuppressWarnings("unused")
 public abstract class AbstractMod {
     public abstract AbstractMod init();
-
-    public abstract Metadata getModMetadata();
-
-    public static class Metadata {
-        private final AbstractMod mod;
-        private final String name;
-        private final String version;
-
-        private String displayName;
-
-        public Metadata(AbstractMod mod, String name) {
-            this(mod, name, "1");
-        }
-
-        public Metadata(AbstractMod mod, String name, String version) {
-            this(mod, name, version, "");
-        }
-
-        public Metadata(AbstractMod mod, String name, String version, String author) {
-            checkNotNull(mod, "Mod instance cannot be null");
-            checkArgument(!StringUtils.isEmpty(name), "Name cannot be null or empty (" + name + ")");
-            checkArgument(!StringUtils.isEmpty(version), "Version cannot be null or empty (" + version + ")");
-            this.mod = mod;
-            this.name = name;
-            this.version = version;
-            this.displayName = name;
-        }
-
-        public AbstractMod getMod() {
-            return this.mod;
-        }
-
-        public String getName() {
-            return this.name != null ? this.name : "";
-        }
-
-        public String getVersion() {
-            return this.version;
-        }
-
-        @Deprecated
-        public String getDisplayName() {
-            return this.displayName != null ? this.displayName : getName();
-        }
-    }
 }

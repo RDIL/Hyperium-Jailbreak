@@ -46,11 +46,6 @@ public class AutoGG extends AbstractMod {
         return this;
     }
 
-    @Override
-    public Metadata getModMetadata() {
-        return null;
-    }
-
     public AutoGGConfig getConfig() {
         return this.config;
     }

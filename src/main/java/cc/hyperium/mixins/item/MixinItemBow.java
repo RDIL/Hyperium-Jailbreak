@@ -21,6 +21,9 @@ public abstract class MixinItemBow extends Item {
     @Shadow
     public abstract int getMaxItemUseDuration(ItemStack p_getMaxItemUseDuration_1_);
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void onPlayerStoppedUsing(ItemStack p_onPlayerStoppedUsing_1_, World p_onPlayerStoppedUsing_2_, EntityPlayer p_onPlayerStoppedUsing_3_, int p_onPlayerStoppedUsing_4_) {
         boolean lvt_5_1_ = p_onPlayerStoppedUsing_3_.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, p_onPlayerStoppedUsing_1_) > 0;

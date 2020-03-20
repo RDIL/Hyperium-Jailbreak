@@ -1,6 +1,5 @@
 package cc.hyperium.mixins;
 
-import cc.hyperium.Hyperium;
 import cc.hyperium.commands.defaults.CommandDebug;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
@@ -17,7 +16,6 @@ public abstract class MixinCrashReport {
     @Inject(method = "populateEnvironment", at = @At("HEAD"))
     public void add(CallbackInfo info) {
         CrashReportCategory category = this.makeCategoryDepth("Affected level", 1);
-        category.addCrashSection("HyperiumJailbreak Version", Hyperium.modid);
         category.addCrashSection("HJB DEBUG INFO", CommandDebug.get());
     }
 }

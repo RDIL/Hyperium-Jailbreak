@@ -29,7 +29,6 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.resources.DefaultResourcePack;
@@ -121,15 +120,19 @@ public abstract class MixinMinecraft {
         hyperiumMinecraft.fullScreenFix(fullscreen, displayWidth, displayHeight);
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void displayGuiScreen(GuiScreen guiScreenIn) {
         hyperiumMinecraft.displayGuiScreen(guiScreenIn, currentScreen, theWorld, thePlayer, gameSettings, ingameGUI);
     }
 
-    @Shadow public abstract void shutdown();
     @Shadow public abstract void run();
-    @Shadow public EffectRenderer effectRenderer;
 
+    /**
+     * @author hyperium
+     */
     @Overwrite private void drawSplashScreen(TextureManager tm) {
         SplashProgress.drawSplash(tm);
     }
@@ -157,6 +160,9 @@ public abstract class MixinMinecraft {
         hyperiumMinecraft.runTickMouseButton(ci);
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void displayCrashReport(CrashReport crashReportIn) {
         hyperiumMinecraft.displayCrashReport(crashReportIn);

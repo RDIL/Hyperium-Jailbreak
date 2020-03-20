@@ -60,6 +60,9 @@ public class MixinChunk {
         hyperiumChunk.getLightSubtracted(pos, amount, ci);
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void onChunkLoad() {
         this.isChunkLoaded = true;
@@ -76,6 +79,9 @@ public class MixinChunk {
         }
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void onChunkUnload() {
         synchronized (entityLists) {
@@ -85,12 +91,15 @@ public class MixinChunk {
                 this.worldObj.markTileEntityForRemoval(tileentity);
             }
 
-            for (int i = 0; i < this.entityLists.length; ++i) {
-                this.worldObj.unloadEntities(this.entityLists[i]);
+            for (ClassInheritanceMultiMap<Entity> entityList : this.entityLists) {
+                this.worldObj.unloadEntities(entityList);
             }
         }
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void addEntity(Entity entityIn) {
         synchronized (entityLists) {
@@ -120,6 +129,9 @@ public class MixinChunk {
         }
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void removeEntityAtIndex(Entity entityIn, int p_76608_2_) {
         synchronized (entityLists) {
@@ -135,6 +147,9 @@ public class MixinChunk {
         }
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void getEntitiesWithinAABBForEntity(Entity entityIn, AxisAlignedBB aabb, List<Entity> listToFill, com.google.common.base.Predicate<? super Entity> p_177414_4_) {
         synchronized (entityLists) {
@@ -154,8 +169,8 @@ public class MixinChunk {
                             Entity[] aentity = entity.getParts();
 
                             if (aentity != null) {
-                                for (int l = 0; l < aentity.length; ++l) {
-                                    entity = aentity[l];
+                                for (Entity value : aentity) {
+                                    entity = value;
 
                                     if (entity != entityIn && entity.getEntityBoundingBox().intersectsWith(aabb) && (p_177414_4_ == null || p_177414_4_.apply(entity))) {
                                         listToFill.add(entity);
@@ -169,6 +184,9 @@ public class MixinChunk {
         }
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public <T extends Entity> void getEntitiesOfTypeWithinAAAB(Class<? extends T> entityClass, AxisAlignedBB aabb, List<T> listToFill, Predicate<? super T> p_177430_4_) {
         synchronized (entityLists) {

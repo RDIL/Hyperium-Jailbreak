@@ -67,7 +67,7 @@ public class BlockOverlaySettings {
                 this.chromaSpeed = json.optInt("chromaSpeed");
                 bufferedReader.close();
             }
-        } catch (Exception e) {}
+        } catch (Exception ignored) {}
     }
 
     public void save() {
@@ -86,7 +86,7 @@ public class BlockOverlaySettings {
             json.addProperty("overlayAlpha", this.overlayAlpha);
             json.addProperty("chromaSpeed", this.chromaSpeed);
             json.writeToFile(this.configFile);
-        } catch (Exception exception) {}
+        } catch (Exception ignored) {}
     }
 
     public BlockOverlayMode getOverlayMode() {

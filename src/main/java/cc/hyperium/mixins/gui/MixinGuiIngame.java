@@ -79,6 +79,9 @@ public abstract class MixinGuiIngame extends Gui {
         hyperiumGuiIngame.renderSelectedItem();
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     private void renderPlayerStats(ScaledResolution p_180477_1_) {
         if (this.mc.getRenderViewEntity() instanceof EntityPlayer) {

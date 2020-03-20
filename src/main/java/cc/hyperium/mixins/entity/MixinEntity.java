@@ -91,6 +91,9 @@ public abstract class MixinEntity {
     @Shadow protected abstract void dealFireDamage(int amount);
     @Shadow public abstract void setFire(int seconds);
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void moveEntity(double x, double y, double z) {
         if (this.noClip) {

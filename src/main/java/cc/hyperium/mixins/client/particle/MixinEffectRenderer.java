@@ -6,7 +6,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.particle.EntityParticleEmitter;
-import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -56,6 +55,9 @@ public abstract class MixinEffectRenderer {
         }
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     private void moveToLayer(EntityFX effect, int p_178924_2_, int p_178924_3_) {
         for (int i = 0; i < 4; ++i) {
@@ -66,6 +68,9 @@ public abstract class MixinEffectRenderer {
         }
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     private void tickParticle(EntityFX p_178923_1_) {
         if (p_178923_1_ == null)
@@ -84,6 +89,9 @@ public abstract class MixinEffectRenderer {
         }
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     private void updateEffectLayer(int p_178922_1_) {
         for (int i = 0; i < 2; ++i) {
@@ -144,11 +152,17 @@ public abstract class MixinEffectRenderer {
         queue.removeIf(entityFX -> entityFX.isDead);
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void emitParticleAtEntity(Entity entityIn, EnumParticleTypes particleTypes) {
         this.modifiedParticlEmmiters.add(new EntityParticleEmitter(this.worldObj, entityIn, particleTypes));
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void addEffect(EntityFX effect) {
         int i = effect.getFXLayer();
@@ -161,6 +175,9 @@ public abstract class MixinEffectRenderer {
         this.modifiedFxLayer[i][j].add(effect);
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void renderLitParticles(Entity entityIn, float p_78872_2_) {
         float f1 = MathHelper.cos(entityIn.rotationYaw * 0.017453292F);
@@ -181,6 +198,9 @@ public abstract class MixinEffectRenderer {
         }
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void clearEffects(World worldIn) {
         this.worldObj = worldIn;
@@ -194,6 +214,9 @@ public abstract class MixinEffectRenderer {
         this.modifiedParticlEmmiters.clear();
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public String getStatistics() {
         int i = 0;
@@ -206,6 +229,9 @@ public abstract class MixinEffectRenderer {
         return "" + i;
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void updateEffects() {
         latch = Settings.IMPROVE_PARTICLE_PERF ? new CountDownLatch(8) : null;
@@ -227,6 +253,9 @@ public abstract class MixinEffectRenderer {
         modifiedParticlEmmiters.removeIf(entityParticleEmitter -> entityParticleEmitter.isDead);
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void renderParticles(Entity entityIn, float partialTicks) {
         float f = ActiveRenderInfo.getRotationX();

@@ -81,11 +81,6 @@ public class Levelhead extends AbstractMod {
         return this;
     }
 
-    @Override
-    public Metadata getModMetadata() {
-        return new Metadata(this, "Levelhead", "5.0", "Sk1er");
-    }
-
     @SuppressWarnings("SimplifiableIfStatement")
     public boolean loadOrRender(EntityPlayer player) {
         if (!Hyperium.INSTANCE.getHandlers().getHypixelDetector().isHypixel()) return false;

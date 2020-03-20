@@ -64,6 +64,9 @@ public abstract class MixinWorld {
         hyperiumWorld.getLightFromNeighborsFor(type, pos, ci);
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public double getHorizon() {
         return hyperiumWorld.getHorizon(worldInfo);
@@ -89,6 +92,9 @@ public abstract class MixinWorld {
         hyperiumWorld.getLight(pos, checkNeighbors, ci);
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite public void updateEntities() {
         hyperiumWorld.updateEntities(theProfiler, weatherEffects, loadedEntityList, unloadedEntityList, tickableTileEntities, worldBorder, loadedTileEntityList, tileEntitiesToBeRemoved, addedTileEntityList);
     }

@@ -77,6 +77,9 @@ public abstract class MixinEntityRenderer {
         hyperiumEntityRenderer.updatePerspectiveCamera();
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void getMouseOver(float partialTicks) {
         Entity entity = this.mc.getRenderViewEntity();
@@ -104,13 +107,13 @@ public abstract class MixinEntityRenderer {
                 this.pointedEntity = null;
                 Vec3 vec33 = null;
                 float f = 1.0F;
-                List<Entity> list = this.mc.theWorld.getEntitiesInAABBexcluding(entity, entity.getEntityBoundingBox().addCoord(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0).expand((double) f, (double) f, (double) f), Predicates.and(EntitySelectors.NOT_SPECTATING, Entity::canBeCollidedWith));
+                List<Entity> list = this.mc.theWorld.getEntitiesInAABBexcluding(entity, entity.getEntityBoundingBox().addCoord(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0).expand(f, f, f), Predicates.and(EntitySelectors.NOT_SPECTATING, Entity::canBeCollidedWith));
                 double d2 = d1;
 
                 for (int j = 0; j < list.size(); ++j) {
                     Entity entity1 = list.get(j);
                     float f1 = entity1.getCollisionBorderSize();
-                    AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().expand((double) f1, (double) f1, (double) f1);
+                    AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().expand(f1, f1, f1);
                     MovingObjectPosition movingobjectposition = axisalignedbb.calculateIntercept(vec3, vec32);
 
                     if (axisalignedbb.isVecInside(vec3)) {

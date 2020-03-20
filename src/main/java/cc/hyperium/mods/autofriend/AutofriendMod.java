@@ -30,11 +30,6 @@ public class AutofriendMod extends AbstractMod {
         return this;
     }
 
-    @Override
-    public Metadata getModMetadata() {
-        return new Metadata(this, "Autofriend Mod", "1", "2Pi");
-    }
-
     @InvokeEvent
     public void friendRequestEvent(final HypixelFriendRequestEvent event) {
         String name = event.getFrom();

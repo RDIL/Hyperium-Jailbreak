@@ -35,6 +35,9 @@ public abstract class MixinGuiOverlayDebug {
     @Shadow
     protected abstract void renderLagometer();
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void renderDebugInfo(ScaledResolution scaledResolutionIn) {
         this.mc.mcProfiler.startSection("debug");
@@ -60,7 +63,7 @@ public abstract class MixinGuiOverlayDebug {
         Field debugFPSField = ReflectionUtil.findField(Minecraft.class, "debugFPS", "field_71470_ab", "ao");
         debugFPSField.setAccessible(true);
         try {
-            fontRendererObj.drawStringWithShadow("Minecraft 1.8.9 (" + debugFPSField.get(null) + " fps, " + RenderChunk.renderChunksUpdated + " chunk updates)", 2, 2, 16777215);
+            fontRendererObj.drawStringWithShadow("HyperiumJailbreak (" + debugFPSField.get(null) + " fps, " + RenderChunk.renderChunksUpdated + " chunk updates)", 2, 2, 16777215);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }

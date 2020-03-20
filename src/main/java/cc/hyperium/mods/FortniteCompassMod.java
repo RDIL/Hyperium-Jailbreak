@@ -37,11 +37,6 @@ public class FortniteCompassMod extends AbstractMod {
         return this;
     }
 
-    @Override
-    public Metadata getModMetadata() {
-        return null;
-    }
-
     private void drawCompass(int screenWidth) {
         int direction = normalize((int) this.mc.thePlayer.rotationYaw);
         offsetAll = (cwidth * direction / 360);

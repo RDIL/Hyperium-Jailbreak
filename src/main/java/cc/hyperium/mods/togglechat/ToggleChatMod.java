@@ -25,15 +25,11 @@ import cc.hyperium.mods.togglechat.config.ToggleChatConfig;
 import cc.hyperium.mods.togglechat.toggles.ToggleBaseHandler;
 
 public final class ToggleChatMod extends AbstractMod {
-    private final Metadata meta;
-
     private ToggleChatConfig configLoader;
 
     private ToggleBaseHandler toggleHandler;
 
-    public ToggleChatMod() {
-        this.meta = null;
-    }
+    public ToggleChatMod() {}
 
     public AbstractMod init() {
         this.configLoader = new ToggleChatConfig(this, Hyperium.folder);
@@ -43,11 +39,6 @@ public final class ToggleChatMod extends AbstractMod {
         Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(new CommandToggleChat(this));
         this.configLoader.loadToggles();
         return this;
-    }
-
-    @Override
-    public Metadata getModMetadata() {
-        return this.meta;
     }
 
     public ToggleChatConfig getConfigLoader() {

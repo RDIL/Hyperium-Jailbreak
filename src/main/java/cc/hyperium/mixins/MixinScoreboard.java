@@ -33,6 +33,9 @@ public abstract class MixinScoreboard {
 
     @Shadow public abstract void func_96513_c(ScorePlayerTeam team);
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void removeTeam(ScorePlayerTeam team) {
         if (team == null) {

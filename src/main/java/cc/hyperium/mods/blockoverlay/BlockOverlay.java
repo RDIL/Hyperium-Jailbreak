@@ -18,11 +18,6 @@ public class BlockOverlay extends AbstractMod {
         return this;
     }
 
-    @Override
-    public Metadata getModMetadata() {
-        return new Metadata(this, "BlockOverlay", "1", "aycy&powns");
-    }
-
     public BlockOverlaySettings getSettings() {
         return this.settings;
     }

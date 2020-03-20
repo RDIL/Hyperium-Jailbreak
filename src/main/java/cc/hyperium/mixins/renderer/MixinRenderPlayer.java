@@ -69,6 +69,9 @@ public abstract class MixinRenderPlayer extends RendererLivingEntity<AbstractCli
         hyperiumRenderPlayer.onUpdateTimer();
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     protected void renderOffsetLivingLabel(AbstractClientPlayer entityIn, double x, double y, double z, String str, float p_177069_9_, double p_177069_10_) {
         if (p_177069_10_ < 100.0D) {
@@ -82,7 +85,6 @@ public abstract class MixinRenderPlayer extends RendererLivingEntity<AbstractCli
                     y += (float) this.getFontRendererFromRenderManager().FONT_HEIGHT * 1.15F * p_177069_9_;
                 }
                 RenderNameTagEvent.CANCEL = false;
-
             }
         }
         super.renderOffsetLivingLabel(entityIn, x, y, z, str, p_177069_9_, p_177069_10_);

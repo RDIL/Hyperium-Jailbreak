@@ -31,6 +31,9 @@ public abstract class MixinThreadDownloadImageData extends SimpleTexture {
         super(textureResourceLocation);
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     protected void loadTextureFromServer() {
         hyperiumThreadDownloadImageData.loadTextureFromServer(imageUrl, cacheFile, imageBuffer, (ThreadDownloadImageData) (Object) this, textureLocation);

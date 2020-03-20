@@ -42,6 +42,9 @@ public abstract class MixinFontRenderer {
     @Shadow public abstract int drawString(String text, float x, float y, int color, boolean dropShadow);
     public void setColor(float red, float g, float b, float a) {GlStateManager.color(red, g, b, a);}
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     private void renderStringAtPos(String text, boolean shadow) {
         // Should help fix issues
@@ -200,6 +203,9 @@ public abstract class MixinFontRenderer {
         return NickHider.INSTANCE.apply(in);
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public int getStringWidth(String text) {
         if (text == null) {

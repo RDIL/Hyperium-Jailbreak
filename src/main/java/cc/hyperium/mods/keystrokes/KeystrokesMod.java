@@ -40,11 +40,6 @@ public class KeystrokesMod extends AbstractMod {
         return this;
     }
 
-    @Override
-    public Metadata getModMetadata() {
-        return new Metadata(this, "Keystrokes", "5.0.1", "Fyu");
-    }
-
     public KeystrokesSettings getSettings() {
         return this.config;
     }

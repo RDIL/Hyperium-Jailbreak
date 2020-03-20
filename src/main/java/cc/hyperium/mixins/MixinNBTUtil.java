@@ -12,6 +12,9 @@ import java.util.UUID;
 
 @Mixin(NBTUtil.class)
 public class MixinNBTUtil {
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public static GameProfile readGameProfileFromNBT(NBTTagCompound compound) {
         String s = null;

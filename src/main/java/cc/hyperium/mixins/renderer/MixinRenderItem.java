@@ -29,16 +29,25 @@ import org.spongepowered.asm.mixin.Overwrite;
 public abstract class MixinRenderItem implements IResourceManagerReloadListener {
     private HyperiumRenderItem hyperiumRenderItem = new HyperiumRenderItem((RenderItem) (Object) this);
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void renderItem(ItemStack stack, IBakedModel model) {
         hyperiumRenderItem.renderItem(stack, model, false);
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     private void renderModel(IBakedModel model, int color, ItemStack stack) {
         hyperiumRenderItem.renderModel(model, color, stack);
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void renderItemIntoGUI(ItemStack stack, int x, int y) {
         hyperiumRenderItem.renderItemIntoGUI(stack, x, y);

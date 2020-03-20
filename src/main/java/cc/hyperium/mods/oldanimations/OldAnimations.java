@@ -11,9 +11,4 @@ public class OldAnimations extends AbstractMod {
         EventBus.INSTANCE.register(new AnimationEventHandler());
         return this;
     }
-
-    @Override
-    public Metadata getModMetadata() {
-        return new Metadata(this, "OldAnimations", "1", "Amp");
-    }
 }

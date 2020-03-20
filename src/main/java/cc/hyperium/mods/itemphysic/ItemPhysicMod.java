@@ -12,9 +12,4 @@ public class ItemPhysicMod extends AbstractMod {
 
         return this;
     }
-
-    @Override
-    public Metadata getModMetadata() {
-        return null;
-    }
 }
