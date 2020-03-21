@@ -37,7 +37,7 @@ public class CommandDisableCommand implements BaseCommand {
 
         ChatColor color = disabled ? ChatColor.RED : ChatColor.GREEN;
 
-        Hyperium.INSTANCE.getHandlers().getGeneralChatHandler().sendMessage("Command \'" + args[0] + "\' is " + color + (disabled ? "now" : "no longer") + ChatColor.WHITE + " disabled!");
+        Hyperium.INSTANCE.getHandlers().getGeneralChatHandler().sendMessage("Command '" + args[0] + "' is " + color + (disabled ? "now" : "no longer") + ChatColor.WHITE + " disabled!");
 
         this.handler.saveDisabledCommands();
     }

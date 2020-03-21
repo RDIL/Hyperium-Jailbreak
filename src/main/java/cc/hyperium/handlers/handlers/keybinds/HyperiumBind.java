@@ -81,10 +81,6 @@ public class HyperiumBind {
         return this.wasPressed;
     }
 
-    public boolean capitalizeDescription() {
-        return true;
-    }
-
     public void onPress() {
         // We want these to be changed
     }

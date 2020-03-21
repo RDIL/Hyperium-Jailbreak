@@ -92,10 +92,6 @@ public class HypixelAPI {
         return friendsForCurrentUser;
     }
 
-    public CompletableFuture<HypixelApiGuild> getGuildFromName(String name) {
-        return getGuild(GuildKey.fromName(name));
-    }
-
     public CompletableFuture<HypixelApiGuild> getGuildFromPlayer(String playerName) {
         return getGuild(GuildKey.fromPlayer(playerName));
     }
@@ -153,10 +149,6 @@ public class HypixelAPI {
         public static GuildKey fromSerialized(String serialized) {
             String type = serialized.split(";")[0];
             return new GuildKey(GuildKeyType.valueOf(type), serialized.split(";")[1].split(","));
-        }
-
-        public static GuildKey fromName(String name) {
-            return new GuildKey(GuildKeyType.NAME, name);
         }
 
         public static GuildKey fromPlayer(String playerName) {

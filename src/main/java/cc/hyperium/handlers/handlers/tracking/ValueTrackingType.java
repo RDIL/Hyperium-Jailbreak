@@ -24,15 +24,7 @@ public enum ValueTrackingType {
         return ERROR;
     }
 
-    public StatisticViewingGui.MissingDataHandling getMissingDataHandling() {
-        return missingDataHandling;
-    }
-
     public String getDisplay() {
         return name;
-    }
-
-    public StatisticViewingGui.CompressionType getCompressionType() {
-        return compressionType;
     }
 }

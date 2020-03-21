@@ -32,7 +32,7 @@ import org.lwjgl.input.Keyboard;
 
 public class FlossKeybind extends HyperiumBind {
     public FlossKeybind() {
-        super("Floss dance", Keyboard.KEY_F);
+        super("Floss Dance", Keyboard.KEY_F);
     }
 
     @Override

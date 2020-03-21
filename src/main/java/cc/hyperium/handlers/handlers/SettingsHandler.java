@@ -260,7 +260,6 @@ public class SettingsHandler {
                 NettyClient client = NettyClient.getClient();
                 if (client != null)
                     client.write(ServerCrossDataPacket.build(new JsonHolder().put("internal", true).put("wings_scale", o1.doubleValue())));
-
             });
 
         } catch (NoSuchFieldException e) {

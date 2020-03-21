@@ -1,7 +1,6 @@
 package cc.hyperium.handlers.handlers.hud;
 
 import cc.hyperium.config.Settings;
-import cc.hyperium.event.EventBus;
 import cc.hyperium.event.gui.GuiDrawScreenEvent;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.render.RenderHUDEvent;
@@ -29,13 +28,12 @@ import org.lwjgl.opengl.GL11;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("unused")
 public class VanillaEnhancementsHud {
     private Minecraft mc = Minecraft.getMinecraft();
     private String lastMessage;
 
-    public VanillaEnhancementsHud() {
-        EventBus.INSTANCE.register(new NetworkInfo());
-    }
+    public VanillaEnhancementsHud() {}
 
     @InvokeEvent
     public void renderArrowCount(RenderHUDEvent event) {
@@ -220,7 +218,7 @@ public class VanillaEnhancementsHud {
                 }
             }
         }
-        epf = ((epf < 25) ? epf : 25);
+        epf = (Math.min(epf, 25));
         double avgDef = addArmorProtResistance(armor, calcProtection(epf), resistance);
         return roundDouble(avgDef * 100.0);
     }
@@ -232,7 +230,7 @@ public class VanillaEnhancementsHud {
     private double calcProtection(int armorEpf) {
         double protection = 0.0;
         for (int i = 50; i <= 100; ++i) {
-            protection += ((Math.ceil(armorEpf * i / 100.0) < 20.0) ? Math.ceil(armorEpf * i / 100.0) : 20.0);
+            protection += (Math.min(Math.ceil(armorEpf * i / 100.0), 20.0));
         }
         return protection / 51.0;
     }
@@ -240,7 +238,7 @@ public class VanillaEnhancementsHud {
     private double addArmorProtResistance(double armor, double prot, int resistance) {
         double protTotal = armor + (1.0 - armor) * prot * 0.04;
         protTotal += (1.0 - protTotal) * resistance * 0.2;
-        return (protTotal < 1.0) ? protTotal : 1.0;
+        return Math.min(protTotal, 1.0);
     }
 
     private double roundDouble(double number) {
