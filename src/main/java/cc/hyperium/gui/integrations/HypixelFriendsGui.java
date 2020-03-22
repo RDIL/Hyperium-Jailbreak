@@ -39,7 +39,6 @@ import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -83,33 +82,6 @@ public class HypixelFriendsGui extends HyperiumGui {
             rebuildFriends();
             this.friends.sort(sortType);
         }, guiButton -> guiButton.displayString = "Sort by: " + sortType.getName());
-
-        reg("PARTY", new GuiButton(nextId(), ResolutionUtil.current().getScaledWidth() - 153, 23 + 21, 150, 20, "Party Selected"), guiButton -> {
-            Iterator<HypixelApiFriendObject> iterator = selected.iterator();
-            while (iterator.hasNext()) {
-                HypixelApiFriendObject next = iterator.next();
-                if (iterator.hasNext())
-                    Hyperium.INSTANCE.getHandlers().getCommandQueue().queue("/party invite " + next.getName());
-                else
-                    Hyperium.INSTANCE.getHandlers().getCommandQueue().register("/party invite " + next.getName(), () -> guiButton.enabled = true);
-            }
-            selected.clear();
-
-            guiButton.enabled = false;
-
-        }, guiButton -> {
-            try {
-                if (selected.size() > 10 && !Hyperium.INSTANCE.getHandlers().getDataHandler().getCurrentUser().get().isStaffOrYT()) {
-                    guiButton.enabled = false;
-                    guiButton.displayString = "Too many players!";
-                } else {
-                    guiButton.enabled = true;
-                    guiButton.displayString = "Party Selected";
-                }
-            } catch (InterruptedException | ExecutionException e) {
-                e.printStackTrace();
-            }
-        });
     }
 
     @Override
@@ -302,7 +274,6 @@ public class HypixelFriendsGui extends HyperiumGui {
         public String getName() {
             return name;
         }
-
     }
 
     static class HypixelFriends {
