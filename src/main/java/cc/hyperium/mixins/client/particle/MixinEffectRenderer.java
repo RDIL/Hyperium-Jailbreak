@@ -193,7 +193,13 @@ public abstract class MixinEffectRenderer {
                 Tessellator tessellator = Tessellator.getInstance();
                 WorldRenderer worldrenderer = tessellator.getWorldRenderer();
 
-                queue.forEach(entityFX -> entityFX.renderParticle(worldrenderer, entityIn, p_78872_2_, f1, f5, f2, f3, f4));
+                queue.forEach(entityFX -> {
+                    try {
+                        entityFX.renderParticle(worldrenderer, entityIn, p_78872_2_, f1, f5, f2, f3, f4);
+                    } catch (NullPointerException npe) {
+                        npe.printStackTrace();
+                    }
+                });
             }
         }
     }
