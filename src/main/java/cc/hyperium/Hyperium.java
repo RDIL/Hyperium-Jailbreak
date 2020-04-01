@@ -88,8 +88,12 @@ public class Hyperium {
             Multithreading.runAsync(() -> {
                 networkHandler = new NetworkHandler();
                 CONFIG.register(networkHandler);
-                new NettyClient(networkHandler);
-                UniversalNetty.getInstance().getPacketManager().register(new LoginReplyHandler());
+                try {
+                    new NettyClient(networkHandler);
+                    UniversalNetty.getInstance().getPacketManager().register(new LoginReplyHandler());
+                } catch (Exception e) {
+                    LOGGER.error("I think something went wrong with Netty.");
+                }
             });
             Multithreading.runAsync(() -> new PlayerStatsGui(null)); // Don't remove
             try {
