@@ -33,7 +33,6 @@ import cc.hyperium.handlers.handlers.HypixelDetector;
 import cc.hyperium.handlers.handlers.LocationHandler;
 import cc.hyperium.handlers.handlers.OtherConfigOptions;
 import cc.hyperium.handlers.handlers.SettingsHandler;
-import cc.hyperium.handlers.handlers.StatusHandler;
 import cc.hyperium.handlers.handlers.animation.DabHandler;
 import cc.hyperium.handlers.handlers.animation.FlossDanceHandler;
 import cc.hyperium.handlers.handlers.animation.TPoseHandler;
@@ -60,7 +59,6 @@ public class HyperiumHandlers {
     private List<HyperiumChatHandler> chatHandlers;
     private GeneralChatHandler generalChatHandler;
     private HypixelAPI dataHandler;
-    private StatusHandler statusHandler;
     private GuiDisplayHandler guiDisplayHandler;
     private KeyBindHandler keybindHandler;
     private HyperiumCommandHandler commandHandler;
@@ -98,7 +96,6 @@ public class HyperiumHandlers {
         register(scoreboardRenderer = new ScoreboardRenderer());
         register(dabHandler = new DabHandler());
         register(yeetHandler = new YeetHandler());
-        register(statusHandler = new StatusHandler());
         register(flossDanceHandler = new FlossDanceHandler());
         register(tPoseHandler = new TPoseHandler());
         register(statsHandler = new StatsHandler());
@@ -209,10 +206,6 @@ public class HyperiumHandlers {
 
     public CapeHandler getCapeHandler() {
         return capeHandler;
-    }
-
-    public StatusHandler getStatusHandler() {
-        return statusHandler;
     }
 
     public PerspectiveModifierHandler getPerspectiveHandler() {

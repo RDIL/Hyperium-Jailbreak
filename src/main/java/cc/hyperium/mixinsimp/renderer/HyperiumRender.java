@@ -104,7 +104,6 @@ public class HyperiumRender<T extends Entity> {
                 if (Settings.SHOW_ONLINE_PLAYERS && Settings.SHOW_DOTS_ON_NAME_TAGS && entityIn instanceof EntityPlayer) {
                     String s = "⚫";
                     UUID gameProfileId = ((EntityPlayer) entityIn).getGameProfile().getId();
-                    boolean online = Hyperium.INSTANCE.getHandlers().getStatusHandler().isOnline(gameProfileId);
                     if (StaffUtils.isStaff(gameProfileId)) {
                         StaffUtils.DotColour colour = StaffUtils.getColor(gameProfileId);
                         if (colour.isChroma) {
@@ -114,7 +113,7 @@ public class HyperiumRender<T extends Entity> {
                             fontrenderer.drawString(format, (fontrenderer.getStringWidth(str) + fontrenderer.getStringWidth(s)) / 2, -2, Color.WHITE.getRGB());
                         }
                     } else {
-                        String format = online ? ChatColor.GREEN + s : ChatColor.RED + s;
+                        String format = ChatColor.RED + s;
                         fontrenderer.drawString(format, (fontrenderer.getStringWidth(str) + fontrenderer.getStringWidth(s)) / 2, -2, Color.WHITE.getRGB());
                     }
                 }

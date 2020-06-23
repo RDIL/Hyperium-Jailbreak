@@ -178,13 +178,7 @@ public class HyperiumGuiPlayerTabOverlay {
                 if (Settings.SHOW_ONLINE_PLAYERS) {
                     String s = "⚫";
 
-                    boolean online;
-
-                    if (mc.getSession().getProfile().getId() == gameprofile.getId()) {
-                        online = true;
-                    } else {
-                        online = Hyperium.INSTANCE.getHandlers().getStatusHandler().isOnline(gameprofile.getId());
-                    }
+                    boolean online = mc.getSession().getProfile().getId() == gameprofile.getId();
 
                     if (StaffUtils.isStaff(gameprofile.getId())) {
                         StaffUtils.DotColour colour = StaffUtils.getColor(gameprofile.getId());
