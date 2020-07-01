@@ -34,7 +34,6 @@ public enum Minigame {
     GINGERBREAD("Turbo Kart Racers", "GingerBread", 2),
     HOUSING("Housing", "Housing", 5),
     SKYWARS("SkyWars", "SkyWars", 10),
-    TRUE_COMBAT("Crazy Walls", "TrueCombat", 2),
     SPEED_UHC("Speed UHC", "SpeedUHC", 12),
     LEGACY("Classic Games", "Legacy", 2),
     PROTOTYPE("Prototype", "Prototype", 7),

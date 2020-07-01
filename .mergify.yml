@@ -1,9 +1,0 @@
-pull_request_rules:
-  - name: AutoMerge
-    conditions:
-      - label=Auto-Merge
-      - status-success=Cirrus CI
-    actions:
-      merge:
-        method: squash
-      delete_head_branch: {}

@@ -11,7 +11,6 @@ import cc.hyperium.handlers.handlers.stats.fields.BedWarsStats;
 import cc.hyperium.handlers.handlers.stats.fields.BlitzStats;
 import cc.hyperium.handlers.handlers.stats.fields.BuildBattleStats;
 import cc.hyperium.handlers.handlers.stats.fields.CVCStats;
-import cc.hyperium.handlers.handlers.stats.fields.CrazyWallsStats;
 import cc.hyperium.handlers.handlers.stats.fields.DuelsStats;
 import cc.hyperium.handlers.handlers.stats.fields.GeneralStats;
 import cc.hyperium.handlers.handlers.stats.fields.MegaWallsStats;
@@ -68,7 +67,6 @@ public class PlayerStatsGui extends HyperiumGui {
         fields.add(new BedWarsStats());
         fields.add(new BlitzStats());
         fields.add(new BuildBattleStats());
-        fields.add(new CrazyWallsStats());
         fields.add(new CVCStats());
         fields.add(new DuelsStats());
         fields.add(new MegaWallsStats());
