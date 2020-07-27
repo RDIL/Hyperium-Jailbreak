@@ -23,6 +23,8 @@ import cc.hyperium.addons.customcrosshair.command.CommandCustomCrosshair;
 import cc.hyperium.addons.customcrosshair.crosshair.CustomCrosshair;
 import cc.hyperium.addons.customcrosshair.utils.CustomCrosshairConfig;
 import cc.hyperium.event.EventBus;
+import cc.hyperium.utils.ChatColor;
+
 import java.awt.Color;
 
 public class CustomCrosshairAddon extends AbstractAddon {
@@ -32,6 +34,7 @@ public class CustomCrosshairAddon extends AbstractAddon {
     private static CustomCrosshairAddon instance;
     private CustomCrosshair crosshair;
     private CustomCrosshairConfig config;
+    public static String VERSION = "0.5.3-hyperium";
 
     @Override
     public AbstractAddon init() {
@@ -39,15 +42,21 @@ public class CustomCrosshairAddon extends AbstractAddon {
         instance = this;
         this.crosshair = new CustomCrosshair();
         this.config = new CustomCrosshairConfig(this);
-        if (!this.config.readSaveFile()) this.config.writeSaveFileDefault();
+
+        if (!this.config.readSaveFile()) {
+            this.config.writeSaveFileDefault();
+        }
+
         Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(new CommandCustomCrosshair(this));
+
         EventBus.INSTANCE.register(this.crosshair);
+
         return this;
     }
 
     @Override
     public Metadata getAddonMetadata() {
-        return new Metadata(this, "CustomCrosshair", "0.5.3", "Amp");
+        return null;
     }
 
     public void resetCrosshair() {
@@ -55,7 +64,10 @@ public class CustomCrosshairAddon extends AbstractAddon {
     }
 
     public CustomCrosshair getCrosshair() {
-        if (this.crosshair == null) resetCrosshair();
+        if (this.crosshair == null) {
+            resetCrosshair();
+        }
+
         return this.crosshair;
     }
 

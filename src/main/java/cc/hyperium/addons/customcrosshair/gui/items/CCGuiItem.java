@@ -18,6 +18,7 @@
 package cc.hyperium.addons.customcrosshair.gui.items;
 
 import net.minecraft.client.gui.GuiScreen;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,14 @@ public class CCGuiItem {
     private String displayText;
     private GuiScreen currentScreen;
     protected List<String> helpText;
+
+    public CCGuiItem(final GuiScreen screen) {
+        this(screen, -1, "no-name", 0, 0, 10, 10);
+    }
+
+    public CCGuiItem(final GuiScreen screen, final int id) {
+        this(screen, id, "no-name", 0, 0, 10, 10);
+    }
 
     public CCGuiItem(final GuiScreen screen, final int id, final String displayText, final int posX, final int posY, final int width, final int height) {
         this.actionID = id;
@@ -102,6 +111,10 @@ public class CCGuiItem {
 
     public String getDisplayText() {
         return this.displayText;
+    }
+
+    public void setDisplayText(final String newDisplayText) {
+        this.displayText = newDisplayText;
     }
 
     public List<String> getHelpText() {

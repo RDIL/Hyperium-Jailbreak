@@ -31,6 +31,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
+
 import java.awt.Color;
 
 public class CustomCrosshair {
@@ -141,7 +142,8 @@ public class CustomCrosshair {
                     if (useCount == 0 || bowExtension > 1.0f) {
                         bowExtension = 1.0f;
                     }
-                    renderGap = this.getGap() + (int) ((1.0f - bowExtension) * (this.getGap() + 5) * 2.0f);
+                    renderGap =
+                        this.getGap() + (int) ((1.0f - bowExtension) * (this.getGap() + 5) * 2.0f);
                 }
             }
 
@@ -156,10 +158,10 @@ public class CustomCrosshair {
                             renderColour);
                         break;
                     case ARROW:
-                        this.drawArrowCrosshair(screenWidth, screenHeight, renderColour);
+                        this.drawArrowCrosshair(screenWidth, screenHeight, renderGap, renderColour);
                         break;
                     case X:
-                        this.drawXCrosshair(screenWidth, screenHeight, renderColour);
+                        this.drawXCrosshair(screenWidth, screenHeight, renderGap, renderColour);
                         break;
                     default:
                         this.drawCrossCrosshair(screenWidth, screenHeight, renderGap, renderColour);
@@ -167,7 +169,9 @@ public class CustomCrosshair {
                 }
 
                 if (this.getDot()) {
-                    CustomCrosshairGraphics.drawFilledRectangle(screenWidth, screenHeight, screenWidth + 1,screenHeight + 1, this.getDotColour());
+                    CustomCrosshairGraphics
+                        .drawFilledRectangle(screenWidth, screenHeight, screenWidth + 1,
+                            screenHeight + 1, this.getDotColour());
                 }
             } else {
                 this.drawDebugAxisCrosshair(screenWidth, screenHeight);
@@ -176,7 +180,8 @@ public class CustomCrosshair {
         GlStateManager.resetColor();
     }
 
-    private void drawCrossCrosshair(int screenWidth, int screenHeight, int renderGap, Color renderColour) {
+    private void drawCrossCrosshair(int screenWidth, int screenHeight, int renderGap,
+                                    Color renderColour) {
         int renderThickness = this.getThickness() / 2;
         if (this.getOutline()) {
             CustomCrosshairGraphics.drawFilledRectangle(screenWidth - renderThickness - 1,
@@ -267,7 +272,8 @@ public class CustomCrosshair {
             .drawCircle(screenWidth + 0.5, screenHeight + 0.5, renderGap + 1, renderColour);
     }
 
-    private void drawXCrosshair(int screenWidth, int screenHeight, Color renderColour) {
+    private void drawXCrosshair(int screenWidth, int screenHeight, int renderGap,
+                                Color renderColour) {
         GL11.glDisable(2848);
         GL11.glDisable(2832);
         GlStateManager.disableAlpha();
@@ -314,7 +320,8 @@ public class CustomCrosshair {
             screenWidth + renderGap, screenHeight + renderGap, renderColour);
     }
 
-    private void drawArrowCrosshair(int screenWidth, int screenHeight, Color renderColour) {
+    private void drawArrowCrosshair(int screenWidth, int screenHeight, int renderGap,
+                                    Color renderColour) {
         GL11.glDisable(2848);
         GL11.glDisable(2832);
         GlStateManager.disableAlpha();
@@ -411,6 +418,23 @@ public class CustomCrosshair {
             }
             default: {
                 return 0;
+            }
+        }
+    }
+
+    public String getCrosshairTypeString() {
+        switch (this.getCrosshairType()) {
+            case CIRCLE: {
+                return "CIRCLE";
+            }
+            case SQUARE: {
+                return "SQUARE";
+            }
+            case ARROW: {
+                return "ARROW";
+            }
+            default: {
+                return "CROSS";
             }
         }
     }

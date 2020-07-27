@@ -26,9 +26,11 @@ import cc.hyperium.addons.customcrosshair.gui.items.CCSlider;
 import cc.hyperium.addons.customcrosshair.gui.items.CCTickbox;
 import cc.hyperium.addons.customcrosshair.CustomCrosshairAddon;
 import cc.hyperium.addons.customcrosshair.utils.CustomCrosshairGraphics;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.lwjgl.input.Mouse;
 
 public class GuiCustomCrosshairEditCrosshair extends CustomCrosshairScreen {
@@ -268,7 +270,7 @@ public class GuiCustomCrosshairEditCrosshair extends CustomCrosshairScreen {
             aHelpButtonList.drawItem(mouseX, mouseY);
         }
 
-        final String titleText = "Custom Crosshair Addon" + " v0.5.3 Jailbreak";
+        final String titleText = "Custom Crosshair Addon" + " v" + CustomCrosshairAddon.VERSION;
         CustomCrosshairGraphics.drawBorderedRectangle(0, 0, this.width - 1, 25, CustomCrosshairAddon.PRIMARY,
             CustomCrosshairAddon.SECONDARY);
         CustomCrosshairGraphics.drawStringWithShadow(titleText, 5, 10, 16777215);
@@ -344,10 +346,15 @@ public class GuiCustomCrosshairEditCrosshair extends CustomCrosshairScreen {
     }
 
     protected void keyTyped(final char typedChar, final int keyCode) throws IOException {
-        if(keyCode == 200) {
-            this.scrollbar.setValue(this.scrollbar.getValue() - 5);
-        } else if (keyCode == 208) {
-            this.scrollbar.setValue(this.scrollbar.getValue() + 5);
+        switch (keyCode) {
+            case 200: {
+                this.scrollbar.setValue(this.scrollbar.getValue() - 5);
+                break;
+            }
+            case 208: {
+                this.scrollbar.setValue(this.scrollbar.getValue() + 5);
+                break;
+            }
         }
         super.keyTyped(typedChar, keyCode);
     }

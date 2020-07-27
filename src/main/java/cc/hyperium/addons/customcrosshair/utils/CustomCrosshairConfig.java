@@ -19,6 +19,7 @@ package cc.hyperium.addons.customcrosshair.utils;
 
 import cc.hyperium.Hyperium;
 import cc.hyperium.addons.customcrosshair.CustomCrosshairAddon;
+
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -56,7 +57,9 @@ public class CustomCrosshairConfig {
 
                     final String[] splitted = line.split(":");
 
-                    if (splitted.length <= 1) continue;
+                    if (splitted.length <= 1) {
+                        continue;
+                    }
 
                     int red = this.crosshairMod.getCrosshair().getColour().getRed();
                     int green = this.crosshairMod.getCrosshair().getColour().getGreen();
@@ -174,10 +177,10 @@ public class CustomCrosshairConfig {
                             this.crosshairMod.getCrosshair().setThickness(Integer.parseInt(value));
                             break;
                         case "rainbow":
-                            this.crosshairMod.getCrosshair().setRainbowCrosshair(Boolean.parseBoolean(value));
+                            this.crosshairMod.getCrosshair().setRainbowCrosshair(Boolean.valueOf(value));
                             break;
                         case "rainbow_speed":
-                            this.crosshairMod.getCrosshair().setRainbowSpeed(Integer.parseInt(value));
+                            this.crosshairMod.getCrosshair().setRainbowSpeed(Integer.valueOf(value));
                             break;
                         default:
                             if (!attribute.equals("dynamic_bow")) {
@@ -196,11 +199,18 @@ public class CustomCrosshairConfig {
         }
     }
 
-    private void writeSaveFile(final int crosshairType, final boolean enabled, final int colour_red, final int colour_green, final int colour_blue, final int colour_opacity, final boolean visibleDefault, final boolean visibleHiddenGui, final boolean visibleDebug, final boolean visibleSpectator, final boolean visibleThirdPerson, final boolean outline, final int outlineColour_red, final int outlineColour_green, final int outlineColour_blue, final int outlineColour_opacity, final boolean dot, final int dotColour_red, final int dotColour_green, final int dotColour_blue, final int dotColour_opacity, final int width, final int height, final int gap, final int thickness, final boolean dynamicBow, final boolean rainbow, final int rainbowspeed) {
+    public boolean writeSaveFile(final int crosshairType, final boolean enabled, final int colour_red, final int colour_green, final int colour_blue, final int colour_opacity, final boolean visibleDefault, final boolean visibleHiddenGui, final boolean visibleDebug, final boolean visibleSpectator, final boolean visibleThirdPerson, final boolean outline, final int outlineColour_red, final int outlineColour_green, final int outlineColour_blue, final int outlineColour_opacity, final boolean dot, final int dotColour_red, final int dotColour_green, final int dotColour_blue, final int dotColour_opacity, final int width, final int height, final int gap, final int thickness, final boolean dynamicBow, final boolean rainbow, final int rainbowspeed) {
         try {
             final FileWriter fileWriter = new FileWriter(this.saveFile);
             final BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             final List<String> lines = new ArrayList<>();
+            lines.add("// Custom Crosshair Mod Save File - Made by Sparkless101");
+            lines.add("// ---------------------------------------------------------------------");
+            lines.add("// This file contains the styling for the crosshair.");
+            lines.add("// You may change the contents of this file in order to change the style of the crosshair in-game.");
+            lines.add("// Colours must be an number between 0 and 255.");
+            lines.add("// Boolean values must be 'true' or 'false'.");
+            lines.add("// ---------------------------------------------------------------------");
             lines.add("crosshairType:" + crosshairType);
             lines.add("enabled:" + enabled);
             lines.add("colour_red:" + colour_red);
@@ -234,13 +244,15 @@ public class CustomCrosshairConfig {
                 bufferedWriter.newLine();
             }
             bufferedWriter.close();
+            return true;
         } catch (Exception exceptionWriting) {
             exceptionWriting.printStackTrace();
+            return false;
         }
     }
 
-    public void writeSaveFileDefault() {
-        writeSaveFile(0, true, 255, 255, 255, 255, true, true, true, true, true, true, 0, 0, 0, 255, true, 255, 255, 255, 255, 5, 5, 3, 1, true, false, 500);
+    public boolean writeSaveFileDefault() {
+        return writeSaveFile(0, true, 255, 255, 255, 255, true, true, true, true, true, true, 0, 0, 0, 255, true, 255, 255, 255, 255, 5, 5, 3, 1, true, false, 500);
     }
 
     public void saveCurrentCrosshair() {
