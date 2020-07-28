@@ -55,7 +55,6 @@
     "gui.MixinGuiChat",
     "gui.MixinGuiConnecting",
     "gui.MixinGuiContainer",
-    "gui.MixinGuiControls",
     "gui.MixinGuiDisconnecting",
     "gui.MixinGuiEditSign",
     "gui.MixinGuiGameOver",
