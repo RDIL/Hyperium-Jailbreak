@@ -1,2 +1,4 @@
+image: rdilpickle/better-wsfull:latest
+
 tasks:
-  - init: sdk install java 8.0.252.hs-adpt && ./gradlew setupDevWorkspace
+  - init: ./gradlew setupDecompWorkspace
