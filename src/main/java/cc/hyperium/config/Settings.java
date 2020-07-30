@@ -321,9 +321,6 @@ public class Settings {
     @ConfigOpt @ToggleSetting(name ="gui.settings.shinypotions.matchcolor", category = ANIMATIONS)
     public static boolean SHINY_POTS_MATCH_COLOR = false;
 
-    @ConfigOpt @ToggleSetting(name = "Disable Snooper", category = GENERAL)
-    public static boolean NOSNOOPER = false;
-
     @ConfigOpt @ToggleSetting(name = "Hide Skeleton Hat Bones", category = HYPIXELSKYBLOCK)
     public static boolean hide_skeletonhat_bones = false;
 

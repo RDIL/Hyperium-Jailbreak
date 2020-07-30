@@ -17,9 +17,9 @@
 
 package cc.hyperium.mixins.entity;
 
+import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.network.chat.SendChatMessageEvent;
-import cc.hyperium.mixinsimp.entity.HyperiumEntityPlayerSP;
 import cc.hyperium.mods.nickhider.NickHider;
 import com.mojang.authlib.GameProfile;
 import cc.hyperium.utils.ChatUtil;
@@ -28,6 +28,7 @@ import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.potion.Potion;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -35,8 +36,6 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(EntityPlayerSP.class)
 public class MixinEntityPlayerSP extends AbstractClientPlayer {
-    private HyperiumEntityPlayerSP hyperiumEntityPlayerSP = new HyperiumEntityPlayerSP();
-
     @Shadow protected Minecraft mc;
     @Shadow public float prevTimeInPortal;
     @Shadow public float timeInPortal;
@@ -47,7 +46,9 @@ public class MixinEntityPlayerSP extends AbstractClientPlayer {
 
     @Overwrite
     public void onEnchantmentCritical(Entity entityHit) {
-        hyperiumEntityPlayerSP.onEnchantmentCritical(entityHit, this.mc);
+        if (mc.isSingleplayer() || !Settings.CRIT_FIX) {
+            mc.effectRenderer.emitParticleAtEntity(entityHit, EnumParticleTypes.CRIT_MAGIC);
+        }
     }
 
     @Overwrite
@@ -66,7 +67,9 @@ public class MixinEntityPlayerSP extends AbstractClientPlayer {
 
     @Overwrite
     public void onCriticalHit(Entity entityHit) {
-        hyperiumEntityPlayerSP.onCriticalHit(entityHit, mc);
+        if (Minecraft.getMinecraft().isSingleplayer() || !Settings.CRIT_FIX) {
+            mc.effectRenderer.emitParticleAtEntity(entityHit, EnumParticleTypes.CRIT);
+        }
     }
 
     @Override

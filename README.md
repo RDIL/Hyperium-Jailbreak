@@ -1,9 +1,9 @@
-# Jailbroken Hyperium
+# HyperiumJailbreak
 
 [![CI Status](https://api.cirrus-ci.com/github/hyperiumjailbreak/client.svg?branch=master)](https://cirrus-ci.com/github/hyperiumjailbreak/client)
 [![Powered by CloudRepo](https://img.shields.io/badge/powered%20by-CloudRepo-9cf.svg)](https://cloudrepo.io)
 
-Jailbroken Hyperium is a fork of [HyperiumClient](https://hyperium.cc) with enhancements and misc. fixes.
+HyperiumJailbreak (HJB for short) is a fork of [HyperiumClient](https://hyperium.cc) with enhancements, performance improvements, and a number of Minecraft bug fixes.
 
 ## ToS
 
