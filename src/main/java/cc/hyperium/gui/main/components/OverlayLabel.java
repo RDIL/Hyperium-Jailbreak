@@ -15,8 +15,7 @@ public class OverlayLabel extends OverlayComponent {
     }
 
     public boolean render(int mouseX, int mouseY, int overlayX, int overlayY, int w, int h, int overlayH) {
-        Class cls = OverlayLabel.class;
-        if (this.getClass().equals(cls)) {
+        if (this.getClass().equals(OverlayLabel.class)) {
             int textY = overlayY + (h - this.fr.FONT_HEIGHT) / 2;
             if (textY < overlayH / 4) {
                 return false;

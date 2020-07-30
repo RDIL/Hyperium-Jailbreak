@@ -176,10 +176,9 @@ public class Hyperium {
         hyperiumCommandHandler.registerCommand(new CommandGarbageCollect());
         hyperiumCommandHandler.registerCommand(new CommandMessage());
         hyperiumCommandHandler.registerCommand(new CommandDisableCommand());
-        if(!Settings.FPS) {
+        if (!Settings.FPS) {
             hyperiumCommandHandler.registerCommand(new CustomLevelheadCommand());
             hyperiumCommandHandler.registerCommand(new AutofriendCommand());
-            hyperiumCommandHandler.registerCommand(new CommandStatistics());
         }
         hyperiumCommandHandler.registerCommand(new CommandKeybinds());
     }
