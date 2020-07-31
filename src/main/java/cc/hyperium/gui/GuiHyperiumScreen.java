@@ -14,7 +14,6 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
@@ -142,14 +141,14 @@ public class GuiHyperiumScreen extends GuiScreen {
         GlStateManager.popMatrix();
         String s = String.format("%s %s", Hyperium.modid, Hyperium.version);
         this.drawString(this.fontRendererObj, s, 2, this.height - 10, -1);
-        String s1 = I18n.format("menu.right");
+        String s1 = "Not Affiliated with Mojang AB";
         this.drawString(this.fontRendererObj, s1, this.width - this.fontRendererObj.getStringWidth(s1) - 2, this.height - 10, -1);
         String s3 = "Made by Hyperium devs";
         this.drawString(this.fontRendererObj, s3, this.width - this.fontRendererObj.getStringWidth(s3) - 2, this.height - 30, -1);
         String s4 = "and jumbo <3";
         this.drawString(this.fontRendererObj, s4, this.width - this.fontRendererObj.getStringWidth(s4) - 2, this.height - 20, -1);
         GuiButton hypixelButton = this.hypixelButton;
-        if (hypixelButton != null) hypixelButton.displayString = Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) ? I18n.format("button.ingame.fixhypixelsession") : I18n.format("button.ingame.joinhypixel");
+        if (hypixelButton != null) hypixelButton.displayString = Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) ? "Fix Hypixel Session" : "Join Hypixel";
     }
 
     int getIntendedWidth(int value) {

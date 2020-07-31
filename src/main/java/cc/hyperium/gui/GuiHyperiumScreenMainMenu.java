@@ -173,7 +173,7 @@ public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen implements GuiY
         this.buttonList.add(new GuiButton(1, this.width / 2 - 100, p_73969_1_, I18n.format("menu.singleplayer")));
         this.buttonList.add(new GuiButton(2, this.width / 2 - 100, p_73969_1_ + 24, I18n.format("menu.multiplayer")));
         // Change realms button ID to 16 to avoid conflicts
-        this.buttonList.add(this.hypixelButton = new GuiButton(16, this.width / 2 - 100, p_73969_1_ + 48, 200, 20, I18n.format("button.ingame.joinhypixel")));
+        this.buttonList.add(this.hypixelButton = new GuiButton(16, this.width / 2 - 100, p_73969_1_ + 48, 200, 20, "Join Hypixel"));
 
         this.buttonList.add(new GuiButton(15, this.width / 2 - 100, p_73969_1_ + 72, "Hyperium Settings"));
     }

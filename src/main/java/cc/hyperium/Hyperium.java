@@ -34,7 +34,6 @@ import cc.hyperium.cosmetics.HyperiumCosmetics;
 import cc.hyperium.event.network.server.hypixel.minigames.MinigameListener;
 import cc.hyperium.handlers.HyperiumHandlers;
 import cc.hyperium.handlers.handlers.stats.PlayerStatsGui;
-import cc.hyperium.mixinsimp.client.resources.HyperiumLocale;
 import cc.hyperium.mods.HyperiumModIntegration;
 import cc.hyperium.mods.autofriend.command.AutofriendCommand;
 import cc.hyperium.mods.autogg.AutoGG;
@@ -80,7 +79,6 @@ public class Hyperium {
 
     @InvokeEvent(priority = Priority.HIGH)
     public void init(InitializationEvent event) {
-        HyperiumLocale.registerHyperiumLang("en_US");
         LOGGER.warn("This project is NOT RUN BY THE HYPERIUM TEAM");
         LOGGER.warn("Please report bugs by DMing rdil#0001 on Discord");
         LOGGER.warn("or by emailing me@rdil.rocks");

@@ -1,6 +1,5 @@
 package cc.hyperium.mixinsimp.gui;
 
-import cc.hyperium.Hyperium;
 import cc.hyperium.config.Settings;
 import cc.hyperium.handlers.handlers.data.HypixelAPI;
 import cc.hyperium.mixins.gui.IMixinGuiPlayerTabOverlay;
