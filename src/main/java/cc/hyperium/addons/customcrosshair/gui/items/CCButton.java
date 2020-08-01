@@ -26,10 +26,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 
 public class CCButton extends CCGuiItem {
-    public CCButton(final GuiScreen screen) {
-        super(screen);
-    }
-
     public CCButton(final GuiScreen screen, final int id, final String text, final int x,
                     final int y, final int width, final int height) {
         super(screen, id, text, x, y, width, height);

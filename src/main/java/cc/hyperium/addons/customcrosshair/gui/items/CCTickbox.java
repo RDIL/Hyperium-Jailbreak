@@ -28,12 +28,6 @@ public class CCTickbox extends CCGuiItem {
 
     private boolean checked;
 
-    public CCTickbox(final GuiScreen screen) {
-        super(screen);
-        this.setWidth(10);
-        this.setHeight(10);
-    }
-
     public CCTickbox(final GuiScreen screen, final int id, final String displayText, final int posX, final int posY) {
         super(screen, id, displayText, posX, posY, 10, 10);
     }

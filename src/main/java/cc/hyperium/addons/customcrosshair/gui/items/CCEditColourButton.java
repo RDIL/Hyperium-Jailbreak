@@ -32,11 +32,6 @@ public class CCEditColourButton extends CCGuiItem {
 
     private CustomCrosshairAddon addon;
 
-    public CCEditColourButton(CustomCrosshairAddon addon, final GuiScreen screen, final Color colour) {
-        this(addon, screen, -1, "noname", 0, 0, 0, 0, colour);
-        this.editColour = colour;
-    }
-
     public CCEditColourButton(CustomCrosshairAddon addon, final GuiScreen screen, final int id, final String text, final int x, final int y, final int width, final int height, final Color colour) {
         super(screen, id, text, x, y, width, height);
         this.editColour = colour;

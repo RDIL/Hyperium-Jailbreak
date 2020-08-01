@@ -23,7 +23,6 @@ import cc.hyperium.addons.customcrosshair.command.CommandCustomCrosshair;
 import cc.hyperium.addons.customcrosshair.crosshair.CustomCrosshair;
 import cc.hyperium.addons.customcrosshair.utils.CustomCrosshairConfig;
 import cc.hyperium.event.EventBus;
-import cc.hyperium.utils.ChatColor;
 
 import java.awt.Color;
 
