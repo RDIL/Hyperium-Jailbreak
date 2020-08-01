@@ -30,7 +30,6 @@
     "client.MixinRendererLivingEntity",
     "client.resources.IMixinAbstractResourcePack",
     "client.resources.MixinAbstractResourcePack",
-    "client.resources.MixinLocale",
     "entity.IMixinAbstractClientPlayer",
     "entity.IMixinEntity",
     "entity.IMixinEntityRenderer",

@@ -25,61 +25,61 @@ import static cc.hyperium.config.Category.*;
 public class Settings {
     public static final Settings INSTANCE = new Settings();
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.FPS", category = INTEGRATIONS)
+    @ConfigOpt @ToggleSetting(name = "FPS Mode (activates after restart)", category = INTEGRATIONS)
     public static boolean FPS = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.fullbright", category = INTEGRATIONS)
+    @ConfigOpt @ToggleSetting(name = "Fullbright", category = INTEGRATIONS)
     public static boolean FULLBRIGHT = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.romannumerals")
+    @ConfigOpt @ToggleSetting(name = "Roman Numerals")
     public static boolean ROMAN_NUMERALS = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.compactchat", category = INTEGRATIONS)
+    @ConfigOpt @ToggleSetting(name = "Compact Chat", category = INTEGRATIONS)
     public static boolean COMPACT_CHAT = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.voidflickerfix", category = IMPROVEMENTS)
+    @ConfigOpt @ToggleSetting(name = "Void Flicker Fix", category = IMPROVEMENTS)
     public static boolean VOID_FLICKER_FIX = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.fastchat", category = INTEGRATIONS)
+    @ConfigOpt @ToggleSetting(name = "Disable Chat Background", category = INTEGRATIONS)
     public static boolean FASTCHAT = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.shinypotions", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "Shiny Pots", category = ANIMATIONS)
     public static boolean SHINY_POTS = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.smartsounds", category = IMPROVEMENTS)
+    @ConfigOpt @ToggleSetting(name = "Disable Sounds When Tabbed Out", category = IMPROVEMENTS)
     public static boolean SMART_SOUNDS = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.arrowcountwhenholdingbow", category = VANILLA_ENHANCEMENTS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Arrow Count While Holding Bow", category = VANILLA_ENHANCEMENTS, mods = true)
     public static boolean ARROW_COUNT = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.showenchantmentsabovehotbar", category = VANILLA_ENHANCEMENTS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Enchants Above Hotbar", category = VANILLA_ENHANCEMENTS, mods = true)
     public static boolean ENCHANTMENTS_ABOVE_HOTBAR = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.showattackdamageabovehotbar", category = VANILLA_ENHANCEMENTS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Attack Damage Above Hotbar", category = VANILLA_ENHANCEMENTS, mods = true)
     public static boolean DAMAGE_ABOVE_HOTBAR = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.armorprotectionpotentional", category = VANILLA_ENHANCEMENTS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Show Armor Protection in Inventory", category = VANILLA_ENHANCEMENTS, mods = true)
     public static boolean ARMOR_PROT_POTENTIONAL = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.armorprojectileprotpotentional", category = VANILLA_ENHANCEMENTS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Show Armor Projectile Protection (inventory)", category = VANILLA_ENHANCEMENTS, mods = true)
     public static boolean ARMOR_PROJ_POTENTIONAL = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.hotbarkeys", category = VANILLA_ENHANCEMENTS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Hotbar Keys", category = VANILLA_ENHANCEMENTS, mods = true)
     public static boolean HOTBAR_KEYS = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.hidecrosshairinf5", category = VANILLA_ENHANCEMENTS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Enable Crosshair in F5", category = VANILLA_ENHANCEMENTS, mods = true)
     public static boolean CROSSHAIR_IN_F5 = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.critparticlefix", category = IMPROVEMENTS)
+    @ConfigOpt @ToggleSetting(name = "Critical Particle Fix", category = IMPROVEMENTS)
     public static boolean CRIT_FIX = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.holdperspectivekey")
+    @ConfigOpt @ToggleSetting(name = "Require Holding Perspective Key")
     public static boolean PERSPECTIVE_HOLD = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.windowedfullscreen", category = IMPROVEMENTS)
+    @ConfigOpt @ToggleSetting(name = "Windowed Fullscreen", category = IMPROVEMENTS)
     public static boolean WINDOWED_FULLSCREEN = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.staticfov", category = IMPROVEMENTS)
+    @ConfigOpt @ToggleSetting(name = "Static FOV", category = IMPROVEMENTS)
     public static boolean STATIC_FOV = false;
 
     @ConfigOpt @SelectorSetting(name = "Hat Type", category = COSMETICS, items = "NONE")
@@ -88,10 +88,10 @@ public class Settings {
     @ConfigOpt @SelectorSetting(name = "Companion Type", category = COSMETICS, items = "NONE")
     public static String COMPANION_TYPE = "NONE";
 
-    @ConfigOpt @ToggleSetting(category = GENERAL, name = "Show own name tag")
+    @ConfigOpt @ToggleSetting(category = GENERAL, name = "Show Own Name Tag")
     public static boolean SHOW_OWN_NAME = false;
 
-    @ConfigOpt @ToggleSetting(category = COSMETICS, name = "gui.settings.showcosmeticseverywhere")
+    @ConfigOpt @ToggleSetting(category = COSMETICS, name = "Show Cosmetics Everywhere")
     public static boolean SHOW_COSMETICS_EVERYWHERE = true;
 
     @ConfigOpt public static boolean DAB_TOGGLE = false;
@@ -100,225 +100,225 @@ public class Settings {
 
     @ConfigOpt public static boolean FLOSS_TOGGLE = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.17blockhitting", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "Old Block Hitting", category = ANIMATIONS)
     public static boolean OLD_BLOCKHIT = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.17bowposition", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "Old Bow Position", category = ANIMATIONS)
     public static boolean OLD_BOW = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.17rodposition", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "Old Rod Position", category = ANIMATIONS)
     public static boolean OLD_ROD = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.17redarmour", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "Old Armor Flashing", category = ANIMATIONS)
     public static boolean OLD_ARMOUR = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.17eating", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "Old Eating", category = ANIMATIONS)
     public static boolean OLD_EATING = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.17sneakinganimation", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "Old Sneaking", category = ANIMATIONS)
     public static boolean OLD_SNEAKING = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.17blocking", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "Old Blocking", category = ANIMATIONS)
     public static boolean OLD_BLOCKING = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.17itemheld", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "Old Item Positioning", category = ANIMATIONS)
     public static boolean OLD_ITEM_HELD = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.17debug", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "Old Debug Menu", category = ANIMATIONS)
     public static boolean OLD_DEBUG = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.17health", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "Old Health", category = ANIMATIONS)
     public static boolean OLD_HEALTH = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.customswordanimation", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "Custom Sword Animation", category = ANIMATIONS)
     public static boolean CUSTOM_SWORD_ANIMATION = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.fliptogglemode", category = COSMETICS)
+    @ConfigOpt @ToggleSetting(name = "Flip Toggle Mode", category = COSMETICS)
     public static boolean isFlipToggle = true;
 
     @ConfigOpt public static int flipType = 1;
 
-    @ConfigOpt @SelectorSetting(name = "gui.settings.fliptype", category = COSMETICS, items = {}) // OVERRIDEN
+    @ConfigOpt @SelectorSetting(name = "Flip Type", category = COSMETICS, items = {}) // OVERRIDEN
     public static String FLIP_TYPE_STRING = "FLIP";
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.tposetogglemode", category = COSMETICS)
+    @ConfigOpt @ToggleSetting(name = "T-Pose Toggle Mode", category = COSMETICS)
     public static boolean TPOSE_TOGGLE_MODE = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.transparentcontainerbackgrounds")
+    @ConfigOpt @ToggleSetting(name = "Transparent GUI Backgrounds")
     public static boolean FAST_CONTAINER = false;
 
-    @ConfigOpt @SelectorSetting(name = "gui.settings.particlesmode", items = {"OFF", "PLAIN 1", "PLAIN 2", "CHROMA 1", "CHROMA 2"}, category = COSMETICS)
+    @ConfigOpt @SelectorSetting(name = "Particle Cosmetic Mode", items = {"OFF", "PLAIN 1", "PLAIN 2", "CHROMA 1", "CHROMA 2"}, category = COSMETICS)
     public static String PARTICLE_MODE = "OFF";
 
     @ConfigOpt public static int MAX_PARTICLES = 200;
 
-    @ConfigOpt @SelectorSetting(name = "gui.settings.maxparticles", category = COSMETICS, items = {"200"})
+    @ConfigOpt @SelectorSetting(name = "Maximum Particles", category = COSMETICS, items = {"200"})
     public static String MAX_PARTICLE_STRING = "200";
 
     @ConfigOpt public static double HEAD_SCALE_FACTOR = 1.0;
 
-    @ConfigOpt @SelectorSetting(name = "gui.settings.headitemscale", category = ANIMATIONS, items = {"1.0", "1.25", "1.5", "1.75", "2.0", "2.5"})
+    @ConfigOpt @SelectorSetting(name = "Head Item Scale", category = ANIMATIONS, items = {"1.0", "1.25", "1.5", "1.75", "2.0", "2.5"})
     public static String HEAD_SCALE_FACTOR_STRING = "1.0";
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.particlesininventory", category = COSMETICS)
+    @ConfigOpt @ToggleSetting(name = "Particle Cosmetic in Inventory", category = COSMETICS)
     public static boolean PARTICLES_INV = true;
 
-    @ConfigOpt @SelectorSetting(name = "gui.settings.deadmau5ears", category = COSMETICS, items = {})
+    @ConfigOpt @SelectorSetting(name = "Deadmau5 Ears Cosmetic", category = COSMETICS, items = {})
     public static String EARS_STATE = "ON";
 
-    @ConfigOpt @ToggleSetting(category = MISC, name = "gui.settings.showconfirmationpopup")
+    @ConfigOpt @ToggleSetting(category = MISC, name = "Party/Friend Request Popup")
     public static boolean SHOW_INGAME_CONFIRMATION_POPUP = true;
 
-    @ConfigOpt @ToggleSetting(category = HYPIXEL, name = "gui.settings.friendsfirstintab")
+    @ConfigOpt @ToggleSetting(category = HYPIXEL, name = "Friends First on Tab")
     public static boolean FRIENDS_FIRST_IN_TAB = true;
 
-    @ConfigOpt @ToggleSetting(category = GENERAL, name = "gui.settings.onlineindicator")
+    @ConfigOpt @ToggleSetting(category = GENERAL, name = "Online Indicators")
     public static boolean SHOW_ONLINE_PLAYERS = true;
 
-    @ConfigOpt @ToggleSetting(category = HYPIXEL, name = "gui.settings.pingondm")
+    @ConfigOpt @ToggleSetting(category = HYPIXEL, name = "Ping on DMs")
     public static boolean PING_ON_DM = true;
 
-    @ConfigOpt @ToggleSetting(category = GENERAL, name = "gui.settings.sprintbypassstaticfov")
+    @ConfigOpt @ToggleSetting(category = GENERAL, name = "Sprint Bypass Static FOV")
     public static boolean staticFovSprintModifier;
 
-    @ConfigOpt @ToggleSetting(category = GENERAL, name = "gui.settings.sprintandperspectivemessages")
+    @ConfigOpt @ToggleSetting(category = GENERAL, name = "Show Sprint/Perspective Messages")
     public static boolean SPRINT_PERSPECTIVE_MESSAGES = true;
 
-    @ConfigOpt @SelectorSetting(name = "gui.settings.showdragonhead", items = {}, category = COSMETICS)
+    @ConfigOpt @SelectorSetting(name = "Show Dragon Head", items = {}, category = COSMETICS)
     public static String SHOW_DRAGON_HEAD = "OFF";
 
-    @ConfigOpt @SelectorSetting(name = "gui.settings.showwings", items = {}, category = COSMETICS)
+    @ConfigOpt @SelectorSetting(name = "Show Wings", items = {}, category = COSMETICS)
     public static String SHOW_WINGS = "ON";
 
-    @ConfigOpt @SliderSetting(name = "gui.settings.wingsheight", min = -40, max = 40, category = COSMETICS)
+    @ConfigOpt @SliderSetting(name = "Wings Height", min = -40, max = 40, category = COSMETICS)
     public static double WINGS_OFFSET = 0D;
 
-    @ConfigOpt @SliderSetting(name = "gui.settings.wingsscale", min = 50, max = 200, category = COSMETICS)
+    @ConfigOpt @SliderSetting(name = "Wings Scale", min = 50, max = 200, category = COSMETICS)
     public static double WINGS_SCALE = 100D;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.disable_dances", category = COSMETICS)
+    @ConfigOpt @ToggleSetting(name = "Disable Dances", category = COSMETICS)
     public static boolean DISABLE_DANCES = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.showchromahud", category = CHROMAHUD, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Show ChromaHUD", category = CHROMAHUD, mods = true)
     public static boolean SHOW_CHROMAHUD = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.chromahudprefixsquarebrace", category = CHROMAHUD, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Enable Square Brace Prefix", category = CHROMAHUD, mods = true)
     public static boolean CHROMAHUD_SQUAREBRACE_PREFIX_OPTION = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.directionhudshort", category = CHROMAHUD, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Sort Direction HUD Messages", category = CHROMAHUD, mods = true)
     public static boolean SHORT_DIRECTION_HUD = false;
 
-    @ConfigOpt @SelectorSetting(name = "gui.settings.mainmenustyle", items = {"HYPERIUM", "DEFAULT"}, category = MENUS)
+    @ConfigOpt @SelectorSetting(name = "Main Menu Style", items = {"HYPERIUM", "DEFAULT"}, category = MENUS)
     public static String MENU_STYLE = GuiStyle.DEFAULT.name();
 
-    @ConfigOpt @SelectorSetting(name = "gui.settings.pausemenustyle", items = {"HYPERIUM", "DEFAULT"}, category = MENUS)
+    @ConfigOpt @SelectorSetting(name = "Pause Menu Style", items = {"HYPERIUM", "DEFAULT"}, category = MENUS)
     public static String PAUSE_STYLE = GuiStyle.HYPERIUM.name();
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.fastworldswitching", category = IMPROVEMENTS)
+    @ConfigOpt @ToggleSetting(name = "Fast World Loading (! Causes Performance Issues !)", category = IMPROVEMENTS)
     public static boolean FAST_WORLD_LOADING = false;
 
     @ConfigOpt public static int MAX_WORLD_PARTICLES_INT = 10000;
 
-    @ConfigOpt @SelectorSetting(category = IMPROVEMENTS, name = "gui.settings.maxworldparticles", items = {"1000", "2000", "4000", "6000", "8000", "10000", "20000", "50000",})
+    @ConfigOpt @SelectorSetting(category = IMPROVEMENTS, name = "Max World Particles", items = {"1000", "2000", "4000", "6000", "8000", "10000", "20000", "50000",})
     public static String MAX_WORLD_PARTICLES_STRING = "10000";
 
-    @ConfigOpt @ToggleSetting(name = "Show Companion in 1st person", category = COSMETICS)
+    @ConfigOpt @ToggleSetting(name = "Show Companion in 1st Person", category = COSMETICS)
     public static boolean SHOW_COMPANION_IN_1ST_PERSON = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.showhitdistances", category = REACH, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Show Hit Distances", category = REACH, mods = true)
     public static boolean SHOW_HIT_DISTANCES = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.autofriendenabled", category = AUTOFRIEND, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Enable AutoFriend", category = AUTOFRIEND, mods = true)
     public static boolean AUTOFRIEND_TOGGLE = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.showfriendmessages", category = AUTOFRIEND, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Show Friend Messages", category = AUTOFRIEND, mods = true)
     public static boolean AUTOFRIEND_MESSAGES = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.fortnitecompassenabled", category = FNCOMPASS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Enable Fortnite Compass", category = FNCOMPASS, mods = true)
     public static boolean FNCOMPASS_ENABLED = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.showbackground", category = FNCOMPASS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Show Background", category = FNCOMPASS, mods = true)
     public static boolean FNCOMPASS_BACKGROUND = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.chroma", category = FNCOMPASS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Enable Chroma", category = FNCOMPASS, mods = true)
     public static boolean FNCOMPASS_CHROMA = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.shadow", category = FNCOMPASS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Enable Text Shadow", category = FNCOMPASS, mods = true)
     public static boolean FNCOMPASS_SHADOW = true;
 
     @ConfigOpt
-    @SelectorSetting(category = FNCOMPASS, name = "gui.settings.details", items = {"0", "1", "2"}, mods = true)
+    @SelectorSetting(category = FNCOMPASS, name = "Detail Level", items = {"0", "1", "2"}, mods = true)
     public static String FNCOMPASS_DETAILS = "2";
 
-    @ToggleSetting(name = "gui.settings.showuserdotsonnametags", category = INTEGRATIONS)
+    @ToggleSetting(name = "Show Dots on Name Tags", category = INTEGRATIONS)
     public static boolean SHOW_DOTS_ON_NAME_TAGS = false;
 
-    @ConfigOpt @SelectorSetting(name = "gui.settings.colortype", mods = true, category = REACH, items = {"RGB", "CHROMA"})
+    @ConfigOpt @SelectorSetting(name = "Reach Color Type", mods = true, category = REACH, items = {"RGB", "CHROMA"})
     public static String REACH_COLOR_TYPE = "RGB";
 
-    @ConfigOpt @SliderSetting(name = "gui.settings.red", mods = true, category = REACH, isInt = true, min = 0, max = 255)
+    @ConfigOpt @SliderSetting(name = "Red", mods = true, category = REACH, isInt = true, min = 0, max = 255)
     public static int REACH_RED = 255;
 
-    @ConfigOpt @SliderSetting(name = "gui.settings.blue", mods = true, category = REACH, isInt = true, min = 0, max = 255)
+    @ConfigOpt @SliderSetting(name = "Blue", mods = true, category = REACH, isInt = true, min = 0, max = 255)
     public static int REACH_BLUE = 0;
 
-    @ConfigOpt @SliderSetting(name = "gui.settings.green", mods = true, category = REACH, isInt = true, min = 0, max = 255)
+    @ConfigOpt @SliderSetting(name = "Green", mods = true, category = REACH, isInt = true, min = 0, max = 255)
     public static int REACH_GREEN = 255;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.togglesprint", category = TOGGLESPRINT, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Enable ToggleSprint", category = TOGGLESPRINT, mods = true)
     public static boolean ENABLE_TOGGLE_SPRINT = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.broadcastachievements", category = HYPIXEL)
+    @ConfigOpt @ToggleSetting(name = "Broadcast Achivements", category = HYPIXEL)
     public static boolean BROADCAST_ACHIEVEMENTS = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.hyperiumprefix", category = GENERAL)
+    @ConfigOpt @ToggleSetting(name = "Hyperium Chat Prefix", category = GENERAL)
     public static boolean HYPERIUM_CHAT_PREFIX = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.sendguildwelcomemessage", category = HYPIXEL)
+    @ConfigOpt @ToggleSetting(name = "Guild Welcome Message", category = HYPIXEL)
     public static boolean SEND_GUILD_WELCOME_MESSAGE = true;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.thankwatchdog", category = HYPIXEL)
+    @ConfigOpt @ToggleSetting(name = "Thank Watchdog", category = HYPIXEL)
     public static boolean THANK_WATCHDOG = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.itemphysics", category = ITEM_PHYSIC, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Enable Item Physics", category = ITEM_PHYSIC, mods = true)
     public static boolean ITEM_PHYSIC_ENABLED = false;
 
     @ConfigOpt public static String GUI_FONT = "Roboto Condensed";
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.betterf1", category = VANILLA_ENHANCEMENTS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Hide Name Tags in F1", category = VANILLA_ENHANCEMENTS, mods = true)
     public static boolean BETTERF1 = false;
 
-    @ConfigOpt @SelectorSetting(name = "gui.settings.buttonstyle", category = BUTTONS, items = {"HYPERIUM", "HYPERIUM 2"})
+    @ConfigOpt @SelectorSetting(name = "Button Style", category = BUTTONS, items = {"HYPERIUM", "HYPERIUM 2"})
     public static String BUTTON_STYLE = ButtonStyle.HYPERIUM.name();
 
-    @ConfigOpt @SliderSetting(name = "gui.settings.buttonred", isInt = true, min = 0, max = 255, category = BUTTONS)
+    @ConfigOpt @SliderSetting(name = "Button Red", isInt = true, min = 0, max = 255, category = BUTTONS)
     public static int BUTTON_RED = 255;
 
-    @ConfigOpt @SliderSetting(name = "gui.settings.buttongreen", isInt = true, min = 0, max = 255, category = BUTTONS)
+    @ConfigOpt @SliderSetting(name = "Button Green", isInt = true, min = 0, max = 255, category = BUTTONS)
     public static int BUTTON_GREEN = 255;
 
-    @ConfigOpt @SliderSetting(name = "gui.settings.buttonblue", isInt = true, min = 0, max = 255, category = BUTTONS)
+    @ConfigOpt @SliderSetting(name = "Button Blue", isInt = true, min = 0, max = 255, category = BUTTONS)
     public static int BUTTON_BLUE = 255;
 
-    @ConfigOpt @SelectorSetting(name = "gui.settings.buttontype", category = BUTTONS, items = {"DEFAULT", "RGB", "CHROMA"})
+    @ConfigOpt @SelectorSetting(name = "Button Type", category = BUTTONS, items = {"DEFAULT", "RGB", "CHROMA"})
     public static String BUTTON_TYPE = ButtonType.DEFAULT.name();
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.disableenchantglint", category = IMPROVEMENTS)
+    @ConfigOpt @ToggleSetting(name = "Disable Enchant Glint", category = IMPROVEMENTS)
     public static boolean DISABLE_ENCHANT_GLINT = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.disabletitles", category = VANILLA_ENHANCEMENTS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Disable Titles", category = VANILLA_ENHANCEMENTS, mods = true)
     public static boolean HIDE_TITLES = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.disablelightning", category = IMPROVEMENTS)
+    @ConfigOpt @ToggleSetting(name = "Disable Lightning", category = IMPROVEMENTS)
     public static boolean DISABLE_LIGHTNING = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.disablearmorstands", category = IMPROVEMENTS)
+    @ConfigOpt @ToggleSetting(name = "Disable Armor Stands", category = IMPROVEMENTS)
     public static boolean DISABLE_ARMORSTANDS = false;
 
-    @ConfigOpt @ToggleSetting(name = "gui.settings.disableitemframes", category = IMPROVEMENTS)
+    @ConfigOpt @ToggleSetting(name = "Disable Item Frames", category = IMPROVEMENTS)
     public static boolean DISABLE_ITEMFRAMES = false;
 
-    @ConfigOpt @ToggleSetting(name ="gui.settings.shinypotions.matchcolor", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "Shiny Potions: Match Color", category = ANIMATIONS)
     public static boolean SHINY_POTS_MATCH_COLOR = false;
 
     @ConfigOpt @ToggleSetting(name = "Hide Skeleton Hat Bones", category = HYPIXELSKYBLOCK)
