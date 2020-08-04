@@ -67,7 +67,7 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
         MinecraftServer integratedServer = Minecraft.getMinecraft().getIntegratedServer();
         if (theWorld != null && (integratedServer == null)) {
             GuiButton oldButton = buttonList.remove(3);
-            GuiButton newButton = new GuiButton(10, oldButton.xPosition, oldButton.yPosition, oldButton.getButtonWidth(), 20, I18n.format("button.ingame.serverlist"));
+            GuiButton newButton = new GuiButton(10, oldButton.xPosition, oldButton.yPosition, oldButton.getButtonWidth(), 20, "Server List");
             buttonList.add(newButton);
         }
     }

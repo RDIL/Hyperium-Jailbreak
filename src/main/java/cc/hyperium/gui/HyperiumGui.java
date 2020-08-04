@@ -16,7 +16,6 @@
  */
 
 package cc.hyperium.gui;
-import cc.hyperium.C;
 import cc.hyperium.Hyperium;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
@@ -204,9 +203,5 @@ public abstract class HyperiumGui extends GuiScreen {
         fontRendererObj.drawString(text, (float) (((double) trueX) / scaleFac) - (centered ? fontRendererObj.getStringWidth(text) / 2f : 0), (float) (((double) trueY) / scaleFac), color, shadow);
         GlStateManager.scale(1 / scaleFac, 1 / scaleFac, 1 / scaleFac);
         GlStateManager.popMatrix();
-    }
-
-    protected String boldText(String first, String second) {
-        return C.BOLD + first + C.GRAY + second;
     }
 }

@@ -122,7 +122,7 @@ public class GuiHyperiumScreen extends GuiScreen {
 
         if (!Hyperium.INSTANCE.isDevEnv()) GuiPlayerRenderer.renderPlayerWithRotation(width - 118, -4, val);
         ScissorState.endScissor();
-        fr.drawStringScaled("Hyperium Jailbreak", width - 152, 39, 0xFFFFFF, .75);
+        fr.drawStringScaled(Minecraft.getMinecraft().thePlayer.getName(), width - 152, 39, 0xFFFFFF, .75);
 
         GlStateManager.popMatrix();
     }
