@@ -40,7 +40,6 @@ public abstract class MixinFontRenderer {
     @Shadow protected abstract float func_181559_a(char ch, boolean italic);
     @Shadow public abstract int drawString(String text, int x, int y, int color);
     @Shadow public abstract int drawString(String text, float x, float y, int color, boolean dropShadow);
-    public void setColor(float red, float g, float b, float a) {GlStateManager.color(red, g, b, a);}
 
     /**
      * @author hyperium
@@ -71,15 +70,19 @@ public abstract class MixinFontRenderer {
                     this.underlineStyle = false;
                     this.italicStyle = false;
 
-                    if (i1 < 0 || i1 > 15) i1 = 15;
-                    if (shadow) i1 += 16;
+                    if (i1 < 0 || i1 > 15) {	
+                        i1 = 15;	
+                    }	
+                    if (shadow) {	
+                        i1 += 16;	
+                    }
 
                     int j1 = this.colorCode[i1];
                     this.textColor = j1;
                     float red = (float) (j1 >> 16) / 255.0F;
                     float green = (float) (j1 >> 8 & 255) / 255.0F;
                     float blue = (float) (j1 & 255) / 255.0F;
-                    setColor(red, green, blue, alpha);
+                    GlStateManager.color(red, green, blue, alpha);
                 } else if (i1 == 16) {
                     this.randomStyle = true;
                 } else if (i1 == 17) {
@@ -96,7 +99,7 @@ public abstract class MixinFontRenderer {
                     this.strikethroughStyle = false;
                     this.underlineStyle = false;
                     this.italicStyle = false;
-                    setColor(this.red, this.blue, this.green, alpha);
+                    GlStateManager.color(this.red, this.blue, this.green, alpha);
                 }
 
                 ++i;
