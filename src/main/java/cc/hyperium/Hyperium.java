@@ -101,7 +101,7 @@ public class Hyperium {
                 isDevEnv = false;
             }
 
-            if(!Settings.FPS) {
+            if (!Settings.FPS) {
                 cosmetics = new HyperiumCosmetics();
                 if (Settings.THANK_WATCHDOG && !Settings.FPS) new CommonChatResponder("removed from your game for hacking", "Thanks Watchdog!", true);
             }
@@ -175,7 +175,6 @@ public class Hyperium {
         hyperiumCommandHandler.registerCommand(new CommandMessage());
         hyperiumCommandHandler.registerCommand(new CommandDisableCommand());
         if (!Settings.FPS) {
-            hyperiumCommandHandler.registerCommand(new CustomLevelheadCommand());
             hyperiumCommandHandler.registerCommand(new AutofriendCommand());
         }
         hyperiumCommandHandler.registerCommand(new CommandKeybinds());

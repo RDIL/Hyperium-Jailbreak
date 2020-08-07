@@ -18,8 +18,6 @@
 package cc.hyperium.mods.levelhead.guis;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.gui.CustomLevelheadConfigurer;
-import cc.hyperium.gui.GuiBlock;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import cc.hyperium.mods.levelhead.Levelhead;
 import cc.hyperium.mods.levelhead.config.LevelheadConfig;
@@ -66,7 +64,6 @@ public class LevelHeadGui extends GuiScreen {
     private final Minecraft mc;
     private final ReentrantLock lock = new ReentrantLock();
     private final Levelhead mod;
-    private GuiBlock customBlock = new GuiBlock(0, 0, 0, 0);
     private GuiButton headerColorButton;
     private GuiButton footerColorButton;
     private GuiButton prefixButton;
@@ -351,10 +348,6 @@ public class LevelHeadGui extends GuiScreen {
     @Override
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) {
         textField.mouseClicked(mouseX, mouseY, mouseButton);
-        if (mouseButton == 0 && customBlock.isMouseOver(mouseX, mouseY)) {
-            new CustomLevelheadConfigurer().show();
-            return;
-        }
 
         if (mouseButton == 0) {
             for (GuiButton guibutton : this.buttonList) {

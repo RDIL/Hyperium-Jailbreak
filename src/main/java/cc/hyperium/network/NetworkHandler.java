@@ -5,7 +5,6 @@ import cc.hyperium.Hyperium;
 import cc.hyperium.config.ConfigOpt;
 import cc.hyperium.config.PostConfigHandler;
 import cc.hyperium.config.PreSaveHandler;
-import cc.hyperium.gui.CustomLevelheadConfigurer;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import cc.hyperium.netty.INetty;
 import cc.hyperium.purchases.PurchaseApi;
@@ -90,8 +89,6 @@ public class NetworkHandler implements INetty, PostConfigHandler, PreSaveHandler
             }
         } else if (type.equalsIgnoreCase("refresh_cosmetics")) {
             PurchaseApi.getInstance().refreshSelf();
-        } else if (type.equalsIgnoreCase("custom_levelhead_success") && Minecraft.getMinecraft().currentScreen instanceof CustomLevelheadConfigurer) {
-            Minecraft.getMinecraft().displayGuiScreen(null);
         } else if (type.equalsIgnoreCase("cache_update")) {
             PurchaseApi.getInstance().reload(UUID.fromString(jsonHolder.optString("uuid")));
         }
