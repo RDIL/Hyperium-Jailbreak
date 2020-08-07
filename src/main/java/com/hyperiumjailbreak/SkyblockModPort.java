@@ -13,14 +13,14 @@ import java.util.Set;
  * @implNote source: https://github.com/biscuut/skyblockaddons
  */
 public class SkyblockModPort {
-    private static Set<String> skyblockInAllLanguages = Sets.newHashSet("SKYBLOCK", "\u7A7A\u5C9B\u751F\u5B58");
+    private static final Set<String> skyblockInAllLanguages = Sets.newHashSet("SKYBLOCK", "\u7A7A\u5C9B\u751F\u5B58");
 
     public static boolean playing() {
         Scoreboard s = Minecraft.getMinecraft().theWorld.getScoreboard();
         ScoreObjective so = s.getObjectiveInDisplaySlot(1);
-        if(so != null) {
+        if (so != null) {
             String objectiveName = ChatColor.stripColor(so.getDisplayName());
-            for(String skyblock : skyblockInAllLanguages) {
+            for (String skyblock : skyblockInAllLanguages) {
                 if (objectiveName.startsWith(skyblock)) {
                     return true;
                 }

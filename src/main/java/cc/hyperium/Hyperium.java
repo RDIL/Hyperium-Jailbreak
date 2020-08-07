@@ -47,6 +47,7 @@ import cc.hyperium.purchases.PurchaseApi;
 import cc.hyperium.utils.StaffUtils;
 import cc.hyperium.utils.ChatColor;
 import cc.hyperium.utils.mods.CompactChat;
+import com.hyperiumjailbreak.ZealotPopupManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.crash.CrashReport;
 import org.apache.logging.log4j.LogManager;
@@ -101,9 +102,10 @@ public class Hyperium {
                 isDevEnv = false;
             }
 
-            if (!Settings.FPS) {
-                cosmetics = new HyperiumCosmetics();
-                if (Settings.THANK_WATCHDOG && !Settings.FPS) new CommonChatResponder("removed from your game for hacking", "Thanks Watchdog!", true);
+            cosmetics = new HyperiumCosmetics();
+
+            if (!Settings.FPS && Settings.THANK_WATCHDOG) {
+                new CommonChatResponder("removed from your game for hacking", "Thanks Watchdog!", true);
             }
 
             // Creates the accounts dir
@@ -137,6 +139,7 @@ public class Hyperium {
             SplashProgress.setProgress(11, "Loading Mods");
             modIntegration = new HyperiumModIntegration();
             this.intAddons = new InternalAddons();
+            new ZealotPopupManager();
 
             StaffUtils.clearCache();
 
