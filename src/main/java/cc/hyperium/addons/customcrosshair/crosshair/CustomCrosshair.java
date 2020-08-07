@@ -422,23 +422,6 @@ public class CustomCrosshair {
         }
     }
 
-    public String getCrosshairTypeString() {
-        switch (this.getCrosshairType()) {
-            case CIRCLE: {
-                return "CIRCLE";
-            }
-            case SQUARE: {
-                return "SQUARE";
-            }
-            case ARROW: {
-                return "ARROW";
-            }
-            default: {
-                return "CROSS";
-            }
-        }
-    }
-
     public void setCrosshairType(CrosshairType crosshairType) {
         this.crosshairType = crosshairType;
     }

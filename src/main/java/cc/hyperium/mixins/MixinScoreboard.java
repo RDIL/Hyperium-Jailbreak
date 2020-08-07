@@ -23,14 +23,17 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
 import java.util.Map;
 
 @Mixin(Scoreboard.class)
 public abstract class MixinScoreboard {
     @Shadow @Final private Map<String, ScorePlayerTeam> teams;
-
     @Shadow @Final private Map<String, ScorePlayerTeam> teamMemberships;
-
+    @Shadow public abstract ScorePlayerTeam getTeam(String p_96508_1_);
     @Shadow public abstract void func_96513_c(ScorePlayerTeam team);
 
     /**
@@ -50,5 +53,18 @@ public abstract class MixinScoreboard {
         }
 
         this.func_96513_c(team);
+    }
+
+    /**
+     * Instead of throwing an exception if the team requested to be created already exists, just return it.
+     *
+     * @author Reece Dunham
+     */
+    @Inject(at = @At("HEAD"), method = "createTeam", cancellable = true)
+    public void createTeam(String name, CallbackInfoReturnable<ScorePlayerTeam> cir) {
+        ScorePlayerTeam s = this.getTeam(name);
+        if (s != null) {
+            cir.setReturnValue(s);
+        }
     }
 }
