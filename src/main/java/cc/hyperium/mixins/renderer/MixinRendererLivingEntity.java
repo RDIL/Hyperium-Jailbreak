@@ -35,7 +35,6 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.List;
 
-
 @Mixin(RendererLivingEntity.class)
 public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> extends Render<T> {
     @Shadow
