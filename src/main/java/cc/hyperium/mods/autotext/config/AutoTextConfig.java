@@ -3,7 +3,6 @@ package cc.hyperium.mods.autotext.config;
 import cc.hyperium.Hyperium;
 import cc.hyperium.config.ConfigOpt;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 

@@ -1,18 +1,15 @@
 package cc.hyperium.mods.autotext;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.config.DefaultConfig;
 import cc.hyperium.handlers.handlers.keybinds.HyperiumBind;
 import cc.hyperium.mods.AbstractMod;
 import cc.hyperium.mods.autotext.commands.AutoTextCommand;
 import cc.hyperium.mods.autotext.config.AutoTextConfig;
 import net.minecraft.client.Minecraft;
 
-import java.io.File;
 import java.util.Map;
 
 public class AutoText extends AbstractMod {
-
     @Override
     public AbstractMod init() {
         Hyperium.CONFIG.register(AutoTextConfig.INSTANCE);

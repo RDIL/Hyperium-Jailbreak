@@ -1,9 +1,7 @@
 package cc.hyperium.mods.autotext.gui;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import org.lwjgl.input.Keyboard;
 
 import java.io.IOException;
 
@@ -15,7 +13,7 @@ public class SetBindGui extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         drawWorldBackground(3);
         if (!isTyped) {
-            drawCenteredString(fontRendererObj, "Press a key to choose", width / 2, height / 2, -1);
+            drawCenteredString(fontRendererObj, "Press the key to use", width / 2, height / 2, -1);
         } else {
             Minecraft.getMinecraft().displayGuiScreen(new ConfirmGui(keyTyped));
         }

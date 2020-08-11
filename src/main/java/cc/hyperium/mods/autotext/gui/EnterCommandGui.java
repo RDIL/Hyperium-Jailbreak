@@ -28,6 +28,7 @@ public class EnterCommandGui extends GuiScreen {
         super.drawScreen(mouseX, mouseY, partialTicks);
         drawWorldBackground(3);
         guiTextField.drawTextBox();
+        drawCenteredString(fontRendererObj, "Command to run or chat message to type:", width / 2, height / 2, -1);
     }
 
     @Override

@@ -12,7 +12,7 @@ public class AutoTextCommand implements BaseCommand {
 
     @Override
     public String getUsage() {
-        return "/" + getName();
+        return "/setbind";
     }
 
     @Override
