@@ -38,7 +38,7 @@ public class EnterCommandGui extends GuiScreen {
     @Override
     protected void keyTyped(char typedChar, int keyCode) {
         if (keyCode == Keyboard.KEY_RETURN) {
-            AutoTextConfig.INSTANCE.getKeybinds().put(String.valueOf(keyTyped), guiTextField.getText());
+            AutoTextConfig.INSTANCE.addKeybind(String.valueOf(keyTyped), guiTextField.getText());
             Hyperium.CONFIG.save();
             Hyperium.INSTANCE.getHandlers().getKeybindHandler().registerKeyBinding(new HyperiumBind(guiTextField.getText(), keyTyped) {
                 @Override
