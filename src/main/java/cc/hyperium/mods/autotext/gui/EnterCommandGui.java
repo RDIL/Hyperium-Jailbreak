@@ -2,7 +2,6 @@ package cc.hyperium.mods.autotext.gui;
 
 import cc.hyperium.Hyperium;
 import cc.hyperium.handlers.handlers.keybinds.HyperiumBind;
-import cc.hyperium.mods.autotext.AutoText;
 import cc.hyperium.mods.autotext.config.AutoTextConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -20,7 +19,7 @@ public class EnterCommandGui extends GuiScreen {
     @Override
     public void initGui() {
         Keyboard.enableRepeatEvents(true);
-        guiTextField = new GuiTextField(0, fontRendererObj, width / 2 - 50, height / 2, 100, 15);
+        guiTextField = new GuiTextField(0, fontRendererObj, width / 2 - 50, height / 2, 100, 30);
     }
 
     @Override
@@ -28,7 +27,7 @@ public class EnterCommandGui extends GuiScreen {
         super.drawScreen(mouseX, mouseY, partialTicks);
         drawWorldBackground(3);
         guiTextField.drawTextBox();
-        drawCenteredString(fontRendererObj, "Command to run or chat message to type:", width / 2, height / 2, -1);
+        drawCenteredString(fontRendererObj, "Command to run or chat message to type:", width / 2, height / 2 - 50, -1);
     }
 
     @Override
