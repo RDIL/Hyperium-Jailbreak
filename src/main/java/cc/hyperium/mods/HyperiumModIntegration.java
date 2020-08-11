@@ -19,6 +19,7 @@ package cc.hyperium.mods;
 import cc.hyperium.config.Settings;
 import cc.hyperium.mods.autofriend.AutofriendMod;
 import cc.hyperium.mods.autogg.AutoGG;
+import cc.hyperium.mods.autotext.AutoText;
 import cc.hyperium.mods.chromahud.ChromaHUD;
 import cc.hyperium.mods.blockoverlay.BlockOverlay;
 import cc.hyperium.mods.itemphysic.ItemPhysicMod;
@@ -41,11 +42,13 @@ public class HyperiumModIntegration {
     private final Autotip autotip;
     private final AutoGG autogg;
     private final GlintColorizer gc;
+    private final AutoText autoText;
 
     public HyperiumModIntegration() {
         this.chromaHUD = ((ChromaHUD) new ChromaHUD().init());
         this.levelhead = ((Levelhead) new Levelhead().init());
         this.toggleChat = ((ToggleChatMod) new ToggleChatMod().init());
+        this.autoText = (AutoText) new AutoText().init();
         this.autotip = new Autotip();
         autotip.init();
         this.autogg = ((AutoGG) new AutoGG().init());
@@ -61,12 +64,12 @@ public class HyperiumModIntegration {
         this.timeChanger = new TimeChanger();
         this.gc.init();
         this.keystrokesMod.init();
+        this.timeChanger.init();
         
         if (!Settings.FPS) {
             autofriend.init();
             fncompass.init();
             blockOverlay.init();
-            this.timeChanger.init();
         }
     }
 
@@ -100,5 +103,9 @@ public class HyperiumModIntegration {
 
     public GlintColorizer getGlintcolorizer() {
         return gc;
+    }
+
+    public AutoText getAutoText() {
+        return autoText;
     }
 }
