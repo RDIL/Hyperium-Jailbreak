@@ -62,9 +62,13 @@ public abstract class MixinScoreboard {
      */
     @Inject(at = @At("HEAD"), method = "createTeam", cancellable = true)
     public void createTeam(String name, CallbackInfoReturnable<ScorePlayerTeam> cir) {
-        ScorePlayerTeam s = this.getTeam(name);
-        if (s != null) {
-            cir.setReturnValue(s);
+        try {
+            ScorePlayerTeam s = this.getTeam(name);
+            if (s != null) {
+                cir.setReturnValue(s);
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Ignore the exception and continue normally because it will just create the team like it was going to initially.
         }
     }
 }
