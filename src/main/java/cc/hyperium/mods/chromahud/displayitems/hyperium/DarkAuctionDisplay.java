@@ -30,11 +30,7 @@ public class DarkAuctionDisplay extends DisplayItem {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                try {
-                    time = parser.parse(HttpUtil.get(new URL("https://backend.rdil.rocks/timers/dark-auction"))).getAsJsonObject().get("minutes_integer").getAsString();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                time = String.valueOf(Integer.parseInt(time) - 1);
             }
         };
 
