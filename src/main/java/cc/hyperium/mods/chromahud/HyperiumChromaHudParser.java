@@ -38,6 +38,7 @@ public class HyperiumChromaHudParser implements ChromaHUDParser {
         names.put("MEMORY", "Memory Display");
         names.put("REACH_DISPLAY", "Reach Display");
         names.put("DARK_AUCTION", "Dark Auction Timer");
+        names.put("ZEALOT_COUNTER", "Zealot Counter");
     }
 
     @Override
@@ -63,6 +64,8 @@ public class HyperiumChromaHudParser implements ChromaHUDParser {
                 return new ReachDisplay(item, ord);
             case "DARK_AUCTION":
                 return new DarkAuctionDisplay(item, ord);
+            case "ZEALOT_COUNTER":
+                return new ZealotCounterDisplay(item, ord);
         }
         return null;
     }
