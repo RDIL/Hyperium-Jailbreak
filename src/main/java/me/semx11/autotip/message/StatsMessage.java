@@ -12,7 +12,7 @@ import me.semx11.autotip.stats.StatsDaily;
 
 public class StatsMessage extends Message {
     @Exclude
-    private final Map<String, StatsMessageMatcher> statsMessageCache = new ConcurrentHashMap<>();
+    private Map<String, StatsMessageMatcher> statsMessageCache = new ConcurrentHashMap<>();
 
     private StatsType statsType;
     private List<HoverMessage> hoverMessages;
@@ -23,6 +23,7 @@ public class StatsMessage extends Message {
     }
 
     public StatsMessageMatcher getMatcherFor(String input) {
+        if (statsMessageCache == null) statsMessageCache = new ConcurrentHashMap<>();
         if (statsMessageCache.containsKey(input)) {
             return statsMessageCache.get(input);
         }
