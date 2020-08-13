@@ -53,7 +53,7 @@ public class DarkAuctionDisplay extends DisplayItem {
     public void draw(int x, double y, boolean config) {
         List<String> list = new ArrayList<>();
         if (time != null) {
-            list.add("Dark Auction: " + time +" minutes");
+            list.add("Dark Auction: " + (time.equals("Starting soon!") ? time : time + " minutes"));
         }
         height = fr.FONT_HEIGHT * list.size();
         int maxWidth = 0;
