@@ -33,8 +33,10 @@ public class DarkAuctionDisplay extends DisplayItem {
                 int newTime = Integer.parseInt(time) - 1;
                 if (newTime < 0) {
                     try {
-                        time = parser.parse(HttpUtil.get(new URL("https://backend.rdil.rocks/timers/dark-auction"))).getAsJsonObject().get("minutes_integer").getAsString();
-                    } catch (IOException e) {
+                        time = "Starting soon!";
+                        Thread.sleep(5 * 1000);
+                        time = "60";
+                    } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 } else {
@@ -51,7 +53,7 @@ public class DarkAuctionDisplay extends DisplayItem {
     public void draw(int x, double y, boolean config) {
         List<String> list = new ArrayList<>();
         if (time != null) {
-            list.add("Dark Auction: " + time);
+            list.add("Dark Auction: " + time +" minutes");
         }
         height = fr.FONT_HEIGHT * list.size();
         int maxWidth = 0;
