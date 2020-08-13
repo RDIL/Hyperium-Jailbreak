@@ -19,15 +19,7 @@ package cc.hyperium.mods.chromahud;
 
 import cc.hyperium.mods.chromahud.api.ChromaHUDParser;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
-import cc.hyperium.mods.chromahud.displayitems.hyperium.DoubleCPSDisplay;
-import cc.hyperium.mods.chromahud.displayitems.hyperium.HyperiumInfoDisplay;
-import cc.hyperium.mods.chromahud.displayitems.hyperium.HypixelDisplay;
-import cc.hyperium.mods.chromahud.displayitems.hyperium.LocationDisplay;
-import cc.hyperium.mods.chromahud.displayitems.hyperium.MemoryDisplay;
-import cc.hyperium.mods.chromahud.displayitems.hyperium.PlayerDisplay;
-import cc.hyperium.mods.chromahud.displayitems.hyperium.ReachDisplay;
-import cc.hyperium.mods.chromahud.displayitems.hyperium.ScoreboardDisplay;
-import cc.hyperium.mods.chromahud.displayitems.hyperium.ToggleSprintStatus;
+import cc.hyperium.mods.chromahud.displayitems.hyperium.*;
 import cc.hyperium.utils.JsonHolder;
 import java.util.HashMap;
 import java.util.Map;
@@ -45,6 +37,7 @@ public class HyperiumChromaHudParser implements ChromaHUDParser {
         names.put("SPRINT_STATUS", "ToggleSprint Status");
         names.put("MEMORY", "Memory Display");
         names.put("REACH_DISPLAY", "Reach Display");
+        names.put("DARK_AUCTION", "Dark Auction Timer");
     }
 
     @Override
@@ -68,6 +61,8 @@ public class HyperiumChromaHudParser implements ChromaHUDParser {
                 return new MemoryDisplay(item, ord);
             case "REACH_DISPLAY":
                 return new ReachDisplay(item, ord);
+            case "DARK_AUCTION":
+                return new DarkAuctionDisplay(item, ord);
         }
         return null;
     }
