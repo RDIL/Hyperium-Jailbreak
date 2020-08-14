@@ -7,7 +7,7 @@ import me.semx11.autotip.gson.exclusion.Exclude;
 
 public class HoverMessage extends Message {
     @Exclude
-    private final Map<String, HoverMessageMatcher> hoverMessageCache = new ConcurrentHashMap<>();
+    private Map<String, HoverMessageMatcher> hoverMessageCache = new ConcurrentHashMap<>();
 
     private StatsType statsType;
 
@@ -17,6 +17,7 @@ public class HoverMessage extends Message {
     }
 
     public HoverMessageMatcher getMatcherFor(String input) {
+        if (hoverMessageCache == null) hoverMessageCache = new ConcurrentHashMap<>();
         if (hoverMessageCache.containsKey(input)) {
             return hoverMessageCache.get(input);
         }
