@@ -20,6 +20,7 @@ package cc.hyperium.mods.chromahud;
 import cc.hyperium.mods.chromahud.api.ChromaHUDParser;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
 import cc.hyperium.mods.chromahud.displayitems.hyperium.*;
+import com.hyperiumjailbreak.ChromaHudDarkAuctionDisplay;
 import cc.hyperium.utils.JsonHolder;
 import java.util.HashMap;
 import java.util.Map;
@@ -62,7 +63,7 @@ public class HyperiumChromaHudParser implements ChromaHUDParser {
             case "REACH_DISPLAY":
                 return new ReachDisplay(item, ord);
             case "DARK_AUCTION":
-                return new DarkAuctionDisplay(item, ord);
+                return new ChromaHudDarkAuctionDisplay(item, ord);
         }
         return null;
     }

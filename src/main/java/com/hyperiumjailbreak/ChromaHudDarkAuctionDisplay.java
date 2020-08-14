@@ -1,4 +1,4 @@
-package cc.hyperium.mods.chromahud.displayitems.hyperium;
+package com.hyperiumjailbreak;
 
 import cc.hyperium.mods.chromahud.ElementRenderer;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
@@ -15,45 +15,41 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class DarkAuctionDisplay extends DisplayItem {
+public class ChromaHudDarkAuctionDisplay extends DisplayItem {
+    static final Timer timer = new Timer();
+
     JsonParser parser = new JsonParser();
     FontRenderer fr = Minecraft.getMinecraft().fontRendererObj;
-    String time = null;
+    String time = "Unknown";
 
-    public DarkAuctionDisplay(JsonHolder data, int ordinal) {
-        super(data, ordinal);
+    void updateTime() {
         try {
             time = parser.parse(HttpUtil.get(new URL("https://backend.rdil.rocks/timers/dark-auction"))).getAsJsonObject().get("minutes_integer").getAsString();
         } catch (IOException e) {
+            time = "Unknown";
             e.printStackTrace();
         }
+    }
+
+    public ChromaHudDarkAuctionDisplay(JsonHolder data, int ordinal) {
+        super(data, ordinal);
+        updateTime();
+
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                int newTime = Integer.parseInt(time) - 1;
-                if (newTime < 0) {
-                    try {
-                        time = "Starting soon!";
-                        Thread.sleep(5 * 1000);
-                        time = "60";
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    time = String.valueOf(newTime);
-                }
+                updateTime();
             }
         };
 
-        Timer timer = new Timer();
-        timer.schedule(task, 60000);
+        timer.scheduleAtFixedRate(task, 0, 60000);
     }
 
     @Override
     public void draw(int x, double y, boolean config) {
         List<String> list = new ArrayList<>();
         if (time != null) {
-            list.add("Dark Auction: " + (time.equals("Starting soon!") ? time : time + " minutes"));
+            list.add("Dark Auction: " + (time.equals("0") ? "less than a minute" : time + " minutes"));
         }
         height = fr.FONT_HEIGHT * list.size();
         int maxWidth = 0;
