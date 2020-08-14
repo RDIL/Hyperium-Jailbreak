@@ -8,7 +8,7 @@ import me.semx11.autotip.gson.exclusion.Exclude;
 
 public class Message {
     @Exclude
-    private final Map<String, MessageMatcher> messageCache = new ConcurrentHashMap<>();
+    private Map<String, MessageMatcher> messageCache = new ConcurrentHashMap<>();
 
     protected Pattern pattern;
     private MessageOption hideFor;
@@ -27,6 +27,7 @@ public class Message {
     }
 
     public MessageMatcher getMatcherFor(String input) {
+        if (messageCache == null) messageCache = new ConcurrentHashMap<>();
         if (messageCache.containsKey(input)) {
             return messageCache.get(input);
         }
