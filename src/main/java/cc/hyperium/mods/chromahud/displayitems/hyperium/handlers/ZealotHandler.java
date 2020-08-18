@@ -16,7 +16,7 @@ public class ZealotHandler {
 
     @InvokeEvent
     public void onEntityKilled(PlayerAttackEntityEvent event) {
-        if (event.getEntity().isDead && Hyperium.INSTANCE.getHandlers().getHypixelDetector().isHypixel()) {
+        if (Hyperium.INSTANCE.getHandlers().getHypixelDetector().isHypixel()) {
             if (isZealot(event.getEntity())) {
                 slainZealots++;
             }

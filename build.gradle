@@ -23,14 +23,17 @@ buildscript {
             url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/gradle-plugin-proxy"
         }
         maven {
-            url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/sponge-proxy"
+            url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/libs"
         }
         maven {
             url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/forge-proxy"
         }
+        maven {
+            url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/sponge-proxy"
+        }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+        classpath 'com.hyperiumjailbreak.gradle:ForgeGradle:2.1-SNAPSHOT'
         classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72'
     }
@@ -41,7 +44,7 @@ configurations {
     compile.extendsFrom(embed)
 }
 
-apply plugin: 'net.minecraftforge.gradle.tweaker-client'
+apply plugin: 'com.hyperiumjailbreak.minecraft-tweaker'
 apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'kotlin'
 apply plugin: 'java'
