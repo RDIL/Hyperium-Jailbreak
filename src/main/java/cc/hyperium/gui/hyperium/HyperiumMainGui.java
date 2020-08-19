@@ -1,4 +1,5 @@
 package cc.hyperium.gui.hyperium;
+
 import cc.hyperium.Hyperium;
 import cc.hyperium.config.Category;
 import cc.hyperium.config.Settings;
@@ -33,17 +34,13 @@ public class HyperiumMainGui extends HyperiumGui {
     private HashMap<Field, Supplier<String[]>> customStates = new HashMap<>();
     private HashMap<Field, List<Consumer<Object>>> callbacks = new HashMap<>();
     private List<Object> settingsObjects = new ArrayList<>();
-    private HyperiumFontRenderer smol;
     private HyperiumFontRenderer font;
-    private HyperiumFontRenderer title;
     private List<AbstractTab> tabs;
     private AbstractTab currentTab;
     private List<RGBFieldSet> rgbFields = new ArrayList<>();
 
     private HyperiumMainGui() {
-        smol = new HyperiumFontRenderer(Settings.GUI_FONT, 14.0F, 0, 1.0F);
         font = new HyperiumFontRenderer(Settings.GUI_FONT, 16.0F, 0, 1.0F);
-        title = new HyperiumFontRenderer(Settings.GUI_FONT, 30.0F, 0, 1.0F);
         settingsObjects.add(Settings.INSTANCE);
         settingsObjects.add(Hyperium.INSTANCE.getModIntegration().getAutotip());
         settingsObjects.add(Hyperium.INSTANCE.getModIntegration().getAutoGG().getConfig());
@@ -65,11 +62,6 @@ public class HyperiumMainGui extends HyperiumGui {
                 Settings.class.getDeclaredField("REACH_RED"),
                 Settings.class.getDeclaredField("REACH_GREEN"),
                 Settings.class.getDeclaredField("REACH_BLUE"), Category.REACH, true,
-                Settings.INSTANCE));
-            rgbFields.add(new RGBFieldSet(
-                Settings.class.getDeclaredField("BUTTON_RED"),
-                Settings.class.getDeclaredField("BUTTON_GREEN"),
-                Settings.class.getDeclaredField("BUTTON_BLUE"), Category.BUTTONS, false,
                 Settings.INSTANCE));
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
@@ -114,16 +106,12 @@ public class HyperiumMainGui extends HyperiumGui {
             this.drawGradientRect(0, 0, this.width, this.height, -2130706433, 16777215);
             this.drawGradientRect(0, 0, this.width, this.height, 0, Integer.MIN_VALUE);
         }
-        drawRect(xg, yg, xg * 10, yg * 2, new Color(0, 0, 0, 225).getRGB());
-        drawRect(xg, yg * 2, xg * 10, yg * 9, new Color(0, 0, 0, 225 / 2).getRGB());
+        drawRect(xg, yg, xg * 10, yg * 9, new Color(0, 0, 0, 225 / 2).getRGB());
         GlStateModifier.INSTANCE.reset();
 
-        title.drawCenteredString(currentTab.getTitle(), this.width / 2, yg + (yg / 2 - 8), 0xFFFFFF);
+        drawCenteredString(fontRendererObj, "Settings", this.width / 2, yg + (yg / 2 - 8), 0xFFFFFF);
 
         currentTab.render(xg, yg * 2, xg * 9, yg * 7);
-
-        smol.drawString(Hyperium.version, this.width - smol.getWidth(Hyperium.version) - 1,
-            height - 10, 0xffffffff);
 
         GlStateManager.pushMatrix();
         GlStateManager.popMatrix();

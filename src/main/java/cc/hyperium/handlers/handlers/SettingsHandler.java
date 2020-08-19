@@ -20,6 +20,7 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class SettingsHandler {
+    @SuppressWarnings("unused") public int dummy = 0;
     private HashMap<Field, Supplier<String[]>> customStates = new HashMap<>();
     private HashMap<Field, List<Consumer<Object>>> callbacks = new HashMap<>();
     private List<Object> settingsObjects = new ArrayList<>();
@@ -86,30 +87,12 @@ public class SettingsHandler {
                 ServerCrossDataPacket build = ServerCrossDataPacket.build(put);
                 client.write(build);
             });
-            Field companion_type = Settings.class.getField("COMPANION_TYPE");
-            customStates.put(companion_type, () -> {
-                HyperiumPurchase self = PurchaseApi.getInstance().getSelf();
-                List<EnumPurchaseType> types = new ArrayList<>();
-                types.add(EnumPurchaseType.DRAGON_COMPANION);
-                types.add(EnumPurchaseType.HAMSTER_COMPANION);
-                types.removeIf(enumPurchaseType -> !self.hasPurchased(enumPurchaseType));
-                List<String> vals = new ArrayList<>();
-                vals.add("NONE");
-                for (EnumPurchaseType type : types) {
-                    vals.add(type.getDisplayName());
-                }
-                String[] tmp = new String[vals.size()];
-                for (int i = 0; i < vals.size(); i++) {
-                    tmp[i] = vals.get(i);
-                }
-                return tmp;
-            });
-            registerCallback(companion_type, o -> {
+            registerCallback(this.getClass().getField("dummy"), o -> {
                 NettyClient client = NettyClient.getClient();
                 if (client == null) {
                     return;
                 }
-                JsonHolder put = new JsonHolder().put("internal", true).put("companion", true).put("type", o.toString().equalsIgnoreCase("NONE") ? "NONE" : EnumPurchaseType.parse(o.toString()).toString());
+                JsonHolder put = new JsonHolder().put("internal", true).put("companion", true).put("type", "NONE");
                 ServerCrossDataPacket build = ServerCrossDataPacket.build(put);
                 client.write(build);
             });

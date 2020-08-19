@@ -16,7 +16,6 @@ public class HyperiumGuiButton {
     private final int color = new Color(0, 0, 0, 70).getRGB();
     private final int textColor = new Color(255, 255, 255, 255).getRGB();
     private final int textHoverColor = new Color(255, 255, 255, 255).getRGB();
-    private final int rgbColor = new Color(Settings.BUTTON_RED, Settings.BUTTON_GREEN, Settings.BUTTON_BLUE).getRGB();
     private final FontRenderer fontRenderer = Minecraft.getMinecraft().fontRendererObj;
     private GuiButton parent;
     private long systemTime = Minecraft.getSystemTime();
@@ -66,11 +65,9 @@ public class HyperiumGuiButton {
                 (int) ((parent.xPosition + parent.getButtonWidth()) - (selectPercent * 7)),
                 parent.yPosition + parentA.getHeight(),
                 parentA.isHovered() ? hoverColor : color);
-            if (Settings.BUTTON_TYPE.equalsIgnoreCase("DEFAULT")) {
+            if (Settings.H2_BUTTONS_CHROMA) {
                 this.drawBorderedRect(parent.xPosition, parent.yPosition, parent.xPosition + parent.getButtonWidth(), parent.yPosition + parentA.getHeight(), 1, parentA.isHovered() ? hoverColorHyperium2 : textColor, color);
-            } else if (Settings.BUTTON_TYPE.equalsIgnoreCase("RGB")) {
-                this.drawBorderedRect(parent.xPosition, parent.yPosition, parent.xPosition + parent.getButtonWidth(), parent.yPosition + parentA.getHeight(), 1, parentA.isHovered() ? rgbColor : textColor, color);
-            } else if (Settings.BUTTON_TYPE.equalsIgnoreCase("CHROMA")) {
+            } else {
                 this.drawBorderedRect(parent.xPosition, parent.yPosition, parent.xPosition + parent.getButtonWidth(), parent.yPosition + parentA.getHeight(), 1, parentA.isHovered() ? getChromaColor() : textColor, color);
             }
         }
@@ -80,11 +77,9 @@ public class HyperiumGuiButton {
             j = 10526880;
         } else if (parentA.isHovered() && Settings.BUTTON_STYLE.equalsIgnoreCase("HYPERIUM")) {
             j = textHoverColor;
-        } else if (parentA.isHovered() && Settings.BUTTON_STYLE.equalsIgnoreCase("HYPERIUM 2") && Settings.BUTTON_TYPE.equalsIgnoreCase("DEFAULT")) {
+        } else if (parentA.isHovered() && Settings.BUTTON_STYLE.equalsIgnoreCase("HYPERIUM 2") && !Settings.H2_BUTTONS_CHROMA) {
             j = hoverColorHyperium2;
-        } else if (parentA.isHovered() && Settings.BUTTON_STYLE.equalsIgnoreCase("HYPERIUM 2") && Settings.BUTTON_TYPE.equalsIgnoreCase("RGB")) {
-            j = rgbColor;
-        } else if (parentA.isHovered() && Settings.BUTTON_STYLE.equalsIgnoreCase("HYPERIUM 2") && Settings.BUTTON_TYPE.equalsIgnoreCase("CHROMA")) {
+        } else if (parentA.isHovered() && Settings.BUTTON_STYLE.equalsIgnoreCase("HYPERIUM 2") && Settings.H2_BUTTONS_CHROMA) {
             j = getChromaColor();
         }
         parent.drawCenteredString(fontRenderer, parent.displayString, parent.xPosition + parent.getButtonWidth() / 2, parent.yPosition + (parentA.getHeight() - 8) / 2, j);

@@ -16,9 +16,9 @@
  */
 
 package cc.hyperium.config;
+
 import cc.hyperium.Hyperium;
 import cc.hyperium.styles.ButtonStyle;
-import cc.hyperium.styles.ButtonType;
 import cc.hyperium.styles.GuiStyle;
 import static cc.hyperium.config.Category.*;
 
@@ -84,9 +84,6 @@ public class Settings {
 
     @ConfigOpt @SelectorSetting(name = "Hat Type", category = COSMETICS, items = "NONE")
     public static String HAT_TYPE = "NONE";
-
-    @ConfigOpt @SelectorSetting(name = "Companion Type", category = COSMETICS, items = "NONE")
-    public static String COMPANION_TYPE = "NONE";
 
     @ConfigOpt @ToggleSetting(category = GENERAL, name = "Show Own Name Tag")
     public static boolean SHOW_OWN_NAME = false;
@@ -222,9 +219,6 @@ public class Settings {
     @ConfigOpt @SelectorSetting(category = IMPROVEMENTS, name = "Max World Particles", items = {"1000", "2000", "4000", "6000", "8000", "10000", "20000", "50000",})
     public static String MAX_WORLD_PARTICLES_STRING = "10000";
 
-    @ConfigOpt @ToggleSetting(name = "Show Companion in 1st Person", category = COSMETICS)
-    public static boolean SHOW_COMPANION_IN_1ST_PERSON = true;
-
     @ConfigOpt @ToggleSetting(name = "Show Hit Distances", category = REACH, mods = true)
     public static boolean SHOW_HIT_DISTANCES = false;
 
@@ -291,17 +285,8 @@ public class Settings {
     @ConfigOpt @SelectorSetting(name = "Button Style", category = BUTTONS, items = {"HYPERIUM", "HYPERIUM 2"})
     public static String BUTTON_STYLE = ButtonStyle.HYPERIUM.name();
 
-    @ConfigOpt @SliderSetting(name = "Button Red", isInt = true, min = 0, max = 255, category = BUTTONS)
-    public static int BUTTON_RED = 255;
-
-    @ConfigOpt @SliderSetting(name = "Button Green", isInt = true, min = 0, max = 255, category = BUTTONS)
-    public static int BUTTON_GREEN = 255;
-
-    @ConfigOpt @SliderSetting(name = "Button Blue", isInt = true, min = 0, max = 255, category = BUTTONS)
-    public static int BUTTON_BLUE = 255;
-
-    @ConfigOpt @SelectorSetting(name = "Button Type", category = BUTTONS, items = {"DEFAULT", "RGB", "CHROMA"})
-    public static String BUTTON_TYPE = ButtonType.DEFAULT.name();
+    @ConfigOpt @ToggleSetting(name = "Chroma Buttons (For Hyperium 2 Style)", category = BUTTONS)
+    public static boolean H2_BUTTONS_CHROMA = false;
 
     @ConfigOpt @ToggleSetting(name = "Disable Enchant Glint", category = IMPROVEMENTS)
     public static boolean DISABLE_ENCHANT_GLINT = false;
