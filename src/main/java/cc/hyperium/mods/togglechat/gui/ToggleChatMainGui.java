@@ -67,8 +67,8 @@ public class ToggleChatMainGui extends GuiScreen {
                 position[0] += 24;
             });
 
-            GuiButton last = new GuiButton(1, this.width / 2 - 51, this.height / 2 + 90, 50, 20, "\u21E6");
-            GuiButton next = new GuiButton(2, this.width / 2 + 1, this.height / 2 + 90, 50, 20, "\u21E8");
+            GuiButton last = new GuiButton(1, this.width / 2 - 51, this.height / 2 + 90, 50, 20, "Back");
+            GuiButton next = new GuiButton(2, this.width / 2 + 1, this.height / 2 + 90, 50, 20, "Next");
 
             this.buttonList.add(last);
             this.buttonList.add(next);

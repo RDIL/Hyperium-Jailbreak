@@ -25,8 +25,6 @@ import cc.hyperium.mods.togglechat.toggles.defaults.TypeFriendRequests;
 import cc.hyperium.mods.togglechat.toggles.defaults.TypeGlobal;
 import cc.hyperium.mods.togglechat.toggles.defaults.TypeGuild;
 import cc.hyperium.mods.togglechat.toggles.defaults.TypeHousing;
-import cc.hyperium.mods.togglechat.toggles.defaults.TypeJoin;
-import cc.hyperium.mods.togglechat.toggles.defaults.TypeLeave;
 import cc.hyperium.mods.togglechat.toggles.defaults.TypeLobbyJoin;
 import cc.hyperium.mods.togglechat.toggles.defaults.TypeMessageSeparator;
 import cc.hyperium.mods.togglechat.toggles.defaults.TypeMessages;
@@ -66,8 +64,6 @@ public class ToggleBaseHandler {
         this.toggles.clear();
         this.toggles.put("ads", new TypeAds());
         this.toggles.put("team", new TypeTeam());
-        this.toggles.put("join", new TypeJoin());
-        this.toggles.put("leave", new TypeLeave());
         this.toggles.put("guild", new TypeGuild());
         this.toggles.put("party", new TypeParty());
         this.toggles.put("shout", new TypeShout());
@@ -90,9 +86,5 @@ public class ToggleBaseHandler {
 
     public ToggleBase getToggle(String name) {
         return this.toggles.getOrDefault(name, null);
-    }
-
-    public boolean hasToggle(String name) {
-        return this.toggles.containsKey(name) && getToggle(name) != null;
     }
 }
