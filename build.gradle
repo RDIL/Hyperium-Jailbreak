@@ -62,7 +62,6 @@ minecraft {
     mappings "stable_20"
     runDir 'run'
     clientJvmArgs = ["-XX:-DisableExplicitGC"]
-    makeObfSourceJar false
 }
 
 dependencies {
