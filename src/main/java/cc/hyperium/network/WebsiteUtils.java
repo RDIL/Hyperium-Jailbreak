@@ -2,12 +2,9 @@ package cc.hyperium.network;
 
 import com.google.gson.JsonObject;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.TreeMap;
 
 public class WebsiteUtils {
-    public static final List<String> blitz_kits = new ArrayList<>();
     private static final TreeMap<Integer, String> numerals = new TreeMap<>();
 
     static {
@@ -20,38 +17,6 @@ public class WebsiteUtils {
         numerals.put(5, "V");
         numerals.put(4, "IV");
         numerals.put(1, "I");
-        blitz_kits.add("Archer");
-        blitz_kits.add("Arachnologist");
-        blitz_kits.add("Astronaut");
-        blitz_kits.add("Armorer");
-        blitz_kits.add("Creeper Tamer");
-        blitz_kits.add("Baker");
-        blitz_kits.add("Blaze");
-        blitz_kits.add("Farmer");
-        blitz_kits.add("Fisherman");
-        blitz_kits.add("Florist");
-        blitz_kits.add("Golem");
-        blitz_kits.add("Horsetamer");
-        blitz_kits.add("Hunter");
-        blitz_kits.add("Knight");
-        blitz_kits.add("Meat Master");
-        blitz_kits.add("Necromancer");
-        blitz_kits.add("Paladin");
-        blitz_kits.add("Pigman");
-        blitz_kits.add("Red Dragon");
-        blitz_kits.add("Reaper");
-        blitz_kits.add("Rogue");
-        blitz_kits.add("Scout");
-        blitz_kits.add("Shadow Knight");
-        blitz_kits.add("Slimey Slime");
-        blitz_kits.add("Snowman");
-        blitz_kits.add("Speleologist");
-        blitz_kits.add("Tim");
-        blitz_kits.add("Toxicologist");
-        blitz_kits.add("Troll");
-        blitz_kits.add("Wolftamer");
-        blitz_kits.add("Hype Train");
-        blitz_kits.add("Jockey");
     }
 
     public static String numeral(int amount) {

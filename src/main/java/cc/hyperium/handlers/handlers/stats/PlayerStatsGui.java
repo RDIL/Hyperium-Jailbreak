@@ -6,7 +6,6 @@ import cc.hyperium.gui.Icons;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import cc.hyperium.handlers.handlers.stats.display.StatsDisplayItem;
 import cc.hyperium.handlers.handlers.stats.fields.ArcadeStats;
-import cc.hyperium.handlers.handlers.stats.fields.ArenaStats;
 import cc.hyperium.handlers.handlers.stats.fields.BedWarsStats;
 import cc.hyperium.handlers.handlers.stats.fields.BlitzStats;
 import cc.hyperium.handlers.handlers.stats.fields.BuildBattleStats;
@@ -18,14 +17,12 @@ import cc.hyperium.handlers.handlers.stats.fields.MurderMysteryStats;
 import cc.hyperium.handlers.handlers.stats.fields.PaintballStats;
 import cc.hyperium.handlers.handlers.stats.fields.QuakecraftStats;
 import cc.hyperium.handlers.handlers.stats.fields.SkyWarsStats;
-import cc.hyperium.handlers.handlers.stats.fields.SmashHeroesStats;
 import cc.hyperium.handlers.handlers.stats.fields.SpeedUHCStats;
 import cc.hyperium.handlers.handlers.stats.fields.TKRStats;
 import cc.hyperium.handlers.handlers.stats.fields.TNTGamesStats;
 import cc.hyperium.handlers.handlers.stats.fields.UHCStats;
 import cc.hyperium.handlers.handlers.stats.fields.VampireZStats;
 import cc.hyperium.handlers.handlers.stats.fields.WallsStats;
-import cc.hyperium.handlers.handlers.stats.fields.WarlordsStats;
 import cc.hyperium.mixinsimp.client.GlStateModifier;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
@@ -63,7 +60,6 @@ public class PlayerStatsGui extends HyperiumGui {
         this.player = player;
         fields.add(new GeneralStats());
         fields.add(new ArcadeStats());
-        fields.add(new ArenaStats());
         fields.add(new BedWarsStats());
         fields.add(new BlitzStats());
         fields.add(new BuildBattleStats());
@@ -74,14 +70,12 @@ public class PlayerStatsGui extends HyperiumGui {
         fields.add(new PaintballStats());
         fields.add(new QuakecraftStats());
         fields.add(new SkyWarsStats());
-        fields.add(new SmashHeroesStats());
         fields.add(new SpeedUHCStats());
         fields.add(new TKRStats());
         fields.add(new TNTGamesStats());
         fields.add(new UHCStats());
         fields.add(new VampireZStats());
         fields.add(new WallsStats());
-        fields.add(new WarlordsStats());
         for (AbstractHypixelStats field : fields) {
             Multithreading.runAsync(() -> {
                 if (!logos.containsKey(field))

@@ -2,7 +2,6 @@ package cc.hyperium.handlers.handlers.stats.fields;
 
 import cc.hyperium.handlers.handlers.stats.AbstractHypixelStats;
 import cc.hyperium.handlers.handlers.stats.display.DisplayLine;
-import cc.hyperium.handlers.handlers.stats.display.DisplayTable;
 import cc.hyperium.handlers.handlers.stats.display.StatsDisplayItem;
 import cc.hyperium.utils.JsonHolder;
 import net.hypixel.api.HypixelApiPlayer;
@@ -42,22 +41,6 @@ public class BlitzStats extends AbstractHypixelStats {
 
     @Override
     public List<StatsDisplayItem> getDeepStats(HypixelApiPlayer player) {
-        List<StatsDisplayItem> preview = getPreview(player);
-        preview.add(new DisplayLine(""));
-        List<String[]> lines = new ArrayList<>();
-        lines.add(new String[]{"Kit", "Level"});
-        JsonHolder blitz = player.getStats(GameType.SURVIVAL_GAMES);
-        for (String st : WebsiteUtils.blitz_kits) {
-            String tmp1;
-            if (!st.contains("Hype")) {
-                tmp1 = st.replace(" ", "").toLowerCase();
-            } else {
-                tmp1 = st.toLowerCase();
-            }
-            if (blitz.has(tmp1))
-                lines.add(new String[]{st, WebsiteUtils.numeral(blitz.optInt(tmp1) + 1)});
-        }
-        preview.add(new DisplayTable(lines));
-        return preview;
+        return getPreview(player);
     }
 }
