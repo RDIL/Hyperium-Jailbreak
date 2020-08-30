@@ -103,27 +103,12 @@ public class ChromaHUD extends AbstractMod {
             "HH - Hour\n" +
             "mm - Minute\n" +
             "ss - Second\n" +
-            "For more options, Google \"Date Format\""));
+            "For more options, Search \"Date Format\""));
 
         ChromaHUDApi.getInstance().registerButtonConfig("SCOREBOARD", new ButtonConfig((guiButton, displayItem) -> displayItem.getData().put("numbers", !displayItem.getData().optBoolean("numbers")), new GuiButton(0, 0, 0, "Toggle Number"), (guiButton, displayItem) -> { }));
 
         ChromaHUDApi.getInstance().registerTextConfig("SPRINT_STATUS", new TextConfig((guiTextField, displayItem) -> ((ToggleSprintStatus) displayItem).setSprintEnabledText(guiTextField.getText()), textTextField, (guiTextField, displayItem) -> guiTextField.setText(((ToggleSprintStatus) displayItem).getStatusText())));
 
-        ChromaHUDApi.getInstance().registerButtonConfig("COINS", new ButtonConfig((guiButton, displayItem) -> {
-            JsonHolder data = displayItem.getData();
-            int state = data.optInt("state");
-            state++;
-            if (state < 0 || state > 2) state = 0;
-            data.put("state", state);
-
-        }, new GuiButton(0, 0, 0, "Toggle Number"), (guiButton, displayItem) -> {
-            JsonHolder data = displayItem.getData();
-            int state = data.optInt("state");
-            if (state < 0 || state > 2) state = 0;
-            if (state == 0) guiButton.displayString = "Daily Coins";
-            if (state == 1) guiButton.displayString = "Monthly Coins";
-            if (state == 2) guiButton.displayString = "Lifetime Coins";
-        }));
         setup();
         EventBus.INSTANCE.register(new ElementRenderer(this));
         Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(new CommandChromaHUD(this));
