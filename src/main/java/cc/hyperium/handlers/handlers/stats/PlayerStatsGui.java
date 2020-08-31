@@ -22,7 +22,6 @@ import cc.hyperium.handlers.handlers.stats.fields.TKRStats;
 import cc.hyperium.handlers.handlers.stats.fields.TNTGamesStats;
 import cc.hyperium.handlers.handlers.stats.fields.UHCStats;
 import cc.hyperium.handlers.handlers.stats.fields.VampireZStats;
-import cc.hyperium.handlers.handlers.stats.fields.WallsStats;
 import cc.hyperium.mixinsimp.client.GlStateModifier;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
@@ -75,7 +74,6 @@ public class PlayerStatsGui extends HyperiumGui {
         fields.add(new TNTGamesStats());
         fields.add(new UHCStats());
         fields.add(new VampireZStats());
-        fields.add(new WallsStats());
         for (AbstractHypixelStats field : fields) {
             Multithreading.runAsync(() -> {
                 if (!logos.containsKey(field))

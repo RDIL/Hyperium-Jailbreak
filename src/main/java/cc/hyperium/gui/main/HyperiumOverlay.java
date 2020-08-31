@@ -1,7 +1,6 @@
 package cc.hyperium.gui.main;
 
 import cc.hyperium.gui.main.components.OverlayComponent;
-import cc.hyperium.gui.main.components.OverlayToggle;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
 import java.awt.Color;
 import java.util.List;
@@ -47,11 +46,5 @@ public class HyperiumOverlay {
 
     public List<OverlayComponent> getComponents() {
         return components;
-    }
-
-    public void reset() {
-        components.forEach(c -> {
-            if (c instanceof OverlayToggle) ((OverlayToggle) c).resetStep();
-        });
     }
 }

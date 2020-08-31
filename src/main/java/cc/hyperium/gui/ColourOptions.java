@@ -2,10 +2,10 @@ package cc.hyperium.gui;
 
 import cc.hyperium.config.ConfigOpt;
 import cc.hyperium.gui.main.HyperiumOverlay;
-import cc.hyperium.gui.main.components.OverlayButton;
 import cc.hyperium.gui.main.components.OverlayLabel;
 import cc.hyperium.gui.main.components.OverlaySlider;
 import cc.hyperium.mods.glintcolorizer.Colors;
+
 import java.lang.reflect.Field;
 
 public class ColourOptions extends HyperiumOverlay {
@@ -42,16 +42,7 @@ public class ColourOptions extends HyperiumOverlay {
             this.getComponents().add(new OverlayLabel("Accent Colour:", true, () -> {}));
             addSlider("Red", this.getClass().getField("accent_r"));
             addSlider("Green", this.getClass().getField("accent_g"));
-            addSlider("Blue", this.getClass().getField("accent_b"));
-            this.getComponents().add(new OverlayButton("Reset to default colours", () -> {
-                try {
-                    this.getClass().getField("accent_r").setInt(null, 136);
-                    this.getClass().getField("accent_g").setInt(null, 255);
-                    this.getClass().getField("accent_b").setInt(null, 0);
-                } catch (IllegalAccessException | NoSuchFieldException e) {
-                    e.printStackTrace();
-                }
-            }));
+            addSlider("Ble", this.getClass().getField("accent_b"));
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
         }
