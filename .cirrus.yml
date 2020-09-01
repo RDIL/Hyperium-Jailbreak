@@ -2,8 +2,8 @@ task:
   auto_cancellation: $CIRRUS_BRANCH != 'master' && $CIRRUS_TAG != ''
   container:
     image: gradle:4.10.3-jdk8
-    cpu: 4
-    memory: 12G
+    cpu: 3
+    memory: 10G
   gradle_cache:
     folder: ~/.gradle/caches
     fingerprint_script: cat build.gradle
