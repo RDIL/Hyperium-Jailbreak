@@ -19,7 +19,7 @@ public final class DefaultAddonLoader extends AddonLoaderStrategy {
         } else {
             JarFile jar = new JarFile(file);
             if (jar.getJarEntry("pack.mcmeta") != null) {
-                AddonBootstrap.getAddonResourcePacks().add(file);
+                AddonBootstrap.INSTANCE.getAddonResourcePacks().add(file);
             }
 
             final AddonManifest manifest = (new AddonManifestParser(jar)).getAddonManifest();

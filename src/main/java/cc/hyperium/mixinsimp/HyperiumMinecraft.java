@@ -59,10 +59,10 @@ public class HyperiumMinecraft {
         EventBus.INSTANCE.register(Hyperium.INSTANCE);
 
         defaultResourcePacks.add(mcDefaultResourcePack);
-        for (File file : AddonBootstrap.getAddonResourcePacks()) {
+        for (File file : AddonBootstrap.INSTANCE.getAddonResourcePacks()) {
             defaultResourcePacks.add(file == null ? new AddonWorkspaceResourcePack() : new FileResourcePack(file));
         }
-        AddonMinecraftBootstrap.init();
+        AddonMinecraftBootstrap.INSTANCE.init();
         EventBus.INSTANCE.post(new PreInitializationEvent());
     }
 
@@ -233,6 +233,8 @@ public class HyperiumMinecraft {
     }
 
     public void shutdown() {
-        AddonMinecraftBootstrap.getLoadedAddons().forEach(IAddon::onClose);
+        for (IAddon addon : AddonMinecraftBootstrap.INSTANCE.getLoadedAddons()) {
+            addon.onClose();
+        }
     }
 }

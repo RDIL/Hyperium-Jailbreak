@@ -2,7 +2,6 @@ package cc.hyperium.mixinsimp.gui;
 
 import cc.hyperium.Hyperium;
 import cc.hyperium.gui.GuiHyperiumScreenMainMenu;
-import cc.hyperium.internal.addons.AddonMinecraftBootstrap;
 import net.minecraft.client.gui.GuiMainMenu;
 
 public class HyperiumGuiMainMenu {
