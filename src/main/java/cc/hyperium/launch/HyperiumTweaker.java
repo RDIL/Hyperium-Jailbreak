@@ -23,6 +23,7 @@ import org.spongepowered.asm.launch.MixinBootstrap;
 import org.spongepowered.asm.mixin.MixinEnvironment;
 import org.spongepowered.asm.mixin.Mixins;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +54,11 @@ public class HyperiumTweaker implements ITweaker {
     @Override
     public void injectIntoClassLoader(LaunchClassLoader classLoader) {
         MixinBootstrap.init();
-        AddonBootstrap.INSTANCE.init();
+        try {
+            AddonBootstrap.INSTANCE.init();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         MixinEnvironment environment = MixinEnvironment.getDefaultEnvironment();
         Mixins.addConfiguration("mixins.hyperium.json");

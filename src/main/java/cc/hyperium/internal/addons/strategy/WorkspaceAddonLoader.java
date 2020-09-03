@@ -13,7 +13,7 @@ public final class WorkspaceAddonLoader extends AddonLoaderStrategy {
     public AddonManifest load(File file) throws Exception {
         if (this.getClass().getClassLoader().getResource("addon.json") != null) {
             if (this.getClass().getClassLoader().getResource("pack.mcmeta") != null) {
-                AddonBootstrap.getAddonResourcePacks().add(file);
+                AddonBootstrap.INSTANCE.getAddonResourcePacks().add(file);
             }
 
             String lines = IOUtils.toString(Objects.requireNonNull(this.getClass().getClassLoader().getResource("addon.json")).openStream(), Charset.defaultCharset());
