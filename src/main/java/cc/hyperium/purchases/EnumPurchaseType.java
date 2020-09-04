@@ -24,11 +24,9 @@ public enum EnumPurchaseType {
     FLIP_COSMETIC("Flip Cosmetic"),
     DEADMAU5_COSMETIC("Ears"),
     DRAGON_HEAD("Dragon Head"),
-    DRAGON_COMPANION("Dragon Companion"),
     HAT_TOPHAT("Tophat"),
     HAT_FEZ("Fez Hat"),
     HAT_LEGO("Lego Hat"),
-    HAMSTER_COMPANION("Hamster Companion"),
     UNKNOWN("Unknown");
 
     private String displayName;
