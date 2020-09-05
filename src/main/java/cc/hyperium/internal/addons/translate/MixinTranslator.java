@@ -5,6 +5,7 @@ import java.util.List;
 import org.spongepowered.asm.mixin.Mixins;
 
 public final class MixinTranslator implements ITranslator {
+    @SuppressWarnings("rawtypes")
     public void translate(AddonManifest manifest) {
         List configs = manifest.getMixinConfigs();
         if (configs != null) {

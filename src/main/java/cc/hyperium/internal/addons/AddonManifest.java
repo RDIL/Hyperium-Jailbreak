@@ -3,6 +3,7 @@ package cc.hyperium.internal.addons;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings({ "unused", "rawtypes" })
 public final class AddonManifest {
     private String name;
     private String version;
