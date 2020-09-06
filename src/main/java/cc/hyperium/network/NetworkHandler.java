@@ -15,6 +15,7 @@ import net.minecraft.event.ClickEvent;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatStyle;
 import net.minecraft.util.IChatComponent;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -74,11 +75,7 @@ public class NetworkHandler implements INetty, PostConfigHandler, PreSaveHandler
             if (jsonHolder.optBoolean("dabbing"))
                 Hyperium.INSTANCE.getHandlers().getDabHandler().get(uuid).ensureAnimationFor(60);
             else Hyperium.INSTANCE.getHandlers().getDabHandler().get(uuid).stopAnimation();
-        else if (type.equalsIgnoreCase("floss_update")) {
-            if (jsonHolder.optBoolean("flossing"))
-                Hyperium.INSTANCE.getHandlers().getFlossDanceHandler().get(uuid).ensureAnimationFor(60);
-            else Hyperium.INSTANCE.getHandlers().getFlossDanceHandler().get(uuid).stopAnimation();
-        } else if (type.equalsIgnoreCase("flip_update")) {
+        else if (type.equalsIgnoreCase("flip_update")) {
             boolean flipped = jsonHolder.optBoolean("flipped");
             if (flipped)
                 Hyperium.INSTANCE.getHandlers().getFlipHandler().state(uuid, 1);
