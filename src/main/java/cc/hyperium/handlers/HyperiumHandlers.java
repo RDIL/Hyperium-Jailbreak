@@ -23,18 +23,8 @@ import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.client.TickEvent;
 import cc.hyperium.gui.ScoreboardRenderer;
-import cc.hyperium.handlers.handlers.BroadcastEvents;
-import cc.hyperium.handlers.handlers.CommandQueue;
-import cc.hyperium.handlers.handlers.FlipHandler;
-import cc.hyperium.handlers.handlers.FontRendererData;
-import cc.hyperium.handlers.handlers.GuiDisplayHandler;
-import cc.hyperium.handlers.handlers.HyperiumNetwork;
-import cc.hyperium.handlers.handlers.HypixelDetector;
-import cc.hyperium.handlers.handlers.LocationHandler;
-import cc.hyperium.handlers.handlers.OtherConfigOptions;
-import cc.hyperium.handlers.handlers.SettingsHandler;
+import cc.hyperium.handlers.handlers.*;
 import cc.hyperium.handlers.handlers.animation.DabHandler;
-import cc.hyperium.handlers.handlers.animation.FlossDanceHandler;
 import cc.hyperium.handlers.handlers.animation.TPoseHandler;
 import cc.hyperium.handlers.handlers.animation.YeetHandler;
 import cc.hyperium.handlers.handlers.animation.cape.CapeHandler;
@@ -48,6 +38,7 @@ import cc.hyperium.handlers.handlers.stats.StatsHandler;
 import cc.hyperium.mods.PerspectiveModifierHandler;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
 import net.minecraft.client.Minecraft;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +57,6 @@ public class HyperiumHandlers {
     private ScoreboardRenderer scoreboardRenderer;
     private OtherConfigOptions configOptions;
     private DabHandler dabHandler;
-    private FlossDanceHandler flossDanceHandler;
     private FlipHandler flipHandler;
     private LayerDeadmau5HeadHandler layerDeadmau5HeadHandler;
     private PerspectiveModifierHandler perspectiveHandler;
@@ -96,7 +86,6 @@ public class HyperiumHandlers {
         register(scoreboardRenderer = new ScoreboardRenderer());
         register(dabHandler = new DabHandler());
         register(yeetHandler = new YeetHandler());
-        register(flossDanceHandler = new FlossDanceHandler());
         register(tPoseHandler = new TPoseHandler());
         register(statsHandler = new StatsHandler());
         register(new BroadcastEvents());
@@ -198,10 +187,6 @@ public class HyperiumHandlers {
 
     public DabHandler getDabHandler() {
         return dabHandler;
-    }
-
-    public FlossDanceHandler getFlossDanceHandler() {
-        return flossDanceHandler;
     }
 
     public CapeHandler getCapeHandler() {

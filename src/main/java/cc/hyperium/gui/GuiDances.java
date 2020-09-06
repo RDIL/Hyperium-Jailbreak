@@ -30,22 +30,6 @@ public class GuiDances extends HyperiumGui {
     public GuiDances() {
         int seconds = 5;
         long delay = seconds * 1000L;
-        this.handlers.put("Floss", (netty) -> {
-            AbstractAnimationHandler abstractAnimationHandler = Hyperium.INSTANCE.getHandlers().getFlossDanceHandler();
-            abstractAnimationHandler.get(Minecraft.getMinecraft().thePlayer.getUniqueID()).ensureAnimationFor(seconds);
-            NettyClient client = NettyClient.getClient();
-            if (client != null && netty) {
-                client.write(ServerCrossDataPacket.build(new JsonHolder().put("type", "floss_update").put("flossing", true)));
-                Multithreading.runAsync(() -> {
-                    try {
-                        Thread.sleep(delay);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    client.write(ServerCrossDataPacket.build(new JsonHolder().put("type", "floss_update").put("flossing", false)));
-                });
-            }
-        });
         this.handlers.put("Yeet", netty -> {
             Hyperium.INSTANCE.getHandlers().getYeetHandler().yeet(Minecraft.getMinecraft().thePlayer.getUniqueID());
             NettyClient client = NettyClient.getClient();
@@ -54,10 +38,6 @@ public class GuiDances extends HyperiumGui {
             }
         });
         this.cancel.put("Yeet", () -> {});
-        this.cancel.put("Floss", () -> {
-            AbstractAnimationHandler abstractAnimationHandler = Hyperium.INSTANCE.getHandlers().getFlossDanceHandler();
-            abstractAnimationHandler.get(Minecraft.getMinecraft().thePlayer.getUniqueID()).stopAnimation();
-        });
         this.handlers.put("Dab", (netty) -> {
             AbstractAnimationHandler abstractAnimationHandler = Hyperium.INSTANCE.getHandlers().getDabHandler();
             abstractAnimationHandler.get(Minecraft.getMinecraft().thePlayer.getUniqueID()).ensureAnimationFor(seconds);

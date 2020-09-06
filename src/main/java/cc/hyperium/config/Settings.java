@@ -95,8 +95,6 @@ public class Settings {
 
     @ConfigOpt public static boolean TPOSE_TOGGLE = false;
 
-    @ConfigOpt public static boolean FLOSS_TOGGLE = false;
-
     @ConfigOpt @ToggleSetting(name = "Old Block Hitting", category = ANIMATIONS)
     public static boolean OLD_BLOCKHIT = true;
 
