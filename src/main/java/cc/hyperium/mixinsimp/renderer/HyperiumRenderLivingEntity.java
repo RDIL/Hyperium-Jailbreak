@@ -73,8 +73,7 @@ public class HyperiumRenderLivingEntity<T extends EntityLivingBase> {
                 if (entity.isSneaking() && (Settings.SHOW_OWN_NAME || !entity.equals(Minecraft.getMinecraft().thePlayer))) {
                     FontRenderer fontrenderer = renderManager.getFontRenderer();
                     GlStateManager.pushMatrix();
-                    float offset = 0;
-                    GlStateManager.translate((float) x, (float) y + offset + entity.height + 0.5F - (entity.isChild() ? entity.height / 2.0F : 0.0F), (float) z);
+                    GlStateManager.translate((float) x, (float) y + entity.height + 0.5F - (entity.isChild() ? entity.height / 2.0F : 0.0F), (float) z);
                     GL11.glNormal3f(0.0F, 1.0F, 0.0F);
                     GlStateManager.rotate(-renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
                     GlStateManager.rotate(renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
