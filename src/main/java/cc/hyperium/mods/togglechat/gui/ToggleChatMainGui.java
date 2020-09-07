@@ -129,10 +129,11 @@ public class ToggleChatMainGui extends GuiScreen {
                 if (!toggleBase.hasDescription()) continue;
 
                 final int[] position = {firstPosition};
-                toggleBase.getDescription().forEach(text -> {
+
+                for (String text : toggleBase.getDescription()) {
                     drawCenteredString(this.mc.fontRendererObj, ChatColor.translateAlternateColorCodes('&', text), this.width / 2 + 150, position[0], Color.WHITE.getRGB());
                     position[0] += 10;
-                });
+                }
             }
         }
     }

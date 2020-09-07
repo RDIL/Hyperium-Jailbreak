@@ -7,6 +7,7 @@ import cc.hyperium.mods.sk1ercommon.Sk1erMod;
 import cc.hyperium.netty.utils.Utils;
 import cc.hyperium.utils.JsonHolder;
 import cc.hyperium.utils.UUIDUtil;
+import com.google.gson.JsonElement;
 import net.hypixel.api.HypixelApiFriends;
 import net.hypixel.api.HypixelApiGuild;
 import net.hypixel.api.HypixelApiPlayer;
@@ -76,7 +77,9 @@ public class HypixelAPI {
         return getFriends(getKeyForCurrentUser()).whenComplete((data, error) -> {
             if (error != null) return;
             friendsForCurrentUser.clear();
-            data.getFriends().forEach(friend -> friendsForCurrentUser.add(Utils.dashMeUp(new JsonHolder(friend.getAsJsonObject()).optString("uuid"))));
+            for (JsonElement friend : data.getFriends()) {
+                friendsForCurrentUser.add(Utils.dashMeUp(new JsonHolder(friend.getAsJsonObject()).optString("uuid")));
+            }
         });
     }
 

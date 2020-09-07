@@ -41,7 +41,9 @@ public class HyperiumOverlay {
 
         final Integer[] counter = new Integer[]{0};
 
-        components.forEach(c -> c.mouseClicked(mx, my, sr.getScaledWidth() / 6 * 2, sr.getScaledHeight() / 4 + 20 * counter[0]++ + offsetY, sr.getScaledWidth() / 6 * 2, 20));
+        for (OverlayComponent component : components) {
+            component.mouseClicked(mx, my, sr.getScaledWidth() / 6 * 2, sr.getScaledHeight() / 4 + 20 * counter[0]++ + offsetY, sr.getScaledWidth() / 6 * 2, 20);
+        }
     }
 
     public List<OverlayComponent> getComponents() {

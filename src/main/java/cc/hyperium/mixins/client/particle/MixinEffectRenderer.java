@@ -32,6 +32,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CountDownLatch;
 
@@ -193,13 +194,13 @@ public abstract class MixinEffectRenderer {
                 Tessellator tessellator = Tessellator.getInstance();
                 WorldRenderer worldrenderer = tessellator.getWorldRenderer();
 
-                queue.forEach(entityFX -> {
+                for (EntityFX entityFX : queue) {
                     try {
                         entityFX.renderParticle(worldrenderer, entityIn, p_78872_2_, f1, f5, f2, f3, f4);
                     } catch (NullPointerException npe) {
                         npe.printStackTrace();
                     }
-                });
+                }
             }
         }
     }
@@ -255,7 +256,9 @@ public abstract class MixinEffectRenderer {
             }
         mcProfiler.endSection();
 
-        this.modifiedParticlEmmiters.forEach(EntityParticleEmitter::onUpdate);
+            for (EntityParticleEmitter emitter : modifiedParticlEmmiters) {
+                emitter.onUpdate();
+            }
         modifiedParticlEmmiters.removeIf(entityParticleEmitter -> entityParticleEmitter.isDead);
     }
 

@@ -69,23 +69,28 @@ public class EventBus {
     }
 
     public void unregister(Object obj) {
-        this.subscriptions.values().forEach(map -> map.removeIf(it -> it.getInstance() == obj));
+        for (CopyOnWriteArrayList<EventSubscriber> map : subscriptions.values()) {
+            map.removeIf(it -> it.getInstance() == obj);
+        }
     }
 
     public void unregister(Class<?> clazz) {
-        this.subscriptions.values().forEach(map -> map.removeIf(it -> it.getInstance().getClass() == clazz));
+        for (CopyOnWriteArrayList<EventSubscriber> map : subscriptions.values()) {
+            map.removeIf(it -> it.getInstance().getClass() == clazz);
+        }
     }
 
     public void post(Object event) {
         if (event == null) {
             return;
         }
-        this.subscriptions.getOrDefault(event.getClass(), new CopyOnWriteArrayList<>()).forEach((sub) -> {
+
+        for (EventSubscriber sub : this.subscriptions.getOrDefault(event.getClass(), new CopyOnWriteArrayList<>())) {
             try {
                 sub.getMethod().invoke(sub.getInstance(), event);
             } catch (Exception InvocationTargetException) {
                 InvocationTargetException.printStackTrace();
             }
-        });
+        }
     }
 }

@@ -47,10 +47,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Consumer;
 
@@ -312,14 +309,18 @@ public class LevelHeadGui extends GuiScreen {
 
     private void updatePeopleToValues() {
         Levelhead levelhead = Hyperium.INSTANCE.getModIntegration().getLevelhead();
-        levelhead.levelCache.forEach((uuid, levelheadTag) -> {
+
+        for (Map.Entry<UUID, LevelheadTag> entry : levelhead.levelCache.entrySet()) {
+            UUID uuid = entry.getKey();
+            LevelheadTag levelheadTag =  entry.getValue();
+
             String value = levelhead.getTrueValueCache().get(uuid);
             if (value == null)
                 return;
             JsonHolder footer = new JsonHolder().put("level", NumberUtils.isNumber(value) ? Long.parseLong(value) : -1).put("strlevel", value);
             LevelheadTag tag = levelhead.buildTag(footer);
             levelheadTag.reApply(tag);
-        });
+        }
     }
 
     @Override
