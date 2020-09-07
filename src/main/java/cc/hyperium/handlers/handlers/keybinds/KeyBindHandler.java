@@ -30,7 +30,6 @@ import cc.hyperium.handlers.handlers.keybinds.keybinds.GuiDanceKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.GuiKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.NamesKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.RearCamKeybind;
-import cc.hyperium.handlers.handlers.keybinds.keybinds.TPoseKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.TogglePerspectiveKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.ToggleSprintKeybind;
 import net.minecraft.client.Minecraft;
@@ -52,7 +51,6 @@ public class KeyBindHandler {
         registerKeyBinding(new FlipKeybind());
         registerKeyBinding(new ToggleSprintKeybind());
         registerKeyBinding(new TogglePerspectiveKeybind());
-        registerKeyBinding(new TPoseKeybind());
         registerKeyBinding(new GuiDanceKeybind());
         registerKeyBinding(new RearCamKeybind());
         for (int i = 0; i < 16; i++) {

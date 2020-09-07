@@ -22,11 +22,6 @@ import cc.hyperium.config.Settings;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.render.RenderNameTagEvent;
 import cc.hyperium.mods.levelhead.Levelhead;
-import cc.hyperium.purchases.AbstractHyperiumPurchase;
-import cc.hyperium.purchases.EnumPurchaseType;
-import cc.hyperium.purchases.HyperiumPurchase;
-import cc.hyperium.purchases.PurchaseApi;
-import cc.hyperium.purchases.packages.EarsCosmetic;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -37,7 +32,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.Scoreboard;
 import org.lwjgl.opengl.GL11;
-import java.awt.Color;
+
+import java.awt.*;
 
 public class LevelHeadRender {
     private final Levelhead levelHead;
@@ -62,20 +58,6 @@ public class LevelHeadRender {
             }
             if (player.getUniqueID().equals(this.levelHead.userUuid) && !Settings.SHOW_OWN_NAME)
                 offset = -10;
-            if (Hyperium.INSTANCE.getCosmetics().getDeadmau5Cosmetic().isPurchasedBy(event.getEntity().getUniqueID())) {
-                HyperiumPurchase packageIfReady = PurchaseApi.getInstance().getPackageIfReady(event.getEntity().getUniqueID());
-                if (packageIfReady != null) {
-                    AbstractHyperiumPurchase purchase = packageIfReady.getPurchase(EnumPurchaseType.DEADMAU5_COSMETIC);
-                    if (purchase != null) {
-                        if (event.getEntity().getUniqueID() != Minecraft.getMinecraft().thePlayer.getUniqueID()) {
-                            if (((EarsCosmetic) purchase).isEnabled()) {
-                                offset += .3;
-                            }
-                        } else if (Settings.EARS_STATE.equalsIgnoreCase("on"))
-                            offset += .2;
-                    }
-                }
-            }
             renderName(event, (this.levelHead.getLevelString(player.getUniqueID())), offset);
         }
     }

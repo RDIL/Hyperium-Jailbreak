@@ -30,14 +30,6 @@ public class GuiDances extends HyperiumGui {
     public GuiDances() {
         int seconds = 5;
         long delay = seconds * 1000L;
-        this.handlers.put("Yeet", netty -> {
-            Hyperium.INSTANCE.getHandlers().getYeetHandler().yeet(Minecraft.getMinecraft().thePlayer.getUniqueID());
-            NettyClient client = NettyClient.getClient();
-            if (client != null && netty) {
-                client.write(ServerCrossDataPacket.build(new JsonHolder().put("type", "yeet").put("yeeting", true)));
-            }
-        });
-        this.cancel.put("Yeet", () -> {});
         this.handlers.put("Dab", (netty) -> {
             AbstractAnimationHandler abstractAnimationHandler = Hyperium.INSTANCE.getHandlers().getDabHandler();
             abstractAnimationHandler.get(Minecraft.getMinecraft().thePlayer.getUniqueID()).ensureAnimationFor(seconds);
@@ -57,27 +49,6 @@ public class GuiDances extends HyperiumGui {
         });
         this.cancel.put("Dab", () -> {
             AbstractAnimationHandler abstractAnimationHandler = Hyperium.INSTANCE.getHandlers().getDabHandler();
-            abstractAnimationHandler.get(Minecraft.getMinecraft().thePlayer.getUniqueID()).stopAnimation();
-        });
-
-        this.handlers.put("T-Pose", (netty) -> {
-            AbstractAnimationHandler abstractAnimationHandler = Hyperium.INSTANCE.getHandlers().getTPoseHandler();
-            abstractAnimationHandler.get(Minecraft.getMinecraft().thePlayer.getUniqueID()).ensureAnimationFor(seconds);
-            NettyClient client = NettyClient.getClient();
-            if (client != null && netty) {
-                client.write(ServerCrossDataPacket.build(new JsonHolder().put("type", "tpose_update").put("posing", true)));
-                Multithreading.runAsync(() -> {
-                    try {
-                        Thread.sleep(delay);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    client.write(ServerCrossDataPacket.build(new JsonHolder().put("type", "tpose_update").put("posing", false)));
-                });
-            }
-        });
-        this.cancel.put("T-Pose", () -> {
-            AbstractAnimationHandler abstractAnimationHandler = Hyperium.INSTANCE.getHandlers().getTPoseHandler();
             abstractAnimationHandler.get(Minecraft.getMinecraft().thePlayer.getUniqueID()).stopAnimation();
         });
 

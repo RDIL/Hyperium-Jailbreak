@@ -27,11 +27,9 @@ import net.minecraft.util.ResourceLocation;
 
 public class HyperiumCosmetics {
     private final FlipCosmetic flipCosmetic;
-    private final Deadmau5Cosmetic deadmau5Cosmetic;
 
     public HyperiumCosmetics() {
         registerCosmetic(flipCosmetic = new FlipCosmetic());
-        registerCosmetic(deadmau5Cosmetic = new Deadmau5Cosmetic());
         registerCosmetic(new WingsCosmetic());
         registerCosmetic(new DragonCosmetic());
         registerCosmetic(new CosmeticHat(EnumPurchaseType.HAT_TOPHAT).setModel(new ModelHatTophat(), new ResourceLocation("textures/cosmetics/hats/tophat.png")));
@@ -45,9 +43,5 @@ public class HyperiumCosmetics {
 
     public FlipCosmetic getFlipCosmetic() {
         return this.flipCosmetic;
-    }
-
-    public Deadmau5Cosmetic getDeadmau5Cosmetic() {
-        return this.deadmau5Cosmetic;
     }
 }

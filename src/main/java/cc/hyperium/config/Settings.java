@@ -93,8 +93,6 @@ public class Settings {
 
     @ConfigOpt public static boolean DAB_TOGGLE = false;
 
-    @ConfigOpt public static boolean TPOSE_TOGGLE = false;
-
     @ConfigOpt @ToggleSetting(name = "Old Block Hitting", category = ANIMATIONS)
     public static boolean OLD_BLOCKHIT = true;
 
@@ -136,9 +134,6 @@ public class Settings {
     @ConfigOpt @SelectorSetting(name = "Flip Type", category = COSMETICS, items = {}) // OVERRIDEN
     public static String FLIP_TYPE_STRING = "FLIP";
 
-    @ConfigOpt @ToggleSetting(name = "T-Pose Toggle Mode", category = COSMETICS)
-    public static boolean TPOSE_TOGGLE_MODE = true;
-
     @ConfigOpt @ToggleSetting(name = "Transparent GUI Backgrounds")
     public static boolean FAST_CONTAINER = false;
 
@@ -157,9 +152,6 @@ public class Settings {
 
     @ConfigOpt @ToggleSetting(name = "Particle Cosmetic in Inventory", category = COSMETICS)
     public static boolean PARTICLES_INV = true;
-
-    @ConfigOpt @SelectorSetting(name = "Deadmau5 Ears Cosmetic", category = COSMETICS, items = {})
-    public static String EARS_STATE = "ON";
 
     @ConfigOpt @ToggleSetting(category = MISC, name = "Party/Friend Request Popup")
     public static boolean SHOW_INGAME_CONFIRMATION_POPUP = true;

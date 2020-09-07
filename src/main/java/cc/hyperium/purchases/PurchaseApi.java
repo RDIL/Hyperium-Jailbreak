@@ -23,11 +23,11 @@ import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.network.PurchaseLoadEvent;
 import cc.hyperium.event.world.SpawnpointChangeEvent;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
-import cc.hyperium.purchases.packages.EarsCosmetic;
 import cc.hyperium.utils.JsonHolder;
 import cc.hyperium.utils.UUIDUtil;
 import com.google.gson.JsonObject;
 import org.apache.commons.io.IOUtils;
+
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -47,8 +47,6 @@ public class PurchaseApi {
     private final Map<EnumPurchaseType, Class<? extends AbstractHyperiumPurchase>> purchaseClasses = new HashMap<>();
 
     private PurchaseApi() {
-        register(EnumPurchaseType.DEADMAU5_COSMETIC, EarsCosmetic.class);
-
         for (EnumPurchaseType enumPurchaseType : EnumPurchaseType.values()) {
             purchaseClasses.putIfAbsent(enumPurchaseType, DefaultCosmetic.class);
         }
