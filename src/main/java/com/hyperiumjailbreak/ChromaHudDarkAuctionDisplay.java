@@ -22,7 +22,7 @@ public class ChromaHudDarkAuctionDisplay extends DisplayItem {
     FontRenderer fr = Minecraft.getMinecraft().fontRendererObj;
     String time = "Unknown";
 
-    void updateTime() {
+    private void updateTime() {
         try {
             time = parser.parse(HttpUtil.get(new URL("https://backend.rdil.rocks/timers/dark-auction"))).getAsJsonObject().get("minutes_integer").getAsString();
         } catch (IOException e) {
