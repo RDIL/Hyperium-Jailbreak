@@ -1,9 +1,6 @@
 package cc.hyperium.handlers.handlers;
 
-import cc.hyperium.Hyperium;
 import cc.hyperium.config.Settings;
-import cc.hyperium.cosmetics.Deadmau5Cosmetic;
-import cc.hyperium.cosmetics.HyperiumCosmetics;
 import cc.hyperium.gui.ParticleOverlay;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import cc.hyperium.netty.NettyClient;
@@ -12,6 +9,7 @@ import cc.hyperium.purchases.EnumPurchaseType;
 import cc.hyperium.purchases.HyperiumPurchase;
 import cc.hyperium.purchases.PurchaseApi;
 import cc.hyperium.utils.JsonHolder;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,24 +25,6 @@ public class SettingsHandler {
 
     public SettingsHandler() {
         try {
-            Field earsField = Settings.class.getField("EARS_STATE");
-            registerCallback(earsField, o -> {
-                boolean yes = ((String) o).equalsIgnoreCase("YES");
-                HyperiumPurchase self = PurchaseApi.getInstance().getSelf();
-                if (self == null) {
-                    GeneralChatHandler.instance().sendMessage("Error: Could not update cosmetic state because your purchase profile is not loaded.");
-                    return;
-                }
-                JsonHolder purchaseSettings = self.getPurchaseSettings();
-                if (!purchaseSettings.has("deadmau5_cosmetic")) {
-                    purchaseSettings.put("deadmau5_cosmetic", new JsonHolder());
-                }
-                purchaseSettings.optJSONObject("deadmau5_cosmetic").put("enabled", yes);
-                NettyClient client = NettyClient.getClient();
-                if (client != null) {
-                    client.write(ServerCrossDataPacket.build(new JsonHolder().put("internal", true).put("ears", yes)));
-                }
-            });
             String[] hats1 = new String[]{"Tophat", "Fez", "Lego"};
             EnumPurchaseType[] hat2 = new EnumPurchaseType[]{EnumPurchaseType.HAT_TOPHAT, EnumPurchaseType.HAT_FEZ, EnumPurchaseType.HAT_LEGO};
 
@@ -95,19 +75,6 @@ public class SettingsHandler {
                 JsonHolder put = new JsonHolder().put("internal", true).put("companion", true).put("type", "NONE");
                 ServerCrossDataPacket build = ServerCrossDataPacket.build(put);
                 client.write(build);
-            });
-            customStates.put(earsField, () -> {
-                Hyperium instance = Hyperium.INSTANCE;
-                HyperiumCosmetics cosmetics1 = instance.getCosmetics();
-                if (cosmetics1 != null) {
-                    Deadmau5Cosmetic deadmau5Cosmetic = cosmetics1.getDeadmau5Cosmetic();
-                    if (deadmau5Cosmetic != null) {
-                        if (deadmau5Cosmetic.isSelfUnlocked()) {
-                            return new String[]{"YES", "NO"};
-                        }
-                    }
-                }
-                return new String[]{"NOT PURCHASED"};
             });
 
             Field max_particle_string = Settings.class.getField("MAX_PARTICLE_STRING");

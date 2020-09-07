@@ -1,19 +1,14 @@
 package com.hyperiumjailbreak;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonNull;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonArray;
+import com.google.gson.*;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import net.minecraft.util.HttpUtil;
 
-import java.net.URL;
 import java.io.IOException;
-import java.util.UUID;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 public class MojangAPI {
@@ -39,10 +34,10 @@ public class MojangAPI {
             JsonElement parser = new JsonParser().parse(json);
             if (json.isEmpty()) throw new Exception();
             JsonArray arrayNames = parser.getAsJsonArray();
-            arrayNames.forEach(obj -> {
+            for (JsonElement obj : arrayNames) {
                 Name name = gson.fromJson(obj, Name.class);
                 names.add(name);
-            });
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -60,8 +55,12 @@ public class MojangAPI {
 
     @SuppressWarnings("unused")
     public static class Name {
-        @SerializedName("name") @Expose private String name;
-        @SerializedName("changedToAt") @Expose private long changedToAt;
+        @SerializedName("name")
+        @Expose
+        private String name;
+        @SerializedName("changedToAt")
+        @Expose
+        private long changedToAt;
 
         public String getName() {
             return name;

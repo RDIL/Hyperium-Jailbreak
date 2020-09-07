@@ -18,12 +18,12 @@ public class HyperiumGuiScreenResourcePacks {
     }
 
     public void initGui(List<GuiButton> buttonList) {
-        buttonList.forEach(b -> {
+        for (GuiButton b : buttonList) {
             b.setWidth(200);
             if (b.id == 2) {
                 b.xPosition = parent.width / 2 - 204;
             }
-        });
+        }
     }
 
     public void mouseClicked() {}

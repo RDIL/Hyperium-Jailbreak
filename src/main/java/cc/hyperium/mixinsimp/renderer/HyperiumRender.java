@@ -64,7 +64,7 @@ public class HyperiumRender<T extends Entity> {
             float f = 1.6F;
             float f1 = 0.016666668F * f;
             GlStateManager.pushMatrix();
-            float offset = Utils.INSTANCE.calculateDeadmauEarsOffset(entityIn);
+            float offset = 0;
             GlStateManager.translate((float) x + 0.0F, (float) y + offset + entityIn.height + 0.5F, (float) z);
             GL11.glNormal3f(0.0F, 1.0F, 0.0F);
             GlStateManager.rotate(-renderManager.playerViewY, 0.0F, 1.0F, 0.0F);

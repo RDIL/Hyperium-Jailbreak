@@ -26,6 +26,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -92,7 +93,14 @@ public class DefaultConfig {
     private void loadToClassObject(Object object) {
         Class<?> c = object.getClass();
         if (!config.has(c.getName())) config.add(c.getName(), new JsonObject());
-        Arrays.stream(c.getDeclaredFields()).filter(f -> f.isAnnotationPresent(ConfigOpt.class) && config.has(c.getName())).forEach(f -> {
+
+        List<Field> acceptedFields = new ArrayList<>();
+        for (Field f : c.getDeclaredFields()) {
+            if (f.isAnnotationPresent(ConfigOpt.class) && config.has(c.getName())) {
+                acceptedFields.add(f);
+            }
+        }
+        for (Field f : acceptedFields) {
             f.setAccessible(true);
             JsonObject tmp = config.get(c.getName()).getAsJsonObject();
             if (tmp.has(f.getName())) {
@@ -102,7 +110,7 @@ public class DefaultConfig {
                     e.printStackTrace();
                 }
             }
-        });
+        }
     }
 
     private void loadToJson(Object object) {
@@ -110,7 +118,15 @@ public class DefaultConfig {
             ((PreSaveHandler) object).preSave();
         }
         Class<?> c = object.getClass();
-        Arrays.stream(c.getDeclaredFields()).filter(f -> f.isAnnotationPresent(ConfigOpt.class) && config.has(c.getName())).forEach(f -> {
+
+        List<Field> acceptedFields = new ArrayList<>();
+        for (Field f : c.getDeclaredFields()) {
+            if (f.isAnnotationPresent(ConfigOpt.class) && config.has(c.getName())) {
+                acceptedFields.add(f);
+            }
+        }
+
+        for (Field f : acceptedFields) {
             f.setAccessible(true);
             JsonObject classObject = config.get(c.getName()).getAsJsonObject();
             try {
@@ -118,7 +134,7 @@ public class DefaultConfig {
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
-        });
+        }
     }
 
     public JsonObject getConfig() {

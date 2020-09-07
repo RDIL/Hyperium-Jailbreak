@@ -86,7 +86,6 @@
     "renderer.MixinFontRenderer",
     "renderer.MixinItemRenderer",
     "renderer.MixinLayerCape",
-    "renderer.MixinLayerDeadmau5Head",
     "renderer.MixinRender",
     "renderer.MixinRendererLivingEntity",
     "renderer.MixinRenderGlobal",

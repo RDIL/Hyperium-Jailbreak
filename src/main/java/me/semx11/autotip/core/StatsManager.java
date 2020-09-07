@@ -1,21 +1,24 @@
 package me.semx11.autotip.core;
 
 import com.google.gson.JsonSyntaxException;
+import me.semx11.autotip.Autotip;
+import me.semx11.autotip.stats.StatsDaily;
+import me.semx11.autotip.stats.StatsRange;
+import me.semx11.autotip.util.FileUtil;
+import org.apache.commons.io.FileUtils;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import me.semx11.autotip.Autotip;
-import me.semx11.autotip.stats.StatsDaily;
-import me.semx11.autotip.stats.StatsRange;
-import me.semx11.autotip.util.FileUtil;
-import org.apache.commons.io.FileUtils;
 
 public class StatsManager {
     private final Autotip autotip;
@@ -70,9 +73,14 @@ public class StatsManager {
             end = LocalDate.now();
         }
         StatsRange range = new StatsRange(autotip, start, end);
-        Stream.iterate(start, date -> date.plusDays(1))
+        // TODO: Remove stream API usage.
+        List<LocalDate> dates = Stream.iterate(start, date -> date.plusDays(1))
                 .limit(ChronoUnit.DAYS.between(start, end) + 1)
-                .forEach(date -> range.merge(this.get(date)));
+                .collect(Collectors.toList());
+
+        for (LocalDate date : dates) {
+            range.merge(this.get(date));
+        }
         return range;
     }
 

@@ -46,13 +46,17 @@ public abstract class AbstractTabComponent {
     }
 
     protected void stateChange(Object o) {
-        stateChanges.forEach(tmp -> tmp.accept(o));
+        for (Consumer<Object> tmp : stateChanges) {
+            tmp.accept(o);
+        }
     }
 
     public void mouseEvent(int x, int y) {}
 
     public AbstractTabComponent tag(String... ts) {
-        tags.addAll(Arrays.stream(ts).map(String::toLowerCase).collect(Collectors.toList()));
+        for (String string : ts) {
+            tags.add(string.toLowerCase());
+        }
         return this;
     }
 

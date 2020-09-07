@@ -25,20 +25,16 @@ import cc.hyperium.event.client.TickEvent;
 import cc.hyperium.gui.ScoreboardRenderer;
 import cc.hyperium.handlers.handlers.*;
 import cc.hyperium.handlers.handlers.animation.DabHandler;
-import cc.hyperium.handlers.handlers.animation.TPoseHandler;
-import cc.hyperium.handlers.handlers.animation.YeetHandler;
 import cc.hyperium.handlers.handlers.animation.cape.CapeHandler;
 import cc.hyperium.handlers.handlers.chat.*;
 import cc.hyperium.handlers.handlers.data.HypixelAPI;
 import cc.hyperium.handlers.handlers.hud.VanillaEnhancementsHud;
 import cc.hyperium.handlers.handlers.keybinds.KeyBindHandler;
-import cc.hyperium.handlers.handlers.mixin.LayerDeadmau5HeadHandler;
 import cc.hyperium.handlers.handlers.reach.ReachDisplay;
 import cc.hyperium.handlers.handlers.stats.StatsHandler;
 import cc.hyperium.mods.PerspectiveModifierHandler;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
 import net.minecraft.client.Minecraft;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,12 +54,9 @@ public class HyperiumHandlers {
     private OtherConfigOptions configOptions;
     private DabHandler dabHandler;
     private FlipHandler flipHandler;
-    private LayerDeadmau5HeadHandler layerDeadmau5HeadHandler;
     private PerspectiveModifierHandler perspectiveHandler;
-    private TPoseHandler tPoseHandler;
     private StatsHandler statsHandler;
     private SettingsHandler settingsHandler;
-    private YeetHandler yeetHandler;
 
     public HyperiumHandlers() {
         register(network = new HyperiumNetwork());
@@ -79,14 +72,11 @@ public class HyperiumHandlers {
         register(new ReachDisplay());
         register(locationHandler = new LocationHandler());
         register(new VanillaEnhancementsHud());
-        register(layerDeadmau5HeadHandler = new LayerDeadmau5HeadHandler());
         register(new ResolutionUtil());
         register(capeHandler = new CapeHandler());
         register(guiDisplayHandler = new GuiDisplayHandler());
         register(scoreboardRenderer = new ScoreboardRenderer());
         register(dabHandler = new DabHandler());
-        register(yeetHandler = new YeetHandler());
-        register(tPoseHandler = new TPoseHandler());
         register(statsHandler = new StatsHandler());
         register(new BroadcastEvents());
         commandQueue = new CommandQueue();
@@ -97,10 +87,6 @@ public class HyperiumHandlers {
         registerChatHandler(new GuildChatHandler());
         EventBus.INSTANCE.register(this);
         register(commandHandler = new HyperiumCommandHandler());
-    }
-
-    public YeetHandler getYeetHandler() {
-        return yeetHandler;
     }
 
     public StatsHandler getStatsHandler() {
@@ -117,10 +103,6 @@ public class HyperiumHandlers {
 
     public FlipHandler getFlipHandler() {
         return flipHandler;
-    }
-
-    public LayerDeadmau5HeadHandler getLayerDeadmau5HeadHandler() {
-        return layerDeadmau5HeadHandler;
     }
 
     public SettingsHandler getSettingsHandler() {
@@ -195,9 +177,5 @@ public class HyperiumHandlers {
 
     public PerspectiveModifierHandler getPerspectiveHandler() {
         return perspectiveHandler;
-    }
-
-    public TPoseHandler getTPoseHandler() {
-        return tPoseHandler;
     }
 }

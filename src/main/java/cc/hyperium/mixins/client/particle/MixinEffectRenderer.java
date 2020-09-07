@@ -29,6 +29,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,11 +38,15 @@ import java.util.concurrent.CountDownLatch;
 
 @Mixin(EffectRenderer.class)
 public abstract class MixinEffectRenderer {
-    @Shadow @Final private static ResourceLocation particleTextures;
-    @Shadow protected World worldObj;
+    @Shadow
+    @Final
+    private static ResourceLocation particleTextures;
+    @Shadow
+    protected World worldObj;
     private ConcurrentLinkedQueue<EntityFX>[][] modifiedFxLayer = new ConcurrentLinkedQueue[4][];
     private ConcurrentLinkedQueue<EntityParticleEmitter> modifiedParticlEmmiters = new ConcurrentLinkedQueue<>();
-    @Shadow private TextureManager renderer;
+    @Shadow
+    private TextureManager renderer;
     private CountDownLatch latch;
 
     @Inject(method = "<init>", at = @At("RETURN"))
@@ -193,13 +198,13 @@ public abstract class MixinEffectRenderer {
                 Tessellator tessellator = Tessellator.getInstance();
                 WorldRenderer worldrenderer = tessellator.getWorldRenderer();
 
-                queue.forEach(entityFX -> {
+                for (EntityFX entityFX : queue) {
                     try {
                         entityFX.renderParticle(worldrenderer, entityIn, p_78872_2_, f1, f5, f2, f3, f4);
                     } catch (NullPointerException npe) {
                         npe.printStackTrace();
                     }
-                });
+                }
             }
         }
     }
@@ -255,7 +260,9 @@ public abstract class MixinEffectRenderer {
             }
         mcProfiler.endSection();
 
-        this.modifiedParticlEmmiters.forEach(EntityParticleEmitter::onUpdate);
+        for (EntityParticleEmitter emitter : modifiedParticlEmmiters) {
+            emitter.onUpdate();
+        }
         modifiedParticlEmmiters.removeIf(entityParticleEmitter -> entityParticleEmitter.isDead);
     }
 

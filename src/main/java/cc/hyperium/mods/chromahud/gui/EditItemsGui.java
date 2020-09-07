@@ -169,9 +169,17 @@ public class EditItemsGui extends GuiScreen {
             }
             this.modifying = item1;
             if (this.modifying != null) {
-                ChromaHUDApi.getInstance().getTextConfigs(this.modifying.getType()).forEach((config) -> config.getLoad().accept(config.getTextField(), this.modifying));
-                ChromaHUDApi.getInstance().getButtonConfigs(this.modifying.getType()).forEach((button) -> button.getLoad().accept(button.getButton(), this.modifying));
-                ChromaHUDApi.getInstance().getStringConfigs(this.modifying.getType()).forEach((button) -> button.getLoad().accept(this.modifying));
+                for (TextConfig config : ChromaHUDApi.getInstance().getTextConfigs(this.modifying.getType())) {
+                    config.getLoad().accept(config.getTextField(), this.modifying);
+                }
+
+                for (ButtonConfig config : ChromaHUDApi.getInstance().getButtonConfigs(this.modifying.getType())) {
+                    config.getLoad().accept(config.getButton(), this.modifying);
+                }
+
+                for (StringConfig config : ChromaHUDApi.getInstance().getStringConfigs(this.modifying.getType())) {
+                    config.getLoad().accept(this.modifying);
+                }
             }
         }
     }

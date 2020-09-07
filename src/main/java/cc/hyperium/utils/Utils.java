@@ -1,18 +1,9 @@
 package cc.hyperium.utils;
 
-import cc.hyperium.Hyperium;
-import cc.hyperium.config.Settings;
-import cc.hyperium.purchases.AbstractHyperiumPurchase;
-import cc.hyperium.purchases.EnumPurchaseType;
-import cc.hyperium.purchases.HyperiumPurchase;
-import cc.hyperium.purchases.PurchaseApi;
-import cc.hyperium.purchases.packages.EarsCosmetic;
 import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;
 import javax.imageio.ImageIO;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.input.Cursor;
@@ -41,26 +32,5 @@ public class Utils {
             buffer.flip();
             Mouse.setNativeCursor(new Cursor(w, h, 0, h - 1, 1, buffer.asIntBuffer(), null));
         } catch (Exception ignored) {}
-    }
-
-    public <T extends Entity> float calculateDeadmauEarsOffset(T entity) {
-        try {
-            if (entity instanceof EntityPlayer && Hyperium.INSTANCE.getCosmetics().getDeadmau5Cosmetic().isPurchasedBy(entity.getUniqueID())) {
-                HyperiumPurchase packageIfReady = PurchaseApi.getInstance().getPackageIfReady(entity.getUniqueID());
-
-                if (packageIfReady != null) {
-                    AbstractHyperiumPurchase purchase = packageIfReady.getPurchase(EnumPurchaseType.DEADMAU5_COSMETIC);
-                    if (purchase != null) {
-                        if (entity.getUniqueID() != Minecraft.getMinecraft().thePlayer.getUniqueID()) {
-                            if (purchase instanceof EarsCosmetic && ((EarsCosmetic) purchase).isEnabled()) return 0.24F;
-                        } else if (Settings.EARS_STATE.equalsIgnoreCase("on"))
-                            return 0.24F;
-                    }
-                }
-            }
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-        return 0F;
     }
 }

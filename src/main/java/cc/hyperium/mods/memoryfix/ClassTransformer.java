@@ -33,7 +33,9 @@ public class ClassTransformer implements IClassTransformer {
         ClassNode classNode = new ClassNode();
         classReader.accept(classNode, 0);
 
-        classNode.methods.forEach(m -> transformer.accept(classNode, m));
+        for (MethodNode methodNode : classNode.methods) {
+            transformer.accept(classNode, methodNode);
+        }
 
         ClassWriter classWriter = new ClassWriter(0);
         classNode.accept(classWriter);

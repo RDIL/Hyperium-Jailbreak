@@ -22,7 +22,6 @@ public enum EnumPurchaseType {
     WING_COSMETIC("wings"),
     LEVEL_HEAD("Custom Levelhead"),
     FLIP_COSMETIC("Flip Cosmetic"),
-    DEADMAU5_COSMETIC("Ears"),
     DRAGON_HEAD("Dragon Head"),
     HAT_TOPHAT("Tophat"),
     HAT_FEZ("Fez Hat"),

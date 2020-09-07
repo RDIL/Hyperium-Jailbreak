@@ -96,7 +96,9 @@ public abstract class Stats {
         this.tipsReceived += that.tipsReceived;
         this.xpSent += that.xpSent;
         this.xpReceived += that.xpReceived;
-        that.gameStatistics.forEach(this::addCoins);
+        for (Map.Entry<String, Coins> entry : this.gameStatistics.entrySet()) {
+            addCoins(entry.getKey(), entry.getValue());
+        }
         return this;
     }
 }
