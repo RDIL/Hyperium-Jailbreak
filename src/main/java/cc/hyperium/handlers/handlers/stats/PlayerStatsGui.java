@@ -17,7 +17,6 @@ import cc.hyperium.handlers.handlers.stats.fields.MurderMysteryStats;
 import cc.hyperium.handlers.handlers.stats.fields.PaintballStats;
 import cc.hyperium.handlers.handlers.stats.fields.QuakecraftStats;
 import cc.hyperium.handlers.handlers.stats.fields.SkyWarsStats;
-import cc.hyperium.handlers.handlers.stats.fields.SpeedUHCStats;
 import cc.hyperium.handlers.handlers.stats.fields.TKRStats;
 import cc.hyperium.handlers.handlers.stats.fields.TNTGamesStats;
 import cc.hyperium.handlers.handlers.stats.fields.UHCStats;
@@ -69,7 +68,6 @@ public class PlayerStatsGui extends HyperiumGui {
         fields.add(new PaintballStats());
         fields.add(new QuakecraftStats());
         fields.add(new SkyWarsStats());
-        fields.add(new SpeedUHCStats());
         fields.add(new TKRStats());
         fields.add(new TNTGamesStats());
         fields.add(new UHCStats());

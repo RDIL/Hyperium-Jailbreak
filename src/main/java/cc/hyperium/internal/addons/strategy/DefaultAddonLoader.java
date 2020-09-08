@@ -25,7 +25,7 @@ public final class DefaultAddonLoader extends AddonLoaderStrategy {
             final AddonManifest manifest = (new AddonManifestParser(jar)).getAddonManifest();
             List<String> array = new ArrayList<>(
                     Arrays.asList(
-                            "AutoFriend", "Custom Crosshair Addon", "Tab Toggle", "SidebarAddon", "BossbarAddon", "FortniteCompassMod", "Item Physic", "Particle Addon"
+                            "AutoFriend", "Custom Crosshair Addon", "Tab Toggle", "SidebarAddon", "BossbarAddon", "FortniteCompassMod", "Item Physic"
                     )
             );
 

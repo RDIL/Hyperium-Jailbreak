@@ -12,7 +12,7 @@ public class AddonMinecraftBootstrap {
     public void init() {
         try {
             if (AddonBootstrap.INSTANCE.getPhase() != AddonBootstrap.Phase.INIT) {
-                throw new IOException("Bootstrap currently at AddonBoostrap.Phase.${AddonBootstrap.INSTANCE.phase}, it should be at INIT");
+                throw new IOException("Bootstrap currently at AddonBoostrap.Phase." + AddonBootstrap.INSTANCE.phase + ", it should be at INIT");
             }
 
             List<AddonManifest> toLoad = new ArrayList<>(AddonBootstrap.INSTANCE.getAddonManifests());

@@ -20,26 +20,18 @@ import java.util.jar.JarFile;
 
 public class AddonBootstrap {
     public static AddonBootstrap INSTANCE = new AddonBootstrap();
-
-    private final File MOD_DIRECTORY = new File("addons");
-
-    private final File PENDING_DIRECTORY = new File("pending-addons");
-
-    public Phase phase = Phase.NOT_STARTED;
-
     private static final List<File> addonResourcePacks = new ArrayList<>();
 
-    private final List<File> jars;
-
+    private final File MOD_DIRECTORY = new File("addons");
+    private final File PENDING_DIRECTORY = new File("pending-addons");
     private final DefaultAddonLoader loader = new DefaultAddonLoader();
-
     private final WorkspaceAddonLoader workspaceLoader = new WorkspaceAddonLoader();
-
+    private final List<File> jars;
     private final List<ITranslator> translators = Arrays.asList(new MixinTranslator(), new TransformerTranslator());
-
     private final List<AddonManifest> addonManifests = new ArrayList<>();
-
     private final List<AddonManifest> pendingManifests = new ArrayList<>();
+
+    public Phase phase = Phase.NOT_STARTED;
 
     public AddonBootstrap() {
         if (!MOD_DIRECTORY.exists()) {
