@@ -171,9 +171,6 @@ public class Settings {
     @ConfigOpt @ToggleSetting(category = GENERAL, name = "Show Sprint/Perspective Messages")
     public static boolean SPRINT_PERSPECTIVE_MESSAGES = true;
 
-    @ConfigOpt @SelectorSetting(name = "Show Dragon Head", items = {}, category = COSMETICS)
-    public static String SHOW_DRAGON_HEAD = "OFF";
-
     @ConfigOpt @SelectorSetting(name = "Show Wings", items = {}, category = COSMETICS)
     public static String SHOW_WINGS = "ON";
 

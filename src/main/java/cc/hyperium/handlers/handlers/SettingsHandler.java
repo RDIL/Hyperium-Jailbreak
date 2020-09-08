@@ -126,38 +126,6 @@ public class SettingsHandler {
                 }
             });
 
-            Field show_dragonhead_string = Settings.class.getField("SHOW_DRAGON_HEAD");
-            customStates.put(show_dragonhead_string, () -> {
-                HyperiumPurchase self = PurchaseApi.getInstance().getSelf();
-                if (self != null && self.hasPurchased(EnumPurchaseType.DRAGON_HEAD)) {
-                    return new String[]{
-                        "ON",
-                        "OFF"
-                    };
-                }
-
-                return new String[]{"NOT PURCHASED"};
-            });
-            registerCallback(show_dragonhead_string, o -> {
-                try {
-                    Settings.SHOW_DRAGON_HEAD = String.valueOf(o);
-                    String update = String.valueOf(o);
-
-                    boolean packetUpdate;
-                    // Update on netty.
-                    packetUpdate = update.equalsIgnoreCase("on");
-
-                    ServerCrossDataPacket packet = ServerCrossDataPacket.build(new JsonHolder().put("internal", true).put("dragon_head", packetUpdate));
-
-                    NettyClient client = NettyClient.getClient();
-                    if (client != null) {
-                        client.write(packet);
-                    }
-                } catch (Exception ignored) {
-
-                }
-            });
-
             registerCallback(Settings.class.getField("MAX_WORLD_PARTICLES_STRING"), o -> {
                 try {
                     Settings.MAX_WORLD_PARTICLES_INT = Integer.parseInt(o.toString());
