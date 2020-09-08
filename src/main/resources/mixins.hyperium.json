@@ -27,7 +27,6 @@
     "client.MixinLoadingScreen",
     "client.multiplayer.MixinServerList",
     "client.particle.MixinEffectRenderer",
-    "client.MixinRendererLivingEntity",
     "client.resources.IMixinAbstractResourcePack",
     "client.resources.MixinAbstractResourcePack",
     "entity.IMixinAbstractClientPlayer",

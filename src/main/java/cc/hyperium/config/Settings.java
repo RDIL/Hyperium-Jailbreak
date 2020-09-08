@@ -198,9 +198,6 @@ public class Settings {
     @ConfigOpt @SelectorSetting(name = "Pause Menu Style", items = {"HYPERIUM", "DEFAULT"}, category = MENUS)
     public static String PAUSE_STYLE = GuiStyle.HYPERIUM.name();
 
-    @ConfigOpt @ToggleSetting(name = "Fast World Loading (! Causes Performance Issues !)", category = IMPROVEMENTS)
-    public static boolean FAST_WORLD_LOADING = false;
-
     @ConfigOpt public static int MAX_WORLD_PARTICLES_INT = 10000;
 
     @ConfigOpt @SelectorSetting(category = IMPROVEMENTS, name = "Max World Particles", items = {"1000", "2000", "4000", "6000", "8000", "10000", "20000", "50000",})
@@ -283,9 +280,6 @@ public class Settings {
 
     @ConfigOpt @ToggleSetting(name = "Disable Lightning", category = IMPROVEMENTS)
     public static boolean DISABLE_LIGHTNING = false;
-
-    @ConfigOpt @ToggleSetting(name = "Disable Armor Stands", category = IMPROVEMENTS)
-    public static boolean DISABLE_ARMORSTANDS = false;
 
     @ConfigOpt @ToggleSetting(name = "Disable Item Frames", category = IMPROVEMENTS)
     public static boolean DISABLE_ITEMFRAMES = false;

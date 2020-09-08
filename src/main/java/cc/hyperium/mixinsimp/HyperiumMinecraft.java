@@ -214,15 +214,8 @@ public class HyperiumMinecraft {
 
     public void displayCrashReport(CrashReport crashReportIn) {
         String data = crashReportIn.getCauseStackTraceOrString();
-        File crashReportDir;
+        File crashReportDir = new File(Minecraft.getMinecraft().mcDataDir, "crash-reports");
         String crashReportPrefix = "crash-";
-        if (data.contains("hyperium")) {
-            crashReportDir = new File(Minecraft.getMinecraft().mcDataDir, "jb-crash-reports");
-            if (!crashReportDir.exists()) crashReportDir.mkdir();
-            crashReportPrefix = "jb-crash-";
-        } else {
-            crashReportDir = new File(Minecraft.getMinecraft().mcDataDir, "crash-reports");
-        }
 
         File crashReportFile = new File(crashReportDir, crashReportPrefix + (new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss")).format(new Date()) + "-jbc.txt");
 

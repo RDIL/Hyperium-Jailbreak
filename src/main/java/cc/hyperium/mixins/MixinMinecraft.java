@@ -18,7 +18,6 @@
 package cc.hyperium.mixins;
 
 import cc.hyperium.gui.SplashProgress;
-import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.render.RenderTickEvent;
 import cc.hyperium.event.world.WorldLoadEvent;
@@ -67,7 +66,6 @@ public abstract class MixinMinecraft {
     private HyperiumMinecraft hyperiumMinecraft = new HyperiumMinecraft((Minecraft) (Object) this);
     @Shadow private Timer timer;
     @Shadow private RenderManager renderManager;
-    @Shadow long systemTime;
 
     @Inject(method = "startGame", at = @At("HEAD"))
     private void preinit(CallbackInfo ci) {
@@ -148,11 +146,8 @@ public abstract class MixinMinecraft {
     }
 
     @Inject(method = "loadWorld(Lnet/minecraft/client/multiplayer/WorldClient;Ljava/lang/String;)V", at = @At(value = "INVOKE", target = "Ljava/lang/System;gc()V"), cancellable = true)
-    private void fixGarbageCollection(WorldClient worldClientIn, String loadingMessage, CallbackInfo info) {
+    private void loadWorldEvent(WorldClient worldClientIn, String loadingMessage, CallbackInfo ci) {
         new WorldLoadEvent().post();
-        if (!Settings.FAST_WORLD_LOADING) return;
-        systemTime = 0;
-        info.cancel();
     }
 
     @Inject(method = "runTick", at = @At(value = "INVOKE", target = "Lorg/lwjgl/input/Mouse;getEventButton()I", ordinal = 0))
