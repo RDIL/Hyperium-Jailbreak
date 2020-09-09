@@ -26,7 +26,6 @@ import cc.hyperium.event.interact.MouseButtonEvent;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.DabKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.FlipKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.FriendsKeybind;
-import cc.hyperium.handlers.handlers.keybinds.keybinds.GuiDanceKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.GuiKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.NamesKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.RearCamKeybind;
@@ -51,7 +50,6 @@ public class KeyBindHandler {
         registerKeyBinding(new FlipKeybind());
         registerKeyBinding(new ToggleSprintKeybind());
         registerKeyBinding(new TogglePerspectiveKeybind());
-        registerKeyBinding(new GuiDanceKeybind());
         registerKeyBinding(new RearCamKeybind());
         for (int i = 0; i < 16; i++) {
             mouseBinds.put(i, -100 + i);
