@@ -293,18 +293,8 @@ public class MixinModelBiped extends ModelBase implements IMixinModelBiped {
     }
 
     @Override
-    public ModelRenderer getBipedRightUpperLeg() {
-        return this.bipedRightLeg;
-    }
-
-    @Override
     public ModelRenderer getBipedRightLowerLeg() {
         return this.bipedRightLowerLeg;
-    }
-
-    @Override
-    public ModelRenderer getBipedLeftUpperLeg() {
-        return this.bipedLeftLeg;
     }
 
     @Override
@@ -330,11 +320,6 @@ public class MixinModelBiped extends ModelBase implements IMixinModelBiped {
     @Override
     public ModelRenderer getBipedLeftForeArm() {
         return this.bipedLeftForeArm;
-    }
-
-    @Override
-    public ModelRenderer getBipedBody() {
-        return this.bipedBody;
     }
 
     @Override

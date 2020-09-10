@@ -247,11 +247,6 @@ public class MixinModelPlayer extends MixinModelBiped implements IMixinModelPlay
     }
 
     @Override
-    public ModelRenderer getBipedLeftForeArmwear() {
-        return this.bipedLeftForeArmwear;
-    }
-
-    @Override
     public ModelRenderer getBipedBodywear() {
         return this.bipedBodyWear;
     }

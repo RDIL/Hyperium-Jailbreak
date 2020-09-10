@@ -17,8 +17,6 @@ public interface IMixinModelPlayer extends IMixinModelBiped {
 
     ModelRenderer getBipedLeftUpperArmwear();
 
-    ModelRenderer getBipedLeftForeArmwear();
-
     ModelRenderer getBipedBodywear();
 
     ModelRenderer getCape();
