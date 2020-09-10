@@ -39,11 +39,6 @@ public class MixinGuiScreenResourcePacks extends GuiScreen {
         updateList();
     }
 
-    @Inject(method = "mouseClicked", at = @At("RETURN"))
-    protected void mouseClicked(int mouseX, int mouseY, int mouseButton, CallbackInfo ci) throws IOException {
-        updateList();
-    }
-
     @Overwrite
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         hyperiumGuiResourcePack.drawScreen(availableResourcePacksList, selectedResourcePacksList, mouseX, mouseY, partialTicks, fontRendererObj, width);
