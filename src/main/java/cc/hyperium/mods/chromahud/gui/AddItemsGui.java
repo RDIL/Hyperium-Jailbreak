@@ -46,7 +46,6 @@ public class AddItemsGui extends GuiScreen {
     private final Map<GuiButton, Consumer<GuiButton>> updates = new HashMap<>();
     private final List<DisplayElement> all = new ArrayList<>();
     private final DisplayElement target;
-    private int tmpId = 0;
     private boolean adding = true;
     private int offset = 0;
     private boolean mouseLock;
@@ -71,24 +70,13 @@ public class AddItemsGui extends GuiScreen {
         mouseLock = Mouse.isButtonDown(0);
     }
 
-    private int nextId() {
-        return (++tmpId);
-    }
-
     @Override
     public void initGui() {
         super.initGui();
-        reg("Add", new GuiButton(nextId(), 2, 2, 100, 20, "Add"), (guiButton) -> {
-            adding = true;
-            offset = 0;
-        }, (guiButton) -> guiButton.enabled = !adding);
-
-        reg("Down", new GuiButton(nextId(), 2, 23 + 21 * 2, 100, 20, "Scroll Down"), (guiButton) -> offset += 50, (guiButton) -> {});
-        reg("Up", new GuiButton(nextId(), 2, 23 + 21, 100, 20, "Scroll Up"), (guiButton) -> offset -= 50, (guiButton) -> {});
-        reg("Back", new GuiButton(nextId(), 2, ResolutionUtil.current().getScaledHeight() - 22, 100, 20, "Back"), (guiButton) -> Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new EditItemsGui(element, mod)), (guiButton) -> {});
+        reg(new GuiButton(0, 2, ResolutionUtil.current().getScaledHeight() - 22, 100, 20, "Back"), (guiButton) -> Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new EditItemsGui(element, mod)), (guiButton) -> {});
     }
 
-    private void reg(String name, GuiButton button, Consumer<GuiButton> consumer, Consumer<GuiButton> tick) {
+    private void reg(GuiButton button, Consumer<GuiButton> consumer, Consumer<GuiButton> tick) {
         this.buttonList.add(button);
         this.clicks.put(button, consumer);
     }
@@ -117,9 +105,9 @@ public class AddItemsGui extends GuiScreen {
     public void handleMouseInput() throws IOException {
         super.handleMouseInput();
         int i = Mouse.getEventDWheel();
-        if (i < 0) {
+        if (i > 0) {
             offset += 10;
-        } else if (i > 0) {
+        } else if (i < 0) {
             offset -= 10;
         }
     }
