@@ -24,7 +24,6 @@ import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.client.TickEvent;
 import cc.hyperium.gui.ScoreboardRenderer;
 import cc.hyperium.handlers.handlers.*;
-import cc.hyperium.handlers.handlers.animation.DabHandler;
 import cc.hyperium.handlers.handlers.animation.cape.CapeHandler;
 import cc.hyperium.handlers.handlers.chat.*;
 import cc.hyperium.handlers.handlers.data.HypixelAPI;
@@ -52,7 +51,6 @@ public class HyperiumHandlers {
     private HyperiumNetwork network;
     private ScoreboardRenderer scoreboardRenderer;
     private OtherConfigOptions configOptions;
-    private DabHandler dabHandler;
     private FlipHandler flipHandler;
     private PerspectiveModifierHandler perspectiveHandler;
     private StatsHandler statsHandler;
@@ -76,7 +74,6 @@ public class HyperiumHandlers {
         register(capeHandler = new CapeHandler());
         register(guiDisplayHandler = new GuiDisplayHandler());
         register(scoreboardRenderer = new ScoreboardRenderer());
-        register(dabHandler = new DabHandler());
         register(statsHandler = new StatsHandler());
         register(new BroadcastEvents());
         commandQueue = new CommandQueue();
@@ -165,10 +162,6 @@ public class HyperiumHandlers {
 
     public OtherConfigOptions getConfigOptions() {
         return configOptions;
-    }
-
-    public DabHandler getDabHandler() {
-        return dabHandler;
     }
 
     public CapeHandler getCapeHandler() {
