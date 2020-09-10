@@ -1,10 +1,8 @@
 package cc.hyperium.cosmetics;
 
+import cc.hyperium.config.Settings;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.render.RenderPlayerEvent;
-import cc.hyperium.purchases.EnumPurchaseType;
-import cc.hyperium.purchases.HyperiumPurchase;
-import cc.hyperium.purchases.PurchaseApi;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelBase;
@@ -15,9 +13,12 @@ import org.lwjgl.opengl.GL11;
 public class CosmeticHat extends AbstractCosmetic {
     private ModelBase hatModel;
     private ResourceLocation hatTexture;
-    CosmeticHat(EnumPurchaseType purchaseType) {
-        super(purchaseType);
+    private final String id;
+
+    CosmeticHat(String id) {
+        this.id = id;
     }
+
     CosmeticHat setModel(ModelBase givenModel, ResourceLocation givenTexture) {
         this.hatModel = givenModel;
         this.hatTexture = givenTexture;
@@ -28,17 +29,15 @@ public class CosmeticHat extends AbstractCosmetic {
     public void onPlayerRender(RenderPlayerEvent e) {
         Minecraft mc = Minecraft.getMinecraft();
         AbstractClientPlayer player = e.getEntity();
-        if (CosmeticsUtil.shouldHide()) return;
 
-        if (this.isPurchasedBy(player.getUniqueID()) && !player.isInvisible()) {
-            HyperiumPurchase packageIfReady = PurchaseApi.getInstance().getPackageIfReady(player.getUniqueID());
-            if (packageIfReady.getCachedSettings().getCurrentHatType() != getPurchaseType()) return;
+        if (!Settings.HAT_TYPE.equals(this.id)) return;
 
+        if (player.getUniqueID() == Minecraft.getMinecraft().thePlayer.getUniqueID() && !player.isInvisible()) {
             GlStateManager.pushMatrix();
             GlStateManager.translate(e.getX(), e.getY(), e.getZ());
             final double scale = 1.0F;
-            final double rotate = this.interpolate(player.prevRotationYawHead, player.rotationYawHead, e.getPartialTicks());
-            final double rotate1 = this.interpolate(player.prevRotationPitch, player.rotationPitch, e.getPartialTicks());
+            final double rotate = interpolate(player.prevRotationYawHead, player.rotationYawHead, e.getPartialTicks());
+            final double rotate1 = interpolate(player.prevRotationPitch, player.rotationPitch, e.getPartialTicks());
 
             GL11.glScaled(-scale, -scale, scale);
 

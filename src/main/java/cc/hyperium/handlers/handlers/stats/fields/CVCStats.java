@@ -5,7 +5,7 @@ import cc.hyperium.handlers.handlers.stats.display.DisplayLine;
 import cc.hyperium.handlers.handlers.stats.display.StatsDisplayItem;
 import cc.hyperium.utils.JsonHolder;
 import net.hypixel.api.HypixelApiPlayer;
-import cc.hyperium.network.WebsiteUtils;
+import cc.hyperium.utils.WebsiteUtils;
 import net.hypixel.api.GameType;
 import java.awt.Color;
 import java.util.ArrayList;

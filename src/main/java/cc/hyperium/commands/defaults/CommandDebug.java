@@ -21,13 +21,8 @@ import cc.hyperium.commands.BaseCommand;
 import cc.hyperium.handlers.handlers.HypixelDetector;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import cc.hyperium.mods.chromahud.ChromaHUDApi;
-import cc.hyperium.network.NetworkHandler;
-import cc.hyperium.purchases.HyperiumPurchase;
-import cc.hyperium.purchases.PurchaseApi;
-import cc.hyperium.utils.JsonHolder;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import java.util.List;
 
 public class CommandDebug implements BaseCommand {
     private static final Gson printer = new GsonBuilder().setPrettyPrinting().create();
@@ -72,31 +67,10 @@ public class CommandDebug implements BaseCommand {
 
     public static String get() {
         StringBuilder builder = new StringBuilder();
-        PurchaseApi api = PurchaseApi.getInstance();
-        if (api == null) return "";
 
-        HyperiumPurchase self = PurchaseApi.getInstance().getSelf();
-        builder.append("\n");
-        builder.append("Purchase callback: ");
-        if (self != null) {
-            JsonHolder response = self.getResponse();
-            if (response != null)
-                builder.append(printer.toJson(response.getObject()));
-        }
-        builder.append("\n");
         HypixelDetector instance = HypixelDetector.getInstance();
         if (instance != null) builder.append("Hypixel: ").append(instance.isHypixel());
         builder.append("\n\n");
-        NetworkHandler networkHandler = Hyperium.INSTANCE.getNetworkHandler();
-        if (networkHandler != null) {
-            List<String> verboseLogs = networkHandler.getVerboseLogs();
-            for (String verboseLog : verboseLogs) {
-                builder.append(verboseLog);
-                builder.append("\n");
-            }
-            builder.append(verboseLogs);
-            builder.append("\n");
-        }
         tryConfig(builder);
         builder.append("\n");
         tryChromaHUD(builder);
@@ -106,6 +80,7 @@ public class CommandDebug implements BaseCommand {
         tryLevelhead(builder);
         builder.append("\n");
         builder.append("Levelhead");
+
         return builder.toString();
     }
 
@@ -122,7 +97,6 @@ public class CommandDebug implements BaseCommand {
     @Override
     public void onExecute(String[] args) {
         if (args.length == 1 && args[0].equalsIgnoreCase("log")) {
-            Hyperium.INSTANCE.getNetworkHandler().setLog(true);
             GeneralChatHandler.instance().sendMessage("Enabled logging, please restart your game to begin. It will be auto disabled after next launch.");
         }
     }

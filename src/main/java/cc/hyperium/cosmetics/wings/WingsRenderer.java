@@ -17,13 +17,9 @@
 
 package cc.hyperium.cosmetics.wings;
 
-import cc.hyperium.Hyperium;
 import cc.hyperium.config.Settings;
-import cc.hyperium.cosmetics.CosmeticsUtil;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.render.RenderPlayerEvent;
-import cc.hyperium.purchases.HyperiumPurchase;
-import cc.hyperium.purchases.PurchaseApi;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
@@ -33,11 +29,11 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 public class WingsRenderer extends ModelBase {
-    private Minecraft mc;
-    private ModelRenderer wing;
-    private ModelRenderer wingTip;
+    private final Minecraft mc;
+    private final ModelRenderer wing;
+    private final ModelRenderer wingTip;
     private boolean playerUsesFullHeight;
-    private WingsCosmetic wingsCosmetic;
+    private final WingsCosmetic wingsCosmetic;
 
     public WingsRenderer(WingsCosmetic cosmetic) {
         this.wingsCosmetic = cosmetic;
@@ -59,26 +55,18 @@ public class WingsRenderer extends ModelBase {
 
     @InvokeEvent
     public void onRenderPlayer(RenderPlayerEvent event) {
-        if (CosmeticsUtil.shouldHide()) return;
         EntityPlayer player = event.getEntity();
-        if (wingsCosmetic.isPurchasedBy(event.getEntity().getUniqueID()) && !player.isInvisible()) {
-            HyperiumPurchase packageIfReady = PurchaseApi.getInstance().getPackageIfReady(event.getEntity().getUniqueID());
-            if (packageIfReady == null) return;
-            if (packageIfReady.getCachedSettings().isWingsDisabled()) return;
+        if (event.getEntity().getUniqueID().equals(Minecraft.getMinecraft().thePlayer.getUniqueID()) && !player.isInvisible()) {
+            if (!Settings.ENABLE_WINGS) return;
 
             this.renderWings(player, event.getPartialTicks(), event.getX(), event.getY(), event.getZ());
         }
     }
 
     private void renderWings(EntityPlayer player, float partialTicks, double x, double y, double z) {
-        HyperiumPurchase packageIfReady = PurchaseApi.getInstance()
-            .getPackageIfReady(player.getUniqueID());
-        if (packageIfReady == null) {
-            return;
-        }
         ResourceLocation location = wingsCosmetic.getLocation();
 
-        double v = packageIfReady.getCachedSettings().getWingsScale();
+        double v = Settings.WINGS_SCALE;
         double scale = v / 100.0;
         double rotate = this.interpolate(player.prevRenderYawOffset, player.renderYawOffset, partialTicks);
 
@@ -102,16 +90,17 @@ public class WingsRenderer extends ModelBase {
         GlStateManager.translate(0.0F, -scaledHeight, 0.0F);
         GlStateManager.translate(0.0F, 0.0F, 0.15F / scale);
 
-        // Takes into account player flip cosmetic.
-        int rotateState = Hyperium.INSTANCE.getHandlers().getFlipHandler().get(player.getUniqueID());
+        final boolean isFlipped = Settings.isFlipped;
+        final boolean isRotate = Settings.FLIP_TYPE_STRING.equals("ROTATE");
+        final boolean isFlipNormal = Settings.FLIP_TYPE_STRING.equals("FLIP");
 
-        if (player.isSneaking() && rotateState == 0) {
+        if (player.isSneaking()) {
             GlStateManager.translate(0.0F, 0.125 / scale, 0.0F);
-        } else if (player.isSneaking() && rotateState == 1) {
+        } else if (player.isSneaking() && isFlipNormal) {
             GlStateManager.translate(0.0F, -0.125 / scale, 0.0F);
         }
 
-        if (rotateState == 2) {
+        if (isFlipped && isRotate) {
             // Spinning rotate mode.
             // Translate to centre of the player.
             float difference = scaledHeight - (scaledPlayerHeight / 2);
@@ -123,7 +112,7 @@ public class WingsRenderer extends ModelBase {
 
             // Translate back up to the correct position.
             GlStateManager.translate(0.0F, -difference, 0.0F);
-        } else if (rotateState == 1) {
+        } else if (isFlipped && isFlipNormal) {
             // Flip rotate mode.
             float difference = scaledPlayerHeight - scaledHeight;
 

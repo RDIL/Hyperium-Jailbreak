@@ -2,6 +2,7 @@ package cc.hyperium.utils;
 
 import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;
+import java.util.UUID;
 import javax.imageio.ImageIO;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
@@ -10,9 +11,9 @@ import org.lwjgl.input.Cursor;
 import org.lwjgl.input.Mouse;
 
 public class Utils {
-    public static final Utils INSTANCE = new Utils();
+    @Deprecated public static final Utils INSTANCE = new Utils();
 
-    public void setCursor(ResourceLocation cursor) {
+    public static void setCursor(ResourceLocation cursor) {
         try {
             BufferedImage image = ImageIO.read(Minecraft.getMinecraft().getResourceManager().getResource(cursor).getInputStream());
             int w = image.getWidth();
@@ -32,5 +33,9 @@ public class Utils {
             buffer.flip();
             Mouse.setNativeCursor(new Cursor(w, h, 0, h - 1, 1, buffer.asIntBuffer(), null));
         } catch (Exception ignored) {}
+    }
+
+    public static UUID dashMeUp(String uuidWithoutDashes) {
+        return UUID.fromString(uuidWithoutDashes.replaceAll("(\\w{8})(\\w{4})(\\w{4})(\\w{4})(\\w{12})", "$1-$2-$3-$4-$5"));
     }
 }

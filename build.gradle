@@ -74,7 +74,6 @@ dependencies {
     embed ('org.slick2d:slick2d-core:1.0.2') {
         exclude module: 'lwjgl'
     }
-    embed 'com.hyperiumjailbreak:gson-extras:0.2.2'
     embed 'com.github.HyperiumClient:Installer:1.9'
 }
 

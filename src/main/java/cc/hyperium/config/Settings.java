@@ -82,16 +82,11 @@ public class Settings {
     @ConfigOpt @ToggleSetting(name = "Static FOV", category = IMPROVEMENTS)
     public static boolean STATIC_FOV = false;
 
-    @ConfigOpt @SelectorSetting(name = "Hat Type", category = COSMETICS, items = "NONE")
+    @ConfigOpt @SelectorSetting(name = "Hat Type", category = COSMETICS, items = {"NONE", "TOPHAT", "FEZ", "LEGO"})
     public static String HAT_TYPE = "NONE";
 
     @ConfigOpt @ToggleSetting(category = GENERAL, name = "Show Own Name Tag")
     public static boolean SHOW_OWN_NAME = false;
-
-    @ConfigOpt @ToggleSetting(category = COSMETICS, name = "Show Cosmetics Everywhere")
-    public static boolean SHOW_COSMETICS_EVERYWHERE = true;
-
-    @ConfigOpt public static boolean DAB_TOGGLE = false;
 
     @ConfigOpt @ToggleSetting(name = "Old Block Hitting", category = ANIMATIONS)
     public static boolean OLD_BLOCKHIT = true;
@@ -126,13 +121,10 @@ public class Settings {
     @ConfigOpt @ToggleSetting(name = "Custom Sword Animation", category = ANIMATIONS)
     public static boolean CUSTOM_SWORD_ANIMATION = false;
 
-    @ConfigOpt @ToggleSetting(name = "Flip Toggle Mode", category = COSMETICS)
-    public static boolean isFlipToggle = true;
-
-    @ConfigOpt public static int flipType = 1;
-
-    @ConfigOpt @SelectorSetting(name = "Flip Type", category = COSMETICS, items = {}) // OVERRIDEN
+    @ConfigOpt @SelectorSetting(name = "Flip Type", category = COSMETICS, items = {"FLIP", "ROTATE"})
     public static String FLIP_TYPE_STRING = "FLIP";
+
+    @ConfigOpt public static boolean isFlipped;
 
     @ConfigOpt @ToggleSetting(name = "Transparent GUI Backgrounds")
     public static boolean FAST_CONTAINER = false;
@@ -171,17 +163,14 @@ public class Settings {
     @ConfigOpt @ToggleSetting(category = GENERAL, name = "Show Sprint/Perspective Messages")
     public static boolean SPRINT_PERSPECTIVE_MESSAGES = true;
 
-    @ConfigOpt @SelectorSetting(name = "Show Wings", items = {}, category = COSMETICS)
-    public static String SHOW_WINGS = "ON";
+    @ConfigOpt @ToggleSetting(name = "Show Wings", category = COSMETICS)
+    public static boolean ENABLE_WINGS = false;
 
     @ConfigOpt @SliderSetting(name = "Wings Height", min = -40, max = 40, category = COSMETICS)
     public static double WINGS_OFFSET = 0D;
 
     @ConfigOpt @SliderSetting(name = "Wings Scale", min = 50, max = 200, category = COSMETICS)
     public static double WINGS_SCALE = 100D;
-
-    @ConfigOpt @ToggleSetting(name = "Disable Dances", category = COSMETICS)
-    public static boolean DISABLE_DANCES = false;
 
     @ConfigOpt @ToggleSetting(name = "Show ChromaHUD", category = CHROMAHUD, mods = true)
     public static boolean SHOW_CHROMAHUD = true;
@@ -234,13 +223,13 @@ public class Settings {
     @ConfigOpt @SelectorSetting(name = "Reach Color Type", mods = true, category = REACH, items = {"RGB", "CHROMA"})
     public static String REACH_COLOR_TYPE = "RGB";
 
-    @ConfigOpt @SliderSetting(name = "Red", mods = true, category = REACH, isInt = true, min = 0, max = 255)
+    @ConfigOpt @SliderSetting(name = "Red", category = REACH, isInt = true, min = 0, max = 255)
     public static int REACH_RED = 255;
 
-    @ConfigOpt @SliderSetting(name = "Blue", mods = true, category = REACH, isInt = true, min = 0, max = 255)
+    @ConfigOpt @SliderSetting(name = "Blue", category = REACH, isInt = true, min = 0, max = 255)
     public static int REACH_BLUE = 0;
 
-    @ConfigOpt @SliderSetting(name = "Green", mods = true, category = REACH, isInt = true, min = 0, max = 255)
+    @ConfigOpt @SliderSetting(name = "Green", category = REACH, isInt = true, min = 0, max = 255)
     public static int REACH_GREEN = 255;
 
     @ConfigOpt @ToggleSetting(name = "Enable ToggleSprint", category = TOGGLESPRINT, mods = true)

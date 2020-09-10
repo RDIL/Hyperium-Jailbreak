@@ -17,49 +17,20 @@
 
 package cc.hyperium.handlers.handlers.keybinds.keybinds;
 
-import cc.hyperium.Hyperium;
 import cc.hyperium.config.Settings;
 import cc.hyperium.handlers.handlers.keybinds.HyperiumBind;
-import cc.hyperium.netty.NettyClient;
-import cc.hyperium.netty.packet.packets.serverbound.ServerCrossDataPacket;
-import cc.hyperium.utils.JsonHolder;
-import cc.hyperium.utils.UUIDUtil;
 import org.lwjgl.input.Keyboard;
 
 public class FlipKeybind extends HyperiumBind {
-    private boolean inverted;
-
     public FlipKeybind() {
-        super("Flip (Requires Purchase)", Keyboard.KEY_I);
+        super("Flip", Keyboard.KEY_I);
     }
 
     @Override
     public void onPress() {
-        if (!Hyperium.INSTANCE.getCosmetics().getFlipCosmetic().isSelfUnlocked())
-            return;
-        if (Settings.isFlipToggle) {
-            inverted = !inverted;
-            int state = inverted ? Settings.flipType : 0;
-            Hyperium.INSTANCE.getHandlers().getFlipHandler().state(UUIDUtil.getClientUUID(), state);
-            NettyClient client = NettyClient.getClient();
-            if (client != null)
-                client.write(ServerCrossDataPacket.build(new JsonHolder().put("type", "flip_update").put("flip_state", state)));
-            Hyperium.INSTANCE.getHandlers().getFlipHandler().resetTick();
-        }
+        Settings.isFlipped = !Settings.isFlipped;
     }
 
     @Override
-    public void onRelease() {
-        if (!Hyperium.INSTANCE.getCosmetics().getFlipCosmetic().isSelfUnlocked())
-            return;
-        if (!Settings.isFlipToggle) {
-            inverted = !inverted;
-            int state = inverted ? Settings.flipType : 0;
-            Hyperium.INSTANCE.getHandlers().getFlipHandler().state(UUIDUtil.getClientUUID(), state);
-            NettyClient client = NettyClient.getClient();
-
-            if (client != null)
-                client.write(ServerCrossDataPacket.build(new JsonHolder().put("type", "flip_update").put("flip_state", state)));
-        }
-    }
+    public void onRelease() { }
 }

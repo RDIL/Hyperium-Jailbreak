@@ -18,7 +18,7 @@
 package net.hypixel.api;
 import cc.hyperium.handlers.handlers.data.HypixelAPI;
 import cc.hyperium.utils.JsonHolder;
-import cc.hyperium.network.WebsiteUtils;
+import cc.hyperium.utils.WebsiteUtils;
 import java.util.concurrent.ExecutionException;
 
 public class HypixelApiPlayer implements HypixelApiObject {

@@ -1,4 +1,4 @@
-package cc.hyperium.network;
+package cc.hyperium.utils;
 
 import com.google.gson.JsonObject;
 import java.text.DecimalFormat;
