@@ -64,7 +64,6 @@ public class Hyperium {
     private HyperiumCosmetics cosmetics;
     private HyperiumHandlers handlers;
     private HyperiumModIntegration modIntegration;
-    private MinigameListener minigameListener;
     private boolean optifineInstalled = false;
     public boolean isDevEnv;
     private boolean firstLaunch = false;
@@ -101,8 +100,7 @@ public class Hyperium {
             handlers.getGeneralChatHandler().post();
 
             SplashProgress.setProgress(6, "Loading Utilities");
-            minigameListener = new MinigameListener();
-            EventBus.INSTANCE.register(minigameListener);
+            EventBus.INSTANCE.register(new MinigameListener());
             EventBus.INSTANCE.register(new ToggleSprintContainer());
             EventBus.INSTANCE.register(CompactChat.getInstance());
             EventBus.INSTANCE.register(confirmation);
@@ -151,7 +149,6 @@ public class Hyperium {
         HyperiumCommandHandler hyperiumCommandHandler = getHandlers().getHyperiumCommandHandler();
         hyperiumCommandHandler.registerCommand(new CommandConfigGui());
         hyperiumCommandHandler.registerCommand(new CommandClearChat());
-        hyperiumCommandHandler.registerCommand(new CommandNameHistory());
         hyperiumCommandHandler.registerCommand(new CommandDebug());
         hyperiumCommandHandler.registerCommand(new CommandCoords());
         hyperiumCommandHandler.registerCommand(new CommandLogs());
@@ -190,10 +187,6 @@ public class Hyperium {
 
     public boolean isOptifineInstalled() {
         return optifineInstalled;
-    }
-
-    public MinigameListener getMinigameListener() {
-        return minigameListener;
     }
 
     public boolean isDevEnv() {

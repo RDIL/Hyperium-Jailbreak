@@ -26,7 +26,6 @@ import cc.hyperium.event.interact.MouseButtonEvent;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.FlipKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.FriendsKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.GuiKeybind;
-import cc.hyperium.handlers.handlers.keybinds.keybinds.NamesKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.RearCamKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.TogglePerspectiveKeybind;
 import cc.hyperium.handlers.handlers.keybinds.keybinds.ToggleSprintKeybind;
@@ -43,7 +42,6 @@ public class KeyBindHandler {
         this.keyBindConfig = new KeyBindConfig(this, Hyperium.folder);
 
         registerKeyBinding(new FriendsKeybind());
-        registerKeyBinding(new NamesKeybind());
         registerKeyBinding(new GuiKeybind());
         registerKeyBinding(new FlipKeybind());
         registerKeyBinding(new ToggleSprintKeybind());
