@@ -177,8 +177,7 @@ public class AddonBootstrap {
 
     public enum Phase {
         NOT_STARTED,
-        PREINIT
-        ,
+        PREINIT,
         INIT,
         DEFAULT
     }

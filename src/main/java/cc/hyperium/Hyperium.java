@@ -39,11 +39,6 @@ import cc.hyperium.mods.autofriend.command.AutofriendCommand;
 import cc.hyperium.mods.autogg.AutoGG;
 import cc.hyperium.mods.ToggleSprintContainer;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
-import cc.hyperium.netty.NettyClient;
-import cc.hyperium.netty.UniversalNetty;
-import cc.hyperium.network.LoginReplyHandler;
-import cc.hyperium.network.NetworkHandler;
-import cc.hyperium.purchases.PurchaseApi;
 import cc.hyperium.utils.StaffUtils;
 import cc.hyperium.utils.ChatColor;
 import cc.hyperium.utils.mods.CompactChat;
@@ -69,14 +64,12 @@ public class Hyperium {
     private HyperiumCosmetics cosmetics;
     private HyperiumHandlers handlers;
     private HyperiumModIntegration modIntegration;
-    private MinigameListener minigameListener;
     private boolean optifineInstalled = false;
     public boolean isDevEnv;
-    private NetworkHandler networkHandler;
     private boolean firstLaunch = false;
-    private AutoGG autogg = new AutoGG();
+    private final AutoGG autogg = new AutoGG();
     private InternalAddons intAddons;
-    private BackendHandler bh = new BackendHandler();
+    private final BackendHandler bh = new BackendHandler();
 
     @InvokeEvent(priority = Priority.HIGH)
     public void init(InitializationEvent event) {
@@ -84,16 +77,6 @@ public class Hyperium {
         LOGGER.warn("Please report bugs by DMing rdil#0001 on Discord");
         LOGGER.warn("or by emailing me@rdil.rocks");
         try {
-            Multithreading.runAsync(() -> {
-                networkHandler = new NetworkHandler();
-                CONFIG.register(networkHandler);
-                try {
-                    new NettyClient(networkHandler);
-                    UniversalNetty.getInstance().getPacketManager().register(new LoginReplyHandler());
-                } catch (Exception e) {
-                    LOGGER.error("I think something went wrong with Netty.");
-                }
-            });
             Multithreading.runAsync(() -> new PlayerStatsGui(null)); // Don't remove
             try {
                 Class.forName("net.minecraft.dispenser.BehaviorProjectileDispense");
@@ -117,8 +100,7 @@ public class Hyperium {
             handlers.getGeneralChatHandler().post();
 
             SplashProgress.setProgress(6, "Loading Utilities");
-            minigameListener = new MinigameListener();
-            EventBus.INSTANCE.register(minigameListener);
+            EventBus.INSTANCE.register(new MinigameListener());
             EventBus.INSTANCE.register(new ToggleSprintContainer());
             EventBus.INSTANCE.register(CompactChat.getInstance());
             EventBus.INSTANCE.register(confirmation);
@@ -134,7 +116,6 @@ public class Hyperium {
             // Register commands.
             SplashProgress.setProgress(10, "Loading Chat Commands");
             registerCommands();
-            EventBus.INSTANCE.register(PurchaseApi.getInstance());
 
             SplashProgress.setProgress(11, "Loading Mods");
             modIntegration = new HyperiumModIntegration();
@@ -168,7 +149,6 @@ public class Hyperium {
         HyperiumCommandHandler hyperiumCommandHandler = getHandlers().getHyperiumCommandHandler();
         hyperiumCommandHandler.registerCommand(new CommandConfigGui());
         hyperiumCommandHandler.registerCommand(new CommandClearChat());
-        hyperiumCommandHandler.registerCommand(new CommandNameHistory());
         hyperiumCommandHandler.registerCommand(new CommandDebug());
         hyperiumCommandHandler.registerCommand(new CommandCoords());
         hyperiumCommandHandler.registerCommand(new CommandLogs());
@@ -201,20 +181,12 @@ public class Hyperium {
         return cosmetics;
     }
 
-    public NetworkHandler getNetworkHandler() {
-        return networkHandler;
-    }
-
     public boolean isFirstLaunch() {
         return firstLaunch;
     }
 
     public boolean isOptifineInstalled() {
         return optifineInstalled;
-    }
-
-    public MinigameListener getMinigameListener() {
-        return minigameListener;
     }
 
     public boolean isDevEnv() {

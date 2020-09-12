@@ -4,9 +4,9 @@ import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.network.server.hypixel.JoinHypixelEvent;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.mods.sk1ercommon.Sk1erMod;
-import cc.hyperium.netty.utils.Utils;
 import cc.hyperium.utils.JsonHolder;
 import cc.hyperium.utils.UUIDUtil;
+import cc.hyperium.utils.Utils;
 import com.google.gson.JsonElement;
 import net.hypixel.api.HypixelApiFriends;
 import net.hypixel.api.HypixelApiGuild;
@@ -42,6 +42,7 @@ public class HypixelAPI {
         .buildAsync(this::getApiGuild);
 
     private List<UUID> friendsForCurrentUser = new ArrayList<>();
+
     public HypixelAPI() {
         Multithreading.schedule(this::updatePersonalData, 10L, 305, TimeUnit.SECONDS);
         INSTANCE = this;
@@ -131,7 +132,7 @@ public class HypixelAPI {
         PLAYER("https://api.sk1er.club/guild/player/%s"),
         NAME("https://api.sk1er.club/guild/name/");
 
-        private String url;
+        private final String url;
         GuildKeyType(String url) {
             this.url = url;
         }
@@ -141,8 +142,8 @@ public class HypixelAPI {
     }
 
     public static class GuildKey {
-        private GuildKeyType type;
-        private String[] formatStrings;
+        private final GuildKeyType type;
+        private final String[] formatStrings;
 
         public GuildKey(GuildKeyType type, String... formatStrings) {
             this.type = type;

@@ -12,5 +12,5 @@ public @interface SelectorSetting {
     Category category() default Category.GENERAL;
     String[] items();
     boolean enabled() default true;
-    boolean mods() default false;
+    @Deprecated boolean mods() default false;
 }

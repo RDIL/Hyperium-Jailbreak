@@ -1,6 +1,6 @@
 package net.hypixel.api;
 import cc.hyperium.utils.JsonHolder;
-import cc.hyperium.network.WebsiteUtils;
+import cc.hyperium.utils.WebsiteUtils;
 
 public class HypixelApiGuild implements HypixelApiObject {
     private JsonHolder guild;

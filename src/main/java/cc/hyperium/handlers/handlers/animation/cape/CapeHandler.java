@@ -3,7 +3,6 @@ package cc.hyperium.handlers.handlers.animation.cape;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.world.WorldChangeEvent;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
-import cc.hyperium.purchases.PurchaseApi;
 import cc.hyperium.utils.CapeUtils;
 import cc.hyperium.utils.UUIDUtil;
 import net.minecraft.client.Minecraft;
@@ -78,10 +77,7 @@ public class CapeHandler {
             ICape cape = capes.getOrDefault(uuid, null);
             if (cape == null) {
                 setCape(player.getUniqueID(), NullCape.INSTANCE);
-                Multithreading.runAsync(() -> {
-                    PurchaseApi.getInstance().getPackageSync(uuid);
-                    loadStaticCape(uuid, "http://s.optifine.net/capes/" + player.getGameProfile().getName() + ".png");
-                });
+                Multithreading.runAsync(() -> loadStaticCape(uuid, "http://s.optifine.net/capes/" + player.getGameProfile().getName() + ".png"));
                 return capes.getOrDefault(uuid, NullCape.INSTANCE).get();
             }
 
@@ -95,9 +91,5 @@ public class CapeHandler {
     private boolean isRealPlayer(UUID uuid) {
         String s = uuid.toString().replace("-", "");
         return s.length() != 32 || s.charAt(12) == '4';
-    }
-
-    public void deleteCape(UUID id) {
-        this.capes.remove(id);
     }
 }

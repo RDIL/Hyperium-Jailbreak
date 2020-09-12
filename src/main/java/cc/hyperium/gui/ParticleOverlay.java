@@ -22,9 +22,6 @@ import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.client.TickEvent;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
-import cc.hyperium.purchases.EnumPurchaseType;
-import cc.hyperium.purchases.HyperiumPurchase;
-import cc.hyperium.purchases.PurchaseApi;
 import cc.hyperium.utils.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -54,13 +51,8 @@ public class ParticleOverlay {
         return overlay;
     }
 
-    public boolean purchased() {
-        HyperiumPurchase self = PurchaseApi.getInstance().getSelf();
-        return self != null && self.hasPurchased(EnumPurchaseType.PARTICLE_BACKGROUND);
-    }
-
     public void render(int mouseX, int mouseY, int guiLeft, int guiTop, int guiRight, int guiBottom) {
-        if (!purchased())
+        if (Settings.PARTICLE_MODE.equals("OFF"))
             return;
         try {
             float step = (float) (0.01 * (Settings.MAX_PARTICLES / 100));
@@ -140,7 +132,7 @@ public class ParticleOverlay {
 
     @InvokeEvent
     public void tick(TickEvent e) {
-        if (!purchased())
+        if (Settings.PARTICLE_MODE.equals("OFF"))
             return;
         if (System.currentTimeMillis() - last < 1000)
             for (Particle particle : particles) {
@@ -164,7 +156,7 @@ public class ParticleOverlay {
         CHROMA_2
     }
 
-    class Particle {
+    static class Particle {
         private float x;
         private float y;
         private float xVec;

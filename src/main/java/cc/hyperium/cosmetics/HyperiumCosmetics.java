@@ -22,25 +22,17 @@ import cc.hyperium.cosmetics.hats.ModelHatLego;
 import cc.hyperium.cosmetics.hats.ModelHatTophat;
 import cc.hyperium.cosmetics.wings.WingsCosmetic;
 import cc.hyperium.event.EventBus;
-import cc.hyperium.purchases.EnumPurchaseType;
 import net.minecraft.util.ResourceLocation;
 
 public class HyperiumCosmetics {
-    private final FlipCosmetic flipCosmetic;
-
     public HyperiumCosmetics() {
-        registerCosmetic(flipCosmetic = new FlipCosmetic());
         registerCosmetic(new WingsCosmetic());
-        registerCosmetic(new CosmeticHat(EnumPurchaseType.HAT_TOPHAT).setModel(new ModelHatTophat(), new ResourceLocation("textures/cosmetics/hats/tophat.png")));
-        registerCosmetic(new CosmeticHat(EnumPurchaseType.HAT_FEZ).setModel(new ModelHatFez(), new ResourceLocation("textures/cosmetics/hats/fez.png")));
-        registerCosmetic(new CosmeticHat(EnumPurchaseType.HAT_LEGO).setModel(new ModelHatLego(), new ResourceLocation("textures/cosmetics/hats/lego.png")));
+        registerCosmetic(new CosmeticHat("TOPHAT").setModel(new ModelHatTophat(), new ResourceLocation("textures/cosmetics/hats/tophat.png")));
+        registerCosmetic(new CosmeticHat("FEZ").setModel(new ModelHatFez(), new ResourceLocation("textures/cosmetics/hats/fez.png")));
+        registerCosmetic(new CosmeticHat("LEGO").setModel(new ModelHatLego(), new ResourceLocation("textures/cosmetics/hats/lego.png")));
     }
 
     private void registerCosmetic(AbstractCosmetic cosmetic) {
         EventBus.INSTANCE.register(cosmetic);
-    }
-
-    public FlipCosmetic getFlipCosmetic() {
-        return this.flipCosmetic;
     }
 }

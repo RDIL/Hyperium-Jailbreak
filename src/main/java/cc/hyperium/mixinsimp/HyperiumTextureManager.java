@@ -25,7 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class HyperiumTextureManager {
     public static HyperiumTextureManager INSTANCE;
     private TextureManager parent;
-    private ConcurrentHashMap<String, ITextureObject> textures = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, ITextureObject> textures = new ConcurrentHashMap<>();
 
     public HyperiumTextureManager(TextureManager parent) {
         INSTANCE = this;
@@ -38,9 +38,8 @@ public class HyperiumTextureManager {
             listTickables.add(textureObj);
             textures.put(textureLocation.toString(), textureObj);
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     public void onResourceManagerReload(IResourceManager resourceManager) {
@@ -71,7 +70,7 @@ public class HyperiumTextureManager {
 
                 parent.loadTexture(location, entry.getValue());
             }
-            Utils.INSTANCE.setCursor(new ResourceLocation("textures/cursor.png"));
+            Utils.setCursor(new ResourceLocation("textures/cursor.png"));
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
