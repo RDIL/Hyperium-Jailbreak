@@ -42,8 +42,4 @@ public class MinigameListener {
         }
         return "";
     }
-
-    public String getCurrentMinigameName() {
-        return this.currentMinigameName;
-    }
 }
