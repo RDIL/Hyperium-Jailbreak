@@ -20,7 +20,7 @@ import org.lwjgl.opengl.GL11;
 import java.awt.Font;
 
 public class GuiHyperiumScreen extends GuiScreen {
-    private static ResourceLocation background = new ResourceLocation("textures/material/backgrounds/1.png");
+    private static final ResourceLocation background = new ResourceLocation("textures/material/backgrounds/1.png");
     public static HyperiumFontRenderer fr = new HyperiumFontRenderer("Arial", Font.PLAIN, 20);
     static DynamicTexture viewportTexture;
     private static float swing;

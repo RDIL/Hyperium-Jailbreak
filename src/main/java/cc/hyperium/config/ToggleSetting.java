@@ -11,5 +11,5 @@ public @interface ToggleSetting {
     String name();
     boolean enabled() default true;
     Category category() default Category.GENERAL;
-    boolean mods() default false;
+    @Deprecated boolean mods() default false;
 }

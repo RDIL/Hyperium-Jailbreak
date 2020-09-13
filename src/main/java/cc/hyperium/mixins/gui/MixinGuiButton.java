@@ -23,16 +23,9 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(GuiButton.class)
 public abstract class MixinGuiButton extends Gui {
-    @Shadow public boolean visible;
-    @Shadow public int xPosition;
-    @Shadow public int yPosition;
-    @Shadow public String displayString;
-    @Shadow protected int width;
-    @Shadow protected int height;
     private HyperiumGuiButton hyperiumButton = new HyperiumGuiButton((GuiButton) (Object) this);
 
     @Overwrite

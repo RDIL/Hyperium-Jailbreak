@@ -5,7 +5,7 @@ import cc.hyperium.gui.GuiHyperiumScreenMainMenu;
 import net.minecraft.client.gui.GuiMainMenu;
 
 public class HyperiumGuiMainMenu {
-    private GuiMainMenu parent;
+    private final GuiMainMenu parent;
 
     public HyperiumGuiMainMenu(GuiMainMenu parent) {
         this.parent = parent;

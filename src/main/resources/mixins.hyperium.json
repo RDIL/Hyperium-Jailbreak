@@ -67,7 +67,6 @@
     "gui.MixinGuiScreenResourcePacks",
     "gui.MixinGuiUtilRenderComponents",
     "gui.MixinInventory",
-    "gui.MixinInventoryParticle",
     "item.MixinItemBow",
     "item.MixinItemBucket",
     "packet.MixinC01PacketChatMessage",

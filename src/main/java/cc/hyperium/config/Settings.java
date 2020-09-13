@@ -49,25 +49,25 @@ public class Settings {
     @ConfigOpt @ToggleSetting(name = "Disable Sounds When Tabbed Out", category = IMPROVEMENTS)
     public static boolean SMART_SOUNDS = false;
 
-    @ConfigOpt @ToggleSetting(name = "Arrow Count While Holding Bow", category = VANILLA_ENHANCEMENTS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Arrow Count While Holding Bow", category = VANILLA_ENHANCEMENTS)
     public static boolean ARROW_COUNT = true;
 
-    @ConfigOpt @ToggleSetting(name = "Enchants Above Hotbar", category = VANILLA_ENHANCEMENTS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Enchants Above Hotbar", category = VANILLA_ENHANCEMENTS)
     public static boolean ENCHANTMENTS_ABOVE_HOTBAR = true;
 
-    @ConfigOpt @ToggleSetting(name = "Attack Damage Above Hotbar", category = VANILLA_ENHANCEMENTS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Attack Damage Above Hotbar", category = VANILLA_ENHANCEMENTS)
     public static boolean DAMAGE_ABOVE_HOTBAR = true;
 
-    @ConfigOpt @ToggleSetting(name = "Show Armor Protection in Inventory", category = VANILLA_ENHANCEMENTS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Show Armor Protection in Inventory", category = VANILLA_ENHANCEMENTS)
     public static boolean ARMOR_PROT_POTENTIONAL = true;
 
-    @ConfigOpt @ToggleSetting(name = "Show Armor Projectile Protection (inventory)", category = VANILLA_ENHANCEMENTS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Show Armor Projectile Protection (inventory)", category = VANILLA_ENHANCEMENTS)
     public static boolean ARMOR_PROJ_POTENTIONAL = true;
 
-    @ConfigOpt @ToggleSetting(name = "Hotbar Keys", category = VANILLA_ENHANCEMENTS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Hotbar Keys", category = VANILLA_ENHANCEMENTS)
     public static boolean HOTBAR_KEYS = false;
 
-    @ConfigOpt @ToggleSetting(name = "Enable Crosshair in F5", category = VANILLA_ENHANCEMENTS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Enable Crosshair in F5", category = VANILLA_ENHANCEMENTS)
     public static boolean CROSSHAIR_IN_F5 = false;
 
     @ConfigOpt @ToggleSetting(name = "Critical Particle Fix", category = IMPROVEMENTS)
@@ -142,9 +142,6 @@ public class Settings {
     @ConfigOpt @SelectorSetting(name = "Head Item Scale", category = ANIMATIONS, items = {"1.0", "1.25", "1.5", "1.75", "2.0", "2.5"})
     public static String HEAD_SCALE_FACTOR_STRING = "1.0";
 
-    @ConfigOpt @ToggleSetting(name = "Particle Cosmetic in Inventory", category = COSMETICS)
-    public static boolean PARTICLES_INV = true;
-
     @ConfigOpt @ToggleSetting(category = MISC, name = "Party/Friend Request Popup")
     public static boolean SHOW_INGAME_CONFIRMATION_POPUP = true;
 
@@ -172,13 +169,13 @@ public class Settings {
     @ConfigOpt @SliderSetting(name = "Wings Scale", min = 50, max = 200, category = COSMETICS)
     public static double WINGS_SCALE = 100D;
 
-    @ConfigOpt @ToggleSetting(name = "Show ChromaHUD", category = CHROMAHUD, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Show ChromaHUD", category = CHROMAHUD)
     public static boolean SHOW_CHROMAHUD = true;
 
-    @ConfigOpt @ToggleSetting(name = "Enable Square Brace Prefix", category = CHROMAHUD, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Enable Square Brace Prefix", category = CHROMAHUD)
     public static boolean CHROMAHUD_SQUAREBRACE_PREFIX_OPTION = false;
 
-    @ConfigOpt @ToggleSetting(name = "Sort Direction HUD Messages", category = CHROMAHUD, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Sort Direction HUD Messages", category = CHROMAHUD)
     public static boolean SHORT_DIRECTION_HUD = false;
 
     @ConfigOpt @SelectorSetting(name = "Main Menu Style", items = {"HYPERIUM", "DEFAULT"}, category = MENUS)
@@ -189,38 +186,38 @@ public class Settings {
 
     @ConfigOpt public static int MAX_WORLD_PARTICLES_INT = 10000;
 
-    @ConfigOpt @SelectorSetting(category = IMPROVEMENTS, name = "Max World Particles", items = {"1000", "2000", "4000", "6000", "8000", "10000", "20000", "50000",})
+    @ConfigOpt @SelectorSetting(category = IMPROVEMENTS, name = "Max World Particles", items = {"1000", "2000", "4000", "6000", "8000", "10000", "20000", "50000"})
     public static String MAX_WORLD_PARTICLES_STRING = "10000";
 
-    @ConfigOpt @ToggleSetting(name = "Show Hit Distances", category = REACH, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Show Hit Distances", category = REACH)
     public static boolean SHOW_HIT_DISTANCES = false;
 
-    @ConfigOpt @ToggleSetting(name = "Enable AutoFriend", category = AUTOFRIEND, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Enable AutoFriend", category = AUTOFRIEND)
     public static boolean AUTOFRIEND_TOGGLE = false;
 
-    @ConfigOpt @ToggleSetting(name = "Show Friend Messages", category = AUTOFRIEND, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Show Friend Messages", category = AUTOFRIEND)
     public static boolean AUTOFRIEND_MESSAGES = true;
 
-    @ConfigOpt @ToggleSetting(name = "Enable Fortnite Compass", category = FNCOMPASS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Enable Fortnite Compass", category = FNCOMPASS)
     public static boolean FNCOMPASS_ENABLED = false;
 
-    @ConfigOpt @ToggleSetting(name = "Show Background", category = FNCOMPASS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Show Background", category = FNCOMPASS)
     public static boolean FNCOMPASS_BACKGROUND = true;
 
-    @ConfigOpt @ToggleSetting(name = "Enable Chroma", category = FNCOMPASS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Enable Chroma", category = FNCOMPASS)
     public static boolean FNCOMPASS_CHROMA = false;
 
-    @ConfigOpt @ToggleSetting(name = "Enable Text Shadow", category = FNCOMPASS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Enable Text Shadow", category = FNCOMPASS)
     public static boolean FNCOMPASS_SHADOW = true;
 
     @ConfigOpt
-    @SelectorSetting(category = FNCOMPASS, name = "Detail Level", items = {"0", "1", "2"}, mods = true)
+    @SelectorSetting(category = FNCOMPASS, name = "Detail Level", items = {"0", "1", "2"})
     public static String FNCOMPASS_DETAILS = "2";
 
     @ToggleSetting(name = "Show Dots on Name Tags", category = INTEGRATIONS)
     public static boolean SHOW_DOTS_ON_NAME_TAGS = false;
 
-    @ConfigOpt @SelectorSetting(name = "Reach Color Type", mods = true, category = REACH, items = {"RGB", "CHROMA"})
+    @ConfigOpt @SelectorSetting(name = "Reach Color Type", category = REACH, items = {"RGB", "CHROMA"})
     public static String REACH_COLOR_TYPE = "RGB";
 
     @ConfigOpt @SliderSetting(name = "Red", category = REACH, isInt = true, min = 0, max = 255)
@@ -232,7 +229,7 @@ public class Settings {
     @ConfigOpt @SliderSetting(name = "Green", category = REACH, isInt = true, min = 0, max = 255)
     public static int REACH_GREEN = 255;
 
-    @ConfigOpt @ToggleSetting(name = "Enable ToggleSprint", category = TOGGLESPRINT, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Enable ToggleSprint", category = TOGGLESPRINT)
     public static boolean ENABLE_TOGGLE_SPRINT = true;
 
     @ConfigOpt @ToggleSetting(name = "Broadcast Achivements", category = HYPIXEL)
@@ -247,12 +244,12 @@ public class Settings {
     @ConfigOpt @ToggleSetting(name = "Thank Watchdog", category = HYPIXEL)
     public static boolean THANK_WATCHDOG = false;
 
-    @ConfigOpt @ToggleSetting(name = "Enable Item Physics", category = ITEM_PHYSIC, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Enable Item Physics", category = ITEM_PHYSIC)
     public static boolean ITEM_PHYSIC_ENABLED = false;
 
     @ConfigOpt public static String GUI_FONT = "Roboto Condensed";
 
-    @ConfigOpt @ToggleSetting(name = "Hide Name Tags in F1", category = VANILLA_ENHANCEMENTS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Hide Name Tags in F1", category = VANILLA_ENHANCEMENTS)
     public static boolean BETTERF1 = false;
 
     @ConfigOpt @SelectorSetting(name = "Button Style", category = BUTTONS, items = {"HYPERIUM", "HYPERIUM 2"})
@@ -264,7 +261,7 @@ public class Settings {
     @ConfigOpt @ToggleSetting(name = "Disable Enchant Glint", category = IMPROVEMENTS)
     public static boolean DISABLE_ENCHANT_GLINT = false;
 
-    @ConfigOpt @ToggleSetting(name = "Disable Titles", category = VANILLA_ENHANCEMENTS, mods = true)
+    @ConfigOpt @ToggleSetting(name = "Disable Titles", category = VANILLA_ENHANCEMENTS)
     public static boolean HIDE_TITLES = false;
 
     @ConfigOpt @ToggleSetting(name = "Disable Lightning", category = IMPROVEMENTS)
