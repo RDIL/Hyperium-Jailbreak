@@ -24,7 +24,6 @@ import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.gui.ConfirmationPopup;
 import cc.hyperium.gui.SplashProgress;
-import cc.hyperium.gui.ColourOptions;
 import cc.hyperium.addons.InternalAddons;
 import cc.hyperium.commands.HyperiumCommandHandler;
 import cc.hyperium.commands.defaults.*;
@@ -112,7 +111,6 @@ public class Hyperium {
 
             SplashProgress.setProgress(9, "Preparing Config");
             Settings.register();
-            Hyperium.CONFIG.register(new ColourOptions());
             // Register commands.
             SplashProgress.setProgress(10, "Loading Chat Commands");
             registerCommands();

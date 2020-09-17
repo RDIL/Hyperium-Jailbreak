@@ -4,7 +4,6 @@ import cc.hyperium.Hyperium;
 import cc.hyperium.config.Settings;
 import cc.hyperium.mixins.renderer.IMixinRender;
 import cc.hyperium.mixins.renderer.IMixinRenderLivingEntity;
-import cc.hyperium.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
