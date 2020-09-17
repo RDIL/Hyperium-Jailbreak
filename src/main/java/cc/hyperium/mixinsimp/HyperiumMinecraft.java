@@ -34,8 +34,6 @@ import net.minecraft.client.resources.DefaultResourcePack;
 import net.minecraft.client.resources.FileResourcePack;
 import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.client.settings.GameSettings;
-import net.minecraft.crash.CrashReport;
-import net.minecraft.init.Bootstrap;
 import net.minecraft.profiler.Profiler;
 import net.minecraft.util.Timer;
 import org.lwjgl.LWJGLException;
@@ -45,8 +43,6 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class HyperiumMinecraft {
@@ -210,19 +206,6 @@ public class HyperiumMinecraft {
         } else {
             EventBus.INSTANCE.post(new MouseButtonEvent(i, false));
         }
-    }
-
-    public void displayCrashReport(CrashReport crashReportIn) {
-        String data = crashReportIn.getCauseStackTraceOrString();
-        File crashReportDir = new File(Minecraft.getMinecraft().mcDataDir, "crash-reports");
-        String crashReportPrefix = "crash-";
-
-        File crashReportFile = new File(crashReportDir, crashReportPrefix + (new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss")).format(new Date()) + "-jbc.txt");
-
-        crashReportIn.saveToFile(crashReportFile);
-        Bootstrap.printToSYSOUT(crashReportIn.getCompleteReport());
-
-        System.exit(1);
     }
 
     public void shutdown() {

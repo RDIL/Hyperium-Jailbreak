@@ -33,7 +33,6 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.resources.DefaultResourcePack;
 import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.client.settings.GameSettings;
-import net.minecraft.crash.CrashReport;
 import net.minecraft.profiler.Profiler;
 import net.minecraft.util.Timer;
 import net.minecraft.world.WorldSettings;
@@ -153,14 +152,6 @@ public abstract class MixinMinecraft {
     @Inject(method = "runTick", at = @At(value = "INVOKE", target = "Lorg/lwjgl/input/Mouse;getEventButton()I", ordinal = 0))
     private void runTickMouseButton(CallbackInfo ci) {
         hyperiumMinecraft.runTickMouseButton(ci);
-    }
-
-    /**
-     * @author hyperium
-     */
-    @Overwrite
-    public void displayCrashReport(CrashReport crashReportIn) {
-        hyperiumMinecraft.displayCrashReport(crashReportIn);
     }
 
     @Inject(method = "shutdown", at = @At("HEAD"))
