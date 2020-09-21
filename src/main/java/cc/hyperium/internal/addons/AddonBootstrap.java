@@ -103,7 +103,7 @@ public class AddonBootstrap {
         for (File file : jars) {
             try {
                 AddonManifest addon = loadAddon(loader, file);
-                System.out.println("Loading " + file.getName());
+                Hyperium.LOGGER.debug("Loading " + file.getName());
                 if (addon == null) {
                     continue;
                 }
