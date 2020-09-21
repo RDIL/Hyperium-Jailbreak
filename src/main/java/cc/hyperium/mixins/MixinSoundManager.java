@@ -17,19 +17,25 @@
 
 package cc.hyperium.mixins;
 
-import cc.hyperium.mixinsimp.HyperiumSoundManager;
-import net.minecraft.client.audio.SoundManager;
-import net.minecraft.client.audio.ISound;
+import java.util.Iterator;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import cc.hyperium.Hyperium;
+import cc.hyperium.mixinsimp.HyperiumSoundManager;
+import net.minecraft.client.audio.ISound;
+import net.minecraft.client.audio.SoundManager;
+
 @Mixin(SoundManager.class)
-public class MixinSoundManager {
+public abstract class MixinSoundManager {
     private HyperiumSoundManager hyperiumSoundManager = new HyperiumSoundManager();
 
-    @Inject(method = "playSound",
+    @Inject(
+        method = "playSound",
         at = @At(value = "INVOKE", target = "Lnet/minecraft/client/audio/SoundHandler;getSound(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/audio/SoundEventAccessorComposite;"),
         cancellable = true
     )
@@ -37,14 +43,31 @@ public class MixinSoundManager {
         hyperiumSoundManager.playSound(sound, ci);
     }
 
-    @Inject(method = "updateAllSounds", at = @At("HEAD"))
-    private void startUpdate(CallbackInfo info) {
-        hyperiumSoundManager.startUpdate(info);
+    @SuppressWarnings("all")
+    @Redirect(at = @At(value = "INVOKE", target = "Ljava/util/Iterator;hasNext()Z"), method = "updateAllSounds")
+    private boolean iteratorFix(Iterator iter, CallbackInfo ci) {
+        Object hasNext = null;
+        while (hasNext == null) {
+            try {
+                if (iter.hasNext()) {
+                    hasNext = true;
+                }
+                hasNext = false;
+            } catch (Exception e) {
+                Hyperium.LOGGER.debug("ConcurrentModificationException thrown while trying to iterate over sounds, trying again...");
+            }
+        }
+        return (boolean) hasNext;
     }
 
-    @Inject(method = "updateAllSounds", at = @At("TAIL"))
-    private void endUpdate(CallbackInfo info) {
-        hyperiumSoundManager.endUpdate(info);
+    @Inject(at = @At("HEAD"), method = "updateAllSounds")
+    private void updateAllSounds(CallbackInfo ci) {
+        hyperiumSoundManager.startUpdate();
+    }
+
+    @Inject(at = @At("TAIL"), method = "updateAllSounds")
+    public void endUpdateAllSounds(CallbackInfo ci) {
+        hyperiumSoundManager.endUpdate();
     }
 
     @Inject(method = "stopAllSounds", at = @At("HEAD"))

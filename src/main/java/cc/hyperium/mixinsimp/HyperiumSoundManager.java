@@ -23,11 +23,11 @@ public class HyperiumSoundManager {
         if (e.isCancelled()) ci.cancel();
     }
 
-    public void startUpdate(CallbackInfo info) {
+    public void startUpdate() {
         lock.lock();
     }
 
-    public void endUpdate(CallbackInfo info) {
+    public void endUpdate() {
         lock.unlock();
     }
 
