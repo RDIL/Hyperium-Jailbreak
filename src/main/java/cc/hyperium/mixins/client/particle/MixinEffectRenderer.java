@@ -98,61 +98,50 @@ public abstract class MixinEffectRenderer {
      * @author hyperium
      */
     @Overwrite
-    private void updateEffectLayer(int p_178922_1_) {
+    private void updateEffectLayer(int effectIndex) {
         for (int i = 0; i < 2; ++i) {
             int finalI = i;
-            if (Settings.IMPROVE_PARTICLE_PERF) {
-                Multithreading.runAsync(() -> {
-                    try {
-                        this.updateEffectAlphaLayer(this.modifiedFxLayer[p_178922_1_][finalI]);
-                    } catch (Throwable e) {
-                        e.printStackTrace();
-                    }
-                    latch.countDown();
-                });
-            } else {
-                this.updateEffectAlphaLayer(this.modifiedFxLayer[p_178922_1_][finalI]);
-            }
+            Multithreading.runAsync(() -> {
+                try {
+                    this.updateEffectAlphaLayer(this.modifiedFxLayer[effectIndex][finalI]);
+                } catch (Throwable e) {
+                    e.printStackTrace();
+                }
+                latch.countDown();
+            });
         }
     }
 
     private void updateEffectAlphaLayer(ConcurrentLinkedQueue<EntityFX> queue) {
-        if (Settings.IMPROVE_PARTICLE_PERF) {
-            int total = queue.size();
-            int threads = total / 100 + 1;
-            CountDownLatch latch = new CountDownLatch(threads);
-            HashMap<Integer, List<EntityFX>> fx = new HashMap<>();
-            int tmp = 0;
-            for (int i = 0; i < threads; i++) {
-                fx.computeIfAbsent(tmp, integer -> new ArrayList<>());
-            }
-            for (EntityFX entityFX : queue) {
-                fx.computeIfAbsent(tmp, integer -> new ArrayList<>()).add(entityFX);
-                tmp++;
-                if (tmp > threads)
-                    tmp = 0;
-            }
-            for (List<EntityFX> entityFXES : fx.values()) {
-                Multithreading.runAsync(() -> {
-                    try {
-                        for (EntityFX p : entityFXES) {
-                            try {
-                                tickParticle(p);
-                            } catch (Throwable t) {
-                                t.printStackTrace();
-                            }
-
+        int total = queue.size();
+        int threads = total / 100 + 1;
+        CountDownLatch latch = new CountDownLatch(threads);
+        HashMap<Integer, List<EntityFX>> fx = new HashMap<>();
+        int tmp = 0;
+        for (int i = 0; i < threads; i++) {
+            fx.computeIfAbsent(tmp, integer -> new ArrayList<>());
+        }
+        for (EntityFX entityFX : queue) {
+            fx.computeIfAbsent(tmp, integer -> new ArrayList<>()).add(entityFX);
+            tmp++;
+            if (tmp > threads)
+                tmp = 0;
+        }
+        for (List<EntityFX> entityFXES : fx.values()) {
+            Multithreading.runAsync(() -> {
+                try {
+                    for (EntityFX p : entityFXES) {
+                        try {
+                            tickParticle(p);
+                        } catch (Throwable t) {
+                            t.printStackTrace();
                         }
-                    } catch (Throwable e) {
-                        e.printStackTrace();
                     }
-                    latch.countDown();
-                });
-            }
-        } else {
-            for (EntityFX p : queue) {
-                this.tickParticle(p);
-            }
+                } catch (Throwable e) {
+                    e.printStackTrace();
+                }
+                latch.countDown();
+            });
         }
         queue.removeIf(entityFX -> entityFX.isDead);
     }
@@ -245,19 +234,18 @@ public abstract class MixinEffectRenderer {
      */
     @Overwrite
     public void updateEffects() {
-        latch = Settings.IMPROVE_PARTICLE_PERF ? new CountDownLatch(8) : null;
+        latch = new CountDownLatch(8);
 
         for (int i = 0; i < 4; ++i) {
             this.updateEffectLayer(i);
         }
         Profiler mcProfiler = Minecraft.getMinecraft().mcProfiler;
         mcProfiler.startSection("particle_wait");
-        if (latch != null)
-            try {
-                latch.await();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         mcProfiler.endSection();
 
         for (EntityParticleEmitter emitter : modifiedParticlEmmiters) {

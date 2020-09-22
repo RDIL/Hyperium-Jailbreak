@@ -1,6 +1,5 @@
 package cc.hyperium.mixinsimp;
 
-import cc.hyperium.config.Settings;
 import cc.hyperium.utils.ChatColor;
 import cc.hyperium.utils.mods.AsyncScreenshotSaver;
 import net.minecraft.client.Minecraft;
@@ -41,10 +40,6 @@ public class HyperiumScreenshotHelper {
         pixelBuffer.get(pixelValues);
 
         new Thread(new AsyncScreenshotSaver(width, height, pixelValues, Minecraft.getMinecraft().getFramebuffer(), new File(Minecraft.getMinecraft().mcDataDir, "screenshots"))).start();
-        if (Settings.HYPERIUM_CHAT_PREFIX) {
-            return new ChatComponentText(ChatColor.RED + "[Hyperium] " + ChatColor.WHITE + "Capturing...");
-        } else {
-            return new ChatComponentText(ChatColor.WHITE + "Capturing...");
-        }
+        return new ChatComponentText(ChatColor.WHITE + "Capturing...");
     }
 }
