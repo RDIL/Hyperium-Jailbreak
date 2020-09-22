@@ -9,13 +9,11 @@ import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.regex.Pattern;
 import me.semx11.autotip.Autotip;
 import me.semx11.autotip.api.reply.Reply;
 import me.semx11.autotip.api.request.Request;
-import me.semx11.autotip.gson.adapter.impl.LocaleAdapter;
 import me.semx11.autotip.gson.adapter.impl.PatternAdapter;
 import me.semx11.autotip.gson.adapter.impl.SessionKeyAdapter;
 import me.semx11.autotip.gson.adapter.impl.VersionAdapter;
@@ -24,7 +22,6 @@ import org.apache.commons.io.IOUtils;
 
 public class RequestHandler {
     private static final Gson GSON = new GsonBuilder()
-            .registerTypeAdapter(Locale.class, new LocaleAdapter())
             .registerTypeAdapter(Pattern.class, new PatternAdapter())
             .registerTypeAdapter(SessionKey.class, new SessionKeyAdapter())
             .registerTypeAdapter(Version.class, new VersionAdapter())

@@ -1,14 +1,16 @@
-package me.semx11.autotip.command.impl;
+package me.semx11.autotip.command;
 
+import cc.hyperium.commands.BaseCommand;
+import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import me.semx11.autotip.Autotip;
 import me.semx11.autotip.chat.MessageUtil;
-import me.semx11.autotip.command.CommandAbstract;
 
-public class CommandLimbo extends CommandAbstract {
+public class CommandLimbo implements BaseCommand {
+    private Autotip autotip;
     private boolean executed;
 
     public CommandLimbo(Autotip autotip) {
-        super(autotip);
+        this.autotip = autotip;
     }
 
     public boolean hasExecuted() {
@@ -37,7 +39,7 @@ public class CommandLimbo extends CommandAbstract {
             this.executed = true;
             messageUtil.sendCommand("/achat \u00a7c");
         } else {
-            messageUtil.send("&cYou must be on Hypixel to use this command!");
+            GeneralChatHandler.instance().sendMessage("You must be on Hypixel to use this command!");
         }
     }
 }

@@ -4,9 +4,8 @@ import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.network.chat.ServerChatEvent;
 import me.semx11.autotip.Autotip;
 import me.semx11.autotip.chat.MessageOption;
-import me.semx11.autotip.command.impl.CommandLimbo;
-import me.semx11.autotip.config.Config;
 import me.semx11.autotip.config.GlobalSettings;
+import me.semx11.autotip.config.MiniConfig;
 import me.semx11.autotip.event.Event;
 import me.semx11.autotip.message.Message;
 import me.semx11.autotip.message.MessageMatcher;
@@ -26,24 +25,20 @@ public class EventChatReceived implements Event {
     public void onChat(ServerChatEvent event) {
         if (!autotip.getSessionManager().isOnHypixel()) return;
 
-        Config config = autotip.getConfig();
-
         String msg = UniversalUtil.getUnformattedText(event);
 
-        CommandLimbo limboCommand = autotip.getCommand(CommandLimbo.class);
-        if (limboCommand.hasExecuted()) {
+        MiniConfig m = autotip.getMiniConfig();
+        if (m.hasExecutedLimboCommand) {
             if (msg.startsWith("A kick occurred in your connection")) {
                 event.setCancelled(true);
             } else if (msg.startsWith("Illegal characters in chat")) {
                 event.setCancelled(true);
-                limboCommand.setExecuted(false);
+                m.hasExecutedLimboCommand = false;
             }
         }
 
-        if (!config.isEnabled()) return;
-
         GlobalSettings settings = autotip.getGlobalSettings();
-        MessageOption option = config.getMessageOption();
+        MessageOption option = MessageOption.HIDDEN;
 
         for (Message message : settings.getMessages()) {
             MessageMatcher matcher = message.getMatcherFor(msg);
