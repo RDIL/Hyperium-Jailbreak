@@ -45,7 +45,7 @@ public abstract class MixinSoundManager {
 
     @SuppressWarnings("all")
     @Redirect(at = @At(value = "INVOKE", target = "Ljava/util/Iterator;hasNext()Z"), method = "updateAllSounds")
-    private boolean iteratorFix(Iterator iter, CallbackInfo ci) {
+    private boolean iteratorFix(Iterator iter) {
         Object hasNext = null;
         while (hasNext == null) {
             try {
