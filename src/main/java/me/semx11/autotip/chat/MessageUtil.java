@@ -19,18 +19,6 @@ public class MessageUtil {
         this.autotip = autotip;
     }
 
-    public KeyHelper getKeyHelper(String rootKey) {
-        return new KeyHelper(this, rootKey);
-    }
-
-    public void sendKey(String key, Object... params) {
-        this.send(this.getKey(key), params);
-    }
-
-    public String getKey(String key) {
-        return autotip.getLocaleHolder().getKey(key);
-    }
-
     public void send(String msg, Object... params) {
         this.sendRaw(PREFIX + msg, params);
     }
