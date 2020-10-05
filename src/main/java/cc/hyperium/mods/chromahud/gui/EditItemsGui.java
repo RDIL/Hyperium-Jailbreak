@@ -51,39 +51,34 @@ public class EditItemsGui extends GuiScreen {
     private final Map<GuiButton, Consumer<GuiButton>> updates = new HashMap<>();
     private final ChromaHUD mod;
     private DisplayItem modifying;
-    private int tmpId;
 
     EditItemsGui(DisplayElement element, ChromaHUD mod) {
         this.element = element;
         this.mod = mod;
     }
 
-    private int nextId() {
-        return (++tmpId);
-    }
-
     @Override
     public void initGui() {
-        reg(new GuiButton(nextId(), 2, 2, 100, 20, "Add Items"), (guiButton) -> Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new AddItemsGui(mod, element)), (guiButton) -> {});
-        reg( new GuiButton(nextId(), 2, 23, 100, 20, "Remove Item"), (guiButton) -> {
+        reg(new GuiButton(1, 2, 2, 100, 20, "Add Item"), (guiButton) -> Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new AddItemsGui(mod, element)), (guiButton) -> {});
+        reg(new GuiButton(2, 2, 23, 100, 20, "Remove Item"), (guiButton) -> {
             if (modifying != null) {
                 element.removeDisplayItem(modifying.getOrdinal());
                 if (modifying.getOrdinal() >= element.getDisplayItems().size()) modifying = null;
             }
         }, (guiButton) -> guiButton.enabled = modifying != null);
-        reg(new GuiButton(nextId(), 2, 23 + 21, 100, 20, "Move Up"), (guiButton) -> {
+        reg(new GuiButton(3, 2, 23 + 21, 100, 20, "Move Up"), (guiButton) -> {
             if (modifying != null) {
                 Collections.swap(element.getDisplayItems(), modifying.getOrdinal(), modifying.getOrdinal() - 1);
                 element.adjustOrdinal();
             }
         }, (guiButton) -> guiButton.enabled = modifying != null && this.modifying.getOrdinal() > 0);
-        reg(new GuiButton(nextId(), 2, 23 + 21 * 2, 100, 20, "Move Down"), (guiButton) -> {
+        reg(new GuiButton(4, 2, 23 + 21 * 2, 100, 20, "Move Down"), (guiButton) -> {
             if (modifying != null) {
                 Collections.swap(element.getDisplayItems(), modifying.getOrdinal(), modifying.getOrdinal() + 1);
                 element.adjustOrdinal();
             }
         }, (guiButton) -> guiButton.enabled = modifying != null && this.modifying.getOrdinal() < this.element.getDisplayItems().size() - 1);
-        reg(new GuiButton(nextId(), 2, ResolutionUtil.current().getScaledHeight() - 22, 100, 20, "Back"), (guiButton) -> Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new DisplayElementConfig(element, mod)), (guiButton) -> {});
+        reg(new GuiButton(5, 2, ResolutionUtil.current().getScaledHeight() - 22, 100, 20, "Back"), (guiButton) -> Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new DisplayElementConfig(element, mod)), (guiButton) -> {});
     }
 
     @Override

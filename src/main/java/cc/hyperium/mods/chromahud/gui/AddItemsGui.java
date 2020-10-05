@@ -23,7 +23,6 @@ import cc.hyperium.mods.chromahud.ChromaHUDApi;
 import cc.hyperium.mods.chromahud.DisplayElement;
 import cc.hyperium.mods.chromahud.ElementRenderer;
 import cc.hyperium.mods.chromahud.api.ChromaHUDParser;
-import cc.hyperium.mods.chromahud.api.Dimension;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
 import cc.hyperium.utils.JsonHolder;
@@ -46,7 +45,6 @@ public class AddItemsGui extends GuiScreen {
     private final Map<GuiButton, Consumer<GuiButton>> updates = new HashMap<>();
     private final List<DisplayElement> all = new ArrayList<>();
     private final DisplayElement target;
-    private boolean adding = true;
     private int offset = 0;
     private boolean mouseLock;
 
@@ -124,71 +122,34 @@ public class AddItemsGui extends GuiScreen {
         drawRect(0, 0, current.getScaledWidth(), current.getScaledHeight(), new Color(0, 0, 0, 150).getRGB());
         super.drawScreen(mouseX, mouseY, partialTicks);
         ElementRenderer.startDrawing(target);
-        if (adding) {
-            Color defaultColor = new Color(255, 255, 255, 100);
+        final Color defaultColor = new Color(255, 255, 255, 100);
 
-            int cursorY = 50 + offset;
-            List<ChromaHUDParser> parsers = ChromaHUDApi.getInstance().getParsers();
-            for (ChromaHUDParser parser : parsers) {
-                Map<String, String> names = parser.getNames();
-                for (String s : names.keySet()) {
-                    String text1 = names.get(s) + "";
-                    drawRect(current.getScaledWidth() / 2 - 80, cursorY, current.getScaledWidth() / 2 + 80, cursorY + 20, defaultColor.getRGB());
-                    int j = Color.RED.getRGB();
-                    int width = 160;
-                    int height = 20;
-                    mc.fontRendererObj.drawString(text1, (current.getScaledWidth() / 2 - 80 + width / 2 - mc.fontRendererObj.getStringWidth(text1) / 2), cursorY + (height - 8) / 2, j, false);
-                    int i = ResolutionUtil.current().getScaledHeight() - (Mouse.getY() / current.getScaleFactor());
-                    if (Mouse.isButtonDown(0) && !mouseLock) {
-                        if (i >= cursorY && i <= cursorY + 23) {
-                            int i1 = Mouse.getX() / current.getScaleFactor();
-                            if (i1 >= current.getScaledWidth() / 2 - 80 && i1 <= current.getScaledWidth() / 2 + 80) {
-                                DisplayItem item = ChromaHUDApi.getInstance().parse(s, 0, new JsonHolder().put("type", s));
-                                element.getDisplayItems().add(item);
-                                element.adjustOrdinal();
-                                Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new EditItemsGui(element, mod));
-                            }
+        int cursorY = 50 + offset;
+        List<ChromaHUDParser> parsers = ChromaHUDApi.getInstance().getParsers();
+        for (ChromaHUDParser parser : parsers) {
+            Map<String, String> names = parser.getNames();
+            for (String s : names.keySet()) {
+                String text1 = names.get(s) + "";
+                drawRect(current.getScaledWidth() / 2 - 80, cursorY, current.getScaledWidth() / 2 + 80, cursorY + 20, defaultColor.getRGB());
+                final int j = Color.RED.getRGB();
+                int width = 160;
+                int height = 20;
+                mc.fontRendererObj.drawString(text1, (current.getScaledWidth() / 2 - 80 + width / 2 - mc.fontRendererObj.getStringWidth(text1) / 2), cursorY + (height - 8) / 2, j, false);
+                int i = ResolutionUtil.current().getScaledHeight() - (Mouse.getY() / current.getScaleFactor());
+                if (Mouse.isButtonDown(0) && !mouseLock) {
+                    if (i >= cursorY && i <= cursorY + 23) {
+                        int i1 = Mouse.getX() / current.getScaleFactor();
+                        if (i1 >= current.getScaledWidth() / 2 - 80 && i1 <= current.getScaledWidth() / 2 + 80) {
+                            final DisplayItem item = ChromaHUDApi.getInstance().parse(s, 0, new JsonHolder().put("type", s));
+                            element.getDisplayItems().add(item);
+                            element.adjustOrdinal();
+                            Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(new EditItemsGui(element, mod));
                         }
                     }
-                    cursorY += 23;
                 }
-            }
-        } else {
-            int cursorY = 50 + offset;
-            List<ChromaHUDParser> parsers = ChromaHUDApi.getInstance().getParsers();
-            for (ChromaHUDParser parser : parsers) {
-                cursorY += 30;
-
-                Map<String, String> names = parser.getNames();
-                for (String s : names.keySet()) {
-                    String text1 = names.get(s) + ": ";
-                    DisplayElement displayElement = find(s);
-                    if (displayElement == null) {
-                        String text2 = "ERROR LOCATING DISPLAY ELEMENT " + s;
-                        mc.fontRendererObj.drawString(text2, (current.getScaledWidth() - mc.fontRendererObj.getStringWidth(text2)) / 2, cursorY, Color.RED.getRGB(), true);
-                        cursorY += 15;
-                        continue;
-                    }
-                    Dimension dimensions = displayElement.getDimensions();
-                    int stringWidth = mc.fontRendererObj.getStringWidth(text1);
-                    double totalWidth = dimensions.getWidth() + stringWidth;
-                    double left = (current.getScaledWidth_double() - totalWidth) / 2;
-                    double startDraw = left + stringWidth;
-                    displayElement.setXloc(startDraw / current.getScaledWidth_double());
-                    displayElement.setYloc(((double) cursorY) / current.getScaledHeight_double());
-                    displayElement.drawForConfig();
-                    mc.fontRendererObj.drawString(text1, (float) ((current.getScaledWidth() - totalWidth) / 2), cursorY, Color.RED.getRGB(), true);
-                    cursorY += dimensions.getHeight() + 5;
-                }
+                cursorY += 23;
             }
         }
         ElementRenderer.endDrawing(target);
-    }
-
-    private DisplayElement find(String key) {
-        for (DisplayElement displayElement : all) {
-            if (displayElement.getDisplayItems().get(0).getType().equalsIgnoreCase(key)) return displayElement;
-        }
-        return null;
     }
 }

@@ -36,7 +36,6 @@ public class EventBus {
         for (Object temp : superClasses) {
             Class<?> clazz = (Class<?>) temp;
 
-            // iterates though all the methods in the class
             for (Method method : clazz.getDeclaredMethods()) {
                 // all the information and error checking before the method is added such
                 // as if it even is an event before the element even touches the HashMap
