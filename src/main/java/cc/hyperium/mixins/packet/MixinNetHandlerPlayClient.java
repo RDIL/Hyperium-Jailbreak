@@ -21,9 +21,7 @@ import cc.hyperium.Hyperium;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.network.chat.ServerChatEvent;
 import cc.hyperium.mods.timechanger.TimeChanger;
-import com.google.common.base.Charsets;
 import com.google.common.collect.ObjectArrays;
-import io.netty.buffer.Unpooled;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -32,15 +30,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.PacketThreadUtil;
 import net.minecraft.network.play.INetHandlerPlayClient;
-import net.minecraft.network.play.client.C17PacketCustomPayload;
 import net.minecraft.network.play.client.C19PacketResourcePackStatus;
 import net.minecraft.network.play.server.S03PacketTimeUpdate;
 import net.minecraft.network.play.server.S0BPacketAnimation;
-import net.minecraft.network.play.server.S3FPacketCustomPayload;
 import net.minecraft.network.play.server.S48PacketResourcePackSend;
 import net.minecraft.network.play.server.S02PacketChat;
 import net.minecraft.util.ChatComponentText;
@@ -62,11 +56,10 @@ import java.nio.charset.StandardCharsets;
 
 @Mixin(NetHandlerPlayClient.class)
 public abstract class MixinNetHandlerPlayClient {
-    @Shadow
-    private WorldClient clientWorldController;
-
-    @Shadow
-    private Minecraft gameController;
+    @Shadow private WorldClient clientWorldController;
+    @Shadow @Final private NetworkManager netManager;
+    @Shadow private Minecraft gameController;
+    @Shadow public abstract NetworkManager getNetworkManager();
 
     private TimeChanger timeChanger = Hyperium.INSTANCE.getModIntegration().getTimeChanger();
 
@@ -151,34 +144,6 @@ public abstract class MixinNetHandlerPlayClient {
         }
     }
 
-    @Inject(method = "handleCustomPayload", at = @At("RETURN"))
-    public void handleCustomPayload(S3FPacketCustomPayload packetIn, CallbackInfo ci) {
-        PacketBuffer packetBuffer = packetIn.getBufferData();
-        try {
-            int readableBytes = packetBuffer.readableBytes();
-            if (readableBytes > 0) {
-                byte[] payload = new byte[readableBytes - 1];
-                packetBuffer.readBytes(payload);
-                String message = new String(payload, Charsets.UTF_8);
-
-                if ("REGISTER".equalsIgnoreCase(packetIn.getChannelName()) && message.contains("Hyperium")) {
-                    PacketBuffer buffer = new PacketBuffer(Unpooled.buffer());
-                    buffer.writeString("Hyperium;" + Hyperium.modid);
-                    addToSendQueue(new C17PacketCustomPayload("REGISTER", buffer));
-                    PacketBuffer addonbuffer = new PacketBuffer(Unpooled.buffer());
-                    addonbuffer.writeInt(0);
-                    addToSendQueue(new C17PacketCustomPayload("hyperium|Addons", addonbuffer));
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Shadow
-    @Final
-    private NetworkManager netManager;
-
     @Inject(method = "handleResourcePack", at = @At("HEAD"), cancellable = true)
     private void handle(S48PacketResourcePackSend packetIn, CallbackInfo info) {
         if (!validateResourcePackUrl(packetIn.getURL(), packetIn.getHash())) info.cancel();
@@ -210,9 +175,6 @@ public abstract class MixinNetHandlerPlayClient {
         return false;
     }
 
-    @Shadow
-    public abstract void addToSendQueue(Packet p_147297_1_);
-
     /**
      * @author hyperium
      */
@@ -236,7 +198,4 @@ public abstract class MixinNetHandlerPlayClient {
             this.gameController.ingameGUI.getChatGUI().printChatMessage(event.getChat());
         }
     }
-
-    @Shadow
-    public abstract NetworkManager getNetworkManager();
 }
