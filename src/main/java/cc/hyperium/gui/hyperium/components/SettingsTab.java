@@ -49,7 +49,7 @@ public class SettingsTab extends AbstractTab {
                     category = sliderSetting.category();
                 }
                 if (category == null) continue;
-                apply(tabComponent, false, category, items);
+                apply(tabComponent, category, items);
                 if (objectConsumer != null) {
                     for (Consumer<Object> consumer : objectConsumer) {
                         tabComponent.registerStateChange(consumer);
@@ -58,16 +58,16 @@ public class SettingsTab extends AbstractTab {
             }
         }
 
-        apply(new LinkComponent(this, Collections.emptyList(), "Open Sidebar Customizer", new GuiScreenSettings(Hyperium.INSTANCE.getInternalAddons().getSidebarAddon())), true, Category.MODS, items);
-        apply(new LinkComponent(this, Collections.emptyList(), "Open Keystrokes Customizer", new GuiScreenKeystrokes(Hyperium.INSTANCE.getModIntegration().getKeystrokesMod())), true, Category.KEYSTROKES, items);
-        apply(new LinkComponent(this, Collections.emptyList(), "Open ToggleChat Customizer", new ToggleChatMainGui(Hyperium.INSTANCE.getModIntegration().getToggleChat(), 0)), true, Category.MODS, items);
-        apply(new LinkComponent(this, Collections.emptyList(), "Open Keybind Customizer", new GuiKeybinds()), false, Category.GENERAL, items);
-        apply(new LinkComponent(this, Collections.emptyList(), "Open Bossbar Customizer", new GuiBossbarSetting(Hyperium.INSTANCE.getInternalAddons().getBossbarAddon())), true, Category.MODS, items);
-        apply(new LinkComponent(this, Collections.emptyList(), "Open Crosshair Customizer", new GuiCustomCrosshairEditCrosshair(Hyperium.INSTANCE.getInternalAddons().getCustomCrosshairAddon())), true, Category.INTEGRATIONS, items);
-        apply(new LinkComponent(this, Collections.emptyList(), "Open ChromaHUD Customizer", new GeneralConfigGui(Hyperium.INSTANCE.getModIntegration().getChromaHUD())), true, Category.CHROMAHUD, items);
+        apply(new LinkComponent(this, Collections.emptyList(), "Open Sidebar Customizer", new GuiScreenSettings(Hyperium.INSTANCE.getInternalAddons().getSidebarAddon())), Category.MODS, items);
+        apply(new LinkComponent(this, Collections.emptyList(), "Open Keystrokes Customizer", new GuiScreenKeystrokes(Hyperium.INSTANCE.getModIntegration().getKeystrokesMod())), Category.KEYSTROKES, items);
+        apply(new LinkComponent(this, Collections.emptyList(), "Open ToggleChat Customizer", new ToggleChatMainGui(Hyperium.INSTANCE.getModIntegration().getToggleChat(), 0)), Category.MODS, items);
+        apply(new LinkComponent(this, Collections.emptyList(), "Open Keybind Customizer", new GuiKeybinds()), Category.GENERAL, items);
+        apply(new LinkComponent(this, Collections.emptyList(), "Open Bossbar Customizer", new GuiBossbarSetting(Hyperium.INSTANCE.getInternalAddons().getBossbarAddon())), Category.MODS, items);
+        apply(new LinkComponent(this, Collections.emptyList(), "Open Crosshair Customizer", new GuiCustomCrosshairEditCrosshair(Hyperium.INSTANCE.getInternalAddons().getCustomCrosshairAddon())), Category.INTEGRATIONS, items);
+        apply(new LinkComponent(this, Collections.emptyList(), "Open ChromaHUD Customizer", new GeneralConfigGui(Hyperium.INSTANCE.getModIntegration().getChromaHUD())), Category.CHROMAHUD, items);
 
         for (RGBFieldSet rgbFieldSet : gui.getRgbFields()) {
-            apply(new RGBComponent(this, rgbFieldSet), rgbFieldSet.isMods(), rgbFieldSet.getCategory(), items);
+            apply(new RGBComponent(this, rgbFieldSet), rgbFieldSet.getCategory(), items);
         }
 
         Collection<CollapsibleTabComponent> values = items.values();
@@ -79,13 +79,12 @@ public class SettingsTab extends AbstractTab {
         components.addAll(c);
     }
 
-    private void apply(AbstractTabComponent component, @SuppressWarnings("unused") boolean mods, Category category, HashMap<Category, CollapsibleTabComponent> items) {
+    private void apply(AbstractTabComponent component, Category category, HashMap<Category, CollapsibleTabComponent> items) {
         CollapsibleTabComponent collapsibleTabComponent = items.computeIfAbsent(
             category,
             category1 ->
-                new CollapsibleTabComponent(this,
-                    Collections.singletonList(category1.name()),
-                    category1.getDisplay()));
+                new CollapsibleTabComponent(this, Collections.singletonList(category1.name()), category1.getDisplay())
+        );
         collapsibleTabComponent.addChild(component);
     }
 }

@@ -40,7 +40,7 @@ public class HyperiumMainGui extends HyperiumGui {
     private List<RGBFieldSet> rgbFields = new ArrayList<>();
 
     private HyperiumMainGui() {
-        font = new HyperiumFontRenderer(Settings.GUI_FONT, 16.0F, 0, 1.0F);
+        font = new HyperiumFontRenderer("Roboto Condensed", 16.0F, 0, 1.0F);
         settingsObjects.add(Settings.INSTANCE);
         settingsObjects.add(Hyperium.INSTANCE.getModIntegration().getAutotip());
         settingsObjects.add(Hyperium.INSTANCE.getModIntegration().getAutoGG().getConfig());
@@ -61,7 +61,7 @@ public class HyperiumMainGui extends HyperiumGui {
             rgbFields.add(new RGBFieldSet(
                 Settings.class.getDeclaredField("REACH_RED"),
                 Settings.class.getDeclaredField("REACH_GREEN"),
-                Settings.class.getDeclaredField("REACH_BLUE"), Category.REACH, true,
+                Settings.class.getDeclaredField("REACH_BLUE"), Category.REACH,
                 Settings.INSTANCE));
         } catch (NoSuchFieldException e) {
             e.printStackTrace();

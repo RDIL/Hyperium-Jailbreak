@@ -175,7 +175,7 @@ public class Settings {
     @ConfigOpt @ToggleSetting(name = "Enable Square Brace Prefix", category = CHROMAHUD)
     public static boolean CHROMAHUD_SQUAREBRACE_PREFIX_OPTION = false;
 
-    @ConfigOpt @ToggleSetting(name = "Sort Direction HUD Messages", category = CHROMAHUD)
+    @ConfigOpt @ToggleSetting(name = "Short Direction HUD", category = CHROMAHUD)
     public static boolean SHORT_DIRECTION_HUD = false;
 
     @ConfigOpt @SelectorSetting(name = "Main Menu Style", items = {"HYPERIUM", "DEFAULT"}, category = MENUS)
@@ -247,8 +247,6 @@ public class Settings {
     @ConfigOpt @ToggleSetting(name = "Enable Item Physics", category = ITEM_PHYSIC)
     public static boolean ITEM_PHYSIC_ENABLED = false;
 
-    @ConfigOpt public static String GUI_FONT = "Roboto Condensed";
-
     @ConfigOpt @ToggleSetting(name = "Hide Name Tags in F1", category = VANILLA_ENHANCEMENTS)
     public static boolean BETTERF1 = false;
 
@@ -275,9 +273,6 @@ public class Settings {
 
     @ConfigOpt @ToggleSetting(name = "Hide Skeleton Hat Bones", category = HYPIXELSKYBLOCK)
     public static boolean hide_skeletonhat_bones = false;
-
-    @ConfigOpt @ToggleSetting(name = "BETA - Faster Particle Rendering", category = IMPROVEMENTS)
-    public static boolean IMPROVE_PARTICLE_PERF = false;
 
     @ConfigOpt @ToggleSetting(name = "Blink at the End of Night Vision", category = GENERAL)
     public static boolean NIGHT_VISION_BLINKING = false;

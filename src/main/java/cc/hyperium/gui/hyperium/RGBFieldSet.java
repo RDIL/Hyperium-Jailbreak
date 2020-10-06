@@ -8,24 +8,18 @@ public class RGBFieldSet {
     private Field green;
     private Field blue;
     private Category category;
-    private boolean mods;
     private Object parentObj;
 
     public Object getParentObj() {
         return parentObj;
     }
 
-    public RGBFieldSet(Field red, Field green, Field blue, Category category, boolean mods, Object parentObj) {
+    public RGBFieldSet(Field red, Field green, Field blue, Category category, Object parentObj) {
         this.red = red;
         this.green = green;
         this.blue = blue;
         this.category = category;
-        this.mods = mods;
         this.parentObj = parentObj;
-    }
-
-    public boolean isMods() {
-        return mods;
     }
 
     public Category getCategory() {
