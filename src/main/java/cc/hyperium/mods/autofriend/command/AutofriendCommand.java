@@ -13,7 +13,7 @@ import net.minecraft.util.EnumChatFormatting;
 public class AutofriendCommand implements BaseCommand {
     private Pattern username;
     private Minecraft mc = Minecraft.getMinecraft();
-    private String usage = "/autofriend blacklist add/remove <username>";
+    private static final String usage = "/autofriend blacklist add/remove <username>";
 
     public AutofriendCommand() {
         this.username = Pattern.compile("\\w{1,16}");
@@ -64,7 +64,7 @@ public class AutofriendCommand implements BaseCommand {
                 } else {
                     this.throwError("Blacklisted empty");
                 }
-            } else if (args[1].equalsIgnoreCase("add") || args[1].equalsIgnoreCase("remove")) {
+            } else {
                 if (args.length > 2 && this.username.matcher(args[2]).matches()) {
                     if (args[1].equals("add")) {
                         AutofriendMod.blacklist.add(args[2]);

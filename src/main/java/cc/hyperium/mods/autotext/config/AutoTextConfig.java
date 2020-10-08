@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class AutoTextConfig {
-    public static AutoTextConfig INSTANCE = new AutoTextConfig();
+    public static final AutoTextConfig INSTANCE = new AutoTextConfig();
 
     @ConfigOpt
     private Map<String, String> keybinds = new ConcurrentHashMap<>();

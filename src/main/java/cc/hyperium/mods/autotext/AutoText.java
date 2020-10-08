@@ -13,6 +13,7 @@ public class AutoText extends AbstractMod {
     @Override
     public AbstractMod init() {
         Hyperium.CONFIG.register(AutoTextConfig.INSTANCE);
+
         for (Map.Entry<String, String> entry : AutoTextConfig.INSTANCE.getKeybinds().entrySet()) {
             Hyperium.INSTANCE.getHandlers().getKeybindHandler().registerKeyBinding(new HyperiumBind(entry.getValue(), Integer.parseInt(entry.getKey())) {
                 @Override
@@ -21,6 +22,7 @@ public class AutoText extends AbstractMod {
                 }
             });
         }
+
         Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(new AutoTextCommand());
         return this;
     }

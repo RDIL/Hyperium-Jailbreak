@@ -17,7 +17,6 @@ import java.util.List;
 public class AutofriendMod extends AbstractMod {
     private Minecraft mc = Minecraft.getMinecraft();
     public static List<String> blacklist = new ArrayList<>();
-    private static final List<String> recent = new ArrayList<>();
 
     @Override
     public AbstractMod init() {
@@ -35,7 +34,6 @@ public class AutofriendMod extends AbstractMod {
         String name = event.getFrom();
         if (Settings.AUTOFRIEND_TOGGLE && blacklist.stream().noneMatch(name::equalsIgnoreCase)) {
             this.mc.thePlayer.sendChatMessage("/friend accept " + name);
-            recent.add(name);
         }
     }
 

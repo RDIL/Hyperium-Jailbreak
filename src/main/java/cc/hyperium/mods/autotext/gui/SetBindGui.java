@@ -2,6 +2,9 @@ package cc.hyperium.mods.autotext.gui;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiYesNo;
+import net.minecraft.client.gui.GuiYesNoCallback;
+import org.lwjgl.input.Keyboard;
 
 import java.io.IOException;
 
@@ -15,7 +18,7 @@ public class SetBindGui extends GuiScreen {
         if (!isTyped) {
             drawCenteredString(fontRendererObj, "Press the key to use", width / 2, height / 2, -1);
         } else {
-            Minecraft.getMinecraft().displayGuiScreen(new ConfirmGui(keyTyped));
+            Minecraft.getMinecraft().displayGuiScreen(makeConfirm(keyTyped));
         }
     }
 
@@ -28,6 +31,20 @@ public class SetBindGui extends GuiScreen {
 
     @Override
     public boolean doesGuiPauseGame() {
-        return false;
+        return true;
+    }
+
+    private GuiYesNo makeConfirm(final int keyTyped) {
+        return new GuiYesNo(getConfirmCallback(keyTyped), "You pressed " + Keyboard.getKeyName(keyTyped) + ", is this the key you want?", "", 0);
+    }
+
+    private GuiYesNoCallback getConfirmCallback(final int keyTyped) {
+        return (result, id) -> {
+            if (result) {
+                Minecraft.getMinecraft().displayGuiScreen(new EnterCommandGui(keyTyped));
+            } else {
+                Minecraft.getMinecraft().displayGuiScreen(null);
+            }
+        };
     }
 }
