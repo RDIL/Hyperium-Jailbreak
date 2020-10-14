@@ -32,21 +32,14 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
-import net.minecraft.event.ClickEvent;
-import net.minecraft.event.HoverEvent;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChatStyle;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.client.config.GuiSlider;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.lwjgl.input.Keyboard;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URLEncoder;
 import java.util.*;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Consumer;
@@ -94,8 +87,7 @@ public class LevelHeadGui extends GuiScreen {
         LevelheadConfig config = instance.getConfig();
         reg(new GuiButton(1, this.width / 2 - 155, calculateHeight(0), 150, 20, "LevelHead: " + getLevelToggle()), button -> {
             config.setEnabled(!config.isEnabled());
-            button.displayString = "LevelHead: " + getLevelToggle();
-            sendChatMessage(String.format("Toggled %s!", (config.isEnabled() ? "On" : "Off")));
+            button.displayString = "Levelhead: " + getLevelToggle();
         });
         reg(new GuiButton(69, this.width / 2 + 5, calculateHeight(0), 150, 20, "Show self: " + (config.isShowSelf() ? ChatColor.GREEN + "On" : ChatColor.RED + "Off")), button -> {
             config.setShowSelf(!config.isShowSelf());
@@ -220,33 +212,6 @@ public class LevelHeadGui extends GuiScreen {
 	            e.printStackTrace();
             }
         });
-        if (isCustom) {
-            GuiButton button1 = new GuiButton(16, this.width / 2 - 155, this.height - 22, 310, 20, ChatColor.YELLOW + "Export these colors to my custom Levelhead");
-            reg(button1, button -> {
-                JsonHolder object = new JsonHolder();
-                object.put("header_obj", Hyperium.INSTANCE.getModIntegration().getLevelhead().getHeaderConfig());
-                object.put("footer_obj", Hyperium.INSTANCE.getModIntegration().getLevelhead().getFooterConfig());
-                try {
-                    String encode = URLEncoder.encode(object.toString(), "UTF-8");
-                    String url = "https://sk1er.club/user?levelhead_color=" + encode;
-                    ChatComponentText text = new ChatComponentText("Click here to update your custom Levelhead colors");
-                    ChatStyle style = new ChatStyle();
-                    style.setBold(true);
-                    style.setColor(EnumChatFormatting.YELLOW);
-                    style.setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, url));
-                    ChatComponentText valueIn = new ChatComponentText("Please be logged in to your Sk1er.club for this to work. Do /levelhead dumpcache after clicking to see new colors!");
-                    ChatStyle style1 = new ChatStyle();
-                    style1.setColor(EnumChatFormatting.RED);
-                    valueIn.setChatStyle(style1);
-                    style.setChatHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, valueIn));
-                    text.setChatStyle(style);
-                    Minecraft.getMinecraft().thePlayer.addChatComponentMessage(text);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                mc.displayGuiScreen(null);
-            });
-        }
         lock.unlock();
     }
 

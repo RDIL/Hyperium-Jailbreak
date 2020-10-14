@@ -42,7 +42,7 @@ public class CommandKeystrokes implements BaseCommand {
 
     @Override
     public String getUsage() {
-        return "Usage: " + getName();
+        return "Usage: /keystrokesmod";
     }
 
     @Override

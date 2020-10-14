@@ -45,7 +45,7 @@ import java.util.Set;
 import java.util.UUID;
 
 public class Levelhead extends AbstractMod {
-    private final String VERSION = "5.0";
+    private static final String VERSION = "5.0";
     public final Map<UUID, LevelheadTag> levelCache = new HashMap<>();
     private final Map<UUID, Integer> timeCheck = new HashMap<>();
     public UUID userUuid = null;

@@ -48,7 +48,6 @@ public class HyperiumHandlers {
     private GuiDisplayHandler guiDisplayHandler;
     private KeyBindHandler keybindHandler;
     private HyperiumCommandHandler commandHandler;
-    private HyperiumNetwork network;
     private ScoreboardRenderer scoreboardRenderer;
     private OtherConfigOptions configOptions;
     private FlipHandler flipHandler;
@@ -57,7 +56,6 @@ public class HyperiumHandlers {
     private SettingsHandler settingsHandler;
 
     public HyperiumHandlers() {
-        register(network = new HyperiumNetwork());
         settingsHandler = new SettingsHandler();
         chatHandlers = new ArrayList<>();
         register(configOptions = new OtherConfigOptions());
@@ -92,10 +90,6 @@ public class HyperiumHandlers {
 
     public HyperiumCommandHandler getCommandHandler() {
         return commandHandler;
-    }
-
-    public HyperiumNetwork getNetwork() {
-        return network;
     }
 
     public FlipHandler getFlipHandler() {
