@@ -144,14 +144,14 @@ public abstract class MixinMinecraft {
         hyperiumMinecraft.loadWorld();
     }
 
-    @Inject(method = "loadWorld(Lnet/minecraft/client/multiplayer/WorldClient;Ljava/lang/String;)V", at = @At(value = "INVOKE", target = "Ljava/lang/System;gc()V"), cancellable = true)
+    @Inject(method = "loadWorld(Lnet/minecraft/client/multiplayer/WorldClient;Ljava/lang/String;)V", at = @At(value = "INVOKE", target = "Ljava/lang/System;gc()V"))
     private void loadWorldEvent(WorldClient worldClientIn, String loadingMessage, CallbackInfo ci) {
         new WorldLoadEvent().post();
     }
 
     @Inject(method = "runTick", at = @At(value = "INVOKE", target = "Lorg/lwjgl/input/Mouse;getEventButton()I", ordinal = 0))
     private void runTickMouseButton(CallbackInfo ci) {
-        hyperiumMinecraft.runTickMouseButton(ci);
+        hyperiumMinecraft.runTickMouseButton();
     }
 
     @Inject(method = "shutdown", at = @At("HEAD"))

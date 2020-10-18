@@ -6,9 +6,9 @@ import cc.hyperium.handlers.handlers.HypixelDetector;
 import net.minecraft.client.Minecraft;
 
 public class CommonChatResponder {
-    private String listenFor;
-    private String say;
-    private boolean onlyOnHypixel;
+    private final String listenFor;
+    private final String say;
+    private final boolean onlyOnHypixel;
 
     public CommonChatResponder(String listenFor, String say, boolean onlyOnHypixel) {
         this.listenFor = listenFor;

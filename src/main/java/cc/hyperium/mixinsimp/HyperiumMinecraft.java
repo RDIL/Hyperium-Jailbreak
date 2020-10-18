@@ -197,7 +197,7 @@ public class HyperiumMinecraft {
         EventBus.INSTANCE.post(new WorldChangeEvent());
     }
 
-    public void runTickMouseButton(CallbackInfo ci) {
+    public void runTickMouseButton() {
         // Activates for EVERY mouse button.
         int i = Mouse.getEventButton();
         boolean state = Mouse.getEventButtonState();
