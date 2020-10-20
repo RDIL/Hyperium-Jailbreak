@@ -19,7 +19,6 @@ package cc.hyperium.mixins.renderer;
 
 import cc.hyperium.event.render.RenderNameTagEvent;
 import cc.hyperium.mixinsimp.renderer.HyperiumRenderPlayer;
-import cc.hyperium.mixinsimp.renderer.layers.TwoPartLayerBipedArmor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelBase;
@@ -28,8 +27,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
-import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.scoreboard.Score;
 import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.Scoreboard;
@@ -38,7 +35,6 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(RenderPlayer.class)
@@ -50,12 +46,6 @@ public abstract class MixinRenderPlayer extends RendererLivingEntity<AbstractCli
     }
 
     @Shadow public abstract ModelPlayer getMainModel();
-
-    @SuppressWarnings("unchecked")
-    @ModifyArg(method = "<init>(Lnet/minecraft/client/renderer/entity/RenderManager;Z)V", at = @At(value = "INVOKE", ordinal = 0, target = "Lnet/minecraft/client/renderer/entity/RenderPlayer;addLayer(Lnet/minecraft/client/renderer/entity/layers/LayerRenderer;)Z"))
-    private <V extends EntityLivingBase, U extends LayerRenderer<V>> U injectTwoPartLayerBipedArmor(U original) {
-        return (U) new TwoPartLayerBipedArmor(this);
-    }
 
     @Inject(method = "doRender", at = @At("HEAD"), cancellable = true)
     private void doRender(AbstractClientPlayer entity, double x, double y, double z, float entityYaw, float partialTicks, CallbackInfo ci) {
