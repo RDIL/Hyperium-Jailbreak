@@ -32,15 +32,13 @@ import net.minecraft.client.audio.SoundManager;
 
 @Mixin(SoundManager.class)
 public abstract class MixinSoundManager {
-    private HyperiumSoundManager hyperiumSoundManager = new HyperiumSoundManager();
-
     @Inject(
         method = "playSound",
         at = @At(value = "INVOKE", target = "Lnet/minecraft/client/audio/SoundHandler;getSound(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/audio/SoundEventAccessorComposite;"),
         cancellable = true
     )
     private void playSound(ISound sound, CallbackInfo ci) {
-        hyperiumSoundManager.playSound(sound, ci);
+        HyperiumSoundManager.playSound(sound, ci);
     }
 
     @SuppressWarnings("all")
@@ -58,25 +56,5 @@ public abstract class MixinSoundManager {
             }
         }
         return (boolean) hasNext;
-    }
-
-    @Inject(at = @At("HEAD"), method = "updateAllSounds")
-    private void updateAllSounds(CallbackInfo ci) {
-        hyperiumSoundManager.startUpdate();
-    }
-
-    @Inject(at = @At("TAIL"), method = "updateAllSounds")
-    public void endUpdateAllSounds(CallbackInfo ci) {
-        hyperiumSoundManager.endUpdate();
-    }
-
-    @Inject(method = "stopAllSounds", at = @At("HEAD"))
-    private void startStopAllSounds(CallbackInfo info) {
-        hyperiumSoundManager.startStopAllSounds(info);
-    }
-
-    @Inject(method = "stopAllSounds", at = @At("TAIL"))
-    private void endStopAllSounds(CallbackInfo info) {
-        hyperiumSoundManager.endStopAllSounds(info);
     }
 }
