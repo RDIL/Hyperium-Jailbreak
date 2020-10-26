@@ -67,7 +67,7 @@ public class HyperiumCommandHandler {
         }
     }
 
-    private boolean executeCommand(String command) {
+    public boolean executeCommand(String command) {
         final String commandLine = command.startsWith("/") ? command.substring(1) : command;
         String commandName;
         String[] args = new String[]{};
@@ -116,7 +116,7 @@ public class HyperiumCommandHandler {
         }
     }
 
-    private boolean isCommandDisabled(String input) {
+    public boolean isCommandDisabled(String input) {
         if (input == null || input.isEmpty() || input.trim().isEmpty() ||
             input.equalsIgnoreCase("disablecommand") || input.equalsIgnoreCase("hyperium")) {
             return false;
