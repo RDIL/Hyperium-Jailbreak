@@ -44,7 +44,7 @@ import java.util.stream.Collectors;
 
 public class HyperiumCommandHandler {
     private final Set<String> disabledCommands = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
-    private final Map<String, BaseCommand> commands = new HashMap<>();
+    public final Map<String, BaseCommand> commands = new HashMap<>();
     private final GeneralChatHandler chatHandler;
     private final Minecraft mc;
     private String[] latestAutoComplete;

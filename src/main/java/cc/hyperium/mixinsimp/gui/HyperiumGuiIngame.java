@@ -18,6 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 public class HyperiumGuiIngame {
     private GuiIngame parent;
+    public static boolean renderScoreboard = true;
 
     public HyperiumGuiIngame(GuiIngame parent) {
         this.parent = parent;
@@ -35,7 +36,7 @@ public class HyperiumGuiIngame {
     public void renderScoreboard(ScoreObjective objective, ScaledResolution resolution) {
         ScoreboardDisplay.p_180475_1_ = objective;
         ScoreboardDisplay.p_180475_2_ = resolution;
-        Hyperium.INSTANCE.getHandlers().getScoreboardRenderer().render(objective, resolution);
+        if (renderScoreboard) Hyperium.INSTANCE.getHandlers().getScoreboardRenderer().render(objective, resolution);
     }
 
     public void renderBossHealth() {
