@@ -102,7 +102,7 @@ public abstract class MixinWorld {
         hyperiumWorld.updateEntities(theProfiler, weatherEffects, loadedEntityList, unloadedEntityList, tickableTileEntities, worldBorder, loadedTileEntityList, tileEntitiesToBeRemoved, addedTileEntityList);
     }
 
-    @Inject(method = "spawnEntityInWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;onEntityAdded(Lnet/minecraft/entity/Entity;)V", shift = At.Shift.BEFORE))
+    @Inject(method = "spawnEntityInWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;onEntityAdded(Lnet/minecraft/entity/Entity;)V"))
     public void spawnEntityInWorld(Entity entityIn, CallbackInfoReturnable<Entity> ci) {
         EventBus.INSTANCE.post(new EntityJoinWorldEvent(entityIn, (World) (Object) this));
     }
