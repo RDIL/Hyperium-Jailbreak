@@ -17,6 +17,8 @@
 
 package cc.hyperium.mixins;
 
+import cc.hyperium.event.EventBus;
+import cc.hyperium.event.entity.EntityJoinWorldEvent;
 import cc.hyperium.mixinsimp.world.HyperiumWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.profiler.Profiler;
@@ -95,7 +97,13 @@ public abstract class MixinWorld {
     /**
      * @author hyperium
      */
-    @Overwrite public void updateEntities() {
+    @Overwrite
+    public void updateEntities() {
         hyperiumWorld.updateEntities(theProfiler, weatherEffects, loadedEntityList, unloadedEntityList, tickableTileEntities, worldBorder, loadedTileEntityList, tileEntitiesToBeRemoved, addedTileEntityList);
+    }
+
+    @Inject(method = "spawnEntityInWorld", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;onEntityAdded(Lnet/minecraft/entity/Entity;)V", shift = At.Shift.BEFORE))
+    public void spawnEntityInWorld(Entity entityIn, CallbackInfoReturnable<Entity> ci) {
+        EventBus.INSTANCE.post(new EntityJoinWorldEvent(entityIn, (World) (Object) this));
     }
 }
