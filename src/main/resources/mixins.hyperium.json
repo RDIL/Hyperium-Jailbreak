@@ -71,6 +71,7 @@
     "gui.MixinInventory",
     "item.MixinItemBow",
     "item.MixinItemBucket",
+    "item.MixinItemStack",
     "packet.MixinC01PacketChatMessage",
     "packet.MixinNetHandlerPlayClient",
     "packet.MixinNetworkManager",
