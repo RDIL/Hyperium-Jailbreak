@@ -211,7 +211,7 @@ public class MixinChunk {
         }
     }
 
-    @Inject(method = "loadChunk", at = @At("TAIL"))
+    @Inject(method = "onChunkLoad", at = @At("TAIL"))
     public void loadChunk(CallbackInfo ci) {
         EventBus.INSTANCE.post(new ChunkLoadEvent((Chunk) (Object) this));
     }
