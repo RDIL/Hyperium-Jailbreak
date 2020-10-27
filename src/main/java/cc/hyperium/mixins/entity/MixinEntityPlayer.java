@@ -23,6 +23,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.scoreboard.Team;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -66,6 +67,11 @@ public abstract class MixinEntityPlayer extends EntityLivingBase {
     @Overwrite
     public IChatComponent getDisplayName() {
         return hyperiumEntityPlayer.getDisplayName();
+    }
+
+    @Inject(method = "onDeath", at = @At("HEAD"))
+    private void onDeath(DamageSource source, CallbackInfo ci) {
+        hyperiumEntityPlayer.onDeath(source);
     }
 
     private void setDisplayName(String name) {

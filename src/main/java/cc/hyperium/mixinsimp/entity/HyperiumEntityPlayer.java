@@ -2,6 +2,7 @@ package cc.hyperium.mixinsimp.entity;
 
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
+import cc.hyperium.event.entity.LivingDeathEvent;
 import cc.hyperium.event.entity.PlayerAttackEntityEvent;
 import cc.hyperium.event.entity.PlayerSwingEvent;
 import cc.hyperium.mixins.entity.IMixinEntity;
@@ -11,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.event.ClickEvent;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.IChatComponent;
 
 public class HyperiumEntityPlayer {
@@ -102,5 +104,9 @@ public class HyperiumEntityPlayer {
 
     public void setName(String name) {
         this.displayName = name;
+    }
+
+    public void onDeath(DamageSource source) {
+        EventBus.INSTANCE.post(new LivingDeathEvent(parent, source));
     }
 }

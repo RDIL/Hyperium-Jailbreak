@@ -38,6 +38,7 @@
     "entity.MixinEntityLivingBase",
     "entity.MixinEntityPlayer",
     "entity.MixinEntityPlayerSP",
+    "entity.MixinEntityPlayerMP",
     "entity.MixinEntityRenderer",
     "entity.MixinNetworkPlayerInfo",
     "entity.MixinRenderFish",
