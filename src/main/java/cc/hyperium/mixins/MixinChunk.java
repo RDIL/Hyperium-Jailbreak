@@ -18,6 +18,7 @@
 package cc.hyperium.mixins;
 
 import cc.hyperium.event.EventBus;
+import cc.hyperium.event.entity.EntityEnterChunkEvent;
 import cc.hyperium.event.world.ChunkLoadEvent;
 import cc.hyperium.mixinsimp.world.HyperiumChunk;
 import com.google.common.base.Predicate;
@@ -123,6 +124,8 @@ public class MixinChunk {
             if (k >= this.entityLists.length) {
                 k = this.entityLists.length - 1;
             }
+
+            EventBus.INSTANCE.post(new EntityEnterChunkEvent(entityIn, (Chunk) (Object) this));
 
             entityIn.addedToChunk = true;
             entityIn.chunkCoordX = this.xPosition;
