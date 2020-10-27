@@ -17,6 +17,9 @@
 
 package cc.hyperium.mixins.entity;
 
+import cc.hyperium.event.EventBus;
+import cc.hyperium.event.entity.LivingDeathEvent;
+import cc.hyperium.event.entity.LivingEntityUpdateEvent;
 import cc.hyperium.mixinsimp.entity.HyperiumEntityLivingBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
@@ -38,6 +41,11 @@ public abstract class MixinEntityLivingBase extends MixinEntity {
 
     @Inject(method = "onDeath", at = @At("HEAD"))
     private void onDeath(DamageSource source, CallbackInfo ci) {
-        hyperiumEntityLivingBase.onDeath(source);
+        EventBus.INSTANCE.post(new LivingDeathEvent((EntityLivingBase) (Object) this, source));
+    }
+
+    @Inject(method = "onUpdate", at = @At("HEAD"))
+    private void onUpdate(CallbackInfo ci) {
+        EventBus.INSTANCE.post(new LivingEntityUpdateEvent((EntityLivingBase) (Object) this));
     }
 }
