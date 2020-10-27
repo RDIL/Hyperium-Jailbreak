@@ -65,7 +65,6 @@ public class AddonBootstrap {
         phase = Phase.PREINIT;
         Launch.classLoader.addClassLoaderExclusion("cc.hyperium.internal.addons.AddonBootstrap");
         Launch.classLoader.addClassLoaderExclusion("cc.hyperium.internal.addons.AddonManifest");
-        Launch.classLoader.addClassLoaderExclusion("me.kbrewster.blazeapi.internal.addons.translate.");
 
         AddonManifest workspaceAddon = loadWorkspaceAddon();
 

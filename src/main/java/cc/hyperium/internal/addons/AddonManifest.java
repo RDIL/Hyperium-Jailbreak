@@ -12,47 +12,47 @@ public final class AddonManifest {
     private List dependencies = new ArrayList();
     private String transformerClass;
 
-    public final String getName() {
+    public String getName() {
         return this.name;
     }
 
-    public final void setName(String var1) {
+    public void setName(String var1) {
         this.name = var1;
     }
 
-    public final String getVersion() {
+    public String getVersion() {
         return this.version;
     }
 
-    public final void setVersion(String var1) {
+    public void setVersion(String var1) {
         this.version = var1;
     }
 
-    public final void setMainClass(String var1) {
+    public void setMainClass(String var1) {
         this.mainClass = var1;
     }
 
-    public final void setMixinConfigs(List var1) {
+    public void setMixinConfigs(List var1) {
         this.mixinConfigs = var1;
     }
 
-    public final void setTransformerClass(String var1) {
+    public void setTransformerClass(String var1) {
         this.transformerClass = var1;
     }
 
-    public final String getMainClass() {
+    public String getMainClass() {
         return this.mainClass;
     }
 
-    public final List getMixinConfigs() {
+    public List getMixinConfigs() {
         return this.mixinConfigs;
     }
 
-    public final List getDependencies() {
+    public List getDependencies() {
         return this.dependencies;
     }
 
-    public final String getTransformerClass() {
+    public String getTransformerClass() {
         return this.transformerClass;
     }
 }

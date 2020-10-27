@@ -17,6 +17,8 @@
 
 package cc.hyperium.mixins;
 
+import cc.hyperium.event.EventBus;
+import cc.hyperium.event.world.ChunkLoadEvent;
 import cc.hyperium.mixinsimp.world.HyperiumChunk;
 import com.google.common.base.Predicate;
 import net.minecraft.entity.Entity;
@@ -34,6 +36,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.List;
 import java.util.Map;
@@ -203,5 +206,10 @@ public class MixinChunk {
                 }
             }
         }
+    }
+
+    @Inject(method = "loadChunk", at = @At("TAIL"))
+    public void loadChunk(CallbackInfo ci) {
+        EventBus.INSTANCE.post(new ChunkLoadEvent((Chunk) (Object) this));
     }
 }

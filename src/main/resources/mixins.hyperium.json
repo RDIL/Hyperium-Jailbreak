@@ -8,6 +8,7 @@
   "mixins": [
     "IMixinMinecraft",
     "MixinCrashReport",
+    "MixinChunkProviderClient",
     "MixinEnchantment",
     "MixinKeyBinding",
     "MixinMinecraft",
