@@ -23,8 +23,7 @@ public enum Category {
     FNCOMPASS("Fortnite Compass"),
     TAB_TOGGLE("Tab Toggle"),
     ITEM_PHYSIC("Item Physics"),
-    TOGGLESPRINT("Toggle Sprint"),
-    HYPIXELSKYBLOCK("Hypixel SkyBlock");
+    TOGGLESPRINT("Toggle Sprint");
 
     private String display;
 

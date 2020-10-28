@@ -44,6 +44,9 @@ public class MixinEntityPlayerSP extends AbstractClientPlayer {
         super(worldIn, playerProfile);
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void onEnchantmentCritical(Entity entityHit) {
         if (mc.isSingleplayer() || !Settings.CRIT_FIX) {
@@ -51,6 +54,9 @@ public class MixinEntityPlayerSP extends AbstractClientPlayer {
         }
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void sendChatMessage(String message) {
         NickHider instance = NickHider.INSTANCE;
@@ -65,6 +71,9 @@ public class MixinEntityPlayerSP extends AbstractClientPlayer {
         }
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     public void onCriticalHit(Entity entityHit) {
         if (Minecraft.getMinecraft().isSingleplayer() || !Settings.CRIT_FIX) {

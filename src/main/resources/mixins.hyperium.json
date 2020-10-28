@@ -91,7 +91,6 @@
     "renderer.MixinRendererLivingEntity",
     "renderer.MixinRenderGlobal",
     "renderer.MixinRenderItem",
-    "renderer.MixinRenderManger",
     "renderer.MixinRenderPlayer",
     "renderer.MixinThreadDownloadImageData",
     "renderer.entity.MixinRenderEntityItem",

@@ -51,7 +51,6 @@ public abstract class MixinEntityRenderer {
     @Shadow @Final public static int shaderCount;
     @Shadow private int shaderIndex;
 
-    //endStartSection
     @Inject(method = "updateCameraAndRender", at = @At(value = "INVOKE", target = "Lnet/minecraft/profiler/Profiler;endStartSection(Ljava/lang/String;)V", shift = At.Shift.AFTER))
     private void updateCameraAndRender(float partialTicks, long nano, CallbackInfo ci) {
         hyperiumEntityRenderer.updateCameraAndRender();
@@ -62,6 +61,9 @@ public abstract class MixinEntityRenderer {
         HyperiumEntityRenderer.INSTANCE.isUsingShader = this.shaderIndex != shaderCount;
     }
 
+    /**
+     * @author hyperium
+     */
     @Overwrite
     private void orientCamera(float partialTicks) {
         hyperiumEntityRenderer.orientCamera(partialTicks, this.thirdPersonDistanceTemp, this.thirdPersonDistance, this.mc);
@@ -110,8 +112,7 @@ public abstract class MixinEntityRenderer {
                 List<Entity> list = this.mc.theWorld.getEntitiesInAABBexcluding(entity, entity.getEntityBoundingBox().addCoord(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0).expand(f, f, f), Predicates.and(EntitySelectors.NOT_SPECTATING, Entity::canBeCollidedWith));
                 double d2 = d1;
 
-                for (int j = 0; j < list.size(); ++j) {
-                    Entity entity1 = list.get(j);
+                for (Entity entity1 : list) {
                     float f1 = entity1.getCollisionBorderSize();
                     AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().expand(f1, f1, f1);
                     MovingObjectPosition movingobjectposition = axisalignedbb.calculateIntercept(vec3, vec32);

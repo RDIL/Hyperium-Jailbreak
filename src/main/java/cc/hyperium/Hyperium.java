@@ -41,7 +41,6 @@ import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.utils.StaffUtils;
 import cc.hyperium.utils.ChatColor;
 import cc.hyperium.utils.mods.CompactChat;
-import com.hyperiumjailbreak.ZealotPopupManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.crash.CrashReport;
 import org.apache.logging.log4j.LogManager;
@@ -118,7 +117,6 @@ public class Hyperium {
             SplashProgress.setProgress(11, "Loading Mods");
             modIntegration = new HyperiumModIntegration();
             this.intAddons = new InternalAddons();
-            new ZealotPopupManager();
 
             StaffUtils.clearCache();
 
@@ -155,9 +153,7 @@ public class Hyperium {
         hyperiumCommandHandler.registerCommand(new CommandGarbageCollect());
         hyperiumCommandHandler.registerCommand(new CommandMessage());
         hyperiumCommandHandler.registerCommand(new CommandDisableCommand());
-        if (!Settings.FPS) {
-            hyperiumCommandHandler.registerCommand(new AutofriendCommand());
-        }
+        hyperiumCommandHandler.registerCommand(new AutofriendCommand());
         hyperiumCommandHandler.registerCommand(new CommandKeybinds());
     }
 

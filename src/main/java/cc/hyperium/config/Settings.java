@@ -271,9 +271,6 @@ public class Settings {
     @ConfigOpt @ToggleSetting(name = "Shiny Potions: Match Color", category = ANIMATIONS)
     public static boolean SHINY_POTS_MATCH_COLOR = false;
 
-    @ConfigOpt @ToggleSetting(name = "Hide Skeleton Hat Bones", category = HYPIXELSKYBLOCK)
-    public static boolean hide_skeletonhat_bones = false;
-
     @ConfigOpt @ToggleSetting(name = "Blink at the End of Night Vision", category = GENERAL)
     public static boolean NIGHT_VISION_BLINKING = false;
 
