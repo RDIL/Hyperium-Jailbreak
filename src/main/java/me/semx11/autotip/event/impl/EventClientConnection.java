@@ -64,7 +64,9 @@ public class EventClientConnection implements Event {
 
             if (UniversalUtil.getUnformattedText(header).equals(hypixelHeader)) {
                 manager.setOnHypixel(true);
-                taskManager.executeTask(TaskType.LOGIN, manager::login);
+                if (autotip.getConfig().isEnabled()) {
+                    taskManager.executeTask(TaskType.LOGIN, manager::login);
+                }
             } else {
                 manager.setOnHypixel(false);
             }
