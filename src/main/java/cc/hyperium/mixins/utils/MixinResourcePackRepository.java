@@ -29,7 +29,7 @@ import java.io.File;
 
 @Mixin(ResourcePackRepository.class)
 public class MixinResourcePackRepository {
-    @Final @Shadow private final File dirServerResourcepacks = null;
+    @Shadow @Final private File dirServerResourcepacks;
 
     @Inject(method = "func_183028_i", at = @At("HEAD"), cancellable = true)
     private void func_183028_i(CallbackInfo ci) {
