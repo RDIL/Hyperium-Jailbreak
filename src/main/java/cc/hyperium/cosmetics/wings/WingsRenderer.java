@@ -80,9 +80,6 @@ public class WingsRenderer extends ModelBase {
         GlStateManager.scale(-scale, -scale, scale);
         GlStateManager.rotate((float) (180.0F + rotate), 0.0F, 1.0F, 0.0F);
 
-        // Height of the player.
-        float scaledPlayerHeight = (float) (1.85F / scale);
-
         // Height of the wings from the feet.
         float scaledHeight = (float) ((this.playerUsesFullHeight ? 1.45 : 1.25) / scale);
 
@@ -90,34 +87,8 @@ public class WingsRenderer extends ModelBase {
         GlStateManager.translate(0.0F, -scaledHeight, 0.0F);
         GlStateManager.translate(0.0F, 0.0F, 0.15F / scale);
 
-        final boolean isFlipped = Settings.isFlipped;
-        final boolean isRotate = Settings.FLIP_TYPE_STRING.equals("ROTATE");
-        final boolean isFlipNormal = Settings.FLIP_TYPE_STRING.equals("FLIP");
-
         if (player.isSneaking()) {
             GlStateManager.translate(0.0F, 0.125 / scale, 0.0F);
-        } else if (player.isSneaking() && isFlipNormal) {
-            GlStateManager.translate(0.0F, -0.125 / scale, 0.0F);
-        }
-
-        if (isFlipped && isRotate) {
-            // Spinning rotate mode.
-            // Translate to centre of the player.
-            float difference = scaledHeight - (scaledPlayerHeight / 2);
-            GlStateManager.translate(0.0F, difference, 0.0F);
-
-            // Rotate.
-            double l = System.currentTimeMillis() % (360 * 1.75) / 1.75;
-            GlStateManager.rotate((float) -l, 0.1F, 0.0F, 0.0F);
-
-            // Translate back up to the correct position.
-            GlStateManager.translate(0.0F, -difference, 0.0F);
-        } else if (isFlipped && isFlipNormal) {
-            // Flip rotate mode.
-            float difference = scaledPlayerHeight - scaledHeight;
-
-            GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-            GlStateManager.translate(0.0F, -scaledHeight + difference, 0.0F);
         }
 
         GlStateManager.color(1.0F, 1.0F, 1.0F);

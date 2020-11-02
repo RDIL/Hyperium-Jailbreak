@@ -92,14 +92,6 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
     /**
      * @author hyperium
      */
-    @Overwrite
-    protected void rotateCorpse(T bat, float p_77043_2_, float p_77043_3_, float partialTicks) {
-        hyperiumRenderLivingEntity.rotateCorpse(bat, p_77043_2_, p_77043_3_, partialTicks);
-    }
-
-    /**
-     * @author hyperium
-     */
     @Override
     public boolean shouldRender(T livingEntity, ICamera camera, double camX, double camY, double camZ) {
         return super.shouldRender(livingEntity, camera, camX, camY, camZ);

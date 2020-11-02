@@ -1,6 +1,5 @@
 package cc.hyperium.mixinsimp.renderer;
 
-import cc.hyperium.Hyperium;
 import cc.hyperium.config.Settings;
 import cc.hyperium.mixins.renderer.IMixinRender;
 import cc.hyperium.mixins.renderer.IMixinRenderLivingEntity;
@@ -14,7 +13,6 @@ import net.minecraft.client.renderer.entity.RendererLivingEntity;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.MathHelper;
 import org.lwjgl.opengl.GL11;
 
 import java.util.List;
@@ -40,23 +38,6 @@ public class HyperiumRenderLivingEntity<T extends EntityLivingBase> {
             if (flag) {
                 ((IMixinRenderLivingEntity) parent).callUnsetBrightness();
             }
-        }
-    }
-
-    public void rotateCorpse(T bat, float p_77043_2_, float p_77043_3_, float partialTicks) {
-        GlStateManager.rotate(180.0F - p_77043_3_, 0.0F, 1.0F, 0.0F);
-
-        if (bat.deathTime > 0) {
-            float f = ((float) bat.deathTime + partialTicks - 1.0F) / 20.0F * 1.6F;
-            f = MathHelper.sqrt_float(f);
-
-            if (f > 1.0F) {
-                f = 1.0F;
-            }
-
-            GlStateManager.rotate(f * ((IMixinRenderLivingEntity<T>) parent).callGetDeathMaxRotation(bat), 0.0F, 0.0F, 1.0F);
-        } else {
-            Hyperium.INSTANCE.getHandlers().getFlipHandler().transform(bat);
         }
     }
 

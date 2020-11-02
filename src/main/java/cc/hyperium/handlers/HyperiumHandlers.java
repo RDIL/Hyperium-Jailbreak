@@ -50,7 +50,6 @@ public class HyperiumHandlers {
     private HyperiumCommandHandler commandHandler;
     private ScoreboardRenderer scoreboardRenderer;
     private OtherConfigOptions configOptions;
-    private FlipHandler flipHandler;
     private PerspectiveModifierHandler perspectiveHandler;
     private StatsHandler statsHandler;
     private SettingsHandler settingsHandler;
@@ -64,7 +63,6 @@ public class HyperiumHandlers {
         register(perspectiveHandler = new PerspectiveModifierHandler());
         register(keybindHandler = new KeyBindHandler());
         register(hypixelDetector = new HypixelDetector());
-        register(flipHandler = new FlipHandler());
         register(new ReachDisplay());
         register(locationHandler = new LocationHandler());
         register(new VanillaEnhancementsHud());
@@ -90,10 +88,6 @@ public class HyperiumHandlers {
 
     public HyperiumCommandHandler getCommandHandler() {
         return commandHandler;
-    }
-
-    public FlipHandler getFlipHandler() {
-        return flipHandler;
     }
 
     public SettingsHandler getSettingsHandler() {

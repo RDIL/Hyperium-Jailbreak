@@ -121,11 +121,6 @@ public class Settings {
     @ConfigOpt @ToggleSetting(name = "Custom Sword Animation", category = ANIMATIONS)
     public static boolean CUSTOM_SWORD_ANIMATION = false;
 
-    @ConfigOpt @SelectorSetting(name = "Flip Type", category = COSMETICS, items = {"FLIP", "ROTATE"})
-    public static String FLIP_TYPE_STRING = "FLIP";
-
-    @ConfigOpt public static boolean isFlipped;
-
     @ConfigOpt @ToggleSetting(name = "Transparent GUI Backgrounds")
     public static boolean FAST_CONTAINER = false;
 
