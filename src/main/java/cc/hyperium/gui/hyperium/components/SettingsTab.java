@@ -70,11 +70,8 @@ public class SettingsTab extends AbstractTab {
             apply(new RGBComponent(this, rgbFieldSet), rgbFieldSet.getCategory(), items);
         }
 
-        Collection<CollapsibleTabComponent> values = items.values();
+        final Collection<CollapsibleTabComponent> values = items.values();
         List<CollapsibleTabComponent> c = new ArrayList<>(values);
-        for (CollapsibleTabComponent value : values) {
-            value.sortSelf();
-        }
         c.sort(Comparator.comparing(CollapsibleTabComponent::getLabel));
         components.addAll(c);
     }
