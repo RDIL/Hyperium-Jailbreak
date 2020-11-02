@@ -13,7 +13,7 @@ import java.util.List;
 public class GeneralStats extends AbstractHypixelStats {
     @Override
     public GameType getGameType() {
-        return GameType.UNKNOWN;
+        return null;
     }
 
     @Override

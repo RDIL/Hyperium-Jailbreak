@@ -23,15 +23,19 @@ import java.util.concurrent.ExecutionException;
 
 public class HypixelApiPlayer implements HypixelApiObject {
     private final JsonHolder player;
+
     public HypixelApiPlayer(JsonHolder holder) {
         this.player = holder;
     }
+
     public int getKarma() {
         return getRoot().optInt("karma");
     }
+
     public int getNetworkLevel() {
         return getRoot().optInt("networkLevel") + 1;
     }
+
     public boolean isValid() {
         return player != null && !player.isNull("player") && player.has("player");
     }
