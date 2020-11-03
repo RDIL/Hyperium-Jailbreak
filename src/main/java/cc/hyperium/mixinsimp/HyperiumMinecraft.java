@@ -68,6 +68,7 @@ public class HyperiumMinecraft {
         }
     }
 
+    @SuppressWarnings("deprecation")
     public void startGame() {
         EventBus.INSTANCE.post(new cc.hyperium.event.client.InitializationEvent());
         EventBus.INSTANCE.post(new cc.hyperium.event.InitializationEvent());

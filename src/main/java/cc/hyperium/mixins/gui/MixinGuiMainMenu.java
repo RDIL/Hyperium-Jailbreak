@@ -20,12 +20,11 @@ package cc.hyperium.mixins.gui;
 import cc.hyperium.mixinsimp.gui.HyperiumGuiMainMenu;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.GuiYesNoCallback;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 @Mixin(GuiMainMenu.class)
-public abstract class MixinGuiMainMenu extends GuiScreen implements GuiYesNoCallback {
+public abstract class MixinGuiMainMenu extends GuiScreen {
     private HyperiumGuiMainMenu hyperiumGuiMainMenu = new HyperiumGuiMainMenu((GuiMainMenu) (Object) this);
 
     @Overwrite
