@@ -41,14 +41,6 @@ public abstract class MixinRenderItem implements IResourceManagerReloadListener 
      * @author hyperium
      */
     @Overwrite
-    private void renderModel(IBakedModel model, int color, ItemStack stack) {
-        hyperiumRenderItem.renderModel(model, color, stack);
-    }
-
-    /**
-     * @author hyperium
-     */
-    @Overwrite
     public void renderItemIntoGUI(ItemStack stack, int x, int y) {
         hyperiumRenderItem.renderItemIntoGUI(stack, x, y);
     }

@@ -12,7 +12,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledFuture;
 
 public class TaskManager {
-    private final Map<TaskType, Future> tasks;
+    private final Map<TaskType, Future<?>> tasks;
 
     public TaskManager() {
         this.tasks = new ConcurrentHashMap<>();
@@ -39,7 +39,7 @@ public class TaskManager {
         if (tasks.containsKey(type)) {
             return;
         }
-        ScheduledFuture future = Multithreading.RUNNABLE_POOL.scheduleAtFixedRate(command, delay, period, SECONDS);
+        ScheduledFuture<?> future = Multithreading.RUNNABLE_POOL.scheduleAtFixedRate(command, delay, period, SECONDS);
         tasks.put(type, future);
         this.catchFutureException(type, future);
     }
@@ -51,7 +51,7 @@ public class TaskManager {
         }
     }
 
-    private void catchFutureException(TaskType type, Future future) {
+    private void catchFutureException(TaskType type, Future<?> future) {
         Multithreading.runAsync(() -> {
             try {
                 future.get();
