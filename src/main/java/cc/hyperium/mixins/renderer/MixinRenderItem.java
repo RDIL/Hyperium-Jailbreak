@@ -19,14 +19,13 @@ package cc.hyperium.mixins.renderer;
 
 import cc.hyperium.mixinsimp.renderer.HyperiumRenderItem;
 import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.client.resources.model.IBakedModel;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 @Mixin(RenderItem.class)
-public abstract class MixinRenderItem implements IResourceManagerReloadListener {
+public class MixinRenderItem {
     private HyperiumRenderItem hyperiumRenderItem = new HyperiumRenderItem((RenderItem) (Object) this);
 
     /**
