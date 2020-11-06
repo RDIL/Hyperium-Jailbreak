@@ -1,9 +1,12 @@
 package cc.hyperium.addons;
 
-import cc.hyperium.addons.bossbar.BossbarAddon;
-import cc.hyperium.addons.customcrosshair.CustomCrosshairAddon;
-import cc.hyperium.addons.sidebar.SidebarAddon;
+import cc.hyperium.mods.bossbar.BossbarAddon;
+import cc.hyperium.mods.customcrosshair.CustomCrosshairAddon;
+import cc.hyperium.mods.sidebar.SidebarAddon;
 
+/**
+ * Container for internal addon instances.
+ */
 public class InternalAddons {
     private final CustomCrosshairAddon customCrosshairAddon;
     private final SidebarAddon sidebarAddon;

@@ -16,6 +16,7 @@
  */
 
 package cc.hyperium;
+
 import cc.hyperium.event.client.InitializationEvent;
 import cc.hyperium.event.client.GameShutDownEvent;
 import cc.hyperium.event.Priority;
@@ -51,6 +52,9 @@ import com.hyperiumjailbreak.Popup;
 import com.hyperiumjailbreak.BackendHandler;
 import java.io.File;
 
+/**
+ * The main class.
+ */
 public class Hyperium {
     public static final String modid = "Hyperium";
     public static final String version = "4.1.0";

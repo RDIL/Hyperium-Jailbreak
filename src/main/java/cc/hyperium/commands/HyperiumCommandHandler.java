@@ -16,6 +16,7 @@
  */
 
 package cc.hyperium.commands;
+
 import cc.hyperium.Hyperium;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.network.chat.SendChatMessageEvent;
@@ -42,13 +43,22 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
+/**
+ * The class that controls the command system.
+ */
 public class HyperiumCommandHandler {
     private final Set<String> disabledCommands = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
+    /**
+     * A {@link java.util.Map} of all the registered commands. Please don't modify it.
+     */
     public final Map<String, BaseCommand> commands = new HashMap<>();
     private final GeneralChatHandler chatHandler;
     private final Minecraft mc;
     private String[] latestAutoComplete;
 
+    /**
+     * A constructor that initializes the system.
+     */
     public HyperiumCommandHandler() {
         this.mc = Minecraft.getMinecraft();
         this.chatHandler = GeneralChatHandler.instance();
@@ -67,6 +77,12 @@ public class HyperiumCommandHandler {
         }
     }
 
+    /**
+     * Executes the specified command.
+     *
+     * @param command The command to execute.
+     * @return If the command was executed.
+     */
     public boolean executeCommand(String command) {
         final String commandLine = command.startsWith("/") ? command.substring(1) : command;
         String commandName;
@@ -106,6 +122,11 @@ public class HyperiumCommandHandler {
         }).orElse(false);
     }
 
+    /**
+     * Registers a command.
+     *
+     * @param command The command to register.
+     */
     public void registerCommand(BaseCommand command) {
         this.commands.put(command.getName(), command);
 
@@ -116,6 +137,12 @@ public class HyperiumCommandHandler {
         }
     }
 
+    /**
+     * Returns if the specified command is disabled or not.
+     *
+     * @param input The command to check.
+     * @return If the command is disabled.
+     */
     public boolean isCommandDisabled(String input) {
         if (input == null || input.isEmpty() || input.trim().isEmpty() ||
             input.equalsIgnoreCase("disablecommand") || input.equalsIgnoreCase("hyperium")) {
@@ -125,6 +152,12 @@ public class HyperiumCommandHandler {
         return this.disabledCommands.contains(input.trim());
     }
 
+    /**
+     * Adds or removes a command to the list of disabled commands.
+     *
+     * @param input The command to add or remove.
+     * @return If the command is disabled after the operation is performed.
+     */
     public boolean addOrRemoveCommand(String input) {
         if (input == null || input.isEmpty() || input.trim().isEmpty() || input.equalsIgnoreCase("disablecommand") || input.equalsIgnoreCase("hyperium")) {
             return false;
@@ -139,6 +172,11 @@ public class HyperiumCommandHandler {
         }
     }
 
+    /**
+     * Updates autocompletion context.
+     *
+     * @param leftOfCursor The text to the left of the keyboard cursor.
+     */
     public void autoComplete(String leftOfCursor) {
         latestAutoComplete = null;
         if (leftOfCursor.length() == 0)
@@ -190,10 +228,18 @@ public class HyperiumCommandHandler {
         return astring;
     }
 
+    /**
+     * Get the latest autocompleted strings.
+     *
+     * @return The latest autocompleted strings.
+     */
     public String[] getLatestAutoComplete() {
         return latestAutoComplete;
     }
 
+    /**
+     * Clears all registered commands.
+     */
     public void clear() {
         this.commands.clear();
     }
@@ -227,6 +273,9 @@ public class HyperiumCommandHandler {
         disabledCommands.add("spawn");
     }
 
+    /**
+     * Saves the list of disabled commands to the configuration file.
+     */
     public void saveDisabledCommands() {
         File disabledCommandFile = new File(Hyperium.folder, "disabledcommands.txt");
 

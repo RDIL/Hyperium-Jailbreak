@@ -17,6 +17,9 @@
 
 package net.hypixel.api;
 
+/**
+ * An enum representing Hypixel's game types.
+ */
 public enum GameType {
     QUAKECRAFT("Quakecraft", "Quake", 2),
     WALLS("Walls", "Walls", 3),
@@ -59,7 +62,9 @@ public enum GameType {
     }
 
     /**
-     * @param id The internal id
+     * Get the {@link net.hypixel.api.GameType} with the specified ID.
+     *
+     * @param id The internal ID.
      * @return The GameType associated with that id, or null if there isn't one.
      */
     public static GameType fromRealName(String id) {
@@ -72,7 +77,9 @@ public enum GameType {
     }
 
     /**
-     * @param dbName The key used in the database
+     * Get the {@link net.hypixel.api.GameType} with the specified database name.
+     *
+     * @param dbName The key used in the database.
      * @return The GameType associated with that key, or null if there isn't one.
      */
     public static GameType fromDatabase(String dbName) {
@@ -86,7 +93,8 @@ public enum GameType {
 
     /**
      * Parse the mostRecentGameType value.
-     * 
+     *
+     * @param mostRecentGameType The most recent game type value.
      * @return The game type.
      */
     public static GameType parse(String mostRecentGameType) {
@@ -100,7 +108,6 @@ public enum GameType {
 
     /**
      * Exposing this method allows people to use the array without cloning.
-     * Slightly faster but not as safe since the array could be modified.
      * 
      * @return The GameType values as an array.
      */
@@ -109,6 +116,8 @@ public enum GameType {
     }
 
     /**
+     * Get the official name of the {@link net.hypixel.api.GameType}.
+     *
      * @return The official name of the GameType
      */
     public String getName() {
@@ -116,12 +125,19 @@ public enum GameType {
     }
 
     /**
+     * * Get the ID of this game.
+     *
      * @return The internal ID that is occasionally used in various database schemas
      */
     public int getId() {
         return id;
     }
 
+    /**
+     * Get the database name of this game.
+     *
+     * @return The database name.
+     */
     public String getDbName() {
         return dbName;
     }

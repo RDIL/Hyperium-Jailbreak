@@ -20,25 +20,93 @@ package net.minecraftforge.fml.client.config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 
+/**
+ * This class is borrowed from iChunUtils with permission.
+ *
+ * @author iChun
+ */
 public class GuiSlider extends GuiButtonExt {
+    /**
+     * The value of this slider control.
+     */
     public double sliderValue = 1.0F;
+    /**
+     * The {@link java.lang.String} to display.
+     */
     public String dispString;
+    /**
+     * If the slider is being dragged or not.
+     */
     public boolean dragging = false;
+    /**
+     * If decimals should be shown.
+     */
     public boolean showDecimal = true;
+    /**
+     * The minimum value of the slider.
+     */
     public double minValue = 0.0D;
+    /**
+     * The maximum value of the slider.
+     */
     public double maxValue = 5.0D;
+    /**
+     * The precision of the slider.
+     */
     public int precision = 1;
 
+    /**
+     * The parent slider.
+     */
     public ISlider parent;
 
+    /**
+     * The suffix.
+     */
     public String suffix;
 
+    /**
+     * If the {@link java.lang.String} should be drawn or not.
+     */
     public boolean drawString = true;
 
+    /**
+     * Creates a new slider instance.
+     *
+     * @param id The slider's unique ID.
+     * @param xPos The x position of the slider.
+     * @param yPos The y position of the slider.
+     * @param width The width of the slider.
+     * @param height The height of the slider.
+     * @param prefix The prefix of the slider.
+     * @param suf The suffix of the slider.
+     * @param minVal The minimum value of the slider.
+     * @param maxVal The maximum value of the slider.
+     * @param currentVal The current value of the slider.
+     * @param showDec If decimals should be shown or not.
+     * @param drawStr If the string should be drawn or not.
+     */
     public GuiSlider(int id, int xPos, int yPos, int width, int height, String prefix, String suf, double minVal, double maxVal, double currentVal, boolean showDec, boolean drawStr) {
         this(id, xPos, yPos, width, height, prefix, suf, minVal, maxVal, currentVal, showDec, drawStr, null);
     }
 
+    /**
+     * Creates a new slider instance.
+     *
+     * @param id The slider's unique ID.
+     * @param xPos The x position of the slider.
+     * @param yPos The y position of the slider.
+     * @param width The width of the slider.
+     * @param height The height of the slider.
+     * @param prefix The prefix of the slider.
+     * @param suf The suffix of the slider.
+     * @param minVal The minimum value of the slider.
+     * @param maxVal The maximum value of the slider.
+     * @param currentVal The current value of the slider.
+     * @param showDec If decimals should be shown or not.
+     * @param drawStr If the string should be drawn or not.
+     * @param par The slider.
+     */
     public GuiSlider(int id, int xPos, int yPos, int width, int height, String prefix, String suf, double minVal, double maxVal, double currentVal, boolean showDec, boolean drawStr, ISlider par) {
         super(id, xPos, yPos, width, height, prefix);
         minValue = minVal;
@@ -95,6 +163,9 @@ public class GuiSlider extends GuiButtonExt {
         }
     }
 
+    /**
+     * Updates the slider.
+     */
     public void updateSlider() {
         if (this.sliderValue < 0.0F) {
             this.sliderValue = 0.0F;
@@ -138,18 +209,36 @@ public class GuiSlider extends GuiButtonExt {
         this.dragging = false;
     }
 
+    /**
+     * Get the value of the slider as an integer.
+     *
+     * @return The value of the slider as an integer.
+     */
     public int getValueInt() {
         return (int) Math.round(sliderValue * (maxValue - minValue) + minValue);
     }
 
+    /**
+     * Get the value of the slider.
+     *
+     * @return The value of the slider.
+     */
     public double getValue() {
         return sliderValue * (maxValue - minValue) + minValue;
     }
 
+    /**
+     * Set the value of the slider.
+     *
+     * @param d The new value of the slider.
+     */
     public void setValue(double d) {
         this.sliderValue = (d - minValue) / (maxValue - minValue);
     }
 
+    /**
+     * A slider.
+     */
     public interface ISlider {
         void onChangeSliderValue(GuiSlider slider);
     }

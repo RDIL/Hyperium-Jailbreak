@@ -18,7 +18,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.jar.JarFile;
 
+/**
+ * The addon system core.
+ */
 public class AddonBootstrap {
+    /**
+     * The instance.
+     */
     public static AddonBootstrap INSTANCE = new AddonBootstrap();
     private static final List<File> addonResourcePacks = new ArrayList<>();
 
@@ -31,8 +37,14 @@ public class AddonBootstrap {
     private final List<AddonManifest> addonManifests = new ArrayList<>();
     private final List<AddonManifest> pendingManifests = new ArrayList<>();
 
+    /**
+     * The {@link cc.hyperium.internal.addons.AddonBootstrap.Phase} the system is currently at.
+     */
     public Phase phase = Phase.NOT_STARTED;
 
+    /**
+     * Creates a new instance of the bootstrap system, and locates addon jar files.
+     */
     public AddonBootstrap() {
         if (!MOD_DIRECTORY.exists()) {
             if (!MOD_DIRECTORY.mkdirs()) {
@@ -57,6 +69,11 @@ public class AddonBootstrap {
         jars = filteredJars;
     }
 
+    /**
+     * Run the system's main functionality.
+     *
+     * @throws IOException If bootstrap is initialized more then once.
+     */
     public void init() throws IOException {
         if (phase != Phase.NOT_STARTED) {
             throw new IOException("Cannot initialise bootstrap twice");
@@ -140,7 +157,6 @@ public class AddonBootstrap {
         return addons;
     }
 
-
     private AddonManifest loadWorkspaceAddon() {
         try {
             return loadAddon(workspaceLoader, null);
@@ -154,30 +170,70 @@ public class AddonBootstrap {
         return loader.load(addon);
     }
 
+    /**
+     * Get a {@link java.util.List} of the addon resource packs.
+     *
+     * @return The addon resource packs.
+     */
     public List<File> getAddonResourcePacks() {
         return addonResourcePacks;
     }
 
+    /**
+     * Get a {@link java.util.List} of addon manifests that need to have their main classes initialized.
+     *
+     * @return The pending addon manifests.
+     */
     public List<AddonManifest> getPendingManifests() {
         return pendingManifests;
     }
 
+    /**
+     * Get the current {@link cc.hyperium.internal.addons.AddonBootstrap.Phase} the system is at.
+     *
+     * @return The current phase.
+     */
     public Phase getPhase() {
         return phase;
     }
 
+    /**
+     * Set the current phase to a new phase.
+     *
+     * @param phase The new phase.
+     */
     public void setPhase(Phase phase) {
         this.phase = phase;
     }
 
+    /**
+     * Get a {@link java.util.List} of addon manifests.
+     *
+     * @return The addon manifests.
+     */
     public List<AddonManifest> getAddonManifests() {
         return addonManifests;
     }
 
+    /**
+     * The different phases the system can be at.
+     */
     public enum Phase {
+        /**
+         * The system hasn't started.
+         */
         NOT_STARTED,
+        /**
+         * The system is pre-initializing.
+         */
         PREINIT,
+        /**
+         * The system is running its main operations.
+         */
         INIT,
+        /**
+         * The system is done.
+         */
         DEFAULT
     }
 }

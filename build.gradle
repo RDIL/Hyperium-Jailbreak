@@ -101,6 +101,11 @@ processResources {
     }
 }
 
+javadoc {
+    exclude "cc/hyperium/mixins/**"
+    exclude "me/semx11/autotip/**"
+}
+
 jar {
     dependsOn configurations.compile
     from {

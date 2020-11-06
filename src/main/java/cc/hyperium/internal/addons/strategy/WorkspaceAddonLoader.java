@@ -8,7 +8,10 @@ import cc.hyperium.internal.addons.misc.AddonManifestParser;
 import org.apache.commons.io.IOUtils;
 import java.util.Objects;
 
-public final class WorkspaceAddonLoader extends AddonLoaderStrategy {
+/**
+ * The addon loader for development environments.
+ */
+public class WorkspaceAddonLoader extends AddonLoaderStrategy {
     @Override
     public AddonManifest load(File file) throws Exception {
         if (this.getClass().getClassLoader().getResource("addon.json") != null) {

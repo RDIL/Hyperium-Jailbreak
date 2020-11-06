@@ -1,9 +1,9 @@
 package cc.hyperium.gui.hyperium.components;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.addons.bossbar.gui.GuiBossbarSetting;
-import cc.hyperium.addons.customcrosshair.gui.GuiCustomCrosshairEditCrosshair;
-import cc.hyperium.addons.sidebar.gui.screen.GuiScreenSettings;
+import cc.hyperium.mods.bossbar.gui.GuiBossbarSetting;
+import cc.hyperium.mods.customcrosshair.gui.GuiCustomCrosshairEditCrosshair;
+import cc.hyperium.mods.sidebar.gui.screen.GuiScreenSettings;
 import cc.hyperium.config.Category;
 import cc.hyperium.config.SelectorSetting;
 import cc.hyperium.config.SliderSetting;

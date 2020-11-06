@@ -25,6 +25,11 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
+/**
+ * This class provides several methods and constants used by the GUI classes.
+ *
+ * @author bspkrs
+ */
 public class GuiUtils {
     public static void drawContinuousTexturedBox(ResourceLocation res, int x, int y, int u, int v, int width, int height, int textureWidth, int textureHeight, int topBorder, int bottomBorder, int leftBorder, int rightBorder, float zLevel) {
         Minecraft.getMinecraft().getTextureManager().bindTexture(res);

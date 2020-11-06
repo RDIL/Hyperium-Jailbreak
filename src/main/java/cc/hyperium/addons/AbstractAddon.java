@@ -17,42 +17,92 @@
 
 package cc.hyperium.addons;
 
-import org.apache.commons.lang3.StringUtils;
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-
-@SuppressWarnings("unused")
+/**
+ * Base class for internal addons.
+ *
+ * @deprecated For external addons, use {@link cc.hyperium.internal.addons.IAddon}, and migrate the rest to the internal mod system.
+ */
+@Deprecated
 public abstract class AbstractAddon {
+    /**
+     * Called on initialization of the internal addon.
+     *
+     * @return The instance.
+     * @deprecated For external addons, use {@link cc.hyperium.internal.addons.IAddon}, and migrate the rest to the internal mod system.
+     */
+    @Deprecated
     public abstract AbstractAddon init();
+
+    /**
+     * Get the metadata.
+     *
+     * @return The metadata.
+     * @deprecated For external addons, use {@link cc.hyperium.internal.addons.IAddon}, and migrate the rest to the internal mod system.
+     */
+    @Deprecated
     public abstract Metadata getAddonMetadata();
 
+    /**
+     * A metadata wrapper.
+     *
+     * @deprecated For external addons, use {@link cc.hyperium.internal.addons.IAddon}, and migrate the rest to the internal mod system.
+     */
+    @Deprecated
     public static class Metadata {
+        @Deprecated
         private final AbstractAddon addon;
+        @Deprecated
         private final String name;
+        @Deprecated
         private final String version;
+
+        /**
+         * @deprecated For external addons, use {@link cc.hyperium.internal.addons.IAddon}, and migrate the rest to the internal mod system.
+         */
+        @Deprecated
         public Metadata(AbstractAddon addon, String name) {
             this(addon, name, "1.0");
         }
+
+        /**
+         * @deprecated For external addons, use {@link cc.hyperium.internal.addons.IAddon}, and migrate the rest to the internal mod system.
+         */
+        @Deprecated
         public Metadata(AbstractAddon addon, String name, String version) {
             this(addon, name, version, "");
         }
+
+        /**
+         * @deprecated For external addons, use {@link cc.hyperium.internal.addons.IAddon}, and migrate the rest to the internal mod system.
+         */
+        @Deprecated
         public Metadata(AbstractAddon addon, String name, String version, String author) {
-            checkNotNull(addon, "Addon instance cannot be null");
-            checkArgument(!StringUtils.isEmpty(name), "Name cannot be null or empty (" + name + ")");
-            checkArgument(!StringUtils.isEmpty(version), "Version cannot be null or empty (" + version + ")");
             this.addon = addon;
             this.name = name;
             this.version = version;
         }
 
+        /**
+         * @deprecated For external addons, use {@link cc.hyperium.internal.addons.IAddon}, and migrate the rest to the internal mod system.
+         */
+        @Deprecated
         public AbstractAddon getAddon() {
             return this.addon;
         }
 
+        /**
+         * @deprecated For external addons, use {@link cc.hyperium.internal.addons.IAddon}, and migrate the rest to the internal mod system.
+         * @return The name.
+         */
+        @Deprecated
         public String getName() {
-            return this.name != null ? this.name : "";
+            return this.name;
         }
 
+        /**
+         * @deprecated For external addons, use {@link cc.hyperium.internal.addons.IAddon}, and migrate the rest to the internal mod system.
+         */
+        @Deprecated
         public String getVersion() {
             return this.version;
         }

@@ -18,9 +18,18 @@
 package net.hypixel.api;
 import cc.hyperium.utils.JsonHolder;
 
+/**
+ * An object representing a Hypixel friend.
+ */
 public class HypixelApiFriendObject {
     private final JsonHolder data;
-    private int ord;
+    private final int ord;
+
+    /**
+     * Creates a new friend with the specified JSON data.
+     *
+     * @param data The JSON data.
+     */
     public HypixelApiFriendObject(JsonHolder data) {
         this.data = data;
         switch (data.optString("rank")) {
@@ -56,14 +65,29 @@ public class HypixelApiFriendObject {
         }
     }
 
+    /**
+     * Get the display name of the friend.
+     *
+     * @return The friend's display name.
+     */
     public String getDisplay() {
         return data.optString("display");
     }
 
+    /**
+     * Get the name of the friend.
+     *
+     * @return The friend's name.
+     */
     public String getName() {
         return data.optString("name");
     }
 
+    /**
+     * Get the rank ordinal of the friend.
+     *
+     * @return The friend's rank ordinal.
+     */
     public int rankOrdinal() {
         return ord;
     }
@@ -73,18 +97,38 @@ public class HypixelApiFriendObject {
         return obj instanceof HypixelApiFriendObject && ((HypixelApiFriendObject) obj).getUuid().equals(getUuid());
     }
 
+    /**
+     * Get the last log-off time of the friend.
+     *
+     * @return The friend's last log-off time.
+     */
     public long getLogoff() {
         return data.optLong("logoff");
     }
 
+    /**
+     * Get the UUID of the friend.
+     *
+     * @return The friend's UUID.
+     */
     public String getUuid() {
         return data.optString("uuid");
     }
 
+    /**
+     * Get the time the friend was added on.
+     *
+     * @return The time the friend was addon on.
+     */
     public long getAddedOn() {
         return data.optLong("time");
     }
 
+    /**
+     * Get the rank of the friend.
+     *
+     * @return The friend's rank.
+     */
     public String getRank() {
         return data.optString("rank");
     }

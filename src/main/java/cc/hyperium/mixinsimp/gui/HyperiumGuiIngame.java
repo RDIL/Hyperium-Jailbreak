@@ -1,8 +1,8 @@
 package cc.hyperium.mixinsimp.gui;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.addons.bossbar.config.BossbarConfig;
-import cc.hyperium.addons.customcrosshair.CustomCrosshairAddon;
+import cc.hyperium.mods.bossbar.config.BossbarConfig;
+import cc.hyperium.mods.customcrosshair.CustomCrosshairAddon;
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.render.RenderHUDEvent;

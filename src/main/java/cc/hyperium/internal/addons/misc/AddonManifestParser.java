@@ -11,10 +11,19 @@ import java.nio.charset.Charset;
 import java.util.jar.JarFile;
 import java.util.zip.ZipEntry;
 
+/**
+ * Serializes addon manifests into instances of {@link cc.hyperium.internal.addons.AddonManifest}.
+ */
 public class AddonManifestParser {
     private JsonObject json = null;
     private final Gson gson = new Gson();
 
+    /**
+     * Creates a new parser for the specified jar file.
+     *
+     * @param jar The jar file.
+     * @throws IOException If the manifest is invalid.
+     */
     public AddonManifestParser(JarFile jar) throws IOException {
         InputStream jarInputStream = null;
         try {
@@ -46,6 +55,11 @@ public class AddonManifestParser {
         }
     }
 
+    /**
+     * Creates a new addon manifest parser with the specified manifest as a {@link java.lang.String}.
+     *
+     * @param contents The manifest's content.
+     */
     public AddonManifestParser(String contents) {
         JsonParser parser = new JsonParser();
         JsonObject json = parser.parse(contents).getAsJsonObject();
@@ -59,6 +73,11 @@ public class AddonManifestParser {
         this.json = json;
     }
 
+    /**
+     * Get the addon manifest as an {@link cc.hyperium.internal.addons.AddonManifest}.
+     *
+     * @return The {@link cc.hyperium.internal.addons.AddonManifest}.
+     */
     public AddonManifest getAddonManifest() {
         return gson.fromJson(json, AddonManifest.class);
     }

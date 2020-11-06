@@ -17,6 +17,8 @@
 
 package cc.hyperium.commands;
 
+/**
+ * An exception that can possibly be thrown in the {@link cc.hyperium.commands.BaseCommand#onExecute(String[])} method.
+ */
 public class CommandUsageException extends Exception {
-    public CommandUsageException() {}
 }

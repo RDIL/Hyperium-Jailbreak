@@ -12,7 +12,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.jar.JarFile;
 
-public final class DefaultAddonLoader extends AddonLoaderStrategy {
+/**
+ * Loads addons in an obfuscated production environment.
+ */
+public class DefaultAddonLoader extends AddonLoaderStrategy {
+    @Override
     public AddonManifest load(File file) throws Exception {
         if (file == null) {
             throw new IOException("Could not load file; parameter issued was null.");

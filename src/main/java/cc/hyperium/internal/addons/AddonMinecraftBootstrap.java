@@ -4,11 +4,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Initializes the main classes of loaded addons.
+ */
 public class AddonMinecraftBootstrap {
     private final List<IAddon> LOADED_ADDONS = new ArrayList<>();
 
+    /**
+     * The instance.
+     */
     public static AddonMinecraftBootstrap INSTANCE = new AddonMinecraftBootstrap();
 
+    /**
+     * Initialize the main classes of all addons that need it.
+     */
     public void init() {
         try {
             if (AddonBootstrap.INSTANCE.getPhase() != AddonBootstrap.Phase.INIT) {

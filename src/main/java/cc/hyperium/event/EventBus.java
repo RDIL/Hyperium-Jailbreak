@@ -27,10 +27,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class EventBus {
     public static final EventBus INSTANCE = new EventBus();
     private HashMap<Class<?>, CopyOnWriteArrayList<EventSubscriber>> subscriptions = new HashMap<>();
+
     public void register(Object obj) {
         // also contains the class itself
         TypeToken<?> token = TypeToken.of(obj.getClass());
-        Set superClasses = token.getTypes().rawTypes();
+        Set<?> superClasses = token.getTypes().rawTypes();
 
         // we also want to loop over the super classes, since declaredMethods only gets method in the class itself
         for (Object temp : superClasses) {

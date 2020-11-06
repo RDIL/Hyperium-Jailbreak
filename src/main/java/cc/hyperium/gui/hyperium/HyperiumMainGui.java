@@ -34,7 +34,7 @@ public class HyperiumMainGui extends HyperiumGui {
     private HashMap<Field, Supplier<String[]>> customStates = new HashMap<>();
     private HashMap<Field, List<Consumer<Object>>> callbacks = new HashMap<>();
     private List<Object> settingsObjects = new ArrayList<>();
-    private HyperiumFontRenderer font;
+    private final HyperiumFontRenderer font;
     private List<AbstractTab> tabs;
     private AbstractTab currentTab;
     private List<RGBFieldSet> rgbFields = new ArrayList<>();

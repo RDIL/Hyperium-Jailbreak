@@ -19,9 +19,29 @@ package net.hypixel.api;
 
 import cc.hyperium.utils.JsonHolder;
 
+/**
+ * A base API object.
+ */
 public interface HypixelApiObject {
+    /**
+     * Get if this object is valid or not.
+     *
+     * @return The validity status.
+     */
     boolean isValid();
+
+    /**
+     * Get the object's JSON data.
+     *
+     * @return The object's JSON data.
+     */
     JsonHolder getData();
+
+    /**
+     * Get if the object is loaded or not.
+     *
+     * @return The loaded status.
+     */
     default boolean isLoaded() {
         return getData().optBoolean("loaded");
     }

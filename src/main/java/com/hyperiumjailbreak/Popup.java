@@ -10,6 +10,9 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import java.awt.Color;
 
+/**
+ * An on-screen popup.
+ */
 public class Popup {
     private final String text;
     private final String subtext;
@@ -24,6 +27,12 @@ public class Popup {
         }
     }
 
+    /**
+     * Create a new popup with the specified text.
+     *
+     * @param text The text to display.
+     * @param subtext The text to display as a subtitle.
+     */
     public Popup(String text, String subtext) {
         this.framesLeft = 300;
         this.text = text;
@@ -32,7 +41,10 @@ public class Popup {
         this.percentComplete = 0.0f;
         this.systemTime = Minecraft.getSystemTime();
     }
-    
+
+    /**
+     * Start showing this popup on screen.
+     */
     public void startShowing() {
         this.systemTime = Minecraft.getSystemTime();
 
