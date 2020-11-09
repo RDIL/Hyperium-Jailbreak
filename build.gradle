@@ -15,7 +15,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-version = "4.1.0"
+version = "4.1.1"
 
 buildscript {
     repositories {
