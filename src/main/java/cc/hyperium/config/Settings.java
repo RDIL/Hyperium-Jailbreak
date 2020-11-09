@@ -269,9 +269,13 @@ public class Settings {
     @ConfigOpt @ToggleSetting(name = "Blink at the End of Night Vision", category = GENERAL)
     public static boolean NIGHT_VISION_BLINKING = false;
 
+    @ConfigOpt @ToggleSetting(name = "Multi-CPU Particle Rendering (Requires 4+ CPU Cores)", category = IMPROVEMENTS)
+    public static boolean MULTI_CPU_PARTICLE_RENDERING = false;
+
     public static void register() {
         Hyperium.CONFIG.register(INSTANCE);
     }
+
     public static void save() {
         Hyperium.CONFIG.save();
     }
