@@ -22,7 +22,7 @@ public class ChromaHudDarkAuctionDisplay extends DisplayItem {
     String time = "Unknown";
 
     private void updateTime() {
-        time = parser.parse(util.rawWithAgent("https://backend.rdil.rocks/timers/dark-auction")).getAsJsonObject().get("minutes_integer").getAsString();
+        time = parser.parse(util.rawWithAgent("http://backend.rdil.rocks/timers/dark-auction")).getAsJsonObject().get("minutes_integer").getAsString();
     }
 
     public ChromaHudDarkAuctionDisplay(JsonHolder data, int ordinal) {
