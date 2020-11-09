@@ -1,6 +1,7 @@
 package com.hyperiumjailbreak;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -21,7 +22,7 @@ public class BackendHandler {
 
     public void apiRequest(String url) {
         try {
-            httpclient.execute(generate("https://backend.rdil.rocks/" + url));
+            httpclient.execute(generate("http://backend.rdil.rocks/" + url));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -33,7 +34,7 @@ public class BackendHandler {
             return !Objects.equals(
                 EntityUtils.toString(
                     httpclient.execute(
-                        generate("https://backend.rdil.rocks/checkUpdate")
+                        generate("http://backend.rdil.rocks/checkUpdate")
                     ).getEntity(), "UTF-8"
             ), Hyperium.version);
         } catch (Exception e) {
@@ -44,7 +45,7 @@ public class BackendHandler {
     public static String getRawText(String url) {
         String s = "";
         try {
-            s = IOUtils.toString(httpclient.execute(new HttpGet(url)).getEntity().getContent(), "UTF-8");
+            s = IOUtils.toString(httpclient.execute(new HttpGet(url)).getEntity().getContent(), StandardCharsets.UTF_8);
         } catch (Exception e) {
             e.printStackTrace();
         }
