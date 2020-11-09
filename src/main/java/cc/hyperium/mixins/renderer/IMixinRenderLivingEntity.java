@@ -14,8 +14,5 @@ public interface IMixinRenderLivingEntity<T extends EntityLivingBase> {
     void callUnsetBrightness();
 
     @Invoker
-    float callGetDeathMaxRotation(T entityLivingBaseIn);
-
-    @Invoker
     boolean callCanRenderName(T entity);
 }

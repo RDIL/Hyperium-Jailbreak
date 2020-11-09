@@ -8,23 +8,23 @@ import java.awt.Color;
 
 public class Colors {
     @ConfigOpt
-    @ToggleSetting(name = "Chroma", category = GLINTCOLORIZER, mods = true)
+    @ToggleSetting(name = "Chroma", category = GLINTCOLORIZER)
     public static boolean glintcolorChroma;
 
     @ConfigOpt
-    @SliderSetting(name = "Red", mods = true, category = GLINTCOLORIZER, min = 0, max = 255, isInt = true)
+    @SliderSetting(name = "Red", category = GLINTCOLORIZER, min = 0, max = 255, isInt = true)
     public static int glintR = 255;
 
     @ConfigOpt
-    @SliderSetting(name = "Green", mods = true, category = GLINTCOLORIZER, min = 0, max = 255, isInt = true)
+    @SliderSetting(name = "Green", category = GLINTCOLORIZER, min = 0, max = 255, isInt = true)
     public static int glintG = 255;
 
     @ConfigOpt
-    @SliderSetting(name = "Blue", mods = true, category = GLINTCOLORIZER, min = 0, max = 255, isInt = true)
+    @SliderSetting(name = "Blue", category = GLINTCOLORIZER, min = 0, max = 255, isInt = true)
     public static int glintB = 255;
 
     @ConfigOpt
-    @ToggleSetting(category = GLINTCOLORIZER, mods = true, name = "Enabled")
+    @ToggleSetting(category = GLINTCOLORIZER, name = "Enabled")
     public static boolean glintColorizer = false;
 
     private static float[] onepoint8glintcolorF = Color.RGBtoHSB(glintR, glintG, glintB, null);
