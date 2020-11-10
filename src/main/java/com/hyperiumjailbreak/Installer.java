@@ -19,7 +19,8 @@ import java.util.UUID;
 public class Installer {
     public static void main(String[] args) {
         try {
-            doInstall();
+            callInstall();
+            InstallerUtils.showMessage("Done installing! Launch the game from your Minecraft launcher now!");
         } catch (Exception e) {
             final String msg = e.getMessage();
             if (msg != null && msg.equals("QUIET")) {
@@ -39,7 +40,17 @@ public class Installer {
         }
     }
 
-    public static void doInstall() throws Exception {
+    /* (non-Javadoc)
+     * INSTALLER GOALS:
+     * 
+     * - Copy `.minecraft/versions/1.8.9/1.8.9.jar` to `.minecraft/versions/Hyperium 1.8.9/Hyperium 1.8.9.jar`.
+     * - Copy `ThisFile.jar` to `.minecraft/libraries/cc/hyperium/Hyperium/Hyperium-LOCAL/Hyperium-LOCAL.jar`.
+     * - Copy `ThisFile.jar!/installer.target.json` to `.minecraft/versions/Hyperium 1.8.9/Hyperium 1.8.9.json`.
+     * - Download OptiFine to `.minecraft/libraries/optifine/OptiFine/1.8.9_HD_U_I7/OptiFine-1.8.9_HD_U_I7.jar`.
+     * - Patch `.minecraft/versions/Hyperium 1.8.9/Hyperium 1.8.9.jar` with OptiFine.
+     * - Add the Hyperium profile to `.minecraft/launcher_profiles.json`.
+     */
+    public static void callInstall() throws Exception {
         final File dotMinecraft = InstallerUtils.getMinecraftDir();
         final File minecraftVersionsFolder = new File(dotMinecraft, "versions");
         final File minecraftLibrariesFolder = new File(dotMinecraft, "libraries");
@@ -47,20 +58,29 @@ public class Installer {
         System.out.println("Found mc: " + dotMinecraft);
         System.out.println("Found mc libraries: " + minecraftLibrariesFolder);
         System.out.println("Found mc versions: " + minecraftVersionsFolder);
+
         copyMinecraftVersion(minecraftVersionsFolder);
-        launchOptiFinePatcher(new File(minecraftVersionsFolder, "Hyperium 1.8.9/Hyperium 1.8.9.jar"), minecraftLibrariesFolder);
+        copyThisJar(minecraftLibrariesFolder);
+        launchOptiFinePatcher(new File(minecraftVersionsFolder, "Hyperium 1.8.9" + File.separator + "Hyperium 1.8.9.jar"), minecraftLibrariesFolder);
         updateLauncherJson(dotMinecraft);
     }
 
     private static void launchOptiFinePatcher(final File targetJarFile, final File minecraftLibrariesFolder) throws IOException, NoSuchMethodException, ClassNotFoundException, InvocationTargetException, IllegalAccessException {
-        final File optifineLibrary = new File(minecraftLibrariesFolder, File.separator + "optifine" + File.separator + "OptiFine" + File.separator + "1.8.9_HD_U_I7");
+        final String s = File.separator;
+        final File optifineLibrary = new File(minecraftLibrariesFolder, s + "optifine" + s + "OptiFine" + s + "1.8.9_HD_U_I7");
         final File actualOptiFineInRightPlaceJar = new File(optifineLibrary, "OptiFine-1.8.9_HD_U_I7.jar");
+
+        if (optifineLibrary.exists()) {
+            optifineLibrary.delete();
+        }
 
         optifineLibrary.mkdirs();
 
         InstallerUtils.download("https://raw.githubusercontent.com/hyperiumjailbreak/tools/master/OptiFine_1.8.9_HD_U_I7.jar", optifineLibrary);
 
-        final Class<?> patcher = InstallerUtils.loadClass(actualOptiFineInRightPlaceJar.toURI().toURL(), "optifine.Patcher");
+        final Class<?> patcher = InstallerUtils.loadClass(
+                actualOptiFineInRightPlaceJar.toURI().toURL(), "optifine.Patcher"
+        );
         final Method main = patcher.getMethod("main", String[].class);
         main.invoke(null, (Object) new String[]{targetJarFile.getAbsolutePath(), actualOptiFineInRightPlaceJar.getAbsolutePath(), optifineLibrary.getAbsolutePath()});
     }
@@ -69,15 +89,14 @@ public class Installer {
         final JsonHolder launcherProfiles = new JsonHolder(Files.asCharSource(new File(dotMinecraft, "launcher_profiles.json"), Charset.defaultCharset()).read());
         final JsonHolder hyperiumJson = new JsonHolder();
 
-        final JsonHolder lib = new JsonHolder();
-        lib.put("name", "cc.hyperium:Hyperium:Hyperium-LOCAL");
-
         final JsonHolder profiles = launcherProfiles.optJSONObject("profiles");
         final Instant instant = Instant.ofEpochMilli(System.currentTimeMillis());
         String installedUUID = UUID.randomUUID().toString();
 
         for (String key : profiles.getKeys()) {
-            if (profiles.optJSONObject(key).has("name") && profiles.optJSONObject(key).optString("name").equals("Hyperium 1.8.9")) {
+            if (
+                profiles.optJSONObject(key).has("name") && profiles.optJSONObject(key).optString("name").equals("Hyperium 1.8.9")
+            ) {
                 installedUUID = key;
             }
         }
@@ -106,34 +125,55 @@ public class Installer {
         Files.asCharSink(new File(dotMinecraft, "launcher_profiles.json"), Charset.defaultCharset(), new FileWriteMode[0]).write(launcherProfiles.toString());
     }
 
-    private static void copyMinecraftVersion(final File original) throws IOException, URISyntaxException {
+    private static void copyMinecraftVersion(final File versionsFolder) throws IOException, URISyntaxException {
         final String minecraft = "1.8.9";
-        final File oneEightNine = new File(original, minecraft);
+        final File oneEightNineDir = new File(versionsFolder, minecraft);
 
-        if (!oneEightNine.exists()) {
+        if (!oneEightNineDir.exists()) {
             showMessageVersionNotFound();
             throw new RuntimeException("QUIET");
         } else {
-            final File targetDirectory = new File(original, minecraft);
+            final File targetDirectory = new File(versionsFolder, minecraft);
             targetDirectory.mkdirs();
-            System.out.println("Found 1.8.9 original: " + oneEightNine);
-            final File originalJarFile = new File(oneEightNine, "1.8.9.jar");
+            System.out.println("Found 1.8.9 original: " + oneEightNineDir);
+            final File originalJarFile = new File(oneEightNineDir, "1.8.9.jar");
             final File targetJarFile = new File(targetDirectory, "Hyperium 1.8.9.jar");
 
             if (!originalJarFile.exists()) {
                 showMessageVersionNotFound();
                 throw new RuntimeException("QUIET");
             } else {
+                if (targetJarFile.exists()) {
+                    targetJarFile.delete();
+                }
                 InstallerUtils.copyFile(originalJarFile, targetJarFile);
             }
 
             final File targetJsonFile = new File(targetDirectory, "Hyperium 1.8.9.json");
+            if (targetJsonFile.exists()) {
+                targetJsonFile.delete();
+            }
+            final File installerBundledJson = new File(Installer.class.getResource("installer.target.json").getFile());
+
             Files.asCharSink(targetJsonFile, StandardCharsets.UTF_8, new FileWriteMode[0])
-                    .write(InstallerUtils.readFile(
-                            // modern problems require modern solutions
-                            new File(com.hyperiumjailbreak.Installer.class.getProtectionDomain().getCodeSource().getLocation().toURI().toString(), "installer.target.json")
-                    ));
+                    .write(InstallerUtils.readFile(installerBundledJson));
         }
+    }
+
+    private static void copyThisJar(final File mcLibrariesDir) throws URISyntaxException, IOException {
+        final String s = File.separator;
+        final File here = new File(Installer.class.getProtectionDomain().getCodeSource().getLocation().toURI().toString());
+
+        final File targetLoc = new File(mcLibrariesDir, "cc" + s + "hyperium" + s + "Hyperium" + s + "Hyperium-LOCAL");
+        final File endJar = new File(targetLoc, "Hyperium-LOCAL.jar");
+
+        if (targetLoc.exists()) {
+            targetLoc.delete();
+            System.out.println("Deleted old library directory");
+        }
+
+        targetLoc.mkdirs();
+        InstallerUtils.copyFile(here, endJar);
     }
 
     private static void showMessageVersionNotFound() {
