@@ -26,10 +26,8 @@ public class MiniDownload {
         int responseCode = this.httpConn.getResponseCode();
         if (responseCode == 200) {
             String disposition = this.httpConn.getHeaderField("Content-Disposition");
-            String contentType = this.httpConn.getContentType();
-            int contentLength = this.httpConn.getContentLength();
             if (disposition != null) {
-                Matcher m = FILENAME.matcher(disposition);
+                final Matcher m = FILENAME.matcher(disposition);
                 if (m.find()) {
                     this.fileName = m.group("name");
                 }
