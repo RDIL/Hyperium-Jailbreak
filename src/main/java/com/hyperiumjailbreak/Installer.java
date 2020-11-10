@@ -1,6 +1,6 @@
 package com.hyperiumjailbreak;
 
-import cc.hyperium.installer.utils.JsonHolder;
+import cc.hyperium.utils.JsonHolder;
 import com.google.common.io.FileWriteMode;
 import com.google.common.io.Files;
 

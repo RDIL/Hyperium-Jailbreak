@@ -554,10 +554,10 @@
       "name": "net.minecraft:launchwrapper:launchwrapper:1.12",
       "downloads": {
         "artifact": {
-          "path": "org/apache/logging/log4j/log4j-api/2.0-beta9/log4j-api-2.0-beta9.jar",
-          "sha1": "1dd66e68cccd907880229f9e2de1314bd13ff785",
-          "size": 108161,
-          "url": "https://libraries.minecraft.net/org/apache/logging/log4j/log4j-api/2.0-beta9/log4j-api-2.0-beta9.jar"
+          "path": "net/minecraft/launchwrapper/launchwrapper/launchwrapper-1.12.jar",
+          "sha1": "c8986c9ef780eddec2b2d67be63cedd93efce16d",
+          "size": 29258,
+          "url": "http://jitpack.io/com/github/Mojang/LegacyLauncher/a4801b70f8/LegacyLauncher-a4801b70f8.jar"
         }
       }
     },

@@ -1,9 +1,9 @@
 package com.hyperiumjailbreak;
 
-import cc.hyperium.installer.utils.JsonHolder;
-import cc.hyperium.installer.utils.http.client.HttpClient;
-import cc.hyperium.installer.utils.http.client.methods.HttpGet;
-import cc.hyperium.installer.utils.http.impl.client.HttpClients;
+import cc.hyperium.utils.JsonHolder;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.commons.io.IOUtils;
 
 import java.awt.Component;

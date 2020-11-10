@@ -3,12 +3,11 @@ package cc.hyperium.gui;
 import cc.hyperium.Hyperium;
 import cc.hyperium.gui.hyperium.HyperiumMainGui;
 import cc.hyperium.gui.keybinds.GuiKeybinds;
-import cc.hyperium.installer.utils.http.HttpEntity;
-import cc.hyperium.installer.utils.http.HttpResponse;
-import cc.hyperium.installer.utils.http.impl.client.HttpClients;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.impl.client.HttpClients;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
-import cc.hyperium.utils.InstallerUtils;
 import cc.hyperium.utils.JsonHolder;
 import com.google.gson.JsonParser;
 import com.mojang.realmsclient.gui.ChatFormatting;
@@ -27,6 +26,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.server.MinecraftServer;
 import com.hyperiumjailbreak.BackendHandler;
+import com.hyperiumjailbreak.InstallerUtils;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
@@ -152,7 +153,7 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
 
         GlStateManager.translate(0.0F, 0.0F, 4F);
 
-        if(InstallerUtils.getOS() != InstallerUtils.OSType.MacOS) {
+        if (InstallerUtils.getOS() != InstallerUtils.OSType.MacOS) {
             drawCenteredString(fontRendererObj, "Now Online: " + ChatFormatting.GREEN + data.optInt("online") + ChatFormatting.RESET, 0, 0, 0xFFFFFF);
         }
         GlStateManager.popMatrix();
