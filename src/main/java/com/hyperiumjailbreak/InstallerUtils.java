@@ -6,10 +6,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.commons.io.IOUtils;
 
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Rectangle;
-import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -96,14 +92,12 @@ public class InstallerUtils {
     }
 
     public static void copyFile(File fileSrc, File fileDest) throws IOException {
-        if (!fileSrc.getCanonicalPath().equals(fileDest.getCanonicalPath())) {
-            FileInputStream fin = new FileInputStream(fileSrc);
-            FileOutputStream fout = new FileOutputStream(fileDest);
-            copyAll(fin, fout);
-            fout.flush();
-            fin.close();
-            fout.close();
-        }
+        FileInputStream fin = new FileInputStream(fileSrc);
+        FileOutputStream fout = new FileOutputStream(fileDest);
+        copyAll(fin, fout);
+        fout.flush();
+        fin.close();
+        fout.close();
     }
 
     public static void copyAll(InputStream is, OutputStream os) throws IOException {
@@ -160,31 +154,6 @@ public class InstallerUtils {
         return tokenize(str, "\n\r");
     }
 
-    public static void centerWindow(Component c, Component par) {
-        if (c != null) {
-            Rectangle rect = c.getBounds();
-            Rectangle parRect;
-            if (par != null && par.isVisible()) {
-                parRect = par.getBounds();
-            } else {
-                Dimension scrDim = Toolkit.getDefaultToolkit().getScreenSize();
-                parRect = new Rectangle(0, 0, scrDim.width, scrDim.height);
-            }
-
-            int newX = parRect.x + (parRect.width - rect.width) / 2;
-            int newY = parRect.y + (parRect.height - rect.height) / 2;
-            if (newX < 0) {
-                newX = 0;
-            }
-
-            if (newY < 0) {
-                newY = 0;
-            }
-
-            c.setBounds(newX, newY, rect.width, rect.height);
-        }
-    }
-
     public static boolean equals(Object o1, Object o2) {
         if (o1 == o2) {
             return true;
@@ -233,17 +202,15 @@ public class InstallerUtils {
         return IOUtils.toString(client.execute(new HttpGet(url)).getEntity().getContent(), Charset.defaultCharset());
     }
 
-    public static Class<?> loadClass(URL url, String c) throws ClassNotFoundException, IOException {
-        final URLClassLoader cl = new URLClassLoader(new URL[]{url});
-        Class<?> clazz = ((URLClassLoader) cl).loadClass(c);
-        cl.close();
-        return clazz;
+    public static Class<?> loadClass(URL url, String c) throws ClassNotFoundException {
+        URLClassLoader cl = new URLClassLoader(new URL[]{url}, InstallerUtils.class.getClassLoader());
+        return Class.forName(c, true, cl);
     }
 
     public static void download(final String downloadURL, final File destinationFolder) throws IOException {
         final MiniDownload miniDownload = new MiniDownload();
         miniDownload.download(downloadURL);
-        final File downloadedFileReal = new File(destinationFolder, miniDownload.getFileName());
+        final File downloadedFileReal = new File(destinationFolder, miniDownload.getFileName().replace("OptiFine_", "OptiFine-"));
         InputStream inputStream = miniDownload.getInputStream();
         FileOutputStream outputStream = new FileOutputStream(downloadedFileReal);
         final byte[] buffer = new byte[4096];

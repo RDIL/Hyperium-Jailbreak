@@ -65,7 +65,7 @@ public class Installer {
         updateLauncherJson(dotMinecraft);
     }
 
-    private static void launchOptiFinePatcher(final File targetJarFile, final File minecraftLibrariesFolder) throws IOException, NoSuchMethodException, ClassNotFoundException, InvocationTargetException, IllegalAccessException {
+    private static void launchOptiFinePatcher(final File targetJarFile, final File minecraftLibrariesFolder) throws IOException {
         final String s = File.separator;
         final File optifineLibrary = new File(minecraftLibrariesFolder, s + "optifine" + s + "OptiFine" + s + "1.8.9_HD_U_I7");
         final File actualOptiFineInRightPlaceJar = new File(optifineLibrary, "OptiFine-1.8.9_HD_U_I7.jar");
@@ -78,11 +78,14 @@ public class Installer {
 
         InstallerUtils.download("https://raw.githubusercontent.com/hyperiumjailbreak/tools/master/OptiFine_1.8.9_HD_U_I7.jar", optifineLibrary);
 
-        final Class<?> patcher = InstallerUtils.loadClass(
-                actualOptiFineInRightPlaceJar.toURI().toURL(), "optifine.Patcher"
-        );
-        final Method main = patcher.getMethod("main", String[].class);
-        main.invoke(null, (Object) new String[]{targetJarFile.getAbsolutePath(), actualOptiFineInRightPlaceJar.getAbsolutePath(), optifineLibrary.getAbsolutePath()});
+        final String command = "java -cp " + actualOptiFineInRightPlaceJar.getAbsolutePath() + " optifine.Patcher " + targetJarFile.getAbsolutePath() + " " + actualOptiFineInRightPlaceJar.getAbsolutePath() + " " + optifineLibrary.getAbsolutePath();
+        java.lang.Runtime.getRuntime().exec(command);
+
+        //final Class<?> patcher = InstallerUtils.loadClass(
+        //        actualOptiFineInRightPlaceJar.toURI().toURL(), "optifine.Patcher"
+        //);
+        //final Method main = patcher.getMethod("main", String[].class);
+        //main.invoke(null, new Object[]{new String[]{targetJarFile.getAbsolutePath(), actualOptiFineInRightPlaceJar.getAbsolutePath(), optifineLibrary.getAbsolutePath()}});
     }
 
     private static void updateLauncherJson(final File dotMinecraft) throws IOException {
@@ -125,7 +128,7 @@ public class Installer {
         Files.asCharSink(new File(dotMinecraft, "launcher_profiles.json"), Charset.defaultCharset(), new FileWriteMode[0]).write(launcherProfiles.toString());
     }
 
-    private static void copyMinecraftVersion(final File versionsFolder) throws IOException, URISyntaxException {
+    private static void copyMinecraftVersion(final File versionsFolder) throws IOException {
         final String minecraft = "1.8.9";
         final File oneEightNineDir = new File(versionsFolder, minecraft);
 
@@ -134,6 +137,9 @@ public class Installer {
             throw new RuntimeException("QUIET");
         } else {
             final File targetDirectory = new File(versionsFolder, minecraft);
+            if (targetDirectory.exists()) {
+                targetDirectory.delete();
+            }
             targetDirectory.mkdirs();
             System.out.println("Found 1.8.9 original: " + oneEightNineDir);
             final File originalJarFile = new File(oneEightNineDir, "1.8.9.jar");
@@ -153,16 +159,18 @@ public class Installer {
             if (targetJsonFile.exists()) {
                 targetJsonFile.delete();
             }
-            final File installerBundledJson = new File(Installer.class.getResource("installer.target.json").getFile());
 
             Files.asCharSink(targetJsonFile, StandardCharsets.UTF_8, new FileWriteMode[0])
-                    .write(InstallerUtils.readFile(installerBundledJson));
+                    .write(
+                            InstallerUtils.readText(Installer.class.getResourceAsStream("/installer.target.json"), "UTF-8")
+                    );
+            System.out.println("Finished copying MC version");
         }
     }
 
     private static void copyThisJar(final File mcLibrariesDir) throws URISyntaxException, IOException {
         final String s = File.separator;
-        final File here = new File(Installer.class.getProtectionDomain().getCodeSource().getLocation().toURI().toString());
+        final File here = new File(Installer.class.getProtectionDomain().getCodeSource().getLocation().toURI());
 
         final File targetLoc = new File(mcLibrariesDir, "cc" + s + "hyperium" + s + "Hyperium" + s + "Hyperium-LOCAL");
         final File endJar = new File(targetLoc, "Hyperium-LOCAL.jar");
@@ -174,6 +182,7 @@ public class Installer {
 
         targetLoc.mkdirs();
         InstallerUtils.copyFile(here, endJar);
+        System.out.println("Finished copying hyperium jar to Hyperium-LOCAL in libraries");
     }
 
     private static void showMessageVersionNotFound() {
