@@ -110,10 +110,12 @@ jar {
     }
     exclude "META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA"
     manifest.attributes(
-        "MixinConfigs": "mixins.hyperium.json",
-        "TweakClass": "cc.hyperium.launch.HyperiumTweaker",
-        "TweakOrder": 0,
         "Manifest-Version": 1.0,
+        "TweakOrder": 0,
+        "MixinConfigs": "mixins.hyperium.json",
+        "Implementation-Title": "HyperiumJailbreak",
+        "Implementation-Version": project.version,
+        "TweakClass": "cc.hyperium.launch.HyperiumTweaker",
         "Main-Class": "com.hyperiumjailbreak.Runtime"
     )
     configurations.embed.each { dep ->
