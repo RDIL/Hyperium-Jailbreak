@@ -14,11 +14,15 @@
  *     You should have received a copy of the GNU Lesser General Public License
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package cc.hyperium.launch;
+
 import cc.hyperium.internal.addons.AddonBootstrap;
 import net.minecraft.launchwrapper.ITweaker;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.launch.MixinBootstrap;
 import org.spongepowered.asm.mixin.MixinEnvironment;
 import org.spongepowered.asm.mixin.Mixins;
@@ -29,11 +33,13 @@ import java.util.List;
 
 public class HyperiumTweaker implements ITweaker {
     public static HyperiumTweaker INSTANCE;
-    private ArrayList<String> args = new ArrayList<>();
-    private boolean isRunningForge = Launch.classLoader.getTransformers().stream().anyMatch(p -> p.getClass().getName().contains("fml"));
-    private boolean isRunningOptifine = Launch.classLoader.getTransformers().stream().anyMatch(p -> p.getClass().getName().contains("optifine"));
+    private final ArrayList<String> args = new ArrayList<>();
+    private final boolean isRunningForge = Launch.classLoader.getTransformers().stream().anyMatch(p -> p.getClass().getName().contains("fml"));
+    private final boolean isRunningOptifine = Launch.classLoader.getTransformers().stream().anyMatch(p -> p.getClass().getName().contains("optifine"));
     private boolean FORGE = false;
     private boolean OPTIFINE = false;
+    public static final Logger LOGGER = LogManager.getLogger();
+
     public HyperiumTweaker() {
         INSTANCE = this;
     }
@@ -55,7 +61,8 @@ public class HyperiumTweaker implements ITweaker {
     public void injectIntoClassLoader(LaunchClassLoader classLoader) {
         MixinBootstrap.init();
         try {
-            AddonBootstrap.INSTANCE.init();
+            LOGGER.info("Launching addons.");
+            AddonBootstrap.INSTANCE.init(classLoader, this);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -64,14 +71,17 @@ public class HyperiumTweaker implements ITweaker {
         Mixins.addConfiguration("mixins.hyperium.json");
         this.OPTIFINE = this.isRunningOptifine;
         if (this.isRunningForge) {
+            LOGGER.info("Found environment: FORGE (obfuscation context = searge)");
             this.FORGE = true;
             environment.setObfuscationContext("searge"); // Switch's to forge searge mappings
         }
         if (this.OPTIFINE) {
+            LOGGER.info("Found environment: OPTIFINE (obfuscation context = notch)");
             classLoader.registerTransformer("cc.hyperium.mods.memoryfix.ClassTransformer");
             environment.setObfuscationContext("notch"); // Switch's to notch mappings
         }
         if (environment.getObfuscationContext() == null) {
+            LOGGER.info("Found environment: FALLBACK (obfuscation context = notch)");
             environment.setObfuscationContext("notch"); // Switch's to notch mappings
         }
         environment.setSide(MixinEnvironment.Side.CLIENT);
@@ -86,14 +96,6 @@ public class HyperiumTweaker implements ITweaker {
         }
     }
 
-    public boolean isUsingForge() {
-        return FORGE;
-    }
-
-    public boolean isUsingOptifine() {
-        return OPTIFINE;
-    }
-
     private void addArg(String label, String value) {
         if (!this.args.contains(("--" + label)) && value != null) {
             this.args.add(("--" + label));
@@ -104,5 +106,11 @@ public class HyperiumTweaker implements ITweaker {
     private void addArg(String args, File file) {
         if (file == null) return;
         addArg(args, file.getAbsolutePath());
+    }
+
+    @SuppressWarnings("unchecked")
+    public void injectCascadingTweak(String tweakClassName) {
+        List<String> tweakClasses = (List<String>) Launch.blackboard.get("TweakClasses");
+        tweakClasses.add(tweakClassName);
     }
 }
