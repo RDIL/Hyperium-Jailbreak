@@ -23,8 +23,8 @@ public class AddonBootstrap {
     public static final Logger LOGGER = LogManager.getLogger();
     private static final List<File> addonResourcePacks = new ArrayList<>();
 
-    private static final File MOD_DIRECTORY = new File("addons");
-    private static final File PENDING_DIRECTORY = new File("pending-addons");
+    private static File MOD_DIRECTORY = new File("addons");
+    private static File PENDING_DIRECTORY = new File("pending-addons");
     private final DefaultAddonLoader loader = new DefaultAddonLoader();
     private final WorkspaceAddonLoader workspaceLoader = new WorkspaceAddonLoader();
     private final List<File> jars;
