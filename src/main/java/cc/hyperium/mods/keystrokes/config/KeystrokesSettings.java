@@ -38,7 +38,7 @@ public class KeystrokesSettings {
     private final File configFile;
     private int x = 0;
     private int y = 0;
-    private boolean enabled = true;
+    private boolean enabled = false;
     private boolean chroma = false;
     private boolean mouseButtons = false;
     private boolean showCPS = false;

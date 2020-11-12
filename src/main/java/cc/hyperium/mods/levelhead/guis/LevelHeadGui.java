@@ -36,10 +36,6 @@ import net.minecraftforge.fml.client.config.GuiSlider;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.lwjgl.input.Keyboard;
 import java.awt.Color;
-import java.awt.Desktop;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.*;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Consumer;
@@ -79,7 +75,8 @@ public class LevelHeadGui extends GuiScreen {
         Multithreading.runAsync(() -> {
             String raw = Sk1erMod.getInstance().rawWithAgent("https://api.sk1er.club/levelhead/" + Minecraft.getMinecraft().getSession().getProfile().getId().toString().replace("-", ""));
             this.isCustom = new JsonHolder(raw).optBoolean("custom");
-            updateCustom();
+            lock.lock();
+            lock.unlock();
         });
         Keyboard.enableRepeatEvents(true);
 
@@ -197,22 +194,6 @@ public class LevelHeadGui extends GuiScreen {
             updatePeopleToValues();
             slider.dragging = false;
         }), null);
-    }
-
-    private void updateCustom() {
-        lock.lock();
-        reg(new GuiButton(13, this.width / 2 - 155, this.height - 44, 310, 20, (isCustom ? ChatColor.YELLOW + "Click to change custom Levelhead." : ChatColor.YELLOW + "Click to purchase a custom Levelhead message")), button -> {
-            try {
-	            if (isCustom) {
-	                Desktop.getDesktop().browse(new URI("https://sk1er.club/user"));
-	            } else {
-	                Desktop.getDesktop().browse(new URI("https://sk1er.club/customlevelhead"));
-	            }
-	        } catch (IOException | URISyntaxException e) {
-	            e.printStackTrace();
-            }
-        });
-        lock.unlock();
     }
 
     private void regSlider(GuiSlider slider, Consumer<GuiButton> but) {

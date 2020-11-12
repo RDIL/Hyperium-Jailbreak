@@ -106,7 +106,7 @@ public class Settings {
     @ConfigOpt @ToggleSetting(name = "Old Sneaking", category = ANIMATIONS)
     public static boolean OLD_SNEAKING = false;
 
-    @ConfigOpt @ToggleSetting(name = "Old Blocking", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "Old Block Placing", category = ANIMATIONS)
     public static boolean OLD_BLOCKING = false;
 
     @ConfigOpt @ToggleSetting(name = "Old Item Positioning", category = ANIMATIONS)
@@ -117,9 +117,6 @@ public class Settings {
 
     @ConfigOpt @ToggleSetting(name = "Old Health", category = ANIMATIONS)
     public static boolean OLD_HEALTH = false;
-
-    @ConfigOpt @ToggleSetting(name = "Custom Sword Animation", category = ANIMATIONS)
-    public static boolean CUSTOM_SWORD_ANIMATION = false;
 
     @ConfigOpt @ToggleSetting(name = "Transparent GUI Backgrounds")
     public static boolean FAST_CONTAINER = false;
@@ -227,8 +224,8 @@ public class Settings {
     @ConfigOpt @ToggleSetting(name = "Enable ToggleSprint", category = TOGGLESPRINT)
     public static boolean ENABLE_TOGGLE_SPRINT = true;
 
-    @ConfigOpt @ToggleSetting(name = "Broadcast Achivements", category = HYPIXEL)
-    public static boolean BROADCAST_ACHIEVEMENTS = true;
+    @ConfigOpt @ToggleSetting(name = "Broadcast Achivements to Guild Chat", category = HYPIXEL)
+    public static boolean BROADCAST_ACHIEVEMENTS = false;
 
     @ConfigOpt @ToggleSetting(name = "Hyperium Chat Prefix", category = GENERAL)
     public static boolean HYPERIUM_CHAT_PREFIX = true;

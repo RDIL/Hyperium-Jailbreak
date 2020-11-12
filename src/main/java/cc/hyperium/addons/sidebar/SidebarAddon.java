@@ -18,23 +18,23 @@
 package cc.hyperium.addons.sidebar;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.addons.AbstractAddon;
 import cc.hyperium.addons.sidebar.commands.CommandSidebar;
 import cc.hyperium.addons.sidebar.config.Configuration;
 import cc.hyperium.addons.sidebar.gui.GuiSidebar;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.render.RenderScoreboardEvent;
+import cc.hyperium.mods.AbstractMod;
 import net.minecraft.client.Minecraft;
 import java.io.File;
 import java.io.IOException;
 
-public class SidebarAddon extends AbstractAddon {
+public class SidebarAddon extends AbstractMod {
     private File saveFile;
     private GuiSidebar guiSidebar;
 
     @Override
-    public AbstractAddon init() {
+    public AbstractMod init() {
         EventBus.INSTANCE.register(this);
         Minecraft mc = Minecraft.getMinecraft();
         Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(new CommandSidebar(this));
@@ -42,11 +42,6 @@ public class SidebarAddon extends AbstractAddon {
         this.guiSidebar = new GuiSidebar();
         this.loadConfig();
         return this;
-    }
-
-    @Override
-    public Metadata getAddonMetadata() {
-        return new Metadata(this, "SidebarAddon", "1", "Amp");
     }
 
     public GuiSidebar getSidebarGui() {

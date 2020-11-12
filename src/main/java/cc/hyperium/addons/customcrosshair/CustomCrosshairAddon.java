@@ -18,15 +18,15 @@
 package cc.hyperium.addons.customcrosshair;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.addons.AbstractAddon;
 import cc.hyperium.addons.customcrosshair.command.CommandCustomCrosshair;
 import cc.hyperium.addons.customcrosshair.crosshair.CustomCrosshair;
 import cc.hyperium.addons.customcrosshair.utils.CustomCrosshairConfig;
 import cc.hyperium.event.EventBus;
+import cc.hyperium.mods.AbstractMod;
 
 import java.awt.Color;
 
-public class CustomCrosshairAddon extends AbstractAddon {
+public class CustomCrosshairAddon extends AbstractMod {
     public static final Color PRIMARY = new Color(23, 107, 192, 255);
     public static final Color PRIMARY_T = new Color(23, 107, 192, 128);
     public static final Color SECONDARY = new Color(255, 255, 255, 255);
@@ -36,7 +36,7 @@ public class CustomCrosshairAddon extends AbstractAddon {
     public static String VERSION = "0.5.3-hyperium";
 
     @Override
-    public AbstractAddon init() {
+    public AbstractMod init() {
         EventBus.INSTANCE.register(this);
         instance = this;
         this.crosshair = new CustomCrosshair();
@@ -51,11 +51,6 @@ public class CustomCrosshairAddon extends AbstractAddon {
         EventBus.INSTANCE.register(this.crosshair);
 
         return this;
-    }
-
-    @Override
-    public Metadata getAddonMetadata() {
-        return null;
     }
 
     public void resetCrosshair() {
