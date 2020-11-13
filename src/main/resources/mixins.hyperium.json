@@ -24,6 +24,7 @@
     "MixinSoundManager",
     "MixinTextureManager",
     "MixinWorld",
+    "client.IMixinSoundHandler",
     "client.MixinGameSettings",
     "client.MixinLoadingScreen",
     "client.multiplayer.MixinServerList",

@@ -17,21 +17,31 @@
 
 package cc.hyperium.mixins;
 
-import java.util.Iterator;
-
+import cc.hyperium.mixinsimp.client.IReloadableSoundManager;
+import com.google.common.collect.Multimap;
+import net.minecraft.client.audio.*;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import cc.hyperium.Hyperium;
 import cc.hyperium.mixinsimp.HyperiumSoundManager;
-import net.minecraft.client.audio.ISound;
-import net.minecraft.client.audio.SoundManager;
+
+import java.util.List;
+import java.util.Map;
 
 @Mixin(SoundManager.class)
-public abstract class MixinSoundManager {
+public abstract class MixinSoundManager implements IReloadableSoundManager {
+    @Shadow @Final private Map<String, ISound> playingSounds;
+    @Shadow @Final private Map<String, ISound> invPlayingSounds;
+    @Shadow private Map<ISound, SoundPoolEntry> playingSoundPoolEntries;
+    @Shadow @Final private Multimap<SoundCategory, String> categorySounds;
+    @Shadow @Final private List<ITickableSound> tickableSounds;
+    @Shadow @Final private Map<ISound, Integer> delayedSounds;
+    @Shadow @Final private Map<String, Integer> playingSoundsStopTime;
+
     @Inject(
         method = "playSound",
         at = @At(value = "INVOKE", target = "Lnet/minecraft/client/audio/SoundHandler;getSound(Lnet/minecraft/util/ResourceLocation;)Lnet/minecraft/client/audio/SoundEventAccessorComposite;"),
@@ -41,20 +51,14 @@ public abstract class MixinSoundManager {
         HyperiumSoundManager.playSound(sound, ci);
     }
 
-    @SuppressWarnings("all")
-    @Redirect(at = @At(value = "INVOKE", target = "Ljava/util/Iterator;hasNext()Z"), method = "updateAllSounds")
-    private boolean iteratorFix(Iterator iter) {
-        Object hasNext = null;
-        while (hasNext == null) {
-            try {
-                if (iter.hasNext()) {
-                    hasNext = true;
-                }
-                hasNext = false;
-            } catch (Exception e) {
-                Hyperium.LOGGER.debug("ConcurrentModificationException thrown while trying to iterate over sounds, trying again...");
-            }
-        }
-        return (boolean) hasNext;
+    @Override
+    public void clearAll() {
+        playingSounds.clear();
+        invPlayingSounds.clear();
+        playingSoundPoolEntries.clear();
+        categorySounds.clear();
+        tickableSounds.clear();
+        delayedSounds.clear();
+        playingSoundsStopTime.clear();
     }
 }

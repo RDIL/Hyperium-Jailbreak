@@ -17,8 +17,11 @@
 
 package cc.hyperium.mixins.gui;
 
+import cc.hyperium.mixins.client.IMixinSoundHandler;
+import cc.hyperium.mixinsimp.client.IReloadableSoundManager;
 import cc.hyperium.mixinsimp.gui.HyperiumGuiScreen;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.SoundManager;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -82,15 +85,23 @@ public abstract class MixinGuiScreen {
         hyperiumGuiScreen.initGui();
     }
 
-    @Inject(method = "onGuiClosed", at = @At("HEAD"))
+    @Inject(method = "onGuiClosed", at = @At("RETURN"))
     private void onGuiClosed(CallbackInfo ci) {
-        hyperiumGuiScreen.onGuiClosed();
+        // minecraft's sound system is dumb
+        // we clear minecraft's pending sounds when a gui is closed to prevent a bug where the last sound played
+        // gets played again
+        if (Minecraft.getMinecraft().theWorld == null) {
+            return;
+        }
+        final SoundManager sm = ((IMixinSoundHandler) Minecraft.getMinecraft().getSoundHandler()).getSndManager();
+        ((IReloadableSoundManager) sm).clearAll();
     }
 
     @Inject(method = "actionPerformed", at = @At("HEAD"), cancellable = true)
     private void actionPerformed(GuiButton button, CallbackInfo info) {
-        if (hyperiumGuiScreen.actionPerformed(button))
+        if (hyperiumGuiScreen.actionPerformed(button)) {
             info.cancel();
+        }
     }
 
     /**

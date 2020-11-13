@@ -50,6 +50,4 @@ public class HyperiumGuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         EventBus.INSTANCE.post(new GuiDrawScreenEvent(parent, mouseX, mouseY, partialTicks));
     }
-
-    public void onGuiClosed() {}
 }
