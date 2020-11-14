@@ -17,7 +17,10 @@
 
 package cc.hyperium.mixins.entity;
 
+import cc.hyperium.Hyperium;
 import cc.hyperium.config.Settings;
+import cc.hyperium.event.EventBus;
+import cc.hyperium.event.world.RenderWorldFinalPassEvent;
 import cc.hyperium.handlers.handlers.reach.ReachDisplay;
 import cc.hyperium.mixinsimp.entity.HyperiumEntityRenderer;
 import com.google.common.base.Predicates;
@@ -72,6 +75,12 @@ public abstract class MixinEntityRenderer {
     @Inject(method = "renderWorldPass", at = @At(value = "INVOKE_STRING", target = "Lnet/minecraft/profiler/Profiler;endStartSection(Ljava/lang/String;)V", args = "ldc=outline"))
     public void drawOutline(int pass, float part, long nano, CallbackInfo info) {
         hyperiumEntityRenderer.drawOutline(part, this.mc);
+    }
+
+    @Inject(method = "renderWorldPass", at = @At(value = "INVOKE_STRING", target = "Lnet/minecraft/profiler/Profiler;endStartSection(Ljava/lang/String;)V", args = "ldc=hand"))
+    public void renderWorldLastPass(int pass, float partialTicks, long finishTimeNano, CallbackInfo ci) {
+        Hyperium.LOGGER.info("DEBUG!");
+        EventBus.INSTANCE.post(new RenderWorldFinalPassEvent(partialTicks));
     }
 
     @Inject(method = "updateCameraAndRender", at = @At(value = "INVOKE_STRING", target = "Lnet/minecraft/profiler/Profiler;startSection(Ljava/lang/String;)V", args = "ldc=mouse"))

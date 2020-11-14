@@ -1,6 +1,8 @@
 package cc.hyperium.mods.memoryfix;
 
 import net.minecraft.launchwrapper.IClassTransformer;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.lib.ClassReader;
 import org.spongepowered.asm.lib.ClassWriter;
 import org.spongepowered.asm.lib.Opcodes;
@@ -14,6 +16,8 @@ import java.util.Iterator;
 import java.util.function.BiConsumer;
 
 public class ClassTransformer implements IClassTransformer {
+    public static final Logger LOGGER = LogManager.getLogger();
+
     @Override
     public byte[] transform(String name, String transformedName, byte[] bytes) {
         switch (name) {
@@ -43,6 +47,7 @@ public class ClassTransformer implements IClassTransformer {
     }
 
     private byte[] transformCapeUtils(byte[] bytes) {
+        LOGGER.info("Transforming OptiFine CapeUtils...");
         ClassWriter classWriter = new ClassWriter(ClassWriter.COMPUTE_FRAMES);
 
         ClassRemapper adapter = new ClassRemapper(classWriter, new Remapper() {
@@ -61,6 +66,7 @@ public class ClassTransformer implements IClassTransformer {
     }
 
     private void transformCapeImageBuffer(ClassNode clazz, MethodNode method) {
+        LOGGER.info("Transforming MemoryFix CapeImageBuffer...");
         Iterator<AbstractInsnNode> iter = method.instructions.iterator();
         while (iter.hasNext()) {
             AbstractInsnNode insn = iter.next();

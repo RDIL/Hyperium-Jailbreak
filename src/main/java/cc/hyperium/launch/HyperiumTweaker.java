@@ -34,9 +34,7 @@ import java.util.List;
 public class HyperiumTweaker implements ITweaker {
     public static HyperiumTweaker INSTANCE;
     private final ArrayList<String> args = new ArrayList<>();
-    private final boolean isRunningForge = Launch.classLoader.getTransformers().stream().anyMatch(p -> p.getClass().getName().contains("fml"));
     private final boolean isRunningOptifine = Launch.classLoader.getTransformers().stream().anyMatch(p -> p.getClass().getName().contains("optifine"));
-    private boolean FORGE = false;
     private boolean OPTIFINE = false;
     public static final Logger LOGGER = LogManager.getLogger();
 
@@ -70,11 +68,6 @@ public class HyperiumTweaker implements ITweaker {
         MixinEnvironment environment = MixinEnvironment.getDefaultEnvironment();
         Mixins.addConfiguration("mixins.hyperium.json");
         this.OPTIFINE = this.isRunningOptifine;
-        if (this.isRunningForge) {
-            LOGGER.info("Found environment: FORGE (obfuscation context = searge)");
-            this.FORGE = true;
-            environment.setObfuscationContext("searge"); // Switch's to forge searge mappings
-        }
         if (this.OPTIFINE) {
             LOGGER.info("Found environment: OPTIFINE (obfuscation context = notch)");
             classLoader.registerTransformer("cc.hyperium.mods.memoryfix.ClassTransformer");
@@ -89,7 +82,7 @@ public class HyperiumTweaker implements ITweaker {
 
     @Override
     public String[] getLaunchArguments() {
-        if (FORGE || OPTIFINE) {
+        if (OPTIFINE) {
             return new String[0];
         } else {
             return args.toArray(new String[]{});
