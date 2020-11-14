@@ -86,6 +86,8 @@
     "renderer.IMixinRenderItem",
     "renderer.IMixinRenderItem2",
     "renderer.IMixinRenderLivingEntity",
+    "renderer.IMixinTextureManager",
+    "renderer.IMixinThreadDownloadImageData",
     "renderer.MixinFontRenderer",
     "renderer.MixinItemRenderer",
     "renderer.MixinLayerCape",

@@ -8,12 +8,8 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(NetworkPlayerInfo.class)
 public interface IMixinNetworkPlayerInfo {
-    @Invoker
-    void callLoadPlayerTextures();
-
-    @Accessor
-    void setLocationCape(ResourceLocation locationCape);
-
-    @Accessor
-    void setLocationSkin(ResourceLocation locationSkin);
+    @Invoker void callLoadPlayerTextures();
+    @Accessor void setLocationCape(ResourceLocation locationCape);
+    @Accessor void setLocationSkin(ResourceLocation locationSkin);
+    @Accessor void setPlayerTexturesLoaded(boolean playerTexturesLoaded);
 }

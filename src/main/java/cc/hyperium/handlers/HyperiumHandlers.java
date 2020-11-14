@@ -38,21 +38,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HyperiumHandlers {
-    private LocationHandler locationHandler;
-    private HypixelDetector hypixelDetector;
-    private CommandQueue commandQueue;
-    private CapeHandler capeHandler;
-    private List<HyperiumChatHandler> chatHandlers;
-    private GeneralChatHandler generalChatHandler;
-    private HypixelAPI dataHandler;
-    private GuiDisplayHandler guiDisplayHandler;
-    private KeyBindHandler keybindHandler;
-    private HyperiumCommandHandler commandHandler;
-    private ScoreboardRenderer scoreboardRenderer;
-    private OtherConfigOptions configOptions;
-    private PerspectiveModifierHandler perspectiveHandler;
-    private StatsHandler statsHandler;
-    private SettingsHandler settingsHandler;
+    private final LocationHandler locationHandler;
+    private final HypixelDetector hypixelDetector;
+    private final CommandQueue commandQueue;
+    private final CapeHandler capeHandler;
+    private final List<HyperiumChatHandler> chatHandlers;
+    private final GeneralChatHandler generalChatHandler;
+    private final HypixelAPI dataHandler;
+    private final GuiDisplayHandler guiDisplayHandler;
+    private final KeyBindHandler keybindHandler;
+    private final HyperiumCommandHandler commandHandler;
+    private final ScoreboardRenderer scoreboardRenderer;
+    private final OtherConfigOptions configOptions;
+    private final PerspectiveModifierHandler perspectiveHandler;
+    private final StatsHandler statsHandler;
+    private final SettingsHandler settingsHandler;
+    private final MemoryHelper memoryHelper;
 
     public HyperiumHandlers() {
         settingsHandler = new SettingsHandler();
@@ -74,6 +75,8 @@ public class HyperiumHandlers {
         register(new BroadcastEvents());
         commandQueue = new CommandQueue();
         dataHandler = new HypixelAPI();
+        memoryHelper = new MemoryHelper();
+        EventBus.INSTANCE.register(memoryHelper);
         registerChatHandler(new DMChatHandler());
         registerChatHandler(new FriendRequestChatHandler());
         registerChatHandler(new PartyInviteChatHandler());
@@ -158,5 +161,9 @@ public class HyperiumHandlers {
 
     public PerspectiveModifierHandler getPerspectiveHandler() {
         return perspectiveHandler;
+    }
+
+    public MemoryHelper getMemoryHelper() {
+        return memoryHelper;
     }
 }
