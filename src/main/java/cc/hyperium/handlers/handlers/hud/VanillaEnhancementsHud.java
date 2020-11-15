@@ -30,7 +30,7 @@ import java.util.Map;
 
 @SuppressWarnings("unused")
 public class VanillaEnhancementsHud {
-    private final static Minecraft mc = Minecraft.getMinecraft();
+    private static final Minecraft mc = Minecraft.getMinecraft();
     private String lastMessage;
 
     public VanillaEnhancementsHud() {}
