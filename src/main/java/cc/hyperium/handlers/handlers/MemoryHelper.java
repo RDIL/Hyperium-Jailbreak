@@ -17,7 +17,6 @@
 
 package cc.hyperium.handlers.handlers;
 
-import cc.hyperium.Hyperium;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.client.TickEvent;
 import cc.hyperium.event.world.WorldUnloadEvent;
@@ -34,6 +33,8 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
 import net.minecraft.util.ResourceLocation;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -45,6 +46,7 @@ import java.util.Map;
 public class MemoryHelper {
     private List<ResourceLocation> locations = new ArrayList<>();
     private int tickCounter;
+    private static final Logger LOGGER = LogManager.getLogger();
 
     public static MemoryHelper INSTANCE;
 
@@ -61,7 +63,7 @@ public class MemoryHelper {
 
             mapTextureObjects.forEach((key, iTextureObject) -> {
                 if (iTextureObject instanceof ThreadDownloadImageData) {
-                        IImageBuffer imageBuffer = ((IMixinThreadDownloadImageData) iTextureObject).getImageBuffer();
+                    IImageBuffer imageBuffer = ((IMixinThreadDownloadImageData) iTextureObject).getImageBuffer();
 
                     if (imageBuffer == null) return;
 
@@ -85,6 +87,7 @@ public class MemoryHelper {
             try {
                 Method getSkinMap = renderManager.getClass().getMethod("getSkinMap");
                 Object invoke = getSkinMap.invoke(renderManager);
+                @SuppressWarnings("all")
                 Map<String, RenderPlayer> skinMap = (Map<String, RenderPlayer>) invoke;
 
                 for (RenderPlayer value : skinMap.values()) {
@@ -93,14 +96,18 @@ public class MemoryHelper {
                     Class<?> superClass = mainModel.getClass().getSuperclass();
 
                     for (Field field : superClass.getDeclaredFields()) {
-                        field.setAccessible(true);
+                        if (!field.isAccessible()) {
+                            field.setAccessible(true);
+                        }
 
                         try {
                             Object o = field.get(mainModel);
                             if (o != null) {
                                 try {
                                     Field entityIn = o.getClass().getSuperclass().getDeclaredField("entityIn");
-                                    entityIn.setAccessible(true);
+                                    if (!entityIn.isAccessible()) {
+                                        entityIn.setAccessible(true);
+                                    }
                                     Object o1 = entityIn.get(o);
                                     if (o1 != null) {
                                         entityIn.set(o, null);
@@ -111,7 +118,9 @@ public class MemoryHelper {
 
                                 try {
                                     Field clientPlayer = o.getClass().getSuperclass().getDeclaredField("clientPlayer");
-                                    clientPlayer.setAccessible(true);
+                                    if (!clientPlayer.isAccessible()) {
+                                        clientPlayer.setAccessible(true);
+                                    }
                                     Object o1 = clientPlayer.get(o);
                                     if (o1 != null) {
                                         clientPlayer.set(o, null);
@@ -129,7 +138,7 @@ public class MemoryHelper {
                 e.printStackTrace();
             }
 
-            Hyperium.LOGGER.info("Deleted " + (removes.size() + size + del) + " cosmetic items / skins");
+            LOGGER.info("Deleted " + (removes.size() + size + del) + " cosmetic items / skins");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -141,11 +150,15 @@ public class MemoryHelper {
             Minecraft.memoryReserve = new byte[0];
             try {
                 Field resourceCache = LaunchClassLoader.class.getDeclaredField("resourceCache");
-                resourceCache.setAccessible(true);
+                if (!resourceCache.isAccessible()) {
+                    resourceCache.setAccessible(true);
+                }
                 ((Map<?, ?>) resourceCache.get(Launch.classLoader)).clear();
 
                 Field packageManifests = LaunchClassLoader.class.getDeclaredField("packageManifests");
-                packageManifests.setAccessible(true);
+                if (!packageManifests.isAccessible()) {
+                    packageManifests.setAccessible(true);
+                }
                 ((Map<?, ?>) packageManifests.get(Launch.classLoader)).clear();
             } catch (IllegalAccessException | NoSuchFieldException e) {
                 e.printStackTrace();
