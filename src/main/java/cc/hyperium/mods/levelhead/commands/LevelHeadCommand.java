@@ -17,13 +17,9 @@
 
 package cc.hyperium.mods.levelhead.commands;
 
-import cc.hyperium.Hyperium;
 import cc.hyperium.commands.BaseCommand;
-import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import cc.hyperium.mods.levelhead.Levelhead;
-import cc.hyperium.mods.levelhead.config.LevelheadConfig;
 import cc.hyperium.mods.levelhead.guis.LevelHeadGui;
-import cc.hyperium.utils.ChatColor;
 
 public class LevelHeadCommand implements BaseCommand {
     private final Levelhead mod;
@@ -47,11 +43,6 @@ public class LevelHeadCommand implements BaseCommand {
         if (args.length == 1) {
             if (args[0].equalsIgnoreCase("dumpcache")) {
                 this.mod.levelCache.clear();
-                return;
-            } else if (args[0].equalsIgnoreCase("toggle")) {
-                LevelheadConfig.ENABLED = !LevelheadConfig.ENABLED;
-                Hyperium.CONFIG.save();
-                GeneralChatHandler.instance().sendMessage("Levelhead is now " + (LevelheadConfig.ENABLED ? ChatColor.GREEN + "enabled" : ChatColor.RED + "disabled"));
                 return;
             }
         }
