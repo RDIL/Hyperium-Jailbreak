@@ -17,7 +17,6 @@
 
 package cc.hyperium.mods.levelhead.config;
 
-import cc.hyperium.config.ConfigOpt;
 import cc.hyperium.config.SliderSetting;
 import cc.hyperium.config.ToggleSetting;
 import cc.hyperium.config.provider.IOptionSetProvider;
@@ -36,41 +35,41 @@ public class LevelheadConfig implements IOptionSetProvider {
     public static boolean ENABLED = true;
 
     @Option @ToggleSetting(name = "Show Self")
-    public boolean SHOW_OWN = true;
+    public static boolean SHOW_OWN = true;
 
     @Option @SliderSetting(name = "Render Distance", min = 5, max = 64, isInt = true)
-    public int RENDER_DISTANCE = 64;
+    public static int RENDER_DISTANCE = 64;
 
-    @ConfigOpt @SliderSetting(name = "Cache Size", min = 150, max = 5000, isInt = true)
+    @Option @SliderSetting(name = "Cache Size", min = 150, max = 5000, isInt = true)
     public static int PURGE_SIZE = 500;
 
-    @Option public boolean headerChroma = false;
+    @Option public static boolean headerChroma = false;
 
-    @Option public boolean headerRgb = false;
+    @Option public static boolean headerRgb = false;
 
-    @Option public String headerColor = ChatColor.AQUA.toString();
+    @Option public static String headerColor = ChatColor.AQUA.toString();
 
-    @Option public int headerRed = 255;
+    @Option public static int headerRed = 255;
 
-    @Option public int headerGreen = 255;
+    @Option public static int headerGreen = 255;
 
-    @Option public int headerBlue = 250;
+    @Option public static int headerBlue = 250;
 
-    @Option public double headerAlpha = 1.0;
+    @Option public static double headerAlpha = 1.0;
 
-    @Option public String customHeader = "Level";
+    @Option public static String customHeader = "Level";
 
-    @Option public boolean footerChroma = false;
+    @Option public static boolean footerChroma = false;
 
-    @Option public boolean footerRgb = false;
+    @Option public static boolean footerRgb = false;
 
-    @Option public String footerColor = ChatColor.YELLOW.toString();
+    @Option public static String footerColor = ChatColor.YELLOW.toString();
 
-    @Option public int footerRed = 255;
+    @Option public static int footerRed = 255;
 
-    @Option public int footerGreen = 255;
+    @Option public static int footerGreen = 255;
 
-    @Option public int footerBlue = 250;
+    @Option public static int footerBlue = 250;
 
-    @Option public double footerAlpha = 1.0;
+    @Option public static double footerAlpha = 1.0;
 }

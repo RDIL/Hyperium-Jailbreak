@@ -1,7 +1,6 @@
 package cc.hyperium.gui.hyperium;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.addons.sidebar.gui.screen.GuiScreenSettings;
 import cc.hyperium.config.SelectorSetting;
 import cc.hyperium.config.SliderSetting;
 import cc.hyperium.config.ToggleSetting;
@@ -10,14 +9,11 @@ import cc.hyperium.gui.HyperiumGui;
 import cc.hyperium.gui.ScissorState;
 import cc.hyperium.gui.hyperium.components.AbstractTabComponent;
 import cc.hyperium.gui.hyperium.components.CollapsibleTabComponent;
-import cc.hyperium.gui.hyperium.components.RGBComponent;
 import cc.hyperium.gui.hyperium.components.SelectorComponent;
 import cc.hyperium.gui.hyperium.components.SliderComponent;
 import cc.hyperium.gui.hyperium.components.ToggleComponent;
-import cc.hyperium.gui.keybinds.GuiKeybinds;
 import cc.hyperium.handlers.handlers.SettingsHandler;
 import cc.hyperium.mixinsimp.client.GlStateModifier;
-import cc.hyperium.mods.keystrokes.screen.GuiScreenKeystrokes;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
 import cc.hyperium.utils.HyperiumFontRenderer;
 import cc.hyperium.utils.SimpleAnimValue;
@@ -32,8 +28,6 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,13 +46,12 @@ public class HyperiumSettingsGui extends HyperiumGui {
     private HyperiumFontRenderer font;
     private List<RGBFieldSet> rgbFields = new ArrayList<>();
     protected List<AbstractTabComponent> components = new ArrayList<>();
-    Map<AbstractTabComponent, Boolean> clickStates = new HashMap<>();
+    public Map<AbstractTabComponent, Boolean> clickStates = new HashMap<>();
     private SimpleAnimValue scrollAnim = new SimpleAnimValue(0L, 0f, 0f);
     private int scroll = 0;
 
     private HyperiumSettingsGui() {
         font = new HyperiumFontRenderer("Roboto Condensed", 16.0F, 0, 1.0F);
-        settingsObjects.add(Hyperium.INSTANCE.getModIntegration().getLevelhead().getConfig());
         final SettingsHandler settingsHandler = Hyperium.INSTANCE.getHandlers().getSettingsHandler();
         settingsObjects.addAll(settingsHandler.getSettingsObjects());
         HashMap<Field, List<Consumer<Object>>> call1 = settingsHandler.getcallbacks();
@@ -95,10 +88,6 @@ public class HyperiumSettingsGui extends HyperiumGui {
                     }
                 }
             }
-        }
-
-        for (RGBFieldSet rgbFieldSet : this.getRgbFields()) {
-            apply(new RGBComponent(rgbFieldSet), items);
         }
 
         final Collection<CollapsibleTabComponent> values = items.values();
