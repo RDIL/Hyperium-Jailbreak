@@ -56,11 +56,7 @@ public class GeneralChatHandler {
         if (message == null) return;
 
         if (addHeader) {
-            if (Settings.HYPERIUM_CHAT_PREFIX) {
-                message = ChatColor.RED + "[HyperiumJailbreak] " + ChatColor.WHITE.toString() + message;
-            } else {
-                message = ChatColor.WHITE.toString() + message;
-            }
+            message = ChatColor.RED + "[HyperiumJailbreak] " + ChatColor.WHITE.toString() + message;
         }
         sendMessage(new ChatComponentText(message));
     }
