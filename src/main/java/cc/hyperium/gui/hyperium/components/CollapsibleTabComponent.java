@@ -1,12 +1,12 @@
 package cc.hyperium.gui.hyperium.components;
 
 import cc.hyperium.gui.Icons;
+import cc.hyperium.gui.hyperium.HyperiumSettingsGui;
 import cc.hyperium.mixins.gui.IMixinGuiScreen;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.input.Mouse;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,9 +15,11 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
     private boolean collapsed = true;
     private String name;
     private CollapsibleTabComponent parent;
+    private final HyperiumSettingsGui gui;
 
-    public CollapsibleTabComponent(String name) {
+    public CollapsibleTabComponent(HyperiumSettingsGui gui, String name) {
         super();
+        this.gui = gui;
         this.name = name;
     }
 
@@ -49,7 +51,7 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
     public void render(int x, int y, int width, int mouseX, int mouseY) {
         super.render(x, y, width, mouseX, mouseY);
 
-        tab.gui.drawString(((IMixinGuiScreen) tab.gui).getFontRendererObj(), label.replaceAll("_", " ").toUpperCase(), x + 3, y + 5, 0xffffff);
+        gui.drawString(((IMixinGuiScreen) gui).getFontRendererObj(), name.replaceAll("_", " ").toUpperCase(), x + 3, y + 5, 0xffffff);
 
         GlStateManager.bindTexture(0);
 
@@ -80,13 +82,13 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
                 comp.mouseEvent(right ? mouseX - width / 2 - x : mouseX - x, mouseY - y /* Make the Y relevant to the component */);
 
                 if (Mouse.isButtonDown(0)) {
-                    if (!tab.clickStates.computeIfAbsent(comp, ignored -> false)) {
+                    if (!gui.clickStates.computeIfAbsent(comp, ignored -> false)) {
                         comp.onClick(right ? mouseX - width / 2 : mouseX,
                             mouseY - y /* Make the Y relevant to the component */);
-                        tab.clickStates.put(comp, true);
+                        gui.clickStates.put(comp, true);
                     }
-                } else if (tab.clickStates.computeIfAbsent(comp, ignored -> false)) {
-                    tab.clickStates.put(comp, false);
+                } else if (gui.clickStates.computeIfAbsent(comp, ignored -> false)) {
+                    gui.clickStates.put(comp, false);
                 }
             } else {
                 comp.hover = false;
@@ -143,10 +145,6 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
         if (y < 18) {
             collapsed = !collapsed;
         }
-    }
-
-    public void sortSelf() {
-        children.sort(Comparator.comparing(this::getLabel));
     }
 
     private String getLabel(AbstractTabComponent component) {
