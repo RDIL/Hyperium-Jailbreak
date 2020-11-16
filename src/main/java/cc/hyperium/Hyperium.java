@@ -53,7 +53,7 @@ import java.io.File;
 
 public class Hyperium {
     public static final String modid = "Hyperium";
-    public static final String version = "4.1.2";
+    public static final String version = "4.1.3";
     public static final Hyperium INSTANCE = new Hyperium();
     public static final Logger LOGGER = LogManager.getLogger(modid);
     public static final File folder = new File("hyperium");
