@@ -1,7 +1,7 @@
 package cc.hyperium.gui;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.gui.hyperium.HyperiumMainGui;
+import cc.hyperium.gui.hyperium.HyperiumSettingsGui;
 import cc.hyperium.gui.keybinds.GuiKeybinds;
 import cc.hyperium.installer.utils.http.HttpEntity;
 import cc.hyperium.installer.utils.http.HttpResponse;
@@ -119,7 +119,7 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
                 break;
 
             case 9:
-                HyperiumMainGui.INSTANCE.show();
+                HyperiumSettingsGui.INSTANCE.show();
                 break;
 
             case 10:

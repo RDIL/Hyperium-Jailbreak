@@ -13,12 +13,12 @@ import java.util.List;
 public class CollapsibleTabComponent extends AbstractTabComponent {
     private List<AbstractTabComponent> children = new ArrayList<>();
     private boolean collapsed = true;
-    private String label;
+    private String name;
     private CollapsibleTabComponent parent;
 
-    public CollapsibleTabComponent(AbstractTab tab, List<String> tags, String label) {
-        super(tab, tags);
-        this.label = label;
+    public CollapsibleTabComponent(String name) {
+        super();
+        this.name = name;
     }
 
     public CollapsibleTabComponent getParent() {
@@ -30,7 +30,7 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
     }
 
     public String getLabel() {
-        return label;
+        return name;
     }
 
     public boolean isCollapsed() {
@@ -135,7 +135,6 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
 
     public CollapsibleTabComponent addChild(AbstractTabComponent component) {
         children.add(component);
-        tags.addAll(component.tags);
         return this;
     }
 

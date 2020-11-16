@@ -1,6 +1,7 @@
 package cc.hyperium.handlers.handlers;
 
 import cc.hyperium.config.Settings;
+import cc.hyperium.config.provider.IOptionSetProvider;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.function.Supplier;
 public class SettingsHandler {
     private HashMap<Field, Supplier<String[]>> customStates = new HashMap<>();
     private HashMap<Field, List<Consumer<Object>>> callbacks = new HashMap<>();
-    private List<Object> settingsObjects = new ArrayList<>();
+    private List<IOptionSetProvider> settingsObjects = new ArrayList<>();
 
     public SettingsHandler() {
         try {
@@ -63,7 +64,7 @@ public class SettingsHandler {
         return callbacks;
     }
 
-    public List<Object> getSettingsObjects() {
+    public List<IOptionSetProvider> getSettingsObjects() {
         return settingsObjects;
     }
 }

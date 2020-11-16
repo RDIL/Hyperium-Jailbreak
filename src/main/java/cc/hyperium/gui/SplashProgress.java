@@ -30,7 +30,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 public class SplashProgress {
-    private static final int DEFAULT_MAX = 13;
+    private static final int DEFAULT_MAX = 11;
     private static int PROGRESS = 0;
     private static String CURRENT = "";
     private static ResourceLocation splash;

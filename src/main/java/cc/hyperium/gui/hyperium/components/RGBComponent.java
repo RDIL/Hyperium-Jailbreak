@@ -5,13 +5,12 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import java.awt.Color;
 import java.lang.reflect.Field;
-import java.util.Collections;
 
 public class RGBComponent extends AbstractTabComponent {
     private RGBFieldSet fieldSet;
 
-    public RGBComponent(AbstractTab tab, RGBFieldSet fieldSet) {
-        super(tab, Collections.emptyList());
+    public RGBComponent(RGBFieldSet fieldSet) {
+        super();
         this.fieldSet = fieldSet;
     }
 

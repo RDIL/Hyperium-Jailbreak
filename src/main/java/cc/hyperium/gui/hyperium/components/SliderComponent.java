@@ -1,5 +1,6 @@
 package cc.hyperium.gui.hyperium.components;
 
+import cc.hyperium.gui.hyperium.HyperiumSettingsGui;
 import cc.hyperium.utils.HyperiumFontRenderer;
 import cc.hyperium.utils.RenderUtils;
 import net.minecraft.client.gui.Gui;
@@ -12,6 +13,7 @@ import java.util.List;
 
 public class SliderComponent extends AbstractTabComponent {
     private final String label;
+    private final HyperiumSettingsGui gui;
     private List<String> lines = new ArrayList<>();
     private Field field;
     private Object parentObj;
@@ -23,9 +25,9 @@ public class SliderComponent extends AbstractTabComponent {
     private int width;
     private boolean wasDown = false;
 
-    public SliderComponent(AbstractTab tab, List<String> tags, String label, Field field, Object parentObj, float minVal, float maxVal, boolean isInteger, boolean round) {
-        super(tab, tags);
-        tag(label);
+    public SliderComponent(HyperiumSettingsGui gui, String label, Field field, Object parentObj, float minVal, float maxVal, boolean isInteger, boolean round) {
+        super();
+        this.gui = gui;
         this.label = label;
         this.field = field;
         this.parentObj = parentObj;
@@ -33,8 +35,9 @@ public class SliderComponent extends AbstractTabComponent {
         this.maxVal = maxVal;
         this.isInteger = isInteger;
         this.round = round;
-        if (!field.isAccessible())
+        if (!field.isAccessible()) {
             field.setAccessible(true);
+        }
     }
 
     public String getLabel() {
@@ -68,7 +71,7 @@ public class SliderComponent extends AbstractTabComponent {
 
     @Override
     public void render(int x, int y, int width, int mouseX, int mouseY) {
-        HyperiumFontRenderer font = tab.gui.getFont();
+        HyperiumFontRenderer font = this.gui.getFont();
         lines.clear();
         lines = font.splitString(label, (width) / 4); //16 for icon, 3 for render offset and then some more
 

@@ -17,196 +17,60 @@
 
 package cc.hyperium.mods.levelhead.config;
 
-import cc.hyperium.config.Category;
 import cc.hyperium.config.ConfigOpt;
 import cc.hyperium.config.SliderSetting;
 import cc.hyperium.config.ToggleSetting;
+import cc.hyperium.config.provider.IOptionSetProvider;
 import cc.hyperium.utils.ChatColor;
+import rocks.rdil.simpleconfig.Option;
 
-public class LevelheadConfig {
-    @ConfigOpt @ToggleSetting(category = Category.LEVEL_HEAD, mods = true, name = "Enable")
-    public boolean enabled = true;
+public class LevelheadConfig implements IOptionSetProvider {
+    public static final LevelheadConfig INSTANCE = new LevelheadConfig();
 
-    @ConfigOpt @ToggleSetting(category = Category.LEVEL_HEAD, mods = true, name = "Show Self")
-    public boolean showSelf = true;
-
-    @ConfigOpt @SliderSetting(name = "Render Distance", mods = true, category = Category.LEVEL_HEAD, min = 5, max = 64, isInt = true)
-    public int renderDistance = 64;
-
-    @ConfigOpt @SliderSetting(name = "Cache Size", mods = true, category = Category.LEVEL_HEAD, min = 150, max = 5000, isInt = true)
-    public int purgeSize = 500;
-
-    @ConfigOpt public boolean headerChroma = false;
-
-    @ConfigOpt public boolean headerRgb = false;
-
-    @ConfigOpt public String headerColor = ChatColor.AQUA.toString();
-
-    @ConfigOpt public int headerRed = 255;
-
-    @ConfigOpt public int headerGreen = 255;
-
-    @ConfigOpt public int headerBlue = 250;
-
-    @ConfigOpt public double headerAlpha = 1.0;
-
-    @ConfigOpt public String customHeader = "Level";
-
-    @ConfigOpt public boolean footerChroma = false;
-
-    @ConfigOpt public boolean footerRgb = false;
-
-    @ConfigOpt public String footerColor = ChatColor.YELLOW.toString();
-
-    @ConfigOpt public int footerRed = 255;
-
-    @ConfigOpt public int footerGreen = 255;
-
-    @ConfigOpt public int footerBlue = 250;
-
-    @ConfigOpt public double footerAlpha = 1.0;
-
-    public boolean isFooterChroma() {
-        return footerChroma;
+    @Override
+    public String getName() {
+        return "Levelhead";
     }
 
-    public void setFooterChroma(boolean footerChroma) {
-        this.footerChroma = footerChroma;
-    }
+    @Option @ToggleSetting(name = "Enable")
+    public static boolean ENABLED = true;
 
-    public boolean isFooterRgb() {
-        return footerRgb;
-    }
+    @Option @ToggleSetting(name = "Show Self")
+    public boolean SHOW_OWN = true;
 
-    public void setFooterRgb(boolean footerRgb) {
-        this.footerRgb = footerRgb;
-    }
+    @Option @SliderSetting(name = "Render Distance", min = 5, max = 64, isInt = true)
+    public int RENDER_DISTANCE = 64;
 
-    public String getFooterColor() {
-        return footerColor;
-    }
+    @ConfigOpt @SliderSetting(name = "Cache Size", min = 150, max = 5000, isInt = true)
+    public static int PURGE_SIZE = 500;
 
-    public void setFooterColor(String footerColor) {
-        this.footerColor = footerColor;
-    }
+    @Option public boolean headerChroma = false;
 
-    public int getFooterRed() {
-        return footerRed;
-    }
+    @Option public boolean headerRgb = false;
 
-    public void setFooterRed(int footerRed) {
-        this.footerRed = footerRed;
-    }
+    @Option public String headerColor = ChatColor.AQUA.toString();
 
-    public int getFooterGreen() {
-        return footerGreen;
-    }
+    @Option public int headerRed = 255;
 
-    public void setFooterGreen(int footerGreen) {
-        this.footerGreen = footerGreen;
-    }
+    @Option public int headerGreen = 255;
 
-    public int getFooterBlue() {
-        return footerBlue;
-    }
+    @Option public int headerBlue = 250;
 
-    public void setFooterBlue(int footerBlue) {
-        this.footerBlue = footerBlue;
-    }
+    @Option public double headerAlpha = 1.0;
 
-    public double getFooterAlpha() {
-        return footerAlpha;
-    }
+    @Option public String customHeader = "Level";
 
-    public boolean isHeaderChroma() {
-        return headerChroma;
-    }
+    @Option public boolean footerChroma = false;
 
-    public void setHeaderChroma(boolean headerChroma) {
-        this.headerChroma = headerChroma;
-    }
+    @Option public boolean footerRgb = false;
 
-    public boolean isHeaderRgb() {
-        return headerRgb;
-    }
+    @Option public String footerColor = ChatColor.YELLOW.toString();
 
-    public void setHeaderRgb(boolean headerRgb) {
-        this.headerRgb = headerRgb;
-    }
+    @Option public int footerRed = 255;
 
-    public String getHeaderColor() {
-        return headerColor;
-    }
+    @Option public int footerGreen = 255;
 
-    public void setHeaderColor(String headerColor) {
-        this.headerColor = headerColor;
-    }
+    @Option public int footerBlue = 250;
 
-    public int getHeaderRed() {
-        return headerRed;
-    }
-
-    public void setHeaderRed(int headerRed) {
-        this.headerRed = headerRed;
-    }
-
-    public int getHeaderGreen() {
-        return headerGreen;
-    }
-
-    public void setHeaderGreen(int headerGreen) {
-        this.headerGreen = headerGreen;
-    }
-
-    public int getHeaderBlue() {
-        return headerBlue;
-    }
-
-    public void setHeaderBlue(int headerBlue) {
-        this.headerBlue = headerBlue;
-    }
-
-    public double getHeaderAlpha() {
-        return headerAlpha;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public int getRenderDistance() {
-        return renderDistance;
-    }
-
-    public void setRenderDistance(int renderDistance) {
-        this.renderDistance = renderDistance;
-    }
-
-    public boolean isShowSelf() {
-        return showSelf;
-    }
-
-    public void setShowSelf(boolean showSelf) {
-        this.showSelf = showSelf;
-    }
-
-    public int getPurgeSize() {
-        return purgeSize;
-    }
-
-    public void setPurgeSize(int purgeSize) {
-        this.purgeSize = purgeSize;
-    }
-
-    public String getCustomHeader() {
-        return customHeader;
-    }
-
-    public void setCustomHeader(String customHeader) {
-        this.customHeader = customHeader;
-    }
+    @Option public double footerAlpha = 1.0;
 }

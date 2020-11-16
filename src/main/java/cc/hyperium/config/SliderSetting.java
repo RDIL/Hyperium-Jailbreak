@@ -12,8 +12,6 @@ public @interface SliderSetting {
     float max();
     String name();
     boolean round() default true;
-    Category category() default Category.GENERAL;
     boolean enabled() default true;
-    @Deprecated boolean mods() default false;
     boolean isInt() default false;
 }

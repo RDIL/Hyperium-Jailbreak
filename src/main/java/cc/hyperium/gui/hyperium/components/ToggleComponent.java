@@ -1,6 +1,7 @@
 package cc.hyperium.gui.hyperium.components;
 
 import cc.hyperium.gui.HyperiumGui;
+import cc.hyperium.gui.hyperium.HyperiumSettingsGui;
 import cc.hyperium.mixinsimp.client.GlStateModifier;
 import cc.hyperium.utils.HyperiumFontRenderer;
 import cc.hyperium.utils.RenderUtils;
@@ -13,6 +14,7 @@ import net.minecraft.client.renderer.GlStateManager;
 
 public class ToggleComponent extends AbstractTabComponent {
     private final String label;
+    private final HyperiumSettingsGui gui;
     private List<String> lines = new ArrayList<>();
     private Field field;
     private boolean state;
@@ -20,9 +22,9 @@ public class ToggleComponent extends AbstractTabComponent {
     private double animation = 0.5;
     private long lastDeltaTime = System.currentTimeMillis();
 
-    public ToggleComponent(AbstractTab tab, List<String> tags, String label, Field field, Object parentObj) {
-        super(tab, tags);
-        tag(label);
+    public ToggleComponent(HyperiumSettingsGui gui, String label, Field field, Object parentObj) {
+        super();
+        this.gui = gui;
         this.label = label;
         this.field = field;
         this.parentObj = parentObj;
@@ -48,7 +50,7 @@ public class ToggleComponent extends AbstractTabComponent {
 
     @Override
     public void render(int x, int y, int width, int mouseX, int mouseY) {
-        HyperiumFontRenderer font = tab.gui.getFont();
+        HyperiumFontRenderer font = this.gui.getFont();
 
         lines.clear();
 

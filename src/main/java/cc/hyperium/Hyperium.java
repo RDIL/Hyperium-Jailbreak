@@ -16,7 +16,9 @@
  */
 
 package cc.hyperium;
+
 import cc.hyperium.event.client.InitializationEvent;
+import cc.hyperium.event.client.PreInitializationEvent;
 import cc.hyperium.event.client.GameShutDownEvent;
 import cc.hyperium.event.Priority;
 import cc.hyperium.event.network.server.ServerJoinEvent;
@@ -27,8 +29,14 @@ import cc.hyperium.gui.SplashProgress;
 import cc.hyperium.addons.InternalAddons;
 import cc.hyperium.commands.HyperiumCommandHandler;
 import cc.hyperium.commands.defaults.*;
-import cc.hyperium.config.DefaultConfig;
-import cc.hyperium.config.Settings;
+import cc.hyperium.config.provider.AnimationOptionsProvider;
+import cc.hyperium.config.provider.CosmeticOptionsProvider;
+import cc.hyperium.config.provider.GameplayOptionsProvider;
+import cc.hyperium.config.provider.GeneralOptionsProvider;
+import cc.hyperium.config.provider.HypixelOptionsProvider;
+import cc.hyperium.config.provider.IOptionSetProvider;
+import cc.hyperium.config.provider.IntegrationOptionsProvider;
+import cc.hyperium.config.provider.OptimizationOptionsProvider;
 import cc.hyperium.cosmetics.HyperiumCosmetics;
 import cc.hyperium.event.network.server.hypixel.minigames.MinigameListener;
 import cc.hyperium.handlers.HyperiumHandlers;
@@ -43,6 +51,8 @@ import cc.hyperium.utils.ChatColor;
 import cc.hyperium.utils.mods.CompactChat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.crash.CrashReport;
+import rocks.rdil.simpleconfig.ConfigurationSystem;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
@@ -50,6 +60,8 @@ import com.hyperiumjailbreak.CommonChatResponder;
 import com.hyperiumjailbreak.Popup;
 import com.hyperiumjailbreak.BackendHandler;
 import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 
 public class Hyperium {
     public static final String modid = "Hyperium";
@@ -57,7 +69,7 @@ public class Hyperium {
     public static final Hyperium INSTANCE = new Hyperium();
     public static final Logger LOGGER = LogManager.getLogger(modid);
     public static final File folder = new File("hyperium");
-    public static final DefaultConfig CONFIG = new DefaultConfig(new File(folder, "CONFIG.json"));
+    public static final ConfigurationSystem CONFIG = new ConfigurationSystem(new File(folder, "CONFIG.json"));
     private final ConfirmationPopup confirmation = new ConfirmationPopup();
     private HyperiumCosmetics cosmetics;
     private HyperiumHandlers handlers;
@@ -68,6 +80,23 @@ public class Hyperium {
     private final AutoGG autogg = new AutoGG();
     private InternalAddons intAddons;
     private final BackendHandler bh = new BackendHandler();
+
+    @InvokeEvent(priority = Priority.HIGH)
+    public void preInit(PreInitializationEvent event) {
+        // register configuration providers
+        final List<IOptionSetProvider> builtInOptionSets = Arrays.asList(
+            AnimationOptionsProvider.INSTANCE,
+            CosmeticOptionsProvider.INSTANCE,
+            GameplayOptionsProvider.INSTANCE,
+            GeneralOptionsProvider.INSTANCE,
+            HypixelOptionsProvider.INSTANCE,
+            IntegrationOptionsProvider.INSTANCE,
+            OptimizationOptionsProvider.INSTANCE
+        );
+        for (IOptionSetProvider oProvider : builtInOptionSets) {
+            CONFIG.register(oProvider);
+        }
+    }
 
     @InvokeEvent(priority = Priority.HIGH)
     public void init(InitializationEvent event) {
@@ -85,7 +114,7 @@ public class Hyperium {
 
             cosmetics = new HyperiumCosmetics();
 
-            if (!Settings.FPS && Settings.THANK_WATCHDOG) {
+            if (HypixelOptionsProvider.THANK_WATCHDOG) {
                 new CommonChatResponder("removed from your game for hacking", "Thanks Watchdog!", true);
             }
 
@@ -108,13 +137,10 @@ public class Hyperium {
             SplashProgress.setProgress(7, "Starting");
             Display.setTitle("HyperiumJailbreak");
 
-            SplashProgress.setProgress(9, "Preparing Config");
-            Settings.register();
-            // Register commands.
-            SplashProgress.setProgress(10, "Loading Chat Commands");
+            SplashProgress.setProgress(8, "Loading Chat Commands");
             registerCommands();
 
-            SplashProgress.setProgress(11, "Loading Mods");
+            SplashProgress.setProgress(9, "Loading Mods");
             modIntegration = new HyperiumModIntegration();
             this.intAddons = new InternalAddons();
 
@@ -122,10 +148,10 @@ public class Hyperium {
 
             Runtime.getRuntime().addShutdownHook(new Thread(this::shutdown));
 
-            SplashProgress.setProgress(12, "Reloading Minecraft...");
+            SplashProgress.setProgress(10, "Reloading Minecraft...");
             Minecraft.getMinecraft().refreshResources();
 
-            SplashProgress.setProgress(13, "Finishing Up...");
+            SplashProgress.setProgress(11, "Finishing Up...");
 
             // Check if OptiFine is installed.
             try {

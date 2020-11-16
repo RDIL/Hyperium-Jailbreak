@@ -1,37 +1,34 @@
 package cc.hyperium.mods.autogg.config;
 
-import cc.hyperium.Hyperium;
-import cc.hyperium.config.ConfigOpt;
 import cc.hyperium.config.SliderSetting;
 import cc.hyperium.config.ToggleSetting;
-import static cc.hyperium.config.Category.AUTO_GG;
+import cc.hyperium.config.provider.IOptionSetProvider;
+import rocks.rdil.simpleconfig.Option;
 
-public class AutoGGConfig {
-    @ConfigOpt
-    @ToggleSetting(name = "Hide GG's at end of game", category = AUTO_GG)
-    public boolean ANTI_GG = false;
-    @ConfigOpt
-    @SliderSetting(name = "Delay", min = 0, max = 5, isInt = true, category = AUTO_GG)
-    public int delay = 1;
-    @ConfigOpt
-    @ToggleSetting(name = "Enable", category = AUTO_GG)
-    public boolean toggled = true;
-    @ConfigOpt
-    @ToggleSetting(name = "Say Good Game instead of GG", category = AUTO_GG)
-    public boolean sayGoodGameInsteadOfGG = false;
-    @ConfigOpt
-    @ToggleSetting(name = "Say Lowercase", category = AUTO_GG)
-    public boolean lowercase = false;
+public class AutoGGConfig implements IOptionSetProvider {
+    public static final AutoGGConfig INSTANCE = new AutoGGConfig();
 
-    public AutoGGConfig() {
-        Hyperium.CONFIG.register(this);
+    @Override
+    public String getName() {
+        return "Auto GG";
     }
 
-    public int getDelay() {
-        return this.delay < 0 ? 1 : this.delay > 5 ? 1 : this.delay;
-    }
+    @Option @ToggleSetting(name = "Hide GG's at end of game")
+    public static boolean ANTI_GG = false;
 
-    public boolean isToggled() {
-        return this.toggled;
+    @Option @SliderSetting(name = "Delay", min = 0, max = 5, isInt = true)
+    public static int DELAY = 1;
+
+    @Option @ToggleSetting(name = "Enabled")
+    public static boolean ENABLED = true;
+
+    @Option @ToggleSetting(name = "Say Good Game instead of GG")
+    public static boolean SAY_GOOD_GAME_NOT_GG = false;
+
+    @Option @ToggleSetting(name = "Say in Lowercase")
+    public static boolean LOWERCASE = false;
+
+    public static int getDelay() {
+        return DELAY < 0 ? 1 : DELAY > 5 ? 1 : DELAY;
     }
 }

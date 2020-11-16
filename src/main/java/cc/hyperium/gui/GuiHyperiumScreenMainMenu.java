@@ -32,7 +32,6 @@ import net.minecraft.client.gui.GuiOptions;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiSelectWorld;
 import net.minecraft.client.gui.GuiYesNo;
-import net.minecraft.client.gui.GuiYesNoCallback;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.DynamicTexture;
@@ -46,7 +45,7 @@ import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.WorldInfo;
 import org.lwjgl.input.Keyboard;
 
-public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen implements GuiYesNoCallback {
+public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen {
     private static boolean FIRST_START = true;
     private final ResourceLocation exit = new ResourceLocation("textures/material/exit.png");
     private final ResourceLocation people_outline = new ResourceLocation("textures/material/people-outline.png");
