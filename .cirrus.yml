@@ -1,14 +1,14 @@
 task:
   auto_cancellation: $CIRRUS_BRANCH != 'master' && $CIRRUS_TAG != ''
   container:
-    image: gradle:4.10.3-jdk8
+    image: gradle:5.6.1-jdk8
     cpu: 3
-    memory: 8G
+    memory: 6G
   gradle_cache:
     folder: ~/.gradle/caches
     fingerprint_script: cat build.gradle
-    populate_script: gradle setupCiWorkspace --build-cache -Dorg.gradle.jvmargs=-Xmx8240M
-  script: gradle build -Dorg.gradle.jvmargs=-Xmx8240M
+    populate_script: gradle setupCiWorkspace --build-cache -Dorg.gradle.jvmargs=-Xmx6000M
+  script: gradle build -Dorg.gradle.jvmargs=-Xmx6000M
   jar_artifacts:
     path: ./build/libs/*.jar
     type: application/java-archive
