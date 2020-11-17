@@ -71,7 +71,7 @@ dependencies {
         exclude module: "lwjgl"
     }
     embed "com.github.HyperiumClient:Installer:1.9"
-    embed "rocks.rdil:simpleconfig:2.0.0"
+    embed "rocks.rdil:simpleconfig:2.1.1"
 }
 
 mixin {

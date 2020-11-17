@@ -51,7 +51,18 @@ public class HyperiumSettingsGui extends HyperiumGui {
 
     private HyperiumSettingsGui() {
         font = new HyperiumFontRenderer("Roboto Condensed", 16.0F, 0, 1.0F);
-        settingsObjects.addAll(settingsHandler.getSettingsObjects());
+
+        final List<IOptionSetProvider> actualProviders = new ArrayList<>();
+        for (final Object o : Hyperium.CONFIG.getConfigObjs()) {
+            try {
+                // check for IOptionSetProvider#getName
+                if (o.getClass().getDeclaredMethod("getName") != null) {
+                    actualProviders.add((IOptionSetProvider) o);
+                }
+            } catch (NoSuchMethodException ignored) {
+            }
+        }
+        settingsObjects.addAll(actualProviders);
 
         scollMultiplier = 2;
         HashMap<IOptionSetProvider, CollapsibleTabComponent> items = new HashMap<>();

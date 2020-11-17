@@ -135,7 +135,7 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
 
         GlStateManager.translate(0, height - 50, 0);
 
-        if (System.currentTimeMillis() - lastUpdate > 2000L && InstallerUtils.getOS() != InstallerUtils.OSType.MacOS) {
+        if (System.currentTimeMillis() - lastUpdate > 2000L) {
             refreshData();
         }
 
@@ -143,9 +143,7 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
         GlStateManager.translate(current.getScaledWidth() / 2, 5, 0);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
-        if(InstallerUtils.getOS() != InstallerUtils.OSType.MacOS) {
-            drawCenteredString(fontRendererObj, "HyperiumJailbreak Player Count:", 0, -5, 0xFFFFFF);
-        }
+        drawCenteredString(fontRendererObj, "HyperiumJailbreak Player Count:", 0, -5, 0xFFFFFF);
         GlStateManager.translate(0F, 10F, 0F);
         GlStateManager.scale(1, 1, 1);
         GlStateManager.enableAlpha();
@@ -164,7 +162,7 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
         Multithreading.runAsync(() -> {
             HttpResponse response = null;
             try {
-                response = HttpClients.createDefault().execute(BackendHandler.generate("https://backend.rdil.rocks/getOnline"));
+                response = HttpClients.createDefault().execute(BackendHandler.generate("http://backend.rdil.rocks/getOnline"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
