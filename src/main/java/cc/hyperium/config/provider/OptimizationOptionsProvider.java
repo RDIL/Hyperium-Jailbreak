@@ -9,7 +9,7 @@ public class OptimizationOptionsProvider implements IOptionSetProvider {
 
 	@Override
 	public String getName() {
-		return "Optimizations";
+        return "Optimizations";
 	}
     
     @Option @ToggleSetting(name = "FPS Mode (activates after restart)")

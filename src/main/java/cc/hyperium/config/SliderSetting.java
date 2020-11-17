@@ -12,6 +12,5 @@ public @interface SliderSetting {
     float max();
     String name();
     boolean round() default true;
-    boolean enabled() default true;
     boolean isInt() default false;
 }

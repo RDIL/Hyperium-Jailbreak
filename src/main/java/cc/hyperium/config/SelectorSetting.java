@@ -10,5 +10,4 @@ import java.lang.annotation.Target;
 public @interface SelectorSetting {
     String name();
     String[] items();
-    boolean enabled() default true;
 }
