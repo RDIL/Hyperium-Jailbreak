@@ -71,9 +71,9 @@ public class SliderComponent extends AbstractTabComponent {
 
     @Override
     public void render(int x, int y, int width, int mouseX, int mouseY) {
-        HyperiumFontRenderer font = this.gui.getFont();
+        final HyperiumFontRenderer font = this.gui.getFont();
         lines.clear();
-        lines = font.splitString(label, (width) / 4); //16 for icon, 3 for render offset and then some more
+        lines = font.splitString(label, (width) / 4); // 16 for icon, 3 for render offset and then some more
 
         if (currentValue < minVal) {
             currentValue = minVal;
@@ -88,7 +88,7 @@ public class SliderComponent extends AbstractTabComponent {
 
         int line1 = 0;
         for (String line : lines) {
-            font.drawString(line.replaceAll("_", " ").toUpperCase(), x + 3, y + 5 + 17 * line1, 0xffffff);
+            font.drawString(line.replaceAll("_", " "), x + 3, y + 5 + 17 * line1, 0xffffff);
             line1++;
         }
         int left = x + width / 2;

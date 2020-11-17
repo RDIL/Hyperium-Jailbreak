@@ -14,21 +14,12 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
     private List<AbstractTabComponent> children = new ArrayList<>();
     private boolean collapsed = true;
     private String name;
-    private CollapsibleTabComponent parent;
     private final HyperiumSettingsGui gui;
 
     public CollapsibleTabComponent(HyperiumSettingsGui gui, String name) {
         super();
         this.gui = gui;
         this.name = name;
-    }
-
-    public CollapsibleTabComponent getParent() {
-        return parent;
-    }
-
-    public void setParent(CollapsibleTabComponent parent) {
-        this.parent = parent;
     }
 
     public String getLabel() {
@@ -73,11 +64,9 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
         int prevH = 0;
 
         for (AbstractTabComponent comp : children) {
-            if (parent != null) right = false;
+            comp.render(right ? x + width / 2 : x, y, width / 2, mouseX, mouseY);
 
-            comp.render(right ? x + width / 2 : x, y, parent != null ? width : width / 2, mouseX, mouseY);
-
-            if (mouseX >= (right ? x + width / 2 : x) && mouseX <= (right ? x + width / 2 : x) + (parent != null ? width : width / 2) && mouseY >= y && mouseY <= y + comp.getHeight()) {
+            if (mouseX >= (right ? x + width / 2 : x) && mouseX <= (right ? x + width / 2 : x) + (width / 2) && mouseY >= y && mouseY <= y + comp.getHeight()) {
                 comp.hover = true;
                 comp.mouseEvent(right ? mouseX - width / 2 - x : mouseX - x, mouseY - y /* Make the Y relevant to the component */);
 
@@ -94,8 +83,7 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
                 comp.hover = false;
             }
 
-            boolean b = right || parent != null;
-            if (b) y += Math.max(comp.getHeight(), prevH);
+            if (right) y += Math.max(comp.getHeight(), prevH);
             right = !right;
 
             prevH = comp.getHeight();
@@ -107,14 +95,6 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
         if (collapsed) {
             return 18;
         } else {
-            if (parent != null) {
-                int h = 18;
-                for (AbstractTabComponent child : this.children) {
-                    h += child.getHeight();
-                }
-                return h;
-            }
-
             Iterator<AbstractTabComponent> iterator = children.iterator();
             boolean right = true;
             int leftHeight = 0;
@@ -145,19 +125,5 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
         if (y < 18) {
             collapsed = !collapsed;
         }
-    }
-
-    private String getLabel(AbstractTabComponent component) {
-        if (component instanceof CollapsibleTabComponent) {
-            return ((CollapsibleTabComponent) component).getLabel();
-        }
-        if (component instanceof SliderComponent) {
-            return ((SliderComponent) component).getLabel();
-        }
-        if (component instanceof ToggleComponent)
-            return ((ToggleComponent) component).getLabel();
-        if (component instanceof SelectorComponent)
-            return ((SelectorComponent) component).getLabel();
-        return "No Title";
     }
 }

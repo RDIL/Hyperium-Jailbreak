@@ -60,7 +60,7 @@ public class SelectorComponent extends AbstractTabComponent {
 
     @Override
     public void render(int x, int y, int width, int mouseX, int mouseY) {
-        HyperiumFontRenderer font = this.gui.getFont();
+        final HyperiumFontRenderer font = this.gui.getFont();
 
         lines.clear();
         lines = font.splitString(label, (int) (width - font.getWidth(getCurrentValue()))); //16 for icon, 3 for render offset and then some more
@@ -71,7 +71,7 @@ public class SelectorComponent extends AbstractTabComponent {
 
         int line1 = 0;
         for (String line : lines) {
-            font.drawString(line.replaceAll("_", " ").toUpperCase(), x + 3, y + 5 + 17 * line1, 0xffffff);
+            font.drawString(line.replaceAll("_", " "), x + 3, y + 5 + 17 * line1, 0xffffff);
             line1++;
         }
 
@@ -79,7 +79,6 @@ public class SelectorComponent extends AbstractTabComponent {
         String val = getCurrentValue();
         float statX = farSide - 5 - font.getWidth(val);
         font.drawString(val, statX, y + 5, Color.WHITE.getRGB());
-
     }
 
     @Override

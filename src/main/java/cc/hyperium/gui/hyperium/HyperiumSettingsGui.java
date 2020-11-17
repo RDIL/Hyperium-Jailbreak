@@ -26,12 +26,10 @@ import java.awt.Color;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 import org.lwjgl.input.Mouse;
 
@@ -39,10 +37,9 @@ public class HyperiumSettingsGui extends HyperiumGui {
     public static HyperiumSettingsGui INSTANCE = new HyperiumSettingsGui();
     public boolean show = false;
     private int initialGuiScale;
-    private HashMap<Field, Supplier<String[]>> customStates = new HashMap<>();
     private HashMap<Field, List<Consumer<Object>>> callbacks = new HashMap<>();
     private List<IOptionSetProvider> settingsObjects = new ArrayList<>();
-    private HyperiumFontRenderer font;
+    private final HyperiumFontRenderer font;
     private List<RGBFieldSet> rgbFields = new ArrayList<>();
     protected List<AbstractTabComponent> components = new ArrayList<>();
     public Map<AbstractTabComponent, Boolean> clickStates = new HashMap<>();
@@ -68,16 +65,15 @@ public class HyperiumSettingsGui extends HyperiumGui {
         HashMap<IOptionSetProvider, CollapsibleTabComponent> items = new HashMap<>();
         for (IOptionSetProvider o : this.getSettingsObjects()) {
             for (Field f : o.getClass().getDeclaredFields()) {
-                ToggleSetting ts = f.getAnnotation(ToggleSetting.class);
-                SelectorSetting ss = f.getAnnotation(SelectorSetting.class);
-                SliderSetting sliderSetting = f.getAnnotation(SliderSetting.class);
+                final ToggleSetting ts = f.getAnnotation(ToggleSetting.class);
+                final SelectorSetting ss = f.getAnnotation(SelectorSetting.class);
+                final SliderSetting sliderSetting = f.getAnnotation(SliderSetting.class);
                 List<Consumer<Object>> objectConsumer = this.getCallbacks().get(f);
                 AbstractTabComponent tabComponent = null;
                 if (ts != null) {
                     tabComponent = new ToggleComponent(this, ts.name(), f, o);
                 } else if (ss != null) {
-                    Supplier<String[]> supplier = this.getCustomStates().getOrDefault(f, ss::items);
-                    tabComponent = new SelectorComponent(this, ss.name(), f, o, supplier);
+                    tabComponent = new SelectorComponent(this, ss.name(), f, o, ss::items);
                 } else if (sliderSetting != null) {
                     tabComponent = new SliderComponent(this, sliderSetting.name(), f, o, sliderSetting.min(), sliderSetting.max(), sliderSetting.isInt(), sliderSetting.round());
                 }
@@ -90,13 +86,8 @@ public class HyperiumSettingsGui extends HyperiumGui {
             }
         }
 
-        final Collection<CollapsibleTabComponent> values = items.values();
-        final List<CollapsibleTabComponent> c = new ArrayList<>(values);
+        final List<CollapsibleTabComponent> c = new ArrayList<>(items.values());
         components.addAll(c);
-    }
-
-    public HashMap<Field, Supplier<String[]>> getCustomStates() {
-        return customStates;
     }
 
     public HashMap<Field, List<Consumer<Object>>> getCallbacks() {
@@ -137,7 +128,7 @@ public class HyperiumSettingsGui extends HyperiumGui {
         renderCt(xg, yg * 2, xg * 9, yg * 7);
     }
 
-    void renderCt(int x, int y, int width, int height) {
+    private void renderCt(int x, int y, int width, int height) {
         ScaledResolution sr = ResolutionUtil.current();
         int sw = sr.getScaledWidth();
         int sh = sr.getScaledHeight();
@@ -160,17 +151,19 @@ public class HyperiumSettingsGui extends HyperiumGui {
             /* If mouse is over component, set as hovered */
             if (mx >= x && mx <= x + width && my > y && my <= y + comp.getHeight()) {
                 comp.hover = true;
-                //For slider
+                // For slider
                 comp.mouseEvent(mx - xg, my - y /* Make the Y relevant to the component */);
                 if (Mouse.isButtonDown(0)) {
                     if (!clickStates.computeIfAbsent(comp, ignored -> false)) {
                         comp.onClick(mx, my - y /* Make the Y relevant to the component */);
                         clickStates.put(comp, true);
                     }
-                } else if (clickStates.computeIfAbsent(comp, ignored -> false))
+                } else if (clickStates.computeIfAbsent(comp, ignored -> false)) {
                     clickStates.put(comp, false);
-            } else
+                }
+            } else {
                 comp.hover = false;
+            }
             y += comp.getHeight();
         }
 
@@ -237,8 +230,7 @@ public class HyperiumSettingsGui extends HyperiumGui {
     private void apply(AbstractTabComponent component, IOptionSetProvider provider, HashMap<IOptionSetProvider, CollapsibleTabComponent> items) {
         CollapsibleTabComponent collapsibleTabComponent = items.computeIfAbsent(
             provider,
-            obj ->
-                new CollapsibleTabComponent(this, obj.getName())
+            providerObj -> new CollapsibleTabComponent(this, providerObj.getName())
         );
         collapsibleTabComponent.addChild(component);
     }
