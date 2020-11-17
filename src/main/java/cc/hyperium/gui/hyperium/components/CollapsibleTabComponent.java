@@ -13,7 +13,7 @@ import java.util.List;
 public class CollapsibleTabComponent extends AbstractTabComponent {
     private List<AbstractTabComponent> children = new ArrayList<>();
     private boolean collapsed = true;
-    private String name;
+    private final String name;
     private final HyperiumSettingsGui gui;
 
     public CollapsibleTabComponent(HyperiumSettingsGui gui, String name) {
@@ -60,20 +60,16 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
         x += 10;
         width -= 10;
 
-        boolean right = false;
-        int prevH = 0;
-
         for (AbstractTabComponent comp : children) {
-            comp.render(right ? x + width / 2 : x, y, width / 2, mouseX, mouseY);
+            comp.render(x, y, width / 2, mouseX, mouseY);
 
-            if (mouseX >= (right ? x + width / 2 : x) && mouseX <= (right ? x + width / 2 : x) + (width / 2) && mouseY >= y && mouseY <= y + comp.getHeight()) {
+            if (mouseX >= x && mouseX <= x + (width / 2) && mouseY >= y && mouseY <= y + comp.getHeight()) {
                 comp.hover = true;
-                comp.mouseEvent(right ? mouseX - width / 2 - x : mouseX - x, mouseY - y /* Make the Y relevant to the component */);
+                comp.mouseEvent(mouseX - x, mouseY - y);
 
                 if (Mouse.isButtonDown(0)) {
                     if (!gui.clickStates.computeIfAbsent(comp, ignored -> false)) {
-                        comp.onClick(right ? mouseX - width / 2 : mouseX,
-                            mouseY - y /* Make the Y relevant to the component */);
+                        comp.onClick(mouseX, mouseY - y);
                         gui.clickStates.put(comp, true);
                     }
                 } else if (gui.clickStates.computeIfAbsent(comp, ignored -> false)) {
@@ -82,11 +78,6 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
             } else {
                 comp.hover = false;
             }
-
-            if (right) y += Math.max(comp.getHeight(), prevH);
-            right = !right;
-
-            prevH = comp.getHeight();
         }
     }
 
@@ -95,23 +86,13 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
         if (collapsed) {
             return 18;
         } else {
-            Iterator<AbstractTabComponent> iterator = children.iterator();
-            boolean right = true;
-            int leftHeight = 0;
-            int compH = 18;
+            final Iterator<AbstractTabComponent> iterator = children.iterator();
+            int height = 0;
             while (iterator.hasNext()) {
-                right = !right;
                 AbstractTabComponent next = iterator.next();
-                int height = next.getHeight();
-                if (right) {
-                    compH += Math.max(leftHeight, height);
-                    leftHeight = 0;
-                } else {
-                    leftHeight = height;
-                }
+                height = next.getHeight();
             }
-            compH += leftHeight;
-            return compH;
+            return 18 + height;
         }
     }
 
