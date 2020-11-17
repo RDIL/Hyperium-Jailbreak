@@ -24,6 +24,8 @@ import cc.hyperium.event.client.TickEvent;
 import cc.hyperium.mixins.packet.IMixinC01PacketChatMessage;
 import cc.hyperium.utils.ChatColor;
 import cc.hyperium.utils.JsonHolder;
+import cc.hyperium.utils.mods.CompactChat;
+
 import com.google.gson.JsonParser;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.play.client.C01PacketChatMessage;
@@ -71,6 +73,7 @@ public class GeneralChatHandler {
 
     public void sendMessage(String message) {
         sendMessage(message, true);
+        CompactChat.INSTANCE.setLastMessage(message);
     }
 
     @InvokeEvent
