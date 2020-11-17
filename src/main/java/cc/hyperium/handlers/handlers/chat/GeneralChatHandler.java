@@ -21,10 +21,12 @@ import cc.hyperium.Hyperium;
 import cc.hyperium.event.network.chat.ChatEvent;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.client.TickEvent;
+import cc.hyperium.mixins.packet.IMixinC01PacketChatMessage;
 import cc.hyperium.utils.ChatColor;
 import cc.hyperium.utils.JsonHolder;
 import com.google.gson.JsonParser;
 import net.minecraft.client.Minecraft;
+import net.minecraft.network.play.client.C01PacketChatMessage;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 import java.io.InputStreamReader;
@@ -45,6 +47,12 @@ public class GeneralChatHandler {
     public GeneralChatHandler(List<HyperiumChatHandler> handlerList) {
         this.handlerList = handlerList;
         instance = this;
+    }
+
+    public static void sendMessageToServer(String msg) {
+        final C01PacketChatMessage packet = new C01PacketChatMessage(msg);
+        ((IMixinC01PacketChatMessage) packet).setMessage(msg);
+        Minecraft.getMinecraft().thePlayer.sendQueue.addToSendQueue(packet);
     }
 
     public void sendMessage(IChatComponent component) {

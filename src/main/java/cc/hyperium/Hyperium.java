@@ -125,7 +125,7 @@ public class Hyperium {
             SplashProgress.setProgress(6, "Loading Utilities");
             EventBus.INSTANCE.register(new MinigameListener());
             EventBus.INSTANCE.register(new ToggleSprintContainer());
-            EventBus.INSTANCE.register(CompactChat.getInstance());
+            EventBus.INSTANCE.register(CompactChat.INSTANCE);
             EventBus.INSTANCE.register(confirmation);
 
             CONFIG.register(new ToggleSprintContainer());

@@ -20,9 +20,9 @@ package cc.hyperium.mixins.entity;
 import cc.hyperium.config.provider.IntegrationOptionsProvider;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.network.chat.SendChatMessageEvent;
+import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import cc.hyperium.mods.nickhider.NickHider;
 import com.mojang.authlib.GameProfile;
-import cc.hyperium.utils.ChatUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -67,7 +67,7 @@ public class MixinEntityPlayerSP extends AbstractClientPlayer {
         EventBus.INSTANCE.post(event);
 
         if (!event.isCancelled()) {
-            ChatUtil.sendMessage(message);
+            GeneralChatHandler.sendMessageToServer(message);
         }
     }
 

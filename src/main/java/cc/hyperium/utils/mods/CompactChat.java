@@ -26,15 +26,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiNewChat;
 
 public class CompactChat {
-    private static CompactChat instance;
+    public static final CompactChat INSTANCE = new CompactChat();
     private String lastMessage = "";
     private int line = 0;
     private int amount = 0;
-
-    public static CompactChat getInstance() {
-        if (instance == null) instance = new CompactChat();
-        return instance;
-    }
 
     @InvokeEvent(priority = Priority.LOW)
     public void onChat(ChatEvent event) {
@@ -54,5 +49,9 @@ public class CompactChat {
             if (line > 256) line = 0;
             event.setCancelled(true);
         }
+    }
+
+    public void setLastMessage(final String lastMessage) {
+        this.lastMessage = lastMessage;
     }
 }
