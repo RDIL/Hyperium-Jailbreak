@@ -7,10 +7,10 @@ import rocks.rdil.simpleconfig.Option;
 public class OptimizationOptionsProvider implements IOptionSetProvider {
     public static final OptimizationOptionsProvider INSTANCE = new OptimizationOptionsProvider();
 
-	@Override
-	public String getName() {
+    @Override
+    public String getName() {
         return "Optimizations";
-	}
+    }
     
     @Option @ToggleSetting(name = "FPS Mode (activates after restart)")
     public static boolean FPS = false;
