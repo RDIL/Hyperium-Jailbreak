@@ -17,14 +17,14 @@
 
 package cc.hyperium.mods;
 
-import cc.hyperium.config.ConfigOpt;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.client.TickEvent;
 import cc.hyperium.mixins.MixinKeyBinding;
 import net.minecraft.client.Minecraft;
+import rocks.rdil.simpleconfig.Option;
 
 public class ToggleSprintContainer {
-    @ConfigOpt
+    @Option
     public static boolean toggleSprintActive = false;
 
     @InvokeEvent

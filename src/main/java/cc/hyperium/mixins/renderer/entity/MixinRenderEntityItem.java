@@ -1,6 +1,6 @@
 package cc.hyperium.mixins.renderer.entity;
 
-import cc.hyperium.config.Settings;
+import cc.hyperium.config.provider.IntegrationOptionsProvider;
 import cc.hyperium.mods.itemphysic.physics.ClientPhysic;
 import net.minecraft.client.renderer.entity.RenderEntityItem;
 import net.minecraft.entity.item.EntityItem;
@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinRenderEntityItem {
     @Inject(method = "doRender", at = @At("HEAD"), cancellable = true)
     private void doRender(EntityItem entity, double x, double y, double z, float entityYaw, float partialTicks, CallbackInfo callbackInfo) {
-        if (Settings.ITEM_PHYSIC_ENABLED) {
+        if (IntegrationOptionsProvider.ITEM_PHYSIC_ENABLED) {
             ClientPhysic.doRender(entity, x, y, z, entityYaw, partialTicks);
             callbackInfo.cancel();
         }

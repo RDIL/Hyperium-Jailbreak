@@ -12,7 +12,6 @@ import cc.hyperium.gui.hyperium.components.CollapsibleTabComponent;
 import cc.hyperium.gui.hyperium.components.SelectorComponent;
 import cc.hyperium.gui.hyperium.components.SliderComponent;
 import cc.hyperium.gui.hyperium.components.ToggleComponent;
-import cc.hyperium.handlers.handlers.SettingsHandler;
 import cc.hyperium.mixinsimp.client.GlStateModifier;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
 import cc.hyperium.utils.HyperiumFontRenderer;
@@ -52,17 +51,7 @@ public class HyperiumSettingsGui extends HyperiumGui {
 
     private HyperiumSettingsGui() {
         font = new HyperiumFontRenderer("Roboto Condensed", 16.0F, 0, 1.0F);
-        final SettingsHandler settingsHandler = Hyperium.INSTANCE.getHandlers().getSettingsHandler();
         settingsObjects.addAll(settingsHandler.getSettingsObjects());
-        HashMap<Field, List<Consumer<Object>>> call1 = settingsHandler.getcallbacks();
-        for (Field field : call1.keySet()) {
-            callbacks.computeIfAbsent(field, tmp -> new ArrayList<>()).addAll(call1.get(field));
-        }
-
-        HashMap<Field, Supplier<String[]>> customStates = settingsHandler.getCustomStates();
-        for (Field field : customStates.keySet()) {
-            this.customStates.put(field, customStates.get(field));
-        }
 
         scollMultiplier = 2;
         HashMap<IOptionSetProvider, CollapsibleTabComponent> items = new HashMap<>();

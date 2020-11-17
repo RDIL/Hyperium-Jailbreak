@@ -1,8 +1,8 @@
 package cc.hyperium.gui;
 
+import cc.hyperium.config.provider.MenusOptionsProvider;
 import cc.hyperium.styles.GuiStyle;
 import cc.hyperium.Hyperium;
-import cc.hyperium.config.Settings;
 import cc.hyperium.gui.playerrenderer.GuiPlayerRenderer;
 import cc.hyperium.utils.HyperiumFontRenderer;
 import net.minecraft.client.Minecraft;
@@ -61,7 +61,7 @@ public class GuiHyperiumScreen extends GuiScreen {
     }
 
     GuiStyle getStyle() {
-        return GuiStyle.valueOf(Minecraft.getMinecraft().theWorld == null ? Settings.MENU_STYLE : Settings.PAUSE_STYLE);
+        return GuiStyle.valueOf(Minecraft.getMinecraft().theWorld == null ? MenusOptionsProvider.MENU_STYLE : MenusOptionsProvider.PAUSE_STYLE);
     }
 
     private void renderHyperiumBackground(ScaledResolution p_180476_1_) {

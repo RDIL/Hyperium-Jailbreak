@@ -33,7 +33,7 @@ public class CustomCrosshairAddon extends AbstractMod {
     private static CustomCrosshairAddon instance;
     private CustomCrosshair crosshair;
     private CustomCrosshairConfig config;
-    public static String VERSION = "0.5.3-hyperium";
+    public static final String VERSION = "0.5.3-hyperium";
 
     @Override
     public AbstractMod init() {

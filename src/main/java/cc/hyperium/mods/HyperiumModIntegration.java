@@ -16,7 +16,8 @@
  */
 
 package cc.hyperium.mods;
-import cc.hyperium.config.Settings;
+
+import cc.hyperium.config.provider.OptimizationOptionsProvider;
 import cc.hyperium.mods.autofriend.AutofriendMod;
 import cc.hyperium.mods.autogg.AutoGG;
 import cc.hyperium.mods.autotext.AutoText;
@@ -66,7 +67,7 @@ public class HyperiumModIntegration {
         this.keystrokesMod.init();
         this.timeChanger.init();
         
-        if (!Settings.FPS) {
+        if (!OptimizationOptionsProvider.FPS) {
             autofriend.init();
             fncompass.init();
             blockOverlay.init();

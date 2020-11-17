@@ -17,7 +17,7 @@
 
 package cc.hyperium.mixins;
 
-import cc.hyperium.config.Settings;
+import cc.hyperium.config.provider.GeneralOptionsProvider;
 import net.minecraft.enchantment.Enchantment;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -32,6 +32,6 @@ public abstract class MixinEnchantment {
 
     @Inject(method = "getTranslatedName", at = @At("HEAD"), cancellable = true)
     private void getTranslatedName(int level, CallbackInfoReturnable<String> ci) {
-        if (!Settings.ROMAN_NUMERALS) ci.setReturnValue(StatCollector.translateToLocal(getName()) + " " + level);
+        if (!GeneralOptionsProvider.ROMAN_NUMERALS) ci.setReturnValue(StatCollector.translateToLocal(getName()) + " " + level);
     }
 }

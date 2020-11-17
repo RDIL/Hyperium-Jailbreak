@@ -1,15 +1,16 @@
 package cc.hyperium.addons.bossbar.config;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.config.ConfigOpt;
+import rocks.rdil.simpleconfig.Option;
 
 public class BossbarConfig {
     public BossbarConfig() {
         Hyperium.CONFIG.register(this);
     }
-    @ConfigOpt public static boolean bossBarEnabled = true;
-    @ConfigOpt public static boolean barEnabled = true;
-    @ConfigOpt public static boolean textEnabled = true;
-    @ConfigOpt public static int x = -1;
-    @ConfigOpt public static int y = 12;
+
+    @Option public static boolean bossBarEnabled = true;
+    @Option public static boolean barEnabled = true;
+    @Option public static boolean textEnabled = true;
+    @Option public static int x = -1;
+    @Option public static int y = 12;
 }

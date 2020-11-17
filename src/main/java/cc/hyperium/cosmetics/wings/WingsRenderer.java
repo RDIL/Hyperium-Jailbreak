@@ -17,7 +17,7 @@
 
 package cc.hyperium.cosmetics.wings;
 
-import cc.hyperium.config.Settings;
+import cc.hyperium.config.provider.CosmeticOptionsProvider;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.render.RenderPlayerEvent;
 import net.minecraft.client.Minecraft;
@@ -57,7 +57,7 @@ public class WingsRenderer extends ModelBase {
     public void onRenderPlayer(RenderPlayerEvent event) {
         EntityPlayer player = event.getEntity();
         if (event.getEntity().getUniqueID().equals(Minecraft.getMinecraft().thePlayer.getUniqueID()) && !player.isInvisible()) {
-            if (!Settings.ENABLE_WINGS) return;
+            if (!CosmeticOptionsProvider.ENABLE_WINGS) return;
 
             this.renderWings(player, event.getPartialTicks(), event.getX(), event.getY(), event.getZ());
         }
@@ -66,13 +66,13 @@ public class WingsRenderer extends ModelBase {
     private void renderWings(EntityPlayer player, float partialTicks, double x, double y, double z) {
         ResourceLocation location = wingsCosmetic.getLocation();
 
-        double v = Settings.WINGS_SCALE;
+        double v = CosmeticOptionsProvider.WINGS_SCALE;
         double scale = v / 100.0;
         double rotate = this.interpolate(player.prevRenderYawOffset, player.renderYawOffset, partialTicks);
 
         GlStateManager.pushMatrix();
         // Displaces the wings by a custom value.
-        double customOffset = Settings.WINGS_OFFSET / 50;
+        double customOffset = CosmeticOptionsProvider.WINGS_OFFSET / 50;
         GlStateManager.translate(0, customOffset, 0);
         GlStateManager.translate(x, y, z);
 

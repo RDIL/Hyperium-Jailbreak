@@ -16,7 +16,7 @@
  */
 
 package cc.hyperium.gui;
-import cc.hyperium.config.Settings;
+
 import cc.hyperium.config.provider.HypixelOptionsProvider;
 import cc.hyperium.event.network.server.hypixel.HypixelFriendRequestEvent;
 import cc.hyperium.event.network.server.hypixel.HypixelPartyInviteEvent;

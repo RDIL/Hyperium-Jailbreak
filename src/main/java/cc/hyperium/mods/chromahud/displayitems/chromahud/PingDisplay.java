@@ -17,13 +17,13 @@
 
 package cc.hyperium.mods.chromahud.displayitems.chromahud;
 
+import cc.hyperium.config.provider.ChromaHudOptionsProvider;
 import cc.hyperium.mods.chromahud.ElementRenderer;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
 import cc.hyperium.utils.JsonHolder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.network.NetworkPlayerInfo;
-import cc.hyperium.config.Settings;
 
 public class PingDisplay extends DisplayItem {
     public PingDisplay(JsonHolder raw, int ordinal) {
@@ -39,7 +39,7 @@ public class PingDisplay extends DisplayItem {
         String string = "";
         if (thePlayer != null) {
             NetworkPlayerInfo playerInfo = Minecraft.getMinecraft().getNetHandler().getPlayerInfo(Minecraft.getMinecraft().thePlayer.getUniqueID());
-            if (!Settings.CHROMAHUD_SQUAREBRACE_PREFIX_OPTION) {
+            if (!ChromaHudOptionsProvider.CHROMAHUD_SQUAREBRACE_PREFIX_OPTION) {
                 string = "Ping: " + (playerInfo == null ? "error" : playerInfo.getResponseTime());
             } else {
                 string = "[Ping] " + (playerInfo == null ? "error" : playerInfo.getResponseTime());

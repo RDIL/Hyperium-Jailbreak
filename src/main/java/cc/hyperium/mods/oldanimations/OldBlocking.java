@@ -1,6 +1,6 @@
 package cc.hyperium.mods.oldanimations;
 
-import cc.hyperium.config.Settings;
+import cc.hyperium.config.provider.AnimationOptionsProvider;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
@@ -28,7 +28,7 @@ public class OldBlocking {
             }
             Label_0327:
             if (entitylivingbaseIn instanceof EntityPlayer) {
-                if (Settings.OLD_BLOCKING) {
+                if (AnimationOptionsProvider.OLD_BLOCKING) {
                     if (((EntityPlayer) entitylivingbaseIn).isBlocking()) {
                         if (entitylivingbaseIn.isSneaking()) {
                             ((ModelBiped) livingEntityRenderer.getMainModel()).postRenderArm(0.0325f);
@@ -50,10 +50,10 @@ public class OldBlocking {
                 } else {
                     ((ModelBiped) livingEntityRenderer.getMainModel()).postRenderArm(0.0625f);
                 }
-                if (!Settings.OLD_ITEM_HELD) {
+                if (!AnimationOptionsProvider.OLD_ITEM_HELD) {
                     GlStateManager.translate(-0.0625f, 0.4375f, 0.0625f);
                 } else {
-                    if (!((EntityPlayer) entitylivingbaseIn).isBlocking() && Settings.OLD_ITEM_HELD) {
+                    if (!((EntityPlayer) entitylivingbaseIn).isBlocking() && AnimationOptionsProvider.OLD_ITEM_HELD) {
                         GlStateManager.translate(-0.0855f, 0.4775f, 0.1585f);
                         GlStateManager.rotate(-19.0f, 20.0f, 0.0f, -6.0f);
                         break Label_0327;

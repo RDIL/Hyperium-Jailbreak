@@ -1,14 +1,13 @@
 package cc.hyperium.mixinsimp.gui;
 
-import cc.hyperium.config.Settings;
-import cc.hyperium.handlers.handlers.data.HypixelAPI;
+import cc.hyperium.config.provider.GeneralOptionsProvider;
 import cc.hyperium.mixins.gui.IMixinGuiPlayerTabOverlay;
+import cc.hyperium.mixinsimp.renderer.HyperiumRender;
 import cc.hyperium.utils.ChatColor;
 import cc.hyperium.utils.StaffUtils;
 import com.google.common.collect.Ordering;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiPlayerTabOverlay;
 import net.minecraft.client.network.NetHandlerPlayClient;
@@ -24,28 +23,12 @@ import net.minecraft.util.IChatComponent;
 import net.minecraft.world.WorldSettings;
 import java.awt.Color;
 import java.util.List;
-import java.util.UUID;
-import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class HyperiumGuiPlayerTabOverlay {
     private GuiPlayerTabOverlay parent;
 
     public HyperiumGuiPlayerTabOverlay(GuiPlayerTabOverlay parent) {
         this.parent = parent;
-    }
-
-    private static void drawChromaWaveString(String text, int xIn, int y) {
-        FontRenderer renderer = Minecraft.getMinecraft().fontRendererObj;
-        int x = xIn;
-        for (char c : text.toCharArray()) {
-            long dif = (x * 10) - (y * 10);
-            long l = System.currentTimeMillis() - dif;
-            float ff = 2000.0F;
-            int i = Color.HSBtoRGB((float) (l % (int) ff) / ff, 0.8F, 0.8F);
-            String tmp = String.valueOf(c);
-            renderer.drawString(tmp, (float) ((double) x), (float) ((double) y), i, false);
-            x += (double) renderer.getCharWidth(c);
-        }
     }
 
     public void renderPlayerlist(int width, Scoreboard scoreboardIn, ScoreObjective scoreObjectiveIn, Ordering<NetworkPlayerInfo> field_175252_a, IChatComponent header, IChatComponent footer, Minecraft mc) {
@@ -65,21 +48,6 @@ public class HyperiumGuiPlayerTabOverlay {
         }
 
         list = list.subList(0, Math.min(list.size(), 80));
-
-        if (Settings.FRIENDS_FIRST_IN_TAB) {
-            ConcurrentLinkedDeque<NetworkPlayerInfo> friends = new ConcurrentLinkedDeque<>();
-            List<UUID> friendUUIDList = HypixelAPI.INSTANCE.getListOfCurrentUsersFriends();
-            for (NetworkPlayerInfo networkPlayerInfo : list) {
-                UUID id = networkPlayerInfo.getGameProfile().getId();
-                if (friendUUIDList.contains(id)) {
-                    friends.add(networkPlayerInfo);
-                }
-            }
-            list.removeAll(friends);
-            friends.addAll(list);
-            list.clear();
-            list.addAll(friends);
-        }
 
         int l3 = list.size();
         int i4 = l3;
@@ -174,7 +142,7 @@ public class HyperiumGuiPlayerTabOverlay {
 
                 int renderX = j2 + mc.fontRendererObj.getStringWidth(s1) + 2;
 
-                if (Settings.SHOW_ONLINE_PLAYERS) {
+                if (GeneralOptionsProvider.SHOW_ONLINE_PLAYERS) {
                     String s = "⚫";
 
                     boolean online = mc.getSession().getProfile().getId() == gameprofile.getId();
@@ -182,7 +150,7 @@ public class HyperiumGuiPlayerTabOverlay {
                     if (StaffUtils.isStaff(gameprofile.getId())) {
                         StaffUtils.DotColour colour = StaffUtils.getColor(gameprofile.getId());
                         if (colour.isChroma) {
-                            drawChromaWaveString(s, renderX, (k2 - 2));
+                            HyperiumRender.drawChromaWaveString(s, renderX, (k2 - 2));
                         } else {
                             String format = StaffUtils.getColor(gameprofile.getId()).baseColour + s;
                             mc.fontRendererObj.drawString(format, renderX, (k2 - 2), Color.WHITE.getRGB());

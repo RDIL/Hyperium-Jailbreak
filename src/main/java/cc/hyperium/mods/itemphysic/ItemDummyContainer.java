@@ -1,8 +1,8 @@
 package cc.hyperium.mods.itemphysic;
 
-import cc.hyperium.config.ConfigOpt;
+import rocks.rdil.simpleconfig.Option;
 
 public class ItemDummyContainer {
-    @ConfigOpt
+    @Option
     public static float rotateSpeed = 1.0F;
 }

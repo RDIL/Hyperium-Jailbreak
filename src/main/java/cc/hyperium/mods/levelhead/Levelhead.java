@@ -18,7 +18,6 @@
 package cc.hyperium.mods.levelhead;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.config.ConfigOpt;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.client.TickEvent;
@@ -35,6 +34,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.scoreboard.Team;
+import rocks.rdil.simpleconfig.Option;
+
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,7 +52,7 @@ public class Levelhead extends AbstractMod {
     public UUID userUuid = null;
     public int count = 1;
     public int wait = 60;
-    @ConfigOpt
+    @Option
     private String type = "LEVEL";
     private HashMap<UUID, String> trueValueCache = new HashMap<>();
     private Set<UUID> existedMorethan5Seconds = new HashSet<>();

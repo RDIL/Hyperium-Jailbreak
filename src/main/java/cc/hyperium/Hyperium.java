@@ -17,6 +17,7 @@
 
 package cc.hyperium;
 
+import cc.hyperium.config.provider.*;
 import cc.hyperium.event.client.InitializationEvent;
 import cc.hyperium.event.client.PreInitializationEvent;
 import cc.hyperium.event.client.GameShutDownEvent;
@@ -29,14 +30,6 @@ import cc.hyperium.gui.SplashProgress;
 import cc.hyperium.addons.InternalAddons;
 import cc.hyperium.commands.HyperiumCommandHandler;
 import cc.hyperium.commands.defaults.*;
-import cc.hyperium.config.provider.AnimationOptionsProvider;
-import cc.hyperium.config.provider.CosmeticOptionsProvider;
-import cc.hyperium.config.provider.GameplayOptionsProvider;
-import cc.hyperium.config.provider.GeneralOptionsProvider;
-import cc.hyperium.config.provider.HypixelOptionsProvider;
-import cc.hyperium.config.provider.IOptionSetProvider;
-import cc.hyperium.config.provider.IntegrationOptionsProvider;
-import cc.hyperium.config.provider.OptimizationOptionsProvider;
 import cc.hyperium.cosmetics.HyperiumCosmetics;
 import cc.hyperium.event.network.server.hypixel.minigames.MinigameListener;
 import cc.hyperium.handlers.HyperiumHandlers;
@@ -85,13 +78,16 @@ public class Hyperium {
     public void preInit(PreInitializationEvent event) {
         // register configuration providers
         final List<IOptionSetProvider> builtInOptionSets = Arrays.asList(
-            AnimationOptionsProvider.INSTANCE,
-            CosmeticOptionsProvider.INSTANCE,
-            GameplayOptionsProvider.INSTANCE,
-            GeneralOptionsProvider.INSTANCE,
-            HypixelOptionsProvider.INSTANCE,
-            IntegrationOptionsProvider.INSTANCE,
-            OptimizationOptionsProvider.INSTANCE
+                AnimationOptionsProvider.INSTANCE,
+                ChromaHudOptionsProvider.INSTANCE,
+                CosmeticOptionsProvider.INSTANCE,
+                FortniteCompassOptionsProvider.INSTANCE,
+                GameplayOptionsProvider.INSTANCE,
+                GeneralOptionsProvider.INSTANCE,
+                HypixelOptionsProvider.INSTANCE,
+                IntegrationOptionsProvider.INSTANCE,
+                MenusOptionsProvider.INSTANCE,
+                OptimizationOptionsProvider.INSTANCE
         );
         for (IOptionSetProvider oProvider : builtInOptionSets) {
             CONFIG.register(oProvider);

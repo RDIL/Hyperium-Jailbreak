@@ -40,4 +40,7 @@ public class IntegrationOptionsProvider implements IOptionSetProvider {
 
     @Option @ToggleSetting(name = "Static FOV")
     public static boolean STATIC_FOV = false;
+
+    @Option @ToggleSetting(name = "Enable Item Physics")
+    public static boolean ITEM_PHYSIC_ENABLED = false;
 }

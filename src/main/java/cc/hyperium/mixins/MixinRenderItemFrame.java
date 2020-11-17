@@ -1,6 +1,6 @@
 package cc.hyperium.mixins;
 
-import cc.hyperium.config.Settings;
+import cc.hyperium.config.provider.OptimizationOptionsProvider;
 import net.minecraft.client.renderer.tileentity.RenderItemFrame;
 import net.minecraft.entity.item.EntityItemFrame;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinRenderItemFrame {
     @Inject(method = "doRender", at = @At("HEAD"), cancellable = true)
     public void doRender(EntityItemFrame entity, double x, double y, double z, float entityYaw, float partialTicks, CallbackInfo ci) {
-        if (Settings.DISABLE_ITEMFRAMES) {
+        if (OptimizationOptionsProvider.DISABLE_ITEMFRAMES) {
             ci.cancel();
         }
     }

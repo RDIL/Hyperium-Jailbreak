@@ -16,12 +16,13 @@
  */
 
 package cc.hyperium.mods.chromahud.displayitems.chromahud;
+
+import cc.hyperium.config.provider.ChromaHudOptionsProvider;
 import cc.hyperium.mods.chromahud.ElementRenderer;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
 import cc.hyperium.utils.JsonHolder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import cc.hyperium.config.Settings;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class DirectionHUD extends DisplayItem {
                 while (direction < 0) {
                     direction += 8;
                 }
-                if (!Settings.SHORT_DIRECTION_HUD) {
+                if (!ChromaHudOptionsProvider.SHORT_DIRECTION_HUD) {
                     list.add(dir[direction]);
                 } else {
                     list.add(dirShort[direction]);

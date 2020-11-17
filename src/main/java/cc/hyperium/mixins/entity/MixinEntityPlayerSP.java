@@ -17,7 +17,7 @@
 
 package cc.hyperium.mixins.entity;
 
-import cc.hyperium.config.Settings;
+import cc.hyperium.config.provider.IntegrationOptionsProvider;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.network.chat.SendChatMessageEvent;
 import cc.hyperium.mods.nickhider.NickHider;
@@ -49,7 +49,7 @@ public class MixinEntityPlayerSP extends AbstractClientPlayer {
      */
     @Overwrite
     public void onEnchantmentCritical(Entity entityHit) {
-        if (mc.isSingleplayer() || !Settings.CRIT_FIX) {
+        if (mc.isSingleplayer() || !IntegrationOptionsProvider.CRIT_FIX) {
             mc.effectRenderer.emitParticleAtEntity(entityHit, EnumParticleTypes.CRIT_MAGIC);
         }
     }
@@ -76,7 +76,7 @@ public class MixinEntityPlayerSP extends AbstractClientPlayer {
      */
     @Overwrite
     public void onCriticalHit(Entity entityHit) {
-        if (Minecraft.getMinecraft().isSingleplayer() || !Settings.CRIT_FIX) {
+        if (Minecraft.getMinecraft().isSingleplayer() || !IntegrationOptionsProvider.CRIT_FIX) {
             mc.effectRenderer.emitParticleAtEntity(entityHit, EnumParticleTypes.CRIT);
         }
     }

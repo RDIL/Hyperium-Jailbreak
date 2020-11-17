@@ -1,11 +1,11 @@
 package cc.hyperium.mods.chromahud.displayitems.hyperium;
 
+import cc.hyperium.config.provider.ChromaHudOptionsProvider;
 import cc.hyperium.mods.chromahud.ElementRenderer;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
 import cc.hyperium.utils.JsonHolder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import cc.hyperium.config.Settings;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class DoubleCPSDisplay extends DisplayItem {
         List<String> list = new ArrayList<>();
         int leftCps = ElementRenderer.getCPS();
         int rightCps = ElementRenderer.getRightCPS();
-        if (!Settings.CHROMAHUD_SQUAREBRACE_PREFIX_OPTION) {
+        if (!ChromaHudOptionsProvider.CHROMAHUD_SQUAREBRACE_PREFIX_OPTION) {
             list.add("CPS:");
             list.add("Left CPS: " + leftCps);
             list.add("Right CPS: " + rightCps);

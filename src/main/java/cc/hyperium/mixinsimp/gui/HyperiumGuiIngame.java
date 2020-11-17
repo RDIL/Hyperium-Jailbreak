@@ -3,7 +3,7 @@ package cc.hyperium.mixinsimp.gui;
 import cc.hyperium.Hyperium;
 import cc.hyperium.addons.bossbar.config.BossbarConfig;
 import cc.hyperium.addons.customcrosshair.CustomCrosshairAddon;
-import cc.hyperium.config.Settings;
+import cc.hyperium.config.provider.GameplayOptionsProvider;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.render.RenderHUDEvent;
 import cc.hyperium.mods.chromahud.displayitems.hyperium.ScoreboardDisplay;
@@ -92,7 +92,7 @@ public class HyperiumGuiIngame {
     }
 
     public void showCrosshair(CallbackInfoReturnable<Boolean> ci) {
-        if (Settings.CROSSHAIR_IN_F5 && Minecraft.getMinecraft().gameSettings.thirdPersonView > 0) {
+        if (GameplayOptionsProvider.CROSSHAIR_IN_F5 && Minecraft.getMinecraft().gameSettings.thirdPersonView > 0) {
             ci.setReturnValue(false);
         }
 

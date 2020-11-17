@@ -1,8 +1,8 @@
 package cc.hyperium.mixinsimp;
 
 import cc.hyperium.Hyperium;
+import cc.hyperium.config.provider.IntegrationOptionsProvider;
 import cc.hyperium.gui.SplashProgress;
-import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.gui.GuiOpenEvent;
 import cc.hyperium.event.interact.KeypressEvent;
@@ -109,7 +109,7 @@ public class HyperiumMinecraft {
     public void displayFix(CallbackInfo ci, boolean fullscreen, int displayWidth, int displayHeight) throws LWJGLException {
         Display.setFullscreen(false);
         if (fullscreen) {
-            if (Settings.WINDOWED_FULLSCREEN) {
+            if (IntegrationOptionsProvider.WINDOWED_FULLSCREEN) {
                 System.setProperty("org.lwjgl.opengl.Window.undecorated", "true");
             } else {
                 Display.setFullscreen(true);
@@ -118,7 +118,7 @@ public class HyperiumMinecraft {
                 ((IMixinMinecraft) parent).setDisplayHeight(Math.max(1, displaymode.getHeight()));
             }
         } else {
-            if (Settings.WINDOWED_FULLSCREEN) {
+            if (IntegrationOptionsProvider.WINDOWED_FULLSCREEN) {
                 System.setProperty("org.lwjgl.opengl.Window.undecorated", "false");
             } else {
                 Display.setDisplayMode(new DisplayMode(displayWidth, displayHeight));
@@ -132,7 +132,7 @@ public class HyperiumMinecraft {
     }
 
     public void fullScreenFix(boolean fullscreen, int displayWidth, int displayHeight) throws LWJGLException {
-        if (Settings.WINDOWED_FULLSCREEN) {
+        if (IntegrationOptionsProvider.WINDOWED_FULLSCREEN) {
             if (fullscreen) {
                 System.setProperty("org.lwjgl.opengl.Window.undecorated", "true");
                 Display.setDisplayMode(Display.getDesktopDisplayMode());

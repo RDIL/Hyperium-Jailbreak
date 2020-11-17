@@ -17,7 +17,7 @@
 
 package cc.hyperium.gui;
 
-import cc.hyperium.config.Settings;
+import cc.hyperium.config.provider.CosmeticOptionsProvider;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.client.TickEvent;
@@ -37,7 +37,7 @@ public class ParticleOverlay {
     private long last;
 
     private ParticleOverlay() {
-        for (int i = 0; i < Settings.MAX_PARTICLES; i++) {
+        for (int i = 0; i < CosmeticOptionsProvider.MAX_PARTICLES; i++) {
             particles.add(new Particle());
         }
     }
@@ -51,10 +51,10 @@ public class ParticleOverlay {
     }
 
     public void render(int mouseX, int mouseY, int guiLeft, int guiTop, int guiRight, int guiBottom) {
-        if (Settings.PARTICLE_MODE.equals("OFF"))
+        if (CosmeticOptionsProvider.PARTICLE_MODE.equals("OFF"))
             return;
         try {
-            float step = (float) (0.01 * (Settings.MAX_PARTICLES / 100));
+            float step = (float) (0.01 * (CosmeticOptionsProvider.MAX_PARTICLES / 100));
             Mode m = getMode();
             if (m == Mode.OFF) return;
             if (Minecraft.getMinecraft().currentScreen instanceof GuiInventory)
@@ -119,7 +119,7 @@ public class ParticleOverlay {
 
     @InvokeEvent
     public void tick(TickEvent e) {
-        if (Settings.PARTICLE_MODE.equals("OFF"))
+        if (CosmeticOptionsProvider.PARTICLE_MODE.equals("OFF"))
             return;
         if (System.currentTimeMillis() - last < 1000)
             for (Particle particle : particles) {
@@ -129,7 +129,7 @@ public class ParticleOverlay {
 
     public Mode getMode() {
         try {
-            return Mode.valueOf(Settings.PARTICLE_MODE.replace(" ", "_"));
+            return Mode.valueOf(CosmeticOptionsProvider.PARTICLE_MODE.replace(" ", "_"));
         } catch (Exception e) {
             return Mode.OFF;
         }

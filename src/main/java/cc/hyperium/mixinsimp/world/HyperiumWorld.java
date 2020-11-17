@@ -1,6 +1,6 @@
 package cc.hyperium.mixinsimp.world;
 
-import cc.hyperium.config.Settings;
+import cc.hyperium.config.provider.IntegrationOptionsProvider;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.world.SpawnpointChangeEvent;
 import cc.hyperium.mixins.IMixinWorld;
@@ -35,32 +35,32 @@ public class HyperiumWorld {
     }
 
     public void checkLightFor(EnumSkyBlock lightType, BlockPos pos, CallbackInfoReturnable<Boolean> ci) {
-        if (!Minecraft.getMinecraft().isIntegratedServerRunning() && Settings.FULLBRIGHT) ci.setReturnValue(false);
+        if (!Minecraft.getMinecraft().isIntegratedServerRunning() && IntegrationOptionsProvider.FULLBRIGHT) ci.setReturnValue(false);
     }
 
     public void getLightFromNeighborsFor(EnumSkyBlock type, BlockPos pos, CallbackInfoReturnable<Integer> ci) {
-        if (!Minecraft.getMinecraft().isIntegratedServerRunning() && Settings.FULLBRIGHT) ci.setReturnValue(15);
+        if (!Minecraft.getMinecraft().isIntegratedServerRunning() && IntegrationOptionsProvider.FULLBRIGHT) ci.setReturnValue(15);
     }
 
     public double getHorizon(WorldInfo worldInfo) {
-        if (Settings.VOID_FLICKER_FIX) return 0.0;
+        if (IntegrationOptionsProvider.VOID_FLICKER_FIX) return 0.0;
         return worldInfo.getTerrainType() == WorldType.FLAT ? 0.0D : 63.0D;
     }
 
     public void getLightFromNeighbor(BlockPos pos, CallbackInfoReturnable<Integer> ci) {
-        if (!Minecraft.getMinecraft().isIntegratedServerRunning() && Settings.FULLBRIGHT) ci.setReturnValue(15);
+        if (!Minecraft.getMinecraft().isIntegratedServerRunning() && IntegrationOptionsProvider.FULLBRIGHT) ci.setReturnValue(15);
     }
 
     public void getRawLight(BlockPos pos, EnumSkyBlock lightType, CallbackInfoReturnable<Integer> ci) {
-        if (!Minecraft.getMinecraft().isIntegratedServerRunning() && Settings.FULLBRIGHT) ci.setReturnValue(15);
+        if (!Minecraft.getMinecraft().isIntegratedServerRunning() && IntegrationOptionsProvider.FULLBRIGHT) ci.setReturnValue(15);
     }
 
     public void getLight(BlockPos pos, CallbackInfoReturnable<Integer> ci) {
-        if (!Minecraft.getMinecraft().isIntegratedServerRunning() && Settings.FULLBRIGHT) ci.setReturnValue(15);
+        if (!Minecraft.getMinecraft().isIntegratedServerRunning() && IntegrationOptionsProvider.FULLBRIGHT) ci.setReturnValue(15);
     }
 
     public void getLight(BlockPos pos, boolean checkNeighbors, CallbackInfoReturnable<Integer> ci) {
-        if (!Minecraft.getMinecraft().isIntegratedServerRunning() && Settings.FULLBRIGHT) ci.setReturnValue(15);
+        if (!Minecraft.getMinecraft().isIntegratedServerRunning() && IntegrationOptionsProvider.FULLBRIGHT) ci.setReturnValue(15);
     }
 
     public void updateEntities(Profiler theProfiler, List<Entity> weatherEffects, List<Entity> loadedEntityList, List<Entity> unloadedEntityList, List<TileEntity> tickableTileEntities, WorldBorder worldBorder, List<TileEntity> loadedTileEntityList, List<TileEntity> tileEntitiesToBeRemoved, List<TileEntity> addedTileEntityList) {
@@ -86,16 +86,16 @@ public class HyperiumWorld {
         theProfiler.endStartSection("remove");
         loadedEntityList.removeAll(unloadedEntityList);
 
-        for (int k = 0; k < unloadedEntityList.size(); ++k) {
-            Entity entity1 = unloadedEntityList.get(k);
+        for (Entity entity1 : unloadedEntityList) {
             int j = entity1.chunkCoordX;
             int l1 = entity1.chunkCoordZ;
 
-            if (entity1.addedToChunk && ((IMixinWorld) parent).callIsChunkLoaded(j, l1, true)) parent.getChunkFromChunkCoords(j, l1).removeEntity(entity1);
+            if (entity1.addedToChunk && ((IMixinWorld) parent).callIsChunkLoaded(j, l1, true))
+                parent.getChunkFromChunkCoords(j, l1).removeEntity(entity1);
         }
 
-        for (int l = 0; l < unloadedEntityList.size(); ++l) {
-            ((IMixinWorld) parent).callOnEntityRemoved(unloadedEntityList.get(l));
+        for (Entity entity : unloadedEntityList) {
+            ((IMixinWorld) parent).callOnEntityRemoved(entity);
         }
 
         unloadedEntityList.clear();
@@ -143,13 +143,12 @@ public class HyperiumWorld {
         theProfiler.endStartSection("pendingBlockEntities");
 
         if (!addedTileEntityList.isEmpty()) {
-            for (int j1 = 0; j1 < addedTileEntityList.size(); ++j1) {
-                TileEntity tileentity1 = addedTileEntityList.get(j1);
-
+            for (TileEntity tileentity1 : addedTileEntityList) {
                 if (!tileentity1.isInvalid()) {
                     if (!loadedTileEntityList.contains(tileentity1)) parent.addTileEntity(tileentity1);
 
-                    if (parent.isBlockLoaded(tileentity1.getPos())) parent.getChunkFromBlockCoords(tileentity1.getPos()).addTileEntity(tileentity1.getPos(), tileentity1);
+                    if (parent.isBlockLoaded(tileentity1.getPos()))
+                        parent.getChunkFromBlockCoords(tileentity1.getPos()).addTileEntity(tileentity1.getPos(), tileentity1);
 
                     parent.markBlockForUpdate(tileentity1.getPos());
                 }
