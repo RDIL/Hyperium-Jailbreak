@@ -16,9 +16,9 @@ public class GuiBossbarSetting extends GuiScreen {
 
     @Override
     public void initGui() {
-        this.buttonList.add(new GuiButton(0, this.getCenter() - 75, this.getRowPos(1), 150, 20, "Bossbar: " + this.getSuffix(BossbarConfig.bossBarEnabled)));
-        this.buttonList.add(new GuiButton(1, this.getCenter() - 75, this.getRowPos(2), 150, 20, "Text: " + this.getSuffix(BossbarConfig.textEnabled)));
-        this.buttonList.add(new GuiButton(2, this.getCenter() - 75, this.getRowPos(3), 150, 20, "Bar: " + this.getSuffix(BossbarConfig.barEnabled)));
+        this.buttonList.add(new GuiButton(0, this.getCenter() - 75, this.getRowPos(1), 150, 20, "Bossbar: " + getSuffix(BossbarConfig.bossBarEnabled)));
+        this.buttonList.add(new GuiButton(1, this.getCenter() - 75, this.getRowPos(2), 150, 20, "Text: " + getSuffix(BossbarConfig.textEnabled)));
+        this.buttonList.add(new GuiButton(2, this.getCenter() - 75, this.getRowPos(3), 150, 20, "Bar: " + getSuffix(BossbarConfig.barEnabled)));
         this.buttonList.add(new GuiButton(3, this.getCenter() - 75, this.getRowPos(4), 150, 20, "Set Position"));
         this.buttonList.add(new GuiButton(4, this.getCenter() - 75, this.getRowPos(5), 150, 20, "Reset Bossbar"));
     }

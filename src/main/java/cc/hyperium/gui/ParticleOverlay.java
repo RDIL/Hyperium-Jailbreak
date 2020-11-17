@@ -104,6 +104,9 @@ public class ParticleOverlay {
                             case CHROMA_2:
                                 RenderUtils.drawLine(v1, v2, x2, y2, 1F, eee.getRGB());
                                 break;
+                            case OFF:
+                                // this in theory should never be reached, but it shuts warnings up
+                                break;
                         }
                     }
                 }

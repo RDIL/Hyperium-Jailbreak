@@ -57,6 +57,8 @@ public class HyperiumTweaker implements ITweaker {
 
     @Override
     public void injectIntoClassLoader(LaunchClassLoader classLoader) {
+        // optifine can still be present without the environment specifically being optifine
+        classLoader.registerTransformer("cc.hyperium.mods.memoryfix.ClassTransformer");
         MixinBootstrap.init();
         try {
             LOGGER.info("Launching addons.");
@@ -69,13 +71,14 @@ public class HyperiumTweaker implements ITweaker {
         Mixins.addConfiguration("mixins.hyperium.json");
         this.OPTIFINE = this.isRunningOptifine;
         if (this.OPTIFINE) {
+            // the Minecraft jar is Minecraft, but modified to use OptiFine as the primary tweaker 
             LOGGER.info("Found environment: OPTIFINE (obfuscation context = notch)");
-            classLoader.registerTransformer("cc.hyperium.mods.memoryfix.ClassTransformer");
-            environment.setObfuscationContext("notch"); // Switch's to notch mappings
+            environment.setObfuscationContext("notch");
         }
         if (environment.getObfuscationContext() == null) {
+            // the Minecraft jar is either vanilla or vanilla patched by OptiFine
             LOGGER.info("Found environment: FALLBACK (obfuscation context = notch)");
-            environment.setObfuscationContext("notch"); // Switch's to notch mappings
+            environment.setObfuscationContext("notch");
         }
         environment.setSide(MixinEnvironment.Side.CLIENT);
     }
