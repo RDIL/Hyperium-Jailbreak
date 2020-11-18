@@ -16,9 +16,9 @@ public class ToggleComponent extends AbstractTabComponent {
     private final String label;
     private final HyperiumSettingsGui gui;
     private List<String> lines = new ArrayList<>();
-    private Field field;
+    private final Field field;
     private boolean state;
-    private Object parentObj;
+    private final Object parentObj;
     private double animation = 0.5;
     private long lastDeltaTime = System.currentTimeMillis();
 
@@ -64,7 +64,7 @@ public class ToggleComponent extends AbstractTabComponent {
 
         int line1 = 0;
         for (String line : lines) {
-            font.drawString(line.replaceAll("_", " "), x + 3, y + 5 + 17 * line1, 0xffffff);
+            font.drawString(line.replaceAll("_", " "), x + 3, y + 3 + 17 * line1, 0xffffff);
             line1++;
         }
 

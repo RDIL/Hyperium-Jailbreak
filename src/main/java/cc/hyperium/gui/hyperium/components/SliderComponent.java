@@ -15,12 +15,12 @@ public class SliderComponent extends AbstractTabComponent {
     private final String label;
     private final HyperiumSettingsGui gui;
     private List<String> lines = new ArrayList<>();
-    private Field field;
-    private Object parentObj;
-    private float minVal;
-    private float maxVal;
-    private boolean isInteger;
-    private boolean round;
+    private final Field field;
+    private final Object parentObj;
+    private final float minVal;
+    private final float maxVal;
+    private final boolean isInteger;
+    private final boolean round;
     private double currentValue;
     private int width;
     private boolean wasDown = false;
@@ -88,7 +88,7 @@ public class SliderComponent extends AbstractTabComponent {
 
         int line1 = 0;
         for (String line : lines) {
-            font.drawString(line.replaceAll("_", " "), x + 3, y + 5 + 17 * line1, 0xffffff);
+            font.drawString(line.replaceAll("_", " "), x + 3, y + 3 + 17 * line1, 0xffffff);
             line1++;
         }
         int left = x + width / 2;

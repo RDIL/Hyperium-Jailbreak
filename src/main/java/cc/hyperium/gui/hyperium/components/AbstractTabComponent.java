@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 
 public abstract class AbstractTabComponent {
     public boolean hover;
-    private List<Consumer<Object>> stateChanges = new ArrayList<>();
+    private final List<Consumer<Object>> stateChanges = new ArrayList<>();
     private boolean enabled = true;
 
     public AbstractTabComponent() {

@@ -31,56 +31,72 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.lwjgl.input.Mouse;
+import rocks.rdil.simpleconfig.Option;
 
 public class HyperiumSettingsGui extends HyperiumGui {
+    public static final Logger LOGGER = LogManager.getLogger();
     public static HyperiumSettingsGui INSTANCE = new HyperiumSettingsGui();
     public boolean show = false;
     private int initialGuiScale;
-    private HashMap<Field, List<Consumer<Object>>> callbacks = new HashMap<>();
-    private List<IOptionSetProvider> settingsObjects = new ArrayList<>();
+    private final HashMap<Field, List<Consumer<Object>>> callbacks = new HashMap<>();
+    private final List<IOptionSetProvider> settingsObjects = new ArrayList<>();
     private final HyperiumFontRenderer font;
-    private List<RGBFieldSet> rgbFields = new ArrayList<>();
+    private final HyperiumFontRenderer title;
     protected List<AbstractTabComponent> components = new ArrayList<>();
     public Map<AbstractTabComponent, Boolean> clickStates = new HashMap<>();
     private SimpleAnimValue scrollAnim = new SimpleAnimValue(0L, 0f, 0f);
     private int scroll = 0;
 
     private HyperiumSettingsGui() {
-        font = new HyperiumFontRenderer("Roboto Condensed", 16.0F, 0, 1.0F);
+        font = new HyperiumFontRenderer("OpenSans", 16.0F, 0, 1.0F);
+        title = new HyperiumFontRenderer("OpenSans", 30.0F, 0, 1.0F);
 
         final List<IOptionSetProvider> actualProviders = new ArrayList<>();
+
         for (final Object o : Hyperium.CONFIG.getConfigObjs()) {
-            try {
-                // check for IOptionSetProvider#getName
-                if (o.getClass().getDeclaredMethod("getName") != null) {
-                    actualProviders.add((IOptionSetProvider) o);
-                }
-            } catch (NoSuchMethodException ignored) {
+            // check for IOptionSetProvider#getName
+            if (IOptionSetProvider.class.isAssignableFrom(o.getClass())) {
+                actualProviders.add((IOptionSetProvider) o);
             }
         }
+
         settingsObjects.addAll(actualProviders);
 
         scollMultiplier = 2;
         HashMap<IOptionSetProvider, CollapsibleTabComponent> items = new HashMap<>();
+
         for (IOptionSetProvider o : this.getSettingsObjects()) {
             for (Field f : o.getClass().getDeclaredFields()) {
-                final ToggleSetting ts = f.getAnnotation(ToggleSetting.class);
-                final SelectorSetting ss = f.getAnnotation(SelectorSetting.class);
-                final SliderSetting sliderSetting = f.getAnnotation(SliderSetting.class);
-                List<Consumer<Object>> objectConsumer = this.getCallbacks().get(f);
-                AbstractTabComponent tabComponent = null;
-                if (ts != null) {
-                    tabComponent = new ToggleComponent(this, ts.name(), f, o);
-                } else if (ss != null) {
-                    tabComponent = new SelectorComponent(this, ss.name(), f, o, ss::items);
-                } else if (sliderSetting != null) {
-                    tabComponent = new SliderComponent(this, sliderSetting.name(), f, o, sliderSetting.min(), sliderSetting.max(), sliderSetting.isInt(), sliderSetting.round());
-                }
-                apply(tabComponent, o, items);
-                if (objectConsumer != null) {
-                    for (Consumer<Object> consumer : objectConsumer) {
-                        tabComponent.registerStateChange(consumer);
+                final Option option = f.getAnnotation(Option.class);
+
+                if (option != null) {
+                    final ToggleSetting ts = f.getAnnotation(ToggleSetting.class);
+                    final SelectorSetting ss = f.getAnnotation(SelectorSetting.class);
+                    final SliderSetting sliderSetting = f.getAnnotation(SliderSetting.class);
+                    List<Consumer<Object>> objectConsumer = this.getCallbacks().get(f);
+                    AbstractTabComponent tabComponent = null;
+
+                    if (ts != null) {
+                        tabComponent = new ToggleComponent(this, ts.name(), f, o);
+                    } else if (ss != null) {
+                        tabComponent = new SelectorComponent(this, ss.name(), f, o, ss::items);
+                    } else if (sliderSetting != null) {
+                        tabComponent = new SliderComponent(this, sliderSetting.name(), f, o, sliderSetting.min(), sliderSetting.max(), sliderSetting.isInt(), sliderSetting.round());
+                    }
+
+                    if (ts == null && ss == null && sliderSetting == null) {
+                        continue;
+                    }
+
+                    apply(tabComponent, o, items);
+
+                    if (objectConsumer != null) {
+                        for (Consumer<Object> consumer : objectConsumer) {
+                            tabComponent.registerStateChange(consumer);
+                        }
                     }
                 }
             }
@@ -92,10 +108,6 @@ public class HyperiumSettingsGui extends HyperiumGui {
 
     public HashMap<Field, List<Consumer<Object>>> getCallbacks() {
         return callbacks;
-    }
-
-    public List<RGBFieldSet> getRgbFields() {
-        return rgbFields;
     }
 
     public List<IOptionSetProvider> getSettingsObjects() {
@@ -123,7 +135,7 @@ public class HyperiumSettingsGui extends HyperiumGui {
         drawRect(xg, yg, xg * 10, yg * 9, new Color(0, 0, 0, 225 / 2).getRGB());
         GlStateModifier.INSTANCE.reset();
 
-        drawCenteredString(fontRendererObj, "Settings", this.width / 2, yg + (yg / 2 - 8), 0xFFFFFF);
+        title.drawCenteredString("Settings", this.width / 2, yg + (yg / 2 - 8), 0xFFFFFF);
 
         renderCt(xg, yg * 2, xg * 9, yg * 7);
     }
@@ -141,8 +153,9 @@ public class HyperiumSettingsGui extends HyperiumGui {
         final int mx = Mouse.getX() * sw / Minecraft.getMinecraft().displayWidth;           // Mouse X
         final int my = sh - Mouse.getY() * sh / Minecraft.getMinecraft().displayHeight - 1; // Mouse Y
 
-        if (scrollAnim.getValue() != scroll * 18 && scrollAnim.isFinished())
+        if (scrollAnim.getValue() != scroll * 18 && scrollAnim.isFinished()) {
             scrollAnim = new SimpleAnimValue(1000L, scrollAnim.getValue(), scroll * 18);
+        }
         y += scrollAnim.getValue();
         /* Render each tab component */
         for (AbstractTabComponent comp : components) {
@@ -225,6 +238,14 @@ public class HyperiumSettingsGui extends HyperiumGui {
     @Override
     public void handleMouseInput() throws IOException {
         super.handleMouseInput();
+        if (Mouse.getEventDWheel() > 0) {
+            scroll++;
+        } else if (Mouse.getEventDWheel() < 0) {
+            scroll--;
+        }
+        if (scroll > 0) {
+            scroll = 0;
+        }
     }
 
     private void apply(AbstractTabComponent component, IOptionSetProvider provider, HashMap<IOptionSetProvider, CollapsibleTabComponent> items) {

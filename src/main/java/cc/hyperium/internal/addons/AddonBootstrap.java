@@ -30,6 +30,7 @@ public class AddonBootstrap {
     private final List<File> jars;
     private final List<AddonManifest> addonManifests = new ArrayList<>();
     private final List<AddonManifest> pendingManifests = new ArrayList<>();
+    private final List<String> globalMixinConfigs = new ArrayList<>();
 
     public Phase phase = Phase.NOT_STARTED;
 
@@ -65,7 +66,6 @@ public class AddonBootstrap {
 
         phase = Phase.PREINIT;
         Launch.classLoader.addClassLoaderExclusion("cc.hyperium.internal.addons.AddonBootstrap");
-        Launch.classLoader.addClassLoaderExclusion("cc.hyperium.internal.addons.AddonManifest");
 
         AddonManifest workspaceAddon = loadWorkspaceAddon();
 
@@ -81,7 +81,7 @@ public class AddonBootstrap {
             if (mixinConfigs != null) {
                 for (Object o : mixinConfigs) {
                     final String p1 = (String) o;
-                    Mixins.addConfiguration(p1);
+                    globalMixinConfigs.add(p1);
                     LOGGER.info("Addon " + manifest.getName() + " registered mixin configuration " + p1);
                 }
             }
@@ -158,6 +158,13 @@ public class AddonBootstrap {
         return addons;
     }
 
+    public void callAddonMixinBootstrap() {
+        for (String config : globalMixinConfigs) {
+            Mixins.addConfiguration(config);
+        }
+
+        globalMixinConfigs.clear();
+    }
 
     private AddonManifest loadWorkspaceAddon() {
         try {

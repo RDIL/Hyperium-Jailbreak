@@ -2,7 +2,6 @@ package cc.hyperium.gui.hyperium.components;
 
 import cc.hyperium.gui.Icons;
 import cc.hyperium.gui.hyperium.HyperiumSettingsGui;
-import cc.hyperium.mixins.gui.IMixinGuiScreen;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.input.Mouse;
@@ -11,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class CollapsibleTabComponent extends AbstractTabComponent {
-    private List<AbstractTabComponent> children = new ArrayList<>();
+    private final List<AbstractTabComponent> children = new ArrayList<>();
     private boolean collapsed = true;
     private final String name;
     private final HyperiumSettingsGui gui;
@@ -42,7 +41,7 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
     public void render(int x, int y, int width, int mouseX, int mouseY) {
         super.render(x, y, width, mouseX, mouseY);
 
-        gui.drawString(((IMixinGuiScreen) gui).getFontRendererObj(), name.replaceAll("_", " ").toUpperCase(), x + 3, y + 5, 0xffffff);
+        gui.getFont().drawString(name.replaceAll("_", " ").toUpperCase(), x + 3, y + 5, 0xffffff);
 
         GlStateManager.bindTexture(0);
 
@@ -60,16 +59,24 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
         x += 10;
         width -= 10;
 
-        for (AbstractTabComponent comp : children) {
-            comp.render(x, y, width / 2, mouseX, mouseY);
+        boolean right = false;
+        int prevH = 0;
 
-            if (mouseX >= x && mouseX <= x + (width / 2) && mouseY >= y && mouseY <= y + comp.getHeight()) {
+        for (AbstractTabComponent comp : children) {
+            if (comp == null) {
+                continue;
+            }
+
+            comp.render(right ? x + width / 2 : x, y, width / 2, mouseX, mouseY);
+
+            if (mouseX >= (right ? x + width / 2 : x) && mouseX <= (right ? x + width / 2 : x) + (width / 2) && mouseY >= y && mouseY <= y + comp.getHeight()) {
                 comp.hover = true;
-                comp.mouseEvent(mouseX - x, mouseY - y);
+                comp.mouseEvent(right ? mouseX - width / 2 - x : mouseX - x, mouseY - y /* Make the Y relevant to the component */);
 
                 if (Mouse.isButtonDown(0)) {
                     if (!gui.clickStates.computeIfAbsent(comp, ignored -> false)) {
-                        comp.onClick(mouseX, mouseY - y);
+                        comp.onClick(right ? mouseX - width / 2 : mouseX,
+                                mouseY - y /* Make the Y relevant to the component */);
                         gui.clickStates.put(comp, true);
                     }
                 } else if (gui.clickStates.computeIfAbsent(comp, ignored -> false)) {
@@ -78,6 +85,11 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
             } else {
                 comp.hover = false;
             }
+
+            if (right) y += Math.max(comp.getHeight(), prevH);
+            right = !right;
+
+            prevH = comp.getHeight();
         }
     }
 
@@ -86,13 +98,23 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
         if (collapsed) {
             return 18;
         } else {
-            final Iterator<AbstractTabComponent> iterator = children.iterator();
-            int height = 0;
+            Iterator<AbstractTabComponent> iterator = children.iterator();
+            boolean right = true;
+            int leftHeight = 0;
+            int compH = 18;
             while (iterator.hasNext()) {
+                right = !right;
                 AbstractTabComponent next = iterator.next();
-                height = next.getHeight();
+                int height = next.getHeight();
+                if (right) {
+                    compH += Math.max(leftHeight, height);
+                    leftHeight = 0;
+                } else {
+                    leftHeight = height;
+                }
             }
-            return 18 + height;
+            compH += leftHeight;
+            return compH;
         }
     }
 

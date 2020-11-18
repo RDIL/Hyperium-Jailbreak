@@ -15,9 +15,9 @@ public class SelectorComponent extends AbstractTabComponent {
     private final String label;
     private final HyperiumSettingsGui gui;
     private List<String> lines = new ArrayList<>();
-    private Field field;
-    private Object parentObj;
-    private Supplier<String[]> values;
+    private final Field field;
+    private final Object parentObj;
+    private final Supplier<String[]> values;
 
     public SelectorComponent(HyperiumSettingsGui gui, String label, Field field, Object parentObj, Supplier<String[]> values) {
         super();
@@ -71,7 +71,7 @@ public class SelectorComponent extends AbstractTabComponent {
 
         int line1 = 0;
         for (String line : lines) {
-            font.drawString(line.replaceAll("_", " "), x + 3, y + 5 + 17 * line1, 0xffffff);
+            font.drawString(line.replaceAll("_", " "), x + 3, y + 3 + 17 * line1, 0xffffff);
             line1++;
         }
 
