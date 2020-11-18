@@ -65,7 +65,10 @@ public class AddonBootstrap {
         }
 
         phase = Phase.PREINIT;
+        // Prevent ClassCastException - AddonBootstrap cannot be cast to AddonBootstrap (yes, same class,
+        // different class loaders) - same with AddonManifest.
         Launch.classLoader.addClassLoaderExclusion("cc.hyperium.internal.addons.AddonBootstrap");
+        Launch.classLoader.addClassLoaderExclusion("cc.hyperium.internal.addons.AddonManifest");
 
         AddonManifest workspaceAddon = loadWorkspaceAddon();
 
