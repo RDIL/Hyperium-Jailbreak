@@ -5,8 +5,8 @@ import cc.hyperium.internal.addons.strategy.AddonLoaderStrategy;
 import cc.hyperium.internal.addons.strategy.DefaultAddonLoader;
 import cc.hyperium.internal.addons.strategy.WorkspaceAddonLoader;
 import cc.hyperium.launch.HyperiumTweaker;
+import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.Launch;
-import net.minecraft.launchwrapper.LaunchClassLoader;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,8 +14,9 @@ import org.spongepowered.asm.mixin.Mixins;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.*;
 import java.util.jar.JarFile;
 
 public class AddonBootstrap {
@@ -28,7 +29,7 @@ public class AddonBootstrap {
     private final DefaultAddonLoader loader = new DefaultAddonLoader();
     private final WorkspaceAddonLoader workspaceLoader = new WorkspaceAddonLoader();
     private final List<File> jars;
-    private final List<AddonManifest> addonManifests = new ArrayList<>();
+    private final Map<AddonManifest, File> addons = new HashMap<>();
     private final List<AddonManifest> pendingManifests = new ArrayList<>();
     private final List<String> globalMixinConfigs = new ArrayList<>();
 
@@ -59,14 +60,14 @@ public class AddonBootstrap {
         jars = filteredJars;
     }
 
-    public void init(LaunchClassLoader classLoader, HyperiumTweaker primaryTweaker) throws IOException {
+    public void init() throws IOException {
         if (phase != Phase.NOT_STARTED) {
             throw new IOException("Cannot initialise bootstrap twice");
         }
 
         phase = Phase.PREINIT;
-        // Prevent ClassCastException - AddonBootstrap cannot be cast to AddonBootstrap (yes, same class,
-        // different class loaders) - same with AddonManifest.
+        // Prevent ClassCastException - AddonBootstrap cannot be cast to AddonBootstrap (same class,
+        // different class loaders)
         Launch.classLoader.addClassLoaderExclusion("cc.hyperium.internal.addons.AddonBootstrap");
         Launch.classLoader.addClassLoaderExclusion("cc.hyperium.internal.addons.AddonManifest");
 
@@ -74,11 +75,12 @@ public class AddonBootstrap {
 
         if (workspaceAddon != null) {
             LOGGER.info("WorkspaceAddonLoader check passed.");
-            addonManifests.add(workspaceAddon);
+            addons.put(workspaceAddon, null);
         }
-        addonManifests.addAll(loadAddons(loader));
+        addons.putAll(loadAddons(loader));
 
-        for (AddonManifest manifest : addonManifests) {
+        for (Map.Entry<AddonManifest, File> itemEntry : addons.entrySet()) {
+            final AddonManifest manifest = itemEntry.getKey();
             final List<?> mixinConfigs = manifest.getMixinConfigs();
 
             if (mixinConfigs != null) {
@@ -90,12 +92,21 @@ public class AddonBootstrap {
             }
 
             if (manifest.getTransformerClass() != null) {
-                classLoader.registerTransformer(manifest.getTransformerClass());
-                LOGGER.info("Addon " + manifest.getName() + " registered transformer " + manifest.getTransformerClass());
+                try {
+                    final URLClassLoader urlClassLoader = new URLClassLoader(new URL[]{this.getClass().getProtectionDomain().getCodeSource().getLocation(), itemEntry.getValue().toURI().toURL()});
+                    final IClassTransformer t = (IClassTransformer) urlClassLoader.loadClass(
+                            manifest.getTransformerClass()).newInstance();
+                    HyperiumTweaker.injectTransformer(t);
+                    LOGGER.info("Addon " + manifest.getName() + " registered transformer " + manifest.getTransformerClass());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    LOGGER.error("Registering transformer virtually failed. Addon: " + manifest.getName() + ", transformer: " + manifest.getTransformerClass());
+                }
             }
 
             if (manifest.getTweakerClass() != null) {
-                primaryTweaker.injectCascadingTweak(manifest.getTweakerClass());
+                LOGGER.warn("BEWARE! Using cascading tweakers from addons are experimental! Use at your own risk.");
+                HyperiumTweaker.injectCascadingTweak(manifest.getTweakerClass());
                 LOGGER.info("Addon " + manifest.getName() + " registered cascading tweak class " + manifest.getTweakerClass());
             }
         }
@@ -103,8 +114,8 @@ public class AddonBootstrap {
         phase = Phase.INIT;
     }
 
-    private List<AddonManifest> loadAddons(AddonLoaderStrategy loader) {
-        List<AddonManifest> addons = new ArrayList<>();
+    private Map<AddonManifest, File> loadAddons(AddonLoaderStrategy loader) {
+        final Map<AddonManifest, File> localAddons = new HashMap<>();
         File[] pendings = new File[0];
         if (PENDING_DIRECTORY.exists()) pendings = PENDING_DIRECTORY.listFiles();
 
@@ -122,12 +133,12 @@ public class AddonBootstrap {
 
         for (File file : jars) {
             try {
-                AddonManifest addon = loader.load(file);
+                final AddonManifest addon = loader.load(file);
                 LOGGER.info("Loading addon " + file.getName());
                 if (addon == null) {
                     continue;
                 }
-                addons.add(addon);
+                localAddons.putIfAbsent(addon, file);
             } catch (Exception e) {
                 LOGGER.error("Could not load addon {}!", file.getName());
                 e.printStackTrace();
@@ -137,7 +148,7 @@ public class AddonBootstrap {
         pendingManifests.clear();
         if (pendings != null) {
             for (File file : pendings) {
-                File dest = new File(MOD_DIRECTORY, file.getName());
+                final File dest = new File(MOD_DIRECTORY, file.getName());
                 try {
                     FileUtils.moveFile(file, dest);
                 } catch (IOException e) {
@@ -146,11 +157,11 @@ public class AddonBootstrap {
                 }
 
                 try {
-                    AddonManifest addon = loader.load(dest);
+                    final AddonManifest addon = loader.load(dest);
                     if (addon == null) {
                         continue;
                     }
-                    addons.add(addon);
+                    localAddons.putIfAbsent(addon, dest);
                 } catch (Exception e) {
                     LOGGER.error("Could not load {}!", dest.getName());
                     e.printStackTrace();
@@ -158,7 +169,7 @@ public class AddonBootstrap {
             }
         }
 
-        return addons;
+        return localAddons;
     }
 
     public void callAddonMixinBootstrap() {
@@ -194,8 +205,8 @@ public class AddonBootstrap {
         this.phase = phase;
     }
 
-    public List<AddonManifest> getAddonManifests() {
-        return addonManifests;
+    public Map<AddonManifest, File> getAddons() {
+        return addons;
     }
 
     public enum Phase {

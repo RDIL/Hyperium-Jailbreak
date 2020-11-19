@@ -1,18 +1,21 @@
 package cc.hyperium.internal.addons;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class AddonMinecraftBootstrap {
     private static final List<IAddon> LOADED_ADDONS = new ArrayList<>();
 
     public static void init() throws IOException {
-        final List<AddonManifest> toLoad = new ArrayList<>(AddonBootstrap.INSTANCE.getAddonManifests());
+        final Map<AddonManifest, File> toLoad = AddonBootstrap.INSTANCE.getAddons();
 
         final List<IAddon> loaded = new ArrayList<>();
 
-        for (AddonManifest addon : toLoad) {
+        for (Map.Entry<AddonManifest, File> addonManifestFileEntry : toLoad.entrySet()) {
+            final AddonManifest addon = addonManifestFileEntry.getKey();
             try {
                 Object o = Class.forName(addon.getMainClass()).newInstance();
                 if (o instanceof IAddon) {
