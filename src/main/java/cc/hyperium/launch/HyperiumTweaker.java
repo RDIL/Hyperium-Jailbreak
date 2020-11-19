@@ -58,7 +58,7 @@ public class HyperiumTweaker implements ITweaker {
     @Override
     public void injectIntoClassLoader(LaunchClassLoader classLoader) {
         // optifine can still be present without the environment specifically being optifine
-        classLoader.registerTransformer("cc.hyperium.mods.memoryfix.ClassTransformer");
+        // classLoader.registerTransformer("cc.hyperium.mods.memoryfix.ClassTransformer");
 
         try {
             LOGGER.info("Launching addons.");
