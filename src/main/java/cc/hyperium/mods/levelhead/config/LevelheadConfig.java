@@ -32,44 +32,188 @@ public class LevelheadConfig implements IOptionSetProvider {
     }
 
     @Option @ToggleSetting(name = "Enable")
-    public static boolean ENABLED = true;
+    public boolean enabled = true;
 
     @Option @ToggleSetting(name = "Show Self")
-    public static boolean SHOW_OWN = true;
+    public boolean showSelf = true;
 
     @Option @SliderSetting(name = "Render Distance", min = 5, max = 64, isInt = true)
-    public static int RENDER_DISTANCE = 64;
+    public int renderDistance = 64;
 
     @Option @SliderSetting(name = "Cache Size", min = 150, max = 5000, isInt = true)
-    public static int PURGE_SIZE = 500;
+    public int purgeSize = 500;
 
-    @Option public static boolean headerChroma = false;
+    @Option public boolean headerChroma = false;
 
-    @Option public static boolean headerRgb = false;
+    @Option public boolean headerRgb = false;
 
-    @Option public static String headerColor = ChatColor.AQUA.toString();
+    @Option public String headerColor = ChatColor.AQUA.toString();
 
-    @Option public static int headerRed = 255;
+    @Option public int headerRed = 255;
 
-    @Option public static int headerGreen = 255;
+    @Option public int headerGreen = 255;
 
-    @Option public static int headerBlue = 250;
+    @Option public int headerBlue = 250;
 
-    @Option public static double headerAlpha = 1.0;
+    @Option public double headerAlpha = 1.0;
 
-    @Option public static String customHeader = "Level";
+    @Option public String customHeader = "Level";
 
-    @Option public static boolean footerChroma = false;
+    @Option public boolean footerChroma = false;
 
-    @Option public static boolean footerRgb = false;
+    @Option public boolean footerRgb = false;
 
-    @Option public static String footerColor = ChatColor.YELLOW.toString();
+    @Option public String footerColor = ChatColor.YELLOW.toString();
 
-    @Option public static int footerRed = 255;
+    @Option public int footerRed = 255;
 
-    @Option public static int footerGreen = 255;
+    @Option public int footerGreen = 255;
 
-    @Option public static int footerBlue = 250;
+    @Option public int footerBlue = 250;
 
-    @Option public static double footerAlpha = 1.0;
+    @Option public double footerAlpha = 1.0;
+
+    public boolean isFooterChroma() {
+        return footerChroma;
+    }
+
+    public void setFooterChroma(boolean footerChroma) {
+        this.footerChroma = footerChroma;
+    }
+
+    public boolean isFooterRgb() {
+        return footerRgb;
+    }
+
+    public void setFooterRgb(boolean footerRgb) {
+        this.footerRgb = footerRgb;
+    }
+
+    public String getFooterColor() {
+        return footerColor;
+    }
+
+    public void setFooterColor(String footerColor) {
+        this.footerColor = footerColor;
+    }
+
+    public int getFooterRed() {
+        return footerRed;
+    }
+
+    public void setFooterRed(int footerRed) {
+        this.footerRed = footerRed;
+    }
+
+    public int getFooterGreen() {
+        return footerGreen;
+    }
+
+    public void setFooterGreen(int footerGreen) {
+        this.footerGreen = footerGreen;
+    }
+
+    public int getFooterBlue() {
+        return footerBlue;
+    }
+
+    public void setFooterBlue(int footerBlue) {
+        this.footerBlue = footerBlue;
+    }
+
+    public double getFooterAlpha() {
+        return footerAlpha;
+    }
+
+    public boolean isHeaderChroma() {
+        return headerChroma;
+    }
+
+    public void setHeaderChroma(boolean headerChroma) {
+        this.headerChroma = headerChroma;
+    }
+
+    public boolean isHeaderRgb() {
+        return headerRgb;
+    }
+
+    public void setHeaderRgb(boolean headerRgb) {
+        this.headerRgb = headerRgb;
+    }
+
+    public String getHeaderColor() {
+        return headerColor;
+    }
+
+    public void setHeaderColor(String headerColor) {
+        this.headerColor = headerColor;
+    }
+
+    public int getHeaderRed() {
+        return headerRed;
+    }
+
+    public void setHeaderRed(int headerRed) {
+        this.headerRed = headerRed;
+    }
+
+    public int getHeaderGreen() {
+        return headerGreen;
+    }
+
+    public void setHeaderGreen(int headerGreen) {
+        this.headerGreen = headerGreen;
+    }
+
+    public int getHeaderBlue() {
+        return headerBlue;
+    }
+
+    public void setHeaderBlue(int headerBlue) {
+        this.headerBlue = headerBlue;
+    }
+
+    public double getHeaderAlpha() {
+        return headerAlpha;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public int getRenderDistance() {
+        return renderDistance;
+    }
+
+    public void setRenderDistance(int renderDistance) {
+        this.renderDistance = renderDistance;
+    }
+
+    public boolean isShowSelf() {
+        return showSelf;
+    }
+
+    public void setShowSelf(boolean showSelf) {
+        this.showSelf = showSelf;
+    }
+
+    public int getPurgeSize() {
+        return purgeSize;
+    }
+
+    public void setPurgeSize(int purgeSize) {
+        this.purgeSize = purgeSize;
+    }
+
+    public String getCustomHeader() {
+        return customHeader;
+    }
+
+    public void setCustomHeader(String customHeader) {
+        this.customHeader = customHeader;
+    }
 }

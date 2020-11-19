@@ -22,7 +22,6 @@ import cc.hyperium.config.provider.GeneralOptionsProvider;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.render.RenderNameTagEvent;
 import cc.hyperium.mods.levelhead.Levelhead;
-import cc.hyperium.mods.levelhead.config.LevelheadConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -45,7 +44,7 @@ public class LevelHeadRender {
 
     @InvokeEvent
     public void render(RenderNameTagEvent event) {
-        if ((event.getEntity().getUniqueID().equals(this.levelHead.userUuid) && !LevelheadConfig.SHOW_OWN) || !Hyperium.INSTANCE.getHandlers().getHypixelDetector().isHypixel()) return;
+        if ((event.getEntity().getUniqueID().equals(this.levelHead.userUuid) && !levelHead.getConfig().isShowSelf()) || !Hyperium.INSTANCE.getHandlers().getHypixelDetector().isHypixel()) return;
 
         EntityPlayer player = event.getEntity();
 

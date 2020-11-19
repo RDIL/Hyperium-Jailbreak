@@ -2,6 +2,7 @@ package cc.hyperium.mixinsimp;
 
 import cc.hyperium.Hyperium;
 import cc.hyperium.config.provider.IntegrationOptionsProvider;
+import cc.hyperium.event.client.InitializationEvent;
 import cc.hyperium.gui.SplashProgress;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.gui.GuiOpenEvent;
@@ -34,6 +35,7 @@ import net.minecraft.client.resources.DefaultResourcePack;
 import net.minecraft.client.resources.FileResourcePack;
 import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.client.settings.GameSettings;
+import net.minecraft.crash.CrashReport;
 import net.minecraft.profiler.Profiler;
 import net.minecraft.util.Timer;
 import org.lwjgl.LWJGLException;
@@ -43,10 +45,11 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class HyperiumMinecraft {
-    private Minecraft parent;
+    private final Minecraft parent;
     public HyperiumMinecraft(Minecraft parent) {
         this.parent = parent;
     }
@@ -58,7 +61,14 @@ public class HyperiumMinecraft {
         for (File file : AddonBootstrap.INSTANCE.getAddonResourcePacks()) {
             defaultResourcePacks.add(file == null ? new AddonWorkspaceResourcePack() : new FileResourcePack(file));
         }
-        AddonMinecraftBootstrap.INSTANCE.init();
+
+        try {
+            AddonMinecraftBootstrap.init();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Minecraft.getMinecraft().crashed(new CrashReport("Loading Addons", e));
+        }
+
         EventBus.INSTANCE.post(new PreInitializationEvent());
     }
 
@@ -68,10 +78,8 @@ public class HyperiumMinecraft {
         }
     }
 
-    @SuppressWarnings("deprecation")
     public void startGame() {
-        EventBus.INSTANCE.post(new cc.hyperium.event.client.InitializationEvent());
-        EventBus.INSTANCE.post(new cc.hyperium.event.InitializationEvent());
+        EventBus.INSTANCE.post(new InitializationEvent());
     }
 
     public void runTick(Profiler mcProfiler) {
@@ -210,7 +218,7 @@ public class HyperiumMinecraft {
     }
 
     public void shutdown() {
-        for (IAddon addon : AddonMinecraftBootstrap.INSTANCE.getLoadedAddons()) {
+        for (IAddon addon : AddonMinecraftBootstrap.getLoadedAddons()) {
             addon.onClose();
         }
     }

@@ -54,10 +54,11 @@ public class Levelhead extends AbstractMod {
     public int wait = 60;
     @Option
     private String type = "LEVEL";
-    private HashMap<UUID, String> trueValueCache = new HashMap<>();
-    private Set<UUID> existedMorethan5Seconds = new HashSet<>();
+    private final HashMap<UUID, String> trueValueCache = new HashMap<>();
+    private final Set<UUID> existedMorethan5Seconds = new HashSet<>();
     private long waitUntil = System.currentTimeMillis();
     private int updates = 0;
+    private LevelheadConfig config;
     private JsonHolder types = new JsonHolder();
 
     public Levelhead() {}
@@ -72,7 +73,10 @@ public class Levelhead extends AbstractMod {
 
     public AbstractMod init() {
         Multithreading.runAsync(() -> types = new JsonHolder(new Sk1erMod().rawWithAgent("https://backend.rdil.rocks/levelhead_config_mirror.json")));
-        Hyperium.CONFIG.register(LevelheadConfig.INSTANCE);
+        this.config = new LevelheadConfig();
+        Hyperium.CONFIG.register(config);
+        // save the type property of this class
+        Hyperium.CONFIG.register(this);
         register(this);
         userUuid = UUIDUtil.getClientUUID();
         register(new LevelHeadRender(this), this);
@@ -83,14 +87,14 @@ public class Levelhead extends AbstractMod {
     @SuppressWarnings("SimplifiableIfStatement")
     public boolean loadOrRender(EntityPlayer player) {
         if (!Hyperium.INSTANCE.getHandlers().getHypixelDetector().isHypixel()) return false;
-        if (!LevelheadConfig.ENABLED) return false;
+        if (!this.config.isEnabled()) return false;
 
         for (PotionEffect effect : player.getActivePotionEffects()) {
             if (effect.getPotionID() == 14) return false;
         }
         if (!renderFromTeam(player)) return false;
         if (player.riddenByEntity != null) return false;
-        int min = Math.min(64 * 64, LevelheadConfig.RENDER_DISTANCE * LevelheadConfig.RENDER_DISTANCE);
+        int min = Math.min(64 * 64, this.config.getRenderDistance() * this.config.getRenderDistance());
         if (player.getDistanceSqToEntity(Minecraft.getMinecraft().thePlayer) > min) return false;
         if (!this.existedMorethan5Seconds.contains(player.getUniqueID())) return false;
 
@@ -122,8 +126,8 @@ public class Levelhead extends AbstractMod {
 
     @InvokeEvent
     public void tick(TickEvent event) {
-        if (!Hyperium.INSTANCE.getHandlers().getHypixelDetector().isHypixel() || !LevelheadConfig.ENABLED) return;
-        Minecraft mc = Minecraft.getMinecraft();
+        if (!Hyperium.INSTANCE.getHandlers().getHypixelDetector().isHypixel() || !this.config.isEnabled()) return;
+        final Minecraft mc = Minecraft.getMinecraft();
 
         if (!mc.isGamePaused() && mc.thePlayer != null && mc.theWorld != null) {
             if (System.currentTimeMillis() < this.waitUntil) {
@@ -163,9 +167,9 @@ public class Levelhead extends AbstractMod {
         levelCache.put(uuid, null);
         Multithreading.runAsync(() -> {
             String raw = new Sk1erMod().rawWithAgent(
-                "https://api.sk1er.club/levelheadv5/" + trimUuid(uuid) + "/" + type
-                    + "/" + trimUuid(Minecraft.getMinecraft().getSession().getProfile().getId()) +
-                    "/" + VERSION);
+                    "https://api.sk1er.club/levelheadv5/" + trimUuid(uuid) + "/" + type
+                            + "/" + trimUuid(Minecraft.getMinecraft().getSession().getProfile().getId()) +
+                            "/" + VERSION);
             JsonHolder object = new JsonHolder(raw);
             if (!object.optBoolean("success")) {
                 object.put("strlevel", "Error");
@@ -211,26 +215,26 @@ public class Levelhead extends AbstractMod {
 
     public JsonHolder getHeaderConfig() {
         JsonHolder holder = new JsonHolder();
-        holder.put("chroma", LevelheadConfig.headerChroma);
-        holder.put("rgb", LevelheadConfig.headerRgb);
-        holder.put("red", LevelheadConfig.headerRed);
-        holder.put("green", LevelheadConfig.headerGreen);
-        holder.put("blue", LevelheadConfig.headerBlue);
-        holder.put("color", LevelheadConfig.headerColor);
-        holder.put("alpha", LevelheadConfig.headerAlpha);
-        holder.put("header", LevelheadConfig.customHeader + ": ");
+        holder.put("chroma", config.isHeaderChroma());
+        holder.put("rgb", config.isHeaderRgb());
+        holder.put("red", config.getHeaderRed());
+        holder.put("green", config.getHeaderGreen());
+        holder.put("blue", config.getHeaderBlue());
+        holder.put("color", config.getHeaderColor());
+        holder.put("alpha", config.getHeaderAlpha());
+        holder.put("header", config.getCustomHeader() + ": ");
         return holder;
     }
 
     public JsonHolder getFooterConfig() {
         JsonHolder holder = new JsonHolder();
-        holder.put("chroma", LevelheadConfig.footerChroma);
-        holder.put("rgb", LevelheadConfig.footerRgb);
-        holder.put("color", LevelheadConfig.footerColor);
-        holder.put("red", LevelheadConfig.footerRed);
-        holder.put("green", LevelheadConfig.footerGreen);
-        holder.put("blue", LevelheadConfig.footerBlue);
-        holder.put("alpha", LevelheadConfig.footerAlpha);
+        holder.put("chroma", config.isFooterChroma());
+        holder.put("rgb", config.isFooterRgb());
+        holder.put("color", config.getFooterColor());
+        holder.put("red", config.getFooterRed());
+        holder.put("green", config.getFooterGreen());
+        holder.put("blue", config.getFooterBlue());
+        holder.put("alpha", config.getFooterAlpha());
         return holder;
     }
 
@@ -251,7 +255,7 @@ public class Levelhead extends AbstractMod {
     }
 
     private void clearCache() {
-        if (levelCache.size() > Math.max(LevelheadConfig.PURGE_SIZE, 150)) {
+        if (levelCache.size() > Math.max(config.getPurgeSize(), 150)) {
             List<UUID> safePlayers = new ArrayList<>();
             for (EntityPlayer player : Minecraft.getMinecraft().theWorld.playerEntities) {
                 if (existedMorethan5Seconds.contains(player.getUniqueID())) {
@@ -273,6 +277,10 @@ public class Levelhead extends AbstractMod {
         for (Object o : events) {
             EventBus.INSTANCE.register(o);
         }
+    }
+
+    public LevelheadConfig getConfig() {
+        return config;
     }
 
     public HashMap<UUID, String> getTrueValueCache() {
