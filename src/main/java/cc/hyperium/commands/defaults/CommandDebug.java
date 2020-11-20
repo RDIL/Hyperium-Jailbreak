@@ -38,7 +38,7 @@ public class CommandDebug implements BaseCommand {
     private static void tryConfig(StringBuilder builder) {
         try {
             Hyperium.CONFIG.save();
-            builder.append("Config: ").append(printer.toJson(Hyperium.CONFIG.getJsonObject()));
+            builder.append("Config: ").append(printer.toJson(Hyperium.CONFIG.getConfig()));
         } catch (Exception e) {
             builder.append("Config: Error");
         }

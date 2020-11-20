@@ -18,11 +18,11 @@
 package cc.hyperium.mods.chromahud.displayitems.hyperium;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.config.provider.ChromaHudOptionsProvider;
 import cc.hyperium.mods.chromahud.ElementRenderer;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
 import cc.hyperium.utils.JsonHolder;
 import net.minecraft.client.Minecraft;
+import cc.hyperium.config.Settings;
 
 public class LocationDisplay extends DisplayItem {
     public LocationDisplay(JsonHolder raw, int ordinal) {
@@ -33,7 +33,7 @@ public class LocationDisplay extends DisplayItem {
     @Override
     public void draw(int starX, double startY, boolean config) {
         String string;
-        if (!ChromaHudOptionsProvider.CHROMAHUD_SQUAREBRACE_PREFIX_OPTION) {
+        if (!Settings.CHROMAHUD_SQUAREBRACE_PREFIX_OPTION) {
             string = "Location: " + Hyperium.INSTANCE.getHandlers().getLocationHandler().getLocation();
         } else {
             string = "[Location] " + Hyperium.INSTANCE.getHandlers().getLocationHandler().getLocation();

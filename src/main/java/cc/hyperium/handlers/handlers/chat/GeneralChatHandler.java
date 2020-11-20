@@ -16,19 +16,15 @@
  */
 
 package cc.hyperium.handlers.handlers.chat;
-
 import cc.hyperium.Hyperium;
 import cc.hyperium.event.network.chat.ChatEvent;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.client.TickEvent;
-import cc.hyperium.mixins.packet.IMixinC01PacketChatMessage;
 import cc.hyperium.utils.ChatColor;
 import cc.hyperium.utils.JsonHolder;
-import cc.hyperium.utils.mods.CompactChat;
-
+import cc.hyperium.config.Settings;
 import com.google.gson.JsonParser;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.play.client.C01PacketChatMessage;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 import java.io.InputStreamReader;
@@ -51,12 +47,6 @@ public class GeneralChatHandler {
         instance = this;
     }
 
-    public static void sendMessageToServer(String msg) {
-        final C01PacketChatMessage packet = new C01PacketChatMessage(msg);
-        ((IMixinC01PacketChatMessage) packet).setMessage(msg);
-        Minecraft.getMinecraft().thePlayer.sendQueue.addToSendQueue(packet);
-    }
-
     public void sendMessage(IChatComponent component) {
         if (component == null) component = new ChatComponentText("");
         this.messages.add(component);
@@ -66,14 +56,17 @@ public class GeneralChatHandler {
         if (message == null) return;
 
         if (addHeader) {
-            message = ChatColor.RED + "[HyperiumJailbreak] " + ChatColor.WHITE.toString() + message;
+            if (Settings.HYPERIUM_CHAT_PREFIX) {
+                message = ChatColor.RED + "[HyperiumJailbreak] " + ChatColor.WHITE.toString() + message;
+            } else {
+                message = ChatColor.WHITE.toString() + message;
+            }
         }
         sendMessage(new ChatComponentText(message));
     }
 
     public void sendMessage(String message) {
         sendMessage(message, true);
-        CompactChat.INSTANCE.setLastMessage(message);
     }
 
     @InvokeEvent

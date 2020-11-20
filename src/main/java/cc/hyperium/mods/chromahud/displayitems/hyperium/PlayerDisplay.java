@@ -1,19 +1,16 @@
 package cc.hyperium.mods.chromahud.displayitems.hyperium;
-
 import cc.hyperium.mods.chromahud.api.DisplayItem;
 import cc.hyperium.utils.JsonHolder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
-
 public class PlayerDisplay extends DisplayItem {
     public PlayerDisplay(JsonHolder data, int ordinal) {
         super(data, ordinal);
         this.width = 51;
         this.height = 100;
     }
-
     @Override
     public void draw(int x, double y, boolean config) {
         GlStateManager.pushMatrix();

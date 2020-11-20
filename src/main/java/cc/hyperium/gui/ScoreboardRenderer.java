@@ -1,5 +1,5 @@
 package cc.hyperium.gui;
-
+import cc.hyperium.config.ConfigOpt;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.render.RenderScoreboardEvent;
 import cc.hyperium.utils.RenderUtils;
@@ -13,15 +13,15 @@ import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.util.EnumChatFormatting;
-import rocks.rdil.simpleconfig.Option;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ScoreboardRenderer {
-    @Option private double xLocation = 1.0D;
-    @Option private double yLocation = .5D;
+    @ConfigOpt
+    private double xLocation = 1.0D;
+    @ConfigOpt
+    private double yLocation = .5D;
 
     public void render(ScoreObjective objective, ScaledResolution resolution) {
         RenderScoreboardEvent renderEvent = new RenderScoreboardEvent(this.xLocation, this.yLocation, objective, resolution);

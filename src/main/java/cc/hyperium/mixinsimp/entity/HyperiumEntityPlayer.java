@@ -1,6 +1,6 @@
 package cc.hyperium.mixinsimp.entity;
 
-import cc.hyperium.config.provider.AnimationOptionsProvider;
+import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.entity.LivingDeathEvent;
 import cc.hyperium.event.entity.PlayerAttackEntityEvent;
@@ -23,6 +23,7 @@ public class HyperiumEntityPlayer {
     private boolean last = false;
     private float currentHeight = 1.62F;
     private long lastChangeTime = System.currentTimeMillis();
+    private int timeDelay = 1000 / 60;
     private IChatComponent cachedName;
     private String displayName;
 
@@ -40,8 +41,7 @@ public class HyperiumEntityPlayer {
     }
 
     public float getEyeHeight() {
-        if (AnimationOptionsProvider.OLD_SNEAKING) {
-            int timeDelay = 1000 / 60;
+        if (Settings.OLD_SNEAKING) {
             if (parent.isSneaking()) {
                 if (currentHeight > sneakingHeight) {
                     long time = System.currentTimeMillis();

@@ -1,19 +1,12 @@
 package cc.hyperium.mods.tabtoggle;
 
+import static cc.hyperium.config.Category.TAB_TOGGLE;
+import cc.hyperium.config.ConfigOpt;
 import cc.hyperium.config.ToggleSetting;
-import cc.hyperium.config.provider.IOptionSetProvider;
-import rocks.rdil.simpleconfig.Option;
 
-public class TabToggleSettings implements IOptionSetProvider {
-    public static final TabToggleSettings INSTANCE = new TabToggleSettings();
-
-    @Override
-    public String getName() {
-        return "Tab Toggle";
-    }
-
+public class TabToggleSettings {
     public static boolean TAB_TOGGLED = false;
 
-    @Option @ToggleSetting(name = "Tab Toggle")
+    @ConfigOpt @ToggleSetting(name = "Tab Toggle", category = TAB_TOGGLE)
     public static boolean ENABLED = false;
 }

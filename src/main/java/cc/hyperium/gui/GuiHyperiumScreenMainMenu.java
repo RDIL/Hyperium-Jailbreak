@@ -18,9 +18,10 @@
 package cc.hyperium.gui;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.config.provider.IntegrationOptionsProvider;
-import cc.hyperium.gui.hyperium.HyperiumSettingsGui;
 import cc.hyperium.styles.GuiStyle;
+import cc.hyperium.config.Settings;
+import cc.hyperium.gui.hyperium.HyperiumMainGui;
+import cc.hyperium.handlers.handlers.SettingsMigrator;
 import cc.hyperium.mixinsimp.renderer.gui.IMixinGuiMultiplayer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -31,6 +32,7 @@ import net.minecraft.client.gui.GuiOptions;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiSelectWorld;
 import net.minecraft.client.gui.GuiYesNo;
+import net.minecraft.client.gui.GuiYesNoCallback;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.DynamicTexture;
@@ -44,7 +46,7 @@ import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.WorldInfo;
 import org.lwjgl.input.Keyboard;
 
-public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen {
+public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen implements GuiYesNoCallback {
     private static boolean FIRST_START = true;
     private final ResourceLocation exit = new ResourceLocation("textures/material/exit.png");
     private final ResourceLocation people_outline = new ResourceLocation("textures/material/people-outline.png");
@@ -55,10 +57,14 @@ public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen {
     private boolean field_183502_L;
 
     public GuiHyperiumScreenMainMenu() {
-        if (Minecraft.getMinecraft().isFullScreen() && IntegrationOptionsProvider.WINDOWED_FULLSCREEN && FIRST_START) {
+        if (Minecraft.getMinecraft().isFullScreen() && Settings.WINDOWED_FULLSCREEN && FIRST_START) {
             GuiHyperiumScreenMainMenu.FIRST_START = false;
             Minecraft.getMinecraft().toggleFullscreen();
             Minecraft.getMinecraft().toggleFullscreen();
+        }
+
+        if (Hyperium.INSTANCE.isFirstLaunch()) {
+            new SettingsMigrator().migrate();
         }
     }
 
@@ -136,8 +142,8 @@ public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen {
             }
         }
 
-        if (getStyle() == GuiStyle.DEFAULT) {
-            if (button.id == 15) HyperiumSettingsGui.INSTANCE.show();
+        if(getStyle() == GuiStyle.DEFAULT) {
+            if (button.id == 15) HyperiumMainGui.INSTANCE.show();
             if (button.id == 16) {
                 GuiMultiplayer p_i1182_1_ = new GuiMultiplayer(new GuiMainMenu());
                 p_i1182_1_.setWorldAndResolution(Minecraft.getMinecraft(), width, height);
@@ -148,11 +154,12 @@ public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen {
                 p_i1182_1_.confirmClicked(true, 0);
              }
         } else {
-            if (button.id == 15) HyperiumSettingsGui.INSTANCE.show();
+            if (button.id == 15) HyperiumMainGui.INSTANCE.show();
         }
 
         if (button.id == 100) {
-            Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(HyperiumSettingsGui.INSTANCE);
+            HyperiumMainGui.INSTANCE.setTab(2);
+            Hyperium.INSTANCE.getHandlers().getGuiDisplayHandler().setDisplayNextTick(HyperiumMainGui.INSTANCE);
         }
     }
 

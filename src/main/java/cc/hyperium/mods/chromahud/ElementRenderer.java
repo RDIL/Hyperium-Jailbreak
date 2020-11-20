@@ -17,7 +17,7 @@
 
 package cc.hyperium.mods.chromahud;
 
-import cc.hyperium.config.provider.ChromaHudOptionsProvider;
+import cc.hyperium.config.Settings;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.render.RenderHUDEvent;
 import cc.hyperium.event.client.TickEvent;
@@ -178,9 +178,10 @@ public class ElementRenderer {
     @InvokeEvent
     public void onRenderTick(RenderHUDEvent event) {
         if (!this.minecraft.inGameHasFocus || this.minecraft.gameSettings.showDebugInfo) return;
-        if (!ChromaHudOptionsProvider.SHOW_CHROMAHUD) return;
+        if (!Settings.SHOW_CHROMAHUD) return;
         renderElements();
         GlStateManager.resetColor();
+
     }
 
     public void renderElements() {

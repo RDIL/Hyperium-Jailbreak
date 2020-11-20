@@ -57,32 +57,27 @@ public class HyperiumTweaker implements ITweaker {
 
     @Override
     public void injectIntoClassLoader(LaunchClassLoader classLoader) {
-        // optifine can still be present without the environment specifically being optifine
-        // classLoader.registerTransformer("cc.hyperium.mods.memoryfix.ClassTransformer");
-
+        MixinBootstrap.init();
         try {
             LOGGER.info("Launching addons.");
-            AddonBootstrap.INSTANCE.init();
+            AddonBootstrap.INSTANCE.init(classLoader, this);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        MixinBootstrap.init();
         MixinEnvironment environment = MixinEnvironment.getDefaultEnvironment();
+        Mixins.addConfiguration("mixins.hyperium.json");
         this.OPTIFINE = this.isRunningOptifine;
         if (this.OPTIFINE) {
-            // the Minecraft jar is Minecraft, but modified to use OptiFine as the primary tweaker
             LOGGER.info("Found environment: OPTIFINE (obfuscation context = notch)");
-            environment.setObfuscationContext("notch");
+            classLoader.registerTransformer("cc.hyperium.mods.memoryfix.ClassTransformer");
+            environment.setObfuscationContext("notch"); // Switch's to notch mappings
         }
         if (environment.getObfuscationContext() == null) {
-            // the Minecraft jar is either vanilla or vanilla patched by OptiFine
             LOGGER.info("Found environment: FALLBACK (obfuscation context = notch)");
-            environment.setObfuscationContext("notch");
+            environment.setObfuscationContext("notch"); // Switch's to notch mappings
         }
         environment.setSide(MixinEnvironment.Side.CLIENT);
-        Mixins.addConfiguration("mixins.hyperium.json");
-        AddonBootstrap.INSTANCE.callAddonMixinBootstrap();
     }
 
     @Override
@@ -107,7 +102,7 @@ public class HyperiumTweaker implements ITweaker {
     }
 
     @SuppressWarnings("unchecked")
-    public static void injectCascadingTweak(String tweakClassName) {
+    public void injectCascadingTweak(String tweakClassName) {
         List<String> tweakClasses = (List<String>) Launch.blackboard.get("TweakClasses");
         tweakClasses.add(tweakClassName);
     }

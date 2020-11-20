@@ -9,5 +9,8 @@ import java.lang.annotation.Target;
 @Target(value = ElementType.FIELD)
 public @interface SelectorSetting {
     String name();
+    Category category() default Category.GENERAL;
     String[] items();
+    boolean enabled() default true;
+    @Deprecated boolean mods() default false;
 }

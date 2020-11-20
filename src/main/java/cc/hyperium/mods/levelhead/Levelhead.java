@@ -18,6 +18,7 @@
 package cc.hyperium.mods.levelhead;
 
 import cc.hyperium.Hyperium;
+import cc.hyperium.config.ConfigOpt;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.client.TickEvent;
@@ -34,8 +35,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.scoreboard.Team;
-import rocks.rdil.simpleconfig.Option;
-
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,10 +51,10 @@ public class Levelhead extends AbstractMod {
     public UUID userUuid = null;
     public int count = 1;
     public int wait = 60;
-    @Option
+    @ConfigOpt
     private String type = "LEVEL";
-    private final HashMap<UUID, String> trueValueCache = new HashMap<>();
-    private final Set<UUID> existedMorethan5Seconds = new HashSet<>();
+    private HashMap<UUID, String> trueValueCache = new HashMap<>();
+    private Set<UUID> existedMorethan5Seconds = new HashSet<>();
     private long waitUntil = System.currentTimeMillis();
     private int updates = 0;
     private LevelheadConfig config;
@@ -75,8 +74,6 @@ public class Levelhead extends AbstractMod {
         Multithreading.runAsync(() -> types = new JsonHolder(new Sk1erMod().rawWithAgent("https://backend.rdil.rocks/levelhead_config_mirror.json")));
         this.config = new LevelheadConfig();
         Hyperium.CONFIG.register(config);
-        // save the type property of this class
-        Hyperium.CONFIG.register(this);
         register(this);
         userUuid = UUIDUtil.getClientUUID();
         register(new LevelHeadRender(this), this);
@@ -111,6 +108,8 @@ public class Levelhead extends AbstractMod {
         if (team != null) {
             Team.EnumVisible enumVisible = team.getNameTagVisibility();
             switch (enumVisible) {
+                case ALWAYS:
+                    return true;
                 case NEVER:
                     return false;
                 case HIDE_FOR_OTHER_TEAMS:
@@ -127,7 +126,7 @@ public class Levelhead extends AbstractMod {
     @InvokeEvent
     public void tick(TickEvent event) {
         if (!Hyperium.INSTANCE.getHandlers().getHypixelDetector().isHypixel() || !this.config.isEnabled()) return;
-        final Minecraft mc = Minecraft.getMinecraft();
+        Minecraft mc = Minecraft.getMinecraft();
 
         if (!mc.isGamePaused() && mc.thePlayer != null && mc.theWorld != null) {
             if (System.currentTimeMillis() < this.waitUntil) {
@@ -167,9 +166,9 @@ public class Levelhead extends AbstractMod {
         levelCache.put(uuid, null);
         Multithreading.runAsync(() -> {
             String raw = new Sk1erMod().rawWithAgent(
-                    "https://api.sk1er.club/levelheadv5/" + trimUuid(uuid) + "/" + type
-                            + "/" + trimUuid(Minecraft.getMinecraft().getSession().getProfile().getId()) +
-                            "/" + VERSION);
+                "https://api.sk1er.club/levelheadv5/" + trimUuid(uuid) + "/" + type
+                    + "/" + trimUuid(Minecraft.getMinecraft().getSession().getProfile().getId()) +
+                    "/" + VERSION);
             JsonHolder object = new JsonHolder(raw);
             if (!object.optBoolean("success")) {
                 object.put("strlevel", "Error");

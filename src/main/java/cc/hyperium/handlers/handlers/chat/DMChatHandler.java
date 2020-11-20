@@ -17,7 +17,7 @@
 
 package cc.hyperium.handlers.handlers.chat;
 
-import cc.hyperium.config.provider.HypixelOptionsProvider;
+import cc.hyperium.config.Settings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundHandler;
@@ -28,7 +28,7 @@ import java.util.regex.Matcher;
 public class DMChatHandler extends HyperiumChatHandler {
     @Override
     public boolean chatReceived(IChatComponent component, String text) {
-        if (!HypixelOptionsProvider.PING_ON_DM) return false;
+        if (!Settings.PING_ON_DM) return false;
         Matcher matcher = regexPatterns.get(ChatRegexType.PRIVATE_MESSAGE_FROM).matcher(text);
         if (matcher.matches()) {
             SoundHandler soundHandler = Minecraft.getMinecraft().getSoundHandler();

@@ -18,7 +18,7 @@
 package cc.hyperium.mods.levelhead.renderer;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.config.provider.GeneralOptionsProvider;
+import cc.hyperium.config.Settings;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.render.RenderNameTagEvent;
 import cc.hyperium.mods.levelhead.Levelhead;
@@ -56,7 +56,7 @@ public class LevelHeadRender {
             if (scoreObjective != null && player.getDistanceSqToEntity(Minecraft.getMinecraft().thePlayer) < 10 * 10) {
                 offset *= 2;
             }
-            if (player.getUniqueID().equals(this.levelHead.userUuid) && !GeneralOptionsProvider.SHOW_OWN_NAME)
+            if (player.getUniqueID().equals(this.levelHead.userUuid) && !Settings.SHOW_OWN_NAME)
                 offset = -10;
             renderName(event, (this.levelHead.getLevelString(player.getUniqueID())), offset);
         }

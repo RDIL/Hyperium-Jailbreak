@@ -1,7 +1,6 @@
 package cc.hyperium.mixins.client.particle;
 
-import cc.hyperium.config.provider.GeneralOptionsProvider;
-import cc.hyperium.config.provider.OptimizationOptionsProvider;
+import cc.hyperium.config.Settings;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EffectRenderer;
@@ -102,7 +101,7 @@ public abstract class MixinEffectRenderer {
     private void updateEffectLayer(int p_178922_1_) {
         for (int i = 0; i < 2; ++i) {
             int finalI = i;
-            if (OptimizationOptionsProvider.MULTI_CPU_PARTICLE_RENDERING) {
+            if (Settings.MULTI_CPU_PARTICLE_RENDERING) {
                 Multithreading.runAsync(() -> {
                     try {
                         this.updateEffectAlphaLayer(this.modifiedFxLayer[p_178922_1_][finalI]);
@@ -118,7 +117,7 @@ public abstract class MixinEffectRenderer {
     }
 
     private void updateEffectAlphaLayer(ConcurrentLinkedQueue<EntityFX> queue) {
-        if (OptimizationOptionsProvider.MULTI_CPU_PARTICLE_RENDERING) {
+        if (Settings.MULTI_CPU_PARTICLE_RENDERING) {
             int total = queue.size();
             int threads = total / 100 + 1;
             CountDownLatch latch = new CountDownLatch(threads);
@@ -174,7 +173,7 @@ public abstract class MixinEffectRenderer {
         int i = effect.getFXLayer();
         int j = effect.getAlpha() != 1.0F ? 0 : 1;
 
-        if (this.modifiedFxLayer[i][j].size() >= GeneralOptionsProvider.MAX_WORLD_PARTICLES_INT) {
+        if (this.modifiedFxLayer[i][j].size() >= Settings.MAX_WORLD_PARTICLES_INT) {
             this.modifiedFxLayer[i][j].poll();
         }
 
@@ -246,7 +245,7 @@ public abstract class MixinEffectRenderer {
      */
     @Overwrite
     public void updateEffects() {
-        latch = OptimizationOptionsProvider.MULTI_CPU_PARTICLE_RENDERING ? new CountDownLatch(8) : null;
+        latch = Settings.MULTI_CPU_PARTICLE_RENDERING ? new CountDownLatch(8) : null;
 
         for (int i = 0; i < 4; ++i) {
             this.updateEffectLayer(i);

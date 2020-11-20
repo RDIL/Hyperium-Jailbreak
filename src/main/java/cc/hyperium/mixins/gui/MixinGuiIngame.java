@@ -17,8 +17,7 @@
 
 package cc.hyperium.mixins.gui;
 
-import cc.hyperium.config.provider.AnimationOptionsProvider;
-import cc.hyperium.config.provider.OptimizationOptionsProvider;
+import cc.hyperium.config.Settings;
 import cc.hyperium.mixinsimp.gui.HyperiumGuiIngame;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -176,7 +175,7 @@ public abstract class MixinGuiIngame extends Gui {
                         hardCore = 5;
                     }
                     this.drawTexturedModalRect(healthWidth, healthHeight, 16 + gettingDamage * 9, 9 * hardCore, 9, 9);
-                    if (!AnimationOptionsProvider.OLD_HEALTH) {
+                    if (!Settings.OLD_HEALTH) {
                         if (isGettingDamage) {
                             if (healthHeartAmount * 2 + 1 < lastPlayerHealth) {
                                 this.drawTexturedModalRect(healthWidth, healthHeight, baseTextureX + 54, 9 * hardCore, 9, 9);
@@ -298,6 +297,6 @@ public abstract class MixinGuiIngame extends Gui {
 
     @Inject(method = "displayTitle", at = @At("HEAD"), cancellable = true)
     private void displayTitle(String title, String subTitle, int timeFadeIn, int displayTime, int timeFadeOut, CallbackInfo ci) {
-        if (OptimizationOptionsProvider.HIDE_TITLES) ci.cancel();
+        if (Settings.HIDE_TITLES) ci.cancel();
     }
 }

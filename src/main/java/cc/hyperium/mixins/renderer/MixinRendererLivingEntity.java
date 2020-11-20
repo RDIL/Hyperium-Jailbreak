@@ -17,7 +17,7 @@
 
 package cc.hyperium.mixins.renderer;
 
-import cc.hyperium.config.provider.GeneralOptionsProvider;
+import cc.hyperium.config.Settings;
 import cc.hyperium.mixinsimp.renderer.HyperiumRenderLivingEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -51,7 +51,7 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
      */
     @Overwrite
     protected boolean canRenderName(T entity) {
-        if (GeneralOptionsProvider.BETTERF1 && Minecraft.getMinecraft().gameSettings.hideGUI) {
+        if (Settings.BETTERF1 && Minecraft.getMinecraft().gameSettings.hideGUI) {
             return false;
         }
         EntityPlayerSP entityplayersp = Minecraft.getMinecraft().thePlayer;

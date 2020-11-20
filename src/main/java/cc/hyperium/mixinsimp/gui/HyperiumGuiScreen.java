@@ -1,6 +1,6 @@
 package cc.hyperium.mixinsimp.gui;
 
-import cc.hyperium.config.provider.GeneralOptionsProvider;
+import cc.hyperium.config.Settings;
 import cc.hyperium.event.interact.ActionPerformedEvent;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.gui.GuiClickEvent;
@@ -20,7 +20,7 @@ public class HyperiumGuiScreen {
     }
 
     public void drawWorldBackground(Minecraft mc, CallbackInfo ci) {
-        if (mc.theWorld != null && GeneralOptionsProvider.FAST_CONTAINER) {
+        if (mc.theWorld != null && Settings.FAST_CONTAINER) {
             ci.cancel();
         }
     }
