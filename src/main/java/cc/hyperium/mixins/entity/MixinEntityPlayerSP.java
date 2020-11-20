@@ -17,12 +17,12 @@
 
 package cc.hyperium.mixins.entity;
 
-import cc.hyperium.config.Settings;
+import cc.hyperium.config.provider.IntegrationOptionsProvider;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.network.chat.SendChatMessageEvent;
+import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import cc.hyperium.mods.nickhider.NickHider;
 import com.mojang.authlib.GameProfile;
-import cc.hyperium.utils.ChatUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -49,7 +49,7 @@ public class MixinEntityPlayerSP extends AbstractClientPlayer {
      */
     @Overwrite
     public void onEnchantmentCritical(Entity entityHit) {
-        if (mc.isSingleplayer() || !Settings.CRIT_FIX) {
+        if (mc.isSingleplayer() || !IntegrationOptionsProvider.CRIT_FIX) {
             mc.effectRenderer.emitParticleAtEntity(entityHit, EnumParticleTypes.CRIT_MAGIC);
         }
     }
@@ -67,7 +67,7 @@ public class MixinEntityPlayerSP extends AbstractClientPlayer {
         EventBus.INSTANCE.post(event);
 
         if (!event.isCancelled()) {
-            ChatUtil.sendMessage(message);
+            GeneralChatHandler.sendMessageToServer(message);
         }
     }
 
@@ -76,7 +76,7 @@ public class MixinEntityPlayerSP extends AbstractClientPlayer {
      */
     @Overwrite
     public void onCriticalHit(Entity entityHit) {
-        if (Minecraft.getMinecraft().isSingleplayer() || !Settings.CRIT_FIX) {
+        if (Minecraft.getMinecraft().isSingleplayer() || !IntegrationOptionsProvider.CRIT_FIX) {
             mc.effectRenderer.emitParticleAtEntity(entityHit, EnumParticleTypes.CRIT);
         }
     }

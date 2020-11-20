@@ -3,7 +3,7 @@ package cc.hyperium.mixinsimp.gui;
 import static cc.hyperium.gui.HyperiumGui.clamp;
 import static cc.hyperium.gui.HyperiumGui.easeOut;
 import static net.minecraft.client.gui.Gui.drawRect;
-import cc.hyperium.config.Settings;
+import cc.hyperium.config.provider.MenusOptionsProvider;
 import cc.hyperium.mixins.gui.MixinGuiButton2;
 import java.awt.Color;
 import net.minecraft.client.Minecraft;
@@ -34,7 +34,7 @@ public class HyperiumGuiButton {
         parentA.setHovered(mouseX >= parent.xPosition && mouseY >= parent.yPosition && mouseX < parent.xPosition + parent.getButtonWidth() && mouseY < parent.yPosition + parentA.getHeight());
         parentA.callMouseDragged(mc, mouseX, mouseY);
 
-        if (this.systemTime < Minecraft.getSystemTime() + (1000 / 60) && Settings.BUTTON_STYLE.equalsIgnoreCase("HYPERIUM")) {
+        if (this.systemTime < Minecraft.getSystemTime() + (1000 / 60) && MenusOptionsProvider.BUTTON_STYLE.equalsIgnoreCase("HYPERIUM")) {
             this.selectPercent = clamp(
                 easeOut(
                     this.selectPercent,
@@ -48,7 +48,7 @@ public class HyperiumGuiButton {
             this.systemTime += (1000 / 60);
         }
 
-        if (Settings.BUTTON_STYLE.equalsIgnoreCase("HYPERIUM")) {
+        if (MenusOptionsProvider.BUTTON_STYLE.equalsIgnoreCase("HYPERIUM")) {
             drawRect(
                 (int) (parent.xPosition + (selectPercent * 7)),
                 parent.yPosition,
@@ -58,14 +58,14 @@ public class HyperiumGuiButton {
             );
         }
 
-        if (Settings.BUTTON_STYLE.equalsIgnoreCase("HYPERIUM 2")) {
+        if (MenusOptionsProvider.BUTTON_STYLE.equalsIgnoreCase("HYPERIUM 2")) {
             drawRect(
                 (int) (parent.xPosition + (selectPercent * 7)),
                 parent.yPosition,
                 (int) ((parent.xPosition + parent.getButtonWidth()) - (selectPercent * 7)),
                 parent.yPosition + parentA.getHeight(),
                 parentA.isHovered() ? hoverColor : color);
-            if (Settings.H2_BUTTONS_CHROMA) {
+            if (MenusOptionsProvider.H2_BUTTONS_CHROMA) {
                 this.drawBorderedRect(parent.xPosition, parent.yPosition, parent.xPosition + parent.getButtonWidth(), parent.yPosition + parentA.getHeight(), 1, parentA.isHovered() ? hoverColorHyperium2 : textColor, color);
             } else {
                 this.drawBorderedRect(parent.xPosition, parent.yPosition, parent.xPosition + parent.getButtonWidth(), parent.yPosition + parentA.getHeight(), 1, parentA.isHovered() ? getChromaColor() : textColor, color);
@@ -75,11 +75,11 @@ public class HyperiumGuiButton {
 
         if (!enabled) {
             j = 10526880;
-        } else if (parentA.isHovered() && Settings.BUTTON_STYLE.equalsIgnoreCase("HYPERIUM")) {
+        } else if (parentA.isHovered() && MenusOptionsProvider.BUTTON_STYLE.equalsIgnoreCase("HYPERIUM")) {
             j = textHoverColor;
-        } else if (parentA.isHovered() && Settings.BUTTON_STYLE.equalsIgnoreCase("HYPERIUM 2") && !Settings.H2_BUTTONS_CHROMA) {
+        } else if (parentA.isHovered() && MenusOptionsProvider.BUTTON_STYLE.equalsIgnoreCase("HYPERIUM 2") && !MenusOptionsProvider.H2_BUTTONS_CHROMA) {
             j = hoverColorHyperium2;
-        } else if (parentA.isHovered() && Settings.BUTTON_STYLE.equalsIgnoreCase("HYPERIUM 2") && Settings.H2_BUTTONS_CHROMA) {
+        } else if (parentA.isHovered() && MenusOptionsProvider.BUTTON_STYLE.equalsIgnoreCase("HYPERIUM 2") && MenusOptionsProvider.H2_BUTTONS_CHROMA) {
             j = getChromaColor();
         }
         parent.drawCenteredString(fontRenderer, parent.displayString, parent.xPosition + parent.getButtonWidth() / 2, parent.yPosition + (parentA.getHeight() - 8) / 2, j);

@@ -1,6 +1,6 @@
 package cc.hyperium.cosmetics;
 
-import cc.hyperium.config.Settings;
+import cc.hyperium.config.provider.CosmeticOptionsProvider;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.render.RenderPlayerEvent;
 import net.minecraft.client.Minecraft;
@@ -30,7 +30,7 @@ public class CosmeticHat extends AbstractCosmetic {
         Minecraft mc = Minecraft.getMinecraft();
         AbstractClientPlayer player = e.getEntity();
 
-        if (!Settings.HAT_TYPE.equals(this.id)) return;
+        if (!CosmeticOptionsProvider.HAT_TYPE.equals(this.id)) return;
 
         if (player.getUniqueID() == Minecraft.getMinecraft().thePlayer.getUniqueID() && !player.isInvisible()) {
             GlStateManager.pushMatrix();

@@ -11,7 +11,6 @@ public class TabToggleMod extends AbstractMod {
 
         TabToggleSettings object = new TabToggleSettings();
         Hyperium.CONFIG.register(object);
-        Hyperium.INSTANCE.getHandlers().getSettingsHandler().getSettingsObjects().add(object);
         return this;
     }
 }

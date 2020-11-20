@@ -1,6 +1,6 @@
 package cc.hyperium.mixinsimp.renderer;
 
-import cc.hyperium.config.Settings;
+import cc.hyperium.config.provider.AnimationOptionsProvider;
 import cc.hyperium.mixins.renderer.IMixinItemRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
@@ -17,26 +17,24 @@ import net.minecraft.util.MathHelper;
 
 public class HyperiumItemRenderer {
     private final ItemRenderer parent;
-    private Minecraft mc;
+    private static final Minecraft mc = Minecraft.getMinecraft();
 
     public HyperiumItemRenderer(ItemRenderer parent) {
         this.parent = parent;
-        mc = Minecraft.getMinecraft();
     }
 
     public void transformFirstPersonItem(float equipProgress, float swingProgress) {
-        if (Settings.OLD_BOW && this.mc != null && this.mc.thePlayer != null &&
-            this.mc.thePlayer.getItemInUse() != null && this.mc.thePlayer.getItemInUse().getItem() != null &&
-            Item.getIdFromItem(this.mc.thePlayer.getItemInUse().getItem()) == 261) {
+        if (AnimationOptionsProvider.OLD_BOW && mc.thePlayer != null && mc.thePlayer.getItemInUse() != null && mc.thePlayer.getItemInUse().getItem() != null &&
+            Item.getIdFromItem(mc.thePlayer.getItemInUse().getItem()) == 261) {
             GlStateManager.translate(0.0f, 0.05f, 0.04f);
         }
 
-        if (Settings.OLD_ROD && this.mc != null && this.mc.thePlayer != null && this.mc.thePlayer.getCurrentEquippedItem() != null && this.mc.thePlayer.getCurrentEquippedItem().getItem() != null && Item.getIdFromItem(this.mc.thePlayer.getCurrentEquippedItem().getItem()) == 346) {
+        if (AnimationOptionsProvider.OLD_ROD && mc.thePlayer != null && mc.thePlayer.getCurrentEquippedItem() != null && mc.thePlayer.getCurrentEquippedItem().getItem() != null && Item.getIdFromItem(this.mc.thePlayer.getCurrentEquippedItem().getItem()) == 346) {
             GlStateManager.translate(0.08f, -0.027f, -0.33f);
             GlStateManager.scale(0.93f, 1.0f, 1.0f);
         }
 
-        if (Settings.OLD_BLOCKHIT && this.mc != null && this.mc.thePlayer != null && this.mc.thePlayer.isSwingInProgress && this.mc.thePlayer.getCurrentEquippedItem() != null && !this.mc.thePlayer.isEating() && !this.mc.thePlayer.isBlocking()) {
+        if (AnimationOptionsProvider.OLD_BLOCKHIT && mc.thePlayer != null && mc.thePlayer.isSwingInProgress && mc.thePlayer.getCurrentEquippedItem() != null && !this.mc.thePlayer.isEating() && !this.mc.thePlayer.isBlocking()) {
             GlStateManager.scale(0.85f, 0.85f, 0.85f);
             GlStateManager.translate(-0.078f, 0.003f, 0.05f);
         }
@@ -54,7 +52,7 @@ public class HyperiumItemRenderer {
 
     public void renderItemInFirstPerson(float partialTicks, float prevEquippedProgress, float equippedProgress, ItemStack itemToRender) {
         float f = 1.0F - (prevEquippedProgress + (equippedProgress - prevEquippedProgress) * partialTicks);
-        AbstractClientPlayer abstractclientplayer = this.mc.thePlayer;
+        AbstractClientPlayer abstractclientplayer = mc.thePlayer;
         float f1 = abstractclientplayer.getSwingProgress(partialTicks);
         float f2 = abstractclientplayer.prevRotationPitch + (abstractclientplayer.rotationPitch - abstractclientplayer.prevRotationPitch) * partialTicks;
         float f3 = abstractclientplayer.prevRotationYaw + (abstractclientplayer.rotationYaw - abstractclientplayer.prevRotationYaw) * partialTicks;
@@ -77,14 +75,14 @@ public class HyperiumItemRenderer {
                     case EAT:
                     case DRINK:
                         ((IMixinItemRenderer) parent).callFunc_178104_a(abstractclientplayer, partialTicks);
-                        if (Settings.OLD_EATING) {
+                        if (AnimationOptionsProvider.OLD_EATING) {
                             this.transformFirstPersonItem(f, f1);
                         } else {
                             this.transformFirstPersonItem(f, 0.0F);
                         }
                         break;
                     case BLOCK:
-                        if (Settings.OLD_BLOCKHIT) {
+                        if (AnimationOptionsProvider.OLD_BLOCKHIT) {
                             this.transformFirstPersonItem(f, f1);
                             ((IMixinItemRenderer) parent).callFunc_178103_d();
                             GlStateManager.scale(0.83f, 0.88f, 0.85f);
@@ -96,7 +94,7 @@ public class HyperiumItemRenderer {
                         break;
 
                     case BOW:
-                        if (Settings.OLD_BOW) {
+                        if (AnimationOptionsProvider.OLD_BOW) {
                             this.transformFirstPersonItem(f, f1);
                             ((IMixinItemRenderer) parent).callFunc_178098_a(partialTicks, abstractclientplayer);
                             GlStateManager.translate(0.0F, 0.1F, -0.15F);

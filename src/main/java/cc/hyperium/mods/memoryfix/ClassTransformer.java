@@ -18,6 +18,10 @@ import java.util.function.BiConsumer;
 public class ClassTransformer implements IClassTransformer {
     public static final Logger LOGGER = LogManager.getLogger();
 
+    public ClassTransformer() {
+        LOGGER.info("Started MemoryFix class transformer.");
+    }
+
     @Override
     public byte[] transform(String name, String transformedName, byte[] bytes) {
         switch (name) {

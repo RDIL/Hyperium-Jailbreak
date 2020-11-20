@@ -1,6 +1,6 @@
 package cc.hyperium.mods.autofriend;
 
-import cc.hyperium.config.Settings;
+import cc.hyperium.Hyperium;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.network.server.hypixel.HypixelFriendRequestEvent;
 import cc.hyperium.event.InvokeEvent;
@@ -15,11 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AutofriendMod extends AbstractMod {
-    private Minecraft mc = Minecraft.getMinecraft();
+    private static final Minecraft mc = Minecraft.getMinecraft();
     public static List<String> blacklist = new ArrayList<>();
 
     @Override
     public AbstractMod init() {
+        Hyperium.CONFIG.register(AutoFriendOptionsProvider.INSTANCE);
         EventBus.INSTANCE.register(this);
         try {
             getBlacklist();
@@ -32,8 +33,8 @@ public class AutofriendMod extends AbstractMod {
     @InvokeEvent
     public void friendRequestEvent(final HypixelFriendRequestEvent event) {
         String name = event.getFrom();
-        if (Settings.AUTOFRIEND_TOGGLE && blacklist.stream().noneMatch(name::equalsIgnoreCase)) {
-            this.mc.thePlayer.sendChatMessage("/friend accept " + name);
+        if (AutoFriendOptionsProvider.AUTOFRIEND_TOGGLE && blacklist.stream().noneMatch(name::equalsIgnoreCase)) {
+            mc.thePlayer.sendChatMessage("/friend accept " + name);
         }
     }
 
@@ -42,7 +43,7 @@ public class AutofriendMod extends AbstractMod {
         if (blacklistFile.exists()) {
             blacklist = Files.readAllLines(Paths.get(blacklistFile.toURI()));
             if (blacklist.get(0).equals("true") || blacklist.get(0).equals("false")) {
-                Settings.AUTOFRIEND_MESSAGES = Boolean.parseBoolean(blacklist.get(0));
+                AutoFriendOptionsProvider.AUTOFRIEND_MESSAGES = Boolean.parseBoolean(blacklist.get(0));
                 blacklist.remove(0);
             } else {
                 writeBlacklist();
@@ -65,7 +66,7 @@ public class AutofriendMod extends AbstractMod {
             }
 
             final FileWriter writer = new FileWriter(blacklistFile);
-            writer.write(Boolean.toString(Settings.AUTOFRIEND_MESSAGES));
+            writer.write(Boolean.toString(AutoFriendOptionsProvider.AUTOFRIEND_MESSAGES));
             for (final String str : blacklist) {
                 writer.write(System.lineSeparator() + str);
             }

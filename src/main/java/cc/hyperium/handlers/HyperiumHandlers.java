@@ -29,7 +29,6 @@ import cc.hyperium.handlers.handlers.chat.*;
 import cc.hyperium.handlers.handlers.data.HypixelAPI;
 import cc.hyperium.handlers.handlers.hud.VanillaEnhancementsHud;
 import cc.hyperium.handlers.handlers.keybinds.KeyBindHandler;
-import cc.hyperium.handlers.handlers.reach.ReachDisplay;
 import cc.hyperium.handlers.handlers.stats.StatsHandler;
 import cc.hyperium.mods.PerspectiveModifierHandler;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
@@ -52,11 +51,9 @@ public class HyperiumHandlers {
     private final OtherConfigOptions configOptions;
     private final PerspectiveModifierHandler perspectiveHandler;
     private final StatsHandler statsHandler;
-    private final SettingsHandler settingsHandler;
     private final MemoryHelper memoryHelper;
 
     public HyperiumHandlers() {
-        settingsHandler = new SettingsHandler();
         chatHandlers = new ArrayList<>();
         register(configOptions = new OtherConfigOptions());
         register(FontRendererData.INSTANCE);
@@ -64,7 +61,6 @@ public class HyperiumHandlers {
         register(perspectiveHandler = new PerspectiveModifierHandler());
         register(keybindHandler = new KeyBindHandler());
         register(hypixelDetector = new HypixelDetector());
-        register(new ReachDisplay());
         register(locationHandler = new LocationHandler());
         register(new VanillaEnhancementsHud());
         register(new ResolutionUtil());
@@ -91,10 +87,6 @@ public class HyperiumHandlers {
 
     public HyperiumCommandHandler getCommandHandler() {
         return commandHandler;
-    }
-
-    public SettingsHandler getSettingsHandler() {
-        return settingsHandler;
     }
 
     private void registerChatHandler(HyperiumChatHandler chatHandler) {

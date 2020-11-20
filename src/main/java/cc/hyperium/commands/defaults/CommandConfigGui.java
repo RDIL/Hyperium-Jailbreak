@@ -18,7 +18,7 @@
 package cc.hyperium.commands.defaults;
 
 import cc.hyperium.commands.BaseCommand;
-import cc.hyperium.gui.hyperium.HyperiumMainGui;
+import cc.hyperium.gui.hyperium.HyperiumSettingsGui;
 import cc.hyperium.utils.ChatColor;
 import java.util.Collections;
 import java.util.List;
@@ -42,6 +42,6 @@ public class CommandConfigGui implements BaseCommand {
 
     @Override
     public void onExecute(String[] args) {
-        HyperiumMainGui.INSTANCE.show();
+        HyperiumSettingsGui.INSTANCE.show();
     }
 }

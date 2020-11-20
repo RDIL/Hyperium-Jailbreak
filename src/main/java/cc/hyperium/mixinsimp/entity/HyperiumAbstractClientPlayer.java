@@ -18,17 +18,15 @@
 package cc.hyperium.mixinsimp.entity;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.config.Settings;
+import cc.hyperium.config.provider.IntegrationOptionsProvider;
 import cc.hyperium.mixins.entity.IMixinAbstractClientPlayer;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.network.NetworkPlayerInfo;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.util.ResourceLocation;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 public class HyperiumAbstractClientPlayer {
-    private AbstractClientPlayer parent;
+    private final AbstractClientPlayer parent;
 
     public HyperiumAbstractClientPlayer(AbstractClientPlayer parent) {
         this.parent = parent;
@@ -48,14 +46,8 @@ public class HyperiumAbstractClientPlayer {
     }
 
     public void getFovModifier(CallbackInfoReturnable<Float> ci) {
-        if (Settings.STATIC_FOV) {
-            if (Minecraft.getMinecraft().thePlayer.isSprinting() && Settings.staticFovSprintModifier) {
-                ci.setReturnValue((float) (
-                    1.0f * (Minecraft.getMinecraft().thePlayer.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getBaseValue() * 1.300000011920929 / Minecraft.getMinecraft().thePlayer.capabilities.getWalkSpeed()
-                        + 1.0) / 2.0));
-            } else {
-                ci.setReturnValue(1.0F);
-            }
+        if (IntegrationOptionsProvider.STATIC_FOV) {
+            ci.setReturnValue(1.0F);
         }
     }
 }

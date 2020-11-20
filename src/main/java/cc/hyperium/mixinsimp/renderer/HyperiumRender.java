@@ -1,7 +1,8 @@
 package cc.hyperium.mixinsimp.renderer;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.config.Settings;
+import cc.hyperium.config.provider.GeneralOptionsProvider;
+import cc.hyperium.config.provider.IntegrationOptionsProvider;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.render.RenderNameTagEvent;
 import cc.hyperium.mixins.renderer.IMixinRender;
@@ -29,7 +30,7 @@ public class HyperiumRender<T extends Entity> {
         this.parent = parent;
     }
 
-    private static void drawChromaWaveString(String text, int xIn, int y) {
+    public static void drawChromaWaveString(String text, int xIn, int y) {
         FontRenderer renderer = Minecraft.getMinecraft().fontRendererObj;
         int x = xIn;
         for (char c : text.toCharArray()) {
@@ -58,7 +59,7 @@ public class HyperiumRender<T extends Entity> {
 
         if (d0 <= (double) (maxDistance * maxDistance)) {
             boolean self = entityIn.equals(Minecraft.getMinecraft().thePlayer);
-            boolean show = !self || Settings.SHOW_OWN_NAME || RenderNameTagEvent.CANCEL;
+            boolean show = !self || GeneralOptionsProvider.SHOW_OWN_NAME || RenderNameTagEvent.CANCEL;
             FontRenderer fontrenderer = renderManager.getFontRenderer();
             float f = 1.6F;
             float f1 = 0.016666668F * f;
@@ -100,7 +101,7 @@ public class HyperiumRender<T extends Entity> {
             if (show)
                 fontrenderer.drawString(str, -fontrenderer.getStringWidth(str) / 2, 0, -1);
             if (show)
-                if (Settings.SHOW_ONLINE_PLAYERS && Settings.SHOW_DOTS_ON_NAME_TAGS && entityIn instanceof EntityPlayer) {
+                if (GeneralOptionsProvider.SHOW_ONLINE_PLAYERS && IntegrationOptionsProvider.SHOW_DOTS_ON_NAME_TAGS && entityIn instanceof EntityPlayer) {
                     String s = "⚫";
                     UUID gameProfileId = ((EntityPlayer) entityIn).getGameProfile().getId();
                     if (StaffUtils.isStaff(gameProfileId)) {

@@ -17,7 +17,7 @@
 
 package cc.hyperium.utils.mods;
 
-import cc.hyperium.config.Settings;
+import cc.hyperium.config.provider.IntegrationOptionsProvider;
 import cc.hyperium.event.network.chat.ChatEvent;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.Priority;
@@ -26,19 +26,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiNewChat;
 
 public class CompactChat {
-    private static CompactChat instance;
+    public static final CompactChat INSTANCE = new CompactChat();
     private String lastMessage = "";
     private int line = 0;
     private int amount = 0;
 
-    public static CompactChat getInstance() {
-        if (instance == null) instance = new CompactChat();
-        return instance;
-    }
-
     @InvokeEvent(priority = Priority.LOW)
     public void onChat(ChatEvent event) {
-        if (Settings.COMPACT_CHAT && !event.isCancelled()) {
+        if (IntegrationOptionsProvider.COMPACT_CHAT && !event.isCancelled()) {
             GuiNewChat guiNewChat = Minecraft.getMinecraft().ingameGUI.getChatGUI();
             if (this.lastMessage.equals(event.getChat().getUnformattedText())) {
                 guiNewChat.deleteChatLine(line);
@@ -54,5 +49,9 @@ public class CompactChat {
             if (line > 256) line = 0;
             event.setCancelled(true);
         }
+    }
+
+    public void setLastMessage(final String lastMessage) {
+        this.lastMessage = lastMessage;
     }
 }

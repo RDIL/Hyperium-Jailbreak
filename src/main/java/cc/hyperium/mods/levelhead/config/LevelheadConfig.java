@@ -17,54 +17,61 @@
 
 package cc.hyperium.mods.levelhead.config;
 
-import cc.hyperium.config.Category;
-import cc.hyperium.config.ConfigOpt;
 import cc.hyperium.config.SliderSetting;
 import cc.hyperium.config.ToggleSetting;
+import cc.hyperium.config.provider.IOptionSetProvider;
 import cc.hyperium.utils.ChatColor;
+import rocks.rdil.simpleconfig.Option;
 
-public class LevelheadConfig {
-    @ConfigOpt @ToggleSetting(category = Category.LEVEL_HEAD, mods = true, name = "Enable")
+public class LevelheadConfig implements IOptionSetProvider {
+    public static final LevelheadConfig INSTANCE = new LevelheadConfig();
+
+    @Override
+    public String getName() {
+        return "Levelhead";
+    }
+
+    @Option @ToggleSetting(name = "Enable")
     public boolean enabled = true;
 
-    @ConfigOpt @ToggleSetting(category = Category.LEVEL_HEAD, mods = true, name = "Show Self")
+    @Option @ToggleSetting(name = "Show Self")
     public boolean showSelf = true;
 
-    @ConfigOpt @SliderSetting(name = "Render Distance", mods = true, category = Category.LEVEL_HEAD, min = 5, max = 64, isInt = true)
+    @Option @SliderSetting(name = "Render Distance", min = 5, max = 64, isInt = true)
     public int renderDistance = 64;
 
-    @ConfigOpt @SliderSetting(name = "Cache Size", mods = true, category = Category.LEVEL_HEAD, min = 150, max = 5000, isInt = true)
+    @Option @SliderSetting(name = "Cache Size", min = 150, max = 5000, isInt = true)
     public int purgeSize = 500;
 
-    @ConfigOpt public boolean headerChroma = false;
+    @Option public boolean headerChroma = false;
 
-    @ConfigOpt public boolean headerRgb = false;
+    @Option public boolean headerRgb = false;
 
-    @ConfigOpt public String headerColor = ChatColor.AQUA.toString();
+    @Option public String headerColor = ChatColor.AQUA.toString();
 
-    @ConfigOpt public int headerRed = 255;
+    @Option public int headerRed = 255;
 
-    @ConfigOpt public int headerGreen = 255;
+    @Option public int headerGreen = 255;
 
-    @ConfigOpt public int headerBlue = 250;
+    @Option public int headerBlue = 250;
 
-    @ConfigOpt public double headerAlpha = 1.0;
+    @Option public double headerAlpha = 1.0;
 
-    @ConfigOpt public String customHeader = "Level";
+    @Option public String customHeader = "Level";
 
-    @ConfigOpt public boolean footerChroma = false;
+    @Option public boolean footerChroma = false;
 
-    @ConfigOpt public boolean footerRgb = false;
+    @Option public boolean footerRgb = false;
 
-    @ConfigOpt public String footerColor = ChatColor.YELLOW.toString();
+    @Option public String footerColor = ChatColor.YELLOW.toString();
 
-    @ConfigOpt public int footerRed = 255;
+    @Option public int footerRed = 255;
 
-    @ConfigOpt public int footerGreen = 255;
+    @Option public int footerGreen = 255;
 
-    @ConfigOpt public int footerBlue = 250;
+    @Option public int footerBlue = 250;
 
-    @ConfigOpt public double footerAlpha = 1.0;
+    @Option public double footerAlpha = 1.0;
 
     public boolean isFooterChroma() {
         return footerChroma;

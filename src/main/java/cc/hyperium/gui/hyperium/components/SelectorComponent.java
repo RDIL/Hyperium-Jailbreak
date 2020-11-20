@@ -1,5 +1,6 @@
 package cc.hyperium.gui.hyperium.components;
 
+import cc.hyperium.gui.hyperium.HyperiumSettingsGui;
 import cc.hyperium.utils.HyperiumFontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
@@ -12,14 +13,15 @@ import java.util.function.Supplier;
 
 public class SelectorComponent extends AbstractTabComponent {
     private final String label;
+    private final HyperiumSettingsGui gui;
     private List<String> lines = new ArrayList<>();
-    private Field field;
-    private Object parentObj;
-    private Supplier<String[]> values;
+    private final Field field;
+    private final Object parentObj;
+    private final Supplier<String[]> values;
 
-    public SelectorComponent(AbstractTab tab, List<String> tags, String label, Field field, Object parentObj, Supplier<String[]> values) {
-        super(tab, tags);
-        tag(label);
+    public SelectorComponent(HyperiumSettingsGui gui, String label, Field field, Object parentObj, Supplier<String[]> values) {
+        super();
+        this.gui = gui;
         this.label = label;
         this.field = field;
         this.parentObj = parentObj;
@@ -58,7 +60,7 @@ public class SelectorComponent extends AbstractTabComponent {
 
     @Override
     public void render(int x, int y, int width, int mouseX, int mouseY) {
-        HyperiumFontRenderer font = tab.gui.getFont();
+        final HyperiumFontRenderer font = this.gui.getFont();
 
         lines.clear();
         lines = font.splitString(label, (int) (width - font.getWidth(getCurrentValue()))); //16 for icon, 3 for render offset and then some more
@@ -69,7 +71,7 @@ public class SelectorComponent extends AbstractTabComponent {
 
         int line1 = 0;
         for (String line : lines) {
-            font.drawString(line.replaceAll("_", " ").toUpperCase(), x + 3, y + 5 + 17 * line1, 0xffffff);
+            font.drawString(line.replaceAll("_", " "), x + 3, y + 3 + 17 * line1, 0xffffff);
             line1++;
         }
 
@@ -77,7 +79,6 @@ public class SelectorComponent extends AbstractTabComponent {
         String val = getCurrentValue();
         float statX = farSide - 5 - font.getWidth(val);
         font.drawString(val, statX, y + 5, Color.WHITE.getRGB());
-
     }
 
     @Override

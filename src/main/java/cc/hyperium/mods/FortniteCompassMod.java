@@ -1,5 +1,7 @@
 package cc.hyperium.mods;
-import cc.hyperium.config.Settings;
+
+import cc.hyperium.config.provider.FortniteCompassOptionsProvider;
+import cc.hyperium.config.provider.OptimizationOptionsProvider;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.render.RenderHUDEvent;
@@ -25,56 +27,46 @@ public class FortniteCompassMod extends AbstractMod {
     public static int width = 184;
     public static int height = 20;
 
-    private Minecraft mc = Minecraft.getMinecraft();
+    private static final Minecraft mc = Minecraft.getMinecraft();
     private FontRenderer fr;
 
     @Override
     public AbstractMod init() {
         this.fr = mc.fontRendererObj;
-        if(!Settings.FPS) {
+        if (!OptimizationOptionsProvider.FPS) {
             EventBus.INSTANCE.register(this);
         }
         return this;
     }
 
     private void drawCompass(int screenWidth) {
-        int direction = normalize((int) this.mc.thePlayer.rotationYaw);
+        int direction = normalize((int) mc.thePlayer.rotationYaw);
         offsetAll = (cwidth * direction / 360);
         int offX = 0;
         centerX = (screenWidth / 2 + offX);
-        if (Settings.FNCOMPASS_BACKGROUND) {
+        if (FortniteCompassOptionsProvider.FNCOMPASS_BACKGROUND) {
             Gui.drawRect(centerX - width / 2, offY, centerX + width / 2, offY + height, -1442840576);
         }
-        if (!Settings.FNCOMPASS_CHROMA) {
-            int tintMarker = 0;
-            if (tintMarker != 0) {
-                colorMarker = Color.HSBtoRGB(tintMarker / 100.0F, 1.0F, 1.0F);
-            } else {
-                colorMarker = -1;
-            }
-            int tintDirection = 0;
-            if (tintDirection != 0) {
-                colorDirection = Color.HSBtoRGB(tintDirection / 100.0F, 1.0F, 1.0F);
-            } else {
-                colorDirection = -1;
-            }
+        if (!FortniteCompassOptionsProvider.FNCOMPASS_CHROMA) {
+            colorMarker = -1;
+            colorDirection = -1;
         } else {
             colorDirection = (colorMarker = Color.HSBtoRGB((float) (System.currentTimeMillis() % 3000L) / 3000.0F, 1.0F, 1.0F));
         }
         renderMarker();
-        if (Integer.parseInt(Settings.FNCOMPASS_DETAILS) >= 0) {
+        if (Integer.parseInt(FortniteCompassOptionsProvider.FNCOMPASS_DETAILS) >= 0) {
             drawDirection("S", 0, 1.5D);
             drawDirection("W", 90, 1.5D);
             drawDirection("N", 180, 1.5D);
             drawDirection("E", 270, 1.5D);
         }
-        if (Integer.parseInt(Settings.FNCOMPASS_DETAILS) >= 1) {
+        if (Integer.parseInt(FortniteCompassOptionsProvider.FNCOMPASS_DETAILS) >= 1) {
             drawDirection("SW", 45, 1.0D);
             drawDirection("NW", 135, 1.0D);
             drawDirection("NE", 225, 1.0D);
             drawDirection("SE", 315, 1.0D);
         }
-        if (Integer.parseInt(Settings.FNCOMPASS_DETAILS) >= 2) {
+        if (Integer.parseInt(FortniteCompassOptionsProvider.FNCOMPASS_DETAILS) >= 2) {
             drawDirection("15", 15, 0.75D);
             drawDirection("30", 30, 0.75D);
             drawDirection("60", 60, 0.75D);
@@ -131,7 +123,7 @@ public class FortniteCompassMod extends AbstractMod {
             GL11.glPushMatrix();
             GL11.glTranslated(-posX * (scale - 1.0D), -posY * (scale - 1.0D), 0.0D);
             GL11.glScaled(scale, scale, 1.0D);
-            if (Settings.FNCOMPASS_SHADOW) {
+            if (FortniteCompassOptionsProvider.FNCOMPASS_SHADOW) {
                 this.fr.drawStringWithShadow(dir, posX, posY, color);
             } else {
                 this.fr.drawString(dir, posX, posY, color);
@@ -155,13 +147,13 @@ public class FortniteCompassMod extends AbstractMod {
     public void onRenderOverlay(final RenderHUDEvent event) {
         ScaledResolution sr = new ScaledResolution(mc);
 
-        if (!Settings.FNCOMPASS_ENABLED) {
+        if (!FortniteCompassOptionsProvider.FNCOMPASS_ENABLED) {
             return;
         }
-        if (this.mc.thePlayer == null) {
+        if (mc.thePlayer == null) {
             return;
         }
-        if (this.mc.currentScreen != null && !(this.mc.currentScreen instanceof GuiChat)) {
+        if (mc.currentScreen != null && !(mc.currentScreen instanceof GuiChat)) {
             return;
         }
         drawCompass(sr.getScaledWidth());

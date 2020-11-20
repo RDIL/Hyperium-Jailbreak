@@ -1,7 +1,7 @@
 package cc.hyperium.handlers.handlers;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.config.Settings;
+import cc.hyperium.config.provider.HypixelOptionsProvider;
 import cc.hyperium.event.network.server.hypixel.AchievementGetEvent;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
@@ -14,10 +14,11 @@ import java.util.regex.Pattern;
 
 public class BroadcastEvents {
     private final Pattern ACHIEVEMENT_PATTERN = Pattern.compile("a>> {3}Achievement Unlocked: (?<achievement>.+) {3}<<a");
+    private final List<String> achievementsGotten = new ArrayList<>();
 
     @InvokeEvent
     public void acheivementGet(AchievementGetEvent event) {
-        if (Settings.BROADCAST_ACHIEVEMENTS) {
+        if (HypixelOptionsProvider.BROADCAST_ACHIEVEMENTS) {
             Hyperium.INSTANCE.getHandlers().getCommandQueue().queue("/gchat Achievement unlocked! I unlocked the " + event.getAchievement() + " achievement");
         }
     }
@@ -35,6 +36,4 @@ public class BroadcastEvents {
             }
         }
     }
-
-    private List<String> achievementsGotten = new ArrayList<>();
 }

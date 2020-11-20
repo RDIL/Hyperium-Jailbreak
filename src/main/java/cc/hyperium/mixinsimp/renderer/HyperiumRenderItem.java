@@ -1,9 +1,10 @@
 package cc.hyperium.mixinsimp.renderer;
 
-import cc.hyperium.config.Settings;
+import cc.hyperium.config.provider.AnimationOptionsProvider;
+import cc.hyperium.config.provider.OptimizationOptionsProvider;
 import cc.hyperium.mixins.renderer.IMixinRenderItem;
 import cc.hyperium.mixins.renderer.IMixinRenderItem2;
-import cc.hyperium.mods.glintcolorizer.Colors;
+import cc.hyperium.mods.glintcolorizer.GlintColorizerOptions;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
@@ -39,7 +40,7 @@ public class HyperiumRenderItem {
         .build();
 
     private int getPotionColor(ItemStack item) {
-        if (Settings.SHINY_POTS_MATCH_COLOR) {
+        if (AnimationOptionsProvider.SHINY_POTS_MATCH_COLOR) {
             int potionId = item.getMetadata();
 
             Integer cached = colorCache.getIfPresent(potionId);
@@ -51,7 +52,7 @@ public class HyperiumRenderItem {
                 return color;
             }
         } else {
-            return Colors.onepoint8glintcolorI;
+            return GlintColorizerOptions.onepoint8glintcolorI;
         }
     }
 
@@ -87,7 +88,7 @@ public class HyperiumRenderItem {
             GlStateManager.scale(0.5F, 0.5F, 0.5F);
 
             boolean isHead = !isInv && stack.getItem() != null && stack.getItem() instanceof ItemSkull;
-            double headScale = Settings.HEAD_SCALE_FACTOR;
+            double headScale = Double.parseDouble(AnimationOptionsProvider.HEAD_SCALE_FACTOR_STRING);
 
             if (model.isBuiltInRenderer()) {
                 GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
@@ -103,7 +104,7 @@ public class HyperiumRenderItem {
                 GlStateManager.translate(-0.5F, -0.5F, -0.5F);
 
                 // We want to render our potion effect before the item is rendered so it doesn't obscure the item
-                if (Settings.SHINY_POTS && isInv && stack.getItem() != null && stack.getItem() instanceof ItemPotion) {
+                if (AnimationOptionsProvider.SHINY_POTS && isInv && stack.getItem() != null && stack.getItem() instanceof ItemPotion) {
                     int glintColor = getPotionColor(stack);
                     renderPot(model, glintColor); // Use our renderer instead of the normal one
                     renderedAsPotion = true;
@@ -154,7 +155,7 @@ public class HyperiumRenderItem {
     }
 
     private void renderEffect(IBakedModel model) {
-        if (Settings.DISABLE_ENCHANT_GLINT) return;
+        if (OptimizationOptionsProvider.DISABLE_ENCHANT_GLINT) return;
         GlStateManager.depthMask(false);
         GlStateManager.depthFunc(514);
         GlStateManager.disableLighting();
@@ -166,14 +167,14 @@ public class HyperiumRenderItem {
         float f = (float) (Minecraft.getSystemTime() % 3000L) / 3000.0F / 8.0F; // Animates the effect
         GlStateManager.translate(f, 0.0F, 0.0F);
         GlStateManager.rotate(-50.0F, 0.0F, 0.0F, 1.0F);
-        ((IMixinRenderItem) parent).callRenderModel(model, Colors.onepoint8glintcolorI);
+        ((IMixinRenderItem) parent).callRenderModel(model, GlintColorizerOptions.onepoint8glintcolorI);
         GlStateManager.popMatrix();
         GlStateManager.pushMatrix();
         GlStateManager.scale(8.0F, 8.0F, 8.0F);
         float f1 = (float) (Minecraft.getSystemTime() % 4873L) / 4873.0F / 8.0F;
         GlStateManager.translate(-f1, 0.0F, 0.0F);
         GlStateManager.rotate(10.0F, 0.0F, 0.0F, 1.0F);
-        ((IMixinRenderItem) parent).callRenderModel(model, Colors.onepoint8glintcolorI);
+        ((IMixinRenderItem) parent).callRenderModel(model, GlintColorizerOptions.onepoint8glintcolorI);
         GlStateManager.popMatrix();
         GlStateManager.matrixMode(5888);
         GlStateManager.blendFunc(770, 771);

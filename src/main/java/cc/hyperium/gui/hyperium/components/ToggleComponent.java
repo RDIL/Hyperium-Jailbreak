@@ -1,6 +1,7 @@
 package cc.hyperium.gui.hyperium.components;
 
 import cc.hyperium.gui.HyperiumGui;
+import cc.hyperium.gui.hyperium.HyperiumSettingsGui;
 import cc.hyperium.mixinsimp.client.GlStateModifier;
 import cc.hyperium.utils.HyperiumFontRenderer;
 import cc.hyperium.utils.RenderUtils;
@@ -13,16 +14,17 @@ import net.minecraft.client.renderer.GlStateManager;
 
 public class ToggleComponent extends AbstractTabComponent {
     private final String label;
+    private final HyperiumSettingsGui gui;
     private List<String> lines = new ArrayList<>();
-    private Field field;
+    private final Field field;
     private boolean state;
-    private Object parentObj;
+    private final Object parentObj;
     private double animation = 0.5;
     private long lastDeltaTime = System.currentTimeMillis();
 
-    public ToggleComponent(AbstractTab tab, List<String> tags, String label, Field field, Object parentObj) {
-        super(tab, tags);
-        tag(label);
+    public ToggleComponent(HyperiumSettingsGui gui, String label, Field field, Object parentObj) {
+        super();
+        this.gui = gui;
         this.label = label;
         this.field = field;
         this.parentObj = parentObj;
@@ -48,12 +50,11 @@ public class ToggleComponent extends AbstractTabComponent {
 
     @Override
     public void render(int x, int y, int width, int mouseX, int mouseY) {
-        HyperiumFontRenderer font = tab.gui.getFont();
+        final HyperiumFontRenderer font = this.gui.getFont();
 
         lines.clear();
 
-        lines = font.splitString(label,
-            (width + 25) / 2); //16 for icon, 3 for render offset and then some more
+        lines = font.splitString(label, (width + 25) / 2); // 16 for icon, 3 for render offset and then some more
 
         GlStateManager.pushMatrix();
         if (hover) {
@@ -63,7 +64,7 @@ public class ToggleComponent extends AbstractTabComponent {
 
         int line1 = 0;
         for (String line : lines) {
-            font.drawString(line.replaceAll("_", " ").toUpperCase(), x + 3, y + 5 + 17 * line1, 0xffffff);
+            font.drawString(line.replaceAll("_", " "), x + 3, y + 3 + 17 * line1, 0xffffff);
             line1++;
         }
 
@@ -76,8 +77,8 @@ public class ToggleComponent extends AbstractTabComponent {
 
         animation = HyperiumGui.clamp(HyperiumGui.easeOut((float) this.animation, this.state ? 1.0f : 0.0f, (float) animationInc, 5), 0.0f, 1.0f);
 
-        Color FAR = new Color(76, 175, 80);
-        Color CLOSE = new Color(200, 200, 200);
+        final Color FAR = new Color(76, 175, 80);
+        final Color CLOSE = new Color(200, 200, 200);
 
         int red = (int) Math.abs((animation * FAR.getRed()) + ((1 - animation) * CLOSE.getRed()));
         int green = (int) Math.abs((animation * FAR.getGreen()) + ((1 - animation) * CLOSE.getGreen()));
