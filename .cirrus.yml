@@ -1,7 +1,7 @@
 task:
   auto_cancellation: $CIRRUS_BRANCH != 'master' && $CIRRUS_TAG != ''
   container:
-    image: gradle:5.6.1-jdk8
+    image: gradle:5.6.4-jdk8
     cpu: 3
     memory: 6G
   gradle_cache:
