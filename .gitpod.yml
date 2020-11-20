@@ -1,4 +1,4 @@
 image: rdilpickle/better-wsfull:latest
 
 tasks:
-  - init: ./gradlew setupDecompWorkspace
+  - init: ./gradlew setupDecompWorkspace build -Dorg.gradle.jvmargs=-Xmx5000M
