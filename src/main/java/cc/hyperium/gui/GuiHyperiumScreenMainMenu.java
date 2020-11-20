@@ -32,7 +32,6 @@ import net.minecraft.client.gui.GuiOptions;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiSelectWorld;
 import net.minecraft.client.gui.GuiYesNo;
-import net.minecraft.client.gui.GuiYesNoCallback;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.DynamicTexture;
@@ -46,7 +45,7 @@ import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.WorldInfo;
 import org.lwjgl.input.Keyboard;
 
-public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen implements GuiYesNoCallback {
+public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen {
     private static boolean FIRST_START = true;
     private final ResourceLocation exit = new ResourceLocation("textures/material/exit.png");
     private final ResourceLocation people_outline = new ResourceLocation("textures/material/people-outline.png");
@@ -74,7 +73,7 @@ public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen implements GuiY
 
         this.addSingleplayerMultiplayerButtons(j - 10);
 
-        if(getStyle() == GuiStyle.DEFAULT) {
+        if (getStyle() == GuiStyle.DEFAULT) {
             addDefaultStyleOptionsButton(j);
         } else {
             addHyperiumStyleOptionsButton();
@@ -94,7 +93,7 @@ public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen implements GuiY
     }
 
     private void addSingleplayerMultiplayerButtons(int p_73969_1_) {
-        if(getStyle() == GuiStyle.DEFAULT) {
+        if (getStyle() == GuiStyle.DEFAULT) {
             addDefaultStyleSingleplayerMultiplayerButtons(p_73969_1_);
         } else {
             addHyperiumStyleSingleplayerMultiplayerButtons();
@@ -142,7 +141,7 @@ public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen implements GuiY
             }
         }
 
-        if(getStyle() == GuiStyle.DEFAULT) {
+        if (getStyle() == GuiStyle.DEFAULT) {
             if (button.id == 15) HyperiumMainGui.INSTANCE.show();
             if (button.id == 16) {
                 GuiMultiplayer p_i1182_1_ = new GuiMultiplayer(new GuiMainMenu());
@@ -152,7 +151,7 @@ public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen implements GuiY
                 ServerData data = new ServerData("hypixel", hostName, false);
                 ((IMixinGuiMultiplayer) p_i1182_1_).setIp(data);
                 p_i1182_1_.confirmClicked(true, 0);
-             }
+            }
         } else {
             if (button.id == 15) HyperiumMainGui.INSTANCE.show();
         }

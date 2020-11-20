@@ -52,7 +52,7 @@ public class GuiHyperiumScreen extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        if(getStyle() == GuiStyle.DEFAULT) {
+        if (getStyle() == GuiStyle.DEFAULT) {
             drawDefaultStyleScreen(mouseX, mouseY);
         } else {
              drawHyperiumStyleScreen(mouseX, mouseY, partialTicks);
@@ -120,7 +120,12 @@ public class GuiHyperiumScreen extends GuiScreen {
         float val = (float) (Math.sin(swing / 40) * 30);
         ScissorState.scissor(width - 153, 0, 145, 49, true);
 
-        if (!Hyperium.INSTANCE.isDevEnv()) GuiPlayerRenderer.renderPlayerWithRotation(width - 118, -4, val);
+        if (Minecraft.getMinecraft().thePlayer == null || Hyperium.INSTANCE.isDevEnv()) {
+            GlStateManager.popMatrix();
+            return;
+        }
+
+        GuiPlayerRenderer.renderPlayerWithRotation(width - 118, -4, val);
         ScissorState.endScissor();
         fr.drawStringScaled(Minecraft.getMinecraft().thePlayer.getName(), width - 152, 39, 0xFFFFFF, .75);
 

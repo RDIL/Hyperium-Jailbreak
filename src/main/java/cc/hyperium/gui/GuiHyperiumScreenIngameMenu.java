@@ -143,7 +143,7 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
         GlStateManager.translate(current.getScaledWidth() / 2, 5, 0);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
-        if(InstallerUtils.getOS() != InstallerUtils.OSType.MacOS) {
+        if (InstallerUtils.getOS() != InstallerUtils.OSType.MacOS) {
             drawCenteredString(fontRendererObj, "HyperiumJailbreak Player Count:", 0, -5, 0xFFFFFF);
         }
         GlStateManager.translate(0F, 10F, 0F);
@@ -152,7 +152,7 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
 
         GlStateManager.translate(0.0F, 0.0F, 4F);
 
-        if(InstallerUtils.getOS() != InstallerUtils.OSType.MacOS) {
+        if (InstallerUtils.getOS() != InstallerUtils.OSType.MacOS) {
             drawCenteredString(fontRendererObj, "Now Online: " + ChatFormatting.GREEN + data.optInt("online") + ChatFormatting.RESET, 0, 0, 0xFFFFFF);
         }
         GlStateManager.popMatrix();

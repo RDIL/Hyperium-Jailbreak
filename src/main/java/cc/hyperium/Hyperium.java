@@ -35,7 +35,6 @@ import cc.hyperium.handlers.HyperiumHandlers;
 import cc.hyperium.handlers.handlers.stats.PlayerStatsGui;
 import cc.hyperium.mods.HyperiumModIntegration;
 import cc.hyperium.mods.autofriend.command.AutofriendCommand;
-import cc.hyperium.mods.autogg.AutoGG;
 import cc.hyperium.mods.ToggleSprintContainer;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.utils.StaffUtils;
@@ -65,7 +64,6 @@ public class Hyperium {
     private boolean optifineInstalled = false;
     public boolean isDevEnv;
     private boolean firstLaunch = false;
-    private final AutoGG autogg = new AutoGG();
     private InternalAddons intAddons;
     private final BackendHandler bh = new BackendHandler();
 
@@ -93,7 +91,6 @@ public class Hyperium {
             firstLaunch = new File(folder.getAbsolutePath() + "/accounts").mkdirs();
 
             SplashProgress.setProgress(5, "Loading Handlers");
-            EventBus.INSTANCE.register(autogg);
             handlers = new HyperiumHandlers();
             handlers.getGeneralChatHandler().post();
 
@@ -105,16 +102,15 @@ public class Hyperium {
 
             CONFIG.register(new ToggleSprintContainer());
 
-            SplashProgress.setProgress(7, "Starting");
             Display.setTitle("HyperiumJailbreak");
 
-            SplashProgress.setProgress(9, "Preparing Config");
+            SplashProgress.setProgress(7, "Preparing Config");
             Settings.register();
             // Register commands.
-            SplashProgress.setProgress(10, "Loading Chat Commands");
+            SplashProgress.setProgress(8, "Loading Chat Commands");
             registerCommands();
 
-            SplashProgress.setProgress(11, "Loading Mods");
+            SplashProgress.setProgress(9, "Loading Mods");
             modIntegration = new HyperiumModIntegration();
             this.intAddons = new InternalAddons();
 
@@ -122,10 +118,10 @@ public class Hyperium {
 
             Runtime.getRuntime().addShutdownHook(new Thread(this::shutdown));
 
-            SplashProgress.setProgress(12, "Reloading Minecraft...");
+            SplashProgress.setProgress(10, "Reloading Minecraft...");
             Minecraft.getMinecraft().refreshResources();
 
-            SplashProgress.setProgress(13, "Finishing Up...");
+            SplashProgress.setProgress(11, "Finishing Up...");
 
             // Check if OptiFine is installed.
             try {
