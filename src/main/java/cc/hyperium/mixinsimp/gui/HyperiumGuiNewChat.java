@@ -1,6 +1,6 @@
 package cc.hyperium.mixinsimp.gui;
 
-import cc.hyperium.config.provider.IntegrationOptionsProvider;
+import cc.hyperium.config.Settings;
 import cc.hyperium.event.network.chat.ChatEvent;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.mixins.gui.IMixinGuiNewChat;
@@ -79,7 +79,7 @@ public class HyperiumGuiNewChat {
                             if (l1 > 3) {
                                 int i2 = 0;
                                 int j2 = -i1 * 9;
-                                if (!IntegrationOptionsProvider.FASTCHAT)
+                                if (!Settings.FASTCHAT)
                                     Gui.drawRect(i2, j2 - 9, i2 + l + 4, j2, l1 / 2 << 24);
                                 String s = chatline.getChatComponent().getFormattedText();
                                 GlStateManager.enableBlend();

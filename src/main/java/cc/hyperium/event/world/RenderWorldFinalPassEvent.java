@@ -1,5 +1,7 @@
 package cc.hyperium.event.world;
 
+import net.minecraft.client.renderer.RenderGlobal;
+
 public class RenderWorldFinalPassEvent {
     private final float partialTicks;
 

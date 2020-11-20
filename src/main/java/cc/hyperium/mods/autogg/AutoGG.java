@@ -1,6 +1,5 @@
 package cc.hyperium.mods.autogg;
 
-import cc.hyperium.Hyperium;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.handlers.handlers.HypixelDetector;
 import cc.hyperium.mods.AbstractMod;
@@ -25,7 +24,6 @@ public class AutoGG extends AbstractMod {
     @Override
     public AbstractMod init() {
         this.config = new AutoGGConfig();
-        Hyperium.CONFIG.register(this.config);
 
         EventBus.INSTANCE.register(new AutoGGListener(this));
 

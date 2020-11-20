@@ -18,7 +18,7 @@
 package cc.hyperium.mods.chromahud.displayitems.hyperium;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.config.provider.ChromaHudOptionsProvider;
+import cc.hyperium.config.Settings;
 import cc.hyperium.mods.chromahud.ElementRenderer;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
 import cc.hyperium.utils.JsonHolder;
@@ -33,7 +33,7 @@ public class HyperiumInfoDisplay extends DisplayItem {
     @Override
     public void draw(int x, double y, boolean config) {
         List<String> list = new ArrayList<>();
-        if (!ChromaHudOptionsProvider.CHROMAHUD_SQUAREBRACE_PREFIX_OPTION) {
+        if (!Settings.CHROMAHUD_SQUAREBRACE_PREFIX_OPTION) {
             list.add("Client: " + Hyperium.modid);
             list.add("Version " + Hyperium.version);
         } else {

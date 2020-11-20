@@ -1,9 +1,8 @@
 package cc.hyperium.mixinsimp;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.config.provider.IntegrationOptionsProvider;
-import cc.hyperium.event.client.InitializationEvent;
 import cc.hyperium.gui.SplashProgress;
+import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.gui.GuiOpenEvent;
 import cc.hyperium.event.interact.KeypressEvent;
@@ -35,7 +34,6 @@ import net.minecraft.client.resources.DefaultResourcePack;
 import net.minecraft.client.resources.FileResourcePack;
 import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.client.settings.GameSettings;
-import net.minecraft.crash.CrashReport;
 import net.minecraft.profiler.Profiler;
 import net.minecraft.util.Timer;
 import org.lwjgl.LWJGLException;
@@ -45,11 +43,10 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 public class HyperiumMinecraft {
-    private final Minecraft parent;
+    private Minecraft parent;
     public HyperiumMinecraft(Minecraft parent) {
         this.parent = parent;
     }
@@ -61,14 +58,7 @@ public class HyperiumMinecraft {
         for (File file : AddonBootstrap.INSTANCE.getAddonResourcePacks()) {
             defaultResourcePacks.add(file == null ? new AddonWorkspaceResourcePack() : new FileResourcePack(file));
         }
-
-        try {
-            AddonMinecraftBootstrap.init();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Minecraft.getMinecraft().crashed(new CrashReport("Loading Addons", e));
-        }
-
+        AddonMinecraftBootstrap.INSTANCE.init();
         EventBus.INSTANCE.post(new PreInitializationEvent());
     }
 
@@ -78,8 +68,10 @@ public class HyperiumMinecraft {
         }
     }
 
+    @SuppressWarnings("deprecation")
     public void startGame() {
-        EventBus.INSTANCE.post(new InitializationEvent());
+        EventBus.INSTANCE.post(new cc.hyperium.event.client.InitializationEvent());
+        EventBus.INSTANCE.post(new cc.hyperium.event.InitializationEvent());
     }
 
     public void runTick(Profiler mcProfiler) {
@@ -117,7 +109,7 @@ public class HyperiumMinecraft {
     public void displayFix(CallbackInfo ci, boolean fullscreen, int displayWidth, int displayHeight) throws LWJGLException {
         Display.setFullscreen(false);
         if (fullscreen) {
-            if (IntegrationOptionsProvider.WINDOWED_FULLSCREEN) {
+            if (Settings.WINDOWED_FULLSCREEN) {
                 System.setProperty("org.lwjgl.opengl.Window.undecorated", "true");
             } else {
                 Display.setFullscreen(true);
@@ -126,7 +118,7 @@ public class HyperiumMinecraft {
                 ((IMixinMinecraft) parent).setDisplayHeight(Math.max(1, displaymode.getHeight()));
             }
         } else {
-            if (IntegrationOptionsProvider.WINDOWED_FULLSCREEN) {
+            if (Settings.WINDOWED_FULLSCREEN) {
                 System.setProperty("org.lwjgl.opengl.Window.undecorated", "false");
             } else {
                 Display.setDisplayMode(new DisplayMode(displayWidth, displayHeight));
@@ -140,7 +132,7 @@ public class HyperiumMinecraft {
     }
 
     public void fullScreenFix(boolean fullscreen, int displayWidth, int displayHeight) throws LWJGLException {
-        if (IntegrationOptionsProvider.WINDOWED_FULLSCREEN) {
+        if (Settings.WINDOWED_FULLSCREEN) {
             if (fullscreen) {
                 System.setProperty("org.lwjgl.opengl.Window.undecorated", "true");
                 Display.setDisplayMode(Display.getDesktopDisplayMode());
@@ -218,7 +210,7 @@ public class HyperiumMinecraft {
     }
 
     public void shutdown() {
-        for (IAddon addon : AddonMinecraftBootstrap.getLoadedAddons()) {
+        for (IAddon addon : AddonMinecraftBootstrap.INSTANCE.getLoadedAddons()) {
             addon.onClose();
         }
     }

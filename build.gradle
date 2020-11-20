@@ -71,7 +71,6 @@ dependencies {
         exclude module: "lwjgl"
     }
     embed "com.github.HyperiumClient:Installer:1.9"
-    embed "rocks.rdil:simpleconfig:2.1.1"
 }
 
 mixin {
@@ -85,9 +84,6 @@ repositories {
     }
     maven {
         url "https://hyperiumjailbreak.mycloudrepo.io/public/repositories/sponge-proxy"
-    }
-    maven {
-        url "https://rdil.mycloudrepo.io/public/repositories/java-libs/"
     }
 }
 

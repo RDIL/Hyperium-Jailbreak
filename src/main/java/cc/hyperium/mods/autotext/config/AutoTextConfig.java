@@ -1,7 +1,7 @@
 package cc.hyperium.mods.autotext.config;
 
 import cc.hyperium.Hyperium;
-import rocks.rdil.simpleconfig.Option;
+import cc.hyperium.config.ConfigOpt;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class AutoTextConfig {
     public static final AutoTextConfig INSTANCE = new AutoTextConfig();
 
-    @Option
+    @ConfigOpt
     private Map<String, String> keybinds = new ConcurrentHashMap<>();
 
     public Map<String, String> getKeybinds() {

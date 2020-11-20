@@ -1,6 +1,6 @@
 package cc.hyperium.mixins.gui;
 
-import cc.hyperium.config.provider.AnimationOptionsProvider;
+import cc.hyperium.config.Settings;
 import me.semx11.autotip.universal.ReflectionUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -42,7 +42,7 @@ public abstract class MixinGuiOverlayDebug {
     public void renderDebugInfo(ScaledResolution scaledResolutionIn) {
         this.mc.mcProfiler.startSection("debug");
         GlStateManager.pushMatrix();
-        if (AnimationOptionsProvider.OLD_DEBUG) {
+        if (Settings.OLD_DEBUG) {
             this.renderOldDebugInfoLeft(scaledResolutionIn);
             this.renderOldDebugInfoRight(scaledResolutionIn);
             GlStateManager.popMatrix();

@@ -9,4 +9,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface ToggleSetting {
     String name();
+    boolean enabled() default true;
+    Category category() default Category.GENERAL;
+    @Deprecated boolean mods() default false;
 }

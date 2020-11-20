@@ -13,7 +13,6 @@ abstract class MixinGuiEditSign extends GuiScreen {
     private void onGuiClosed(CallbackInfo ci) {
         super.onGuiClosed();
     }
-
     @Inject(method = "initGui", at = @At("HEAD"))
     private void initGui(CallbackInfo ci) {
         super.initGui();

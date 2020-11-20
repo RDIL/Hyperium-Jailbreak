@@ -5,13 +5,18 @@ import net.minecraft.client.renderer.GlStateManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public abstract class AbstractTabComponent {
     public boolean hover;
-    private final List<Consumer<Object>> stateChanges = new ArrayList<>();
+    protected List<String> tags = new ArrayList<>();
+    protected AbstractTab tab;
+    private List<Consumer<Object>> stateChanges = new ArrayList<>();
     private boolean enabled = true;
 
-    public AbstractTabComponent() {
+    public AbstractTabComponent(AbstractTab tab, List<String> tags) {
+        this.tab = tab;
+        tag(tags); // prevent unsupported operation on AbstractList
     }
 
     public int getHeight() {
@@ -20,9 +25,8 @@ public abstract class AbstractTabComponent {
 
     public void render(int x, int y, int width, int mouseX, int mouseY) {
         GlStateManager.pushMatrix();
-        if (hover) {
+        if (hover)
             Gui.drawRect(x, y, x + width, y + 18, 0xa0000000);
-        }
         GlStateManager.popMatrix();
     }
 
@@ -47,4 +51,16 @@ public abstract class AbstractTabComponent {
     }
 
     public void mouseEvent(int x, int y) {}
+
+    public AbstractTabComponent tag(String... ts) {
+        for (String string : ts) {
+            tags.add(string.toLowerCase());
+        }
+        return this;
+    }
+
+    public AbstractTabComponent tag(List<String> ts) {
+        tags.addAll(ts.stream().map(String::toLowerCase).collect(Collectors.toList()));
+        return this;
+    }
 }

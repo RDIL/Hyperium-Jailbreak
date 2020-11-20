@@ -17,9 +17,10 @@
 
 package cc.hyperium.mixins.entity;
 
-import cc.hyperium.config.provider.GeneralOptionsProvider;
+import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.world.RenderWorldFinalPassEvent;
+import cc.hyperium.handlers.handlers.reach.ReachDisplay;
 import cc.hyperium.mixinsimp.entity.HyperiumEntityRenderer;
 import com.google.common.base.Predicates;
 import net.minecraft.client.Minecraft;
@@ -152,6 +153,7 @@ public abstract class MixinEntityRenderer {
                     this.pointedEntity = null;
                     this.mc.objectMouseOver = new MovingObjectPosition(MovingObjectPosition.MovingObjectType.MISS, vec33, null, new BlockPos(vec33));
                 }
+                if (v != 0 || this.pointedEntity != null) ReachDisplay.dis = v;
 
                 if (this.pointedEntity != null && (d2 < d1 || this.mc.objectMouseOver == null)) {
                     this.mc.objectMouseOver = new MovingObjectPosition(this.pointedEntity, vec33);
@@ -168,7 +170,7 @@ public abstract class MixinEntityRenderer {
 
     @Inject(method = "getNightVisionBrightness", at = @At("HEAD"), cancellable = true)
     private void preventBlink(EntityLivingBase p_getNightVisionBrightness_1_, float p_getNightVisionBrightness_2_, CallbackInfoReturnable<Float> cir) {
-        if (!GeneralOptionsProvider.NIGHT_VISION_BLINKING) {
+        if (!Settings.NIGHT_VISION_BLINKING) {
             cir.setReturnValue(1.0F);
         }
     }

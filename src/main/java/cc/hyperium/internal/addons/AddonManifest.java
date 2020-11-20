@@ -11,6 +11,7 @@ public final class AddonManifest {
     private List mixinConfigs;
     @Deprecated
     private List dependencies = new ArrayList();
+    private String transformerClass;
     private String tweakerClass;
 
     public String getName() {
@@ -31,6 +32,10 @@ public final class AddonManifest {
 
     public void setMainClass(String var1) {
         this.mainClass = var1;
+    }
+
+    public void setTransformerClass(String var1) {
+        this.transformerClass = var1;
     }
 
     public String getMainClass() {
@@ -61,5 +66,9 @@ public final class AddonManifest {
 
     public void setTweakerClass(String tweakerClass) {
         this.tweakerClass = tweakerClass;
+    }
+
+    public String getTransformerClass() {
+        return this.transformerClass;
     }
 }

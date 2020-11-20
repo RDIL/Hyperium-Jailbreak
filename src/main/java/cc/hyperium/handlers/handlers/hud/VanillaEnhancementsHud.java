@@ -1,6 +1,6 @@
 package cc.hyperium.handlers.handlers.hud;
 
-import cc.hyperium.config.provider.GameplayOptionsProvider;
+import cc.hyperium.config.Settings;
 import cc.hyperium.event.gui.GuiDrawScreenEvent;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.render.RenderHUDEvent;
@@ -37,7 +37,7 @@ public class VanillaEnhancementsHud {
 
     @InvokeEvent
     public void renderArrowCount(RenderHUDEvent event) {
-        if (GameplayOptionsProvider.ARROW_COUNT) {
+        if (Settings.ARROW_COUNT) {
             EntityPlayerSP thePlayer = mc.thePlayer;
             if (thePlayer != null) {
                 ItemStack heldItem = thePlayer.getHeldItem();
@@ -59,7 +59,7 @@ public class VanillaEnhancementsHud {
 
     @InvokeEvent
     public void renderEnchantments(final RenderHUDEvent e) {
-        if (GameplayOptionsProvider.ENCHANTMENTS_ABOVE_HOTBAR) {
+        if (Settings.ENCHANTMENTS_ABOVE_HOTBAR) {
             final ItemStack heldItemStack = mc.thePlayer.inventory.getCurrentItem();
             if (heldItemStack != null) {
                 String toDraw;
@@ -85,7 +85,7 @@ public class VanillaEnhancementsHud {
 
     @InvokeEvent
     public void renderDamage(RenderHUDEvent e) {
-        if (GameplayOptionsProvider.DAMAGE_ABOVE_HOTBAR) {
+        if (Settings.DAMAGE_ABOVE_HOTBAR) {
             final ItemStack heldItemStack = mc.thePlayer.inventory.getCurrentItem();
             if (heldItemStack != null) {
                 GL11.glPushMatrix();
@@ -107,7 +107,7 @@ public class VanillaEnhancementsHud {
 
     @InvokeEvent
     public void onRenderArmor(GuiDrawScreenEvent e) {
-        if ((GameplayOptionsProvider.ARMOR_PROT_POTENTIONAL || GameplayOptionsProvider.ARMOR_PROJ_POTENTIONAL) && e.getScreen() instanceof GuiInventory || e.getScreen() instanceof GuiContainerCreative) {
+        if ((Settings.ARMOR_PROT_POTENTIONAL || Settings.ARMOR_PROJ_POTENTIONAL) && e.getScreen() instanceof GuiInventory || e.getScreen() instanceof GuiContainerCreative) {
             ScaledResolution res = new ScaledResolution(mc);
             int white = 16777215;
             String message = this.getArmorString();
@@ -118,7 +118,7 @@ public class VanillaEnhancementsHud {
 
     @InvokeEvent
     public void renderHotbarNumbers(RenderHUDEvent event) {
-        if (GameplayOptionsProvider.HOTBAR_KEYS) {
+        if (Settings.HOTBAR_KEYS) {
             ScaledResolution resolution = ResolutionUtil.current();
             int x = resolution.getScaledWidth() / 2 - 87;
             int y = resolution.getScaledHeight() - 18;
@@ -175,9 +175,9 @@ public class VanillaEnhancementsHud {
     private String getArmorString() {
         double ap = roundDecimals(getArmorPotentional(false));
         double app = roundDecimals(getArmorPotentional(true));
-        if (GameplayOptionsProvider.ARMOR_PROT_POTENTIONAL || GameplayOptionsProvider.ARMOR_PROJ_POTENTIONAL) {
+        if (Settings.ARMOR_PROT_POTENTIONAL || Settings.ARMOR_PROJ_POTENTIONAL) {
             String lastMessage;
-            String str = GameplayOptionsProvider.ARMOR_PROT_POTENTIONAL ? (lastMessage = ap + "%") : (lastMessage = app + "%");
+            String str = Settings.ARMOR_PROT_POTENTIONAL ? (lastMessage = ap + "%") : (lastMessage = app + "%");
             this.lastMessage = lastMessage;
             return str;
         }

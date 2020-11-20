@@ -17,6 +17,7 @@
 
 package cc.hyperium.mods;
 
+import cc.hyperium.config.Settings;
 import cc.hyperium.handlers.handlers.chat.GeneralChatHandler;
 import net.minecraft.client.Minecraft;
 
@@ -35,7 +36,7 @@ public class PerspectiveModifierHandler {
             this.modifiedYaw = Minecraft.getMinecraft().thePlayer.rotationYaw;
         }
         Minecraft.getMinecraft().gameSettings.thirdPersonView = 1;
-        GeneralChatHandler.instance().sendMessage("Enabled 360 Degree Perspective.");
+        if (Settings.SPRINT_PERSPECTIVE_MESSAGES) GeneralChatHandler.instance().sendMessage("Enabled 360 Degree Perspective.");
     }
 
     public void onDisable() {

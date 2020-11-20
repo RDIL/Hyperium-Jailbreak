@@ -16,8 +16,7 @@
  */
 
 package cc.hyperium.gui;
-
-import cc.hyperium.config.provider.HypixelOptionsProvider;
+import cc.hyperium.config.Settings;
 import cc.hyperium.event.network.server.hypixel.HypixelFriendRequestEvent;
 import cc.hyperium.event.network.server.hypixel.HypixelPartyInviteEvent;
 import cc.hyperium.event.InvokeEvent;
@@ -40,7 +39,7 @@ public class ConfirmationPopup {
 
     @InvokeEvent
     public void onFriend(HypixelFriendRequestEvent e) {
-        if (HypixelOptionsProvider.SHOW_INGAME_CONFIRMATION_POPUP) {
+        if (Settings.SHOW_INGAME_CONFIRMATION_POPUP) {
             displayConfirmation("Friend request from " + e.getFrom(), accept -> {
                 Minecraft.getMinecraft().thePlayer.sendChatMessage((accept ? "/friend accept " : "/friend deny ") + e.getFrom());
                 currentConfirmation.framesLeft = 0;
@@ -50,7 +49,7 @@ public class ConfirmationPopup {
 
     @InvokeEvent
     public void onParty(HypixelPartyInviteEvent e) {
-        if (HypixelOptionsProvider.SHOW_INGAME_CONFIRMATION_POPUP) {
+        if (Settings.SHOW_INGAME_CONFIRMATION_POPUP) {
             displayConfirmation("Party request from " + e.getFrom(), accept -> {
                 if (accept) {
                     Minecraft.getMinecraft().thePlayer.sendChatMessage("/party accept " + e.getFrom());
@@ -82,7 +81,7 @@ public class ConfirmationPopup {
 
     public Confirmation displayConfirmation(String text, Consumer<Boolean> callback, int seconds) {
         Confirmation c = new Confirmation(seconds * 60, seconds * 60, text, callback);
-        if (HypixelOptionsProvider.SHOW_INGAME_CONFIRMATION_POPUP)
+        if (Settings.SHOW_INGAME_CONFIRMATION_POPUP)
             confirmations.add(c);
         return c;
     }

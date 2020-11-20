@@ -1,6 +1,6 @@
 package cc.hyperium.handlers.handlers.chat;
 
-import cc.hyperium.config.provider.HypixelOptionsProvider;
+import cc.hyperium.config.Settings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.IChatComponent;
 
@@ -8,7 +8,7 @@ public class GuildChatHandler extends HyperiumChatHandler {
     @Override
     public boolean chatReceived(IChatComponent component, String text) {
         String playerJoinEndStr = " joined the guild!";
-        if (text.endsWith(playerJoinEndStr) && HypixelOptionsProvider.BROADCAST_ACHIEVEMENTS) {
+        if (text.endsWith(playerJoinEndStr) && Settings.SEND_GUILD_WELCOME_MESSAGE) {
             int rankHeader = 0;
             if (text.contains("[")) rankHeader = text.indexOf("]") + 1;
 

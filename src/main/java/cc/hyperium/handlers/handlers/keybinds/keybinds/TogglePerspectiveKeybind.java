@@ -18,7 +18,7 @@
 package cc.hyperium.handlers.handlers.keybinds.keybinds;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.config.provider.IntegrationOptionsProvider;
+import cc.hyperium.config.Settings;
 import cc.hyperium.handlers.handlers.keybinds.HyperiumBind;
 import cc.hyperium.mods.PerspectiveModifierHandler;
 import org.lwjgl.input.Keyboard;
@@ -32,7 +32,7 @@ public class TogglePerspectiveKeybind extends HyperiumBind {
     public void onPress() {
         PerspectiveModifierHandler perspectiveHandler = Hyperium.INSTANCE.getHandlers().getPerspectiveHandler();
 
-        if (IntegrationOptionsProvider.PERSPECTIVE_HOLD) {
+        if (Settings.PERSPECTIVE_HOLD) {
             perspectiveHandler.onEnable();
         } else {
             if (!perspectiveHandler.enabled) {
@@ -45,7 +45,7 @@ public class TogglePerspectiveKeybind extends HyperiumBind {
 
     @Override
     public void onRelease() {
-        if (IntegrationOptionsProvider.PERSPECTIVE_HOLD) {
+        if (Settings.PERSPECTIVE_HOLD) {
             Hyperium.INSTANCE.getHandlers().getPerspectiveHandler().onDisable();
         }
     }

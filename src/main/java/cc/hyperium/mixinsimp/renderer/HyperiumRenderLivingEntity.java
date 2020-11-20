@@ -1,7 +1,6 @@
 package cc.hyperium.mixinsimp.renderer;
 
-import cc.hyperium.config.provider.AnimationOptionsProvider;
-import cc.hyperium.config.provider.GeneralOptionsProvider;
+import cc.hyperium.config.Settings;
 import cc.hyperium.mixins.renderer.IMixinRender;
 import cc.hyperium.mixins.renderer.IMixinRenderLivingEntity;
 import net.minecraft.client.Minecraft;
@@ -19,6 +18,7 @@ import org.lwjgl.opengl.GL11;
 import java.util.List;
 
 public class HyperiumRenderLivingEntity<T extends EntityLivingBase> {
+
     private RendererLivingEntity<T> parent;
 
     public HyperiumRenderLivingEntity(RendererLivingEntity<T> parent) {
@@ -28,7 +28,7 @@ public class HyperiumRenderLivingEntity<T extends EntityLivingBase> {
     public void renderLayers(T entitylivingbaseIn, float p_177093_2_, float p_177093_3_, float partialTicks, float p_177093_5_, float p_177093_6_, float p_177093_7_, float p_177093_8_, List<LayerRenderer<T>> layerRenderers) {
         for (LayerRenderer<T> layerrenderer : layerRenderers) {
             boolean f = layerrenderer.shouldCombineTextures();
-            if (AnimationOptionsProvider.OLD_ARMOUR) {
+            if (Settings.OLD_ARMOUR) {
                 f = true;
             }
             boolean flag = ((IMixinRenderLivingEntity<T>) parent).callSetBrightness(entitylivingbaseIn, partialTicks, f);
@@ -50,7 +50,7 @@ public class HyperiumRenderLivingEntity<T extends EntityLivingBase> {
                 String s = entity.getDisplayName().getFormattedText();
                 GlStateManager.alphaFunc(516, 0.1F);
 
-                if (entity.isSneaking() && (GeneralOptionsProvider.SHOW_OWN_NAME || !entity.equals(Minecraft.getMinecraft().thePlayer))) {
+                if (entity.isSneaking() && (Settings.SHOW_OWN_NAME || !entity.equals(Minecraft.getMinecraft().thePlayer))) {
                     FontRenderer fontrenderer = renderManager.getFontRenderer();
                     GlStateManager.pushMatrix();
                     GlStateManager.translate((float) x, (float) y + entity.height + 0.5F - (entity.isChild() ? entity.height / 2.0F : 0.0F), (float) z);

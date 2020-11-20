@@ -1,11 +1,11 @@
 package cc.hyperium.mods.chromahud.displayitems.hyperium;
 
-import cc.hyperium.config.provider.ChromaHudOptionsProvider;
 import cc.hyperium.mods.chromahud.ElementRenderer;
 import cc.hyperium.mods.chromahud.api.DisplayItem;
 import cc.hyperium.mods.ToggleSprintContainer;
 import cc.hyperium.utils.JsonHolder;
 import net.minecraft.util.StringUtils;
+import cc.hyperium.config.Settings;
 
 public class ToggleSprintStatus extends DisplayItem {
     private String sprintEnabledText;
@@ -14,7 +14,7 @@ public class ToggleSprintStatus extends DisplayItem {
         super(data, ordinal);
         this.sprintEnabledText = data.optString("sprintEnabledText");
         if (StringUtils.isNullOrEmpty(sprintEnabledText)) {
-            if (!ChromaHudOptionsProvider.CHROMAHUD_SQUAREBRACE_PREFIX_OPTION) {
+            if (!Settings.CHROMAHUD_SQUAREBRACE_PREFIX_OPTION) {
                 sprintEnabledText = "ToggleSprint Enabled";
             } else {
                 sprintEnabledText = "[ToggleSprint] Enabled";
