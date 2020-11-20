@@ -5,7 +5,6 @@ import cc.hyperium.internal.addons.strategy.AddonLoaderStrategy;
 import cc.hyperium.internal.addons.strategy.DefaultAddonLoader;
 import cc.hyperium.internal.addons.strategy.WorkspaceAddonLoader;
 import cc.hyperium.launch.HyperiumTweaker;
-import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.Launch;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
@@ -14,8 +13,6 @@ import org.spongepowered.asm.mixin.Mixins;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.*;
 import java.util.jar.JarFile;
 
@@ -91,23 +88,15 @@ public class AddonBootstrap {
                 }
             }
 
-            if (manifest.getTransformerClass() != null) {
+            if (manifest.getTweakerClass() != null) {
                 try {
-                    final URLClassLoader urlClassLoader = new URLClassLoader(new URL[]{this.getClass().getProtectionDomain().getCodeSource().getLocation(), itemEntry.getValue().toURI().toURL()});
-                    final IClassTransformer t = (IClassTransformer) urlClassLoader.loadClass(
-                            manifest.getTransformerClass()).newInstance();
-                    HyperiumTweaker.injectTransformer(t);
-                    LOGGER.info("Addon " + manifest.getName() + " registered transformer " + manifest.getTransformerClass());
+                    LOGGER.warn("BEWARE! Using cascading tweakers from addons are experimental! Use at your own risk.");
+                    HyperiumTweaker.injectCascadingTweak(manifest.getTweakerClass());
+                    LOGGER.info("Addon " + manifest.getName() + " registered cascading tweak class " + manifest.getTweakerClass());
                 } catch (Exception e) {
                     e.printStackTrace();
-                    LOGGER.error("Registering transformer virtually failed. Addon: " + manifest.getName() + ", transformer: " + manifest.getTransformerClass());
+                    LOGGER.fatal("Failed to load tweaker " + manifest.getTweakerClass() + " for addon " + manifest.getName());
                 }
-            }
-
-            if (manifest.getTweakerClass() != null) {
-                LOGGER.warn("BEWARE! Using cascading tweakers from addons are experimental! Use at your own risk.");
-                HyperiumTweaker.injectCascadingTweak(manifest.getTweakerClass());
-                LOGGER.info("Addon " + manifest.getName() + " registered cascading tweak class " + manifest.getTweakerClass());
             }
         }
 

@@ -18,7 +18,6 @@
 package cc.hyperium.launch;
 
 import cc.hyperium.internal.addons.AddonBootstrap;
-import net.minecraft.launchwrapper.IClassTransformer;
 import net.minecraft.launchwrapper.ITweaker;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.launchwrapper.LaunchClassLoader;
@@ -29,7 +28,6 @@ import org.spongepowered.asm.mixin.MixinEnvironment;
 import org.spongepowered.asm.mixin.Mixins;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,20 +104,6 @@ public class HyperiumTweaker implements ITweaker {
     private void addArg(String args, File file) {
         if (file == null) return;
         addArg(args, file.getAbsolutePath());
-    }
-
-    @SuppressWarnings("unchecked")
-    public static void injectTransformer(IClassTransformer transformer) {
-        try {
-            final Field f = LaunchClassLoader.class.getDeclaredField("transformers");
-            if (!f.isAccessible()) {
-                f.setAccessible(true);
-            }
-            ((List<IClassTransformer>) f.get(Launch.classLoader)).add(transformer);
-        } catch (Exception e) {
-            e.printStackTrace();
-            LOGGER.error("Failed to inject a transformer!! That is really not good.");
-        }
     }
 
     @SuppressWarnings("unchecked")
