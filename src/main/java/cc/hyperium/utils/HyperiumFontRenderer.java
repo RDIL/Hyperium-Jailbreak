@@ -16,12 +16,14 @@
  */
 
 package cc.hyperium.utils;
+
 import cc.hyperium.installer.InstallerMain;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.StringUtils;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
+
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,13 +36,14 @@ public class HyperiumFontRenderer {
     private final int[] colorCodes = new int[32];
     private final float kerning;
     private final Map<String, Float> cachedStringWidth = new HashMap<>();
-    private float antiAliasingFactor;
+    private final float antiAliasingFactor;
     private UnicodeFont unicodeFont;
 
     public HyperiumFontRenderer(String fontName, int fontType, int size) {
         this(fontName, fontType, size, 0);
     }
 
+    @SuppressWarnings("unchecked")
     public HyperiumFontRenderer(String fontName, float fontSize, float kerning, float antiAliasingFactor) {
         this.antiAliasingFactor = antiAliasingFactor;
         try {
@@ -77,6 +80,7 @@ public class HyperiumFontRenderer {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public HyperiumFontRenderer(Font font, float kerning, float antiAliasingFactor) {
         this.antiAliasingFactor = antiAliasingFactor;
         this.unicodeFont = new UnicodeFont(new Font(font.getName(), font.getStyle(), (int) (font.getSize() * antiAliasingFactor)));
@@ -116,10 +120,10 @@ public class HyperiumFontRenderer {
     private Font getFontByName(String name) throws IOException, FontFormatException {
         if (name.equalsIgnoreCase("roboto condensed") || name.equalsIgnoreCase("roboto")) {
             return getFontFromInput("/assets/hyperium/fonts/RobotoCondensed-Regular.ttf");
-        } else {
-            // Need to return the default font.
-            return getFontFromInput("/assets/hyperium/fonts/SegoeUI-Light.ttf");
+        } else if (name.equalsIgnoreCase("OpenSans")) {
+            return getFontFromInput("/assets/hyperium/fonts/OpenSans-SemiBold.ttf");
         }
+        return getFontFromInput("/assets/hyperium/fonts/SegoeUI-Light.ttf");
     }
 
     private Font getFontFromInput(String path) throws IOException, FontFormatException {
