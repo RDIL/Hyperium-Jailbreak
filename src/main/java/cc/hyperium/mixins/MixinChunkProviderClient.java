@@ -29,6 +29,7 @@ public class MixinChunkProviderClient {
         this.chunkMapping.add(ChunkCoordIntPair.chunkXZ2Int(p_73158_1_, p_73158_2_), chunk);
         this.chunkListing.add(chunk);
         EventBus.INSTANCE.post(new ChunkLoadEvent(chunk));
+        chunk.setChunkLoaded(true);
         return chunk;
     }
 }
