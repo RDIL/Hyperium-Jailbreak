@@ -48,6 +48,10 @@ public class LocationHandler {
             return;
         String raw = ChatColor.stripColor(event.getChat().getUnformattedText());
         Matcher whereAmIMatcher = whereami.matcher(raw);
+        if (whereAmIMatcher.matches()) {
+            event.setCancelled(true);
+        }
+
         if (raw.equalsIgnoreCase("you are currently in limbo")) {
             EventBus.INSTANCE.post(new ServerSwitchEvent(this.location, "Limbo"));
             this.location = "Limbo";
