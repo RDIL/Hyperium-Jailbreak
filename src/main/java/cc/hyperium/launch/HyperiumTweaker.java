@@ -73,13 +73,12 @@ public class HyperiumTweaker implements ITweaker {
         if (this.OPTIFINE) {
             // the Minecraft jar is Minecraft, but modified to use OptiFine as the primary tweaker
             LOGGER.info("Found environment: OPTIFINE (obfuscation context = notch)");
-            environment.setObfuscationContext("notch");
         }
         if (environment.getObfuscationContext() == null) {
             // the Minecraft jar is either vanilla or vanilla patched by OptiFine
             LOGGER.info("Found environment: FALLBACK (obfuscation context = notch)");
-            environment.setObfuscationContext("notch");
         }
+        environment.setObfuscationContext("notch");
         environment.setSide(MixinEnvironment.Side.CLIENT);
         Mixins.addConfiguration("mixins.hyperium.json");
         AddonBootstrap.INSTANCE.callAddonMixinBootstrap();

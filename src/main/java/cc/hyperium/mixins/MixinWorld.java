@@ -51,14 +51,15 @@ public abstract class MixinWorld {
     @Shadow @Final private List<TileEntity> tileEntitiesToBeRemoved;
     @Shadow @Final private List<TileEntity> addedTileEntityList;
     private HyperiumWorld hyperiumWorld = new HyperiumWorld((World) (Object) this);
+
     @Inject(method = "setSpawnPoint", at = @At("HEAD"))
     private void setSpawnPoint(BlockPos pos, CallbackInfo ci) {
-        hyperiumWorld.setSpawnPoint(pos, ci);
+        hyperiumWorld.setSpawnPoint(pos);
     }
 
     @Inject(method = "checkLightFor", at = @At("HEAD"), cancellable = true)
     private void checkLightFor(EnumSkyBlock lightType, BlockPos pos, CallbackInfoReturnable<Boolean> ci) {
-        hyperiumWorld.checkLightFor(lightType, pos, ci);
+        hyperiumWorld.checkLightFor(ci);
     }
 
     @Inject(method = "getLightFromNeighborsFor", at = @At("HEAD"), cancellable = true)
@@ -76,22 +77,22 @@ public abstract class MixinWorld {
 
     @Inject(method = "getLightFromNeighbors", at = @At("HEAD"), cancellable = true)
     private void getLightFromNeighbor(BlockPos pos, CallbackInfoReturnable<Integer> ci) {
-        hyperiumWorld.getLightFromNeighbor(pos, ci);
+        hyperiumWorld.getLightFromNeighbor(ci);
     }
 
     @Inject(method = "getRawLight", at = @At("HEAD"), cancellable = true)
     private void getRawLight(BlockPos pos, EnumSkyBlock lightType, CallbackInfoReturnable<Integer> ci) {
-        hyperiumWorld.getRawLight(pos, lightType, ci);
+        hyperiumWorld.getRawLight(ci);
     }
 
     @Inject(method = "getLight(Lnet/minecraft/util/BlockPos;)I", at = @At("HEAD"), cancellable = true)
     private void getLight(BlockPos pos, CallbackInfoReturnable<Integer> ci) {
-        hyperiumWorld.getLight(pos, ci);
+        hyperiumWorld.getLight(ci);
     }
 
     @Inject(method = "getLight(Lnet/minecraft/util/BlockPos;Z)I", at = @At("HEAD"), cancellable = true)
     private void getLight(BlockPos pos, boolean checkNeighbors, CallbackInfoReturnable<Integer> ci) {
-        hyperiumWorld.getLight(pos, checkNeighbors, ci);
+        hyperiumWorld.getLight(ci);
     }
 
     /**

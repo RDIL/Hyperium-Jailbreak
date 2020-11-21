@@ -37,10 +37,9 @@ import java.util.List;
 
 @Mixin(RendererLivingEntity.class)
 public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> extends Render<T> {
-    @Shadow
-    protected List<LayerRenderer<T>> layerRenderers;
+    @Shadow protected List<LayerRenderer<T>> layerRenderers;
 
-    private HyperiumRenderLivingEntity<T> hyperiumRenderLivingEntity = new HyperiumRenderLivingEntity<>((RendererLivingEntity) (Object) this);
+    private final HyperiumRenderLivingEntity<T> hyperiumRenderLivingEntity = new HyperiumRenderLivingEntity<T>((RendererLivingEntity) (Object) this);
 
     protected MixinRendererLivingEntity(RenderManager renderManager) {
         super(renderManager);
@@ -64,8 +63,6 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
                 Team.EnumVisible team$enumvisible = team.getNameTagVisibility();
 
                 switch (team$enumvisible) {
-                    case ALWAYS:
-                        return true;
                     case NEVER:
                         return false;
                     case HIDE_FOR_OTHER_TEAMS:

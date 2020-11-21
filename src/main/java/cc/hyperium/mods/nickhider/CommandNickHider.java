@@ -8,13 +8,16 @@ public class CommandNickHider implements BaseCommand {
     public String getName() {
         return "nickhider";
     }
+
     @Override
     public String getUsage() {
         return null;
     }
+
     public void sendMessage(String in) {
         GeneralChatHandler.instance().sendMessage(in);
     }
+
     @Override
     public void onExecute(String[] args) {
         if (args.length == 0) {

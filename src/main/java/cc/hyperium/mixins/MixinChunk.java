@@ -56,12 +56,12 @@ public class MixinChunk {
 
     @Inject(method = "getLightFor", at = @At("HEAD"), cancellable = true)
     private void getLightFor(EnumSkyBlock type, BlockPos pos, CallbackInfoReturnable<Integer> ci) {
-        hyperiumChunk.getLightFor(type, pos, ci);
+        hyperiumChunk.getLightFor(ci);
     }
 
     @Inject(method = "getLightSubtracted", at = @At("HEAD"), cancellable = true)
     private void getLightSubtracted(BlockPos pos, int amount, CallbackInfoReturnable<Integer> ci) {
-        hyperiumChunk.getLightSubtracted(pos, amount, ci);
+        hyperiumChunk.getLightSubtracted(ci);
     }
 
     /**

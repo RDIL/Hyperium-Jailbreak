@@ -1,7 +1,6 @@
 package cc.hyperium.gui.hyperium;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.config.Category;
 import cc.hyperium.config.Settings;
 import cc.hyperium.gui.HyperiumGui;
 import cc.hyperium.gui.hyperium.components.AbstractTab;
@@ -34,7 +33,7 @@ public class HyperiumMainGui extends HyperiumGui {
     private HashMap<Field, Supplier<String[]>> customStates = new HashMap<>();
     private HashMap<Field, List<Consumer<Object>>> callbacks = new HashMap<>();
     private List<Object> settingsObjects = new ArrayList<>();
-    private HyperiumFontRenderer font;
+    private final HyperiumFontRenderer font;
     private List<AbstractTab> tabs;
     private AbstractTab currentTab;
     private List<RGBFieldSet> rgbFields = new ArrayList<>();
@@ -56,15 +55,6 @@ public class HyperiumMainGui extends HyperiumGui {
         HashMap<Field, Supplier<String[]>> customStates = settingsHandler.getCustomStates();
         for (Field field : customStates.keySet()) {
             this.customStates.put(field, customStates.get(field));
-        }
-        try {
-            rgbFields.add(new RGBFieldSet(
-                Settings.class.getDeclaredField("REACH_RED"),
-                Settings.class.getDeclaredField("REACH_GREEN"),
-                Settings.class.getDeclaredField("REACH_BLUE"), Category.REACH,
-                Settings.INSTANCE));
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
         }
 
         tabs = Collections.singletonList(new SettingsTab(this));

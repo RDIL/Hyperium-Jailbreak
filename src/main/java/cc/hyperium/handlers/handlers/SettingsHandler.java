@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+// TODO: do we really need this?
 public class SettingsHandler {
     private HashMap<Field, Supplier<String[]>> customStates = new HashMap<>();
     private HashMap<Field, List<Consumer<Object>>> callbacks = new HashMap<>();

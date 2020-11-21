@@ -13,7 +13,15 @@ public @interface SliderSetting {
     String name();
     boolean round() default true;
     Category category() default Category.GENERAL;
+    /**
+     * @deprecated This field no longer does anything.
+     */
+    @Deprecated
     boolean enabled() default true;
-    @Deprecated boolean mods() default false;
+    /**
+     * @deprecated This field no longer does anything.
+     */
+    @Deprecated
+    boolean mods() default false;
     boolean isInt() default false;
 }

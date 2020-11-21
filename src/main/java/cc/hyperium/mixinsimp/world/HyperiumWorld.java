@@ -18,7 +18,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.storage.WorldInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Iterator;
 import java.util.List;
@@ -30,11 +29,11 @@ public class HyperiumWorld {
         this.parent = parent;
     }
 
-    public void setSpawnPoint(BlockPos pos, CallbackInfo ci) {
+    public void setSpawnPoint(BlockPos pos) {
         EventBus.INSTANCE.post(new SpawnpointChangeEvent(pos));
     }
 
-    public void checkLightFor(EnumSkyBlock lightType, BlockPos pos, CallbackInfoReturnable<Boolean> ci) {
+    public void checkLightFor(CallbackInfoReturnable<Boolean> ci) {
         if (!Minecraft.getMinecraft().isIntegratedServerRunning() && Settings.FULLBRIGHT) ci.setReturnValue(false);
     }
 
@@ -47,19 +46,15 @@ public class HyperiumWorld {
         return worldInfo.getTerrainType() == WorldType.FLAT ? 0.0D : 63.0D;
     }
 
-    public void getLightFromNeighbor(BlockPos pos, CallbackInfoReturnable<Integer> ci) {
+    public void getLightFromNeighbor(CallbackInfoReturnable<Integer> ci) {
         if (!Minecraft.getMinecraft().isIntegratedServerRunning() && Settings.FULLBRIGHT) ci.setReturnValue(15);
     }
 
-    public void getRawLight(BlockPos pos, EnumSkyBlock lightType, CallbackInfoReturnable<Integer> ci) {
+    public void getRawLight(CallbackInfoReturnable<Integer> ci) {
         if (!Minecraft.getMinecraft().isIntegratedServerRunning() && Settings.FULLBRIGHT) ci.setReturnValue(15);
     }
 
-    public void getLight(BlockPos pos, CallbackInfoReturnable<Integer> ci) {
-        if (!Minecraft.getMinecraft().isIntegratedServerRunning() && Settings.FULLBRIGHT) ci.setReturnValue(15);
-    }
-
-    public void getLight(BlockPos pos, boolean checkNeighbors, CallbackInfoReturnable<Integer> ci) {
+    public void getLight(CallbackInfoReturnable<Integer> ci) {
         if (!Minecraft.getMinecraft().isIntegratedServerRunning() && Settings.FULLBRIGHT) ci.setReturnValue(15);
     }
 
@@ -86,16 +81,17 @@ public class HyperiumWorld {
         theProfiler.endStartSection("remove");
         loadedEntityList.removeAll(unloadedEntityList);
 
-        for (int k = 0; k < unloadedEntityList.size(); ++k) {
-            Entity entity1 = unloadedEntityList.get(k);
+        for (Entity entity1 : unloadedEntityList) {
             int j = entity1.chunkCoordX;
             int l1 = entity1.chunkCoordZ;
 
-            if (entity1.addedToChunk && ((IMixinWorld) parent).callIsChunkLoaded(j, l1, true)) parent.getChunkFromChunkCoords(j, l1).removeEntity(entity1);
+            if (entity1.addedToChunk && ((IMixinWorld) parent).callIsChunkLoaded(j, l1, true)) {
+                parent.getChunkFromChunkCoords(j, l1).removeEntity(entity1);
+            }
         }
 
-        for (int l = 0; l < unloadedEntityList.size(); ++l) {
-            ((IMixinWorld) parent).callOnEntityRemoved(unloadedEntityList.get(l));
+        for (Entity entity : unloadedEntityList) {
+            ((IMixinWorld) parent).callOnEntityRemoved(entity);
         }
 
         unloadedEntityList.clear();
@@ -143,13 +139,15 @@ public class HyperiumWorld {
         theProfiler.endStartSection("pendingBlockEntities");
 
         if (!addedTileEntityList.isEmpty()) {
-            for (int j1 = 0; j1 < addedTileEntityList.size(); ++j1) {
-                TileEntity tileentity1 = addedTileEntityList.get(j1);
-
+            for (TileEntity tileentity1 : addedTileEntityList) {
                 if (!tileentity1.isInvalid()) {
-                    if (!loadedTileEntityList.contains(tileentity1)) parent.addTileEntity(tileentity1);
+                    if (!loadedTileEntityList.contains(tileentity1)) {
+                        parent.addTileEntity(tileentity1);
+                    }
 
-                    if (parent.isBlockLoaded(tileentity1.getPos())) parent.getChunkFromBlockCoords(tileentity1.getPos()).addTileEntity(tileentity1.getPos(), tileentity1);
+                    if (parent.isBlockLoaded(tileentity1.getPos())) {
+                        parent.getChunkFromBlockCoords(tileentity1.getPos()).addTileEntity(tileentity1.getPos(), tileentity1);
+                    }
 
                     parent.markBlockForUpdate(tileentity1.getPos());
                 }

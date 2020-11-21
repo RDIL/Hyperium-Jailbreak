@@ -35,14 +35,18 @@ public class HyperiumBind {
     protected boolean conflictExempt = false;
 
     public HyperiumBind(String description, int key) {
-        this(description, key, "Hyperium");
-    }
-
-    public HyperiumBind(String description, int key, String category) {
         this.defaultKeyCode = key;
 
         this.description = description;
         this.key = key;
+    }
+
+    /**
+     * @deprecated Use {@link HyperiumBind#HyperiumBind(String, int)}.
+     */
+    @Deprecated
+    public HyperiumBind(String description, int key, String category) {
+        this(description, key);
     }
 
     public int getKeyCode() {

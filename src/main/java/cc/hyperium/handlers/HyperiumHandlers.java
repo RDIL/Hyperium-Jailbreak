@@ -29,7 +29,6 @@ import cc.hyperium.handlers.handlers.chat.*;
 import cc.hyperium.handlers.handlers.data.HypixelAPI;
 import cc.hyperium.handlers.handlers.hud.VanillaEnhancementsHud;
 import cc.hyperium.handlers.handlers.keybinds.KeyBindHandler;
-import cc.hyperium.handlers.handlers.reach.ReachDisplay;
 import cc.hyperium.handlers.handlers.stats.StatsHandler;
 import cc.hyperium.mods.PerspectiveModifierHandler;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
@@ -64,7 +63,6 @@ public class HyperiumHandlers {
         register(perspectiveHandler = new PerspectiveModifierHandler());
         register(keybindHandler = new KeyBindHandler());
         register(hypixelDetector = new HypixelDetector());
-        register(new ReachDisplay());
         register(locationHandler = new LocationHandler());
         register(new VanillaEnhancementsHud());
         register(new ResolutionUtil());

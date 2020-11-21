@@ -16,6 +16,7 @@
  */
 
 package cc.hyperium;
+
 import cc.hyperium.event.client.InitializationEvent;
 import cc.hyperium.event.client.GameShutDownEvent;
 import cc.hyperium.event.Priority;
@@ -73,7 +74,7 @@ public class Hyperium {
         LOGGER.warn("Please report bugs by DMing rdil#0001 on Discord");
         LOGGER.warn("or by emailing me@rdil.rocks");
         try {
-            Multithreading.runAsync(() -> new PlayerStatsGui(null)); // Don't remove
+            Multithreading.runAsync(PlayerStatsGui::new); // Don't remove
             try {
                 Class.forName("net.minecraft.dispenser.BehaviorProjectileDispense");
                 isDevEnv = true;
@@ -144,7 +145,6 @@ public class Hyperium {
         hyperiumCommandHandler.registerCommand(new CommandDebug());
         hyperiumCommandHandler.registerCommand(new CommandCoords());
         hyperiumCommandHandler.registerCommand(new CommandLogs());
-        hyperiumCommandHandler.registerCommand(new CommandStats());
         hyperiumCommandHandler.registerCommand(new CommandParty());
         hyperiumCommandHandler.registerCommand(new CommandGarbageCollect());
         hyperiumCommandHandler.registerCommand(new CommandMessage());

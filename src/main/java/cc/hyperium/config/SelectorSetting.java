@@ -11,6 +11,14 @@ public @interface SelectorSetting {
     String name();
     Category category() default Category.GENERAL;
     String[] items();
+    /**
+     * @deprecated This field no longer does anything.
+     */
+    @Deprecated
     boolean enabled() default true;
-    @Deprecated boolean mods() default false;
+    /**
+     * @deprecated This field no longer does anything.
+     */
+    @Deprecated
+    boolean mods() default false;
 }

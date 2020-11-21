@@ -14,7 +14,6 @@ public enum Category {
     AUTOTIP("Autotip"),
     AUTO_GG("Auto GG"),
     LEVEL_HEAD("Levelhead"),
-    REACH("Reach Display"),
     VANILLA_ENHANCEMENTS("Vanilla Enhancements"),
     CHROMAHUD("ChromaHUD"),
     KEYSTROKES("Keystrokes"),
@@ -25,7 +24,7 @@ public enum Category {
     ITEM_PHYSIC("Item Physics"),
     TOGGLESPRINT("Toggle Sprint");
 
-    private String display;
+    private final String display;
 
     Category(String display) {
         this.display = display;

@@ -32,7 +32,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LocationHandler {
-    private final Pattern whereami = Pattern.compile("You are currently connected to server (?<server>.+)");
+    private static final Pattern whereami = Pattern.compile("You are currently connected to server (?<server>.+)");
     private String location = "";
     private boolean sendingWhereAmI = false;
     private long ticksInWorld = 0;

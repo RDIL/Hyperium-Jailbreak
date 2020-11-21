@@ -181,9 +181,6 @@ public class Settings {
     @ConfigOpt @SelectorSetting(category = IMPROVEMENTS, name = "Max World Particles", items = {"1000", "2000", "4000", "6000", "8000", "10000", "20000", "50000"})
     public static String MAX_WORLD_PARTICLES_STRING = "10000";
 
-    @ConfigOpt @ToggleSetting(name = "Show Hit Distances", category = REACH)
-    public static boolean SHOW_HIT_DISTANCES = false;
-
     @ConfigOpt @ToggleSetting(name = "Enable AutoFriend", category = AUTOFRIEND)
     public static boolean AUTOFRIEND_TOGGLE = false;
 
@@ -205,21 +202,6 @@ public class Settings {
     @ConfigOpt
     @SelectorSetting(category = FNCOMPASS, name = "Detail Level", items = {"0", "1", "2"})
     public static String FNCOMPASS_DETAILS = "2";
-
-    @ToggleSetting(name = "Show Dots on Name Tags", category = INTEGRATIONS)
-    public static boolean SHOW_DOTS_ON_NAME_TAGS = false;
-
-    @ConfigOpt @SelectorSetting(name = "Reach Color Type", category = REACH, items = {"RGB", "CHROMA"})
-    public static String REACH_COLOR_TYPE = "RGB";
-
-    @ConfigOpt @SliderSetting(name = "Red", category = REACH, isInt = true, min = 0, max = 255)
-    public static int REACH_RED = 255;
-
-    @ConfigOpt @SliderSetting(name = "Blue", category = REACH, isInt = true, min = 0, max = 255)
-    public static int REACH_BLUE = 0;
-
-    @ConfigOpt @SliderSetting(name = "Green", category = REACH, isInt = true, min = 0, max = 255)
-    public static int REACH_GREEN = 255;
 
     @ConfigOpt @ToggleSetting(name = "Enable ToggleSprint", category = TOGGLESPRINT)
     public static boolean ENABLE_TOGGLE_SPRINT = true;

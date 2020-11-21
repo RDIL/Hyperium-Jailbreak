@@ -18,8 +18,7 @@ import org.lwjgl.opengl.GL11;
 import java.util.List;
 
 public class HyperiumRenderLivingEntity<T extends EntityLivingBase> {
-
-    private RendererLivingEntity<T> parent;
+    private final RendererLivingEntity<T> parent;
 
     public HyperiumRenderLivingEntity(RendererLivingEntity<T> parent) {
         this.parent = parent;

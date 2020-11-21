@@ -16,6 +16,7 @@
  */
 
 package cc.hyperium.event;
+
 import com.google.common.reflect.TypeToken;
 import java.lang.reflect.Method;
 import java.util.Comparator;
@@ -26,11 +27,12 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @SuppressWarnings("UnstableApiUsage")
 public class EventBus {
     public static final EventBus INSTANCE = new EventBus();
-    private HashMap<Class<?>, CopyOnWriteArrayList<EventSubscriber>> subscriptions = new HashMap<>();
+    private final HashMap<Class<?>, CopyOnWriteArrayList<EventSubscriber>> subscriptions = new HashMap<>();
+
     public void register(Object obj) {
         // also contains the class itself
         TypeToken<?> token = TypeToken.of(obj.getClass());
-        Set superClasses = token.getTypes().rawTypes();
+        Set<?> superClasses = token.getTypes().rawTypes();
 
         // we also want to loop over the super classes, since declaredMethods only gets method in the class itself
         for (Object temp : superClasses) {
@@ -48,7 +50,9 @@ public class EventBus {
 
                 Class<?> event = method.getParameters()[0].getType();
                 Priority priority = method.getAnnotation(InvokeEvent.class).priority();
-                method.setAccessible(true);
+                if (!method.isAccessible()) {
+                    method.setAccessible(true);
+                }
 
                 // where the method gets added to the event key inside of the subscription hashmap
                 // the arraylist is either sorted or created before the element is added
@@ -87,8 +91,8 @@ public class EventBus {
         for (EventSubscriber sub : this.subscriptions.getOrDefault(event.getClass(), new CopyOnWriteArrayList<>())) {
             try {
                 sub.getMethod().invoke(sub.getInstance(), event);
-            } catch (Exception InvocationTargetException) {
-                InvocationTargetException.printStackTrace();
+            } catch (Exception invocationTargetExc) {
+                invocationTargetExc.printStackTrace();
             }
         }
     }

@@ -1,16 +1,15 @@
 package cc.hyperium.mods.nickhider;
+
 import cc.hyperium.Hyperium;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.render.RenderEvent;
 import cc.hyperium.event.client.TickEvent;
 import cc.hyperium.mixins.gui.MixinGuiScreenBook;
+import cc.hyperium.mods.AbstractMod;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.mods.sk1ercommon.Sk1erMod;
 import com.google.common.collect.ObjectArrays;
-import com.google.gson.Gson;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonParser;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -21,12 +20,6 @@ import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
-import org.apache.commons.io.FileUtils;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -36,27 +29,30 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
-public class NickHider {
+public class NickHider extends AbstractMod {
     public static NickHider INSTANCE;
-    private final Pattern newNick = Pattern.compile("We've generated a random username for you: \\s*(?<nick>\\S+)");
+    private static final Pattern newNick = Pattern.compile("We've generated a random username for you: \\s*(?<nick>\\S+)");
     private final List<Nick> nicks = new ArrayList<>();
-    private File suggestedConfigurationFile = new File(Hyperium.folder, "nick_data.json");
-    private HashMap<String, String> cache = new HashMap<>();
-    private Set<String> usedNicks = new HashSet<>();
+    private final HashMap<String, String> cache = new HashMap<>();
+    private final Set<String> usedNicks = new HashSet<>();
     private NickHiderConfig config;
     private String override = null;
+
     public NickHider() {
         INSTANCE = this;
     }
+
     String getPseudo_key() {
         return config.getPseudo_key();
     }
+
     void setPseudo_key(String pseudo_key) {
         config.setPseudo_key(pseudo_key);
     }
-    private List<String> namesDatabase = new ArrayList<>();
+
+    private final List<String> namesDatabase = new ArrayList<>();
+
     private String getPseudo(String input) {
         int i = input.hashCode() + getPseudo_key().hashCode();
         if (i < 0) {
@@ -69,48 +65,14 @@ public class NickHider {
         return "Player-" + namesDatabase.get(i % size);
     }
 
-    public void init() {
+    public AbstractMod init() {
         Multithreading.runAsync(() -> namesDatabase.addAll(Arrays.asList(new Sk1erMod().rawWithAgent("https://backend.rdil.rocks/words.txt").split("\n"))));
-        if (suggestedConfigurationFile.exists()) {
-            try {
-                FileReader baseReader = new FileReader(this.suggestedConfigurationFile);
-                BufferedReader bufferedReader = new BufferedReader(baseReader);
-                StringBuilder lines = new StringBuilder();
-
-                for (String line : bufferedReader.lines().collect(Collectors.toList())) {
-                    lines.append(line);
-                }
-                baseReader.close();
-                bufferedReader.close();
-                boolean broken = false;
-                try {
-                    new JsonParser().parse(lines.toString().trim());
-                } catch (JsonParseException e) {
-                    broken = true;
-                }
-                if (!broken) {
-                    this.config = new Gson().fromJson(lines.toString().trim(), NickHiderConfig.class);
-                }
-            } catch (IOException e) {
-                this.config = null;
-
-                FileUtils.deleteQuietly(this.suggestedConfigurationFile);
-            }
-        }
-        if (config == null) {
-            this.config = new NickHiderConfig();
-        }
+        this.config = NickHiderConfig.INSTANCE;
+        Hyperium.CONFIG.register(this.config);
 
         EventBus.INSTANCE.register(this);
         Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(new CommandNickHider());
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            String s = new Gson().toJson(this.config);
-            try {
-                FileUtils.write(suggestedConfigurationFile, s, StandardCharsets.UTF_8);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }));
+        return this;
     }
 
     @InvokeEvent
@@ -231,9 +193,6 @@ public class NickHider {
     }
 
     public String apply(String input) {
-        if (config == null) {
-            config = new NickHiderConfig();
-        }
         if (!config.isEnabled())
             return input;
         if (nicks.size() == 0)
