@@ -50,9 +50,7 @@ public class EventBus {
 
                 Class<?> event = method.getParameters()[0].getType();
                 Priority priority = method.getAnnotation(InvokeEvent.class).priority();
-                if (!method.isAccessible()) {
-                    method.setAccessible(true);
-                }
+                method.setAccessible(true);
 
                 // where the method gets added to the event key inside of the subscription hashmap
                 // the arraylist is either sorted or created before the element is added
