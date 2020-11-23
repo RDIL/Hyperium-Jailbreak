@@ -6,7 +6,6 @@ import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.render.RenderEvent;
 import cc.hyperium.event.client.TickEvent;
 import cc.hyperium.mixins.gui.MixinGuiScreenBook;
-import cc.hyperium.mods.AbstractMod;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.mods.sk1ercommon.Sk1erMod;
 import com.google.common.collect.ObjectArrays;
@@ -30,9 +29,9 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class NickHider extends AbstractMod {
+public class NickHider {
     public static NickHider INSTANCE;
-    private static final Pattern newNick = Pattern.compile("We've generated a random username for you: \\s*(?<nick>\\S+)");
+    private final Pattern newNick = Pattern.compile("We've generated a random username for you: \\s*(?<nick>\\S+)");
     private final List<Nick> nicks = new ArrayList<>();
     private final HashMap<String, String> cache = new HashMap<>();
     private final Set<String> usedNicks = new HashSet<>();
@@ -65,14 +64,13 @@ public class NickHider extends AbstractMod {
         return "Player-" + namesDatabase.get(i % size);
     }
 
-    public AbstractMod init() {
+    public void init() {
         Multithreading.runAsync(() -> namesDatabase.addAll(Arrays.asList(new Sk1erMod().rawWithAgent("https://backend.rdil.rocks/words.txt").split("\n"))));
         this.config = NickHiderConfig.INSTANCE;
         Hyperium.CONFIG.register(this.config);
 
         EventBus.INSTANCE.register(this);
         Hyperium.INSTANCE.getHandlers().getHyperiumCommandHandler().registerCommand(new CommandNickHider());
-        return this;
     }
 
     @InvokeEvent

@@ -203,9 +203,6 @@ public class Settings {
     @SelectorSetting(category = FNCOMPASS, name = "Detail Level", items = {"0", "1", "2"})
     public static String FNCOMPASS_DETAILS = "2";
 
-    @ConfigOpt @ToggleSetting(name = "Enable ToggleSprint", category = TOGGLESPRINT)
-    public static boolean ENABLE_TOGGLE_SPRINT = true;
-
     @ConfigOpt @ToggleSetting(name = "Broadcast Achivements to Guild Chat", category = HYPIXEL)
     public static boolean BROADCAST_ACHIEVEMENTS = false;
 
