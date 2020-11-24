@@ -15,7 +15,7 @@
  *     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-version = "4.1.3"
+version = "4.2.0-dev"
 
 buildscript {
     repositories {
@@ -58,7 +58,7 @@ minecraft {
 
 dependencies {
     annotationProcessor "org.spongepowered:mixin:0.7.11-SNAPSHOT"
-    embed("org.spongepowered:mixin:0.7.11-SNAPSHOT") {
+    embed ("org.spongepowered:mixin:0.7.11-SNAPSHOT") {
         exclude module: "launchwrapper"
         exclude module: "guava"
         exclude module: "gson"
@@ -96,6 +96,14 @@ processResources {
     }
 }
 
+javadoc {
+    options {
+        encoding "UTF-8"
+    }
+    exclude "cc/hyperium/mixins/**"
+    exclude "me/semx11/**"
+}
+
 jar {
     dependsOn configurations.compile
     from {
@@ -114,8 +122,24 @@ jar {
         "Main-Class": "com.hyperiumjailbreak.Runtime"
     )
     configurations.embed.each { dep ->
-        from(project.zipTree(dep)) {
+        from (project.zipTree(dep)) {
             exclude "org/jetbrains/annotations", "org/jetbrains/annotations/**"
         }
     }
+}
+
+task sourceJar(type: Jar, dependsOn: classes) {
+    from sourceSets.main.allSource
+    description "Builds a jar containing the source code."
+    classifier "sources"
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from javadoc
+    description "Builds a jar containing the javadocs."
+    classifier "javadoc"
+}
+
+if (System.getenv().containsKey("JITPACK")) {
+    build.dependsOn sourceJar, javadocJar
 }

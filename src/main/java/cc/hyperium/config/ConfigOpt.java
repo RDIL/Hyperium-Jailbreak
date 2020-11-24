@@ -17,13 +17,35 @@
 
 package cc.hyperium.config;
 
+import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * A configuration option.
+ * This annotation ensures the value of the annotated field will be saved in the file,
+ * assuming the parent class has been registered.
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
+@Documented
 public @interface ConfigOpt {
-    @Deprecated String alt() default "";
+    /**
+     * @deprecated This no longer does anything.
+     * 
+     * @return The default value, please don't override it.
+     */
+    @Deprecated
+    String alt() default "";
+
+    /**
+     * The translation string for this option. If it doesn't have one, just don't override this.
+     * The value of this will be passed to {@link net.minecraft.client.resources.I18n#format(String, Object...)}.
+     * Note: this will be ignored if the game language is English.
+     * 
+     * @return The string to run a locale lookup for.
+     */
+    String i18n() default "";
 }

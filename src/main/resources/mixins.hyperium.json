@@ -14,6 +14,7 @@
     "MixinCrashReport",
     "MixinEnchantment",
     "MixinKeyBinding",
+    "MixinLocale",
     "MixinMinecraft",
     "MixinNBTUtil",
     "MixinPlayerControllerMP",
