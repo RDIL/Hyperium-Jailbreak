@@ -14,15 +14,9 @@ import java.util.List;
 
 @Mixin(RenderItem.class)
 public interface IMixinRenderItem {
-    @Accessor
-    TextureManager getTextureManager();
-
-    @Invoker
-    void callSetupGuiTransform(int xPosition, int yPosition, boolean isGui3d);
-
-    @Invoker
-    void callRenderModel(IBakedModel model, int e);
-
-    @Invoker
-    void callRenderQuads(WorldRenderer renderer, List<BakedQuad> quads, int color, ItemStack stack);
+    @Accessor TextureManager getTextureManager();
+    @Invoker void callSetupGuiTransform(int xPosition, int yPosition, boolean isGui3d);
+    @Invoker void callRenderModel(IBakedModel model, int e);
+    @Invoker void callRenderQuads(WorldRenderer renderer, List<BakedQuad> quads, int color, ItemStack stack);
+    @Invoker void callFunc_181565_a(WorldRenderer wr, int a, int b, int c, int d, int e, int f, int g, int h);
 }

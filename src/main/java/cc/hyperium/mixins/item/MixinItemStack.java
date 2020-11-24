@@ -18,6 +18,7 @@
 package cc.hyperium.mixins.item;
 
 import cc.hyperium.event.EventBus;
+import cc.hyperium.event.render.ItemIsDamagedEvent;
 import cc.hyperium.event.world.item.ItemTooltipEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -37,5 +38,12 @@ public class MixinItemStack {
         ItemTooltipEvent e = new ItemTooltipEvent((ItemStack) (Object) this, cir.getReturnValue());
         EventBus.INSTANCE.post(e);
         cir.setReturnValue(e.getTooltip());
+    }
+
+    @Inject(method = "isItemDamaged", at = @At("RETURN"), cancellable = true)
+    public void isItemDamaged(CallbackInfoReturnable<Boolean> cir) {
+        final ItemIsDamagedEvent de = new ItemIsDamagedEvent((ItemStack) (Object) this, cir.getReturnValue());
+        EventBus.INSTANCE.post(de);
+        cir.setReturnValue(de.isDamaged);
     }
 }

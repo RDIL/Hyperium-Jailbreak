@@ -18,6 +18,7 @@
 package cc.hyperium;
 
 import cc.hyperium.event.client.InitializationEvent;
+import cc.hyperium.event.client.PreInitializationEvent;
 import cc.hyperium.event.client.GameShutDownEvent;
 import cc.hyperium.event.Priority;
 import cc.hyperium.event.network.server.ServerJoinEvent;
@@ -34,6 +35,7 @@ import cc.hyperium.cosmetics.HyperiumCosmetics;
 import cc.hyperium.event.network.server.hypixel.minigames.MinigameListener;
 import cc.hyperium.handlers.HyperiumHandlers;
 import cc.hyperium.handlers.handlers.stats.PlayerStatsGui;
+import cc.hyperium.mixinsimp.client.resources.HyperiumLocale;
 import cc.hyperium.mods.HyperiumModIntegration;
 import cc.hyperium.mods.autofriend.command.AutofriendCommand;
 import cc.hyperium.mods.ToggleSprintContainer;
@@ -67,6 +69,11 @@ public class Hyperium {
     private boolean firstLaunch = false;
     private InternalAddons intAddons;
     private final BackendHandler bh = new BackendHandler();
+
+    @InvokeEvent(priority = Priority.HIGH)
+    public void preInit(PreInitializationEvent event) {
+        HyperiumLocale.registerHyperiumLang("en_US");
+    }
 
     @InvokeEvent(priority = Priority.HIGH)
     public void init(InitializationEvent event) {

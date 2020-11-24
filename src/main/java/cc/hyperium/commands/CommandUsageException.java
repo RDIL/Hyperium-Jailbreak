@@ -17,6 +17,23 @@
 
 package cc.hyperium.commands;
 
+/**
+ * Thrown when a command is used in a way that the command doesn't support.
+ */
 public class CommandUsageException extends Exception {
-    public CommandUsageException() {}
+    /**
+     * Creates a new instance of the exception.
+     */
+    public CommandUsageException() {
+        super();
+    }
+
+    /**
+     * Creates a new instance of the exception.
+     * 
+     * @param reason The reason the exception was thrown.
+     */
+    public CommandUsageException(String reason) {
+        super(reason);
+    }
 }

@@ -5,6 +5,7 @@ import cc.hyperium.addons.bossbar.gui.GuiBossbarSetting;
 import cc.hyperium.addons.customcrosshair.gui.GuiCustomCrosshairEditCrosshair;
 import cc.hyperium.addons.sidebar.gui.screen.GuiScreenSettings;
 import cc.hyperium.config.Category;
+import cc.hyperium.config.ConfigOpt;
 import cc.hyperium.config.SelectorSetting;
 import cc.hyperium.config.SliderSetting;
 import cc.hyperium.config.ToggleSetting;
@@ -14,6 +15,9 @@ import cc.hyperium.gui.keybinds.GuiKeybinds;
 import cc.hyperium.mods.chromahud.gui.GeneralConfigGui;
 import cc.hyperium.mods.keystrokes.screen.GuiScreenKeystrokes;
 import cc.hyperium.mods.togglechat.gui.ToggleChatMainGui;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,6 +28,8 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import com.google.common.base.Strings;
+
 public class SettingsTab extends AbstractTab {
     public SettingsTab(HyperiumMainGui gui) {
         super(gui, "Settings");
@@ -31,21 +37,29 @@ public class SettingsTab extends AbstractTab {
         HashMap<Category, CollapsibleTabComponent> items = new HashMap<>();
         for (Object o : gui.getSettingsObjects()) {
             for (Field f : o.getClass().getDeclaredFields()) {
-                ToggleSetting ts = f.getAnnotation(ToggleSetting.class);
-                SelectorSetting ss = f.getAnnotation(SelectorSetting.class);
-                SliderSetting sliderSetting = f.getAnnotation(SliderSetting.class);
+                final ConfigOpt co = f.getAnnotation(ConfigOpt.class);
+                final ToggleSetting ts = f.getAnnotation(ToggleSetting.class);
+                final SelectorSetting ss = f.getAnnotation(SelectorSetting.class);
+                final SliderSetting sliderSetting = f.getAnnotation(SliderSetting.class);
                 List<Consumer<Object>> objectConsumer = gui.getCallbacks().get(f);
                 AbstractTabComponent tabComponent = null;
                 Category category = null;
+                final boolean isEnglish = Minecraft.getMinecraft().gameSettings.language.equals("en_US");
                 if (ts != null) {
-                    tabComponent = new ToggleComponent(this, Collections.emptyList(), ts.name(), f, o);
+                    tabComponent = new ToggleComponent(this, Collections.emptyList(),
+                        (!isEnglish && !Strings.isNullOrEmpty(co.i18n()) ? I18n.format(co.i18n()) : ts.name()),
+                        f, o);
                     category = ts.category();
                 } else if (ss != null) {
                     Supplier<String[]> supplier = gui.getCustomStates().getOrDefault(f, ss::items);
-                    tabComponent = new SelectorComponent(this, Collections.emptyList(), ss.name(), f, o, supplier);
+                    tabComponent = new SelectorComponent(this, Collections.emptyList(),
+                        (!isEnglish && !Strings.isNullOrEmpty(co.i18n()) ? I18n.format(co.i18n()) : ss.name()),
+                        f, o, supplier);
                     category = ss.category();
                 } else if (sliderSetting != null) {
-                    tabComponent = new SliderComponent(this, Collections.emptyList(), sliderSetting.name(), f, o, sliderSetting.min(), sliderSetting.max(), sliderSetting.isInt(), sliderSetting.round());
+                    tabComponent = new SliderComponent(this, Collections.emptyList(),
+                        (!isEnglish && !Strings.isNullOrEmpty(co.i18n()) ? I18n.format(co.i18n()) : sliderSetting.name()),
+                        f, o, sliderSetting.min(), sliderSetting.max(), sliderSetting.isInt(), sliderSetting.round());
                     category = sliderSetting.category();
                 }
                 if (category == null) continue;

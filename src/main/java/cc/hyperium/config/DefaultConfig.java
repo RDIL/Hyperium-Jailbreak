@@ -71,12 +71,23 @@ public class DefaultConfig {
         } catch (Exception ignored) {}
     }
 
+    /**
+     * Saves the configuration, with all current states of the registered options, to the file.
+     */
     public void save() {
         for (Object o : configObjects)
             loadToJson(o);
         saveFile();
     }
 
+    /**
+     * Registers a class with the configuration system.
+     * This adds all fields annotated with {@link ConfigOpt} to the configuration file,
+     * and updates the value of the field if it is already in the configuration file.
+     * 
+     * @param object The object containing the fields to be registered.
+     * @return The object just registered.
+     */
     public Object register(Object object) {
         if (Arrays.stream(object.getClass().getDeclaredFields()).noneMatch(f -> f.isAnnotationPresent(ConfigOpt.class))) {
             return object;
