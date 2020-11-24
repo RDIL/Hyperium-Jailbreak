@@ -42,6 +42,7 @@ configurations {
 apply plugin: "com.hyperiumjailbreak.minecraft-tweaker"
 apply plugin: "com.hyperiumjailbreak.mixingradle"
 apply plugin: "java"
+apply plugin: "maven"
 
 sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
@@ -140,6 +141,8 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier "javadoc"
 }
 
-if (System.getenv().containsKey("JITPACK")) {
-    build.dependsOn sourceJar, javadocJar
+artifacts {
+    archives jar
+    archives javadocJar
+    archives sourceJar
 }
