@@ -11,10 +11,19 @@ import java.nio.charset.Charset;
 import java.util.jar.JarFile;
 import java.util.zip.ZipEntry;
 
+/**
+ * Parses an addon manifest.
+ */
 public class AddonManifestParser {
     private JsonObject json = null;
     private final Gson gson = new Gson();
 
+    /**
+     * Parses an addon manifest from a Jar file.
+     *
+     * @param jar The Jar file to analyze.
+     * @throws IOException If something goes wrong.
+     */
     public AddonManifestParser(JarFile jar) throws IOException {
         InputStream jarInputStream = null;
         try {
@@ -46,6 +55,11 @@ public class AddonManifestParser {
         }
     }
 
+    /**
+     * Parses an addon manifest from a string.
+     *
+     * @param contents The manifest to parse.
+     */
     public AddonManifestParser(String contents) {
         JsonParser parser = new JsonParser();
         JsonObject json = parser.parse(contents).getAsJsonObject();

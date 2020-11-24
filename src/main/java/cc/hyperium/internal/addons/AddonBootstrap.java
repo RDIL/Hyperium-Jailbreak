@@ -16,6 +16,9 @@ import java.io.IOException;
 import java.util.*;
 import java.util.jar.JarFile;
 
+/**
+ * The primary addon loading system.
+ */
 public class AddonBootstrap {
     public static AddonBootstrap INSTANCE = new AddonBootstrap();
     public static final Logger LOGGER = LogManager.getLogger();

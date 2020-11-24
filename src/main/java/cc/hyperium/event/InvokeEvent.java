@@ -17,13 +17,19 @@
 
 package cc.hyperium.event;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
+/**
+ * An annotation that tells the {@link EventBus} that the method annotated with it is an event listener.
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
+@Documented
 public @interface InvokeEvent {
+    /**
+     * The priority of the event. Higher priority listeners get the event before lower priority ones.
+     *
+     * @return The priority.
+     */
     Priority priority() default Priority.NORMAL;
 }

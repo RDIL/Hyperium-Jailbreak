@@ -8,6 +8,9 @@ import cc.hyperium.internal.addons.misc.AddonManifestParser;
 import org.apache.commons.io.IOUtils;
 import java.util.Objects;
 
+/**
+ * Loads addons in the addon workspace.
+ */
 public final class WorkspaceAddonLoader extends AddonLoaderStrategy {
     @Override
     public AddonManifest load(File file) throws Exception {

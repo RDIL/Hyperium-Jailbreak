@@ -12,7 +12,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.jar.JarFile;
 
+/**
+ * Loads addons in a production environment, and deletes addons that we know conflict with this version of the client.
+ */
 public final class DefaultAddonLoader extends AddonLoaderStrategy {
+    @Override
     public AddonManifest load(File file) throws Exception {
         if (file == null) {
             throw new IOException("Could not load file; parameter issued was null.");

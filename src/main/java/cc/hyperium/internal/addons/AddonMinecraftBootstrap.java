@@ -6,9 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Handles the work of loading addon main classes once we are in the loading phase where Minecraft has just become
+ * accessible.
+ */
 public class AddonMinecraftBootstrap {
     private static final List<IAddon> LOADED_ADDONS = new ArrayList<>();
 
+    /**
+     * For each discovered addon, load the main class.
+     *
+     * @throws IOException If the addon's main class is invalid.
+     */
     public static void init() throws IOException {
         final Map<AddonManifest, File> toLoad = AddonBootstrap.INSTANCE.getAddons();
 
@@ -34,6 +43,11 @@ public class AddonMinecraftBootstrap {
         }
     }
 
+    /**
+     * Get all the currently loaded addons.
+     *
+     * @return The loaded addons main classes.
+     */
     public static List<IAddon> getLoadedAddons() {
         return LOADED_ADDONS;
     }
