@@ -1,5 +1,7 @@
 package cc.hyperium.mixins;
 
+import cc.hyperium.event.EventBus;
+import cc.hyperium.event.interact.PlayerDestroyBlockEvent;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -27,6 +29,15 @@ public class MixinPlayerControllerMP {
             worldIn.setBlockState(new BlockPos(packet.getPlacedBlockOffsetX(), packet.getPlacedBlockOffsetY(), packet.getPlacedBlockOffsetZ()), Blocks.flowing_lava.getDefaultState());
         } else if (heldStack.getUnlocalizedName().equals("item.bucketWater")) {
             worldIn.setBlockState(new BlockPos(packet.getPlacedBlockOffsetX(), packet.getPlacedBlockOffsetY(), packet.getPlacedBlockOffsetZ()), Blocks.flowing_water.getDefaultState());
+        }
+    }
+
+    @Inject(method = "onPlayerDestroyBlock", at = @At("RETURN"), cancellable = true)
+    public void onPlayerDestroyBlock(BlockPos pos, EnumFacing side, CallbackInfoReturnable<Boolean> cir) {
+        final PlayerDestroyBlockEvent dbe = new PlayerDestroyBlockEvent(pos);
+        EventBus.INSTANCE.post(dbe);
+        if (dbe.isCancelled()) {
+            cir.setReturnValue(false);
         }
     }
 }
