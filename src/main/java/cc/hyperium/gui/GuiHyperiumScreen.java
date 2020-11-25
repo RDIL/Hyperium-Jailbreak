@@ -118,13 +118,14 @@ public class GuiHyperiumScreen extends GuiScreen {
         drawRect(width - 155, 10, width - 10, 49, 0x33000000);
         drawRect(width - 156, 9, width - 9, 50, 0x33000000);
 
+        if (Minecraft.getMinecraft().thePlayer == null || Hyperium.INSTANCE.isDevEnv()) {
+            return;
+        }
+
         float val = (float) (Math.sin(swing / 40) * 30);
         ScissorState.scissor(width - 153, 0, 145, 49, true);
 
-        if (Minecraft.getMinecraft().thePlayer == null || Hyperium.INSTANCE.isDevEnv()) {
-            GlStateManager.popMatrix();
-            return;
-        }
+        GlStateManager.popMatrix();
 
         GuiPlayerRenderer.renderPlayerWithRotation(width - 118, -4, val);
         ScissorState.endScissor();

@@ -16,6 +16,7 @@
  */
 
 package cc.hyperium.event;
+
 import com.google.common.reflect.TypeToken;
 import java.lang.reflect.Method;
 import java.util.Comparator;
