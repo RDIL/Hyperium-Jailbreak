@@ -1,7 +1,6 @@
 package cc.hyperium.gui.hyperium.components;
 
 import cc.hyperium.gui.Icons;
-import cc.hyperium.mixins.gui.IMixinGuiScreen;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.input.Mouse;
@@ -49,7 +48,7 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
     public void render(int x, int y, int width, int mouseX, int mouseY) {
         super.render(x, y, width, mouseX, mouseY);
 
-        tab.gui.drawString(((IMixinGuiScreen) tab.gui).getFontRendererObj(), label.replaceAll("_", " ").toUpperCase(), x + 3, y + 5, 0xffffff);
+        tab.gui.getFont().drawString(label.replaceAll("_", " "), x + 3, y + 4, 0xffffff);
 
         GlStateManager.bindTexture(0);
 

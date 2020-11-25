@@ -69,7 +69,7 @@ public class SelectorComponent extends AbstractTabComponent {
 
         int line1 = 0;
         for (String line : lines) {
-            font.drawString(line.replaceAll("_", " ").toUpperCase(), x + 3, y + 5 + 17 * line1, 0xffffff);
+            font.drawString(line.replaceAll("_", " "), x + 3, y + 1 + 17 * line1, 0xffffff);
             line1++;
         }
 
@@ -77,7 +77,6 @@ public class SelectorComponent extends AbstractTabComponent {
         String val = getCurrentValue();
         float statX = farSide - 5 - font.getWidth(val);
         font.drawString(val, statX, y + 5, Color.WHITE.getRGB());
-
     }
 
     @Override

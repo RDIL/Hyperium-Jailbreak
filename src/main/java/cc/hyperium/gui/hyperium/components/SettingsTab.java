@@ -44,21 +44,20 @@ public class SettingsTab extends AbstractTab {
                 List<Consumer<Object>> objectConsumer = gui.getCallbacks().get(f);
                 AbstractTabComponent tabComponent = null;
                 Category category = null;
-                final boolean isEnglish = Minecraft.getMinecraft().gameSettings.language.equals("en_US");
                 if (ts != null) {
                     tabComponent = new ToggleComponent(this, Collections.emptyList(),
-                        (!isEnglish && !Strings.isNullOrEmpty(co.i18n()) ? I18n.format(co.i18n()) : ts.name()),
+                        getLocalizedStringForOption(co, ts),
                         f, o);
                     category = ts.category();
                 } else if (ss != null) {
                     Supplier<String[]> supplier = gui.getCustomStates().getOrDefault(f, ss::items);
                     tabComponent = new SelectorComponent(this, Collections.emptyList(),
-                        (!isEnglish && !Strings.isNullOrEmpty(co.i18n()) ? I18n.format(co.i18n()) : ss.name()),
+                        getLocalizedStringForOption(co, ss),
                         f, o, supplier);
                     category = ss.category();
                 } else if (sliderSetting != null) {
                     tabComponent = new SliderComponent(this, Collections.emptyList(),
-                        (!isEnglish && !Strings.isNullOrEmpty(co.i18n()) ? I18n.format(co.i18n()) : sliderSetting.name()),
+                        getLocalizedStringForOption(co, sliderSetting),
                         f, o, sliderSetting.min(), sliderSetting.max(), sliderSetting.isInt(), sliderSetting.round());
                     category = sliderSetting.category();
                 }
@@ -97,5 +96,40 @@ public class SettingsTab extends AbstractTab {
                 new CollapsibleTabComponent(this, Collections.singletonList(category1.name()), category1.getDisplay())
         );
         collapsibleTabComponent.addChild(component);
+    }
+
+    public static String getLocalizedStringForOption(ConfigOpt configOpt, SelectorSetting ss) {
+        return getLocalizedStringForOption(configOpt, ss.name());
+    }
+
+    public static String getLocalizedStringForOption(ConfigOpt configOpt, ToggleSetting ts) {
+        return getLocalizedStringForOption(configOpt, ts.name());
+    }
+
+    public static String getLocalizedStringForOption(ConfigOpt configOpt, SliderSetting ss) {
+        return getLocalizedStringForOption(configOpt, ss.name());
+    }
+
+    public static String getLocalizedStringForOption(ConfigOpt configOpt, String name) {
+        final boolean isEnglish = Minecraft.getMinecraft().gameSettings.language.equals("en_US");
+
+        // game is in English, no need to translate
+        if (isEnglish) {
+            return name;
+        }
+
+        // has no i18n string
+        if (Strings.isNullOrEmpty(configOpt.i18n())) {
+            return name;
+        }
+
+        final String formatted = I18n.format(configOpt.i18n());
+
+        // formatting failed, fallback to English
+        if (formatted.contains(".")) {
+            return name;
+        }
+
+        return formatted;
     }
 }

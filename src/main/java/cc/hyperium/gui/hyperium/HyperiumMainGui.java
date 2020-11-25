@@ -40,7 +40,7 @@ public class HyperiumMainGui extends HyperiumGui {
     private List<RGBFieldSet> rgbFields = new ArrayList<>();
 
     private HyperiumMainGui() {
-        font = new HyperiumFontRenderer("Roboto Condensed", 16.0F, 0, 1.0F);
+        font = new HyperiumFontRenderer("OpenSans", 16.0F, 0, 1.0F);
         settingsObjects.add(Settings.INSTANCE);
         settingsObjects.add(Hyperium.INSTANCE.getModIntegration().getAutotip());
         settingsObjects.add(Hyperium.INSTANCE.getModIntegration().getAutoGG().getConfig());
