@@ -30,7 +30,6 @@ import cc.hyperium.handlers.handlers.data.HypixelAPI;
 import cc.hyperium.handlers.handlers.hud.VanillaEnhancementsHud;
 import cc.hyperium.handlers.handlers.keybinds.KeyBindHandler;
 import cc.hyperium.handlers.handlers.reach.ReachDisplay;
-import cc.hyperium.handlers.handlers.stats.StatsHandler;
 import cc.hyperium.mods.PerspectiveModifierHandler;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
 import net.minecraft.client.Minecraft;
@@ -51,7 +50,6 @@ public class HyperiumHandlers {
     private final ScoreboardRenderer scoreboardRenderer;
     private final OtherConfigOptions configOptions;
     private final PerspectiveModifierHandler perspectiveHandler;
-    private final StatsHandler statsHandler;
     private final SettingsHandler settingsHandler;
     private final MemoryHelper memoryHelper;
 
@@ -71,7 +69,6 @@ public class HyperiumHandlers {
         register(capeHandler = new CapeHandler());
         register(guiDisplayHandler = new GuiDisplayHandler());
         register(scoreboardRenderer = new ScoreboardRenderer());
-        register(statsHandler = new StatsHandler());
         register(new BroadcastEvents());
         commandQueue = new CommandQueue();
         dataHandler = new HypixelAPI();
@@ -83,10 +80,6 @@ public class HyperiumHandlers {
         registerChatHandler(new GuildChatHandler());
         EventBus.INSTANCE.register(this);
         register(commandHandler = new HyperiumCommandHandler());
-    }
-
-    public StatsHandler getStatsHandler() {
-        return statsHandler;
     }
 
     public HyperiumCommandHandler getCommandHandler() {

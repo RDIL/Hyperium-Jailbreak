@@ -81,7 +81,7 @@ public class Hyperium {
         LOGGER.warn("Please report bugs by DMing rdil#0001 on Discord");
         LOGGER.warn("or by emailing me@rdil.rocks");
         try {
-            Multithreading.runAsync(() -> new PlayerStatsGui(null)); // Don't remove
+            Multithreading.runAsync(PlayerStatsGui::new); // Don't remove
             try {
                 Class.forName("net.minecraft.dispenser.BehaviorProjectileDispense");
                 isDevEnv = true;
