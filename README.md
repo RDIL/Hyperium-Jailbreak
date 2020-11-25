@@ -2,6 +2,7 @@
 
 [![CI Status](https://api.cirrus-ci.com/github/hyperiumjailbreak/client.svg?branch=master)](https://cirrus-ci.com/github/hyperiumjailbreak/client)
 [![Powered by CloudRepo](https://img.shields.io/badge/powered%20by-CloudRepo-9cf.svg)](https://cloudrepo.io)
+[![Javadocs](https://img.shields.io/badge/view-the%20javadocs-blueviolet)](https://jitpack.io/com/github/hyperiumjailbreak/client/master-SNAPSHOT/javadoc/)
 
 HyperiumJailbreak (HJB for short) is a fork of [HyperiumClient](https://hyperium.cc) with enhancements, performance improvements, and a number of Minecraft bug fixes.
 
