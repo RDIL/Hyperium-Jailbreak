@@ -46,6 +46,7 @@
     "entity.MixinEntityRenderer",
     "entity.MixinNetworkPlayerInfo",
     "entity.MixinRenderFish",
+    "entity.MixinTileEntityEnchantmentTableRenderer",
     "gui.IMixinGuiContainer",
     "gui.IMixinGuiNewChat",
     "gui.IMixinGuiPlayerTabOverlay",

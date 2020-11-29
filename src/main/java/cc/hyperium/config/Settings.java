@@ -269,6 +269,9 @@ public class Settings {
     @ConfigOpt @ToggleSetting(name = "Multi-CPU Particle Rendering (Requires 4+ CPU Cores)", category = IMPROVEMENTS)
     public static boolean MULTI_CPU_PARTICLE_RENDERING = false;
 
+    @ConfigOpt @ToggleSetting(name = "Enchant Table Floating Book", category = IMPROVEMENTS)
+    public static boolean ENCHANT_TABLE_BOOK = true;
+
     public static void register() {
         Hyperium.CONFIG.register(INSTANCE);
     }
