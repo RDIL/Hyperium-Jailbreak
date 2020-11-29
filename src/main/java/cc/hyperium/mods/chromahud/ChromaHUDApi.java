@@ -29,6 +29,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * ChromaHUD's API.
+ */
 public class ChromaHUDApi {
     private static ChromaHUDApi instance;
     private final List<ChromaHUDParser> parsers = new ArrayList<>();
@@ -100,7 +103,9 @@ public class ChromaHUDApi {
     }
 
     public void register(ChromaHUDParser parser) {
-        if (posted) throw new IllegalStateException("Cannot register parser after FMLPostInitialization event");
+        if (posted) {
+            throw new IllegalStateException("Cannot register parser after ChromaHUDInitializationEvent event!");
+        }
         parsers.add(parser);
         names.putAll(parser.getNames());
     }
@@ -134,6 +139,11 @@ public class ChromaHUDApi {
         return names.getOrDefault(type, type);
     }
 
+    /**
+     * Get the mutable {@link ArrayList} of registered parsers.
+     *
+     * @return The registered parsers.
+     */
     public List<ChromaHUDParser> getParsers() {
         return new ArrayList<>(parsers);
     }

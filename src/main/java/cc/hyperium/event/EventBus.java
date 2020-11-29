@@ -24,10 +24,23 @@ import java.util.HashMap;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * A class that handles the managing and dispatching of events.
+ */
 @SuppressWarnings("UnstableApiUsage")
 public class EventBus {
+    /**
+     * The publicly usable instance of the EventBus.
+     */
     public static final EventBus INSTANCE = new EventBus();
+
     private HashMap<Class<?>, CopyOnWriteArrayList<EventSubscriber>> subscriptions = new HashMap<>();
+
+    /**
+     * Register an object for its event listeners (methods annotated with {@link InvokeEvent}) to be listened for.
+     *
+     * @param obj The class instance that should be registered.
+     */
     public void register(Object obj) {
         // also contains the class itself
         TypeToken<?> token = TypeToken.of(obj.getClass());
@@ -68,18 +81,34 @@ public class EventBus {
         }
     }
 
+    /**
+     * Unregisters a specific object.
+     *
+     * @param obj The object to unregister.
+     */
     public void unregister(Object obj) {
         for (CopyOnWriteArrayList<EventSubscriber> map : subscriptions.values()) {
             map.removeIf(it -> it.getInstance() == obj);
         }
     }
 
+    /**
+     * Calls {@link EventBus#unregister(Object)} on all objects that are an instance of the specified class.
+     *
+     * @param clazz The class to unregister any of its instances.
+     * @see EventBus#unregister(Object)
+     */
     public void unregister(Class<?> clazz) {
         for (CopyOnWriteArrayList<EventSubscriber> map : subscriptions.values()) {
             map.removeIf(it -> it.getInstance().getClass() == clazz);
         }
     }
 
+    /**
+     * Trigger all event listeners for the passed event object.
+     *
+     * @param event The event to dispatch.
+     */
     public void post(Object event) {
         if (event == null) {
             return;

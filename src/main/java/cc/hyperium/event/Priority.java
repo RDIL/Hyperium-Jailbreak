@@ -17,15 +17,46 @@
 
 package cc.hyperium.event;
 
+/**
+ * The priority an event should be executed with.
+ * Higher priorities are run before lower ones.
+ */
 public enum Priority {
+    /**
+     * The highest possible priority. This will make the event run first or close to first.
+     */
     HIGH(-1),
+
+    /**
+     * The default priority, run between {@link Priority#HIGH} and {@link Priority#LOW}.
+     */
     NORMAL(0),
+
+    /**
+     * The lowest possible priority. This will make the event run last or close to last.
+     */
     LOW(1);
 
+    /**
+     * The value of the priority, higher numbers have lower priority.
+     */
     public final int value;
+
+    /**
+     * Basic constructor.
+     *
+     * @param value The value of the priority.
+     * @see Priority#value
+     */
     Priority(int value) {
         this.value = value;
     }
+
+    /**
+     * Get the value of the priority.
+     *
+     * @return The integer value.
+     */
     public int getValue() {
         return this.value;
     }

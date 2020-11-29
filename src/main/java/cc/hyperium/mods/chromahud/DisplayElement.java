@@ -27,6 +27,9 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A display item.
+ */
 public class DisplayElement extends Dimension {
     private final JsonHolder data;
     private double xloc, yloc;
@@ -42,6 +45,11 @@ public class DisplayElement extends Dimension {
     private boolean color_pallet;
     private boolean static_chroma;
 
+    /**
+     * Create a new display item instance with the specified JSON data.
+     *
+     * @param object The JSON data.
+     */
     public DisplayElement(JsonHolder object) {
         this.scale = 1;
         this.rightSided = false;
@@ -72,14 +80,29 @@ public class DisplayElement extends Dimension {
         recalculateColor();
     }
 
+    /**
+     * Get a blank display item.
+     *
+     * @return A blank display item.
+     */
     public static DisplayElement blank() {
         return new DisplayElement(new JsonHolder().put("x", .5).put("y", .5).put("scale", 1).put("color", Color.WHITE.getRGB()).put("color_pallet", true));
     }
 
+    /**
+     * Get if the item is right sided.
+     *
+     * @return If the item is right sided.
+     */
     public boolean isRightSided() {
         return rightSided;
     }
 
+    /**
+     * Set if the element is right sided or not.
+     *
+     * @param newState If the item should be right sided.
+     */
     public void setRightSided(boolean newState) {
         this.rightSided = newState;
         data.put("right_side", newState);

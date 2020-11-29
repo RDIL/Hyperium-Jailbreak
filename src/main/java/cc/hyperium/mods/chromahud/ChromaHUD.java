@@ -20,10 +20,7 @@ package cc.hyperium.mods.chromahud;
 import cc.hyperium.Hyperium;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.mods.AbstractMod;
-import cc.hyperium.mods.chromahud.api.ButtonConfig;
-import cc.hyperium.mods.chromahud.api.DisplayItem;
-import cc.hyperium.mods.chromahud.api.StringConfig;
-import cc.hyperium.mods.chromahud.api.TextConfig;
+import cc.hyperium.mods.chromahud.api.*;
 import cc.hyperium.mods.chromahud.commands.CommandChromaHUD;
 import cc.hyperium.mods.chromahud.displayitems.chromahud.ArmourHud;
 import cc.hyperium.mods.chromahud.displayitems.chromahud.CordsDisplay;
@@ -43,21 +40,36 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.List;
 
+/**
+ * The ChromaHUD mod.
+ *
+ * Tip: to register custom items, see {@link ChromaHUDInitializationEvent}.
+ */
 public class ChromaHUD extends AbstractMod {
     private File suggestedConfigurationFile;
 
     public ChromaHUD() {}
 
+    @Override
     public AbstractMod init() {
         suggestedConfigurationFile = new File(Hyperium.folder, "/displayconfig.json");
         ChromaHUDApi.getInstance();
+
+        final ChromaHUDInitializationEvent e = new ChromaHUDInitializationEvent();
+        EventBus.INSTANCE.post(e);
+
         ChromaHUDApi.getInstance().register(new DefaultChromaHUDParser());
         ChromaHUDApi.getInstance().register(new HyperiumChromaHudParser());
+        for (ChromaHUDParser p : e.additionalItems) {
+            ChromaHUDApi.getInstance().register(p);
+        }
+
         ChromaHUDApi.getInstance().registerButtonConfig("CORDS", new ButtonConfig((guiButton, displayItem) -> {
             CordsDisplay displayItem1 = (CordsDisplay) displayItem;
             displayItem1.state = displayItem1.state == 1 ? 0 : 1;
             guiButton.displayString = EnumChatFormatting.RED.toString() + "Make " + (((CordsDisplay) displayItem).state == 1 ? "Horizontal" : "Vertical");
         }, new GuiButton(0, 0, 0, "Cords State"), (guiButton, displayItem) -> guiButton.displayString = EnumChatFormatting.RED.toString() + "Make " + (((CordsDisplay) displayItem).state == 1 ? "Horizontal" : "Vertical")));
+
         ChromaHUDApi.getInstance().registerButtonConfig("CORDS", new ButtonConfig((guiButton, displayItem) -> {
             CordsDisplay displayItem1 = (CordsDisplay) displayItem;
             displayItem1.precision += 1;
@@ -88,7 +100,7 @@ public class ChromaHUD extends AbstractMod {
             ArmourHud item = (ArmourHud) displayItem;
             item.setArmourOnTop(!item.isArmourOnTop());
             guiButton.displayString = EnumChatFormatting.RED.toString() + "Toggle Armour On Top";
-        }, new GuiButton(0, 0, 0, "Armour Hud Hand"), (guiButton, displayItem) -> guiButton.displayString = EnumChatFormatting.RED.toString() + "Toggle Armour On Top"));
+        }, new GuiButton(0, 0, 0, "Armour HUD Hand"), (guiButton, displayItem) -> guiButton.displayString = EnumChatFormatting.RED.toString() + "Toggle Armour On Top"));
 
         GuiTextField textTextField = new GuiTextField(1, Minecraft.getMinecraft().fontRendererObj, 0, 0, 200, 20);
         ChromaHUDApi.getInstance().registerTextConfig("TEXT", new TextConfig((guiTextField, displayItem) -> ((TextItem) displayItem).setText(guiTextField.getText()), textTextField, (guiTextField, displayItem) -> guiTextField.setText(((TextItem) displayItem).getText())));

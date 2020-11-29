@@ -17,7 +17,13 @@
 
 package cc.hyperium.event;
 
+/**
+ * An event.
+ */
 public class Event {
+    /**
+     * Tells the {@link EventBus} that this event is currently happening.
+     */
     public void post() {
         EventBus.INSTANCE.post(this);
     }

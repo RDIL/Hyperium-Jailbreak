@@ -20,7 +20,25 @@ package cc.hyperium.mods.chromahud.api;
 import cc.hyperium.utils.JsonHolder;
 import java.util.Map;
 
+/**
+ * The base interface for a ChromaHUD display item parser.
+ */
 public interface ChromaHUDParser {
+    /**
+     * Parse a display item from its data.
+     *
+     * @param type The type ID of the element.
+     * @param ord The ordinal of the item.
+     * @param item The JSON data of the item.
+     * @return A {@link DisplayItem} object.
+     */
     DisplayItem parse(String type, int ord, JsonHolder item);
+
+    /**
+     * Get the names of the items registered.
+     * The scheme is ID to Display Name.
+     *
+     * @return The ID to Display Name {@link Map}.
+     */
     Map<String, String> getNames();
 }
