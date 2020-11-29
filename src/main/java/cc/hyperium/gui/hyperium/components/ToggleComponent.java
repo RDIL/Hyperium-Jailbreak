@@ -22,7 +22,6 @@ public class ToggleComponent extends AbstractTabComponent {
 
     public ToggleComponent(AbstractTab tab, List<String> tags, String label, Field field, Object parentObj) {
         super(tab, tags);
-        tag(label);
         this.label = label;
         this.field = field;
         this.parentObj = parentObj;

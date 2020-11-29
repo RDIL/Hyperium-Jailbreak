@@ -16,7 +16,6 @@ public class LinkComponent extends AbstractTabComponent {
 
     public LinkComponent(AbstractTab tab, List<String> tags, String label, GuiScreen linkedGuiScreen) {
         super(tab, tags);
-        tag(label);
         this.label = label;
         this.linkedGuiScreen = linkedGuiScreen;
     }

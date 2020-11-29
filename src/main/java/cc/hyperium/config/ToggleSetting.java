@@ -14,10 +14,9 @@ import java.lang.annotation.Target;
 @Documented
 public @interface ToggleSetting {
     /**
-     * The name of the option (in English).
+     * Get the name of the option or the i18n key.
      * 
      * @return The name.
-     * @see ConfigOpt#i18n()
      */
     String name();
 

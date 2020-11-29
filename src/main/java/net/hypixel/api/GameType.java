@@ -59,7 +59,7 @@ public enum GameType {
     }
 
     /**
-     * @param id The internal id
+     * @param id The internal id.
      * @return The GameType associated with that id, or null if there isn't one.
      */
     public static GameType fromRealName(String id) {
@@ -87,6 +87,7 @@ public enum GameType {
     /**
      * Parse the mostRecentGameType value.
      * 
+     * @param mostRecentGameType The value.
      * @return The game type.
      */
     public static GameType parse(String mostRecentGameType) {

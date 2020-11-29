@@ -39,13 +39,4 @@ public @interface ConfigOpt {
      */
     @Deprecated
     String alt() default "";
-
-    /**
-     * The translation string for this option. If it doesn't have one, just don't override this.
-     * The value of this will be passed to {@link net.minecraft.client.resources.I18n#format(String, Object...)}.
-     * Note: this will be ignored if the game language is English.
-     * 
-     * @return The string to run a locale lookup for.
-     */
-    String i18n() default "";
 }

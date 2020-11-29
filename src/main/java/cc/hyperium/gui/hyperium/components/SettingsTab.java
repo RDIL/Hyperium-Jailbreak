@@ -5,7 +5,6 @@ import cc.hyperium.addons.bossbar.gui.GuiBossbarSetting;
 import cc.hyperium.addons.customcrosshair.gui.GuiCustomCrosshairEditCrosshair;
 import cc.hyperium.addons.sidebar.gui.screen.GuiScreenSettings;
 import cc.hyperium.config.Category;
-import cc.hyperium.config.ConfigOpt;
 import cc.hyperium.config.SelectorSetting;
 import cc.hyperium.config.SliderSetting;
 import cc.hyperium.config.ToggleSetting;
@@ -15,7 +14,6 @@ import cc.hyperium.gui.keybinds.GuiKeybinds;
 import cc.hyperium.mods.chromahud.gui.GeneralConfigGui;
 import cc.hyperium.mods.keystrokes.screen.GuiScreenKeystrokes;
 import cc.hyperium.mods.togglechat.gui.ToggleChatMainGui;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 
 import java.lang.reflect.Field;
@@ -28,8 +26,6 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import com.google.common.base.Strings;
-
 public class SettingsTab extends AbstractTab {
     public SettingsTab(HyperiumMainGui gui) {
         super(gui, "Settings");
@@ -37,7 +33,6 @@ public class SettingsTab extends AbstractTab {
         HashMap<Category, CollapsibleTabComponent> items = new HashMap<>();
         for (Object o : gui.getSettingsObjects()) {
             for (Field f : o.getClass().getDeclaredFields()) {
-                final ConfigOpt co = f.getAnnotation(ConfigOpt.class);
                 final ToggleSetting ts = f.getAnnotation(ToggleSetting.class);
                 final SelectorSetting ss = f.getAnnotation(SelectorSetting.class);
                 final SliderSetting sliderSetting = f.getAnnotation(SliderSetting.class);
@@ -46,22 +41,24 @@ public class SettingsTab extends AbstractTab {
                 Category category = null;
                 if (ts != null) {
                     tabComponent = new ToggleComponent(this, Collections.emptyList(),
-                        getLocalizedStringForOption(co, ts),
+                        I18n.format(ts.name()),
                         f, o);
                     category = ts.category();
                 } else if (ss != null) {
                     Supplier<String[]> supplier = gui.getCustomStates().getOrDefault(f, ss::items);
                     tabComponent = new SelectorComponent(this, Collections.emptyList(),
-                        getLocalizedStringForOption(co, ss),
+                        I18n.format(ss.name()),
                         f, o, supplier);
                     category = ss.category();
                 } else if (sliderSetting != null) {
                     tabComponent = new SliderComponent(this, Collections.emptyList(),
-                        getLocalizedStringForOption(co, sliderSetting),
+                        I18n.format(sliderSetting.name()),
                         f, o, sliderSetting.min(), sliderSetting.max(), sliderSetting.isInt(), sliderSetting.round());
                     category = sliderSetting.category();
                 }
-                if (category == null) continue;
+                if (category == null) {
+                    continue;
+                }
                 apply(tabComponent, category, items);
                 if (objectConsumer != null) {
                     for (Consumer<Object> consumer : objectConsumer) {
@@ -96,40 +93,5 @@ public class SettingsTab extends AbstractTab {
                 new CollapsibleTabComponent(this, Collections.singletonList(category1.name()), category1.getDisplay())
         );
         collapsibleTabComponent.addChild(component);
-    }
-
-    public static String getLocalizedStringForOption(ConfigOpt configOpt, SelectorSetting ss) {
-        return getLocalizedStringForOption(configOpt, ss.name());
-    }
-
-    public static String getLocalizedStringForOption(ConfigOpt configOpt, ToggleSetting ts) {
-        return getLocalizedStringForOption(configOpt, ts.name());
-    }
-
-    public static String getLocalizedStringForOption(ConfigOpt configOpt, SliderSetting ss) {
-        return getLocalizedStringForOption(configOpt, ss.name());
-    }
-
-    public static String getLocalizedStringForOption(ConfigOpt configOpt, String name) {
-        final boolean isEnglish = Minecraft.getMinecraft().gameSettings.language.equals("en_US");
-
-        // game is in English, no need to translate
-        if (isEnglish) {
-            return name;
-        }
-
-        // has no i18n string
-        if (Strings.isNullOrEmpty(configOpt.i18n())) {
-            return name;
-        }
-
-        final String formatted = I18n.format(configOpt.i18n());
-
-        // formatting failed, fallback to English
-        if (formatted.contains(".")) {
-            return name;
-        }
-
-        return formatted;
     }
 }

@@ -134,7 +134,6 @@ public class CollapsibleTabComponent extends AbstractTabComponent {
 
     public CollapsibleTabComponent addChild(AbstractTabComponent component) {
         children.add(component);
-        tags.addAll(component.tags);
         return this;
     }
 

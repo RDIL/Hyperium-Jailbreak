@@ -17,7 +17,17 @@
 
 package cc.hyperium.styles;
 
+/**
+ * The styles for the main and pause menus.
+ */
 public enum GuiStyle {
+    /**
+     * The Minecraft default style with a few changes.
+     */
     DEFAULT,
+
+    /**
+     * Hyperium's variation of the menu.
+     */
     HYPERIUM
 }

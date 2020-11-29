@@ -19,7 +19,6 @@ public class SelectorComponent extends AbstractTabComponent {
 
     public SelectorComponent(AbstractTab tab, List<String> tags, String label, Field field, Object parentObj, Supplier<String[]> values) {
         super(tab, tags);
-        tag(label);
         this.label = label;
         this.field = field;
         this.parentObj = parentObj;

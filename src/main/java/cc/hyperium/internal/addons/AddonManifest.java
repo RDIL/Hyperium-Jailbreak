@@ -22,6 +22,11 @@ public final class AddonManifest {
         return this.name;
     }
 
+    /**
+     * Set the addon's name.
+     * 
+     * @param var1 The new name.
+     */
     public void setName(String var1) {
         this.name = var1;
     }
@@ -83,6 +88,7 @@ public final class AddonManifest {
 
     /**
      * @deprecated This no longer does anything functionally.
+     * @param dependencies A list.
      */
     @Deprecated
     public final void setDependencies(List dependencies) {

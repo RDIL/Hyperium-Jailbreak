@@ -9,6 +9,10 @@ import java.util.stream.Collectors;
 
 public abstract class AbstractTabComponent {
     public boolean hover;
+    /**
+     * @deprecated Don't use this anymore, it doesn't do anything.
+     */
+    @Deprecated
     protected List<String> tags = new ArrayList<>();
     protected AbstractTab tab;
     private List<Consumer<Object>> stateChanges = new ArrayList<>();
@@ -52,6 +56,12 @@ public abstract class AbstractTabComponent {
 
     public void mouseEvent(int x, int y) {}
 
+    /**
+     * @deprecated Don't use this, tags no longer have an effect.
+     * @param ts The tags to add.
+     * @return The tab component.
+     */
+    @Deprecated
     public AbstractTabComponent tag(String... ts) {
         for (String string : ts) {
             tags.add(string.toLowerCase());
@@ -59,6 +69,12 @@ public abstract class AbstractTabComponent {
         return this;
     }
 
+    /**
+     * @deprecated Don't use this, tags no longer have an effect.
+     * @param ts The tags to add.
+     * @return The tab component.
+     */
+    @Deprecated
     public AbstractTabComponent tag(List<String> ts) {
         tags.addAll(ts.stream().map(String::toLowerCase).collect(Collectors.toList()));
         return this;
