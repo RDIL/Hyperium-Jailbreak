@@ -105,5 +105,8 @@
     "utils.MixinChatStyle",
     "utils.MixinClassInheritanceMultiMap",
     "utils.MixinResourcePackRepository"
-  ]
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
 }

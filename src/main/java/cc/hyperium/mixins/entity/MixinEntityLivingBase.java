@@ -20,7 +20,9 @@ package cc.hyperium.mixins.entity;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.entity.LivingDeathEvent;
 import cc.hyperium.event.entity.LivingEntityUpdateEvent;
+import cc.hyperium.event.entity.PlayerResetHurtTimeEvent;
 import cc.hyperium.mixinsimp.entity.HyperiumEntityLivingBase;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Vec3;
@@ -47,5 +49,10 @@ public abstract class MixinEntityLivingBase extends MixinEntity {
     @Inject(method = "onUpdate", at = @At("HEAD"))
     private void onUpdate(CallbackInfo ci) {
         EventBus.INSTANCE.post(new LivingEntityUpdateEvent((EntityLivingBase) (Object) this));
+    }
+    
+    @Inject(method = "handleStatusUpdate", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/EntityLivingBase;getHurtSound()Ljava/lang/String;", shift = At.Shift.BEFORE))
+    public void resetHurtTimer(byte id, CallbackInfo ci) {
+        EventBus.INSTANCE.post(new PlayerResetHurtTimeEvent((Entity) (Object) this));
     }
 }
