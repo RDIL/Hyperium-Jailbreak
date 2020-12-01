@@ -65,7 +65,7 @@ public class Hyperium {
     private HyperiumHandlers handlers;
     private HyperiumModIntegration modIntegration;
     private boolean optifineInstalled = false;
-    public boolean isDevEnv;
+    public boolean isDevEnv = false;
     private boolean firstLaunch = false;
     private InternalAddons intAddons;
     private final BackendHandler bh = new BackendHandler();
@@ -86,7 +86,7 @@ public class Hyperium {
                 Class.forName("net.minecraft.dispenser.BehaviorProjectileDispense");
                 isDevEnv = true;
             } catch (ClassNotFoundException e) {
-                isDevEnv = false;
+
             }
 
             cosmetics = new HyperiumCosmetics();
@@ -169,6 +169,7 @@ public class Hyperium {
 
         // Tell the modules the game is shutting down
         EventBus.INSTANCE.post(new GameShutDownEvent());
+        CONFIG.save();
     }
 
     public ConfirmationPopup getConfirmation() {

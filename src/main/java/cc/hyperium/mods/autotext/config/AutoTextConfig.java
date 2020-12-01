@@ -10,14 +10,14 @@ public class AutoTextConfig {
     public static final AutoTextConfig INSTANCE = new AutoTextConfig();
 
     @ConfigOpt
-    private Map<String, String> keybinds = new ConcurrentHashMap<>();
+    private final Map<String, String> keybinds = new ConcurrentHashMap<>();
 
     public Map<String, String> getKeybinds() {
         return keybinds;
     }
 
-    public void addKeybind(String keycode, String description) {
-        keybinds.put(keycode, description);
+    public void addKeybind(String keyCode, String description) {
+        keybinds.put(keyCode, description);
         Hyperium.CONFIG.save();
     }
 }
