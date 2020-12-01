@@ -134,12 +134,14 @@ task sourceJar(type: Jar, dependsOn: classes) {
     from sourceSets.main.allSource
     description "Builds a jar containing the source code."
     classifier "sources"
+    group "build"
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc
     description "Builds a jar containing the javadocs."
     classifier "javadoc"
+    group "build"
 }
 
 artifacts {

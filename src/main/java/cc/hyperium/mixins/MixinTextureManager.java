@@ -42,56 +42,64 @@ public abstract class MixinTextureManager {
     /**
      * @author hyperium
      */
-    @Overwrite public boolean loadTexture(ResourceLocation textureLocation, ITextureObject textureObj) {
+    @Overwrite
+    public boolean loadTexture(ResourceLocation textureLocation, ITextureObject textureObj) {
         return hyperiumTextureManager.loadTexture(textureLocation, textureObj, theResourceManager);
     }
 
     /**
      * @author hyperium
      */
-    @Overwrite public boolean loadTickableTexture(ResourceLocation textureLocation, ITickableTextureObject textureObj) {
+    @Overwrite
+    public boolean loadTickableTexture(ResourceLocation textureLocation, ITickableTextureObject textureObj) {
         return hyperiumTextureManager.loadTickableTexture(textureLocation, textureObj, listTickables);
     }
 
     /**
      * @author hyperium
      */
-    @Overwrite public ResourceLocation getDynamicTextureLocation(String name, DynamicTexture texture) {
+    @Overwrite
+    public ResourceLocation getDynamicTextureLocation(String name, DynamicTexture texture) {
         return hyperiumTextureManager.getDynamicTextureLocation(name, texture, mapTextureCounters);
     }
 
     /**
      * @author hyperium
      */
-    @Overwrite public void onResourceManagerReload(IResourceManager resourceManager) {
+    @Overwrite
+    public void onResourceManagerReload(IResourceManager resourceManager) {
         hyperiumTextureManager.onResourceManagerReload(resourceManager);
     }
 
     /**
      * @author hyperium
      */
-    @Overwrite public void bindTexture(ResourceLocation resource) {
+    @Overwrite
+    public void bindTexture(ResourceLocation resource) {
         hyperiumTextureManager.bindTexture(resource);
     }
 
     /**
      * @author hyperium
      */
-    @Overwrite public ITextureObject getTexture(ResourceLocation textureLocation) {
+    @Overwrite
+    public ITextureObject getTexture(ResourceLocation textureLocation) {
         return hyperiumTextureManager.getTexture(textureLocation);
     }
 
     /**
      * @author hyperium
      */
-    @Overwrite public void tick() {
+    @Overwrite
+    public void tick() {
         hyperiumTextureManager.tick(listTickables);
     }
 
     /**
      * @author hyperium
      */
-    @Overwrite public void deleteTexture(ResourceLocation textureLocation) {
+    @Overwrite
+    public void deleteTexture(ResourceLocation textureLocation) {
         hyperiumTextureManager.deleteTexture(textureLocation);
     }
 }

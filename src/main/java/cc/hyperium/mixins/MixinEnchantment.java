@@ -32,6 +32,8 @@ public abstract class MixinEnchantment {
 
     @Inject(method = "getTranslatedName", at = @At("HEAD"), cancellable = true)
     private void getTranslatedName(int level, CallbackInfoReturnable<String> ci) {
-        if (!Settings.ROMAN_NUMERALS) ci.setReturnValue(StatCollector.translateToLocal(getName()) + " " + level);
+        if (!Settings.ROMAN_NUMERALS) {
+            ci.setReturnValue(StatCollector.translateToLocal(getName()) + " " + level);
+        }
     }
 }

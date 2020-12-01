@@ -130,7 +130,8 @@ public abstract class MixinMinecraft {
     /**
      * @author hyperium
      */
-    @Overwrite private void drawSplashScreen(TextureManager tm) {
+    @Overwrite
+    private void drawSplashScreen(TextureManager tm) {
         SplashProgress.drawSplash(tm);
     }
 

@@ -96,6 +96,7 @@ public abstract class MixinWorld {
 
     /**
      * @author hyperium
+     * todo: this looks like something optifine might try to change, could we be overwriting that??
      */
     @Overwrite
     public void updateEntities() {
