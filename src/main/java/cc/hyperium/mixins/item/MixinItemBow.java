@@ -19,58 +19,60 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(ItemBow.class)
 public abstract class MixinItemBow extends Item {
     @Shadow
-    public abstract int getMaxItemUseDuration(ItemStack p_getMaxItemUseDuration_1_);
+    public abstract int getMaxItemUseDuration(ItemStack stack);
 
     /**
-     * @author hyperium
+     * Post ArrowShootEvent.
+     *
+     * @author Reece Dunham
      */
     @Overwrite
-    public void onPlayerStoppedUsing(ItemStack p_onPlayerStoppedUsing_1_, World p_onPlayerStoppedUsing_2_, EntityPlayer p_onPlayerStoppedUsing_3_, int p_onPlayerStoppedUsing_4_) {
-        boolean lvt_5_1_ = p_onPlayerStoppedUsing_3_.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, p_onPlayerStoppedUsing_1_) > 0;
-        if (lvt_5_1_ || p_onPlayerStoppedUsing_3_.inventory.hasItem(Items.arrow)) {
-            int lvt_6_1_ = this.getMaxItemUseDuration(p_onPlayerStoppedUsing_1_) - p_onPlayerStoppedUsing_4_;
-            float lvt_7_1_ = (float) lvt_6_1_ / 20.0F;
-            lvt_7_1_ = (lvt_7_1_ * lvt_7_1_ + lvt_7_1_ * 2.0F) / 3.0F;
-            if ((double) lvt_7_1_ < 0.1D) {
+    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityPlayer playerIn, int timeLeft) {
+        boolean flag = playerIn.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, stack) > 0;
+        if (flag || playerIn.inventory.hasItem(Items.arrow)) {
+            int i = this.getMaxItemUseDuration(stack) - timeLeft;
+            float f = (float) i / 20.0F;
+            f = (f * f + f * 2.0F) / 3.0F;
+            if ((double) f < 0.1D) {
                 return;
             }
 
-            if (lvt_7_1_ > 1.0F) {
-                lvt_7_1_ = 1.0F;
+            if (f > 1.0F) {
+                f = 1.0F;
             }
 
-            EntityArrow lvt_8_1_ = new EntityArrow(p_onPlayerStoppedUsing_2_, p_onPlayerStoppedUsing_3_, lvt_7_1_ * 2.0F);
-            if (lvt_7_1_ == 1.0F) {
-                lvt_8_1_.setIsCritical(true);
+            EntityArrow entityarrow = new EntityArrow(worldIn, playerIn, f * 2.0F);
+            if (f == 1.0F) {
+                entityarrow.setIsCritical(true);
             }
 
-            int lvt_9_1_ = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, p_onPlayerStoppedUsing_1_);
-            if (lvt_9_1_ > 0) {
-                lvt_8_1_.setDamage(lvt_8_1_.getDamage() + (double) lvt_9_1_ * 0.5D + 0.5D);
+            int j = EnchantmentHelper.getEnchantmentLevel(Enchantment.power.effectId, stack);
+            if (j > 0) {
+                entityarrow.setDamage(entityarrow.getDamage() + (double) j * 0.5D + 0.5D);
             }
 
-            int lvt_10_1_ = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, p_onPlayerStoppedUsing_1_);
-            if (lvt_10_1_ > 0) {
-                lvt_8_1_.setKnockbackStrength(lvt_10_1_);
+            int k = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, stack);
+            if (k > 0) {
+                entityarrow.setKnockbackStrength(k);
             }
 
-            if (EnchantmentHelper.getEnchantmentLevel(Enchantment.flame.effectId, p_onPlayerStoppedUsing_1_) > 0) {
-                lvt_8_1_.setFire(100);
+            if (EnchantmentHelper.getEnchantmentLevel(Enchantment.flame.effectId, stack) > 0) {
+                entityarrow.setFire(100);
             }
 
-            p_onPlayerStoppedUsing_1_.damageItem(1, p_onPlayerStoppedUsing_3_);
-            p_onPlayerStoppedUsing_2_.playSoundAtEntity(p_onPlayerStoppedUsing_3_, "random.bow", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + lvt_7_1_ * 0.5F);
-            if (lvt_5_1_) {
-                lvt_8_1_.canBePickedUp = 2;
+            stack.damageItem(1, playerIn);
+            worldIn.playSoundAtEntity(playerIn, "random.bow", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+            if (flag) {
+                entityarrow.canBePickedUp = 2;
             } else {
-                p_onPlayerStoppedUsing_3_.inventory.consumeInventoryItem(Items.arrow);
+                playerIn.inventory.consumeInventoryItem(Items.arrow);
             }
 
-            p_onPlayerStoppedUsing_3_.triggerAchievement(StatList.objectUseStats[Item.getIdFromItem((ItemBow) (Object) this)]);
-            if (!p_onPlayerStoppedUsing_2_.isRemote) {
-                p_onPlayerStoppedUsing_2_.spawnEntityInWorld(lvt_8_1_);
+            playerIn.triggerAchievement(StatList.objectUseStats[Item.getIdFromItem((ItemBow) (Object) this)]);
+            if (!worldIn.isRemote) {
+                worldIn.spawnEntityInWorld(entityarrow);
             }
-            EventBus.INSTANCE.post(new ArrowShootEvent(lvt_8_1_, lvt_6_1_, p_onPlayerStoppedUsing_1_));
+            EventBus.INSTANCE.post(new ArrowShootEvent(entityarrow, i, stack));
         }
     }
 }

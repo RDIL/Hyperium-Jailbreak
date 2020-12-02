@@ -29,6 +29,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraftforge.fml.client.config.GuiUtils;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.spongepowered.asm.mixin.Mixin;
@@ -36,7 +38,9 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +59,8 @@ public abstract class MixinGuiScreen {
     private int scrollX;
     private int scrollY;
     private boolean allowScrolling;
+
+    private static final Logger LOGGER = LogManager.getLogger("GuiScreen");
 
     @Overwrite
     public void handleKeyboardInput() throws IOException {
@@ -251,5 +257,11 @@ public abstract class MixinGuiScreen {
             GlStateManager.enableRescaleNormal();
             GlStateManager.popMatrix();
         }
+    }
+
+    @Redirect(method = "handleComponentClick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiScreen;sendChatMessage(Ljava/lang/String;Z)V"))
+    public void handleComponentClick(GuiScreen guiScreen, String msg, boolean addToChat) {
+        LOGGER.info("Triggered chat click event, running command: " + msg);
+        guiScreen.sendChatMessage(msg, addToChat);
     }
 }
