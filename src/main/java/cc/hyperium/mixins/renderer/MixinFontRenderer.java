@@ -1,4 +1,5 @@
 package cc.hyperium.mixins.renderer;
+
 import cc.hyperium.Hyperium;
 import cc.hyperium.handlers.HyperiumHandlers;
 import cc.hyperium.handlers.handlers.FontRendererData;
@@ -161,37 +162,33 @@ public abstract class MixinFontRenderer {
     }
 
     protected void doDraw(float f) {
-        {
-            {
-                if (this.strikethroughStyle) {
-                    Tessellator tessellator = Tessellator.getInstance();
-                    WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-                    GlStateManager.disableTexture2D();
-                    worldrenderer.begin(7, DefaultVertexFormats.POSITION);
-                    worldrenderer.pos(this.posX, (this.posY + (float) (this.FONT_HEIGHT / 2)), 0.0D).endVertex();
-                    worldrenderer.pos((this.posX + f), (this.posY + (float) (this.FONT_HEIGHT / 2)), 0.0D).endVertex();
-                    worldrenderer.pos((this.posX + f), (this.posY + (float) (this.FONT_HEIGHT / 2) - 1.0F), 0.0D).endVertex();
-                    worldrenderer.pos(this.posX, (this.posY + (float) (this.FONT_HEIGHT / 2) - 1.0F), 0.0D).endVertex();
-                    tessellator.draw();
-                    GlStateManager.enableTexture2D();
-                }
-                if (this.underlineStyle) {
-                    Tessellator tessellator1 = Tessellator.getInstance();
-                    WorldRenderer worldrenderer1 = tessellator1.getWorldRenderer();
-                    GlStateManager.disableTexture2D();
-                    worldrenderer1.begin(7, DefaultVertexFormats.POSITION);
-                    int l = this.underlineStyle ? -1 : 0;
-                    worldrenderer1.pos((this.posX + (float) l), (this.posY + (float) this.FONT_HEIGHT), 0.0D).endVertex();
-                    worldrenderer1.pos((this.posX + f), (this.posY + (float) this.FONT_HEIGHT), 0.0D).endVertex();
-                    worldrenderer1.pos((this.posX + f), (this.posY + (float) this.FONT_HEIGHT - 1.0F), 0.0D).endVertex();
-                    worldrenderer1.pos((this.posX + (float) l), (this.posY + (float) this.FONT_HEIGHT - 1.0F), 0.0D).endVertex();
-                    tessellator1.draw();
-                    GlStateManager.enableTexture2D();
-                }
-
-                this.posX += (float) ((int) f);
-            }
+        if (this.strikethroughStyle) {
+            Tessellator tessellator = Tessellator.getInstance();
+            WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+            GlStateManager.disableTexture2D();
+            worldrenderer.begin(7, DefaultVertexFormats.POSITION);
+            worldrenderer.pos(this.posX, (this.posY + (float) (this.FONT_HEIGHT / 2)), 0.0D).endVertex();
+            worldrenderer.pos((this.posX + f), (this.posY + (float) (this.FONT_HEIGHT / 2)), 0.0D).endVertex();
+            worldrenderer.pos((this.posX + f), (this.posY + (float) (this.FONT_HEIGHT / 2) - 1.0F), 0.0D).endVertex();
+            worldrenderer.pos(this.posX, (this.posY + (float) (this.FONT_HEIGHT / 2) - 1.0F), 0.0D).endVertex();
+            tessellator.draw();
+            GlStateManager.enableTexture2D();
         }
+        if (this.underlineStyle) {
+            Tessellator tessellator1 = Tessellator.getInstance();
+            WorldRenderer worldrenderer1 = tessellator1.getWorldRenderer();
+            GlStateManager.disableTexture2D();
+            worldrenderer1.begin(7, DefaultVertexFormats.POSITION);
+            int l = this.underlineStyle ? -1 : 0;
+            worldrenderer1.pos((this.posX + (float) l), (this.posY + (float) this.FONT_HEIGHT), 0.0D).endVertex();
+            worldrenderer1.pos((this.posX + f), (this.posY + (float) this.FONT_HEIGHT), 0.0D).endVertex();
+            worldrenderer1.pos((this.posX + f), (this.posY + (float) this.FONT_HEIGHT - 1.0F), 0.0D).endVertex();
+            worldrenderer1.pos((this.posX + (float) l), (this.posY + (float) this.FONT_HEIGHT - 1.0F), 0.0D).endVertex();
+            tessellator1.draw();
+            GlStateManager.enableTexture2D();
+        }
+
+        this.posX += (float) ((int) f);
     }
 
     @ModifyVariable(method = "renderString", at = @At(value = "HEAD"))

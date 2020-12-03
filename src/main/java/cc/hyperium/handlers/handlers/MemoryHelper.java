@@ -56,6 +56,8 @@ public class MemoryHelper {
 
     @InvokeEvent
     public void worldEvent(WorldUnloadEvent event) {
+        FontRendererData.INSTANCE.stringWidthCache.clear();
+
         try {
             TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
             Map<ResourceLocation, ITextureObject> mapTextureObjects = ((IMixinTextureManager) textureManager).getMapTextureObjects();
@@ -65,7 +67,9 @@ public class MemoryHelper {
                 if (iTextureObject instanceof ThreadDownloadImageData) {
                     IImageBuffer imageBuffer = ((IMixinThreadDownloadImageData) iTextureObject).getImageBuffer();
 
-                    if (imageBuffer == null) return;
+                    if (imageBuffer == null) {
+                        return;
+                    }
 
                     Class<? extends IImageBuffer> aClass = imageBuffer.getClass();
                     // Optifine
@@ -96,18 +100,14 @@ public class MemoryHelper {
                     Class<?> superClass = mainModel.getClass().getSuperclass();
 
                     for (Field field : superClass.getDeclaredFields()) {
-                        if (!field.isAccessible()) {
-                            field.setAccessible(true);
-                        }
+                        field.setAccessible(true);
 
                         try {
                             Object o = field.get(mainModel);
                             if (o != null) {
                                 try {
                                     Field entityIn = o.getClass().getSuperclass().getDeclaredField("entityIn");
-                                    if (!entityIn.isAccessible()) {
-                                        entityIn.setAccessible(true);
-                                    }
+                                    entityIn.setAccessible(true);
                                     Object o1 = entityIn.get(o);
                                     if (o1 != null) {
                                         entityIn.set(o, null);
@@ -118,9 +118,7 @@ public class MemoryHelper {
 
                                 try {
                                     Field clientPlayer = o.getClass().getSuperclass().getDeclaredField("clientPlayer");
-                                    if (!clientPlayer.isAccessible()) {
-                                        clientPlayer.setAccessible(true);
-                                    }
+                                    clientPlayer.setAccessible(true);
                                     Object o1 = clientPlayer.get(o);
                                     if (o1 != null) {
                                         clientPlayer.set(o, null);
@@ -150,15 +148,11 @@ public class MemoryHelper {
             Minecraft.memoryReserve = new byte[0];
             try {
                 Field resourceCache = LaunchClassLoader.class.getDeclaredField("resourceCache");
-                if (!resourceCache.isAccessible()) {
-                    resourceCache.setAccessible(true);
-                }
+                resourceCache.setAccessible(true);
                 ((Map<?, ?>) resourceCache.get(Launch.classLoader)).clear();
 
                 Field packageManifests = LaunchClassLoader.class.getDeclaredField("packageManifests");
-                if (!packageManifests.isAccessible()) {
-                    packageManifests.setAccessible(true);
-                }
+                packageManifests.setAccessible(true);
                 ((Map<?, ?>) packageManifests.get(Launch.classLoader)).clear();
             } catch (IllegalAccessException | NoSuchFieldException e) {
                 e.printStackTrace();
@@ -169,12 +163,16 @@ public class MemoryHelper {
     }
 
     public void queueDelete(ResourceLocation location) {
-        if (location == null) return;
+        if (location == null) {
+            return;
+        }
         locations.add(location);
     }
 
     private void deleteSkin(ResourceLocation skinLocation) {
-        if (skinLocation == null) return;
+        if (skinLocation == null) {
+            return;
+        }
         TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
         Map<ResourceLocation, ITextureObject> mapTextureObjects = ((IMixinTextureManager) textureManager).getMapTextureObjects();
         textureManager.deleteTexture(skinLocation);

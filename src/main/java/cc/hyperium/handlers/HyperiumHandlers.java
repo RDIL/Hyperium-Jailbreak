@@ -99,7 +99,9 @@ public class HyperiumHandlers {
     @InvokeEvent
     public void tick(TickEvent event) {
         // Runs first tick
-        if (Minecraft.getMinecraft().getIntegratedServer() == null || Minecraft.getMinecraft().getIntegratedServer().getCommandManager() == null) return;
+        if (Minecraft.getMinecraft().getIntegratedServer() == null || Minecraft.getMinecraft().getIntegratedServer().getCommandManager() == null) {
+            return;
+        }
         EventBus.INSTANCE.unregister(HyperiumHandlers.class);
     }
 

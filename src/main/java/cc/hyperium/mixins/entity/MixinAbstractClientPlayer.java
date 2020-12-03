@@ -51,11 +51,6 @@ public abstract class MixinAbstractClientPlayer extends EntityPlayer {
         return hyperiumAbstractClientPlayer.getLocationCape();
     }
 
-    @Inject(method = "getFovModifier", at = @At("HEAD"), cancellable = true)
-    private void getFovModifier(CallbackInfoReturnable<Float> ci) {
-        hyperiumAbstractClientPlayer.getFovModifier(ci);
-    }
-
     @Inject(method = "getLocationSkin()Lnet/minecraft/util/ResourceLocation;", at = @At("HEAD"), cancellable = true)
     public void getLocationSkin(CallbackInfoReturnable<ResourceLocation> locationCallbackInfoReturnable) {
         NickHider instance = NickHider.INSTANCE;

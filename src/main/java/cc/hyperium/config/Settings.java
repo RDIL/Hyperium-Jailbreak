@@ -25,108 +25,105 @@ import static cc.hyperium.config.Category.*;
 public class Settings {
     public static final Settings INSTANCE = new Settings();
 
-    @ConfigOpt @ToggleSetting(name = "FPS Mode (activates after restart)", category = INTEGRATIONS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.fps", category = INTEGRATIONS)
     public static boolean FPS = false;
 
-    @ConfigOpt @ToggleSetting(name = "Fullbright", category = INTEGRATIONS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.fullbright", category = INTEGRATIONS)
     public static boolean FULLBRIGHT = true;
 
-    @ConfigOpt @ToggleSetting(name = "Roman Numerals")
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.romanNumerals")
     public static boolean ROMAN_NUMERALS = true;
 
-    @ConfigOpt @ToggleSetting(name = "Compact Chat", category = INTEGRATIONS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.compactChat", category = INTEGRATIONS)
     public static boolean COMPACT_CHAT = false;
 
     @ConfigOpt @ToggleSetting(name = "Void Flicker Fix", category = IMPROVEMENTS)
     public static boolean VOID_FLICKER_FIX = true;
 
-    @ConfigOpt @ToggleSetting(name = "Disable Chat Background", category = INTEGRATIONS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.disableChatBackground", category = INTEGRATIONS)
     public static boolean FASTCHAT = true;
 
-    @ConfigOpt @ToggleSetting(name = "Shiny Pots", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.shinyPots", category = ANIMATIONS)
     public static boolean SHINY_POTS = false;
 
-    @ConfigOpt @ToggleSetting(name = "Disable Sounds When Tabbed Out", category = IMPROVEMENTS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.smartSounds", category = IMPROVEMENTS)
     public static boolean SMART_SOUNDS = false;
 
-    @ConfigOpt @ToggleSetting(name = "Arrow Count While Holding Bow", category = VANILLA_ENHANCEMENTS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.arrowCount", category = VANILLA_ENHANCEMENTS)
     public static boolean ARROW_COUNT = true;
 
-    @ConfigOpt @ToggleSetting(name = "Enchants Above Hotbar", category = VANILLA_ENHANCEMENTS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.enchants", category = VANILLA_ENHANCEMENTS)
     public static boolean ENCHANTMENTS_ABOVE_HOTBAR = true;
 
-    @ConfigOpt @ToggleSetting(name = "Attack Damage Above Hotbar", category = VANILLA_ENHANCEMENTS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.attackDamage", category = VANILLA_ENHANCEMENTS)
     public static boolean DAMAGE_ABOVE_HOTBAR = true;
 
-    @ConfigOpt @ToggleSetting(name = "Show Armor Protection in Inventory", category = VANILLA_ENHANCEMENTS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.invProt", category = VANILLA_ENHANCEMENTS)
     public static boolean ARMOR_PROT_POTENTIONAL = true;
 
-    @ConfigOpt @ToggleSetting(name = "Show Armor Projectile Protection (inventory)", category = VANILLA_ENHANCEMENTS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.invProjProt", category = VANILLA_ENHANCEMENTS)
     public static boolean ARMOR_PROJ_POTENTIONAL = true;
 
-    @ConfigOpt @ToggleSetting(name = "Hotbar Keys", category = VANILLA_ENHANCEMENTS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.hotbarKeys", category = VANILLA_ENHANCEMENTS)
     public static boolean HOTBAR_KEYS = false;
 
-    @ConfigOpt @ToggleSetting(name = "Enable Crosshair in F5", category = VANILLA_ENHANCEMENTS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.f5Crosshair", category = VANILLA_ENHANCEMENTS)
     public static boolean CROSSHAIR_IN_F5 = false;
 
-    @ConfigOpt @ToggleSetting(name = "Critical Particle Fix", category = IMPROVEMENTS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.critFix", category = IMPROVEMENTS)
     public static boolean CRIT_FIX = true;
 
-    @ConfigOpt @ToggleSetting(name = "Require Holding Perspective Key")
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.holdPerspective")
     public static boolean PERSPECTIVE_HOLD = false;
 
-    @ConfigOpt @ToggleSetting(name = "Windowed Fullscreen", category = IMPROVEMENTS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.windowsFullscreen", category = IMPROVEMENTS)
     public static boolean WINDOWED_FULLSCREEN = false;
 
-    @ConfigOpt @ToggleSetting(name = "Static FOV", category = IMPROVEMENTS)
-    public static boolean STATIC_FOV = false;
-
-    @ConfigOpt @SelectorSetting(name = "Hat Type", category = COSMETICS, items = {"NONE", "TOPHAT", "FEZ", "LEGO"})
+    @ConfigOpt @SelectorSetting(name = "hyperium.settings.hatType", category = COSMETICS, items = {"NONE", "TOPHAT", "FEZ", "LEGO"})
     public static String HAT_TYPE = "NONE";
 
-    @ConfigOpt @ToggleSetting(category = GENERAL, name = "Show Own Name Tag")
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.showOwnName", category = GENERAL)
     public static boolean SHOW_OWN_NAME = false;
 
-    @ConfigOpt @ToggleSetting(name = "Old Block Hitting", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.oldBlockHitting", category = ANIMATIONS)
     public static boolean OLD_BLOCKHIT = true;
 
-    @ConfigOpt @ToggleSetting(name = "Old Bow Position", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.oldBow", category = ANIMATIONS)
     public static boolean OLD_BOW = true;
 
-    @ConfigOpt @ToggleSetting(name = "Old Rod Position", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.oldRod", category = ANIMATIONS)
     public static boolean OLD_ROD = true;
 
-    @ConfigOpt @ToggleSetting(name = "Old Armor Flashing", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.oldArmor", category = ANIMATIONS)
     public static boolean OLD_ARMOUR = true;
 
-    @ConfigOpt @ToggleSetting(name = "Old Eating", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.oldEating", category = ANIMATIONS)
     public static boolean OLD_EATING = true;
 
-    @ConfigOpt @ToggleSetting(name = "Old Sneaking", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.oldSneaking", category = ANIMATIONS)
     public static boolean OLD_SNEAKING = false;
 
-    @ConfigOpt @ToggleSetting(name = "Old Block Placing", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.oldBlocking", category = ANIMATIONS)
     public static boolean OLD_BLOCKING = false;
 
-    @ConfigOpt @ToggleSetting(name = "Old Item Positioning", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.oldItemPositioining", category = ANIMATIONS)
     public static boolean OLD_ITEM_HELD = false;
 
-    @ConfigOpt @ToggleSetting(name = "Old Debug Menu", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.oldDebugMenu", category = ANIMATIONS)
     public static boolean OLD_DEBUG = false;
 
-    @ConfigOpt @ToggleSetting(name = "Old Health", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.oldHealth", category = ANIMATIONS)
     public static boolean OLD_HEALTH = false;
 
-    @ConfigOpt @ToggleSetting(name = "Transparent GUI Backgrounds")
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.fastContainer")
     public static boolean FAST_CONTAINER = false;
 
-    @ConfigOpt @SelectorSetting(name = "Particle Cosmetic Mode", items = {"OFF", "PLAIN 1", "PLAIN 2", "CHROMA 1", "CHROMA 2"}, category = COSMETICS)
+    @ConfigOpt @SelectorSetting(name = "hyperium.settings.particleCosmetic", items = {"OFF", "PLAIN 1", "PLAIN 2", "CHROMA 1", "CHROMA 2"}, category = COSMETICS)
     public static String PARTICLE_MODE = "OFF";
 
     @ConfigOpt public static int MAX_PARTICLES = 200;
 
-    @ConfigOpt @SelectorSetting(name = "Maximum Particles", category = COSMETICS, items = {"200"})
+    @ConfigOpt @SelectorSetting(name = "hyperium.settings.maximumParticles", category = COSMETICS, items = {"200"})
     public static String MAX_PARTICLE_STRING = "200";
 
     @ConfigOpt public static double HEAD_SCALE_FACTOR = 1.0;
@@ -145,9 +142,6 @@ public class Settings {
 
     @ConfigOpt @ToggleSetting(category = HYPIXEL, name = "Ping on DMs")
     public static boolean PING_ON_DM = true;
-
-    @ConfigOpt @ToggleSetting(category = GENERAL, name = "Sprint Bypass Static FOV")
-    public static boolean staticFovSprintModifier;
 
     @ConfigOpt @ToggleSetting(category = GENERAL, name = "Show Sprint/Perspective Messages")
     public static boolean SPRINT_PERSPECTIVE_MESSAGES = true;

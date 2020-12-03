@@ -18,7 +18,6 @@ hyperium.settings.f5Crosshair=Enable Crosshair in F5
 hyperium.settings.critFix=Critical Particle Fix
 hyperium.settings.holdPerspective=Require Holding Perspective Key
 hyperium.settings.windowsFullscreen=Windowed Fullscreen
-hyperium.settings.staticFov=Static FOV
 hyperium.settings.hatType=Hat Type
 hyperium.settings.showOwnName=Show Own Name Tag
 hyperium.settings.oldBlockHitting=Old Block Hitting
