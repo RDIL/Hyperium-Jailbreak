@@ -20,7 +20,6 @@ public abstract class AbstractTabComponent {
 
     public AbstractTabComponent(AbstractTab tab, List<String> tags) {
         this.tab = tab;
-        tag(tags); // prevent unsupported operation on AbstractList
     }
 
     public int getHeight() {

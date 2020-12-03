@@ -23,8 +23,8 @@ public class SliderComponent extends AbstractTabComponent {
     private int width;
     private boolean wasDown = false;
 
-    public SliderComponent(AbstractTab tab, List<String> tags, String label, Field field, Object parentObj, float minVal, float maxVal, boolean isInteger, boolean round) {
-        super(tab, tags);
+    public SliderComponent(AbstractTab tab, String label, Field field, Object parentObj, float minVal, float maxVal, boolean isInteger, boolean round) {
+        super(tab, null);
         this.label = label;
         this.field = field;
         this.parentObj = parentObj;

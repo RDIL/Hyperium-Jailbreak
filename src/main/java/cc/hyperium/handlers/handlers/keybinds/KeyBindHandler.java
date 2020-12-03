@@ -104,6 +104,11 @@ public class KeyBindHandler {
         this.keyBindConfig.save();
     }
 
+    /**
+     * Registers a Hyperium key bind, which also adds it to the keybinds GUI and the keybinds configuration.
+     *
+     * @param bind The bind.
+     */
     public void registerKeyBinding(HyperiumBind bind) {
         this.keybinds.put(bind.getRealDescription(), bind);
         this.keyBindConfig.attemptKeyBindLoad(bind);
@@ -113,10 +118,18 @@ public class KeyBindHandler {
         return this.keyBindConfig;
     }
 
+    /**
+     * Get all the registered keybinds, and their descriptions.
+     *
+     * @return The map of description to keybind instance.
+     */
     public Map<String, HyperiumBind> getKeybinds() {
         return this.keybinds;
     }
 
+    /**
+     * Makes all the registered binds believe that they are not currently being pressed even if they are.
+     */
     public void releaseAllKeybinds() {
         if (!keybinds.isEmpty()) {
             for (Map.Entry<String, HyperiumBind> map : keybinds.entrySet()) {

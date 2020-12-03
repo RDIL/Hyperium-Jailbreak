@@ -14,8 +14,8 @@ public class LinkComponent extends AbstractTabComponent {
     private List<String> lines = new ArrayList<>();
     private GuiScreen linkedGuiScreen;
 
-    public LinkComponent(AbstractTab tab, List<String> tags, String label, GuiScreen linkedGuiScreen) {
-        super(tab, tags);
+    public LinkComponent(AbstractTab tab, String label, GuiScreen linkedGuiScreen) {
+        super(tab, null);
         this.label = label;
         this.linkedGuiScreen = linkedGuiScreen;
     }
@@ -36,7 +36,7 @@ public class LinkComponent extends AbstractTabComponent {
 
         int line1 = 0;
         for (String line : lines) {
-            font.drawString(line.replaceAll("_", " "), x + 3, y + 1 + 17 * line1, 0xffffff);
+            font.drawString(line.replaceAll("_", " "), x + 3, y + 2 + 17 * line1, 0xffffff);
             line1++;
         }
         GlStateModifier.INSTANCE.reset();

@@ -20,8 +20,8 @@ public class ToggleComponent extends AbstractTabComponent {
     private double animation = 0.5;
     private long lastDeltaTime = System.currentTimeMillis();
 
-    public ToggleComponent(AbstractTab tab, List<String> tags, String label, Field field, Object parentObj) {
-        super(tab, tags);
+    public ToggleComponent(AbstractTab tab, String label, Field field, Object parentObj) {
+        super(tab, null);
         this.label = label;
         this.field = field;
         this.parentObj = parentObj;
@@ -62,7 +62,7 @@ public class ToggleComponent extends AbstractTabComponent {
 
         int line1 = 0;
         for (String line : lines) {
-            font.drawString(line.replaceAll("_", " "), x + 3, y + 1 + 17 * line1, 0xffffff);
+            font.drawString(line.replaceAll("_", " "), x + 3, y + 2 + 17 * line1, 0xffffff);
             line1++;
         }
 

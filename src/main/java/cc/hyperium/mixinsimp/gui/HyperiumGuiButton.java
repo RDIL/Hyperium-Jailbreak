@@ -4,7 +4,7 @@ import static cc.hyperium.gui.HyperiumGui.clamp;
 import static cc.hyperium.gui.HyperiumGui.easeOut;
 import static net.minecraft.client.gui.Gui.drawRect;
 import cc.hyperium.config.Settings;
-import cc.hyperium.mixins.gui.MixinGuiButton2;
+import cc.hyperium.mixins.gui.IMixinGuiButton;
 import java.awt.Color;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -27,7 +27,7 @@ public class HyperiumGuiButton {
     }
 
     public void drawButton(Minecraft mc, int mouseX, int mouseY) {
-        MixinGuiButton2 parentA = (MixinGuiButton2) parent;
+        IMixinGuiButton parentA = (IMixinGuiButton) parent;
         if (!parent.visible) return;
         mc.getTextureManager().bindTexture(parentA.getButtonTextures());
 

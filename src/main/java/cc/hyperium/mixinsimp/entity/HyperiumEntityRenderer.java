@@ -24,7 +24,7 @@ import net.minecraft.util.Vec3;
 import org.lwjgl.opengl.Display;
 
 public class HyperiumEntityRenderer {
-    private EntityRenderer parent;
+    private final EntityRenderer parent;
     public boolean isUsingShader = false;
     public static HyperiumEntityRenderer INSTANCE;
 

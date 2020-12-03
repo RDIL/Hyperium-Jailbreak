@@ -14,7 +14,6 @@ public enum Category {
     AUTOTIP("Autotip"),
     AUTO_GG("Auto GG"),
     LEVEL_HEAD("Levelhead"),
-    REACH("Reach Display"),
     VANILLA_ENHANCEMENTS("Vanilla Enhancements"),
     CHROMAHUD("ChromaHUD"),
     KEYSTROKES("Keystrokes"),

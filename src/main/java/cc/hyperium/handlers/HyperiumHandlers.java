@@ -29,13 +29,15 @@ import cc.hyperium.handlers.handlers.chat.*;
 import cc.hyperium.handlers.handlers.data.HypixelAPI;
 import cc.hyperium.handlers.handlers.hud.VanillaEnhancementsHud;
 import cc.hyperium.handlers.handlers.keybinds.KeyBindHandler;
-import cc.hyperium.handlers.handlers.reach.ReachDisplay;
 import cc.hyperium.mods.PerspectiveModifierHandler;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
 import net.minecraft.client.Minecraft;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class that holds the instances of all Hyperium's internal handlers.
+ */
 public class HyperiumHandlers {
     private final LocationHandler locationHandler;
     private final HypixelDetector hypixelDetector;
@@ -53,6 +55,9 @@ public class HyperiumHandlers {
     private final SettingsHandler settingsHandler;
     private final MemoryHelper memoryHelper;
 
+    /**
+     * Creates a new instance of the class, and initializes/registers all the handlers.
+     */
     public HyperiumHandlers() {
         settingsHandler = new SettingsHandler();
         chatHandlers = new ArrayList<>();
@@ -62,7 +67,6 @@ public class HyperiumHandlers {
         register(perspectiveHandler = new PerspectiveModifierHandler());
         register(keybindHandler = new KeyBindHandler());
         register(hypixelDetector = new HypixelDetector());
-        register(new ReachDisplay());
         register(locationHandler = new LocationHandler());
         register(new VanillaEnhancementsHud());
         register(new ResolutionUtil());

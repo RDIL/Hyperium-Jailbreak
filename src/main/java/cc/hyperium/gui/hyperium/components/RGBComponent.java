@@ -11,7 +11,7 @@ public class RGBComponent extends AbstractTabComponent {
     private RGBFieldSet fieldSet;
 
     public RGBComponent(AbstractTab tab, RGBFieldSet fieldSet) {
-        super(tab, Collections.emptyList());
+        super(tab, null);
         this.fieldSet = fieldSet;
     }
 

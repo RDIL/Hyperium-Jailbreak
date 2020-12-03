@@ -17,8 +17,8 @@ public class SelectorComponent extends AbstractTabComponent {
     private Object parentObj;
     private Supplier<String[]> values;
 
-    public SelectorComponent(AbstractTab tab, List<String> tags, String label, Field field, Object parentObj, Supplier<String[]> values) {
-        super(tab, tags);
+    public SelectorComponent(AbstractTab tab, String label, Field field, Object parentObj, Supplier<String[]> values) {
+        super(tab, null);
         this.label = label;
         this.field = field;
         this.parentObj = parentObj;
@@ -68,14 +68,14 @@ public class SelectorComponent extends AbstractTabComponent {
 
         int line1 = 0;
         for (String line : lines) {
-            font.drawString(line.replaceAll("_", " "), x + 3, y + 1 + 17 * line1, 0xffffff);
+            font.drawString(line.replaceAll("_", " "), x + 3, y + 2 + 17 * line1, 0xffffff);
             line1++;
         }
 
         int farSide = x + width;
         String val = getCurrentValue();
         float statX = farSide - 5 - font.getWidth(val);
-        font.drawString(val, statX, y + 5, Color.WHITE.getRGB());
+        font.drawString(val, statX, y + 2, Color.WHITE.getRGB());
     }
 
     @Override

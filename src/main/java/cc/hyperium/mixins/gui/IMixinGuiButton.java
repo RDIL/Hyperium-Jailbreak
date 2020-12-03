@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(GuiButton.class)
-public interface MixinGuiButton2 {
+public interface IMixinGuiButton {
     @Accessor
     ResourceLocation getButtonTextures();
 

@@ -23,6 +23,7 @@ import cc.hyperium.mixinsimp.gui.HyperiumGuiScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundManager;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
@@ -46,7 +47,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(GuiScreen.class)
-public abstract class MixinGuiScreen {
+public abstract class MixinGuiScreen extends Gui {
     private HyperiumGuiScreen hyperiumGuiScreen = new HyperiumGuiScreen((GuiScreen) (Object) this);
 
     @Shadow protected Minecraft mc;
