@@ -7,10 +7,10 @@ import org.spongepowered.asm.mixin.Overwrite;
 @Mixin(ClientBrandRetriever.class)
 public class MixinClientBrand {
     /**
-     * @author Reece Dunham
+     * @author hyperium
      */
     @Overwrite
     public static String getClientModName() {
-        return "HyperiumJB";
+        return "Hyperium";
     }
 }

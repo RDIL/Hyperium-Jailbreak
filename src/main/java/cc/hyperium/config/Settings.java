@@ -128,127 +128,123 @@ public class Settings {
 
     @ConfigOpt public static double HEAD_SCALE_FACTOR = 1.0;
 
-    @ConfigOpt @SelectorSetting(name = "Head Item Scale", category = ANIMATIONS, items = {"1.0", "1.25", "1.5", "1.75", "2.0", "2.5"})
+    @ConfigOpt @SelectorSetting(name = "hyperium.settings.headItemScale", category = ANIMATIONS, items = {"1.0", "1.25", "1.5", "1.75", "2.0", "2.5"})
     public static String HEAD_SCALE_FACTOR_STRING = "1.0";
 
-    @ConfigOpt @ToggleSetting(category = MISC, name = "Party/Friend Request Popup")
+    @ConfigOpt @ToggleSetting(category = MISC, name = "hyperium.settings.partyFriendPopup")
     public static boolean SHOW_INGAME_CONFIRMATION_POPUP = true;
 
-    @ConfigOpt @ToggleSetting(category = HYPIXEL, name = "Friends First on Tab")
+    @ConfigOpt @ToggleSetting(category = HYPIXEL, name = "hyperium.settings.friendsFirstInTab")
     public static boolean FRIENDS_FIRST_IN_TAB = true;
 
-    @ConfigOpt @ToggleSetting(category = GENERAL, name = "Online Indicators")
+    @ConfigOpt @ToggleSetting(category = GENERAL, name = "hyperium.settings.onlineIndicators")
     public static boolean SHOW_ONLINE_PLAYERS = true;
 
-    @ConfigOpt @ToggleSetting(category = HYPIXEL, name = "Ping on DMs")
+    @ConfigOpt @ToggleSetting(category = HYPIXEL, name = "hyperium.settings.pingOnDm")
     public static boolean PING_ON_DM = true;
 
-    @ConfigOpt @ToggleSetting(category = GENERAL, name = "Show Sprint/Perspective Messages")
+    @ConfigOpt @ToggleSetting(category = GENERAL, name = "hyperium.settings.sprintPerspectiveMessages")
     public static boolean SPRINT_PERSPECTIVE_MESSAGES = true;
 
-    @ConfigOpt @ToggleSetting(name = "Show Wings", category = COSMETICS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.enableWings", category = COSMETICS)
     public static boolean ENABLE_WINGS = false;
 
-    @ConfigOpt @SliderSetting(name = "Wings Height", min = -40, max = 40, category = COSMETICS)
+    @ConfigOpt @SliderSetting(name = "hyperium.settings.wingsOffset", min = -40, max = 40, category = COSMETICS)
     public static double WINGS_OFFSET = 0D;
 
-    @ConfigOpt @SliderSetting(name = "Wings Scale", min = 50, max = 200, category = COSMETICS)
+    @ConfigOpt @SliderSetting(name = "hyperium.settings.wingsScale", min = 50, max = 200, category = COSMETICS)
     public static double WINGS_SCALE = 100D;
 
-    @ConfigOpt @ToggleSetting(name = "Show ChromaHUD", category = CHROMAHUD)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.showChromahud", category = CHROMAHUD)
     public static boolean SHOW_CHROMAHUD = true;
 
-    @ConfigOpt @ToggleSetting(name = "Enable Square Brace Prefix", category = CHROMAHUD)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.chromahudSquarebracePrefix", category = CHROMAHUD)
     public static boolean CHROMAHUD_SQUAREBRACE_PREFIX_OPTION = false;
 
-    @ConfigOpt @ToggleSetting(name = "Short Direction HUD", category = CHROMAHUD)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.shortDirectionHud", category = CHROMAHUD)
     public static boolean SHORT_DIRECTION_HUD = false;
 
-    @ConfigOpt @SelectorSetting(name = "Main Menu Style", items = {"HYPERIUM", "DEFAULT"}, category = MENUS)
+    @ConfigOpt @SelectorSetting(name = "hyperium.settings.menuStyle", items = {"HYPERIUM", "DEFAULT"}, category = MENUS)
     public static String MENU_STYLE = GuiStyle.DEFAULT.name();
 
-    @ConfigOpt @SelectorSetting(name = "Pause Menu Style", items = {"HYPERIUM", "DEFAULT"}, category = MENUS)
+    @ConfigOpt @SelectorSetting(name = "hyperium.settings.pauseStyle", items = {"HYPERIUM", "DEFAULT"}, category = MENUS)
     public static String PAUSE_STYLE = GuiStyle.HYPERIUM.name();
 
     @ConfigOpt public static int MAX_WORLD_PARTICLES_INT = 10000;
 
-    @ConfigOpt @SelectorSetting(category = IMPROVEMENTS, name = "Max World Particles", items = {"1000", "2000", "4000", "6000", "8000", "10000", "20000", "50000"})
+    @ConfigOpt @SelectorSetting(name = "hyperium.settings.maxWorldParticlesString", category = IMPROVEMENTS, items = {"1000", "2000", "4000", "6000", "8000", "10000", "20000", "50000"})
     public static String MAX_WORLD_PARTICLES_STRING = "10000";
 
-    @ConfigOpt @ToggleSetting(name = "Enable AutoFriend", category = AUTOFRIEND)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.enableAutofriend", category = AUTOFRIEND)
     public static boolean AUTOFRIEND_TOGGLE = false;
 
-    @ConfigOpt @ToggleSetting(name = "Show Friend Messages", category = AUTOFRIEND)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.showFriendMessages", category = AUTOFRIEND)
     public static boolean AUTOFRIEND_MESSAGES = true;
 
-    @ConfigOpt @ToggleSetting(name = "Enable Fortnite Compass", category = FNCOMPASS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.enableFortniteCompass", category = FNCOMPASS)
     public static boolean FNCOMPASS_ENABLED = false;
 
-    @ConfigOpt @ToggleSetting(name = "Show Background", category = FNCOMPASS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.showBackground", category = FNCOMPASS)
     public static boolean FNCOMPASS_BACKGROUND = true;
 
-    @ConfigOpt @ToggleSetting(name = "Enable Chroma", category = FNCOMPASS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.enableChroma", category = FNCOMPASS)
     public static boolean FNCOMPASS_CHROMA = false;
 
-    @ConfigOpt @ToggleSetting(name = "Enable Text Shadow", category = FNCOMPASS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.enableTextShadow", category = FNCOMPASS)
     public static boolean FNCOMPASS_SHADOW = true;
 
-    @ConfigOpt
-    @SelectorSetting(category = FNCOMPASS, name = "Detail Level", items = {"0", "1", "2"})
+    @ConfigOpt @SelectorSetting(name = "hyperium.settings.detailLevel", category = FNCOMPASS, items = {"0", "1", "2"})
     public static String FNCOMPASS_DETAILS = "2";
 
-    @ToggleSetting(name = "Show Dots on Name Tags", category = INTEGRATIONS)
-    public static boolean SHOW_DOTS_ON_NAME_TAGS = false;
-
-    @ConfigOpt @ToggleSetting(name = "Enable ToggleSprint", category = TOGGLESPRINT)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.enableTogglesprint", category = TOGGLESPRINT)
     public static boolean ENABLE_TOGGLE_SPRINT = true;
 
-    @ConfigOpt @ToggleSetting(name = "Broadcast Achivements to Guild Chat", category = HYPIXEL)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.broadcastAchievementstoGuildChat", category = HYPIXEL)
     public static boolean BROADCAST_ACHIEVEMENTS = false;
 
-    @ConfigOpt @ToggleSetting(name = "Hyperium Chat Prefix", category = GENERAL)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.hyperiumChatPrefix", category = GENERAL)
     public static boolean HYPERIUM_CHAT_PREFIX = true;
 
-    @ConfigOpt @ToggleSetting(name = "Guild Welcome Message", category = HYPIXEL)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.sendGuildWelcomeMessage", category = HYPIXEL)
     public static boolean SEND_GUILD_WELCOME_MESSAGE = true;
 
-    @ConfigOpt @ToggleSetting(name = "Thank Watchdog", category = HYPIXEL)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.thankWatchdog", category = HYPIXEL)
     public static boolean THANK_WATCHDOG = false;
 
-    @ConfigOpt @ToggleSetting(name = "Enable Item Physics", category = ITEM_PHYSIC)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.enableItemPhysics", category = ITEM_PHYSIC)
     public static boolean ITEM_PHYSIC_ENABLED = false;
 
-    @ConfigOpt @ToggleSetting(name = "Hide Name Tags in F1", category = VANILLA_ENHANCEMENTS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.hideNameTagsinF1", category = VANILLA_ENHANCEMENTS)
     public static boolean BETTERF1 = false;
 
-    @ConfigOpt @SelectorSetting(name = "Button Style", category = BUTTONS, items = {"HYPERIUM", "HYPERIUM 2"})
+    @ConfigOpt @SelectorSetting(name = "hyperium.settings.buttonStyle", category = BUTTONS, items = {"HYPERIUM", "HYPERIUM 2"})
     public static String BUTTON_STYLE = ButtonStyle.HYPERIUM.name();
 
-    @ConfigOpt @ToggleSetting(name = "Chroma Buttons (For Hyperium 2 Style)", category = BUTTONS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.chromaButtons", category = BUTTONS)
     public static boolean H2_BUTTONS_CHROMA = false;
 
-    @ConfigOpt @ToggleSetting(name = "Disable Enchant Glint", category = IMPROVEMENTS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.disableEnchantGlint", category = IMPROVEMENTS)
     public static boolean DISABLE_ENCHANT_GLINT = false;
 
-    @ConfigOpt @ToggleSetting(name = "Disable Titles", category = VANILLA_ENHANCEMENTS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.disableTitles", category = VANILLA_ENHANCEMENTS)
     public static boolean HIDE_TITLES = false;
 
-    @ConfigOpt @ToggleSetting(name = "Disable Lightning", category = IMPROVEMENTS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.disableLighting", category = IMPROVEMENTS)
     public static boolean DISABLE_LIGHTNING = false;
 
-    @ConfigOpt @ToggleSetting(name = "Disable Item Frames", category = IMPROVEMENTS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.disableItemFrames", category = IMPROVEMENTS)
     public static boolean DISABLE_ITEMFRAMES = false;
 
-    @ConfigOpt @ToggleSetting(name = "Shiny Potions: Match Color", category = ANIMATIONS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.shinyPotsMatchColor", category = ANIMATIONS)
     public static boolean SHINY_POTS_MATCH_COLOR = false;
 
-    @ConfigOpt @ToggleSetting(name = "Blink at the End of Night Vision", category = GENERAL)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.nvBlink", category = GENERAL)
     public static boolean NIGHT_VISION_BLINKING = false;
 
-    @ConfigOpt @ToggleSetting(name = "Multi-CPU Particle Rendering (Requires 4+ CPU Cores)", category = IMPROVEMENTS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.multiCpuParticles", category = IMPROVEMENTS)
     public static boolean MULTI_CPU_PARTICLE_RENDERING = false;
 
-    @ConfigOpt @ToggleSetting(name = "Enchant Table Floating Book", category = IMPROVEMENTS)
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.enchantTableBook", category = IMPROVEMENTS)
     public static boolean ENCHANT_TABLE_BOOK = true;
 
     public static void register() {
