@@ -37,9 +37,13 @@ public class HyperiumTweaker implements ITweaker {
     private final boolean isRunningOptifine = Launch.classLoader.getTransformers().stream().anyMatch(p -> p.getClass().getName().contains("optifine"));
     private boolean OPTIFINE = false;
     public static final Logger LOGGER = LogManager.getLogger();
+    public static final boolean FORCE_MIXIN_DEBUG = "true".equals(System.getenv("FORCE_MIXIN_DEBUG"));
 
     public HyperiumTweaker() {
         INSTANCE = this;
+        if (FORCE_MIXIN_DEBUG) {
+            System.setProperty("mixin.debug", "true");
+        }
     }
 
     @Override

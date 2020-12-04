@@ -32,6 +32,7 @@ import net.minecraft.client.gui.GuiOptions;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiSelectWorld;
 import net.minecraft.client.gui.GuiYesNo;
+import net.minecraft.client.gui.GuiYesNoCallback;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.DynamicTexture;
@@ -45,7 +46,7 @@ import net.minecraft.world.storage.ISaveFormat;
 import net.minecraft.world.storage.WorldInfo;
 import org.lwjgl.input.Keyboard;
 
-public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen {
+public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen implements GuiYesNoCallback {
     private static boolean FIRST_START = true;
     private final ResourceLocation exit = new ResourceLocation("textures/material/exit.png");
     private final ResourceLocation people_outline = new ResourceLocation("textures/material/people-outline.png");
@@ -144,13 +145,13 @@ public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen {
         if (getStyle() == GuiStyle.DEFAULT) {
             if (button.id == 15) HyperiumMainGui.INSTANCE.show();
             if (button.id == 16) {
-                GuiMultiplayer guiMp = new GuiMultiplayer(new GuiMainMenu());
-                guiMp.setWorldAndResolution(Minecraft.getMinecraft(), width, height);
-                ((IMixinGuiMultiplayer) guiMp).makeDirectConnect();
+                GuiMultiplayer p_i1182_1_ = new GuiMultiplayer(new GuiMainMenu());
+                p_i1182_1_.setWorldAndResolution(Minecraft.getMinecraft(), width, height);
+                ((IMixinGuiMultiplayer) p_i1182_1_).makeDirectConnect();
                 String hostName = Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) ? "stuck.hypixel.net" : "mc.hypixel.net";
                 ServerData data = new ServerData("hypixel", hostName, false);
-                ((IMixinGuiMultiplayer) guiMp).setIp(data);
-                guiMp.confirmClicked(true, 0);
+                ((IMixinGuiMultiplayer) p_i1182_1_).setIp(data);
+                p_i1182_1_.confirmClicked(true, 0);
             }
         } else {
             if (button.id == 15) HyperiumMainGui.INSTANCE.show();
@@ -172,7 +173,7 @@ public class GuiHyperiumScreenMainMenu extends GuiHyperiumScreen {
         this.buttonList.add(new GuiButton(1, this.width / 2 - 100, p_73969_1_, I18n.format("menu.singleplayer")));
         this.buttonList.add(new GuiButton(2, this.width / 2 - 100, p_73969_1_ + 24, I18n.format("menu.multiplayer")));
         // Change realms button ID to 16 to avoid conflicts
-        this.buttonList.add(this.hypixelButton = new GuiButton(16, this.width / 2 - 100, p_73969_1_ + 48, 200, 20, "Join Hypixel"));
+        this.buttonList.add(this.hypixelButton = new GuiButton(16, this.width / 2 - 100, p_73969_1_ + 48, 200, 20, I18n.format("button.ingame.joinhypixel")));
 
         this.buttonList.add(new GuiButton(15, this.width / 2 - 100, p_73969_1_ + 72, "Hyperium Settings"));
     }

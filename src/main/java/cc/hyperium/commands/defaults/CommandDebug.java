@@ -54,9 +54,6 @@ public class CommandDebug implements BaseCommand {
 
     private static void tryLevelhead(StringBuilder builder) {
         try {
-            builder.append("Count: ").append(Hyperium.INSTANCE.getModIntegration().getLevelhead().count).append("\n");
-            builder.append("Wait: ").append(Hyperium.INSTANCE.getModIntegration().getLevelhead().wait).append("\n");
-            builder.append("Hypixel: ").append(HypixelDetector.getInstance().isHypixel()).append("\n");
             builder.append("Local Stats: ").append(HypixelDetector.getInstance().isHypixel()).append("\n");
             builder.append("Header State: ").append(Hyperium.INSTANCE.getModIntegration().getLevelhead().getHeaderConfig()).append("\n");
             builder.append("Footer State: ").append(Hyperium.INSTANCE.getModIntegration().getLevelhead().getFooterConfig()).append("\n");
@@ -79,7 +76,6 @@ public class CommandDebug implements BaseCommand {
         builder.append("\n");
         tryLevelhead(builder);
         builder.append("\n");
-        builder.append("Levelhead");
 
         return builder.toString();
     }
@@ -96,8 +92,6 @@ public class CommandDebug implements BaseCommand {
 
     @Override
     public void onExecute(String[] args) {
-        if (args.length == 1 && args[0].equalsIgnoreCase("log")) {
-            GeneralChatHandler.instance().sendMessage("Enabled logging, please restart your game to begin. It will be auto disabled after next launch.");
-        }
+        GeneralChatHandler.instance().sendMessage("Please instead use /logs");
     }
 }

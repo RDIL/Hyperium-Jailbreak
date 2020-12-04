@@ -16,24 +16,14 @@
  */
 
 package net.hypixel.api;
-import cc.hyperium.handlers.handlers.data.HypixelAPI;
+
 import cc.hyperium.utils.JsonHolder;
-import cc.hyperium.utils.WebsiteUtils;
-import java.util.concurrent.ExecutionException;
 
 public class HypixelApiPlayer implements HypixelApiObject {
     private final JsonHolder player;
 
     public HypixelApiPlayer(JsonHolder holder) {
         this.player = holder;
-    }
-
-    public int getKarma() {
-        return getRoot().optInt("karma");
-    }
-
-    public int getNetworkLevel() {
-        return getRoot().optInt("networkLevel") + 1;
     }
 
     public boolean isValid() {
@@ -48,7 +38,8 @@ public class HypixelApiPlayer implements HypixelApiObject {
     public String getUUID() {
         return getRoot().optString("uuid");
     }
-    private JsonHolder getRoot() {
+
+    public JsonHolder getRoot() {
         return player.optJSONObject("player");
     }
 
@@ -56,57 +47,16 @@ public class HypixelApiPlayer implements HypixelApiObject {
         return getRoot().optJSONObject("stats");
     }
 
-    public JsonHolder getStats(GameType type) {
-        return getStats().optJSONObject(type.getDbName());
-    }
-
     public String getName() {
         return getRoot().optString("displayname");
-    }
-
-    public JsonHolder getGiftMeta() {
-        return getRoot().optJSONObject("giftingMeta");
-    }
-
-    public int getAchievementPoints() {
-        return getRoot().optInt("points");
-    }
-
-    public HypixelApiGuild getGuild() {
-        try {
-            return HypixelAPI.INSTANCE.getGuildFromPlayer(getUUID()).get();
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public int getTotalCoins() {
-        return getRoot().optInt("coins");
-    }
-
-    public int getTotalKills() {
-        return getRoot().optInt("kills");
-    }
-
-    public int getTotalWins() {
-        return getRoot().optInt("wins");
     }
 
     public boolean has(String val) {
         return getRoot().has(val);
     }
 
-    public GameType mostRecentGame() {
-        return GameType.parse(getRoot().optString("mostRecentGameType"));
-    }
-
     private boolean isYouTuber() {
         return getRoot().optString("rank").equalsIgnoreCase("youtuber");
-    }
-
-    public boolean isStaffOrYT() {
-        return isStaff() || isYouTuber();
     }
 
     private boolean isStaff() {
@@ -134,14 +84,6 @@ public class HypixelApiPlayer implements HypixelApiObject {
 
     public Rank getRank() {
         return Rank.get(getRankForMod().toUpperCase());
-    }
-
-    public int getFriendCount() {
-        return getRoot().optInt("friends");
-    }
-
-    public long getInt(String path) {
-        return WebsiteUtils.get(getRoot().getObject(), path);
     }
 
     enum Rank {
