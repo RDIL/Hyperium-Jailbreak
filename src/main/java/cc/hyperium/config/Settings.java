@@ -247,6 +247,9 @@ public class Settings {
     @ConfigOpt @ToggleSetting(name = "hyperium.settings.enchantTableBook", category = IMPROVEMENTS)
     public static boolean ENCHANT_TABLE_BOOK = true;
 
+    @ConfigOpt @ToggleSetting(name = "hyperium.settings.blockBreakParticles", category = IMPROVEMENTS)
+    public static boolean BLOCK_BREAK_PARTICLES = true;
+
     public static void register() {
         Hyperium.CONFIG.register(INSTANCE);
     }

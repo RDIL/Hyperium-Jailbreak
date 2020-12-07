@@ -77,3 +77,4 @@ hyperium.settings.shinyPotsMatchColor=Shiny Potions: Match Color
 hyperium.settings.nvBlink=Blink at the End of Night Vision
 hyperium.settings.multiCpuParticles=Multi-CPU Particle Rendering (Requires 4+ CPU Cores)
 hyperium.settings.enchantTableBook=Enable Enchant Table Floating Book
+hyperium.settings.blockBreakParticles=Block Breaking Particles

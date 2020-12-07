@@ -18,11 +18,10 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
-import java.awt.Font;
 
 public class GuiHyperiumScreen extends GuiScreen {
     private static ResourceLocation background = new ResourceLocation("textures/material/backgrounds/1.png");
-    public static HyperiumFontRenderer fr = new HyperiumFontRenderer("OpenSans", 12.0F, 0, 1.0F);
+    public static HyperiumFontRenderer fr = new HyperiumFontRenderer("OpenSans", 16.0F, 0, 1.0F);
     static DynamicTexture viewportTexture;
     private static float swing;
     GuiButton hypixelButton;
