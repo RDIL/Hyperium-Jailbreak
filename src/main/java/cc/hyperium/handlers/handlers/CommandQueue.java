@@ -26,16 +26,30 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Hyperium's command queue.
+ * This allows for commands in the queue to be executed one-by-one, one at a time (every second).
+ * It also allows us to ensure that we don't send commands too fast,
+ * which servers like Hypixel really don't enjoy.
+ */
 public class CommandQueue {
     private final Queue<String> commands = new ConcurrentLinkedQueue<>();
     private final Map<String, Runnable> asyncCallbacks = new ConcurrentHashMap<>();
 
+    /**
+     * Creates a new instance of the class, and schedules the execution every second of queued commands.
+     */
     public CommandQueue() {
-        long DELAY = 1000;
-        Multithreading.schedule(CommandQueue.this::check, 0, DELAY, TimeUnit.MILLISECONDS);
+        Multithreading.schedule(CommandQueue.this::check, 0, 1000, TimeUnit.MILLISECONDS);
     }
 
-    public void register(String chat, Runnable task) {
+    /**
+     * Adds a command to the queue.
+     *
+     * @param chat The chat message to send.
+     * @param task The callback to run after sending the command.
+     */
+    public void register(final String chat, final Runnable task) {
         asyncCallbacks.put(chat, task);
         queue(chat);
     }
@@ -50,11 +64,17 @@ public class CommandQueue {
                 if (runnable != null) {
                     runnable.run();
                 }
+                asyncCallbacks.remove(poll);
             }
         }
     }
 
-    public void queue(String message) {
+    /**
+     * Does the same thing as {@link CommandQueue#register(String, Runnable)}, just without a {@link Runnable}.
+     *
+     * @param message The chat message/command to be queued.
+     */
+    public void queue(final String message) {
         commands.add(message);
     }
 }

@@ -1,10 +1,13 @@
 package cc.hyperium.mixins;
 
 import cc.hyperium.event.EventBus;
+import cc.hyperium.event.interact.ClickWindowEvent;
+import cc.hyperium.event.interact.PlayerClickBlockEvent;
 import cc.hyperium.event.interact.PlayerDestroyBlockEvent;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.play.client.C08PacketPlayerBlockPlacement;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
@@ -32,12 +35,30 @@ public class MixinPlayerControllerMP {
         }
     }
 
-    @Inject(method = "onPlayerDestroyBlock", at = @At("RETURN"), cancellable = true)
+    @Inject(method = "onPlayerDestroyBlock", at = @At("HEAD"), cancellable = true)
     public void onPlayerDestroyBlock(BlockPos pos, EnumFacing side, CallbackInfoReturnable<Boolean> cir) {
         final PlayerDestroyBlockEvent dbe = new PlayerDestroyBlockEvent(pos);
         EventBus.INSTANCE.post(dbe);
         if (dbe.isCancelled()) {
             cir.setReturnValue(false);
+        }
+    }
+
+    @Inject(method = "clickBlock", at = @At("HEAD"), cancellable = true)
+    public void clickBlock(BlockPos loc, EnumFacing face, CallbackInfoReturnable<Boolean> cir) {
+        final PlayerClickBlockEvent pcbe = new PlayerClickBlockEvent(loc);
+        EventBus.INSTANCE.post(pcbe);
+        if (pcbe.isCancelled()) {
+            cir.cancel();
+        }
+    }
+
+    @Inject(method = "windowClick", at = @At("HEAD"), cancellable = true)
+    public void windowClick(int windowId, int slotId, int mouseButtonClicked, int mode, EntityPlayer playerIn, CallbackInfoReturnable<ItemStack> cir) {
+        final ClickWindowEvent cwe = new ClickWindowEvent(windowId, slotId, mouseButtonClicked, mode, playerIn);
+        EventBus.INSTANCE.post(cwe);
+        if (cwe.isCancelled()) {
+            cir.cancel();
         }
     }
 }

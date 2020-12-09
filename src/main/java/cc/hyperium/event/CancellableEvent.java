@@ -17,14 +17,37 @@
 
 package cc.hyperium.event;
 
+/**
+ * An event that can be cancelled.
+ *
+ * @see cc.hyperium.event.Event
+ * @see CancellableEvent#cancel()
+ */
 public class CancellableEvent extends Event {
     private boolean cancelled;
 
+    /**
+     * Sets if the event is cancelled or not.
+     *
+     * @param cancelled If the event should be cancelled or not.
+     */
     public void setCancelled(boolean cancelled) {
         this.cancelled = cancelled;
     }
 
+    /**
+     * Get if the event is cancelled or not.
+     *
+     * @return If the event is cancelled or not.
+     */
     public boolean isCancelled() {
         return this.cancelled;
+    }
+
+    /**
+     * Cancels the event.
+     */
+    public void cancel() {
+        this.setCancelled(true);
     }
 }

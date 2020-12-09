@@ -24,7 +24,13 @@ import cc.hyperium.cosmetics.wings.WingsCosmetic;
 import cc.hyperium.event.EventBus;
 import net.minecraft.util.ResourceLocation;
 
+/**
+ * Hyperium's cosmetic manager.
+ */
 public class HyperiumCosmetics {
+    /**
+     * Creates a new instance of the class and registers the default cosmetics.
+     */
     public HyperiumCosmetics() {
         registerCosmetic(new WingsCosmetic());
         registerCosmetic(new CosmeticHat("TOPHAT").setModel(new ModelHatTophat(), new ResourceLocation("textures/cosmetics/hats/tophat.png")));
@@ -32,7 +38,12 @@ public class HyperiumCosmetics {
         registerCosmetic(new CosmeticHat("LEGO").setModel(new ModelHatLego(), new ResourceLocation("textures/cosmetics/hats/lego.png")));
     }
 
-    private void registerCosmetic(AbstractCosmetic cosmetic) {
+    /**
+     * Registers a cosmetic.
+     *
+     * @param cosmetic The cosmetic to register.
+     */
+    public void registerCosmetic(final AbstractCosmetic cosmetic) {
         EventBus.INSTANCE.register(cosmetic);
     }
 }

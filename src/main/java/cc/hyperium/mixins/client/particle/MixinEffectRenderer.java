@@ -36,6 +36,17 @@ import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CountDownLatch;
 
+/**
+ * !!! THIS IS CURRENTLY DISABLED BECAUSE IT HARMS PERFORMANCE !!!
+ *
+ * In the meantime, see {@link cc.hyperium.mixins.client.particle.impl.MixinEffectRenderer}.
+ *
+ * TODO: Re-enable this once we get a hold on the problem.
+ *
+ * What we know:
+ * - Users say this is slower then Vanilla, and even Forge seems to be faster
+ * - OptiFine *most likely* injects code into this class which we are overwriting, which is a big no-no
+ */
 @Mixin(EffectRenderer.class)
 public abstract class MixinEffectRenderer {
     @Shadow

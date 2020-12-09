@@ -10,16 +10,34 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
+/**
+ * A hat cosmetic.
+ *
+ * @see AbstractCosmetic
+ */
 public class CosmeticHat extends AbstractCosmetic {
     private ModelBase hatModel;
     private ResourceLocation hatTexture;
     private final String id;
 
-    CosmeticHat(String id) {
+    /**
+     * Creates a new hat cosmetic instance with the given ID.
+     *
+     * @param id The hat's ID. Must be unique or multiple hats can be rendered on top of each other.
+     * @see CosmeticHat#setModel(ModelBase, ResourceLocation) 
+     */
+    public CosmeticHat(String id) {
         this.id = id;
     }
 
-    CosmeticHat setModel(ModelBase givenModel, ResourceLocation givenTexture) {
+    /**
+     * Set's the hat's model and texture to the given values.
+     *
+     * @param givenModel The model to use for the hat.
+     * @param givenTexture The hat's texture file.
+     * @return The current instance of the hat cosmetic.
+     */
+    public CosmeticHat setModel(ModelBase givenModel, ResourceLocation givenTexture) {
         this.hatModel = givenModel;
         this.hatTexture = givenTexture;
         return this;

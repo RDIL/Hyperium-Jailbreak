@@ -18,6 +18,7 @@
 package cc.hyperium.cosmetics.wings;
 
 import cc.hyperium.config.Settings;
+import cc.hyperium.cosmetics.AbstractCosmetic;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.render.RenderPlayerEvent;
 import net.minecraft.client.Minecraft;
@@ -68,7 +69,7 @@ public class WingsRenderer extends ModelBase {
 
         double v = Settings.WINGS_SCALE;
         double scale = v / 100.0;
-        double rotate = this.interpolate(player.prevRenderYawOffset, player.renderYawOffset, partialTicks);
+        double rotate = AbstractCosmetic.interpolate(player.prevRenderYawOffset, player.renderYawOffset, partialTicks);
 
         GlStateManager.pushMatrix();
         // Displaces the wings by a custom value.
@@ -111,13 +112,5 @@ public class WingsRenderer extends ModelBase {
         GL11.glCullFace(1029);
         GL11.glDisable(2884);
         GL11.glPopMatrix();
-    }
-
-    private float interpolate(float yaw1, float yaw2, final float percent) {
-        float f = (yaw1 + (yaw2 - yaw1) * percent) % 360.0F;
-        if (f < 0.0F) {
-            f += 360.0F;
-        }
-        return f;
     }
 }

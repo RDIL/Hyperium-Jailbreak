@@ -29,15 +29,27 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ServerData;
 import java.util.regex.Pattern;
 
+/**
+ * Utility to memorize if the client is currently on Hypixel or not.
+ */
 public class HypixelDetector {
     private static final Pattern HYPIXEL_PATTERN = Pattern.compile("^(?:(?:(?:.+\\.)?hypixel\\.net)|(?:209\\.222\\.115\\.\\d{1,3})|(?:99\\.198\\.123\\.[123]?\\d?))\\.?(?::\\d{1,5}\\.?)?$", Pattern.CASE_INSENSITIVE);
 
     private static HypixelDetector instance;
     private boolean hypixel = false;
+
+    /**
+     * Creates a new instance of the class and assigns it to the instance field.
+     */
     public HypixelDetector() {
         instance = this;
     }
 
+    /**
+     * Get the publicly usable version of the HypixelDetector.
+     *
+     * @return The instance.
+     */
     public static HypixelDetector getInstance() {
         return instance;
     }
@@ -84,6 +96,11 @@ public class HypixelDetector {
         hypixel = false;
     }
 
+    /**
+     * Returns if the client is connected to Hypixel or not.
+     *
+     * @return If the client is connected to Hypixel.
+     */
     public boolean isHypixel() {
         return hypixel;
     }

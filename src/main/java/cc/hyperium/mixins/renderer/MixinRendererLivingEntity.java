@@ -25,22 +25,17 @@ import net.minecraft.client.renderer.culling.ICamera;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
-import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.scoreboard.Team;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
-
-import java.util.List;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(RendererLivingEntity.class)
 public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> extends Render<T> {
-    @Shadow
-    protected List<LayerRenderer<T>> layerRenderers;
-
-    private HyperiumRenderLivingEntity<T> hyperiumRenderLivingEntity = new HyperiumRenderLivingEntity<>((RendererLivingEntity) (Object) this);
+    private HyperiumRenderLivingEntity<T> hyperiumRenderLivingEntity = new HyperiumRenderLivingEntity<T>((RendererLivingEntity<T>) (Object) this);
 
     protected MixinRendererLivingEntity(RenderManager renderManager) {
         super(renderManager);
@@ -81,12 +76,13 @@ public abstract class MixinRendererLivingEntity<T extends EntityLivingBase> exte
         return Minecraft.isGuiEnabled() && entity != this.renderManager.livingPlayer && !entity.isInvisibleToPlayer(entityplayersp) && entity.riddenByEntity == null;
     }
 
-    /**
-     * @author hyperium
-     */
-    @Overwrite
-    protected void renderLayers(T entitylivingbaseIn, float p_177093_2_, float p_177093_3_, float partialTicks, float p_177093_5_, float p_177093_6_, float p_177093_7_, float p_177093_8_) {
-        hyperiumRenderLivingEntity.renderLayers(entitylivingbaseIn, p_177093_2_, p_177093_3_, partialTicks, p_177093_5_, p_177093_6_, p_177093_7_, p_177093_8_, layerRenderers);
+    @ModifyArg(method = "renderLayers", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/entity/RendererLivingEntity;setBrightness(Lnet/minecraft/entity/EntityLivingBase;FZ)Z"))
+    public boolean renderLayers$shouldCombineTextures(boolean value) {
+        if (Settings.OLD_ARMOUR) {
+            return true;
+        }
+
+        return value;
     }
 
     /**
