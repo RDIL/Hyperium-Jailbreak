@@ -8,11 +8,5 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(RendererLivingEntity.class)
 public interface IMixinRenderLivingEntity<T extends EntityLivingBase> {
     @Invoker
-    boolean callSetBrightness(T entitylivingbaseIn, float partialTicks, boolean combineTextures);
-
-    @Invoker
-    void callUnsetBrightness();
-
-    @Invoker
     boolean callCanRenderName(T entity);
 }

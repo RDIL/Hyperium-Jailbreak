@@ -10,35 +10,15 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RendererLivingEntity;
-import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
 import org.lwjgl.opengl.GL11;
 
-import java.util.List;
-
 public class HyperiumRenderLivingEntity<T extends EntityLivingBase> {
-
-    private RendererLivingEntity<T> parent;
+    private final RendererLivingEntity<T> parent;
 
     public HyperiumRenderLivingEntity(RendererLivingEntity<T> parent) {
         this.parent = parent;
-    }
-
-    public void renderLayers(T entitylivingbaseIn, float p_177093_2_, float p_177093_3_, float partialTicks, float p_177093_5_, float p_177093_6_, float p_177093_7_, float p_177093_8_, List<LayerRenderer<T>> layerRenderers) {
-        for (LayerRenderer<T> layerrenderer : layerRenderers) {
-            boolean f = layerrenderer.shouldCombineTextures();
-            if (Settings.OLD_ARMOUR) {
-                f = true;
-            }
-            boolean flag = ((IMixinRenderLivingEntity<T>) parent).callSetBrightness(entitylivingbaseIn, partialTicks, f);
-
-            layerrenderer.doRenderLayer(entitylivingbaseIn, p_177093_2_, p_177093_3_, partialTicks, p_177093_5_, p_177093_6_, p_177093_7_, p_177093_8_);
-
-            if (flag) {
-                ((IMixinRenderLivingEntity) parent).callUnsetBrightness();
-            }
-        }
     }
 
     public void renderName(T entity, double x, double y, double z, RenderManager renderManager) {

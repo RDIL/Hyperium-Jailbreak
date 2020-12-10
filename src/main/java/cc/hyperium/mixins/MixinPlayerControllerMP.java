@@ -23,7 +23,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MixinPlayerControllerMP {
     @Inject(method = "onPlayerRightClick", at = @At("HEAD"))
     private void placeClientLiquid(EntityPlayerSP player, WorldClient worldIn, ItemStack heldStack, BlockPos hitPos, EnumFacing side, Vec3 hitVec, CallbackInfoReturnable<Boolean> cir) {
-        if (heldStack == null) return;
+        if (heldStack == null) {
+            return;
+        }
         final float f = (float)(hitVec.xCoord - hitPos.getX());
         final float f2 = (float)(hitVec.yCoord - hitPos.getY());
         final float f3 = (float)(hitVec.zCoord - hitPos.getZ());
