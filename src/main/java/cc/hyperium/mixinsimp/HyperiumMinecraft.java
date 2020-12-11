@@ -48,7 +48,8 @@ import java.io.IOException;
 import java.util.List;
 
 public class HyperiumMinecraft {
-    private Minecraft parent;
+    private final Minecraft parent;
+
     public HyperiumMinecraft(Minecraft parent) {
         this.parent = parent;
     }

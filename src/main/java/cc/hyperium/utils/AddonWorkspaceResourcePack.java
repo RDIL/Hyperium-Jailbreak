@@ -13,14 +13,17 @@ public class AddonWorkspaceResourcePack extends AbstractResourcePack {
         super(AddonWorkspaceResourcePack.class.getClassLoader().getResource("pack.mcmeta") != null ? new File(AddonWorkspaceResourcePack.class.getClassLoader().getResource("pack.mcmeta").getFile()).getParentFile() : null);
     }
 
+    @Override
     protected InputStream getInputStreamByName(String name) {
         return AddonWorkspaceResourcePack.class.getClassLoader().getResourceAsStream("pack.mcmeta");
     }
 
+    @Override
     protected boolean hasResourceName(String name) {
         return (new File(this.resourcePackFile, name)).isFile();
     }
 
+    @Override
     public Set<String> getResourceDomains() {
         Set<String> set = Sets.newHashSet();
         File file1 = new File(this.resourcePackFile, "assets/");

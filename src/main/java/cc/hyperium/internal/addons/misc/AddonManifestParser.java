@@ -82,27 +82,19 @@ public class AddonManifestParser {
         return json.toString();
     }
 
-    private int copyInputStream(InputStream input, OutputStream output) {
-        long count = copyLarge(input, output, new byte[1024 * 4]);
-        if (count > Integer.MAX_VALUE) {
-            return -1;
-        } else {
-            return (int) count;
-        }
+    private void copyInputStream(InputStream input, OutputStream output) {
+        copyLarge(input, output, new byte[1024 * 4]);
     }
 
-    private long copyLarge(InputStream input, OutputStream outputStream, byte[] buffer) {
-        long count = 0;
+    private void copyLarge(InputStream input, OutputStream outputStream, byte[] buffer) {
         int n;
 
         try {
             while ((n = input.read(buffer)) != -1) {
                 outputStream.write(buffer, 0, n);
-                count += n;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return count;
     }
 }

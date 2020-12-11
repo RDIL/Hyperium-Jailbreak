@@ -7,7 +7,6 @@ import cc.hyperium.mods.sk1ercommon.Multithreading;
 import net.minecraft.launchwrapper.Launch;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.jar.JarFile;
@@ -27,10 +26,8 @@ public final class DefaultAddonLoader extends AddonLoaderStrategy {
             }
 
             final AddonManifest manifest = (new AddonManifestParser(jar)).getAddonManifest();
-            List<String> array = new ArrayList<>(
-                    Arrays.asList(
-                            "AutoFriend", "Custom Crosshair Addon", "Tab Toggle", "SidebarAddon", "BossbarAddon", "FortniteCompassMod", "Item Physic"
-                    )
+            final List<String> array = Arrays.asList(
+                    "AutoFriend", "Custom Crosshair Addon", "Tab Toggle", "SidebarAddon", "BossbarAddon", "FortniteCompassMod", "Item Physic"
             );
 
             if (!array.contains(manifest.getName()) && AddonBootstrap.INSTANCE.getPendingManifests().stream().noneMatch(manifest1 -> array.contains(manifest1.getName()))) {

@@ -1,17 +1,17 @@
 package cc.hyperium.internal.addons;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Represents an addon's manifest file.
  */
-@SuppressWarnings({ "unused", "rawtypes" })
+@SuppressWarnings("unused")
 public final class AddonManifest {
     private String name;
     private String version;
     private String mainClass;
-    private List mixinConfigs;
-    private String tweakerClass;
+    private List<Object> mixinConfigs;
 
     /**
      * Get the name of the addon.
@@ -73,17 +73,8 @@ public final class AddonManifest {
      *
      * @return The mixin configurations, or null if it isn't set.
      */
-    public List getMixinConfigs() {
+    public List<Object> getMixinConfigs() {
         return this.mixinConfigs;
-    }
-
-    /**
-     * This is experimental. Use at your own risk.
-     *
-     * @return The tweaker class, or null if it hasn't been set.
-     */
-    public String getTweakerClass() {
-        return this.tweakerClass;
     }
 
     /**
@@ -91,7 +82,7 @@ public final class AddonManifest {
      * @param dependencies A list.
      */
     @Deprecated
-    public final void setDependencies(List dependencies) {
+    public final void setDependencies(List<?> dependencies) {
     }
 
     /**
@@ -101,8 +92,8 @@ public final class AddonManifest {
      * @deprecated Addon dependencies no longer work.
      */
     @Deprecated
-    public final List getDependencies() {
-        return null;
+    public final List<?> getDependencies() {
+        return new ArrayList<>();
     }
 
     /**
@@ -111,16 +102,7 @@ public final class AddonManifest {
      *
      * @param mixinConfigs The mixin configurations.
      */
-    public void setMixinConfigs(List mixinConfigs) {
+    public void setMixinConfigs(List<Object> mixinConfigs) {
         this.mixinConfigs = mixinConfigs;
-    }
-
-    /**
-     * This is experimental. Use at your own risk.
-     *
-     * @param tweakerClass The tweaker class.
-     */
-    public void setTweakerClass(String tweakerClass) {
-        this.tweakerClass = tweakerClass;
     }
 }

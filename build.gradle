@@ -102,8 +102,10 @@ javadoc {
         encoding "UTF-8"
     }
     exclude "cc/hyperium/mixins/**"
+    // code developed externally
     exclude "me/semx11/**"
     exclude "net/minecraftforge/**"
+    exclude "net/hypixel/**"
 }
 
 jar {
