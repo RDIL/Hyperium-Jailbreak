@@ -89,7 +89,6 @@
     "renderer.IMixinItemRenderer",
     "renderer.IMixinRender",
     "renderer.IMixinRenderItem",
-    "renderer.IMixinRenderItem2",
     "renderer.IMixinRenderLivingEntity",
     "renderer.IMixinTextureManager",
     "renderer.IMixinThreadDownloadImageData",

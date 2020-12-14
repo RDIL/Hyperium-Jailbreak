@@ -19,7 +19,6 @@ package cc.hyperium.mixinsimp.renderer;
 
 import cc.hyperium.config.Settings;
 import cc.hyperium.mixins.renderer.IMixinRenderItem;
-import cc.hyperium.mixins.renderer.IMixinRenderItem2;
 import cc.hyperium.mods.glintcolorizer.Colors;
 import cc.hyperium.mods.sk1ercommon.Multithreading;
 import com.github.benmanes.caffeine.cache.Cache;
@@ -84,14 +83,14 @@ public class HyperiumRenderItem {
         float f = (float) (Minecraft.getSystemTime() % 3000L) / 3000.0F / 8.0F;
         GlStateManager.translate(f, 0.0F, 0.0F);
         GlStateManager.rotate(-50.0F, 0.0F, 0.0F, 1.0F);
-        ((IMixinRenderItem2) parent).callRenderModel(model, color);
+        ((IMixinRenderItem) parent).callRenderModel(model, color);
         GlStateManager.popMatrix();
         GlStateManager.pushMatrix();
         GlStateManager.scale(8.0F, 8.0F, 8.0F);
         float f1 = (float) (Minecraft.getSystemTime() % 4873L) / 4873.0F / 8.0F;
         GlStateManager.translate(-f1, 0.0F, 0.0F);
         GlStateManager.rotate(10.0F, 0.0F, 0.0F, 1.0F);
-        ((IMixinRenderItem2) parent).callRenderModel(model, color);
+        ((IMixinRenderItem) parent).callRenderModel(model, color);
         GlStateManager.popMatrix();
         GlStateManager.matrixMode(GL11.GL_MODELVIEW);
         GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);

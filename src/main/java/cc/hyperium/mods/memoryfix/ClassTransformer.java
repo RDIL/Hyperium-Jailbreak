@@ -1,3 +1,4 @@
+/*
 package cc.hyperium.mods.memoryfix;
 
 import net.minecraft.launchwrapper.IClassTransformer;
@@ -32,6 +33,7 @@ public class ClassTransformer implements IClassTransformer {
         }
     }
 
+    /*
     private byte[] transformMethods(byte[] bytes, BiConsumer<ClassNode, MethodNode> transformer) {
         ClassReader classReader = new ClassReader(bytes);
         ClassNode classNode = new ClassNode();
@@ -83,3 +85,4 @@ public class ClassTransformer implements IClassTransformer {
         }
     }
 }
+ */
