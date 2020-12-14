@@ -1,7 +1,6 @@
 package cc.hyperium.mixinsimp.gui;
 
 import cc.hyperium.config.Settings;
-import cc.hyperium.handlers.handlers.data.HypixelAPI;
 import cc.hyperium.mixins.gui.IMixinGuiPlayerTabOverlay;
 import cc.hyperium.utils.ChatColor;
 import cc.hyperium.utils.StaffUtils;
@@ -24,8 +23,6 @@ import net.minecraft.util.IChatComponent;
 import net.minecraft.world.WorldSettings;
 import java.awt.Color;
 import java.util.List;
-import java.util.UUID;
-import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class HyperiumGuiPlayerTabOverlay {
     private GuiPlayerTabOverlay parent;
@@ -65,21 +62,6 @@ public class HyperiumGuiPlayerTabOverlay {
         }
 
         list = list.subList(0, Math.min(list.size(), 80));
-
-        if (Settings.FRIENDS_FIRST_IN_TAB) {
-            ConcurrentLinkedDeque<NetworkPlayerInfo> friends = new ConcurrentLinkedDeque<>();
-            List<UUID> friendUUIDList = HypixelAPI.INSTANCE.getListOfCurrentUsersFriends();
-            for (NetworkPlayerInfo networkPlayerInfo : list) {
-                UUID id = networkPlayerInfo.getGameProfile().getId();
-                if (friendUUIDList.contains(id)) {
-                    friends.add(networkPlayerInfo);
-                }
-            }
-            list.removeAll(friends);
-            friends.addAll(list);
-            list.clear();
-            list.addAll(friends);
-        }
 
         int l3 = list.size();
         int i4 = l3;

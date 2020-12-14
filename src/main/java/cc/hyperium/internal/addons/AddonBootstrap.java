@@ -20,9 +20,9 @@ public class AddonBootstrap {
     public static final Logger LOGGER = LogManager.getLogger();
     private static final List<File> addonResourcePacks = new ArrayList<>();
 
-    private static final File MOD_DIRECTORY = new File("addons");
-    private static final DefaultAddonLoader loader = new DefaultAddonLoader();
-    private static final WorkspaceAddonLoader workspaceLoader = new WorkspaceAddonLoader();
+    private final File MOD_DIRECTORY = new File("addons");
+    private final DefaultAddonLoader loader = new DefaultAddonLoader();
+    private final WorkspaceAddonLoader workspaceLoader = new WorkspaceAddonLoader();
     private final List<File> jars = new ArrayList<>();
     private final Map<AddonManifest, File> addons = new HashMap<>();
     private final List<AddonManifest> pendingManifests = new ArrayList<>();
@@ -56,7 +56,7 @@ public class AddonBootstrap {
         Launch.classLoader.addClassLoaderExclusion("cc.hyperium.internal.addons.AddonBootstrap");
         Launch.classLoader.addClassLoaderExclusion("cc.hyperium.internal.addons.AddonManifest");
 
-        final AddonManifest workspaceAddon = loadWorkspaceAddon();
+        AddonManifest workspaceAddon = loadWorkspaceAddon();
 
         if (workspaceAddon != null) {
             LOGGER.info("WorkspaceAddonLoader check passed.");
@@ -78,12 +78,12 @@ public class AddonBootstrap {
         }
     }
 
-    private Map<AddonManifest, File> loadAddons(final AddonLoaderStrategy addonLoaderStrategy) {
+    private Map<AddonManifest, File> loadAddons(AddonLoaderStrategy loader) {
         final Map<AddonManifest, File> localAddons = new HashMap<>();
 
         for (File file : jars) {
             try {
-                final AddonManifest addon = addonLoaderStrategy.load(file);
+                final AddonManifest addon = loader.load(file);
                 LOGGER.info("Loading addon " + file.getName());
                 if (addon == null) {
                     continue;
@@ -95,6 +95,8 @@ public class AddonBootstrap {
             }
         }
 
+        pendingManifests.clear();
+
         return localAddons;
     }
 
@@ -102,21 +104,17 @@ public class AddonBootstrap {
         for (String config : globalMixinConfigs) {
             Mixins.addConfiguration(config);
         }
+
+        globalMixinConfigs.clear();
     }
 
-    private static AddonManifest loadWorkspaceAddon() {
+    private AddonManifest loadWorkspaceAddon() {
         try {
             return workspaceLoader.load(null);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-    }
-
-    public void cleanup() {
-        jars.clear();
-        globalMixinConfigs.clear();
-        pendingManifests.clear();
     }
 
     public List<File> getAddonResourcePacks() {

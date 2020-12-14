@@ -5,14 +5,10 @@ import cc.hyperium.event.EventBus;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.client.TickEvent;
 import cc.hyperium.mods.AbstractMod;
-import cc.hyperium.mods.glintcolorizer.Colors;
 import java.awt.Color;
 
 public class GlintColorizer extends AbstractMod {
-    private Colors colors = new Colors();
-    public Colors getColors() {
-        return colors;
-    }
+    private final Colors colors = new Colors();
 
     @Override
     public AbstractMod init() {

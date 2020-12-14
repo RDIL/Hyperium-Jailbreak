@@ -71,7 +71,6 @@ public class HyperiumTweaker implements ITweaker {
 
         Mixins.addConfiguration("mixins.hyperium.json");
         AddonBootstrap.INSTANCE.callAddonMixinBootstrap();
-        AddonBootstrap.INSTANCE.cleanup();
     }
 
     @Override

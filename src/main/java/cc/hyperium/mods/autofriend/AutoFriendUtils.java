@@ -44,11 +44,6 @@ public class AutoFriendUtils {
         return this;
     }
 
-    public AutoFriendUtils setBold(final boolean bold) {
-        this.style.setBold(bold);
-        return this;
-    }
-
     public AutoFriendUtils setClickEvent(final ClickEvent.Action action, final String value) {
         this.style.setChatClickEvent(new ClickEvent(action, value));
         return this;

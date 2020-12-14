@@ -123,19 +123,11 @@ public class Settings {
 
     @ConfigOpt public static int MAX_PARTICLES = 200;
 
-    @ConfigOpt @SelectorSetting(name = "hyperium.settings.maximumParticles", category = COSMETICS, items = {"200"})
-    public static String MAX_PARTICLE_STRING = "200";
-
-    @ConfigOpt public static double HEAD_SCALE_FACTOR = 1.0;
-
     @ConfigOpt @SelectorSetting(name = "hyperium.settings.headItemScale", category = ANIMATIONS, items = {"1.0", "1.25", "1.5", "1.75", "2.0", "2.5"})
     public static String HEAD_SCALE_FACTOR_STRING = "1.0";
 
     @ConfigOpt @ToggleSetting(category = MISC, name = "hyperium.settings.partyFriendPopup")
     public static boolean SHOW_INGAME_CONFIRMATION_POPUP = true;
-
-    @ConfigOpt @ToggleSetting(category = HYPIXEL, name = "hyperium.settings.friendsFirstInTab")
-    public static boolean FRIENDS_FIRST_IN_TAB = true;
 
     @ConfigOpt @ToggleSetting(category = GENERAL, name = "hyperium.settings.onlineIndicators")
     public static boolean SHOW_ONLINE_PLAYERS = true;
@@ -169,8 +161,6 @@ public class Settings {
 
     @ConfigOpt @SelectorSetting(name = "hyperium.settings.pauseStyle", items = {"HYPERIUM", "DEFAULT"}, category = MENUS)
     public static String PAUSE_STYLE = GuiStyle.HYPERIUM.name();
-
-    @ConfigOpt public static int MAX_WORLD_PARTICLES_INT = 10000;
 
     @ConfigOpt @SelectorSetting(name = "hyperium.settings.maxWorldParticlesString", category = IMPROVEMENTS, items = {"1000", "2000", "4000", "6000", "8000", "10000", "20000", "50000"})
     public static String MAX_WORLD_PARTICLES_STRING = "10000";
@@ -240,9 +230,6 @@ public class Settings {
 
     @ConfigOpt @ToggleSetting(name = "hyperium.settings.nvBlink", category = GENERAL)
     public static boolean NIGHT_VISION_BLINKING = false;
-
-    @ConfigOpt @ToggleSetting(name = "hyperium.settings.multiCpuParticles", category = IMPROVEMENTS)
-    public static boolean MULTI_CPU_PARTICLE_RENDERING = false;
 
     @ConfigOpt @ToggleSetting(name = "hyperium.settings.enchantTableBook", category = IMPROVEMENTS)
     public static boolean ENCHANT_TABLE_BOOK = true;

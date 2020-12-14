@@ -3,7 +3,7 @@ import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.network.chat.ChatEvent;
 
 public class ChatCanceller {
-    private String whatToListenFor;
+    private final String whatToListenFor;
 
     public ChatCanceller(String whatToListenFor) {
         this.whatToListenFor = whatToListenFor;
@@ -11,6 +11,8 @@ public class ChatCanceller {
 
     @InvokeEvent
     public void onChat(ChatEvent event) {
-        if(event.getChat().getUnformattedText().contains(this.whatToListenFor)) event.setCancelled(true);
+        if (event.getChat().getUnformattedText().contains(this.whatToListenFor)) {
+            event.setCancelled(true);
+        }
     }
 }

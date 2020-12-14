@@ -148,7 +148,21 @@ public class DefaultConfig {
         }
     }
 
+    /**
+     * Get the config as a JSON object.
+     *
+     * @return The config JSON.
+     */
     public JsonObject getConfig() {
         return config;
+    }
+
+    /**
+     * Get the config objects, meant for use internally only!
+     *
+     * @return The config objects.
+     */
+    public List<Object> getConfigObjects() {
+        return configObjects;
     }
 }

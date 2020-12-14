@@ -91,7 +91,7 @@ public class Hyperium {
             cosmetics = new HyperiumCosmetics();
 
             if (!Settings.FPS && Settings.THANK_WATCHDOG) {
-                new CommonChatResponder("removed from your game for hacking", "Thanks Watchdog!", true);
+                EventBus.INSTANCE.register(new CommonChatResponder("removed from your game for hacking", "Thanks Watchdog!", true));
             }
 
             // Creates the accounts dir
@@ -151,7 +151,6 @@ public class Hyperium {
         hyperiumCommandHandler.registerCommand(new CommandDebug());
         hyperiumCommandHandler.registerCommand(new CommandCoords());
         hyperiumCommandHandler.registerCommand(new CommandLogs());
-        hyperiumCommandHandler.registerCommand(new CommandStats());
         hyperiumCommandHandler.registerCommand(new CommandParty());
         hyperiumCommandHandler.registerCommand(new CommandGarbageCollect());
         hyperiumCommandHandler.registerCommand(new CommandMessage());

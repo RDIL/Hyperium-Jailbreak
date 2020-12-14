@@ -3,6 +3,7 @@ package cc.hyperium.handlers.handlers.hud;
 import com.google.common.base.Functions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.util.ResourceLocation;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -40,6 +41,10 @@ public class TabCompletionUtil {
         if (player == null) {
             return playerNames;
         }
-        return player.sendQueue.getPlayerInfoMap().stream().map(netPlayerInfo -> netPlayerInfo.getGameProfile().getName()).collect(Collectors.toList());
+        final List<String> names = new ArrayList<>();
+        for (NetworkPlayerInfo networkPlayerInfo : player.sendQueue.getPlayerInfoMap()) {
+            names.add(networkPlayerInfo.getGameProfile().getName());
+        }
+        return names;
     }
 }

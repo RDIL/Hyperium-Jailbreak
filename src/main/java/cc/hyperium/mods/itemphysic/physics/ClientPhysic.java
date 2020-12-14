@@ -24,8 +24,7 @@ public class ClientPhysic {
         return TextureMap.locationBlocksTexture;
     }
 
-    public static void doRender(Entity entity, double x, double y,
-                                double z, float entityYaw, float partialTicks) {
+    public static void doRender(Entity entity, double x, double y, double z) {
         rotation = (double) (System.nanoTime() - tick) / 2500000 * ItemDummyContainer.rotateSpeed;
         if (!mc.inGameHasFocus) {
             rotation = 0;

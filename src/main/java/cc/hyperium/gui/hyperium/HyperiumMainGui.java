@@ -1,11 +1,9 @@
 package cc.hyperium.gui.hyperium;
 
 import cc.hyperium.Hyperium;
-import cc.hyperium.config.Settings;
 import cc.hyperium.gui.HyperiumGui;
 import cc.hyperium.gui.hyperium.components.AbstractTab;
 import cc.hyperium.gui.hyperium.components.SettingsTab;
-import cc.hyperium.handlers.handlers.SettingsHandler;
 import cc.hyperium.mixinsimp.client.GlStateModifier;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
 import cc.hyperium.utils.HyperiumFontRenderer;
@@ -35,7 +33,7 @@ public class HyperiumMainGui extends HyperiumGui {
     private int initialGuiScale;
     private final HashMap<Field, Supplier<String[]>> customStates = new HashMap<>();
     private final HashMap<Field, List<Consumer<Object>>> callbacks = new HashMap<>();
-    private List<Object> settingsObjects = new ArrayList<>();
+    private final List<Object> settingsObjects = Hyperium.CONFIG.getConfigObjects();
     private final HyperiumFontRenderer font;
     private final HyperiumFontRenderer title;
     private final List<AbstractTab> tabs;
@@ -45,23 +43,6 @@ public class HyperiumMainGui extends HyperiumGui {
     private HyperiumMainGui() {
         font = new HyperiumFontRenderer("OpenSans", 16.0F, 0, 1.0F);
         title = new HyperiumFontRenderer("OpenSans", 30.0F, 0, 1.0F);
-        settingsObjects.add(Settings.INSTANCE);
-        settingsObjects.add(Hyperium.INSTANCE.getModIntegration().getAutotip());
-        settingsObjects.add(Hyperium.INSTANCE.getModIntegration().getAutoGG().getConfig());
-        settingsObjects.add(Hyperium.INSTANCE.getModIntegration().getLevelhead().getConfig());
-        settingsObjects.add(Hyperium.INSTANCE.getModIntegration().getGlintcolorizer().getColors());
-        SettingsHandler settingsHandler = Hyperium.INSTANCE.getHandlers().getSettingsHandler();
-        settingsObjects.addAll(settingsHandler.getSettingsObjects());
-        final HashMap<Field, List<Consumer<Object>>> call1 = settingsHandler.getcallbacks();
-        for (Field field : call1.keySet()) {
-            callbacks.computeIfAbsent(field, tmp -> new ArrayList<>()).addAll(call1.get(field));
-        }
-
-        final HashMap<Field, Supplier<String[]>> customStates = settingsHandler.getCustomStates();
-        for (Field field : customStates.keySet()) {
-            this.customStates.put(field, customStates.get(field));
-        }
-
 
         tabs = Collections.singletonList(new SettingsTab(this));
         scollMultiplier = 2;

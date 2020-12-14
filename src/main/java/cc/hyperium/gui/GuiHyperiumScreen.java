@@ -20,8 +20,8 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 public class GuiHyperiumScreen extends GuiScreen {
-    private static ResourceLocation background = new ResourceLocation("textures/material/backgrounds/1.png");
-    public static HyperiumFontRenderer fr = new HyperiumFontRenderer("OpenSans", 16.0F, 0, 1.0F);
+    private static final ResourceLocation background = new ResourceLocation("textures/material/backgrounds/1.png");
+    public static HyperiumFontRenderer fr = new HyperiumFontRenderer("OpenSans", 1, 16);
     static DynamicTexture viewportTexture;
     private static float swing;
     GuiButton hypixelButton;
@@ -122,7 +122,7 @@ public class GuiHyperiumScreen extends GuiScreen {
 
         if (!Hyperium.INSTANCE.isDevEnv()) GuiPlayerRenderer.renderPlayerWithRotation(width - 118, -4, val);
         ScissorState.endScissor();
-        fr.drawString(Hyperium.INSTANCE.isDevEnv() ? "HyperiumMinecraft" : Minecraft.getMinecraft().thePlayer.getName(), width - 152, 39, 0xFFFFFF);
+        Minecraft.getMinecraft().fontRendererObj.drawString(Hyperium.INSTANCE.isDevEnv() ? "HyperiumMinecraft" : Minecraft.getMinecraft().thePlayer.getName(), width - 152, 39, 0xFFFFFF);
 
         GlStateManager.popMatrix();
     }

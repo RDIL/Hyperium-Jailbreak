@@ -16,6 +16,7 @@
  */
 
 package cc.hyperium.commands;
+
 import cc.hyperium.Hyperium;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.network.chat.SendChatMessageEvent;
@@ -88,22 +89,26 @@ public class HyperiumCommandHandler {
 
         // Loop through our commands, if the identifier matches the expected command, active the base
         String[] finalArgs = args;
-        return this.commands.entrySet().stream().filter(e -> commandName.equals(e.getKey()) && !e.getValue().tabOnly()).findFirst().map(e -> {
-            final BaseCommand baseCommand = e.getValue();
+        for (Map.Entry<String, BaseCommand> e : this.commands.entrySet()) {
+            if (commandName.equals(e.getKey()) && !e.getValue().tabOnly()) {
+                final BaseCommand baseCommand = e.getValue();
 
-            try {
-                baseCommand.onExecute(finalArgs);
-            } catch (CommandUsageException usageEx) {
-                // Throw a UsageException to trigger
-                this.chatHandler.sendMessage(ChatColor.RED + baseCommand.getUsage(), false);
-            } catch (Exception exception) {
-                exception.printStackTrace();
-                this.chatHandler.sendMessage(ChatColor.RED + "An internal error occurred whilst performing this command", false);
-                return false;
+                try {
+                    baseCommand.onExecute(finalArgs);
+                } catch (CommandUsageException usageEx) {
+                    // Throw a UsageException to trigger
+                    this.chatHandler.sendMessage(ChatColor.RED + "Incorrect Usage! Proper Usage: " + baseCommand.getUsage(), false);
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                    this.chatHandler.sendMessage(ChatColor.RED + "An internal error occurred whilst performing this command", false);
+                    return false;
+                }
+
+                return true;
             }
+        }
 
-            return true;
-        }).orElse(false);
+        return false;
     }
 
     public void registerCommand(BaseCommand command) {

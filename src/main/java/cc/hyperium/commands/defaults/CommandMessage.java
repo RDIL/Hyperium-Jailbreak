@@ -16,7 +16,7 @@ public class CommandMessage implements BaseCommand {
 
     @Override
     public List<String> getCommandAliases() {
-        return Arrays.asList("msg", "tell", "w", "message");
+        return Arrays.asList("msg", "tell", "t", "w", "message");
     }
 
     @Override

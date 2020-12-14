@@ -45,10 +45,10 @@ public class CosmeticHat extends AbstractCosmetic {
 
     @InvokeEvent
     public void onPlayerRender(RenderPlayerEvent e) {
+        if (!Settings.HAT_TYPE.equals(this.id)) return;
+
         Minecraft mc = Minecraft.getMinecraft();
         AbstractClientPlayer player = e.getEntity();
-
-        if (!Settings.HAT_TYPE.equals(this.id)) return;
 
         if (player.getUniqueID() == Minecraft.getMinecraft().thePlayer.getUniqueID() && !player.isInvisible()) {
             GlStateManager.pushMatrix();

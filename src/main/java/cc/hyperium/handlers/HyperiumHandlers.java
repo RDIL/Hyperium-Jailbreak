@@ -52,14 +52,12 @@ public class HyperiumHandlers {
     private final ScoreboardRenderer scoreboardRenderer;
     private final OtherConfigOptions configOptions;
     private final PerspectiveModifierHandler perspectiveHandler;
-    private final SettingsHandler settingsHandler;
     private final MemoryHelper memoryHelper;
 
     /**
      * Creates a new instance of the class, and initializes/registers all the handlers.
      */
     public HyperiumHandlers() {
-        settingsHandler = new SettingsHandler();
         chatHandlers = new ArrayList<>();
         register(configOptions = new OtherConfigOptions());
         register(FontRendererData.INSTANCE);
@@ -88,10 +86,6 @@ public class HyperiumHandlers {
 
     public HyperiumCommandHandler getCommandHandler() {
         return commandHandler;
-    }
-
-    public SettingsHandler getSettingsHandler() {
-        return settingsHandler;
     }
 
     private void registerChatHandler(HyperiumChatHandler chatHandler) {

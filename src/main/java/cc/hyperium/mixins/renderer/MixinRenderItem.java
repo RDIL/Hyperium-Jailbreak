@@ -17,6 +17,7 @@
 
 package cc.hyperium.mixins.renderer;
 
+import cc.hyperium.config.Settings;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.event.render.ItemGetDurabilityEvent;
 import cc.hyperium.mixinsimp.renderer.HyperiumRenderItem;
@@ -31,33 +32,50 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(RenderItem.class)
 public abstract class MixinRenderItem implements IResourceManagerReloadListener {
-    private HyperiumRenderItem hyperiumRenderItem = new HyperiumRenderItem((RenderItem) (Object) this);
+    private final HyperiumRenderItem hyperiumRenderItem = new HyperiumRenderItem((RenderItem) (Object) this);
 
-    /**
-     * @author hyperium
-     */
-    @Overwrite
-    public void renderItem(ItemStack stack, IBakedModel model) {
-        hyperiumRenderItem.renderItem(stack, model, false);
+    private boolean wasJustRenderedAsPotion = false;
+    private boolean isInv = false;
+
+    @Inject(method = "renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/resources/model/IBakedModel;)V", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lnet/minecraft/client/renderer/tileentity/TileEntityItemStackRenderer;renderByItem(Lnet/minecraft/item/ItemStack;)V"))
+    private void onRenderItem1(ItemStack stack, IBakedModel model, CallbackInfo ci) {
+        hyperiumRenderItem.callHeadScale(stack, isInv, Double.parseDouble(Settings.HEAD_SCALE_FACTOR_STRING));
     }
 
-    /**
-     * @author hyperium
-     */
-    @Overwrite
-    private void renderModel(IBakedModel model, int color, ItemStack stack) {
-        hyperiumRenderItem.renderModel(model, color, stack);
+    @Inject(method = "renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/resources/model/IBakedModel;)V", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lnet/minecraft/client/renderer/entity/RenderItem;renderModel(Lnet/minecraft/client/resources/model/IBakedModel;Lnet/minecraft/item/ItemStack;)V"))
+    private void onRenderItem2(ItemStack stack, IBakedModel model, CallbackInfo ci) {
+        wasJustRenderedAsPotion = hyperiumRenderItem.renderShinyPot(stack, model, isInv);
+        hyperiumRenderItem.callHeadScale(stack, isInv, Double.parseDouble(Settings.HEAD_SCALE_FACTOR_STRING));
     }
 
-    /**
-     * @author hyperium
-     */
-    @Overwrite
-    public void renderItemIntoGUI(ItemStack stack, int x, int y) {
-        hyperiumRenderItem.renderItemIntoGUI(stack, x, y);
+    @Inject(method = "renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/resources/model/IBakedModel;)V", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lnet/minecraft/client/renderer/GlStateManager;popMatrix()V"))
+    private void onRenderItem3(ItemStack stack, IBakedModel model, CallbackInfo ci) {
+        hyperiumRenderItem.callHeadScale(stack, isInv, 1.0 / Double.parseDouble(Settings.HEAD_SCALE_FACTOR_STRING));
+    }
+
+    @Inject(method = "renderEffect", at = @At("HEAD"), cancellable = true)
+    private void onRenderEffect(CallbackInfo ci) {
+        if (wasJustRenderedAsPotion) {
+            ci.cancel();
+        }
+
+        wasJustRenderedAsPotion = false;
+    }
+
+    @Inject(method = "renderItemIntoGUI", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lnet/minecraft/client/renderer/entity/RenderItem;renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/resources/model/IBakedModel;)V"))
+    private void onRenderItemIntoGUI(CallbackInfo ci) {
+        isInv = true;
+    }
+
+    @Inject(method = "renderItemIntoGUI", at = @At(value = "INVOKE", shift = At.Shift.AFTER, target = "Lnet/minecraft/client/renderer/entity/RenderItem;renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/resources/model/IBakedModel;)V"))
+    private void onRenderItemIntoGUIAfter(CallbackInfo ci) {
+        isInv = false;
     }
 
     private static double getDurabilityForDisplay(ItemStack stack) {

@@ -17,27 +17,12 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import org.lwjgl.opengl.GL11;
-import java.awt.Color;
 
 public class HyperiumRender<T extends Entity> {
     private Render<T> parent;
 
     public HyperiumRender(Render<T> parent) {
         this.parent = parent;
-    }
-
-    private static void drawChromaWaveString(String text, int xIn, int y) {
-        FontRenderer renderer = Minecraft.getMinecraft().fontRendererObj;
-        int x = xIn;
-        for (char c : text.toCharArray()) {
-            long dif = (x * 10) - (y * 10);
-            long l = System.currentTimeMillis() - dif;
-            float ff = 2000.0F;
-            int i = Color.HSBtoRGB((float) (l % (int) ff) / ff, 0.8F, 0.8F);
-            String tmp = String.valueOf(c);
-            renderer.drawString(tmp, (float) ((double) x), (float) ((double) y), i, false);
-            x += (double) renderer.getCharWidth(c);
-        }
     }
 
     public void renderOffsetLivingLabel(T entityIn, double x, double y, double z, String str) {
