@@ -1,12 +1,11 @@
 package cc.hyperium.mixins.gui;
 
 import cc.hyperium.config.Settings;
-import me.semx11.autotip.universal.ReflectionUtil;
+import cc.hyperium.mixins.IMixinMinecraft;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiOverlayDebug;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.chunk.RenderChunk;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.BlockPos;
@@ -15,58 +14,38 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.chunk.Chunk;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
-
-import java.lang.reflect.Field;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(GuiOverlayDebug.class)
 public abstract class MixinGuiOverlayDebug {
-    @Shadow
-    @Final
-    private Minecraft mc;
+    @Shadow @Final private Minecraft mc;
 
-    @Shadow
-    protected abstract void renderDebugInfoLeft();
-
-    @Shadow
-    protected abstract void renderDebugInfoRight(ScaledResolution p_175239_1_);
-
-    @Shadow
-    protected abstract void renderLagometer();
-
-    /**
-     * @author hyperium
-     */
-    @Overwrite
-    public void renderDebugInfo(ScaledResolution scaledResolutionIn) {
-        this.mc.mcProfiler.startSection("debug");
-        GlStateManager.pushMatrix();
+    @Redirect(method = "renderDebugInfo", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiOverlayDebug;renderDebugInfoLeft()V"))
+    public void renderDebugInfoLeft(GuiOverlayDebug guiOverlayDebug) {
         if (Settings.OLD_DEBUG) {
-            this.renderOldDebugInfoLeft(scaledResolutionIn);
-            this.renderOldDebugInfoRight(scaledResolutionIn);
-            GlStateManager.popMatrix();
-            this.mc.mcProfiler.endSection();
+            this.renderOldDebugInfoLeft();
             return;
         }
-        this.renderDebugInfoLeft();
-        this.renderDebugInfoRight(scaledResolutionIn);
-        GlStateManager.popMatrix();
-        if (this.mc.gameSettings.showLagometer) {
-            this.renderLagometer();
-        }
-        this.mc.mcProfiler.endSection();
+
+        ((IMixinGuiOverlayDebug) guiOverlayDebug).callRenderDebugInfoLeft();
     }
 
-    protected void renderOldDebugInfoLeft(ScaledResolution scaledResolution) {
-        FontRenderer fontRendererObj = this.mc.fontRendererObj;
-        Field debugFPSField = ReflectionUtil.findField(Minecraft.class, "debugFPS", "field_71470_ab", "ao");
-        debugFPSField.setAccessible(true);
-        try {
-            fontRendererObj.drawStringWithShadow("HyperiumJailbreak (" + debugFPSField.get(null) + " fps, " + RenderChunk.renderChunksUpdated + " chunk updates)", 2, 2, 16777215);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
+    @Redirect(method = "renderDebugInfo", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiOverlayDebug;renderDebugInfoRight(Lnet/minecraft/client/gui/ScaledResolution;)V"))
+    public void renderDebugInfoRight(GuiOverlayDebug guiOverlayDebug, ScaledResolution sr) {
+        if (Settings.OLD_DEBUG) {
+            this.renderOldDebugInfoRight(sr);
+            return;
         }
+
+        ((IMixinGuiOverlayDebug) guiOverlayDebug).callRenderDebugInfoRight(sr);
+    }
+
+    protected void renderOldDebugInfoLeft() {
+        FontRenderer fontRendererObj = this.mc.fontRendererObj;
+        ((IMixinMinecraft) this.mc).getDebugFPS();
+        fontRendererObj.drawStringWithShadow("HyperiumJailbreak (" + ((IMixinMinecraft) this.mc).getDebugFPS() + " fps, " + RenderChunk.renderChunksUpdated + " chunk updates)", 2, 2, 16777215);
         fontRendererObj.drawStringWithShadow(this.mc.renderGlobal.getDebugInfoRenders(), 2, 12, 16777215);
         fontRendererObj.drawStringWithShadow(this.mc.renderGlobal.getDebugInfoEntities(), 2, 22, 16777215);
         fontRendererObj.drawStringWithShadow("P: " + this.mc.effectRenderer.getStatistics() + ". T: " + this.mc.theWorld.getDebugLoadedEntities(), 2, 32, 16777215);

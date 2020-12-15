@@ -16,6 +16,8 @@
  */
 
 package cc.hyperium.gui;
+
+import cc.hyperium.Hyperium;
 import cc.hyperium.config.Settings;
 import cc.hyperium.event.network.server.hypixel.HypixelFriendRequestEvent;
 import cc.hyperium.event.network.server.hypixel.HypixelPartyInviteEvent;
@@ -32,6 +34,13 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.function.Consumer;
 
+/**
+ * The confirmation popup is an on-screen popup that allows you to easily accept friend and party requests.
+ * For a more dulled-down version that only displays information, see {@link com.hyperiumjailbreak.Popup}.
+ *
+ * @see com.hyperiumjailbreak.Popup
+ * @see Hyperium#getConfirmation()
+ */
 public class ConfirmationPopup {
     private final Queue<Confirmation> confirmations = new LinkedList<>();
     private Confirmation currentConfirmation;
@@ -66,12 +75,18 @@ public class ConfirmationPopup {
             currentConfirmation = confirmations.poll();
             return;
         }
-        if (currentConfirmation.render()) currentConfirmation = confirmations.poll();
+
+        if (currentConfirmation.render()) {
+            currentConfirmation = confirmations.poll();
+        }
     }
 
     @InvokeEvent
     public void onKeypress(KeypressEvent e) {
-        if (currentConfirmation == null || Minecraft.getMinecraft().currentScreen != null) return;
+        if (currentConfirmation == null || Minecraft.getMinecraft().currentScreen != null) {
+            return;
+        }
+
         if (e.getKey() == Keyboard.KEY_Y) {
             currentConfirmation.callback.accept(true);
         } else if (e.getKey() == Keyboard.KEY_N) {
@@ -79,10 +94,19 @@ public class ConfirmationPopup {
         }
     }
 
+    /**
+     * Queues a confirmation to be displayed on screen.
+     *
+     * @param text The popup's text.
+     * @param callback The key-press callback. The value will be {@code true} if the user pressed {@code Y}, or @{code false} if they pressed {@code N}.
+     * @param seconds The number of seconds to show the popup for.
+     * @return The confirmation instance.
+     */
     public Confirmation displayConfirmation(String text, Consumer<Boolean> callback, int seconds) {
         Confirmation c = new Confirmation(seconds * 60, seconds * 60, text, callback);
-        if (Settings.SHOW_INGAME_CONFIRMATION_POPUP)
+        if (Settings.SHOW_INGAME_CONFIRMATION_POPUP) {
             confirmations.add(c);
+        }
         return c;
     }
 
@@ -90,7 +114,10 @@ public class ConfirmationPopup {
         this.acceptFrom = acceptFrom;
     }
 
-    class Confirmation {
+    /**
+     * An actual confirmation.
+     */
+    public final class Confirmation {
         private final String text;
         private final Consumer<Boolean> callback;
         private final long upperThreshold;
@@ -99,7 +126,7 @@ public class ConfirmationPopup {
         private float percentComplete;
         private long systemTime;
 
-        Confirmation(long framesLeft, long frames, String text, Consumer<Boolean> callback) {
+        public Confirmation(long framesLeft, long frames, String text, Consumer<Boolean> callback) {
             this.framesLeft = framesLeft;
             this.text = text;
             this.callback = callback;
@@ -111,10 +138,16 @@ public class ConfirmationPopup {
             this.systemTime = Minecraft.getSystemTime();
         }
 
+        /**
+         * Renders the confirmation on screen.
+         *
+         * @return If the popup is done showing or should not be shown any more.
+         */
         public boolean render() {
             if (framesLeft <= 0) {
                 return true;
             }
+
             if (text.equalsIgnoreCase("Party request from " + acceptFrom)) {
                 callback.accept(true);
                 return true;

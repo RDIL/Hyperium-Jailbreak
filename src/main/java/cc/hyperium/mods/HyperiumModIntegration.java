@@ -16,7 +16,10 @@
  */
 
 package cc.hyperium.mods;
-import cc.hyperium.config.Settings;
+
+import cc.hyperium.addons.bossbar.BossbarAddon;
+import cc.hyperium.addons.customcrosshair.CustomCrosshairAddon;
+import cc.hyperium.addons.sidebar.SidebarAddon;
 import cc.hyperium.mods.autofriend.AutofriendMod;
 import cc.hyperium.mods.autogg.AutoGG;
 import cc.hyperium.mods.autotext.AutoText;
@@ -43,6 +46,9 @@ public class HyperiumModIntegration {
     private final AutoGG autogg;
     private final GlintColorizer gc;
     private final AutoText autoText;
+    private final CustomCrosshairAddon customCrosshairAddon;
+    private final SidebarAddon sidebarAddon;
+    private final BossbarAddon bossbarAddon;
 
     public HyperiumModIntegration() {
         this.chromaHUD = ((ChromaHUD) new ChromaHUD().init());
@@ -65,12 +71,15 @@ public class HyperiumModIntegration {
         this.gc.init();
         this.keystrokesMod.init();
         this.timeChanger.init();
-        
-        if (!Settings.FPS) {
-            autofriend.init();
-            fncompass.init();
-            blockOverlay.init();
-        }
+        autofriend.init();
+        fncompass.init();
+        blockOverlay.init();
+        this.customCrosshairAddon = new CustomCrosshairAddon();
+        this.sidebarAddon = new SidebarAddon();
+        this.bossbarAddon = new BossbarAddon();
+        this.customCrosshairAddon.init();
+        this.sidebarAddon.init();
+        this.bossbarAddon.init();
     }
 
     public KeystrokesMod getKeystrokesMod() {
@@ -107,5 +116,17 @@ public class HyperiumModIntegration {
 
     public AutoText getAutoText() {
         return autoText;
+    }
+
+    public CustomCrosshairAddon getCustomCrosshairAddon() {
+        return customCrosshairAddon;
+    }
+
+    public SidebarAddon getSidebarAddon() {
+        return sidebarAddon;
+    }
+
+    public BossbarAddon getBossbarAddon() {
+        return bossbarAddon;
     }
 }

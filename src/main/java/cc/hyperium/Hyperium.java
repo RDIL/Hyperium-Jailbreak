@@ -53,21 +53,55 @@ import com.hyperiumjailbreak.Popup;
 import com.hyperiumjailbreak.BackendHandler;
 import java.io.File;
 
+/**
+ * The client's main class.
+ *
+ * @see Hyperium#INSTANCE
+ */
 public class Hyperium {
+    /**
+     * The client's mod-id String (for internal use only).
+     */
     public static final String modid = "Hyperium";
+    /**
+     * The client's version.
+     */
     public static final String version = "4.2.0";
+    /**
+     * The client's version as an integer.
+     *
+     * @see cc.hyperium.utils.VersionUtil
+     */
+    public static final int HYPERIUMJB_VERSION = 420;
+    /**
+     * The class instance.
+     */
     public static final Hyperium INSTANCE = new Hyperium();
+    /**
+     * The global logger. Please use a per-class logger instead.
+     */
     public static final Logger LOGGER = LogManager.getLogger(modid);
+    /**
+     * The folder for all the client's files.
+     */
     public static final File folder = new File("hyperium");
+    /**
+     * The configuration system.
+     *
+     * @see DefaultConfig#register(Object)
+     * @see DefaultConfig#save()
+     */
     public static final DefaultConfig CONFIG = new DefaultConfig(new File(folder, "CONFIG.json"));
     private final ConfirmationPopup confirmation = new ConfirmationPopup();
     private HyperiumCosmetics cosmetics;
     private HyperiumHandlers handlers;
     private HyperiumModIntegration modIntegration;
     private boolean optifineInstalled = false;
+    /**
+     * If the client is running in the development environment.
+     */
     public boolean isDevEnv = false;
     private boolean firstLaunch = false;
-    private InternalAddons intAddons;
     private final BackendHandler bh = new BackendHandler();
 
     @InvokeEvent(priority = Priority.HIGH)
@@ -119,7 +153,6 @@ public class Hyperium {
 
             SplashProgress.setProgress(9, "Loading Mods");
             modIntegration = new HyperiumModIntegration();
-            this.intAddons = new InternalAddons();
 
             StaffUtils.clearCache();
 
@@ -170,34 +203,79 @@ public class Hyperium {
         CONFIG.save();
     }
 
+    /**
+     * Returns the client's confirmation popup utility instance.
+     *
+     * @return The confirmation popup instance.
+     */
     public ConfirmationPopup getConfirmation() {
         return confirmation;
     }
 
+    /**
+     * Returns the client's cosmetic manager instance.
+     *
+     * @return The cosmetic manager instance.
+     * @see HyperiumCosmetics
+     */
     public HyperiumCosmetics getCosmetics() {
         return cosmetics;
     }
 
+    /**
+     * Returns if this is the first launch of the client.
+     *
+     * @return If this is the first launch.
+     */
     public boolean isFirstLaunch() {
         return firstLaunch;
     }
 
+    /**
+     * Returns if OptiFine is currently in the environment.
+     *
+     * @return If OptiFine is present.
+     */
     public boolean isOptifineInstalled() {
         return optifineInstalled;
     }
 
+    /**
+     * Returns if the client is running in the development environment.
+     *
+     * @return If the client is running in the development environment.
+     */
     public boolean isDevEnv() {
         return this.isDevEnv;
     }
 
+    /**
+     * Returns the globally usable {@link HyperiumHandlers} instance.
+     *
+     * @return The {@link HyperiumHandlers} instance.
+     * @see HyperiumHandlers
+     */
     public HyperiumHandlers getHandlers() {
         return handlers;
     }
 
+    /**
+     * Returns the client's internal addons manager.
+     *
+     * @deprecated This functionality has been moved to {@link HyperiumModIntegration}.
+     * @return The client's internal addons manager.
+     */
+    @Deprecated
     public InternalAddons getInternalAddons() {
-        return intAddons;
+        return new InternalAddons();
     }
 
+    /**
+     * Returns the client's internal mod integration manager.
+     *
+     * @return The client's internal mod integration manager.
+     * @see HyperiumModIntegration
+     */
     public HyperiumModIntegration getModIntegration() {
         return modIntegration;
     }

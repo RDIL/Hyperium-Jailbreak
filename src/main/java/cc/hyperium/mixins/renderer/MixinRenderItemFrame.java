@@ -1,4 +1,4 @@
-package cc.hyperium.mixins;
+package cc.hyperium.mixins.renderer;
 
 import cc.hyperium.config.Settings;
 import net.minecraft.client.renderer.tileentity.RenderItemFrame;

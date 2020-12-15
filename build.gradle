@@ -100,6 +100,7 @@ processResources {
 javadoc {
     options {
         encoding "UTF-8"
+        addStringOption "link", "https://docs.oracle.com/javase/8/docs/api"
     }
     exclude "cc/hyperium/mixins/**"
     // code developed externally

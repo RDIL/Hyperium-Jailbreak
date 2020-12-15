@@ -12,6 +12,9 @@ import org.lwjgl.opengl.GL11;
 
 /**
  * A hat cosmetic.
+ * This is meant to be used as a bit of an inline-builder,
+ * so you will want to call {@link CosmeticHat#setModel(ModelBase, ResourceLocation)}
+ * right after creating a new instance of it, which will in turn return the hat instance for chaining.
  *
  * @see AbstractCosmetic
  */
