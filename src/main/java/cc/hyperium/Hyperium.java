@@ -21,7 +21,6 @@ import cc.hyperium.event.client.InitializationEvent;
 import cc.hyperium.event.client.PreInitializationEvent;
 import cc.hyperium.event.client.GameShutDownEvent;
 import cc.hyperium.event.Priority;
-import cc.hyperium.event.network.server.ServerJoinEvent;
 import cc.hyperium.event.InvokeEvent;
 import cc.hyperium.event.EventBus;
 import cc.hyperium.gui.ConfirmationPopup;
@@ -49,8 +48,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.Display;
 import com.hyperiumjailbreak.CommonChatResponder;
-import com.hyperiumjailbreak.Popup;
-import com.hyperiumjailbreak.BackendHandler;
 import java.io.File;
 
 /**
@@ -102,7 +99,6 @@ public class Hyperium {
      */
     public boolean isDevEnv = false;
     private boolean firstLaunch = false;
-    private final BackendHandler bh = new BackendHandler();
 
     @InvokeEvent(priority = Priority.HIGH)
     public void preInit(PreInitializationEvent event) {
@@ -170,8 +166,6 @@ public class Hyperium {
             } catch (ClassNotFoundException e) {
                 optifineInstalled = false;
             }
-            // update player count
-            this.bh.apiRequest("join");
         } catch (Throwable t) {
             Minecraft.getMinecraft().crashed(new CrashReport("Startup Failure", t));
         }
@@ -194,9 +188,6 @@ public class Hyperium {
 
     private void shutdown() {
         CONFIG.save();
-
-        // Remove from online players
-        this.bh.apiRequest("leave");
 
         // Tell the modules the game is shutting down
         EventBus.INSTANCE.post(new GameShutDownEvent());
@@ -278,31 +269,5 @@ public class Hyperium {
      */
     public HyperiumModIntegration getModIntegration() {
         return modIntegration;
-    }
-
-    private static void noop() {
-        try {
-            Thread.sleep(5);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @InvokeEvent
-    public void worldSwap(ServerJoinEvent event) {
-        Multithreading.runAsync(() -> {
-            while (Minecraft.getMinecraft().thePlayer == null) {
-                noop();
-            }
-            if (Hyperium.INSTANCE.bh.apiUpdateCheck()) {
-                try {
-                    Thread.sleep(5000);
-                    new Popup("Update Available", "Check chat for details.").startShowing();
-                    getHandlers().getGeneralChatHandler().sendMessage(ChatColor.RED + "An update for the client is now available at " + ChatColor.WHITE + "https://rdil.rocks/update", true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
     }
 }

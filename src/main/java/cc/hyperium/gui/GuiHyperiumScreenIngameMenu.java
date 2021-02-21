@@ -3,16 +3,8 @@ package cc.hyperium.gui;
 import cc.hyperium.Hyperium;
 import cc.hyperium.gui.hyperium.HyperiumMainGui;
 import cc.hyperium.gui.keybinds.GuiKeybinds;
-import cc.hyperium.installer.utils.http.HttpEntity;
-import cc.hyperium.installer.utils.http.HttpResponse;
-import cc.hyperium.installer.utils.http.impl.client.HttpClients;
-import cc.hyperium.mods.sk1ercommon.Multithreading;
 import cc.hyperium.mods.sk1ercommon.ResolutionUtil;
 import cc.hyperium.utils.InstallerUtils;
-import cc.hyperium.utils.JsonHolder;
-import com.google.gson.JsonParser;
-import com.mojang.realmsclient.gui.ChatFormatting;
-import org.apache.commons.io.IOUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiMainMenu;
@@ -26,15 +18,9 @@ import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.server.MinecraftServer;
-import com.hyperiumjailbreak.BackendHandler;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringWriter;
 
 public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
-    private static JsonHolder data = new JsonHolder();
-    private long lastUpdate = 0L;
-
     @Override
     public void initGui() {
         super.initGui();
@@ -135,51 +121,10 @@ public class GuiHyperiumScreenIngameMenu extends GuiHyperiumScreen {
 
         GlStateManager.translate(0, height - 50, 0);
 
-        if (System.currentTimeMillis() - lastUpdate > 2000L && InstallerUtils.getOS() != InstallerUtils.OSType.MacOS) {
-            refreshData();
-        }
-
         ScaledResolution current = ResolutionUtil.current();
         GlStateManager.translate(current.getScaledWidth() / 2, 5, 0);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
-        if (InstallerUtils.getOS() != InstallerUtils.OSType.MacOS) {
-            drawCenteredString(fontRendererObj, "HyperiumJailbreak Player Count:", 0, -5, 0xFFFFFF);
-        }
-        GlStateManager.translate(0F, 10F, 0F);
-        GlStateManager.scale(1, 1, 1);
-        GlStateManager.enableAlpha();
-
-        GlStateManager.translate(0.0F, 0.0F, 4F);
-
-        if (InstallerUtils.getOS() != InstallerUtils.OSType.MacOS) {
-            drawCenteredString(fontRendererObj, "Now Online: " + ChatFormatting.GREEN + data.optInt("online") + ChatFormatting.RESET, 0, 0, 0xFFFFFF);
-        }
         GlStateManager.popMatrix();
-    }
-
-    private synchronized void refreshData() {
-        lastUpdate = System.currentTimeMillis() * 2;
-
-        Multithreading.runAsync(() -> {
-            HttpResponse response = null;
-            try {
-                response = HttpClients.createDefault().execute(BackendHandler.generate("https://backend.rdil.rocks/getOnline"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            HttpEntity entity = response.getEntity();
-
-            if (entity != null) {
-                try (InputStream instream = entity.getContent()) {
-                    StringWriter writer = new StringWriter();
-                    IOUtils.copy(instream, writer, "UTF-8");
-                    data = new JsonHolder(new JsonParser().parse(writer.toString()).getAsJsonObject());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            lastUpdate = System.currentTimeMillis();
-        });
     }
 }
