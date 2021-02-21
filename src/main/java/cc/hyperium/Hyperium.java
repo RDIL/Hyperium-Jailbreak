@@ -63,13 +63,13 @@ public class Hyperium {
     /**
      * The client's version.
      */
-    public static final String version = "4.3.0";
+    public static final String version = "4.3.1";
     /**
      * The client's version as an integer.
      *
      * @see cc.hyperium.utils.VersionUtil
      */
-    public static final int HYPERIUMJB_VERSION = 430;
+    public static final int HYPERIUMJB_VERSION = 431;
     /**
      * The class instance.
      */
